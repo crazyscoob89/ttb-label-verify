@@ -226,8 +226,22 @@ reporting a pass.
 
 - **Stateless, in-memory processing.** Uploaded images and extraction results
   are processed in memory for the duration of the request and are **not
-  persisted** to disk, a database, or any durable store. No user data
-  outlives the request.
+  persisted** to disk, a database, or any durable store. The precise claim:
+  **the application itself persists nothing** — no image files, no
+  extracted text, no application data are written to application-controlled
+  storage; any OS/framework transient buffers used internally by underlying
+  libraries are outside application control and are never read back or
+  retained by the app (see `THREAT_MODEL.md` §6 for the full policy and its
+  one precisely-scoped caveat).
+- **External provider transmission is a separate concern from application
+  storage.** The no-persistence claim above governs only what this
+  application writes to storage it controls — it does not describe what
+  happens to an image after it is sent to the external vision extraction
+  provider for processing. Uploaded images ARE transmitted to that external
+  API, and the provider's own data retention policy (not this application's
+  policy) governs that transmitted copy; see the Provider Data Retention
+  subsection of `THREAT_MODEL.md` §6 for the required deployment-time
+  disclosure and the README limitation this must be reflected in.
 
 ## Architecture
 

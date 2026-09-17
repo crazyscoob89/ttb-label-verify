@@ -166,6 +166,40 @@ pretending an in-memory limiter achieves global bounding:
    **not** the mechanism relied upon to guarantee a global spend ceiling —
    that guarantee comes from control #2.
 
+**Pre-deployment verification (required gate, not assumed):** Before public
+access to the deployed prototype is enabled, the hard-cap behavior described
+in control #2 above must be **verified, not assumed** from marketing copy or
+a budget-alert email. Concretely:
+- Confirm, by direct inspection of the chosen provider's account/billing
+  console, that the spend/request cap setting actually **stops requests**
+  once the limit is reached (a true hard limit) — not merely a threshold
+  that triggers a notification email while the API keeps accepting and
+  billing calls.
+- **Document the observed behavior** before go-live: the provider name, the
+  exact console setting/feature name used, and a one-line description of
+  the enforcement behavior actually observed (e.g., "Provider X usage
+  limits — Settings > Billing > Hard limit — requests return an error/429
+  once the monthly hard limit is reached, verified by test call after
+  setting a low temporary limit").
+- **If the chosen provider only offers alert-style notifications (no true
+  request-stopping hard cap), this deployment gate FAILS** until one of the
+  following is true:
+  (a) a different provider offering an actual hard spend/request cap is
+      selected instead, **or**
+  (b) a server-side **global kill switch** is implemented and tested — an
+      environment-variable-driven flag checked on every request (e.g., an
+      `EXTRACTION_DISABLED` flag that short-circuits before any provider
+      call is made) — **plus** a server-enforced **daily-quota environment
+      cap** (a hard numeric ceiling on extraction calls/day, read from an
+      env var, enforced per-instance as a floor-level backstop) — both
+      implemented and exercised by a test before the gate is considered
+      passed.
+- This verification is a **go/no-go gate** for enabling public access, not
+  an optional nicety — an alert-only provider configuration must never be
+  treated as equivalent to a hard cap anywhere in this document, the code,
+  or deployment sign-off. (See `ACCEPTANCE_CHECKLIST.md` Delivery Gate for
+  the corresponding checklist item.)
+
 **Production upgrade path (explicitly not in the prototype):**
 **Distributed rate limiting backed by a shared store** (e.g.,
 Redis/Upstash, or a database-backed counter) that all instances read/write
@@ -315,6 +349,41 @@ implementation detail outside the application's direct control (needs to be
 verified against the specific library chosen), and confirmation that the
 hosting platform (Vercel) does not itself persist request bodies in a way
 that conflicts with this policy.
+
+**Provider Data Retention (the external dimension — not covered by the
+application's own no-storage policy above):** the application-controlled
+no-storage policy above governs only what *this application* writes to
+storage it controls. It does **not**, and cannot, govern what happens to an
+uploaded image after it is transmitted to the external vision extraction
+provider for processing — that is a separate, external copy governed by the
+provider's own policies, not this application's code.
+- **Uploaded images ARE transmitted to the external vision API.**
+  Extraction requires sending image bytes to an external provider's API;
+  this is an unavoidable external transmission, not an application storage
+  decision, and it must be stated plainly rather than obscured by the
+  in-app "nothing is stored" language above.
+- **The provider's retention policy — not this application's policy —
+  governs that transmitted copy.** Once the image leaves the application's
+  process boundary as part of an API call, how long the provider retains
+  it, whether it is used for model training, and whether provider-side
+  logs/caches capture it are entirely up to the provider's own data
+  handling terms, independent of anything documented in this file.
+- **Deployment documentation must cite the chosen provider's stated
+  retention/training-use policy by name**, before go-live — including
+  whether the provider offers a zero-data-retention (ZDR) option or
+  equivalent, and whether that option is selected for this deployment.
+  This citation is a required deployment artifact, not optional
+  background reading.
+- **This is disclosed in `README.md` as a known limitation** for a
+  production federal deployment: label images (which may contain
+  proprietary or pre-market-sensitive artwork) are sent to an external
+  commercial API subject to that vendor's retention/training terms unless
+  a zero-data-retention configuration is confirmed. On-tenant Azure/
+  Microsoft Foundry hosting (already documented in `PLAN.md` as the
+  firewall-compatible production path) resolves this concern for a
+  production federal deployment by keeping the vision call within the
+  tenant's own governed boundary — this is the existing architectural
+  answer to this exact risk, cross-referenced here rather than restated.
 
 ## Explicitly Out of Scope for This Threat Model (Prototype Stage)
 

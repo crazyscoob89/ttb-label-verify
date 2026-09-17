@@ -169,8 +169,23 @@ checked off as the build progresses, not pre-filled.
 - [ ] No secrets committed anywhere in git history (not just the current
       working tree).
 - [ ] `README.md` clearly states scope and known limitations (e.g.,
-      type-size unverifiability) so reviewers aren't surprised.
+      type-size unverifiability, and the external provider data retention
+      limitation per `THREAT_MODEL.md`) so reviewers aren't surprised.
 - [ ] Repository is private and accessible under the correct account/owner.
+- [ ] **HARD GATE — verified provider spend stop (not an alert-only
+      assumption):** before public access is enabled, the chosen extraction
+      provider's account/billing console has been directly inspected and
+      confirmed to actually **stop requests** once the configured cap is
+      reached (a true hard limit), not merely send a budget-alert email
+      while continuing to accept and bill calls. The provider name, the
+      exact console setting/feature name, and the observed stop-behavior
+      are documented per `THREAT_MODEL.md` §4. **If the provider only
+      offers alert-style notifications, this gate FAILS** until either (a)
+      a provider with a true hard cap is selected, or (b) a server-side
+      global kill switch (env-flag checked per request) plus a
+      server-enforced daily-quota env cap are implemented and tested. This
+      item cannot be marked done on the basis of an alert-only
+      configuration under any circumstance.
 
 ## Status
 
