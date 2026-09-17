@@ -107,58 +107,93 @@ to "extraction only"), and testing against adversarial label text (see
 provider, uncontrolled request volume (whether malicious or accidental) can
 translate directly into uncontrolled dollar cost.
 
-**Concrete spend bounding mechanism (required, not optional, for the
-deployed app):** four independent, stacked controls, each enforced
-server-side (never trusted to the client):
+**Serverless reality (must be acknowledged honestly, not glossed over):**
+The deployment target is Vercel, which runs multiple concurrent serverless
+function instances, each with its own process memory. **Any in-memory
+counter, semaphore, or rate limiter (a `Map`, a module-level variable, an
+in-process token bucket) only bounds spend within a single instance.** It
+does not, and cannot, bound *global* spend across the deployment, because
+concurrent requests routed to different instances each see their own
+independent, unsynchronized counter starting from zero. A design that
+relies solely on per-instance in-memory limiting to cap total spend is
+making a promise it cannot keep under real Vercel concurrency — this must
+not be asserted as a global spend bound anywhere in this document or the
+app.
 
-1. **Server-side per-request concurrency cap.** The number of extraction
-   requests allowed to be in-flight to the provider at any given moment is
-   capped by the server (a bounded worker/semaphore around the provider
-   call), independent of how many requests the client queues or how many
-   browser tabs/batches are firing concurrently. Requests beyond the cap
-   wait or are rejected with a clear "server busy, try again" response
-   rather than being forwarded to the provider uncapped.
-2. **Rate limiting per IP.** Requests to upload/extraction endpoints are
-   rate-limited per source IP address (e.g., a sliding-window or
-   token-bucket limiter keyed on IP), so a single client — malicious or
-   simply buggy — cannot generate unbounded request volume regardless of
-   batch-queue behavior on their end.
-3. **Max requests/day, env-configurable.** A hard daily cap on total
-   extraction requests served by the deployment is enforced server-side and
-   configured via an environment variable (name only, value set at deploy
-   time — e.g., `MAX_REQUESTS_PER_DAY`), so the operator can tune the cap
-   per deployment context (prototype/demo vs. higher-traffic) without a code
-   change. Once the daily cap is reached, further requests are rejected
-   with a clear, honest error (not silently dropped or degraded).
-4. **Hard max image size before any provider call.** The server enforces an
-   absolute maximum accepted image size (bytes and/or pixel dimensions,
-   per the Upload Hardening limits in `PLAN.md`) that is checked and
-   enforced *before* the image is ever sent to the extraction provider —
-   oversized images are rejected at `intake/` and never reach a billed API
-   call, bounding worst-case per-request cost regardless of what a client
-   attempts to upload.
+**Honest prototype-scope enforcement:** given the above, the prototype's
+spend bounding is layered across what *is* achievable per-instance plus
+what is *actually global* (provider-side and platform-side), rather than
+pretending an in-memory limiter achieves global bounding:
 
-These four controls are independent layers (concurrency, per-IP rate,
-daily volume, per-request size) — each bounds a different axis of spend, and
-all four apply simultaneously; none is a substitute for the others.
+1. **Hard per-request limits, enforced in every instance.** These are true
+   regardless of instance count because they bound the cost of each
+   individual request, not the aggregate across instances:
+   - **Max image size** (bytes and/or pixel dimensions, per the Upload
+     Hardening limits in `PLAN.md`), checked and enforced *before* the
+     image is ever sent to the extraction provider — oversized images are
+     rejected at `intake/` and never reach a billed API call.
+   - **Max images per request** (a hard cap on how many images a single
+     request/batch item can bundle), so one request cannot itself
+     multiply into many provider calls.
+   - **Request timeout** on the provider call, so a single request cannot
+     hang and accumulate cost or hold provider concurrency indefinitely.
+   - These per-request limits are real per-instance mitigations (every
+     instance independently enforces them on every request it handles),
+     but they bound *per-request* cost, not *aggregate* spend across
+     however many instances Vercel happens to be running.
+2. **Provider-side spend cap, set at the API account level (the true
+   global bound).** Because per-instance in-memory limiting cannot see
+   across instances, the actual mechanism that bounds *total* spend is
+   configured on the provider account itself — a hard monthly/daily
+   dollar or request-volume cap set in the extraction provider's billing
+   console, which applies globally to the API key regardless of how many
+   Vercel instances are calling it. This is the control that is actually
+   authoritative for "total spend cannot exceed X," and it is required,
+   not optional, for the deployed prototype.
+3. **Vercel's own concurrency/invocation limits (optional, secondary).**
+   Vercel's platform-level function concurrency and invocation-count
+   controls (plan-level or project-level, as available) can be configured
+   as an additional coarse backstop on total invocation volume. This is
+   documented as optional because it is a platform knob, not something
+   the application code enforces, but it stacks usefully with the
+   provider-side cap above.
+4. **Per-instance in-memory rate limiting / concurrency cap and per-IP
+   rate limiting remain in place as defense-in-depth**, and they do provide
+   real value — they reduce the *rate* at which any single instance can
+   burn through the per-request cost, and in low/moderate-traffic
+   prototype conditions where Vercel is not aggressively scaling out
+   instances, they meaningfully throttle abuse. But they are explicitly
+   **not** the mechanism relied upon to guarantee a global spend ceiling —
+   that guarantee comes from control #2.
+
+**Production upgrade path (explicitly not in the prototype):**
+**Distributed rate limiting backed by a shared store** (e.g.,
+Redis/Upstash, or a database-backed counter) that all instances read/write
+to, giving a true cross-instance request-rate and concurrency bound at the
+application layer, is the correct production-grade solution to the
+multi-instance problem. It is explicitly **not implemented in this
+prototype** — the prototype relies on per-request limits (control #1) plus
+the provider-side spend cap (control #2) as its honest, achievable
+spend-bounding story, and this document states plainly that distributed
+rate limiting is deferred to a production hardening stage, not silently
+assumed to already exist via the in-memory limiter.
 
 **Additional mitigations (per PLAN.md):**
 - Bounded batch queue design (browser-side) prevents a single batch
   submission from generating client-side request storms in the first
-  place, complementing (not replacing) the server-side controls above.
+  place, complementing (not replacing) the controls above.
 - Provider-abstracted interface (per PLAN.md) allows swapping to
   lower-cost or self-hosted/enterprise providers (e.g., Azure/Microsoft
   Foundry) without an architecture change if spend becomes a concern.
 
 **Residual risk to document at build time:** the exact numeric values for
-the concurrency cap, per-IP rate limit, and `MAX_REQUESTS_PER_DAY` default
-need to be chosen and justified during implementation (informed by expected
-prototype/demo traffic, not production scale); what user-facing behavior
-occurs when each limit is hit (reject vs. queue — current design intent is
-hard reject with a clear message, per the concurrency-cap and daily-cap
-descriptions above); and whether provider-side spend alerts/caps are
-configured as a second layer of defense beyond these application-level
-controls.
+max image size, max images per request, request timeout, and the
+provider-side account spend cap need to be chosen and justified during
+implementation (informed by expected prototype/demo traffic, not production
+scale); what user-facing behavior occurs when a per-request limit is hit
+(current design intent is hard reject with a clear message); and, if/when
+this moves toward production, the specific shared-store technology chosen
+for distributed rate limiting.
 
 ### 5. Key and Secret Handling
 
@@ -191,7 +226,8 @@ that dumps request bodies), or captured in error-tracking tooling — any of
 which would create an unintended, un-governed copy of what may be
 sensitive/proprietary label artwork or an applicant's business data.
 
-**Concrete image lifecycle policy (required):**
+**Concrete image lifecycle policy (required, absolute in the main text —
+nothing is stored, no exceptions):**
 - **Processed in-memory only.** From the moment an image is received by
   the server to the moment the response is returned, the image bytes exist
   only in server process memory (buffers), never written to a file on disk
@@ -202,34 +238,67 @@ sensitive/proprietary label artwork or an applicant's business data.
   retained — no in-process cache, no session store, no queue that persists
   the raw bytes beyond the single request's lifetime. This matches the
   Stateless, in-memory processing principle in `PLAN.md`.
-- **Never written to disk or blob storage, under any code path** —
+- **Never written to durable disk or blob storage, under any code path** —
   including error/exception paths (a crash or thrown error handling an
   image must not fall back to writing the image to disk for
-  debugging/recovery purposes) and including any third-party library used
-  for re-encoding (the re-encode step, per Malicious Image Payloads above,
-  operates on in-memory buffers, not temp files, or if a library requires a
-  temp file internally, that temp file is written to an ephemeral
-  path that is guaranteed cleaned up synchronously and is never a
-  durable/blob location).
-- **No logging of image bytes.** Application logs never contain raw image
-  data, base64-encoded image content, or any other representation of the
-  pixel data — not in debug logs, not in error logs, not in request-body
-  logging middleware (which must explicitly exclude/redact the image field
-  if any general-purpose request logging is used).
+  debugging/recovery purposes). Nothing is stored, full stop — there is no
+  exception language here for "temporary files" or "extracted-data logs";
+  the one unavoidable technical caveat (transient OS-level buffers used
+  internally by external libraries) is called out precisely, separately,
+  below, rather than blended into this policy as a soft exception.
+- **No logging of image bytes or extracted label text.** Application logs
+  never contain raw image data, base64-encoded image content, any other
+  representation of pixel data, or the full extracted label text content —
+  not in debug logs, not in error logs, not in request-body logging
+  middleware (which must explicitly exclude/redact the image field and the
+  raw extracted-text field if any general-purpose request logging is
+  used).
 
-**What DOES appear in logs (metadata only, no image content):** logs may
-contain operational metadata needed for debugging and monitoring — e.g.,
-request timestamp, source IP (for rate-limit enforcement), file size in
-bytes, image MIME type / detected format, image dimensions, which
-commodity/field-set was requested, request duration, success/failure
-status, the specific extraction-provider error class on failure, and (per
-the Uncertainty Invariant in `PLAN.md`) a record that a given field's
-extraction was malformed/schema-violating and routed to needs-review — but
-never the image bytes themselves, never a base64 dump, and never the
-full extracted label text content logged verbatim as a matter of routine
-(only structured, schema-validated field values, if extraction results are
-logged at all for debugging, and even then without the source image
-attached).
+**Transient OS-level buffers (the one unavoidable technical caveat,
+precisely scoped, not a storage exception):** some underlying libraries
+(e.g., a native image re-encoding library, or the OS/runtime's own
+network/multipart-parsing stack) may, as an implementation detail outside
+the application's direct control, touch an OS-managed temp buffer or
+ephemeral temp-file path transiently during processing. This is bounded
+precisely:
+- Only whichever library/runtime internals require it may touch disk this
+  way — application code itself never deliberately writes image bytes to
+  disk.
+- Any such transient buffer/file is **deleted before the response
+  completes** — it does not outlive the single request, is never in a
+  durable or blob-storage location, and is never read back by application
+  logic for any purpose beyond the original processing step.
+- This is verified against the specific re-encoding library selected at
+  build time (see Residual risk below); if the chosen library is confirmed
+  to operate entirely on in-memory buffers with no internal temp file, this
+  caveat does not apply at all and the policy is fully memory-only with
+  zero disk touch.
+
+**What DOES appear in logs (field-level verdict metadata ONLY — exact
+field list; no image bytes, no extracted full text, ever):** logs contain
+operational and verdict metadata limited to exactly these fields:
+- Request timestamp
+- Source IP (for rate-limit enforcement)
+- File size in bytes
+- Image MIME type / detected format
+- Image dimensions (pixels)
+- Commodity/field-set requested (e.g., "spirits")
+- Request duration
+- Success/failure status
+- Extraction-provider error class, on failure (e.g., "timeout",
+  "schema-validation-failed" — not the raw provider error body, which
+  could echo input)
+- Per-field verdict outcome only (match / mismatch / not-applicable /
+  needs-review, per field category) — the four-state result, not the
+  underlying extracted or declared values
+- A flag recording that a given field's extraction was
+  malformed/schema-violating and routed to needs-review (per the
+  Uncertainty Invariant in `PLAN.md`)
+
+Explicitly excluded from logs, with no exception: image bytes, any base64
+dump, the raw extracted label text (brand text, warning text, etc. as read
+from the image), and the raw applicant-declared field values. Only the
+verdict outcome and the metadata list above are ever logged.
 
 **Mitigations:**
 - Code review / lint rule at build time to catch accidental `console.log`

@@ -41,8 +41,11 @@ Applicability of some fields is commodity- and context-dependent (see below).
 2. **Class/type designation** — the statutorily/regulatorily defined class or
    type (e.g., "Vodka", "Straight Bourbon Whiskey", "Red Table Wine", "India
    Pale Ale").
-3. **Alcohol content** — stated ABV (% alcohol by volume), format and
-   tolerance rules vary by commodity.
+3. **Alcohol content (ABV) — consistency check** — does the ABV value
+   stated on the label match the ABV value declared on the application.
+   This is a straight label-vs-application consistency comparison; see
+   "Alcohol Content: Consistency-Only Verdict" below for the exact scope
+   of this check and what is explicitly excluded from it.
 4. **Net contents** — the declared volume of the container.
 5. **Bottler/producer name and address** — the responsible entity's name and
    principal place of business (city and state at minimum).
@@ -57,14 +60,20 @@ Applicability of some fields is commodity- and context-dependent (see below).
 Requirements differ across the three commodity classes the prototype supports:
 
 - **Spirits (distilled spirits)** — class/type rules are the strictest and
-  most granular (whiskey sub-types, vodka, gin, rum, etc.); ABV statement
-  format and standards of fill governed by 27 CFR Part 5.
+  most granular (whiskey sub-types, vodka, gin, rum, etc.); standards of
+  fill governed by 27 CFR Part 5. (ABV itself is checked as a plain
+  label-vs-application consistency comparison — see "Alcohol Content:
+  Consistency-Only Verdict" below; commodity-specific regulatory ABV
+  tolerance rules under Part 5 are not evaluated by this prototype.)
 - **Wine** — class/type includes varietal, semi-generic, and generic
-  designations; ABV tolerance bands differ from spirits; governed by 27 CFR
-  Part 4.
+  designations; governed by 27 CFR Part 4. (ABV consistency check per
+  "Alcohol Content: Consistency-Only Verdict" below; Part 4's regulatory
+  ABV tolerance bands are not evaluated by this prototype.)
 - **Malt beverages** — class/type is typically "beer", "ale", "malt liquor",
-  etc.; ABV statement requirements vary by state and are less federally
-  standardized; governed by 27 CFR Part 7.
+  etc.; less federally standardized and varies by state; governed by 27 CFR
+  Part 7. (ABV consistency check per "Alcohol Content: Consistency-Only
+  Verdict" below; state-level ABV statement variations are not evaluated by
+  this prototype.)
 
 The rule engine must dispatch validation logic per-commodity rather than
 applying one universal rule set — e.g., country of origin is only evaluated
@@ -106,11 +115,52 @@ asymmetric based on what the regulation actually requires:
   - Any deviation in wording, capitalization of the heading, or bold/non-bold
     formatting is a mismatch — this field does not get the benefit of fuzzy
     matching.
-- **Other fields** (class/type, alcohol content, net contents,
-  bottler/producer, country of origin) — matching strategy documented
-  per-field in the implementation as each has its own regulatory tolerance
-  (e.g., ABV has numeric tolerance bands; net contents has standards-of-fill
-  constraints).
+- **Alcohol content (ABV)** — uses **numeric consistency** matching: the
+  label-stated ABV is compared directly against the application-declared
+  ABV, normalized only for equivalent formatting (e.g., "40%" and "40.0%"
+  are the same value — this is unit/format normalization, not a regulatory
+  tolerance band). The verdict is a pure label-vs-application consistency
+  check, full stop — see "Alcohol Content: Consistency-Only Verdict" below.
+  TTB regulatory tolerance (whether a stated ABV that differs numerically
+  would still be an allowed variance under 27 CFR) is explicitly NOT
+  evaluated as part of this or any match/mismatch decision; it is
+  documented as an out-of-scope limitation, not folded into the verdict.
+- **Other fields** (class/type, net contents, bottler/producer, country of
+  origin) — matching strategy documented per-field in the implementation as
+  each has its own regulatory tolerance (e.g., net contents has
+  standards-of-fill constraints).
+
+## Alcohol Content: Consistency-Only Verdict
+
+Alcohol content is deliberately scoped as **two separate,
+independently-reported questions**, per review — they must never be
+conflated into one fuzzy "ABV compliance" judgment:
+
+1. **Consistency (the only thing that produces a verdict).** Does the ABV
+   printed on the label match the ABV declared on the paired application
+   record? This resolves to the standard four-state outcome
+   (match/mismatch/needs-review; not-applicable does not apply to this
+   field) using the numeric-consistency matching strategy described above.
+   This is the entirety of what the ABV field's verdict measures.
+2. **Regulatory tolerance (out of scope for the verdict, documented
+   limitation only).** TTB regulations separately govern how much an
+   actual/finished product's ABV may vary from its labeled/declared ABV
+   before it becomes a compliance issue (tolerance bands that differ by
+   commodity per 27 CFR Parts 4, 5, and 7). This prototype does **not**
+   evaluate that question and does **not** fold it into the match/mismatch
+   decision in any way — there is no tolerance-band logic anywhere in the
+   consistency check. If regulatory tolerance is referenced anywhere in
+   this system (UI copy, documentation, reports), it must be presented
+   strictly as a documented limitation, worded to this effect:
+   **"regulatory tolerance evaluation is a TTB determination, not
+   performed by this tool."** It must never be presented as something the
+   system checks, partially checks, or accounts for in its verdict.
+
+This separation exists so that a label with an ABV that is numerically
+inconsistent with its application is never allowed to resolve to `match`
+on the theory that it might fall within some regulatory tolerance band —
+the verdict is purely: does the label agree with the application, yes or
+no (or needs-review if unreadable).
 
 ## Type-Size: Permanent Needs-Review Lane
 
@@ -334,3 +384,11 @@ Uploaded images are treated as untrusted input. Hardening measures:
   ("uncertainty never passes"). Made in response to review feedback on the
   initial planning-docs commit; no app code exists yet, so this is a
   clarification/strengthening of the frozen scope, not a scope change.
+- **Revision (post-review of `605a782`):** Split alcohol content into two
+  independently-reported questions — a pure label-vs-application
+  consistency verdict (the only thing that produces match/mismatch/
+  needs-review) and TTB regulatory tolerance, which is now explicitly
+  out of scope for the verdict and, if mentioned at all, documented as a
+  limitation only (see "Alcohol Content: Consistency-Only Verdict").
+  Clarification of the frozen scope in response to review feedback; no
+  app code exists yet, so no scope change.

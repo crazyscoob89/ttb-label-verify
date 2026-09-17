@@ -68,6 +68,11 @@ resolve, not an abstract judgment of the label alone.
 | A-ANGLE-GLARE-01 | Image quality / extraction robustness | Label photographed at a steep angle and/or with significant glare obscuring part of the text, despite the paired application record declaring specific values for the affected fields. Expected: tests whether extraction degrades gracefully into **needs-review** for affected fields (per the Uncertainty Invariant — low-confidence extraction never produces a default match against the declared value) rather than confidently emitting a wrong value or a false match. | Declared values present for the obscured fields, matching what the label would show if legible — the test specifically checks that illegibility routes to needs-review rather than a lucky/unlucky guess being compared. |
 | A-MAP-MISSING-RECORD-01 | Batch mapping — image-to-application-record | In batch mode, an uploaded image has no corresponding entry in the CSV manifest (or does not match the filename convention, per `PLAN.md`'s batch mapping mechanism). Expected: the system rejects this item with a clear, explicit per-item mapping error — it must never fall through to being extracted and evaluated with no declared reference, and must never be silently skipped. | None — this case specifically tests the absence of a paired application record for a submitted image. |
 | A-MAP-MISSING-IMAGE-01 | Batch mapping — image-to-application-record | In batch mode, a CSV manifest row declares an application record for a filename that has no corresponding uploaded image. Expected: the system rejects this manifest row with a clear, explicit per-item error, distinguishable from other failure types, rather than silently ignoring the orphaned row. | A manifest row with declared fields but no matching image file in the batch upload. |
+| W-BRAND-WRONG-01 | Wrong-answer risk — confidently-wrong extraction | Label brand name is clearly, legibly printed but spelled **differently** from the declared brand (not a case/formatting variant — an actually different string, e.g., label reads "Old Harbour" while application declares "Old Harbor Distilling"). This is deliberately NOT a hard-to-read case — the wrong text is printed cleanly and plausibly, so a careless or overconfident engine could extract it accurately (correctly reading the wrong-looking-right text) and a careless rule layer could still call it close enough. Expected: **mismatch**. The critical measurement is whether the engine+rules pipeline produces a false **match** here — that would be a disqualifying error (see False-Match Rate below). | Declared brand = a specific, different string from what the label actually and legibly shows. |
+| W-ABV-4045-01 | Wrong-answer risk — confidently-wrong extraction | Label clearly and legibly states 40% ABV; paired application declares 45% ABV (a real, plausible-looking, cleanly printed wrong value — not a blur/glare case). Expected: **mismatch**. This case exists specifically to catch an engine that reads the number correctly but a rule/tolerance-adjacent leniency that lets a "close enough" 5-point gap slide into match — per `PLAN.md`'s Alcohol Content: Consistency-Only Verdict, this must resolve to mismatch, full stop, regardless of any regulatory-tolerance reasoning. | Declared ABV = 45%; label clearly, legibly states 40%. |
+| W-NETCONTENTS-WRONG-01 | Wrong-answer risk — confidently-wrong extraction | Label's net contents statement is clearly, legibly printed but numerically wrong relative to the declared value (e.g., label reads "750 mL", application declares "1 L") — a clean, unambiguous, plausible-looking wrong value, not an illegible or obscured one. Expected: **mismatch**. Tests the same false-confidence risk as W-BRAND-WRONG-01 and W-ABV-4045-01 but for the net contents field. | Declared net contents = a specific value different from what the label clearly and legibly states. |
+| W-WARN-REWORD-01 | Visually deceptive — reworded warning text | Government warning text is present, correctly bolded/capitalized in its heading, and superficially looks right at a glance, but the required statutory wording has been subtly reworded mid-paragraph (a word substituted, dropped, or reordered partway through the body text — not an obviously different statement, not a missing warning). Expected: **mismatch** (tests that the exact-statutory-wording check actually reads and verifies the full text body, not just the presence/formatting of the heading — a check that only verifies the heading would be fooled by this case). | N/A for this field — statutory-text basis per `PLAN.md`. |
+| W-BRAND-SPLITLINE-01 | Visually deceptive — decorative layout obfuscation | Brand name is present and, when read correctly, matches the declared brand — but it is split across multiple decorative lines/design elements on the label (e.g., stacked or interleaved with graphic elements) in a way that a naive top-to-bottom or left-to-right text read could misassemble into a wrong string. Expected: **match** (the correct brand is genuinely present; this case tests whether extraction is robust to decorative layout rather than misreading a correct brand as wrong due to visual splitting — a false **mismatch** here is the failure mode under test, the mirror image of the false-match risk in the W-* cases above). | Declared brand matches what the label spells out when correctly reassembled from its split/decorative rendering. |
 
 ### Notes on Matrix Construction (For Build Stage)
 
@@ -76,6 +81,17 @@ resolve, not an abstract judgment of the label alone.
   A-WARN-BOLDBODY-01, A-BRAND-CASE-01) specifically probe whether the
   asymmetric matching strategy from `PLAN.md` is actually implemented as
   asymmetric.
+- The **W-* cases** are a distinct category from the A-* cases above: they
+  specifically measure **wrong-answer risk** — whether an engine
+  confidently and accurately extracts a clearly, legibly printed but
+  factually wrong value (W-BRAND-WRONG-01, W-ABV-4045-01,
+  W-NETCONTENTS-WRONG-01) and whether extraction is fooled by visually
+  deceptive-but-correct layouts (W-WARN-REWORD-01, W-BRAND-SPLITLINE-01).
+  Unlike the A-* image-quality cases (blur, angle, glare), the W-* cases
+  are deliberately clean and legible — the risk under test is confident
+  misreading or over-lenient matching, not degraded image quality. These
+  cases are what the False-Match Rate and False-Mismatch Rate metrics in
+  the Engine Comparison Table are principally scored against.
 - The matrix should be expanded during the build stage to include at least
   one adversarial case per field category (this skeleton does not yet cover
   every field with a dedicated adversarial case — e.g., net contents
@@ -98,26 +114,64 @@ To be filled in during the actual benchmark run. Each candidate
 vision-capable extraction engine is evaluated against the full test matrix
 above.
 
-| Engine / Model | Provider | Test cases run | Field-level accuracy | Warning-check accuracy (adversarial) | Avg. latency (single label) | p95 latency | Est. cost per extraction | Notes |
-|----------------|----------|-----------------|------------------------|----------------------------------------|-------------------------------|--------------|-----------------------------|-------|
-| _(candidate 1)_ | | | | | | | | |
-| _(candidate 2)_ | | | | | | | | |
-| _(candidate 3)_ | | | | | | | | |
+| Engine / Model | Provider | Test cases run | Field-level accuracy | Warning-check accuracy (adversarial) | False-Match Rate | False-Mismatch Rate | Referral Rate | Avg. latency (single label) | p95 latency | Est. cost per extraction | Notes |
+|----------------|----------|-----------------|------------------------|----------------------------------------|---------------------|------------------------|------------------|-------------------------------|--------------|-----------------------------|-------|
+| _(candidate 1)_ | | | | | | | | | | | |
+| _(candidate 2)_ | | | | | | | | | | | |
+| _(candidate 3)_ | | | | | | | | | | | |
 
 **Column definitions:**
 - **Field-level accuracy** — percentage of the 7 fields correctly extracted
   and correctly classified (match/mismatch/not-applicable/needs-review)
   across all clean-case tests.
 - **Warning-check accuracy (adversarial)** — specifically, percentage of
-  A-WARN-* adversarial cases correctly resolved to mismatch (this is
-  called out separately because it's the strictest, most regulation-critical
-  check in the system per `PLAN.md`).
+  A-WARN-* and W-WARN-* adversarial cases correctly resolved to mismatch
+  (this is called out separately because it's the strictest, most
+  regulation-critical check in the system per `PLAN.md`).
+- **False-Match Rate (the disqualifying metric)** — percentage of test
+  cases where the truth is mismatch (per the fixture's designed ground
+  truth — principally the W-* wrong-answer cases, plus the A-WARN-* and
+  A-ABV-WRONG-01 cases) for which the engine+rules pipeline nonetheless
+  produced **match**. This is the single most important number in this
+  table: a false match means the system told a human "this is fine" when
+  the label actually disagrees with the application — the exact failure
+  this tool exists to prevent. **State explicitly per `PLAN.md`'s review
+  finding: false-match is the disqualifying metric. Any candidate engine
+  with a nonzero false-match rate on this matrix is disqualified from
+  selection, full stop, regardless of how it performs on every other
+  column** — a faster, cheaper, or higher-field-accuracy model with any
+  false-match rate loses to a slower model with zero false-match and a
+  higher referral rate.
+- **False-Mismatch Rate (the annoyance metric)** — percentage of test
+  cases where the truth is match for which the engine+rules pipeline
+  produced **mismatch**. This is a real cost (unnecessary rejections,
+  wasted human review time) but it is a workflow/UX cost, not a safety
+  failure — it is reported separately from, and is never traded against,
+  false-match.
+- **Referral Rate (the workload metric)** — percentage of all test cases
+  (not just adversarial) for which the engine+rules pipeline produced
+  **needs-review**. This measures the human workload the system generates.
+  A higher referral rate is an acceptable, even expected, trade for a lower
+  or zero false-match rate — per `PLAN.md`'s Uncertainty Invariant,
+  needs-review is the correct fallback for uncertainty, and a candidate
+  that refers more often but never false-matches is the preferred choice
+  over one that resolves more confidently but sometimes false-matches.
 - **Avg. / p95 latency** — measured honestly end-to-end (upload → extraction
   → rule evaluation → result), per the ~5s design target in `PLAN.md` — not
   provider-API-call time alone.
 - **Est. cost per extraction** — approximate per-image cost at the
   provider's published pricing, to inform the provider-spend-bounding
   discussion in `THREAT_MODEL.md`.
+
+**Selection rule (explicit, non-negotiable):** when choosing among
+candidate engines from this table, **False-Match Rate is evaluated first
+and is disqualifying** — any candidate with a nonzero false-match rate on
+this matrix is eliminated from consideration regardless of its standing on
+every other column (field-level accuracy, latency, cost). Among candidates
+tied at zero false-match rate, referral rate, false-mismatch rate,
+latency, and cost are then used to rank the remaining options. A model
+with a higher referral rate but zero false-match beats a faster or
+cheaper model with any false-match, every time.
 
 ## Candidate Engines to Evaluate (Non-Binding List)
 
