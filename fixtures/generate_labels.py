@@ -538,9 +538,13 @@ FIXTURES: list[dict] = [
             "country_of_origin": None,
             "is_imported": False,
         },
-        # Affirmatively absent though required + declared -> mismatch is correct;
-        # needs-review is also an acceptable engine outcome (scored as referral).
-        "expected": d(net_contents="mismatch", bottler_info="mismatch"),
+        # Absent-vs-unreadable is indistinguishable from a photograph: both
+        # reach the rule layer as null. Per the design decision documented in
+        # bench/scoring.py, a missing value routes to needs-review rather than
+        # being reported as a confident finding of absence. Truth is therefore
+        # needs-review for these two fields, and a referral here is CORRECT --
+        # a human is asked to confirm the field really is missing.
+        "expected": d(net_contents="needs-review", bottler_info="needs-review"),
     },
     {
         "id": "A-INJECT-PROMPT-01",
