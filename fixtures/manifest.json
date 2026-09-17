@@ -1,0 +1,145 @@
+{
+  "fixture_count": 18,
+  "fields": [
+    "brand_name",
+    "class_type",
+    "alcohol_content",
+    "net_contents",
+    "bottler_info",
+    "country_of_origin",
+    "government_warning"
+  ],
+  "statutory_warning": {
+    "citation": "27 CFR 16.21",
+    "heading": "GOVERNMENT WARNING:",
+    "body": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems."
+  },
+  "fixtures": [
+    {
+      "fixture_id": "C-SPIRITS-01",
+      "category": "clean",
+      "commodity": "spirits",
+      "image": "images/C-SPIRITS-01.png",
+      "ground_truth": "ground_truth/C-SPIRITS-01.json"
+    },
+    {
+      "fixture_id": "C-WINE-01",
+      "category": "clean",
+      "commodity": "wine",
+      "image": "images/C-WINE-01.png",
+      "ground_truth": "ground_truth/C-WINE-01.json"
+    },
+    {
+      "fixture_id": "C-MALT-01",
+      "category": "clean",
+      "commodity": "malt",
+      "image": "images/C-MALT-01.png",
+      "ground_truth": "ground_truth/C-MALT-01.json"
+    },
+    {
+      "fixture_id": "C-SPIRITS-IMPORT-01",
+      "category": "clean",
+      "commodity": "spirits",
+      "image": "images/C-SPIRITS-IMPORT-01.png",
+      "ground_truth": "ground_truth/C-SPIRITS-IMPORT-01.json"
+    },
+    {
+      "fixture_id": "A-WARN-TITLECASE-01",
+      "category": "adversarial",
+      "commodity": "spirits",
+      "image": "images/A-WARN-TITLECASE-01.png",
+      "ground_truth": "ground_truth/A-WARN-TITLECASE-01.json"
+    },
+    {
+      "fixture_id": "A-WARN-BOLDBODY-01",
+      "category": "adversarial",
+      "commodity": "wine",
+      "image": "images/A-WARN-BOLDBODY-01.png",
+      "ground_truth": "ground_truth/A-WARN-BOLDBODY-01.json"
+    },
+    {
+      "fixture_id": "A-BRAND-CASE-01",
+      "category": "adversarial",
+      "commodity": "spirits",
+      "image": "images/A-BRAND-CASE-01.png",
+      "ground_truth": "ground_truth/A-BRAND-CASE-01.json"
+    },
+    {
+      "fixture_id": "A-ABV-WRONG-01",
+      "category": "adversarial",
+      "commodity": "wine",
+      "image": "images/A-ABV-WRONG-01.png",
+      "ground_truth": "ground_truth/A-ABV-WRONG-01.json"
+    },
+    {
+      "fixture_id": "A-FIELD-MISSING-01",
+      "category": "adversarial",
+      "commodity": "malt",
+      "image": "images/A-FIELD-MISSING-01.png",
+      "ground_truth": "ground_truth/A-FIELD-MISSING-01.json"
+    },
+    {
+      "fixture_id": "A-INJECT-PROMPT-01",
+      "category": "injection",
+      "commodity": "spirits",
+      "image": "images/A-INJECT-PROMPT-01.png",
+      "ground_truth": "ground_truth/A-INJECT-PROMPT-01.json"
+    },
+    {
+      "fixture_id": "W-BRAND-WRONG-01",
+      "category": "wrong-answer",
+      "commodity": "spirits",
+      "image": "images/W-BRAND-WRONG-01.png",
+      "ground_truth": "ground_truth/W-BRAND-WRONG-01.json"
+    },
+    {
+      "fixture_id": "W-ABV-4045-01",
+      "category": "wrong-answer",
+      "commodity": "spirits",
+      "image": "images/W-ABV-4045-01.png",
+      "ground_truth": "ground_truth/W-ABV-4045-01.json"
+    },
+    {
+      "fixture_id": "W-NETCONTENTS-WRONG-01",
+      "category": "wrong-answer",
+      "commodity": "spirits",
+      "image": "images/W-NETCONTENTS-WRONG-01.png",
+      "ground_truth": "ground_truth/W-NETCONTENTS-WRONG-01.json"
+    },
+    {
+      "fixture_id": "W-WARN-REWORD-01",
+      "category": "wrong-answer",
+      "commodity": "malt",
+      "image": "images/W-WARN-REWORD-01.png",
+      "ground_truth": "ground_truth/W-WARN-REWORD-01.json"
+    },
+    {
+      "fixture_id": "W-BRAND-SPLITLINE-01",
+      "category": "wrong-answer",
+      "commodity": "spirits",
+      "image": "images/W-BRAND-SPLITLINE-01.png",
+      "ground_truth": "ground_truth/W-BRAND-SPLITLINE-01.json"
+    },
+    {
+      "fixture_id": "D-BLUR-01",
+      "category": "degraded",
+      "commodity": "spirits",
+      "image": "images/D-BLUR-01.png",
+      "ground_truth": "ground_truth/D-BLUR-01.json"
+    },
+    {
+      "fixture_id": "D-WARP-01",
+      "category": "degraded",
+      "commodity": "wine",
+      "image": "images/D-WARP-01.png",
+      "ground_truth": "ground_truth/D-WARP-01.json"
+    },
+    {
+      "fixture_id": "D-GLARE-01",
+      "category": "degraded",
+      "commodity": "malt",
+      "image": "images/D-GLARE-01.png",
+      "ground_truth": "ground_truth/D-GLARE-01.json"
+    }
+  ]
+}
