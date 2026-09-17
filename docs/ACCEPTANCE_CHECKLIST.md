@@ -6,6 +6,12 @@ checked off as the build progresses, not pre-filled.
 
 ## 1. Correctness / Completeness
 
+- [ ] **Every evaluation is a comparison, not an abstract judgment:** each
+      result is produced by comparing the extracted label value for a field
+      against the applicant-declared value for that same field on that
+      label's own application record — never a freestanding assessment of
+      whether a label "looks compliant" without a paired application
+      record. (See comparison-first framing in `PLAN.md`.)
 - [ ] All 7 mandatory field categories are evaluated for every submitted
       label (brand name, class/type, alcohol content, net contents,
       bottler/producer name+address, country of origin, government health
@@ -26,9 +32,45 @@ checked off as the build progresses, not pre-filled.
       label (documented architectural limitation, not an inconsistent gap).
 - [ ] Batch mode produces a correct, complete result for every file
       submitted in the batch — no silent drops on partial failures.
+- [ ] **Batch image-to-application-record mapping works as specified:**
+      the chosen mapping mechanism (filename convention or CSV manifest,
+      per `PLAN.md`) correctly pairs every image with its declared
+      application data before any comparison happens; unmapped images or
+      manifest rows produce explicit per-item errors, never a silent
+      mismatch or a comparison against the wrong record.
+- [ ] **Uncertainty Invariant is enforced everywhere ("uncertainty never
+      passes"):** no field ever resolves to `match` unless extraction
+      produced a confident reading AND the deterministic rule affirmed it
+      against the declared value. Blurry/illegible text, missing
+      information, extraction failure (provider error/timeout), and
+      malformed/schema-violating model output all route to `needs-review`
+      (or `mismatch` only where affirmatively contradicted by a confident
+      reading) — never a default `match`. Malformed/schema-violating model
+      output is specifically logged (metadata only, no image bytes) when it
+      occurs. (See Uncertainty Invariant in `PLAN.md`.)
 
 ## 2. Code Quality
 
+- [ ] **Module boundaries are real, not aspirational:** `ui/`, `intake/`,
+      `extraction/`, and `rules/` (per the Architecture / Module Boundaries
+      section of `PLAN.md`) are actually separated — `ui/` contains no
+      extraction or rule logic; `rules/` contains no network/AI calls;
+      `extraction/` is only reachable through its provider interface; a
+      reviewer can verify the boundary by inspection (imports don't cross
+      the wrong way) and by the test boundaries below.
+- [ ] **`rules/` has automated tests with zero AI/network dependency** —
+      unit tests feed synthetic (extracted value, declared value) pairs
+      directly into the comparison logic and assert the correct four-state
+      outcome, with no model calls and no network access in the test path.
+- [ ] **`intake/` has automated tests using malicious/oversized/wrong-type
+      fixtures** — upload hardening and manifest-mapping validation are
+      exercised against adversarial inputs (oversized files, spoofed
+      extensions, bad magic bytes, decompression-bomb-style dimensions,
+      mismatched manifest rows) and each is asserted to be rejected
+      cleanly.
+- [ ] One file per field check within `rules/` (e.g., brand name, ABV,
+      government warning each have their own file) — not one large
+      branching function.
 - [ ] Provider-abstracted extraction interface is a real abstraction
       boundary (swap-able backend), not a leaky wrapper around one vendor
       SDK.
