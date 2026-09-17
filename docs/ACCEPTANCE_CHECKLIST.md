@@ -168,9 +168,12 @@ checked off as the build progresses, not pre-filled.
       accurate.
 - [ ] No secrets committed anywhere in git history (not just the current
       working tree).
-- [ ] `README.md` clearly states scope and known limitations (e.g.,
+- [x] `README.md` clearly states scope and known limitations (e.g.,
       type-size unverifiability, and the external provider data retention
-      limitation per `THREAT_MODEL.md`) so reviewers aren't surprised.
+      limitation per `THREAT_MODEL.md`) so reviewers aren't surprised. —
+      **Verified:** `README.md` now has a "Known Limitations" section
+      covering the provider data retention disclosure, the type-size
+      needs-review lane, and the no-app-controlled-storage claim.
 - [ ] Repository is private and accessible under the correct account/owner.
 - [ ] **HARD GATE — verified provider spend stop (not an alert-only
       assumption):** before public access is enabled, the chosen extraction
@@ -191,4 +194,6 @@ checked off as the build progresses, not pre-filled.
 
 This checklist is currently a **planning artifact only**. No app code has
 been written yet; all checkboxes above are unchecked pending implementation
-in a later stage.
+in a later stage, **except the single README known-limitations item above**,
+which is a documentation-only requirement that has been verified against
+the actual `README.md` content.
