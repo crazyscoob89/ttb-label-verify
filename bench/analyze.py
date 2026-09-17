@@ -35,8 +35,10 @@ def pct(n, d):
     return 0.0 if not d else 100.0 * n / d
 
 
-def analyze() -> dict:
-    data = json.loads(RAW.read_text(encoding="utf-8"))
+def analyze(data=None) -> dict:
+    if data is None:
+        from replay import derive
+        data = derive(HERE)
     meta = data["run_metadata"]
     rows = data["results"]
 
@@ -130,6 +132,10 @@ def analyze() -> dict:
                  "error_class": r["error_class"]} for r in errs
             ],
             "total_field_outcomes": total_fields,
+            "extraction_correct_n": sum(v for r in er for v in r['extraction_correct'].values()),
+            "safe_outcome_correct_n": sum(r['verdicts'][f] == r['expected_safe'][f] for r in er for f in S.FIELDS),
+            "recorded_outcome_correct_n": sum(r['verdicts'][f] == r['truth'][f] for r in er for f in S.FIELDS),
+            "negative_outcomes": sum(v == S.MISMATCH for r in er for v in r['truth'].values()),
             "classes": dict(cls),
             "false_match_n": cls["false_match"],
             "false_match_pct": pct(cls["false_match"], total_fields),

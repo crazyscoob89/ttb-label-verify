@@ -1,8 +1,10 @@
 # ACCEPTANCE_CHECKLIST.md — TTB Label Verification Prototype
 
 This checklist maps prototype deliverables to the six Treasury evaluation
-criteria, plus a final delivery gate. It is a planning artifact — items are
-checked off as the build progresses, not pre-filled.
+criteria, plus a final delivery gate. Stage 2 supplies a benchmark harness,
+offline scorer/tests, and saved synthetic engine evidence, not the planned
+application. Items require scoped evidence before being checked; benchmark
+or documentation completion does not certify deployment controls.
 
 ## 1. Correctness / Completeness
 
@@ -29,7 +31,8 @@ checked off as the build progresses, not pre-filled.
       27 CFR 16.21, including the all-caps bold `GOVERNMENT WARNING:`
       heading check and the non-bold-remainder check, per `PLAN.md`.
 - [ ] Type-size compliance is consistently routed to needs-review for every
-      label (documented architectural limitation, not an inconsistent gap).
+      label (documented architectural limitation, not an inconsistent gap),
+      separately from seven-field scoring and its automation denominator.
 - [ ] Batch mode produces a correct, complete result for every file
       submitted in the batch — no silent drops on partial failures.
 - [ ] **Batch image-to-application-record mapping works as specified:**
@@ -43,11 +46,23 @@ checked off as the build progresses, not pre-filled.
       produced a confident reading AND the deterministic rule affirmed it
       against the declared value. Blurry/illegible text, missing
       information, extraction failure (provider error/timeout), and
-      malformed/schema-violating model output all route to `needs-review`
-      (or `mismatch` only where affirmatively contradicted by a confident
-      reading) — never a default `match`. Malformed/schema-violating model
+      malformed/schema-violating model output all route to `needs-review`.
+      `mismatch` requires a confident contradictory reading, not an
+      absent/unreadable runtime value — never a default `match`.
+      Malformed/schema-violating model
       output is specifically logged (metadata only, no image bytes) when it
       occurs. (See Uncertainty Invariant in `PLAN.md`.)
+- [ ] **Ground truth and safe decisions are distinct:** source fixture
+      semantic truths and captured outputs are preserved; any derived
+      expected-safe-decision mapping for absent/unreadable fields is explicit.
+      Extraction-value accuracy is reported separately from outcome accuracy,
+      with each numerator, denominator, and comparison target identified.
+- [ ] **Engine evidence is scoped:** N=3 repeats per fixture/engine, zero
+      observed false matches, and ≥60% clean seven-field automation are
+      required. Finite zero-FM evidence is not general safety proof. The
+      existing 18-fixture run does not test a non-bold warning heading or
+      genuinely unreadable/cropped engine inputs; offline rule regressions
+      do not close those perception/uncertainty coverage gaps.
 
 ## 2. Code Quality
 
@@ -95,7 +110,8 @@ checked off as the build progresses, not pre-filled.
       `BENCHMARK_PLAN.md`), not an unexamined default.
 - [ ] Stateless in-memory processing is an appropriate choice given no
       persistence requirement was specified — and is documented as a
-      deliberate choice, not an oversight.
+      deliberate choice, not an oversight. Buffer-only operation must be
+      verified against the actual application libraries/configuration.
 - [ ] Batch concurrency design (bounded client queue + server-enforced
       quotas) is proportionate to the actual scale expected of a prototype,
       not over- or under-engineered.
@@ -132,8 +148,9 @@ checked off as the build progresses, not pre-filled.
       health warning) is actually implemented as asymmetric — not
       uniformly strict or uniformly loose out of convenience.
 - [ ] The ~5s single-label performance target is measured and reported
-      honestly in the benchmark results, including cases where it is not
-      met, rather than asserted without evidence.
+      end-to-end in the deployed application, including cases where it is
+      not met. Current benchmark latency is engine-call only and cannot
+      satisfy this pending deployed end-to-end gate.
 - [ ] OWASP upload hardening items are all present: extension allow-list,
       magic-byte verification, server-side byte/pixel limits, re-encode +
       EXIF stripping, `nosniff` header, rate limiting.
@@ -171,29 +188,37 @@ checked off as the build progresses, not pre-filled.
 - [x] `README.md` clearly states scope and known limitations (e.g.,
       type-size unverifiability, and the external provider data retention
       limitation per `THREAT_MODEL.md`) so reviewers aren't surprised. —
-      **Verified:** `README.md` now has a "Known Limitations" section
-      covering the provider data retention disclosure, the type-size
-      needs-review lane, and the no-app-controlled-storage claim.
+      **Documentation only:** README distinguishes required buffer-only
+      processing from verified implementation and discloses open spending,
+      external retention, engine-coverage, and end-to-end timing gates.
 - [ ] Repository is private and accessible under the correct account/owner.
-- [ ] **HARD GATE — verified provider spend stop (not an alert-only
-      assumption):** before public access is enabled, the chosen extraction
-      provider's account/billing console has been directly inspected and
-      confirmed to actually **stop requests** once the configured cap is
-      reached (a true hard limit), not merely send a budget-alert email
-      while continuing to accept and bill calls. The provider name, the
-      exact console setting/feature name, and the observed stop-behavior
-      are documented per `THREAT_MODEL.md` §4. **If the provider only
-      offers alert-style notifications, this gate FAILS** until either (a)
-      a provider with a true hard cap is selected, or (b) a server-side
-      global kill switch (env-flag checked per request) plus a
-      server-enforced daily-quota env cap are implemented and tested. This
-      item cannot be marked done on the basis of an alert-only
-      configuration under any circumstance.
+- [ ] **HARD GATE — verified global spending bound (NOT MET):** public
+      provider-backed access stays disabled until an enforced account/key
+      global cap, tested shared atomic quota, or other proven global bound
+      is verified. Record scope, ceiling/period, mechanism, and observed
+      rejection behavior; account for concurrent instances, resets, retries,
+      in-flight work, billing lag, and bounded per-request cost per
+      `THREAT_MODEL.md` §4. Alert-only budgets, console inspection alone,
+      and a manual env kill switch plus per-instance daily quota do not
+      pass. Per-instance controls/manual shutdown remain defense in depth.
+      A timeout is not evidence of cancellation or zero billing.
+- [ ] **HARD GATE — buffer-only application processing (UNVERIFIED):** test
+      the actual parser, image libraries, framework, and provider SDK for
+      no content disk/temp-file writes, including failures. If this cannot
+      be achieved, stop pending an explicitly disclosed/approved alternative;
+      do not claim verified memory-only behavior. Synthetic offline fixtures
+      and results intentionally on disk are excluded from this policy.
+- [ ] **HARD GATE — retention boundaries (UNVERIFIED):** document/test browser
+      lifecycle and hosting-platform retention/configuration, and cite the
+      actual provider retention/training terms and selected privacy settings.
+      OpenRouter and upstream/fallback providers require separate coverage.
+      Azure alone does not close this gate. Use stays synthetic-only until
+      verified; this document supplies no assertion of current provider terms.
 
 ## Status
 
-This checklist is currently a **planning artifact only**. No app code has
-been written yet; all checkboxes above are unchecked pending implementation
-in a later stage, **except the single README known-limitations item above**,
-which is a documentation-only requirement that has been verified against
-the actual `README.md` content.
+Stage 2 benchmark implementation/evidence exists; the application and its
+deployment gates are not accepted. The sole checked item is README
+documentation, not verified security/retention behavior. Public
+provider-backed access must remain disabled pending the global spending
+gate, and non-synthetic use remains blocked pending retention verification.

@@ -35,19 +35,7 @@ DEFAULT_ENV_PATH = r"C:\Users\alexm\.ocplatform\workspace\.env"
 # Extraction contract
 # --------------------------------------------------------------------------
 
-EXTRACTION_SCHEMA_FIELDS = [
-    "brand_name",
-    "class_type",
-    "alcohol_content",
-    "net_contents",
-    "bottler_info",
-    "country_of_origin",
-    "government_warning_heading",
-    "government_warning_body",
-    "government_warning_heading_all_caps",
-    "government_warning_heading_bold",
-    "government_warning_body_bold",
-]
+from extraction_validation import EXTRACTION_SCHEMA_FIELDS, validate_extraction
 
 SYSTEM_PROMPT = (
     "You are a transcription instrument for alcohol beverage label images. "
@@ -375,7 +363,8 @@ def call_engine(engine_key: str, image_path, env: dict, timeout: int = 180) -> d
             "schema_valid": False,
         }
 
-    missing = [k for k in EXTRACTION_SCHEMA_FIELDS if k not in parsed]
+    missing = [k for k in EXTRACTION_SCHEMA_FIELDS + ["confidence"] if k not in parsed]
+    errors = validate_extraction(parsed)
     return {
         "ok": True,
         "extracted": parsed,
@@ -383,33 +372,12 @@ def call_engine(engine_key: str, image_path, env: dict, timeout: int = 180) -> d
         "tokens_in": r["tokens_in"],
         "tokens_out": r["tokens_out"],
         "cost_usd": cost,
-        "schema_valid": len(missing) == 0,
+        "schema_valid": not errors,
         "missing_keys": missing,
+        "validation_errors": errors,
     }
 
 
 if __name__ == "__main__":
-    import sys
-
-    env = load_env()
-    img = Path(__file__).resolve().parent.parent / "fixtures" / "images" / "C-SPIRITS-01.png"
-    keys = sys.argv[1:] or list(ENGINES)
-    total = 0.0
-    for k in keys:
-        r = call_engine(k, img, env)
-        total += r["cost_usd"]
-        if r["ok"]:
-            ex = r["extracted"]
-            print(
-                f"{k:<20} OK  {r['latency_s']:.2f}s  in={r['tokens_in']} out={r['tokens_out']} "
-                f"${r['cost_usd']:.5f}  schema_ok={r['schema_valid']}"
-            )
-            print(f"    brand={ex.get('brand_name')!r} abv={ex.get('alcohol_content')!r}")
-            print(
-                f"    heading={ex.get('government_warning_heading')!r} "
-                f"caps={ex.get('government_warning_heading_all_caps')} "
-                f"body_bold={ex.get('government_warning_body_bold')}"
-            )
-        else:
-            print(f"{k:<20} FAIL {r['error_class']}: {r.get('error_detail','')[:160]}")
-    print(f"\nprobe spend: ${total:.5f}")
+    print("PAID PROBE DISABLED: this benchmark is archived. A future paid run requires renewed authorization and a verified spending bound.")
+    raise SystemExit(2)

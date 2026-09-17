@@ -17,7 +17,7 @@ Asymmetric matching strategy (PLAN.md):
   class_type          normalized equivalence
   alcohol_content     numeric consistency, format-normalized, NO tolerance band
   net_contents        numeric compare after unit normalization to mL
-  bottler_info        normalized containment of the declared entity
+  bottler_info        full normalized identity/address (known label prefix allowed)
   country_of_origin   not-applicable unless the application declares an import
   government_warning  EXACT statutory wording + heading caps/bold + body non-bold
 
@@ -54,6 +54,8 @@ import json
 import re
 import unicodedata
 from pathlib import Path
+
+from extraction_validation import field_confidence, validate_extraction
 
 CONFIDENCE_THRESHOLD = 0.75
 
@@ -145,32 +147,9 @@ def parse_volume_ml(s):
 # Confidence
 # --------------------------------------------------------------------------
 
-_CONF_ALIASES = {
-    "government_warning": [
-        "government_warning",
-        "government_warning_body",
-        "government_warning_heading",
-    ],
-}
-
-
-def field_confidence(extracted: dict, field: str):
-    """Lowest confidence among the extraction keys backing this field."""
-    conf = extracted.get("confidence")
-    if not isinstance(conf, dict):
-        return None
-    keys = _CONF_ALIASES.get(field, [field])
-    vals = []
-    for k in keys:
-        v = conf.get(k)
-        if isinstance(v, (int, float)):
-            vals.append(float(v))
-    return min(vals) if vals else None
-
-
 def _confident(extracted: dict, field: str) -> bool:
     c = field_confidence(extracted, field)
-    return True if c is None else c >= CONFIDENCE_THRESHOLD
+    return c is not None and c >= CONFIDENCE_THRESHOLD
 
 
 # --------------------------------------------------------------------------
@@ -236,14 +215,24 @@ def rule_bottler(extracted, app):
     if v is None or not str(v).strip():
         # Absent-vs-unreadable is indistinguishable from a photo -- refer out.
         return NEEDS_REVIEW, "no value extracted (absent or illegible)"
-    nv, nd = norm_text(v), norm_text(app.get("bottler_info"))
+    # Only a recognized, anchored role prefix may be omitted for comparison.
+    # Arbitrary containment cannot certify a full name/address or extra entities.
+    def identity(statement):
+        return re.sub(
+            r"^(?:(?:produced|distilled|brewed)(?: and bottled)?|bottled|imported) by\s+",
+            "", norm_words(statement),
+        )
+
+    nv, nd = identity(v), identity(app.get("bottler_info"))
     if not nd:
         return NEEDS_REVIEW, "no declared bottler to compare"
-    return (
-        (MATCH, "declared entity present in label statement")
-        if nd in nv or nv in nd
-        else (MISMATCH, f"{v!r} vs declared {app.get('bottler_info')!r}")
-    )
+    if not nv:
+        return NEEDS_REVIEW, "no readable bottler identity"
+    if nv == nd:
+        return MATCH, "full normalized bottler identity and address"
+    if nv in nd:
+        return NEEDS_REVIEW, "partial bottler extraction cannot certify full declared identity"
+    return MISMATCH, f"{v!r} vs declared {app.get('bottler_info')!r}"
 
 
 def rule_country_of_origin(extracted, app):
@@ -274,10 +263,10 @@ def rule_government_warning(extracted, app=None):
     head_bold = extracted.get("government_warning_heading_bold")
     body_bold = extracted.get("government_warning_body_bold")
 
-    if heading is None and body is None:
-        return NEEDS_REVIEW, "no warning extracted"
-    if heading is None or body is None:
+    if not all(isinstance(value, str) and value.strip() for value in (heading, body)):
         return NEEDS_REVIEW, "warning partially unreadable"
+    if not all(type(value) is bool for value in (caps, head_bold, body_bold)):
+        return NEEDS_REVIEW, "formatting flags missing or invalid"
 
     # Heading: tolerate colon/whitespace variance, but capitalization is
     # load-bearing and is compared case-sensitively.
@@ -293,9 +282,6 @@ def rule_government_warning(extracted, app=None):
 
     if norm_words(body) != norm_words(STATUTORY_BODY):
         return MISMATCH, "statutory wording deviation in warning body"
-
-    if body_bold is None or head_bold is None or caps is None:
-        return NEEDS_REVIEW, "formatting flags not reported"
 
     return MATCH, "exact statutory wording and formatting"
 
@@ -326,30 +312,34 @@ def derive_verdicts(call_result: dict, app: dict) -> dict:
             for f in FIELDS
         }
 
-    extracted = call_result.get("extracted") or {}
-
+    extracted = call_result.get("extracted")
+    # Revalidate locally: schema_valid is metadata, never authority to bypass
+    # type/confidence checks (including when scoring historical cached calls).
+    errors = validate_extraction(extracted)
+    if not isinstance(extracted, dict):
+        return {
+            f: {"verdict": NEEDS_REVIEW, "reason": "schema-validation-failed"}
+            for f in FIELDS
+        }
+    invalid = set(errors)
     if not call_result.get("schema_valid", True):
-        missing = call_result.get("missing_keys") or []
-        # Only the fields actually backed by missing keys are unresolved;
-        # a partially-conforming payload still yields real verdicts elsewhere.
-        blocked = set()
-        for mk in missing:
-            if mk.startswith("government_warning"):
-                blocked.add("government_warning")
-            elif mk in FIELDS:
-                blocked.add(mk)
-    else:
-        blocked = set()
+        invalid.update(call_result.get("missing_keys") or [])
+    blocked = {
+        "government_warning" if key.startswith("government_warning") else key
+        for key in invalid
+    }
+    if "confidence" in blocked:
+        blocked.update(FIELDS)
 
     out = {}
     for f in FIELDS:
-        if f in blocked:
-            out[f] = {"verdict": NEEDS_REVIEW, "reason": "schema-validation-failed"}
-            continue
         # country_of_origin applicability is decided by the declared record,
         # never by the model, so it is resolved before any confidence gate.
         if f == "country_of_origin" and not app.get("is_imported"):
             out[f] = {"verdict": NOT_APPLICABLE, "reason": "domestic product"}
+            continue
+        if f in blocked:
+            out[f] = {"verdict": NEEDS_REVIEW, "reason": "schema-validation-failed"}
             continue
         if not _confident(extracted, f):
             c = field_confidence(extracted, f)

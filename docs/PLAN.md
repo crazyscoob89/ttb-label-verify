@@ -5,6 +5,11 @@
 This document defines the frozen scope for the prototype. Changes to scope after
 this point should be recorded as amendments below, not silent edits.
 
+**Current stage:** Stage 2 has implemented the synthetic fixtures, benchmark
+harness, and offline scorer/tests. The Next.js application and deployment
+controls below remain planned, not verified implementation. Historical
+planning-stage exclusions do not imply that no benchmark code exists.
+
 **Goal:** A standalone prototype whose core function is **comparing each
 submitted label image against that label's own applicant-declared
 application data** — a per-label pairing of (label image, application
@@ -177,6 +182,10 @@ between what a vision-based system can and cannot verify. The UI/report must
 make this explicit to the user rather than silently omitting it or falsely
 reporting a pass.
 
+This physical type-size referral is separate from the seven field verdicts
+and excluded from benchmark field-accuracy, referral, and automation
+denominators. It must still be visible on every eventual user-facing result.
+
 ## Performance Target
 
 - **Single-label design target: ~5 seconds** end-to-end (upload → extraction
@@ -184,7 +193,8 @@ reporting a pass.
   under realistic network/model conditions, not a best-case cherry-picked
   number). This is a target to design toward, not a guaranteed SLA — actual
   measured latency will be reported per the BENCHMARK_PLAN, not asserted
-  without data.
+  without data. Current Stage 2 latency measures the engine call only;
+  deployed end-to-end performance against this target remains pending.
 
 ## Batch Processing Model
 
@@ -221,27 +231,36 @@ reporting a pass.
   server-side, not trusted to the client). This protects both UX (avoids
   overwhelming the browser) and the backend/provider spend (avoids a
   malicious or careless client firing unbounded concurrent requests).
+- Per-instance limits and a manual kill switch are defense in depth, not
+  a global spending cap. **Public provider-backed access remains disabled**
+  until a verified enforced account/key global cap, tested shared atomic
+  quota, or other proven global bound satisfies `THREAT_MODEL.md` §4.
+  This deployment gate is not met. A provider timeout does not prove
+  cancellation or zero billing.
 
 ## Data Handling
 
-- **Stateless, in-memory processing.** Uploaded images and extraction results
-  are processed in memory for the duration of the request and are **not
-  persisted** to disk, a database, or any durable store. The precise claim:
-  **the application itself persists nothing** — no image files, no
-  extracted text, no application data are written to application-controlled
-  storage; any OS/framework transient buffers used internally by underlying
-  libraries are outside application control and are never read back or
-  retained by the app (see `THREAT_MODEL.md` §6 for the full policy and its
-  one precisely-scoped caveat).
-- **External provider transmission is a separate concern from application
-  storage.** The no-persistence claim above governs only what this
-  application writes to storage it controls — it does not describe what
-  happens to an image after it is sent to the external vision extraction
-  provider for processing. Uploaded images ARE transmitted to that external
-  API, and the provider's own data retention policy (not this application's
-  policy) governs that transmitted copy; see the Provider Data Retention
-  subsection of `THREAT_MODEL.md` §6 for the required deployment-time
-  disclosure and the README limitation this must be reflected in.
+- **Required buffer-only application processing (unverified).** Uploaded
+  images, extracted values/results, and applicant data must remain in
+  request-scoped memory, with no content disk/temp-file, database, blob,
+  cache, or log retention. Test the selected parser, re-encoder, framework,
+  and provider SDK for buffer-only operation, including failures. Library
+  temp files are not an exception: if this cannot be achieved, stop the
+  deployment gate pending an explicit disclosed and approved alternative.
+  Do not assert verified implementation from this design requirement.
+  Only the operational/verdict metadata allowlist in `THREAT_MODEL.md` §6
+  may be logged, not full results or input/extracted values.
+- **Synthetic offline benchmark artifacts are intentionally persisted.**
+  Fixtures, raw outputs, and derived results on disk support reproducible
+  evaluation and are excluded from the application upload-processing
+  policy; they contain synthetic data, not real applicant submissions.
+- **Browser, platform, and external-provider retention are separate.**
+  The application policy cannot establish browser/cache behavior, hosting
+  request/log retention, or retention/training use of externally transmitted
+  image bytes. For OpenRouter routes, verify both OpenRouter and the
+  actual upstream provider(s), including fallback routing. Actual terms,
+  links, and configuration must be documented per `THREAT_MODEL.md` §6;
+  this remains unverified and use stays **synthetic-only until verified**.
 
 ## Architecture
 
@@ -313,11 +332,13 @@ If either condition is not met, the field must **never default to
 `match`**. Specifically:
 - **Blurry/illegible text, or text the extraction model could not
   confidently read** → `needs-review`.
-- **Missing information** (the field is simply absent from the label, or
-  extraction returned no value) → `needs-review` (or `mismatch` if the
-  applicant declared a value that regulation requires be present on the
-  label and it is affirmatively absent — field-specific, documented in
-  `rules/`).
+- **Missing/absent or unreadable information in an applicable field at
+  runtime** (including an empty/null extraction) → `needs-review`, not a
+  confident absence finding. Context-based `not-applicable` remains distinct.
+  Fixture authors may know a required field is truly absent and record
+  semantic mismatch ground truth. Preserve that source truth separately
+  from the expected safe runtime decision (`needs-review`); do not silently
+  rewrite fixture truth to make the runtime outcome appear accurate.
 - **Extraction failure** (provider error, timeout, exception) →
   `needs-review` for the affected field(s), never a silent pass and never a
   fabricated value.
@@ -366,21 +387,18 @@ Uploaded images are treated as untrusted input. Hardening measures:
 - The **specific engine/provider is selected based on the results of the
   BENCHMARK** (see `BENCHMARK_PLAN.md`) — this decision is deliberately
   deferred until benchmark data exists, not asserted up front.
-- **Azure / Microsoft Foundry is documented as the answer for
-  enterprise/firewall-constrained deployment contexts** — i.e., if the
-  eventual deployment environment requires traffic to stay within an
-  Azure-governed network boundary (a realistic constraint for a Treasury/
-  government-adjacent context), the provider abstraction is designed so that
-  swapping to Azure/Microsoft Foundry as the extraction backend is a
-  configuration change, not a rearchitecture. This is documented as the
-  answer to that constraint even though the initial benchmark may evaluate
-  other providers too.
+- **Azure / Microsoft Foundry is a potential enterprise/firewall-constrained
+  deployment path.** The provider interface is intended to support such
+  an adapter without changing rule logic. Actual network boundaries,
+  model hosting, retention/training terms, and configuration still require
+  verification; selecting Azure alone does not resolve external retention
+  concerns or establish deployment acceptance.
 
 ## Non-Goals (Explicit)
 
-- No app code, UI implementation, or working extraction pipeline is part of
-  this planning stage.
-- No label images are generated or benchmarked during this stage.
+- Historically, Stage 1 excluded app code, UI, fixture generation, and
+  benchmark execution. Stage 2 now includes the benchmark harness and
+  synthetic images/results, but not a deployed application or UI.
 - No persistence layer, user accounts, or auth system — this is a stateless
   single-session tool.
 - No claim of full TTB COLA-system equivalence or legal certification; this
@@ -388,6 +406,14 @@ Uploaded images are treated as untrusted input. Hardening measures:
   outcome, not a fallback failure mode.
 
 ## Amendments
+
+- **Bounded Stage 2 audit revision:** Corrected the spending gate (manual
+  kill switch/per-instance quota cannot substitute for a verified global
+  bound), selected required buffer-only processing without a temp-file
+  exception, separated external retention boundaries and synthetic artifacts,
+  and clarified absent/unreadable runtime referrals versus fixture truth.
+  Benchmark engine-call timing is not deployed end-to-end timing. These
+  are corrections to the existing scope, not evidence of implemented gates.
 
 - **Revision (post-review of initial commit):** Added explicit
   comparison-first framing (label image vs. applicant-declared application
