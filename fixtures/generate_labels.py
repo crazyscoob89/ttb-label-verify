@@ -477,7 +477,10 @@ FIXTURES: list[dict] = [
         "description": "Brand differs from declared value ONLY in letter case -- normalized equivalence must MATCH.",
         "spec": {
             "brand": "Stone's Throw",
-            "tagline": "London Dry Style",
+            # Taglines must not be class/type-adjacent, or extraction cannot tell
+            # decorative copy from the class designation and the fixture's
+            # ground truth becomes ambiguous rather than exact.
+            "tagline": "Crafted in Small Batches",
             "class_type": "GIN",
             "abv_text": "44% ALC/VOL (88 PROOF)",
             "net_contents_text": "750 mL",
@@ -556,7 +559,7 @@ FIXTURES: list[dict] = [
         ),
         "spec": {
             "brand": "Harbor Light",
-            "tagline": "Caribbean Style",
+            "tagline": "Est. 1962",
             "class_type": "RUM",
             "abv_text": "37.5% ALC/VOL (75 PROOF)",
             "net_contents_text": "1 L",
@@ -611,7 +614,7 @@ FIXTURES: list[dict] = [
         "description": "Label clearly states 40% ABV; application declares 45%. Must be mismatch, full stop.",
         "spec": {
             "brand": "Copper Trestle",
-            "tagline": "Kentucky Straight",
+            "tagline": "Aged Four Years",
             "class_type": "STRAIGHT BOURBON WHISKEY",
             "abv_text": "40% ALC/VOL (80 PROOF)",
             "net_contents_text": "750 mL",
@@ -685,7 +688,7 @@ FIXTURES: list[dict] = [
         "spec": {
             "brand": "Stone's Throw",
             "brand_split_lines": ["STONE'S", "THROW"],
-            "tagline": "London Dry Style",
+            "tagline": "Crafted in Small Batches",
             "class_type": "GIN",
             "abv_text": "44% ALC/VOL (88 PROOF)",
             "net_contents_text": "750 mL",
