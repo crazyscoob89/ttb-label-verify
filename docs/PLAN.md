@@ -5,11 +5,28 @@
 This document defines the frozen scope for the prototype. Changes to scope after
 this point should be recorded as amendments below, not silent edits.
 
-**Goal:** A standalone prototype that verifies whether an alcohol beverage label
-(spirits, wine, or malt beverage) complies with the mandatory labeling
-requirements enforced by TTB (Alcohol and Tobacco Tax and Trade Bureau) under
-27 CFR Parts 4, 5, 7, and 16 — specifically the government health warning
-statement requirement (27 CFR 16.21).
+**Goal:** A standalone prototype whose core function is **comparing each
+submitted label image against that label's own applicant-declared
+application data** — a per-label pairing of (label image, application
+record) — for the seven mandatory field categories enforced by TTB (Alcohol
+and Tobacco Tax and Trade Bureau) under 27 CFR Parts 4, 5, 7, and 16,
+including the government health warning statement requirement (27 CFR
+16.21).
+
+**This is explicitly NOT** a system that judges whether a label "looks
+legally acceptable" in the abstract, in isolation, or against some general
+notion of compliance. There is no such thing as evaluating a label without
+an application record — every evaluation is a comparison: what does the
+label actually show, versus what did the applicant declare for that exact
+field on that exact application. A field only resolves to **match** when
+the extracted label value is consistent with the corresponding
+applicant-declared value (subject to the field's matching strategy — see
+Asymmetric Matching Strategy below); mismatches are declared-vs-shown
+discrepancies, not abstract legal judgments. (The one partial exception is
+the government health warning statement, whose required wording is fixed by
+regulation rather than declared per-application — see below — but even that
+check is still scoped to a specific label being evaluated, not a freestanding
+assessment.)
 
 Out of scope: this is not a full COLA (Certificate of Label Approval)
 automation tool, does not integrate with TTB systems, and does not persist
@@ -123,7 +140,31 @@ reporting a pass.
 
 - Batch mode is implemented as **per-file requests**, not a single monolithic
   batch API call — each label image is processed as its own independent
-  request/response cycle.
+  request/response cycle. Each request pairs exactly one label image with
+  exactly one applicant-declared application record, per the
+  comparison-first framing above — batch mode is a set of independent
+  (image, application record) comparisons, not a set of images evaluated in
+  isolation.
+- **Image-to-application-record mapping mechanism (required, explicit):**
+  the batch UI/API must define, up front, exactly how each uploaded image is
+  paired with its declared application data. Two supported mechanisms:
+  - **Filename convention** — each image filename must encode (or be
+    pre-mapped to) an application/record identifier that the system can look
+    up (e.g., `<application-id>.jpg`); files that do not match the
+    convention are rejected with a clear per-file error rather than silently
+    skipped or matched to the wrong record.
+  - **CSV manifest mapping** — the batch submission includes a manifest
+    (CSV) that explicitly maps each image filename to its declared field
+    values (or to an application-record identifier the system resolves the
+    declared fields from); the manifest is validated (every image has a
+    corresponding manifest row, every manifest row's declared fields are
+    present) before any extraction/comparison work begins, and mismatches
+    (image with no manifest row, manifest row with no matching image) are
+    surfaced as explicit per-item errors, never silently dropped.
+  - Exactly one of these mechanisms must be selected and implemented for the
+    prototype (choice deferred to build stage), but batch mode may not ship
+    without an explicit, validated mapping mechanism — an image can never be
+    evaluated without its paired application record.
 - Concurrency is controlled via a **bounded browser-side queue** (client
   limits how many requests are in flight at once) combined with
   **server-enforced quotas** (rate limiting / concurrency caps enforced
@@ -144,6 +185,93 @@ reporting a pass.
   API routes within the Next.js app handle upload, extraction orchestration,
   and rule evaluation. This keeps the prototype simple to run, deploy, and
   review (single repo, single deploy target, single README to onboard from).
+
+### Module Boundaries (Enforced)
+
+Within the single Next.js service, the codebase is organized into separated
+modules with enforced boundaries — each module has one job, and other
+modules may only interact with it through its defined interface:
+
+- **`ui/`** — presentation only. Renders results, forms, upload UI, and
+  batch progress. Contains no extraction logic, no rule logic, and no
+  direct provider/model calls. Consumes results already computed by
+  `rules/` via API routes; does not compute compliance itself.
+- **`intake/`** — upload validation and security checks. Owns the OWASP
+  upload hardening measures (extension allow-list, magic-byte verification,
+  server-side byte/pixel limits, re-encode + EXIF strip, rate limiting) and
+  the batch image-to-application-record mapping validation (filename
+  convention / CSV manifest parsing and validation, per the Batch Processing
+  Model above). Nothing downstream (`extraction/`, `rules/`) is ever handed
+  an image or manifest entry that has not passed through `intake/` first.
+- **`extraction/`** — AI vision reading of label fields, accessed only
+  through a **provider interface** (the abstraction described in
+  "Extraction Architecture" below). No other module calls a vision
+  provider's SDK directly — all such calls are routed through this module's
+  interface, so the provider is swappable without touching `rules/` or
+  `ui/`. `extraction/` returns schema-constrained field values (with
+  confidence/failure signaling — see Uncertainty invariant below); it does
+  not make compliance determinations itself.
+- **`rules/`** — deterministic comparison logic: given an extracted field
+  value and the applicant-declared value for that field (per the
+  comparison-first framing above), decide match / mismatch / not-applicable
+  / needs-review. **One file per field check** (e.g., a file for brand name
+  comparison, a separate file for the government warning check, a separate
+  file for ABV, etc.) so each field's matching strategy (see Asymmetric
+  Matching Strategy) is independently readable, testable, and reviewable.
+  `rules/` never calls a network or AI provider — it is pure, deterministic
+  code operating on already-extracted values and already-declared values.
+
+**Boundary enforcement via tests:** automated tests protect each module
+boundary directly:
+- `rules/` is tested with **zero AI/network dependency** — unit tests feed
+  it synthetic (extracted value, declared value) pairs directly and assert
+  the correct four-state outcome, with no model calls, no network access,
+  and no image processing in the test path. This is what makes the
+  comparison logic reviewable and trustworthy independent of any particular
+  extraction engine's behavior.
+- `intake/` is tested with **malicious, oversized, and wrong-type
+  fixtures** — unit/integration tests exercise the upload hardening and
+  manifest-mapping validation against adversarial inputs (oversized files,
+  spoofed extensions, malformed magic bytes, decompression-bomb-style
+  dimensions, manifests with missing/mismatched rows) and assert each is
+  rejected with a clear error rather than passed through.
+
+## Uncertainty Invariant: Uncertainty Never Passes
+
+**No field may resolve to `match` unless both of the following are true:**
+1. `extraction/` produced a **confident** reading for that field (not a
+   low-confidence guess, not an empty/missing value, not a failed
+   extraction call), **and**
+2. the deterministic rule in `rules/` **affirmed** the match given that
+   confident reading and the applicant-declared value for that field.
+
+If either condition is not met, the field must **never default to
+`match`**. Specifically:
+- **Blurry/illegible text, or text the extraction model could not
+  confidently read** → `needs-review`.
+- **Missing information** (the field is simply absent from the label, or
+  extraction returned no value) → `needs-review` (or `mismatch` if the
+  applicant declared a value that regulation requires be present on the
+  label and it is affirmatively absent — field-specific, documented in
+  `rules/`).
+- **Extraction failure** (provider error, timeout, exception) →
+  `needs-review` for the affected field(s), never a silent pass and never a
+  fabricated value.
+- **Malformed or schema-violating model output** (extraction response that
+  does not conform to the expected schema) → treated as extraction failure
+  for that field: routes to `needs-review`, and the malformed output is
+  **logged** (metadata about the failure, not raw image bytes — see
+  `THREAT_MODEL.md`) so it can be investigated, rather than retried
+  silently into a guessed value or defaulted to green.
+- **`mismatch`** is reserved for cases where extraction was confident and
+  the rule affirmatively found a discrepancy or contradiction against the
+  declared value (or, for the government warning, against the required
+  statutory wording) — mismatch is a positive finding, not a fallback for
+  uncertainty.
+
+There is no code path in which the absence of a definitive answer produces
+a default `match`. When in doubt, the system is designed to say "a human
+needs to look at this," never "this is fine."
 
 ## Upload Hardening (OWASP-aligned)
 
@@ -197,5 +325,12 @@ Uploaded images are treated as untrusted input. Hardening measures:
 
 ## Amendments
 
-_(None yet — this section records any scope changes made after this document
-was frozen, with date and reason.)_
+- **Revision (post-review of initial commit):** Added explicit
+  comparison-first framing (label image vs. applicant-declared application
+  data, not abstract legal judgment), the batch image-to-application-record
+  mapping mechanism (filename convention / CSV manifest), the Module
+  Boundaries architecture section (`ui/`, `intake/`, `extraction/`,
+  `rules/` with enforced test boundaries), and the Uncertainty Invariant
+  ("uncertainty never passes"). Made in response to review feedback on the
+  initial planning-docs commit; no app code exists yet, so this is a
+  clarification/strengthening of the frozen scope, not a scope change.
