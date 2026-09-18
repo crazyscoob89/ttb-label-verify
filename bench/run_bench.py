@@ -19,6 +19,16 @@ Usage:
   python bench/run_bench.py --engines gpt-5-mini
   python bench/run_bench.py --max-spend 5.00
   python bench/run_bench.py --dry-run           # no API calls; plan + cost estimate
+  python bench/run_bench.py --engines foundry-gpt-4.1-mini \
+      --out bench/foundry_raw_results.json      # separate file; merges by engine
+
+Output isolation: --out defaults to bench/raw_results.json, which holds the
+OpenRouter/OpenAI baseline that bench/test_results_integrity.py checks RESULTS.md
+against. A second provider's run MUST be directed to its own --out file, or the
+baseline would be silently destroyed and the integrity test would start
+validating against replaced data. When the target file already exists, results
+for engines NOT in this run are preserved and merged, so a long multi-engine
+battery can be executed one engine at a time without losing earlier work.
 """
 
 from __future__ import annotations
@@ -57,7 +67,16 @@ def main() -> int:
     ap.add_argument("--max-spend", type=float, default=DEFAULT_MAX_SPEND_USD)
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--sleep", type=float, default=0.4, help="pause between calls (s)")
+    ap.add_argument(
+        "--out",
+        default=str(RAW_PATH),
+        help="results file (default bench/raw_results.json). Use a separate "
+             "file for a different provider so the baseline is not overwritten.",
+    )
     args = ap.parse_args()
+    out_path = Path(args.out)
+    if not out_path.is_absolute():
+        out_path = ROOT / out_path
 
     max_spend = min(args.max_spend, DEFAULT_MAX_SPEND_USD)
 
@@ -87,16 +106,26 @@ def main() -> int:
         return 0
 
     env = E.load_env()
+    # Each provider's required env vars. Foundry needs the endpoint as well as
+    # the key, since the base URL is deployment-resource-specific.
+    PROVIDER_CREDS = {
+        "openai": ["OPENAI_API_KEY"],
+        "anthropic": ["ANTHROPIC_API_KEY"],
+        "openrouter": ["OPENROUTER_API_KEY"],
+        "foundry": [
+            "AZURE_TTB_FOUNDRY_API_KEY",
+            "AZURE_TTB_FOUNDRY_OPENAI_ENDPOINT",
+        ],
+    }
     missing = []
     for k in args.engines:
         prov = E.ENGINES[k]["provider"]
-        need = {
-            "openai": "OPENAI_API_KEY",
-            "anthropic": "ANTHROPIC_API_KEY",
-            "openrouter": "OPENROUTER_API_KEY",
-        }[prov]
-        if not env.get(need):
-            missing.append(f"{k} requires {need}")
+        if prov not in PROVIDER_CREDS:
+            missing.append(f"{k}: unknown provider {prov!r}")
+            continue
+        for need in PROVIDER_CREDS[prov]:
+            if not env.get(need):
+                missing.append(f"{k} requires {need}")
     if missing:
         log("ABORT -- missing credentials:")
         for m in missing:
@@ -178,6 +207,25 @@ def main() -> int:
 
     elapsed = time.time() - t_start
 
+    # Preserve results for engines that were not part of THIS run so that a
+    # battery can be executed incrementally (one engine per invocation) without
+    # each run erasing the previous one.
+    merged_results = results
+    carried_engines: list[str] = []
+    if out_path.exists():
+        try:
+            prior = json.loads(out_path.read_text(encoding="utf-8"))
+            ran = set(args.engines)
+            kept = [r for r in prior.get("results", []) if r.get("engine") not in ran]
+            if kept:
+                carried_engines = sorted({r["engine"] for r in kept})
+                merged_results = kept + results
+                log(f"merged: carried forward {len(kept)} prior calls "
+                    f"for {carried_engines}")
+        except Exception as e:
+            log(f"WARNING: could not read prior results at {out_path} ({e}); "
+                f"writing this run only")
+
     payload = {
         "run_metadata": {
             "timestamp_utc": datetime.now(timezone.utc).isoformat(),
@@ -186,6 +234,8 @@ def main() -> int:
             "repeats": args.repeats,
             "calls_planned": total_calls,
             "calls_executed": len(results),
+            "engines_carried_forward": carried_engines,
+            "calls_in_file": len(merged_results),
             "elapsed_s": round(elapsed, 1),
             "total_spend_usd": round(spend, 6),
             "spend_cap_usd": max_spend,
@@ -199,13 +249,23 @@ def main() -> int:
                     "tier": E.ENGINES[k]["tier"],
                     "price_in_per_1m": E.ENGINES[k]["price_in"],
                     "price_out_per_1m": E.ENGINES[k]["price_out"],
+                    # Carried through so cost figures in any report can be
+                    # marked indicative where the rate is unconfirmed.
+                    "price_verified": E.ENGINES[k].get("price_verified", True),
+                    "price_source": E.ENGINES[k].get(
+                        "price_source", "provider list pricing"
+                    ),
                 }
-                for k in args.engines
+                # Includes carried-forward engines so every engine referenced
+                # in `results` is always described in this file.
+                for k in list(dict.fromkeys(list(args.engines) + carried_engines))
+                if k in E.ENGINES
             },
         },
-        "results": results,
+        "results": merged_results,
     }
-    RAW_PATH.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
 
     log("")
     log("=" * 78)
@@ -214,7 +274,7 @@ def main() -> int:
     log(f"calls executed : {len(results)}/{total_calls}")
     log(f"elapsed        : {elapsed/60:.1f} min")
     log(f"total spend    : ${spend:.4f} of ${max_spend:.2f} cap")
-    log(f"raw results    : {RAW_PATH}")
+    log(f"raw results    : {out_path}")
 
     fm_total = sum(
         1 for r in results for f in S.FIELDS if r["classes"][f] == "false_match"
