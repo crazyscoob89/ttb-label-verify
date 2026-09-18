@@ -31,6 +31,24 @@ class RunnerTests(unittest.TestCase):
  def test_ocr_page_shape(self):
   r=self.setup_runner()
   self.assertEqual(r.cost('mistral-document-ai-2512',{'pages':[{'index':0}], 'usage_info':{'pages_processed':1}})[0],.003)
+ def test_ocr_zero_extraction_annotation_returned(self):
+  r=self.setup_runner()
+  self.assertEqual(r.cost(V.OCR,{'usage_info':{'pages_processed':0,'pages_processed_annotation':1},'pages':[{'index':0}]}),(.003,None,None,1))
+ def test_ocr_missing_unknown(self):
+  r=self.setup_runner()
+  for d in ({},{'pages':[]},{'usage_info':{'pages_processed':0}}):
+   self.assertEqual(r.cost(V.OCR,d),(None,None,None,None))
+ def test_ocr_positive_count(self):
+  r=self.setup_runner()
+  self.assertEqual(r.cost(V.OCR,{'usage_info':{'pages_processed':2},'pages':[{}]}),(.006,None,None,2))
+  self.assertEqual(r.cost(V.OCR,{'usage_info':{'pages_processed_annotation':1}}),(.003,None,None,1))
+ def test_ocr_never_bool_negative(self):
+  r=self.setup_runner()
+  for n in (True,False,-1,0,1.5,'1'):
+   for key in ('pages_processed','pages_processed_annotation'):
+    with self.subTest(n=n,key=key):
+     self.assertEqual(r.cost(V.OCR,{'usage_info':{key:n}}),(None,None,None,None))
+     self.assertEqual(r.cost(V.OCR,{'usage_info':{key:n},'pages':[{}]}),(.003,None,None,1))
  def test_visibility_not_runtime_cheat(self):
   r=self.setup_runner();g=self.fixture();raw=V.load(next((V.BASE/'rows').glob('gpt-4.1-mini--C-SPIRITS-01--1.json')))
   g=V.R.load_evidence()[1]['C-SPIRITS-01'];v={f:{'visibility':'obscured','expect_referral_ok':True} for f in V.S.FIELDS}

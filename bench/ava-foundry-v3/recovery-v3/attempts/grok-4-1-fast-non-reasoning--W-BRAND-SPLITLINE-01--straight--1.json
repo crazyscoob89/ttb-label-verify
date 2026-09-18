@@ -1,0 +1,51 @@
+{
+  "id": "grok-4-1-fast-non-reasoning--W-BRAND-SPLITLINE-01--straight--1",
+  "operator": "AVA-v3",
+  "model": "grok-4-1-fast-non-reasoning",
+  "engine": "grok-4-1-fast-non-reasoning",
+  "fixture_id": "W-BRAND-SPLITLINE-01",
+  "repeat": 1,
+  "condition": "straight",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.0006102999999999999,
+  "request_sha256": "583f3102644a8c66ab3cb00bb82c7730bd9cf4aadef93dc3f136d18b1a9a8578",
+  "image_sha256": "0d808655c0372f5c6ceb60d280a4773e20f8e35b33c3c599263112be17899b8a",
+  "transport": "chat",
+  "started_at": "2026-09-18T16:48:16.596111+00:00",
+  "reserved_usd": 0.23233672,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/W-BRAND-SPLITLINE-01__straight.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "a6090c72-4aad-410e-9171-5133a2fc5e47",
+  "latency_s": 5.495923467096873,
+  "response_sha256": "f5dde9b64c15351a8e169a599428458b334f3dd9371c99613940beb58a195869",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/grok-4-1-fast-non-reasoning--W-BRAND-SPLITLINE-01--straight--1.json",
+  "tokens_in": 2489,
+  "tokens_out": 225,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 2489,
+    "completion_tokens": 225,
+    "total_tokens": 2714,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 858,
+      "audio_tokens": 0,
+      "text_tokens": 697,
+      "image_tokens": 1792
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "num_sources_used": 0
+  },
+  "returned_model": "grok-4-1-fast-non-reasoning"
+}

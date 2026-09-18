@@ -11,8 +11,17 @@ def reservation(model):
 def cost(model,d):
  u=d.get('usage') or d.get('usage_info') or {}
  if model==OCR:
-  n=u.get('pages_processed')
-  if not isinstance(n,int):n=len(d.get('pages',[])) or None
+  # Retail estimate, not an invoice: .003/image (harness.py RESERVE_OCR).
+  # Extraction zero does not mean annotation was free. Evidence overlaps,
+  # so use the maximum positive count, never sum or accept bool/negative.
+  counts=[]
+  for usage in (d.get('usage'),d.get('usage_info')):
+   if isinstance(usage,dict):
+    counts.extend(n for k in ('pages_processed','pages_processed_annotation')
+                  if type(n:=usage.get(k)) is int and n>0)
+  pages=d.get('pages')
+  if isinstance(pages,list) and pages:counts.append(len(pages))
+  n=max(counts) if counts else None
   return (n*.003 if n is not None else None),None,None,n
  ti=u.get('input_tokens',u.get('prompt_tokens'));to=u.get('output_tokens',u.get('completion_tokens'))
  if type(ti) is int and type(to) is int and min(ti,to)>=0:
@@ -102,6 +111,8 @@ def main():
   if (ROOT/'STOP').exists():blocked.append({'reason':'stop-file'});break
   ident=f"{model}--{g['fixture_id']}--{condition}--{rep}"
   if any(e['id']==ident for e in b.entries()):continue
+  if condition=='glare':
+   blocked.append({'id':ident,'reason':'user-rejected-artificial-occlusion-not-realistic-glare'});continue
   if transport_failures[model]>=2:blocked.append({'id':ident,'reason':'two-transport-failures'});continue
   if b.total()+reservation(model)>10:
    blocked.append({'id':ident,'reason':'budget','liability_usd':b.total(),'next_reservation_usd':reservation(model),'over_cap_usd':b.total()+reservation(model)-10});continue

@@ -1,0 +1,58 @@
+{
+  "id": "gpt-4.1-mini--D-WARP-01--angle--1",
+  "operator": "AVA-v3",
+  "model": "gpt-4.1-mini",
+  "engine": "gpt-4.1-mini",
+  "fixture_id": "D-WARP-01",
+  "repeat": 1,
+  "condition": "angle",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.0013256,
+  "request_sha256": "30f409410a2308b8432b0de6e549681a58cf15c659b2d54e5bbd4752b66203e4",
+  "image_sha256": "fa60bfd51117c2454b9e6c2ca35922647fcad7682048cb41d948d01ae72b2cc5",
+  "transport": "chat",
+  "started_at": "2026-09-18T16:51:19.625286+00:00",
+  "reserved_usd": 0.46665344,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/D-WARP-01__angle.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "8380f384-6d82-4376-a19d-96b1269237e9",
+  "latency_s": 6.511662747012451,
+  "response_sha256": "97ba8a3187b49084d98fb905d0db433d3dc31afbf821a7da77e552147538445c",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-4.1-mini--D-WARP-01--angle--1.json",
+  "tokens_in": 2070,
+  "tokens_out": 311,
+  "pages_processed": null,
+  "usage": {
+    "completion_tokens": 311,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "latency_checkpoint": {
+      "engine_tbt_ms": 9,
+      "engine_ttft_ms": 719,
+      "engine_ttlt_ms": 3504,
+      "pre_inference_ms": 361,
+      "service_tbt_ms": 9,
+      "service_ttft_ms": 1848,
+      "service_ttlt_ms": 4628,
+      "user_visible_ttft_ms": 1488
+    },
+    "prompt_tokens": 2070,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 0,
+      "image_tokens": 840
+    },
+    "total_tokens": 2381
+  },
+  "returned_model": "gpt-4.1-mini-2025-04-14"
+}

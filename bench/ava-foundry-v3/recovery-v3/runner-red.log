@@ -1,0 +1,53 @@
+test_http_unknown_body_retained (__main__.RunnerTests.test_http_unknown_body_retained) ... FAIL
+test_ocr_page_shape (__main__.RunnerTests.test_ocr_page_shape) ... FAIL
+test_usage_saved_invalid_schema_and_no_retry (__main__.RunnerTests.test_usage_saved_invalid_schema_and_no_retry) ... FAIL
+test_visibility_not_runtime_cheat (__main__.RunnerTests.test_visibility_not_runtime_cheat) ... FAIL
+
+======================================================================
+FAIL: test_http_unknown_body_retained (__main__.RunnerTests.test_http_unknown_body_retained)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_runner.py", line 24, in test_http_unknown_body_retained
+    r=self.setup_runner();calls=[]
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_runner.py", line 6, in setup_runner
+    self.assertTrue((V.ROOT/'runner.py').exists(),'safe incremental runner missing')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : safe incremental runner missing
+
+======================================================================
+FAIL: test_ocr_page_shape (__main__.RunnerTests.test_ocr_page_shape)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_runner.py", line 32, in test_ocr_page_shape
+    r=self.setup_runner()
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_runner.py", line 6, in setup_runner
+    self.assertTrue((V.ROOT/'runner.py').exists(),'safe incremental runner missing')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : safe incremental runner missing
+
+======================================================================
+FAIL: test_usage_saved_invalid_schema_and_no_retry (__main__.RunnerTests.test_usage_saved_invalid_schema_and_no_retry)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_runner.py", line 10, in test_usage_saved_invalid_schema_and_no_retry
+    r=self.setup_runner();calls=[]
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_runner.py", line 6, in setup_runner
+    self.assertTrue((V.ROOT/'runner.py').exists(),'safe incremental runner missing')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : safe incremental runner missing
+
+======================================================================
+FAIL: test_visibility_not_runtime_cheat (__main__.RunnerTests.test_visibility_not_runtime_cheat)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_runner.py", line 35, in test_visibility_not_runtime_cheat
+    r=self.setup_runner();g=self.fixture();raw=V.load(next((V.BASE/'rows').glob('gpt-4.1-mini--C-SPIRITS-01--1.json')))
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_runner.py", line 6, in setup_runner
+    self.assertTrue((V.ROOT/'runner.py').exists(),'safe incremental runner missing')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : safe incremental runner missing
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.007s
+
+FAILED (failures=4)

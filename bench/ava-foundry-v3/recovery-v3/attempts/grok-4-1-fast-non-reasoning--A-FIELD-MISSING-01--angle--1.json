@@ -1,0 +1,51 @@
+{
+  "id": "grok-4-1-fast-non-reasoning--A-FIELD-MISSING-01--angle--1",
+  "operator": "AVA-v3",
+  "model": "grok-4-1-fast-non-reasoning",
+  "engine": "grok-4-1-fast-non-reasoning",
+  "fixture_id": "A-FIELD-MISSING-01",
+  "repeat": 1,
+  "condition": "angle",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.0006027999999999999,
+  "request_sha256": "28c0104d62acf773ab7cfffb4b2b5a6808c893101c9e3a1d77b44663f73b0690",
+  "image_sha256": "4f6abfc0a0f6089a4ce323bcb22b25b785c2cf0bfadcfecf0a9c733730ad8f23",
+  "transport": "chat",
+  "started_at": "2026-09-18T16:36:29.479233+00:00",
+  "reserved_usd": 0.23233672,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-FIELD-MISSING-01__angle.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "0bdcc01e-87bf-4207-93cb-a36a6ce819a5",
+  "latency_s": 7.155744438059628,
+  "response_sha256": "b684a48f04ece467e65271640fb056b413af0a922d25eed4b3489d146b44aafe",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/grok-4-1-fast-non-reasoning--A-FIELD-MISSING-01--angle--1.json",
+  "tokens_in": 2489,
+  "tokens_out": 210,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 2489,
+    "completion_tokens": 210,
+    "total_tokens": 2699,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 858,
+      "audio_tokens": 0,
+      "text_tokens": 697,
+      "image_tokens": 1792
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "num_sources_used": 0
+  },
+  "returned_model": "grok-4-1-fast-non-reasoning"
+}

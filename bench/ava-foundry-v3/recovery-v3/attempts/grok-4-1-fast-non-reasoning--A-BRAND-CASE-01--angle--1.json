@@ -1,0 +1,51 @@
+{
+  "id": "grok-4-1-fast-non-reasoning--A-BRAND-CASE-01--angle--1",
+  "operator": "AVA-v3",
+  "model": "grok-4-1-fast-non-reasoning",
+  "engine": "grok-4-1-fast-non-reasoning",
+  "fixture_id": "A-BRAND-CASE-01",
+  "repeat": 1,
+  "condition": "angle",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.0006163,
+  "request_sha256": "30c94d11167992c792f76bed489fdfe3b1a2694ab2b0fa041db96dac673eab98",
+  "image_sha256": "39b0a63f6dd8515612a912facbfc0374e66d6b943b34fe02a686c10d2435b7a7",
+  "transport": "chat",
+  "started_at": "2026-09-18T16:29:37.841196+00:00",
+  "reserved_usd": 0.23233672,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-BRAND-CASE-01__angle.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "b5dd0f77-def2-4650-951e-0db6ddcaee5e",
+  "latency_s": 4.928942358004861,
+  "response_sha256": "39e1b781926839001990a31f6a1c8fe0b0275fe81c65dde77f92c969b9d9b077",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/grok-4-1-fast-non-reasoning--A-BRAND-CASE-01--angle--1.json",
+  "tokens_in": 2489,
+  "tokens_out": 237,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 2489,
+    "completion_tokens": 237,
+    "total_tokens": 2726,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 858,
+      "audio_tokens": 0,
+      "text_tokens": 697,
+      "image_tokens": 1792
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "num_sources_used": 0
+  },
+  "returned_model": "grok-4-1-fast-non-reasoning"
+}

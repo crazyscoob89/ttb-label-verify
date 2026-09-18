@@ -1,0 +1,176 @@
+{
+  "id": "Mistral-Large-3--A-ABV-WRONG-01--glare--1",
+  "operator": "AVA-v3",
+  "model": "Mistral-Large-3",
+  "engine": "Mistral-Large-3",
+  "fixture_id": "A-ABV-WRONG-01",
+  "repeat": 1,
+  "condition": "glare",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": true,
+  "extracted": {
+    "brand_name": "Mantern Far",
+    "class_type": null,
+    "alcohol_content": "14% ALC",
+    "net_contents": null,
+    "bottler_info": "Produced and bottled by Mantern Far Lantern Winery, Manson",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 0.8,
+      "class_type": 0.0,
+      "alcohol_content": 0.9,
+      "net_contents": 0.0,
+      "bottler_info": 0.9,
+      "country_of_origin": 0.0,
+      "government_warning_heading": 1.0,
+      "government_warning_body": 0.95,
+      "government_warning_heading_all_caps": 1.0,
+      "government_warning_heading_bold": 1.0,
+      "government_warning_body_bold": 1.0
+    }
+  },
+  "error_class": null,
+  "cost_usd": 0.0019445,
+  "request_sha256": "b09b89dd242f5fcba7e53cd433b87babac1f8ff9fe42a9027d08c5078e6e1db0",
+  "image_sha256": "3fb81c20a9678d22d9a7a43c8c5144670d5bcc4cfb4ddcbfacdbbb9076c21df9",
+  "transport": "chat",
+  "started_at": "2026-09-18T16:33:58.589137+00:00",
+  "reserved_usd": 0.5816668,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-ABV-WRONG-01__glare.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "f86614ca-942d-4d18-bcfc-ba26f7e5f845",
+  "latency_s": 7.838895285036415,
+  "response_sha256": "0e7ff37c91e736fc5c0faf871d74436b040f3086c57bf9cfdd838ee2436110f1",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Mistral-Large-3--A-ABV-WRONG-01--glare--1.json",
+  "tokens_in": 2878,
+  "tokens_out": 337,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 2878,
+    "completion_tokens": 337,
+    "total_tokens": 3215,
+    "audio_prompt_tokens": 0
+  },
+  "returned_model": "mistral-large-3",
+  "raw_text": "{\n  \"brand_name\": \"Mantern Far\",\n  \"class_type\": null,\n  \"alcohol_content\": \"14% ALC\",\n  \"net_contents\": null,\n  \"bottler_info\": \"Produced and bottled by Mantern Far Lantern Winery, Manson\",\n  \"country_of_origin\": null,\n  \"government_warning_heading\": \"GOVERNMENT WARNING:\",\n  \"government_warning_body\": \"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\n  \"government_warning_heading_all_caps\": true,\n  \"government_warning_heading_bold\": true,\n  \"government_warning_body_bold\": false,\n  \"confidence\": {\n    \"brand_name\": 0.8,\n    \"class_type\": 0.0,\n    \"alcohol_content\": 0.9,\n    \"net_contents\": 0.0,\n    \"bottler_info\": 0.9,\n    \"country_of_origin\": 0.0,\n    \"government_warning_heading\": 1.0,\n    \"government_warning_body\": 0.95,\n    \"government_warning_heading_all_caps\": 1.0,\n    \"government_warning_heading_bold\": 1.0,\n    \"government_warning_body_bold\": 1.0\n  }\n}",
+  "finish_reason": "stop",
+  "validation_errors": {},
+  "category": "adversarial",
+  "commodity": "wine",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "mismatch",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "mismatch",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "mismatch",
+    "class_type": "needs-review",
+    "alcohol_content": "mismatch",
+    "net_contents": "needs-review",
+    "bottler_info": "mismatch",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "classes": {
+    "brand_name": "false_mismatch",
+    "class_type": "referral",
+    "alcohol_content": "correct",
+    "net_contents": "referral",
+    "bottler_info": "false_mismatch",
+    "country_of_origin": "correct",
+    "government_warning": "correct"
+  },
+  "reasons": {
+    "brand_name": "'Mantern Far' vs declared 'Marsh Lantern'",
+    "class_type": "confidence 0.0 below threshold 0.75",
+    "alcohol_content": "label 14.0 vs declared 11.0",
+    "net_contents": "confidence 0.0 below threshold 0.75",
+    "bottler_info": "'Produced and bottled by Mantern Far Lantern Winery, Manson' vs declared 'Marsh Lantern Winery, McMinnville, Oregon'",
+    "country_of_origin": "domestic product",
+    "government_warning": "exact statutory wording and formatting"
+  },
+  "extraction_correct": {
+    "brand_name": false,
+    "class_type": false,
+    "alcohol_content": false,
+    "net_contents": false,
+    "bottler_info": false,
+    "country_of_origin": true,
+    "government_warning": true
+  },
+  "visibility": {
+    "brand_name": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "class_type": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "alcohol_content": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "net_contents": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "bottler_info": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "country_of_origin": {
+      "visibility": "absent",
+      "expect_referral_ok": true,
+      "basis": "No printed value in source",
+      "annotator": "AVA pre-inference"
+    },
+    "government_warning": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    }
+  },
+  "bottle_outcomes": {
+    "brand_name": "dangerous-error",
+    "class_type": "safe-referral",
+    "alcohol_content": "dangerous-error",
+    "net_contents": "safe-referral",
+    "bottler_info": "dangerous-error",
+    "country_of_origin": "correct-absence-not-applicable",
+    "government_warning": "unverifiable-correct-not-recovery"
+  },
+  "pipeline_seconds": 7.867174748098478
+}

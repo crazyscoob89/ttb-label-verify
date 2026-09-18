@@ -1,0 +1,665 @@
+ bench/ava-foundry-v3/.gitattributes                |     2 +
+ bench/ava-foundry-v3/README.md                     |    28 +
+ .../ava-foundry-v3/original-ava/bottles/README.txt |    61 +
+ .../original-ava/bottles/contact-sheet.jpg         |   Bin 0 -> 345737 bytes
+ .../bottles/ground_truth/A-ABV-WRONG-01.json       |    54 +
+ .../bottles/ground_truth/A-BRAND-CASE-01.json      |    54 +
+ .../bottles/ground_truth/A-FIELD-MISSING-01.json   |    54 +
+ .../bottles/ground_truth/A-INJECT-PROMPT-01.json   |    59 +
+ .../bottles/ground_truth/A-WARN-BOLDBODY-01.json   |    54 +
+ .../bottles/ground_truth/A-WARN-TITLECASE-01.json  |    54 +
+ .../bottles/ground_truth/C-MALT-01.json            |    54 +
+ .../bottles/ground_truth/C-SPIRITS-01.json         |    54 +
+ .../bottles/ground_truth/C-SPIRITS-IMPORT-01.json  |    54 +
+ .../bottles/ground_truth/C-WINE-01.json            |    54 +
+ .../bottles/ground_truth/D-BLUR-01.json            |    54 +
+ .../bottles/ground_truth/D-GLARE-01.json           |    54 +
+ .../bottles/ground_truth/D-WARP-01.json            |    54 +
+ .../bottles/ground_truth/W-ABV-4045-01.json        |    54 +
+ .../bottles/ground_truth/W-BRAND-SPLITLINE-01.json |    54 +
+ .../bottles/ground_truth/W-BRAND-WRONG-01.json     |    54 +
+ .../ground_truth/W-NETCONTENTS-WRONG-01.json       |    54 +
+ .../bottles/ground_truth/W-WARN-REWORD-01.json     |    54 +
+ .../original-ava/bottles/images/A-ABV-WRONG-01.png |   Bin 0 -> 682734 bytes
+ .../bottles/images/A-BRAND-CASE-01.png             |   Bin 0 -> 675087 bytes
+ .../bottles/images/A-FIELD-MISSING-01.png          |   Bin 0 -> 658459 bytes
+ .../bottles/images/A-INJECT-PROMPT-01.png          |   Bin 0 -> 664860 bytes
+ .../bottles/images/A-WARN-BOLDBODY-01.png          |   Bin 0 -> 689343 bytes
+ .../bottles/images/A-WARN-TITLECASE-01.png         |   Bin 0 -> 673424 bytes
+ .../original-ava/bottles/images/C-MALT-01.png      |   Bin 0 -> 700641 bytes
+ .../original-ava/bottles/images/C-SPIRITS-01.png   |   Bin 0 -> 674589 bytes
+ .../bottles/images/C-SPIRITS-IMPORT-01.png         |   Bin 0 -> 707521 bytes
+ .../original-ava/bottles/images/C-WINE-01.png      |   Bin 0 -> 679733 bytes
+ .../original-ava/bottles/images/D-BLUR-01.png      |   Bin 0 -> 768476 bytes
+ .../original-ava/bottles/images/D-GLARE-01.png     |   Bin 0 -> 814848 bytes
+ .../original-ava/bottles/images/D-WARP-01.png      |   Bin 0 -> 903714 bytes
+ .../original-ava/bottles/images/W-ABV-4045-01.png  |   Bin 0 -> 708122 bytes
+ .../bottles/images/W-BRAND-SPLITLINE-01.png        |   Bin 0 -> 687928 bytes
+ .../bottles/images/W-BRAND-WRONG-01.png            |   Bin 0 -> 677044 bytes
+ .../bottles/images/W-NETCONTENTS-WRONG-01.png      |   Bin 0 -> 672455 bytes
+ .../bottles/images/W-WARN-REWORD-01.png            |   Bin 0 -> 717691 bytes
+ .../original-ava/bottles/manifest.json             |  1637 +
+ bench/ava-foundry-v3/original-ava/bottles/qa.json  |    13 +
+ .../ava-foundry-v3/original-ava/bottles/render.py  |    94 +
+ .../original-ava/bottles/source-hashes.json        |    39 +
+ .../original-ava/bottles/test_corpus.py            |    26 +
+ .../ava-foundry-v3/original-ava/gpt5_pricing.json  |   140 +
+ .../original-ava/handover-cost-summary.json        |    20 +
+ .../original-ava/handover-ledger.json              |  1242 +
+ bench/ava-foundry-v3/original-ava/harness.py       |   167 +
+ .../responses/Kimi-K2.6--A-ABV-WRONG-01--1.json    |     1 +
+ .../responses/Kimi-K2.6--A-ABV-WRONG-01--2.json    |     1 +
+ .../responses/Kimi-K2.6--A-BRAND-CASE-01--1.json   |     1 +
+ .../Kimi-K2.6--A-FIELD-MISSING-01--1.json          |     1 +
+ .../Kimi-K2.6--A-INJECT-PROMPT-01--1.json          |     1 +
+ .../Kimi-K2.6--A-WARN-BOLDBODY-01--1.json          |     1 +
+ .../Kimi-K2.6--A-WARN-TITLECASE-01--1.json         |     1 +
+ .../responses/Kimi-K2.6--C-MALT-01--1.json         |     1 +
+ .../responses/Kimi-K2.6--C-SPIRITS-01--1.json      |     1 +
+ .../Kimi-K2.6--C-SPIRITS-IMPORT-01--1.json         |     1 +
+ .../responses/Kimi-K2.6--C-WINE-01--1.json         |     1 +
+ .../responses/Kimi-K2.6--D-BLUR-01--1.json         |     1 +
+ .../responses/Kimi-K2.6--D-GLARE-01--1.json        |     1 +
+ .../responses/Kimi-K2.6--D-GLARE-01--2.json        |     1 +
+ .../responses/Kimi-K2.6--D-WARP-01--1.json         |     1 +
+ .../responses/Kimi-K2.6--W-ABV-4045-01--1.json     |     1 +
+ .../responses/Kimi-K2.6--W-ABV-4045-01--2.json     |     1 +
+ .../Kimi-K2.6--W-BRAND-SPLITLINE-01--1.json        |     1 +
+ .../responses/Kimi-K2.6--W-BRAND-WRONG-01--1.json  |     1 +
+ .../Kimi-K2.6--W-NETCONTENTS-WRONG-01--1.json      |     1 +
+ .../Kimi-K2.6--W-NETCONTENTS-WRONG-01--2.json      |     1 +
+ .../responses/Kimi-K2.6--W-WARN-REWORD-01--1.json  |     1 +
+ .../responses/Kimi-K2.6--W-WARN-REWORD-01--2.json  |     1 +
+ .../Mistral-Large-3--A-ABV-WRONG-01--1.json        |     1 +
+ .../Mistral-Large-3--A-ABV-WRONG-01--2.json        |     1 +
+ .../Mistral-Large-3--A-ABV-WRONG-01--3.json        |     1 +
+ .../Mistral-Large-3--A-BRAND-CASE-01--1.json       |     1 +
+ .../Mistral-Large-3--A-BRAND-CASE-01--2.json       |     1 +
+ .../Mistral-Large-3--A-FIELD-MISSING-01--1.json    |     1 +
+ .../Mistral-Large-3--A-FIELD-MISSING-01--2.json    |     1 +
+ .../Mistral-Large-3--A-INJECT-PROMPT-01--1.json    |     1 +
+ .../Mistral-Large-3--A-INJECT-PROMPT-01--2.json    |     1 +
+ .../Mistral-Large-3--A-INJECT-PROMPT-01--3.json    |     1 +
+ .../Mistral-Large-3--A-WARN-BOLDBODY-01--1.json    |     1 +
+ .../Mistral-Large-3--A-WARN-BOLDBODY-01--2.json    |     1 +
+ .../Mistral-Large-3--A-WARN-TITLECASE-01--1.json   |     1 +
+ .../Mistral-Large-3--A-WARN-TITLECASE-01--2.json   |     1 +
+ .../responses/Mistral-Large-3--C-MALT-01--1.json   |     1 +
+ .../responses/Mistral-Large-3--C-MALT-01--2.json   |     1 +
+ .../Mistral-Large-3--C-SPIRITS-01--1.json          |     1 +
+ .../Mistral-Large-3--C-SPIRITS-01--2.json          |     1 +
+ .../Mistral-Large-3--C-SPIRITS-01--3.json          |     1 +
+ .../Mistral-Large-3--C-SPIRITS-IMPORT-01--1.json   |     1 +
+ .../Mistral-Large-3--C-SPIRITS-IMPORT-01--2.json   |     1 +
+ .../responses/Mistral-Large-3--C-WINE-01--1.json   |     1 +
+ .../responses/Mistral-Large-3--C-WINE-01--2.json   |     1 +
+ .../responses/Mistral-Large-3--D-BLUR-01--1.json   |     1 +
+ .../responses/Mistral-Large-3--D-BLUR-01--2.json   |     1 +
+ .../responses/Mistral-Large-3--D-GLARE-01--1.json  |     1 +
+ .../responses/Mistral-Large-3--D-GLARE-01--2.json  |     1 +
+ .../responses/Mistral-Large-3--D-GLARE-01--3.json  |     1 +
+ .../responses/Mistral-Large-3--D-WARP-01--1.json   |     1 +
+ .../responses/Mistral-Large-3--D-WARP-01--2.json   |     1 +
+ .../Mistral-Large-3--W-ABV-4045-01--1.json         |     1 +
+ .../Mistral-Large-3--W-ABV-4045-01--2.json         |     1 +
+ .../Mistral-Large-3--W-ABV-4045-01--3.json         |     1 +
+ .../Mistral-Large-3--W-BRAND-SPLITLINE-01--1.json  |     1 +
+ .../Mistral-Large-3--W-BRAND-SPLITLINE-01--2.json  |     1 +
+ .../Mistral-Large-3--W-BRAND-WRONG-01--1.json      |     1 +
+ .../Mistral-Large-3--W-BRAND-WRONG-01--2.json      |     1 +
+ .../Mistral-Large-3--W-BRAND-WRONG-01--3.json      |     1 +
+ ...Mistral-Large-3--W-NETCONTENTS-WRONG-01--1.json |     1 +
+ ...Mistral-Large-3--W-NETCONTENTS-WRONG-01--2.json |     1 +
+ ...Mistral-Large-3--W-NETCONTENTS-WRONG-01--3.json |     1 +
+ .../Mistral-Large-3--W-WARN-REWORD-01--1.json      |     1 +
+ .../Mistral-Large-3--W-WARN-REWORD-01--2.json      |     1 +
+ .../Mistral-Large-3--W-WARN-REWORD-01--3.json      |     1 +
+ .../responses/gpt-4.1-mini--A-ABV-WRONG-01--1.json |     1 +
+ .../responses/gpt-4.1-mini--A-ABV-WRONG-01--2.json |     1 +
+ .../responses/gpt-4.1-mini--A-ABV-WRONG-01--3.json |     1 +
+ .../gpt-4.1-mini--A-BRAND-CASE-01--1.json          |     1 +
+ .../gpt-4.1-mini--A-BRAND-CASE-01--2.json          |     1 +
+ .../gpt-4.1-mini--A-BRAND-CASE-01--3.json          |     1 +
+ .../gpt-4.1-mini--A-FIELD-MISSING-01--1.json       |     1 +
+ .../gpt-4.1-mini--A-FIELD-MISSING-01--2.json       |     1 +
+ .../gpt-4.1-mini--A-FIELD-MISSING-01--3.json       |     1 +
+ .../gpt-4.1-mini--A-INJECT-PROMPT-01--1.json       |     1 +
+ .../gpt-4.1-mini--A-INJECT-PROMPT-01--2.json       |     1 +
+ .../gpt-4.1-mini--A-INJECT-PROMPT-01--3.json       |     1 +
+ .../gpt-4.1-mini--A-WARN-BOLDBODY-01--1.json       |     1 +
+ .../gpt-4.1-mini--A-WARN-BOLDBODY-01--2.json       |     1 +
+ .../gpt-4.1-mini--A-WARN-BOLDBODY-01--3.json       |     1 +
+ .../gpt-4.1-mini--A-WARN-TITLECASE-01--1.json      |     1 +
+ .../gpt-4.1-mini--A-WARN-TITLECASE-01--2.json      |     1 +
+ .../gpt-4.1-mini--A-WARN-TITLECASE-01--3.json      |     1 +
+ .../responses/gpt-4.1-mini--C-MALT-01--1.json      |     1 +
+ .../responses/gpt-4.1-mini--C-MALT-01--2.json      |     1 +
+ .../responses/gpt-4.1-mini--C-MALT-01--3.json      |     1 +
+ .../responses/gpt-4.1-mini--C-SPIRITS-01--1.json   |     1 +
+ .../responses/gpt-4.1-mini--C-SPIRITS-01--2.json   |     1 +
+ .../responses/gpt-4.1-mini--C-SPIRITS-01--3.json   |     1 +
+ .../gpt-4.1-mini--C-SPIRITS-IMPORT-01--1.json      |     1 +
+ .../gpt-4.1-mini--C-SPIRITS-IMPORT-01--2.json      |     1 +
+ .../gpt-4.1-mini--C-SPIRITS-IMPORT-01--3.json      |     1 +
+ .../responses/gpt-4.1-mini--C-WINE-01--1.json      |     1 +
+ .../responses/gpt-4.1-mini--C-WINE-01--2.json      |     1 +
+ .../responses/gpt-4.1-mini--C-WINE-01--3.json      |     1 +
+ .../responses/gpt-4.1-mini--D-BLUR-01--1.json      |     1 +
+ .../responses/gpt-4.1-mini--D-BLUR-01--2.json      |     1 +
+ .../responses/gpt-4.1-mini--D-BLUR-01--3.json      |     1 +
+ .../responses/gpt-4.1-mini--D-GLARE-01--1.json     |     1 +
+ .../responses/gpt-4.1-mini--D-GLARE-01--2.json     |     1 +
+ .../responses/gpt-4.1-mini--D-GLARE-01--3.json     |     1 +
+ .../responses/gpt-4.1-mini--D-WARP-01--1.json      |     1 +
+ .../responses/gpt-4.1-mini--D-WARP-01--2.json      |     1 +
+ .../responses/gpt-4.1-mini--D-WARP-01--3.json      |     1 +
+ .../responses/gpt-4.1-mini--W-ABV-4045-01--1.json  |     1 +
+ .../responses/gpt-4.1-mini--W-ABV-4045-01--2.json  |     1 +
+ .../responses/gpt-4.1-mini--W-ABV-4045-01--3.json  |     1 +
+ .../gpt-4.1-mini--W-BRAND-SPLITLINE-01--1.json     |     1 +
+ .../gpt-4.1-mini--W-BRAND-SPLITLINE-01--2.json     |     1 +
+ .../gpt-4.1-mini--W-BRAND-SPLITLINE-01--3.json     |     1 +
+ .../gpt-4.1-mini--W-BRAND-WRONG-01--1.json         |     1 +
+ .../gpt-4.1-mini--W-BRAND-WRONG-01--2.json         |     1 +
+ .../gpt-4.1-mini--W-BRAND-WRONG-01--3.json         |     1 +
+ .../gpt-4.1-mini--W-NETCONTENTS-WRONG-01--1.json   |     1 +
+ .../gpt-4.1-mini--W-NETCONTENTS-WRONG-01--2.json   |     1 +
+ .../gpt-4.1-mini--W-NETCONTENTS-WRONG-01--3.json   |     1 +
+ .../gpt-4.1-mini--W-WARN-REWORD-01--1.json         |     1 +
+ .../gpt-4.1-mini--W-WARN-REWORD-01--2.json         |     1 +
+ .../gpt-4.1-mini--W-WARN-REWORD-01--3.json         |     1 +
+ .../responses/gpt-5-mini--A-ABV-WRONG-01--1.json   |   167 +
+ .../responses/gpt-5-mini--A-ABV-WRONG-01--2.json   |   167 +
+ .../responses/gpt-5-mini--A-BRAND-CASE-01--1.json  |   167 +
+ .../responses/gpt-5-mini--A-BRAND-CASE-01--2.json  |   167 +
+ .../gpt-5-mini--A-FIELD-MISSING-01--1.json         |   167 +
+ .../gpt-5-mini--A-FIELD-MISSING-01--2.json         |   167 +
+ .../gpt-5-mini--A-INJECT-PROMPT-01--1.json         |   167 +
+ .../gpt-5-mini--A-INJECT-PROMPT-01--2.json         |   167 +
+ .../gpt-5-mini--A-WARN-BOLDBODY-01--1.json         |   167 +
+ .../gpt-5-mini--A-WARN-BOLDBODY-01--2.json         |   167 +
+ .../gpt-5-mini--A-WARN-TITLECASE-01--1.json        |   167 +
+ .../gpt-5-mini--A-WARN-TITLECASE-01--2.json        |   167 +
+ .../responses/gpt-5-mini--C-MALT-01--1.json        |   167 +
+ .../responses/gpt-5-mini--C-MALT-01--2.json        |   167 +
+ .../responses/gpt-5-mini--C-SPIRITS-01--1.json     |   167 +
+ .../responses/gpt-5-mini--C-SPIRITS-01--2.json     |   167 +
+ .../gpt-5-mini--C-SPIRITS-IMPORT-01--1.json        |   167 +
+ .../gpt-5-mini--C-SPIRITS-IMPORT-01--2.json        |   167 +
+ .../responses/gpt-5-mini--C-WINE-01--1.json        |   167 +
+ .../responses/gpt-5-mini--D-BLUR-01--1.json        |   135 +
+ .../responses/gpt-5-mini--D-BLUR-01--2.json        |   167 +
+ .../responses/gpt-5-mini--D-GLARE-01--1.json       |   167 +
+ .../responses/gpt-5-mini--D-GLARE-01--2.json       |   167 +
+ .../responses/gpt-5-mini--D-WARP-01--1.json        |   167 +
+ .../responses/gpt-5-mini--D-WARP-01--2.json        |   167 +
+ .../responses/gpt-5-mini--W-ABV-4045-01--1.json    |   167 +
+ .../responses/gpt-5-mini--W-ABV-4045-01--2.json    |   167 +
+ .../gpt-5-mini--W-BRAND-SPLITLINE-01--1.json       |   167 +
+ .../gpt-5-mini--W-BRAND-SPLITLINE-01--2.json       |   167 +
+ .../responses/gpt-5-mini--W-BRAND-WRONG-01--1.json |   167 +
+ .../responses/gpt-5-mini--W-BRAND-WRONG-01--2.json |   167 +
+ .../gpt-5-mini--W-NETCONTENTS-WRONG-01--1.json     |   167 +
+ .../gpt-5-mini--W-NETCONTENTS-WRONG-01--2.json     |   135 +
+ .../responses/gpt-5-mini--W-WARN-REWORD-01--1.json |   167 +
+ .../responses/gpt-5-mini--W-WARN-REWORD-01--2.json |   167 +
+ ...-4-1-fast-non-reasoning--A-ABV-WRONG-01--1.json |     1 +
+ ...-4-1-fast-non-reasoning--A-ABV-WRONG-01--2.json |     1 +
+ ...-4-1-fast-non-reasoning--A-ABV-WRONG-01--3.json |     1 +
+ ...4-1-fast-non-reasoning--A-BRAND-CASE-01--1.json |     1 +
+ ...4-1-fast-non-reasoning--A-BRAND-CASE-01--2.json |     1 +
+ ...4-1-fast-non-reasoning--A-BRAND-CASE-01--3.json |     1 +
+ ...-fast-non-reasoning--A-FIELD-MISSING-01--1.json |     1 +
+ ...-fast-non-reasoning--A-FIELD-MISSING-01--2.json |     1 +
+ ...-fast-non-reasoning--A-FIELD-MISSING-01--3.json |     1 +
+ ...-fast-non-reasoning--A-INJECT-PROMPT-01--1.json |     1 +
+ ...-fast-non-reasoning--A-INJECT-PROMPT-01--2.json |     1 +
+ ...-fast-non-reasoning--A-INJECT-PROMPT-01--3.json |     1 +
+ ...-fast-non-reasoning--A-WARN-BOLDBODY-01--1.json |     1 +
+ ...-fast-non-reasoning--A-WARN-BOLDBODY-01--2.json |     1 +
+ ...-fast-non-reasoning--A-WARN-BOLDBODY-01--3.json |     1 +
+ ...fast-non-reasoning--A-WARN-TITLECASE-01--1.json |     1 +
+ ...fast-non-reasoning--A-WARN-TITLECASE-01--2.json |     1 +
+ ...fast-non-reasoning--A-WARN-TITLECASE-01--3.json |     1 +
+ .../grok-4-1-fast-non-reasoning--C-MALT-01--1.json |     1 +
+ .../grok-4-1-fast-non-reasoning--C-MALT-01--2.json |     1 +
+ .../grok-4-1-fast-non-reasoning--C-MALT-01--3.json |     1 +
+ ...ok-4-1-fast-non-reasoning--C-SPIRITS-01--1.json |     1 +
+ ...ok-4-1-fast-non-reasoning--C-SPIRITS-01--2.json |     1 +
+ ...ok-4-1-fast-non-reasoning--C-SPIRITS-01--3.json |     1 +
+ ...fast-non-reasoning--C-SPIRITS-IMPORT-01--1.json |     1 +
+ ...fast-non-reasoning--C-SPIRITS-IMPORT-01--2.json |     1 +
+ ...fast-non-reasoning--C-SPIRITS-IMPORT-01--3.json |     1 +
+ .../grok-4-1-fast-non-reasoning--C-WINE-01--1.json |     1 +
+ .../grok-4-1-fast-non-reasoning--C-WINE-01--2.json |     1 +
+ .../grok-4-1-fast-non-reasoning--C-WINE-01--3.json |     1 +
+ .../grok-4-1-fast-non-reasoning--D-BLUR-01--1.json |     1 +
+ .../grok-4-1-fast-non-reasoning--D-BLUR-01--2.json |     1 +
+ .../grok-4-1-fast-non-reasoning--D-BLUR-01--3.json |     1 +
+ ...grok-4-1-fast-non-reasoning--D-GLARE-01--1.json |     1 +
+ ...grok-4-1-fast-non-reasoning--D-GLARE-01--2.json |     1 +
+ ...grok-4-1-fast-non-reasoning--D-GLARE-01--3.json |     1 +
+ .../grok-4-1-fast-non-reasoning--D-WARP-01--1.json |     1 +
+ .../grok-4-1-fast-non-reasoning--D-WARP-01--2.json |     1 +
+ .../grok-4-1-fast-non-reasoning--D-WARP-01--3.json |     1 +
+ ...k-4-1-fast-non-reasoning--W-ABV-4045-01--1.json |     1 +
+ ...k-4-1-fast-non-reasoning--W-ABV-4045-01--2.json |     1 +
+ ...k-4-1-fast-non-reasoning--W-ABV-4045-01--3.json |     1 +
+ ...ast-non-reasoning--W-BRAND-SPLITLINE-01--1.json |     1 +
+ ...ast-non-reasoning--W-BRAND-SPLITLINE-01--2.json |     1 +
+ ...ast-non-reasoning--W-BRAND-SPLITLINE-01--3.json |     1 +
+ ...-1-fast-non-reasoning--W-BRAND-WRONG-01--1.json |     1 +
+ ...-1-fast-non-reasoning--W-BRAND-WRONG-01--2.json |     1 +
+ ...-1-fast-non-reasoning--W-BRAND-WRONG-01--3.json |     1 +
+ ...t-non-reasoning--W-NETCONTENTS-WRONG-01--1.json |     1 +
+ ...t-non-reasoning--W-NETCONTENTS-WRONG-01--2.json |     1 +
+ ...t-non-reasoning--W-NETCONTENTS-WRONG-01--3.json |     1 +
+ ...-1-fast-non-reasoning--W-WARN-REWORD-01--1.json |     1 +
+ ...-1-fast-non-reasoning--W-WARN-REWORD-01--2.json |     1 +
+ ...-1-fast-non-reasoning--W-WARN-REWORD-01--3.json |     1 +
+ ...istral-document-ai-2512--A-ABV-WRONG-01--1.json |     1 +
+ ...istral-document-ai-2512--A-ABV-WRONG-01--2.json |     1 +
+ ...stral-document-ai-2512--A-BRAND-CASE-01--1.json |     1 +
+ ...stral-document-ai-2512--A-BRAND-CASE-01--2.json |     1 +
+ ...al-document-ai-2512--A-FIELD-MISSING-01--1.json |     1 +
+ ...al-document-ai-2512--A-FIELD-MISSING-01--2.json |     1 +
+ ...al-document-ai-2512--A-INJECT-PROMPT-01--1.json |     1 +
+ ...al-document-ai-2512--A-INJECT-PROMPT-01--2.json |     1 +
+ ...al-document-ai-2512--A-WARN-BOLDBODY-01--1.json |     1 +
+ ...al-document-ai-2512--A-WARN-BOLDBODY-01--2.json |     1 +
+ ...l-document-ai-2512--A-WARN-TITLECASE-01--1.json |     1 +
+ ...l-document-ai-2512--A-WARN-TITLECASE-01--2.json |     1 +
+ .../mistral-document-ai-2512--C-MALT-01--1.json    |     1 +
+ .../mistral-document-ai-2512--C-MALT-01--2.json    |     1 +
+ .../mistral-document-ai-2512--C-SPIRITS-01--1.json |     1 +
+ .../mistral-document-ai-2512--C-SPIRITS-01--2.json |     1 +
+ ...l-document-ai-2512--C-SPIRITS-IMPORT-01--1.json |     1 +
+ .../mistral-document-ai-2512--C-WINE-01--1.json    |     1 +
+ .../mistral-document-ai-2512--D-BLUR-01--1.json    |     1 +
+ .../mistral-document-ai-2512--D-BLUR-01--2.json    |     1 +
+ .../mistral-document-ai-2512--D-GLARE-01--1.json   |     1 +
+ .../mistral-document-ai-2512--D-GLARE-01--2.json   |     1 +
+ .../mistral-document-ai-2512--D-WARP-01--1.json    |     1 +
+ ...mistral-document-ai-2512--W-ABV-4045-01--1.json |     1 +
+ ...mistral-document-ai-2512--W-ABV-4045-01--2.json |     1 +
+ ...-document-ai-2512--W-BRAND-SPLITLINE-01--1.json |     1 +
+ ...-document-ai-2512--W-BRAND-SPLITLINE-01--2.json |     1 +
+ ...tral-document-ai-2512--W-BRAND-WRONG-01--1.json |     1 +
+ ...tral-document-ai-2512--W-BRAND-WRONG-01--2.json |     1 +
+ ...ocument-ai-2512--W-NETCONTENTS-WRONG-01--1.json |     1 +
+ ...ocument-ai-2512--W-NETCONTENTS-WRONG-01--2.json |     1 +
+ ...tral-document-ai-2512--W-WARN-REWORD-01--1.json |     1 +
+ ...tral-document-ai-2512--W-WARN-REWORD-01--2.json |     1 +
+ .../ava-foundry-v3/original-ava/retail_prices.json | 22588 +++++++
+ .../rows/Kimi-K2.6--A-ABV-WRONG-01--1.json         |   120 +
+ .../rows/Kimi-K2.6--A-ABV-WRONG-01--2.json         |   120 +
+ .../rows/Kimi-K2.6--A-BRAND-CASE-01--1.json        |   120 +
+ .../rows/Kimi-K2.6--A-FIELD-MISSING-01--1.json     |   120 +
+ .../rows/Kimi-K2.6--A-INJECT-PROMPT-01--1.json     |   120 +
+ .../rows/Kimi-K2.6--A-WARN-BOLDBODY-01--1.json     |   120 +
+ .../rows/Kimi-K2.6--A-WARN-TITLECASE-01--1.json    |   120 +
+ .../original-ava/rows/Kimi-K2.6--C-MALT-01--1.json |   120 +
+ .../rows/Kimi-K2.6--C-SPIRITS-01--1.json           |   120 +
+ .../rows/Kimi-K2.6--C-SPIRITS-IMPORT-01--1.json    |   120 +
+ .../original-ava/rows/Kimi-K2.6--C-WINE-01--1.json |   120 +
+ .../original-ava/rows/Kimi-K2.6--D-BLUR-01--1.json |   120 +
+ .../rows/Kimi-K2.6--D-GLARE-01--1.json             |   120 +
+ .../rows/Kimi-K2.6--D-GLARE-01--2.json             |   120 +
+ .../original-ava/rows/Kimi-K2.6--D-WARP-01--1.json |   120 +
+ .../rows/Kimi-K2.6--W-ABV-4045-01--1.json          |   120 +
+ .../rows/Kimi-K2.6--W-ABV-4045-01--2.json          |   120 +
+ .../rows/Kimi-K2.6--W-BRAND-SPLITLINE-01--1.json   |   120 +
+ .../rows/Kimi-K2.6--W-BRAND-WRONG-01--1.json       |   120 +
+ .../rows/Kimi-K2.6--W-NETCONTENTS-WRONG-01--1.json |   120 +
+ .../rows/Kimi-K2.6--W-NETCONTENTS-WRONG-01--2.json |   120 +
+ .../rows/Kimi-K2.6--W-WARN-REWORD-01--1.json       |   120 +
+ .../rows/Kimi-K2.6--W-WARN-REWORD-01--2.json       |   120 +
+ .../rows/Mistral-Large-3--A-ABV-WRONG-01--1.json   |   116 +
+ .../rows/Mistral-Large-3--A-ABV-WRONG-01--2.json   |   116 +
+ .../rows/Mistral-Large-3--A-ABV-WRONG-01--3.json   |   116 +
+ .../rows/Mistral-Large-3--A-BRAND-CASE-01--1.json  |   116 +
+ .../rows/Mistral-Large-3--A-BRAND-CASE-01--2.json  |   116 +
+ .../Mistral-Large-3--A-FIELD-MISSING-01--1.json    |   116 +
+ .../Mistral-Large-3--A-FIELD-MISSING-01--2.json    |   116 +
+ .../Mistral-Large-3--A-INJECT-PROMPT-01--1.json    |   116 +
+ .../Mistral-Large-3--A-INJECT-PROMPT-01--2.json    |   116 +
+ .../Mistral-Large-3--A-INJECT-PROMPT-01--3.json    |   116 +
+ .../Mistral-Large-3--A-WARN-BOLDBODY-01--1.json    |   116 +
+ .../Mistral-Large-3--A-WARN-BOLDBODY-01--2.json    |   116 +
+ .../Mistral-Large-3--A-WARN-TITLECASE-01--1.json   |   116 +
+ .../Mistral-Large-3--A-WARN-TITLECASE-01--2.json   |   116 +
+ .../rows/Mistral-Large-3--C-MALT-01--1.json        |   116 +
+ .../rows/Mistral-Large-3--C-MALT-01--2.json        |   116 +
+ .../rows/Mistral-Large-3--C-SPIRITS-01--1.json     |   116 +
+ .../rows/Mistral-Large-3--C-SPIRITS-01--2.json     |   116 +
+ .../rows/Mistral-Large-3--C-SPIRITS-01--3.json     |   116 +
+ .../Mistral-Large-3--C-SPIRITS-IMPORT-01--1.json   |   116 +
+ .../Mistral-Large-3--C-SPIRITS-IMPORT-01--2.json   |   116 +
+ .../rows/Mistral-Large-3--C-WINE-01--1.json        |   116 +
+ .../rows/Mistral-Large-3--C-WINE-01--2.json        |   116 +
+ .../rows/Mistral-Large-3--D-BLUR-01--1.json        |   116 +
+ .../rows/Mistral-Large-3--D-BLUR-01--2.json        |   116 +
+ .../rows/Mistral-Large-3--D-GLARE-01--1.json       |   116 +
+ .../rows/Mistral-Large-3--D-GLARE-01--2.json       |   116 +
+ .../rows/Mistral-Large-3--D-GLARE-01--3.json       |   116 +
+ .../rows/Mistral-Large-3--D-WARP-01--1.json        |   116 +
+ .../rows/Mistral-Large-3--D-WARP-01--2.json        |   116 +
+ .../rows/Mistral-Large-3--W-ABV-4045-01--1.json    |   116 +
+ .../rows/Mistral-Large-3--W-ABV-4045-01--2.json    |   116 +
+ .../rows/Mistral-Large-3--W-ABV-4045-01--3.json    |   116 +
+ .../Mistral-Large-3--W-BRAND-SPLITLINE-01--1.json  |   116 +
+ .../Mistral-Large-3--W-BRAND-SPLITLINE-01--2.json  |   116 +
+ .../rows/Mistral-Large-3--W-BRAND-WRONG-01--1.json |   116 +
+ .../rows/Mistral-Large-3--W-BRAND-WRONG-01--2.json |   116 +
+ .../rows/Mistral-Large-3--W-BRAND-WRONG-01--3.json |   116 +
+ ...Mistral-Large-3--W-NETCONTENTS-WRONG-01--1.json |   116 +
+ ...Mistral-Large-3--W-NETCONTENTS-WRONG-01--2.json |   116 +
+ ...Mistral-Large-3--W-NETCONTENTS-WRONG-01--3.json |   116 +
+ .../rows/Mistral-Large-3--W-WARN-REWORD-01--1.json |   116 +
+ .../rows/Mistral-Large-3--W-WARN-REWORD-01--2.json |   116 +
+ .../rows/Mistral-Large-3--W-WARN-REWORD-01--3.json |   116 +
+ .../rows/gpt-4.1-mini--A-ABV-WRONG-01--1.json      |   136 +
+ .../rows/gpt-4.1-mini--A-ABV-WRONG-01--2.json      |   136 +
+ .../rows/gpt-4.1-mini--A-ABV-WRONG-01--3.json      |   136 +
+ .../rows/gpt-4.1-mini--A-BRAND-CASE-01--1.json     |   136 +
+ .../rows/gpt-4.1-mini--A-BRAND-CASE-01--2.json     |   136 +
+ .../rows/gpt-4.1-mini--A-BRAND-CASE-01--3.json     |   136 +
+ .../rows/gpt-4.1-mini--A-FIELD-MISSING-01--1.json  |   136 +
+ .../rows/gpt-4.1-mini--A-FIELD-MISSING-01--2.json  |   136 +
+ .../rows/gpt-4.1-mini--A-FIELD-MISSING-01--3.json  |   136 +
+ .../rows/gpt-4.1-mini--A-INJECT-PROMPT-01--1.json  |   136 +
+ .../rows/gpt-4.1-mini--A-INJECT-PROMPT-01--2.json  |   136 +
+ .../rows/gpt-4.1-mini--A-INJECT-PROMPT-01--3.json  |   136 +
+ .../rows/gpt-4.1-mini--A-WARN-BOLDBODY-01--1.json  |   136 +
+ .../rows/gpt-4.1-mini--A-WARN-BOLDBODY-01--2.json  |   136 +
+ .../rows/gpt-4.1-mini--A-WARN-BOLDBODY-01--3.json  |   136 +
+ .../rows/gpt-4.1-mini--A-WARN-TITLECASE-01--1.json |   136 +
+ .../rows/gpt-4.1-mini--A-WARN-TITLECASE-01--2.json |   136 +
+ .../rows/gpt-4.1-mini--A-WARN-TITLECASE-01--3.json |   136 +
+ .../rows/gpt-4.1-mini--C-MALT-01--1.json           |   136 +
+ .../rows/gpt-4.1-mini--C-MALT-01--2.json           |   137 +
+ .../rows/gpt-4.1-mini--C-MALT-01--3.json           |   136 +
+ .../rows/gpt-4.1-mini--C-SPIRITS-01--1.json        |   136 +
+ .../rows/gpt-4.1-mini--C-SPIRITS-01--2.json        |   136 +
+ .../rows/gpt-4.1-mini--C-SPIRITS-01--3.json        |   136 +
+ .../rows/gpt-4.1-mini--C-SPIRITS-IMPORT-01--1.json |   137 +
+ .../rows/gpt-4.1-mini--C-SPIRITS-IMPORT-01--2.json |   136 +
+ .../rows/gpt-4.1-mini--C-SPIRITS-IMPORT-01--3.json |   136 +
+ .../rows/gpt-4.1-mini--C-WINE-01--1.json           |   136 +
+ .../rows/gpt-4.1-mini--C-WINE-01--2.json           |   136 +
+ .../rows/gpt-4.1-mini--C-WINE-01--3.json           |   136 +
+ .../rows/gpt-4.1-mini--D-BLUR-01--1.json           |   136 +
+ .../rows/gpt-4.1-mini--D-BLUR-01--2.json           |   136 +
+ .../rows/gpt-4.1-mini--D-BLUR-01--3.json           |   136 +
+ .../rows/gpt-4.1-mini--D-GLARE-01--1.json          |   136 +
+ .../rows/gpt-4.1-mini--D-GLARE-01--2.json          |   136 +
+ .../rows/gpt-4.1-mini--D-GLARE-01--3.json          |   136 +
+ .../rows/gpt-4.1-mini--D-WARP-01--1.json           |   136 +
+ .../rows/gpt-4.1-mini--D-WARP-01--2.json           |   136 +
+ .../rows/gpt-4.1-mini--D-WARP-01--3.json           |   136 +
+ .../rows/gpt-4.1-mini--W-ABV-4045-01--1.json       |   136 +
+ .../rows/gpt-4.1-mini--W-ABV-4045-01--2.json       |   136 +
+ .../rows/gpt-4.1-mini--W-ABV-4045-01--3.json       |   136 +
+ .../gpt-4.1-mini--W-BRAND-SPLITLINE-01--1.json     |   136 +
+ .../gpt-4.1-mini--W-BRAND-SPLITLINE-01--2.json     |   136 +
+ .../gpt-4.1-mini--W-BRAND-SPLITLINE-01--3.json     |   136 +
+ .../rows/gpt-4.1-mini--W-BRAND-WRONG-01--1.json    |   136 +
+ .../rows/gpt-4.1-mini--W-BRAND-WRONG-01--2.json    |   136 +
+ .../rows/gpt-4.1-mini--W-BRAND-WRONG-01--3.json    |   136 +
+ .../gpt-4.1-mini--W-NETCONTENTS-WRONG-01--1.json   |   136 +
+ .../gpt-4.1-mini--W-NETCONTENTS-WRONG-01--2.json   |   137 +
+ .../gpt-4.1-mini--W-NETCONTENTS-WRONG-01--3.json   |   136 +
+ .../rows/gpt-4.1-mini--W-WARN-REWORD-01--1.json    |   136 +
+ .../rows/gpt-4.1-mini--W-WARN-REWORD-01--2.json    |   136 +
+ .../rows/gpt-4.1-mini--W-WARN-REWORD-01--3.json    |   136 +
+ .../rows/gpt-5-mini--A-ABV-WRONG-01--1.json        |   122 +
+ .../rows/gpt-5-mini--A-ABV-WRONG-01--2.json        |   122 +
+ .../rows/gpt-5-mini--A-BRAND-CASE-01--1.json       |   122 +
+ .../rows/gpt-5-mini--A-BRAND-CASE-01--2.json       |   122 +
+ .../rows/gpt-5-mini--A-FIELD-MISSING-01--1.json    |   122 +
+ .../rows/gpt-5-mini--A-FIELD-MISSING-01--2.json    |   122 +
+ .../rows/gpt-5-mini--A-INJECT-PROMPT-01--1.json    |   122 +
+ .../rows/gpt-5-mini--A-INJECT-PROMPT-01--2.json    |   122 +
+ .../rows/gpt-5-mini--A-WARN-BOLDBODY-01--1.json    |   122 +
+ .../rows/gpt-5-mini--A-WARN-BOLDBODY-01--2.json    |   122 +
+ .../rows/gpt-5-mini--A-WARN-TITLECASE-01--1.json   |   122 +
+ .../rows/gpt-5-mini--A-WARN-TITLECASE-01--2.json   |   122 +
+ .../rows/gpt-5-mini--C-MALT-01--1.json             |   122 +
+ .../rows/gpt-5-mini--C-MALT-01--2.json             |   122 +
+ .../rows/gpt-5-mini--C-SPIRITS-01--1.json          |   122 +
+ .../rows/gpt-5-mini--C-SPIRITS-01--2.json          |   122 +
+ .../rows/gpt-5-mini--C-SPIRITS-IMPORT-01--1.json   |   122 +
+ .../rows/gpt-5-mini--C-SPIRITS-IMPORT-01--2.json   |   122 +
+ .../rows/gpt-5-mini--C-WINE-01--1.json             |   122 +
+ .../rows/gpt-5-mini--D-BLUR-01--1.json             |   122 +
+ .../rows/gpt-5-mini--D-BLUR-01--2.json             |   122 +
+ .../rows/gpt-5-mini--D-GLARE-01--1.json            |   122 +
+ .../rows/gpt-5-mini--D-GLARE-01--2.json            |   122 +
+ .../rows/gpt-5-mini--D-WARP-01--1.json             |   122 +
+ .../rows/gpt-5-mini--D-WARP-01--2.json             |   122 +
+ .../rows/gpt-5-mini--W-ABV-4045-01--1.json         |   122 +
+ .../rows/gpt-5-mini--W-ABV-4045-01--2.json         |   122 +
+ .../rows/gpt-5-mini--W-BRAND-SPLITLINE-01--1.json  |   122 +
+ .../rows/gpt-5-mini--W-BRAND-SPLITLINE-01--2.json  |   122 +
+ .../rows/gpt-5-mini--W-BRAND-WRONG-01--1.json      |   122 +
+ .../rows/gpt-5-mini--W-BRAND-WRONG-01--2.json      |   122 +
+ .../gpt-5-mini--W-NETCONTENTS-WRONG-01--1.json     |   122 +
+ .../gpt-5-mini--W-NETCONTENTS-WRONG-01--2.json     |   122 +
+ .../rows/gpt-5-mini--W-WARN-REWORD-01--1.json      |   122 +
+ .../rows/gpt-5-mini--W-WARN-REWORD-01--2.json      |   122 +
+ ...-4-1-fast-non-reasoning--A-ABV-WRONG-01--1.json |   129 +
+ ...-4-1-fast-non-reasoning--A-ABV-WRONG-01--2.json |   129 +
+ ...-4-1-fast-non-reasoning--A-ABV-WRONG-01--3.json |   129 +
+ ...4-1-fast-non-reasoning--A-BRAND-CASE-01--1.json |   129 +
+ ...4-1-fast-non-reasoning--A-BRAND-CASE-01--2.json |   129 +
+ ...4-1-fast-non-reasoning--A-BRAND-CASE-01--3.json |   129 +
+ ...-fast-non-reasoning--A-FIELD-MISSING-01--1.json |   129 +
+ ...-fast-non-reasoning--A-FIELD-MISSING-01--2.json |   129 +
+ ...-fast-non-reasoning--A-FIELD-MISSING-01--3.json |   129 +
+ ...-fast-non-reasoning--A-INJECT-PROMPT-01--1.json |   129 +
+ ...-fast-non-reasoning--A-INJECT-PROMPT-01--2.json |   129 +
+ ...-fast-non-reasoning--A-INJECT-PROMPT-01--3.json |   129 +
+ ...-fast-non-reasoning--A-WARN-BOLDBODY-01--1.json |   129 +
+ ...-fast-non-reasoning--A-WARN-BOLDBODY-01--2.json |   131 +
+ ...-fast-non-reasoning--A-WARN-BOLDBODY-01--3.json |   129 +
+ ...fast-non-reasoning--A-WARN-TITLECASE-01--1.json |   129 +
+ ...fast-non-reasoning--A-WARN-TITLECASE-01--2.json |   129 +
+ ...fast-non-reasoning--A-WARN-TITLECASE-01--3.json |   129 +
+ .../grok-4-1-fast-non-reasoning--C-MALT-01--1.json |   129 +
+ .../grok-4-1-fast-non-reasoning--C-MALT-01--2.json |   129 +
+ .../grok-4-1-fast-non-reasoning--C-MALT-01--3.json |   129 +
+ ...ok-4-1-fast-non-reasoning--C-SPIRITS-01--1.json |   129 +
+ ...ok-4-1-fast-non-reasoning--C-SPIRITS-01--2.json |   129 +
+ ...ok-4-1-fast-non-reasoning--C-SPIRITS-01--3.json |   129 +
+ ...fast-non-reasoning--C-SPIRITS-IMPORT-01--1.json |   129 +
+ ...fast-non-reasoning--C-SPIRITS-IMPORT-01--2.json |   129 +
+ ...fast-non-reasoning--C-SPIRITS-IMPORT-01--3.json |   130 +
+ .../grok-4-1-fast-non-reasoning--C-WINE-01--1.json |   129 +
+ .../grok-4-1-fast-non-reasoning--C-WINE-01--2.json |   129 +
+ .../grok-4-1-fast-non-reasoning--C-WINE-01--3.json |   129 +
+ .../grok-4-1-fast-non-reasoning--D-BLUR-01--1.json |   130 +
+ .../grok-4-1-fast-non-reasoning--D-BLUR-01--2.json |   129 +
+ .../grok-4-1-fast-non-reasoning--D-BLUR-01--3.json |   129 +
+ ...grok-4-1-fast-non-reasoning--D-GLARE-01--1.json |   129 +
+ ...grok-4-1-fast-non-reasoning--D-GLARE-01--2.json |   129 +
+ ...grok-4-1-fast-non-reasoning--D-GLARE-01--3.json |   131 +
+ .../grok-4-1-fast-non-reasoning--D-WARP-01--1.json |   130 +
+ .../grok-4-1-fast-non-reasoning--D-WARP-01--2.json |   129 +
+ .../grok-4-1-fast-non-reasoning--D-WARP-01--3.json |   129 +
+ ...k-4-1-fast-non-reasoning--W-ABV-4045-01--1.json |   129 +
+ ...k-4-1-fast-non-reasoning--W-ABV-4045-01--2.json |   129 +
+ ...k-4-1-fast-non-reasoning--W-ABV-4045-01--3.json |   129 +
+ ...ast-non-reasoning--W-BRAND-SPLITLINE-01--1.json |   129 +
+ ...ast-non-reasoning--W-BRAND-SPLITLINE-01--2.json |   129 +
+ ...ast-non-reasoning--W-BRAND-SPLITLINE-01--3.json |   129 +
+ ...-1-fast-non-reasoning--W-BRAND-WRONG-01--1.json |   130 +
+ ...-1-fast-non-reasoning--W-BRAND-WRONG-01--2.json |   129 +
+ ...-1-fast-non-reasoning--W-BRAND-WRONG-01--3.json |   129 +
+ ...t-non-reasoning--W-NETCONTENTS-WRONG-01--1.json |   129 +
+ ...t-non-reasoning--W-NETCONTENTS-WRONG-01--2.json |   129 +
+ ...t-non-reasoning--W-NETCONTENTS-WRONG-01--3.json |   129 +
+ ...-1-fast-non-reasoning--W-WARN-REWORD-01--1.json |   129 +
+ ...-1-fast-non-reasoning--W-WARN-REWORD-01--2.json |   129 +
+ ...-1-fast-non-reasoning--W-WARN-REWORD-01--3.json |   129 +
+ ...istral-document-ai-2512--A-ABV-WRONG-01--1.json |   116 +
+ ...istral-document-ai-2512--A-ABV-WRONG-01--2.json |   116 +
+ ...stral-document-ai-2512--A-BRAND-CASE-01--1.json |   116 +
+ ...stral-document-ai-2512--A-BRAND-CASE-01--2.json |   116 +
+ ...al-document-ai-2512--A-FIELD-MISSING-01--1.json |   116 +
+ ...al-document-ai-2512--A-FIELD-MISSING-01--2.json |   116 +
+ ...al-document-ai-2512--A-INJECT-PROMPT-01--1.json |   116 +
+ ...al-document-ai-2512--A-INJECT-PROMPT-01--2.json |   116 +
+ ...al-document-ai-2512--A-WARN-BOLDBODY-01--1.json |   116 +
+ ...al-document-ai-2512--A-WARN-BOLDBODY-01--2.json |   116 +
+ ...l-document-ai-2512--A-WARN-TITLECASE-01--1.json |   116 +
+ ...l-document-ai-2512--A-WARN-TITLECASE-01--2.json |   116 +
+ .../mistral-document-ai-2512--C-MALT-01--1.json    |   116 +
+ .../mistral-document-ai-2512--C-MALT-01--2.json    |   116 +
+ .../mistral-document-ai-2512--C-SPIRITS-01--1.json |   116 +
+ .../mistral-document-ai-2512--C-SPIRITS-01--2.json |   116 +
+ ...l-document-ai-2512--C-SPIRITS-IMPORT-01--1.json |   116 +
+ ...l-document-ai-2512--C-SPIRITS-IMPORT-01--2.json |    81 +
+ .../mistral-document-ai-2512--C-WINE-01--1.json    |   116 +
+ .../mistral-document-ai-2512--D-BLUR-01--1.json    |   116 +
+ .../mistral-document-ai-2512--D-BLUR-01--2.json    |   116 +
+ .../mistral-document-ai-2512--D-GLARE-01--1.json   |   116 +
+ .../mistral-document-ai-2512--D-GLARE-01--2.json   |   116 +
+ .../mistral-document-ai-2512--D-WARP-01--1.json    |   116 +
+ .../mistral-document-ai-2512--D-WARP-01--2.json    |    81 +
+ ...mistral-document-ai-2512--W-ABV-4045-01--1.json |   116 +
+ ...mistral-document-ai-2512--W-ABV-4045-01--2.json |   116 +
+ ...-document-ai-2512--W-BRAND-SPLITLINE-01--1.json |   116 +
+ ...-document-ai-2512--W-BRAND-SPLITLINE-01--2.json |   116 +
+ ...tral-document-ai-2512--W-BRAND-WRONG-01--1.json |   116 +
+ ...tral-document-ai-2512--W-BRAND-WRONG-01--2.json |   116 +
+ ...ocument-ai-2512--W-NETCONTENTS-WRONG-01--1.json |   116 +
+ ...ocument-ai-2512--W-NETCONTENTS-WRONG-01--2.json |   116 +
+ ...tral-document-ai-2512--W-WARN-REWORD-01--1.json |   116 +
+ ...tral-document-ai-2512--W-WARN-REWORD-01--2.json |   116 +
+ .../ava-foundry-v3/original-ava/run_manifest.json  |    55 +
+ bench/ava-foundry-v3/original-ava/test_harness.py  |    53 +
+ .../inherited-evidence/_foundry_run1.log.utf8.txt  |    60 +
+ .../inherited-evidence/_foundry_run2.log.utf8.txt  |    48 +
+ .../recovery-v2/inherited-evidence/engines.py      |   587 +
+ .../inherited-evidence/foundry_raw_results.json    |  8680 +++
+ .../inherited-evidence/foundry_vision_probe.json   |   127 +
+ .../inherited-evidence/foundry_vision_probe.py     |   392 +
+ .../recovery-v2/inherited-evidence/run_bench.py    |   290 +
+ .../recovery-v2/inherited-evidence/scoring.py      |   428 +
+ .../recovery-v2/inherited-source-hashes.json       |    12 +
+ bench/ava-foundry-v3/recovery-v2/reconcile.py      |   128 +
+ .../ava-foundry-v3/recovery-v2/reconciliation.json |  3199 +
+ .../recovery-v2/rescored-records.json              | 63616 +++++++++++++++++++
+ bench/ava-foundry-v3/recovery-v2/resume-plan.json  |   789 +
+ bench/ava-foundry-v3/recovery-v2/test_reconcile.py |    24 +
+ .../recovery-v3/bottles/angle-sheet.jpg            |   Bin 0 -> 638528 bytes
+ .../recovery-v3/bottles/glare-sheet.jpg            |   Bin 0 -> 452614 bytes
+ .../bottles/ground_truth/A-ABV-WRONG-01.json       |    54 +
+ .../bottles/ground_truth/A-BRAND-CASE-01.json      |    54 +
+ .../bottles/ground_truth/A-FIELD-MISSING-01.json   |    54 +
+ .../bottles/ground_truth/A-INJECT-PROMPT-01.json   |    59 +
+ .../bottles/ground_truth/A-WARN-BOLDBODY-01.json   |    54 +
+ .../bottles/ground_truth/A-WARN-TITLECASE-01.json  |    54 +
+ .../bottles/ground_truth/C-MALT-01.json            |    54 +
+ .../bottles/ground_truth/C-SPIRITS-01.json         |    54 +
+ .../bottles/ground_truth/C-SPIRITS-IMPORT-01.json  |    54 +
+ .../bottles/ground_truth/C-WINE-01.json            |    54 +
+ .../bottles/ground_truth/D-BLUR-01.json            |    54 +
+ .../bottles/ground_truth/D-GLARE-01.json           |    54 +
+ .../bottles/ground_truth/D-WARP-01.json            |    54 +
+ .../bottles/ground_truth/W-ABV-4045-01.json        |    54 +
+ .../bottles/ground_truth/W-BRAND-SPLITLINE-01.json |    54 +
+ .../bottles/ground_truth/W-BRAND-WRONG-01.json     |    54 +
+ .../ground_truth/W-NETCONTENTS-WRONG-01.json       |    54 +
+ .../bottles/ground_truth/W-WARN-REWORD-01.json     |    54 +
+ .../bottles/images/A-ABV-WRONG-01__angle.png       |   Bin 0 -> 1309996 bytes
+ .../bottles/images/A-ABV-WRONG-01__glare.png       |   Bin 0 -> 666724 bytes
+ .../bottles/images/A-ABV-WRONG-01__straight.png    |   Bin 0 -> 682734 bytes
+ .../bottles/images/A-BRAND-CASE-01__angle.png      |   Bin 0 -> 1341782 bytes
+ .../bottles/images/A-BRAND-CASE-01__glare.png      |   Bin 0 -> 663441 bytes
+ .../bottles/images/A-BRAND-CASE-01__straight.png   |   Bin 0 -> 675087 bytes
+ .../bottles/images/A-FIELD-MISSING-01__angle.png   |   Bin 0 -> 1269732 bytes
+ .../bottles/images/A-FIELD-MISSING-01__glare.png   |   Bin 0 -> 675216 bytes
+ .../images/A-FIELD-MISSING-01__straight.png        |   Bin 0 -> 658459 bytes
+ .../bottles/images/A-INJECT-PROMPT-01__angle.png   |   Bin 0 -> 1334304 bytes
+ .../bottles/images/A-INJECT-PROMPT-01__glare.png   |   Bin 0 -> 664124 bytes
+ .../images/A-INJECT-PROMPT-01__straight.png        |   Bin 0 -> 664860 bytes
+ .../bottles/images/A-WARN-BOLDBODY-01__angle.png   |   Bin 0 -> 1323343 bytes
+ .../bottles/images/A-WARN-BOLDBODY-01__glare.png   |   Bin 0 -> 681646 bytes
+ .../images/A-WARN-BOLDBODY-01__straight.png        |   Bin 0 -> 689343 bytes
+ .../bottles/images/A-WARN-TITLECASE-01__angle.png  |   Bin 0 -> 1340671 bytes
+ .../bottles/images/A-WARN-TITLECASE-01__glare.png  |   Bin 0 -> 647733 bytes
+ .../images/A-WARN-TITLECASE-01__straight.png       |   Bin 0 -> 673424 bytes
+ .../bottles/images/C-MALT-01__angle.png            |   Bin 0 -> 1323094 bytes
+ .../bottles/images/C-MALT-01__glare.png            |   Bin 0 -> 693176 bytes
+ .../bottles/images/C-MALT-01__straight.png         |   Bin 0 -> 700641 bytes
+ .../bottles/images/C-SPIRITS-01__angle.png         |   Bin 0 -> 1345963 bytes
+ .../bottles/images/C-SPIRITS-01__glare.png         |   Bin 0 -> 654016 bytes
+ .../bottles/images/C-SPIRITS-01__straight.png      |   Bin 0 -> 674589 bytes
+ .../bottles/images/C-SPIRITS-IMPORT-01__angle.png  |   Bin 0 -> 1389969 bytes
+ .../bottles/images/C-SPIRITS-IMPORT-01__glare.png  |   Bin 0 -> 684769 bytes
+ .../images/C-SPIRITS-IMPORT-01__straight.png       |   Bin 0 -> 707521 bytes
+ .../bottles/images/C-WINE-01__angle.png            |   Bin 0 -> 1307658 bytes
+ .../bottles/images/C-WINE-01__glare.png            |   Bin 0 -> 665673 bytes
+ .../bottles/images/C-WINE-01__straight.png         |   Bin 0 -> 679733 bytes
+ .../bottles/images/D-BLUR-01__angle.png            |   Bin 0 -> 1384417 bytes
+ .../bottles/images/D-BLUR-01__glare.png            |   Bin 0 -> 663778 bytes
+ .../bottles/images/D-BLUR-01__straight.png         |   Bin 0 -> 768476 bytes
+ .../bottles/images/D-GLARE-01__angle.png           |   Bin 0 -> 1397351 bytes
+ .../bottles/images/D-GLARE-01__glare.png           |   Bin 0 -> 725671 bytes
+ .../bottles/images/D-GLARE-01__straight.png        |   Bin 0 -> 814848 bytes
+ .../bottles/images/D-WARP-01__angle.png            |   Bin 0 -> 1366618 bytes
+ .../bottles/images/D-WARP-01__glare.png            |   Bin 0 -> 763751 bytes
+ .../bottles/images/D-WARP-01__straight.png         |   Bin 0 -> 903714 bytes
+ .../bottles/images/W-ABV-4045-01__angle.png        |   Bin 0 -> 1391057 bytes
+ .../bottles/images/W-ABV-4045-01__glare.png        |   Bin 0 -> 695608 bytes
+ .../bottles/images/W-ABV-4045-01__straight.png     |   Bin 0 -> 708122 bytes
+ .../bottles/images/W-BRAND-SPLITLINE-01__angle.png |   Bin 0 -> 1361063 bytes
+ .../bottles/images/W-BRAND-SPLITLINE-01__glare.png |   Bin 0 -> 661960 bytes
+ .../images/W-BRAND-SPLITLINE-01__straight.png      |   Bin 0 -> 687928 bytes
+ .../bottles/images/W-BRAND-WRONG-01__angle.png     |   Bin 0 -> 1348277 bytes
+ .../bottles/images/W-BRAND-WRONG-01__glare.png     |   Bin 0 -> 656989 bytes
+ .../bottles/images/W-BRAND-WRONG-01__straight.png  |   Bin 0 -> 677044 bytes
+ .../images/W-NETCONTENTS-WRONG-01__angle.png       |   Bin 0 -> 1343498 bytes
+ .../images/W-NETCONTENTS-WRONG-01__glare.png       |   Bin 0 -> 655370 bytes
+ .../images/W-NETCONTENTS-WRONG-01__straight.png    |   Bin 0 -> 672455 bytes
+ .../bottles/images/W-WARN-REWORD-01__angle.png     |   Bin 0 -> 1345912 bytes
+ .../bottles/images/W-WARN-REWORD-01__glare.png     |   Bin 0 -> 714631 bytes
+ .../bottles/images/W-WARN-REWORD-01__straight.png  |   Bin 0 -> 717691 bytes
+ .../recovery-v3/bottles/manifest.json              |  4151 ++
+ .../recovery-v3/bottles/straight-sheet.jpg         |   Bin 0 -> 606226 bytes
+ bench/ava-foundry-v3/recovery-v3/budget-basis.json |    64 +
+ bench/ava-foundry-v3/recovery-v3/determinism.json  |     6 +
+ .../ava-foundry-v3/recovery-v3/execution-plan.json |   391 +
+ .../recovery-v3/existing-tests-v3.json             |    85 +
+ bench/ava-foundry-v3/recovery-v3/flat-queue.json   |   296 +
+ .../recovery-v3/host-artifact-state.json           |    16 +
+ bench/ava-foundry-v3/recovery-v3/preflight.py      |    43 +
+ bench/ava-foundry-v3/recovery-v3/report.py         |   122 +
+ bench/ava-foundry-v3/recovery-v3/runner-state.json |    12 +
+ bench/ava-foundry-v3/recovery-v3/runner.py         |   112 +
+ .../recovery-v3/source-provenance.json             |    28 +
+ bench/ava-foundry-v3/recovery-v3/test_report.py    |    17 +
+ bench/ava-foundry-v3/recovery-v3/test_runner.py    |    40 +
+ bench/ava-foundry-v3/recovery-v3/test_v3.py        |    60 +
+ bench/ava-foundry-v3/recovery-v3/v3.py             |    85 +
+ .../recovery-v3/visibility-freeze.json             |    14 +
+ bench/ava-foundry-v3/scorer-4039ccc/RESULTS.md     |    67 +
+ bench/ava-foundry-v3/scorer-4039ccc/analysis.json  |   266 +
+ bench/ava-foundry-v3/scorer-4039ccc/analyze.py     |   228 +
+ bench/ava-foundry-v3/scorer-4039ccc/engines.py     |   383 +
+ .../scorer-4039ccc/evidence_manifest.json          |    40 +
+ .../scorer-4039ccc/extraction_validation.py        |    77 +
+ .../ava-foundry-v3/scorer-4039ccc/raw_results.json | 12980 ++++
+ bench/ava-foundry-v3/scorer-4039ccc/replay.py      |   118 +
+ .../scorer-4039ccc/replayed_results.json           | 15911 +++++
+ bench/ava-foundry-v3/scorer-4039ccc/reporting.py   |    77 +
+ bench/ava-foundry-v3/scorer-4039ccc/run_bench.py   |    43 +
+ bench/ava-foundry-v3/scorer-4039ccc/scoring.py     |   418 +
+ .../scorer-4039ccc/test_archived_spend.py          |    32 +
+ .../scorer-4039ccc/test_checkout_portability.py    |    57 +
+ .../scorer-4039ccc/test_extraction_safety.py       |   154 +
+ .../scorer-4039ccc/test_integrity_mutations.py     |   133 +
+ .../scorer-4039ccc/test_results_integrity.py       |    40 +
+ .../ava-foundry-v3/scorer-4039ccc/test_scoring.py  |   377 +
+ 664 files changed, 179876 insertions(+)

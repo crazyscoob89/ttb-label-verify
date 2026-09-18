@@ -1,0 +1,44 @@
+{
+  "id": "gpt-5-mini--C-MALT-01--straight--1",
+  "operator": "AVA-v3",
+  "model": "gpt-5-mini",
+  "engine": "gpt-5-mini",
+  "fixture_id": "C-MALT-01",
+  "repeat": 1,
+  "condition": "straight",
+  "route": "Azure Foundry responses",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.00267725,
+  "request_sha256": "0eac4e377d77f965ab49e97be5cdd70af587b5f97350b31b94afb3ce618c1e5f",
+  "image_sha256": "d94072ceaa20bb53d3bcab4829e235258c2e0cc09f211e1b5959ecb2b1a8a917",
+  "transport": "responses",
+  "started_at": "2026-09-18T16:06:42.517219+00:00",
+  "reserved_usd": 0.2949584,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-MALT-01__straight.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "9c87498d-b3ab-4c6a-b16e-3f79c1a06fbf",
+  "latency_s": 11.41766848100815,
+  "response_sha256": "4185601b75edc9ad9b71af024e130ddfe2fa7f6fa092e26bb04715a24b28b382",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-5-mini--C-MALT-01--straight--1.json",
+  "tokens_in": 1717,
+  "tokens_out": 1124,
+  "pages_processed": null,
+  "usage": {
+    "input_tokens": 1717,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1124,
+    "output_tokens_details": {
+      "reasoning_tokens": 768
+    },
+    "total_tokens": 2841
+  },
+  "returned_model": "gpt-5-mini"
+}

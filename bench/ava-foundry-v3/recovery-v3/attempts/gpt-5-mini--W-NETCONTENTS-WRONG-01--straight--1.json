@@ -1,0 +1,44 @@
+{
+  "id": "gpt-5-mini--W-NETCONTENTS-WRONG-01--straight--1",
+  "operator": "AVA-v3",
+  "model": "gpt-5-mini",
+  "engine": "gpt-5-mini",
+  "fixture_id": "W-NETCONTENTS-WRONG-01",
+  "repeat": 1,
+  "condition": "straight",
+  "route": "Azure Foundry responses",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.00229925,
+  "request_sha256": "ce2120deb274ebb2e4ad7fc96b79d2702eda21042c7526f7d05fdd9cdbcab6b0",
+  "image_sha256": "7abf8c9d973a8c781c2516f1615420d02db5654ea2492b98e9f326074136f128",
+  "transport": "responses",
+  "started_at": "2026-09-18T16:45:27.563595+00:00",
+  "reserved_usd": 0.2949584,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/W-NETCONTENTS-WRONG-01__straight.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "02fefba7-712a-4f64-a0e1-05e45a3c0f75",
+  "latency_s": 9.520430795964785,
+  "response_sha256": "9760f4e231dd468dbb53c4722d4ffdff91d943a26491b6f0ddbbe727f7c28048",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-5-mini--W-NETCONTENTS-WRONG-01--straight--1.json",
+  "tokens_in": 1717,
+  "tokens_out": 935,
+  "pages_processed": null,
+  "usage": {
+    "input_tokens": 1717,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 935,
+    "output_tokens_details": {
+      "reasoning_tokens": 640
+    },
+    "total_tokens": 2652
+  },
+  "returned_model": "gpt-5-mini"
+}

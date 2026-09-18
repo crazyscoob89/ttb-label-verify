@@ -1,0 +1,175 @@
+{
+  "id": "mistral-document-ai-2512--A-FIELD-MISSING-01--glare--1",
+  "operator": "AVA-v3",
+  "model": "mistral-document-ai-2512",
+  "engine": "mistral-document-ai-2512",
+  "fixture_id": "A-FIELD-MISSING-01",
+  "repeat": 1,
+  "condition": "glare",
+  "route": "Azure Foundry ocr",
+  "tier": "OCR separate",
+  "ok": true,
+  "extracted": {
+    "brand_name": "QUEEN LOW MANOR",
+    "class_type": null,
+    "alcohol_content": "8",
+    "net_contents": null,
+    "bottler_info": null,
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "Smoking in the Surgeon General, women should be allowed to smoke in the next 12 weeks, as well as by the public, by the government's authority. Smoking in the Surgeon General is prohibited by law and regulations. Smoking in the Surgeon General is prohibited by law and regulations. Smoking in the Surgeon General is prohibited by law and regulations.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": null,
+    "government_warning_body_bold": null,
+    "confidence": {
+      "brand_name": 1.0,
+      "class_type": 0.0,
+      "alcohol_content": 1.0,
+      "net_contents": 0.0,
+      "bottler_info": 0.0,
+      "country_of_origin": 0.0,
+      "government_warning_heading": 1.0,
+      "government_warning_body": 1.0,
+      "government_warning_heading_all_caps": 1.0,
+      "government_warning_heading_bold": 0.0,
+      "government_warning_body_bold": 0.0
+    }
+  },
+  "error_class": null,
+  "cost_usd": 0.003,
+  "request_sha256": "155580c7a26a1c6acd3e4945e829790446cf2649482d085e58168ca858370a93",
+  "image_sha256": "01166f896580ee6133c9cfa31b0366a2310548423b6271f0fc06af8db06d9663",
+  "transport": "ocr",
+  "started_at": "2026-09-18T16:37:57.179027+00:00",
+  "reserved_usd": 0.05,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-FIELD-MISSING-01__glare.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "b66c48b2-f96c-4447-9f4e-6a9d10f14d70",
+  "latency_s": 3.9345416669966653,
+  "response_sha256": "1714665df313a75b7c971f442e490798c492ea45568403e687090b7e1679c969",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--A-FIELD-MISSING-01--glare--1.json",
+  "tokens_in": null,
+  "tokens_out": null,
+  "pages_processed": 1,
+  "usage": {
+    "pages_processed": 0,
+    "doc_size_bytes": 675216,
+    "pages_processed_annotation": 1
+  },
+  "returned_model": "mistral-document-ai-2512",
+  "raw_text": "{\n  \"brand_name\": \"QUEEN LOW MANOR\",\n  \"class_type\": null,\n  \"alcohol_content\": \"8\",\n  \"net_contents\": null,\n  \"bottler_info\": null,\n  \"country_of_origin\": null,\n  \"government_warning_heading\": \"GOVERNMENT WARNING:\",\n  \"government_warning_body\": \"Smoking in the Surgeon General, women should be allowed to smoke in the next 12 weeks, as well as by the public, by the government's authority. Smoking in the Surgeon General is prohibited by law and regulations. Smoking in the Surgeon General is prohibited by law and regulations. Smoking in the Surgeon General is prohibited by law and regulations.\",\n  \"government_warning_heading_all_caps\": true,\n  \"government_warning_heading_bold\": null,\n  \"government_warning_body_bold\": null,\n  \"confidence\": {\n    \"brand_name\": 1.0,\n    \"class_type\": 0.0,\n    \"alcohol_content\": 1.0,\n    \"net_contents\": 0.0,\n    \"bottler_info\": 0.0,\n    \"country_of_origin\": 0.0,\n    \"government_warning_heading\": 1.0,\n    \"government_warning_body\": 1.0,\n    \"government_warning_heading_all_caps\": 1.0,\n    \"government_warning_heading_bold\": 0.0,\n    \"government_warning_body_bold\": 0.0\n  }\n}",
+  "finish_reason": "completed",
+  "validation_errors": {},
+  "category": "adversarial",
+  "commodity": "malt",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "needs-review",
+    "bottler_info": "needs-review",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "needs-review",
+    "bottler_info": "needs-review",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "mismatch",
+    "class_type": "needs-review",
+    "alcohol_content": "mismatch",
+    "net_contents": "needs-review",
+    "bottler_info": "needs-review",
+    "country_of_origin": "not-applicable",
+    "government_warning": "needs-review"
+  },
+  "classes": {
+    "brand_name": "false_mismatch",
+    "class_type": "referral",
+    "alcohol_content": "false_mismatch",
+    "net_contents": "referral",
+    "bottler_info": "referral",
+    "country_of_origin": "correct",
+    "government_warning": "referral"
+  },
+  "reasons": {
+    "brand_name": "'QUEEN LOW MANOR' vs declared 'Quarry Row'",
+    "class_type": "confidence 0.0 below threshold 0.75",
+    "alcohol_content": "label 8.0 vs declared 8.1",
+    "net_contents": "confidence 0.0 below threshold 0.75",
+    "bottler_info": "confidence 0.0 below threshold 0.75",
+    "country_of_origin": "domestic product",
+    "government_warning": "confidence 0.0 below threshold 0.75"
+  },
+  "extraction_correct": {
+    "brand_name": false,
+    "class_type": false,
+    "alcohol_content": false,
+    "net_contents": true,
+    "bottler_info": true,
+    "country_of_origin": true,
+    "government_warning": false
+  },
+  "visibility": {
+    "brand_name": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "class_type": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "alcohol_content": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "net_contents": {
+      "visibility": "absent",
+      "expect_referral_ok": true,
+      "basis": "No printed value in source",
+      "annotator": "AVA pre-inference"
+    },
+    "bottler_info": {
+      "visibility": "absent",
+      "expect_referral_ok": true,
+      "basis": "No printed value in source",
+      "annotator": "AVA pre-inference"
+    },
+    "country_of_origin": {
+      "visibility": "absent",
+      "expect_referral_ok": true,
+      "basis": "No printed value in source",
+      "annotator": "AVA pre-inference"
+    },
+    "government_warning": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    }
+  },
+  "bottle_outcomes": {
+    "brand_name": "dangerous-error",
+    "class_type": "safe-referral",
+    "alcohol_content": "dangerous-error",
+    "net_contents": "safe-referral",
+    "bottler_info": "safe-referral",
+    "country_of_origin": "correct-absence-not-applicable",
+    "government_warning": "safe-referral"
+  },
+  "pipeline_seconds": 3.9640960530377924
+}

@@ -1,0 +1,1615 @@
+{
+  "preflight": {
+    "allowance_usd": 10,
+    "base_liability_usd": 7.8558323,
+    "headroom_usd": 2.1441676999999997,
+    "parts": [
+      {
+        "id": "observed",
+        "usd": 0.9100305,
+        "kind": "retail estimate, includes rounded log-only"
+      },
+      {
+        "id": "AVA-interrupted-three",
+        "usd": 3.5098008,
+        "kind": "original full reservations retained"
+      },
+      {
+        "id": "AVA-two-429",
+        "usd": 0.1,
+        "kind": "original two OCR .05 reservations retained"
+      },
+      {
+        "id": "ARGUS-run2-entire-tail",
+        "usd": 2.503296,
+        "kind": "all nine possible GPT5 requests at full 1,048,576-input bound + actual inherited 8,000-output cap; no retry dialect triggered for GPT"
+      },
+      {
+        "id": "ARGUS-rejected-dialects",
+        "usd": 0.397705,
+        "kind": "54 saved Mistral battery + one smoke: each rejected dialect retains twice largest measured same fixed-corpus input + full output cap, even though validation rejection has no generated output"
+      },
+      {
+        "id": "ARGUS-probes-and-route-triage",
+        "usd": 0.4,
+        "kind": "source shows 3 six-deployment tiny-image sweeps + two route attempts. .40 reserve covers 24 attempts at 4,096 input + 2,000 output using elevated 1.1/5.5 guard rates (.3721344), including final observed probes already counted (intentional overlap)"
+      },
+      {
+        "id": "ARGUS-five-adapter-smokes",
+        "usd": 0.025,
+        "kind": "console reported .0006 + .0019 + .0012 + .0025 + .0178; rounded upward, not exact token bodies"
+      },
+      {
+        "id": "rounding",
+        "usd": 0.01,
+        "kind": "rounding slack for original logs/rows/pricing"
+      }
+    ],
+    "pricing": "existing retail snapshot, no cache discount, not invoice-verified",
+    "scope": "Foundry comparison only; historical $1.061835 separate prior experiment",
+    "assumptions": [
+      "Fixed original images/prompts; observed same-model input usage provides size bound for rejected identical dialect bodies (2x slack).",
+      "Tiny 320x120 probe source payload bounded at 4096 input (observed maximum298); max output2000. These are conservative request-size bounds, not provider invoice certifications.",
+      "9-tail bound deliberately assumes every remaining GPT5 request could have dispatched, despite sequential runner and terminal cancellation.",
+      "No account-wide spending outside these runners is controlled."
+    ],
+    "reconciled_OCR_pages": 33,
+    "original_guard_not_spend": 6.4538618,
+    "source_hashes": {
+      "/opt/data/benchmarks/ttb-foundry-20260918-v1/harness.py": "14d40fd45693f44315c34a2407ecb35b8693acefe22b6e59d44fc08acb05f738",
+      "/opt/data/benchmarks/ttb-foundry-20260918-v1/budget.sqlite": "cc9c1b0ac97169f88ff3936ab32111dfb2570fc2b36e0eca5fa9f6d68d54cb63",
+      "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v2/inherited-evidence/run_bench.py": "d4732e5c320f9c8f2ab13fc330458a2f357995330aa6649f180c06ff2e37694e",
+      "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v2/inherited-evidence/engines.py": "d5799b06b8db4ea764552439e036941003e20126d5466776f254ba1314171966",
+      "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v2/inherited-evidence/_foundry_run2.log.utf8.txt": "a8c3a19f8d32985d0cb00256cc33b18b9033f83967136a11eb363fd6bb6c81b8"
+    }
+  },
+  "new_observed_estimate_usd": 1.2071334,
+  "combined_observed_estimate_usd": 2.1171639,
+  "combined_plus_smoke_console_estimate_usd": 2.1411639,
+  "historical_separate_usd": 1.061835,
+  "liability_guard_usd": 9.0629657,
+  "not_invoice_verified": true,
+  "unknown_new_calls": 0,
+  "ledger": [
+    {
+      "id": "Kimi-K2.6--A-ABV-WRONG-01--angle--1",
+      "guard_usd": 0.0115677,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-ABV-WRONG-01--flat--3",
+      "guard_usd": 0.0121251,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-ABV-WRONG-01--glare--1",
+      "guard_usd": 0.0166797,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-ABV-WRONG-01--straight--1",
+      "guard_usd": 0.0092957,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-BRAND-CASE-01--angle--1",
+      "guard_usd": 0.0146357,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-BRAND-CASE-01--flat--2",
+      "guard_usd": 0.0105931,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-BRAND-CASE-01--flat--3",
+      "guard_usd": 0.0083331,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-BRAND-CASE-01--glare--1",
+      "guard_usd": 0.0166797,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-BRAND-CASE-01--straight--1",
+      "guard_usd": 0.0099677,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-FIELD-MISSING-01--angle--1",
+      "guard_usd": 0.0104997,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-FIELD-MISSING-01--flat--2",
+      "guard_usd": 0.0082011,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-FIELD-MISSING-01--flat--3",
+      "guard_usd": 0.0060291,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-FIELD-MISSING-01--glare--1",
+      "guard_usd": 0.0166797,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-FIELD-MISSING-01--straight--1",
+      "guard_usd": 0.0166797,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-INJECT-PROMPT-01--flat--2",
+      "guard_usd": 0.0100171,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-INJECT-PROMPT-01--flat--3",
+      "guard_usd": 0.0083691,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-INJECT-PROMPT-01--straight--1",
+      "guard_usd": 0.0124477,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-WARN-BOLDBODY-01--angle--1",
+      "guard_usd": 0.0130917,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-WARN-BOLDBODY-01--flat--2",
+      "guard_usd": 0.0145251,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-WARN-BOLDBODY-01--flat--3",
+      "guard_usd": 0.0120931,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-WARN-BOLDBODY-01--glare--1",
+      "guard_usd": 0.0166797,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-WARN-BOLDBODY-01--straight--1",
+      "guard_usd": 0.0150597,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-WARN-TITLECASE-01--angle--1",
+      "guard_usd": 0.0129357,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-WARN-TITLECASE-01--flat--2",
+      "guard_usd": 0.0145251,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-WARN-TITLECASE-01--flat--3",
+      "guard_usd": 0.0121811,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-WARN-TITLECASE-01--glare--1",
+      "guard_usd": 0.0166797,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-WARN-TITLECASE-01--straight--1",
+      "guard_usd": 0.0123717,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-MALT-01--angle--1",
+      "guard_usd": 0.0118877,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-MALT-01--flat--2",
+      "guard_usd": 0.0069011,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-MALT-01--flat--3",
+      "guard_usd": 0.0068491,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-MALT-01--glare--1",
+      "guard_usd": 0.0166797,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-MALT-01--straight--1",
+      "guard_usd": 0.0095717,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-SPIRITS-01--angle--1",
+      "guard_usd": 0.0143197,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-SPIRITS-01--flat--2",
+      "guard_usd": 0.0132011,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-SPIRITS-01--flat--3",
+      "guard_usd": 0.0073891,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-SPIRITS-01--glare--1",
+      "guard_usd": 0.0166797,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-SPIRITS-01--straight--1",
+      "guard_usd": 0.0105197,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-SPIRITS-IMPORT-01--angle--1",
+      "guard_usd": 0.0166797,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-SPIRITS-IMPORT-01--flat--2",
+      "guard_usd": 0.0106011,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-SPIRITS-IMPORT-01--flat--3",
+      "guard_usd": 0.0107571,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-SPIRITS-IMPORT-01--glare--1",
+      "guard_usd": 0.0166797,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-SPIRITS-IMPORT-01--straight--1",
+      "guard_usd": 0.0166797,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-WINE-01--angle--1",
+      "guard_usd": 0.0111237,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-WINE-01--flat--2",
+      "guard_usd": 0.0112931,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-WINE-01--flat--3",
+      "guard_usd": 0.0085651,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-WINE-01--glare--1",
+      "guard_usd": 0.0166797,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-WINE-01--straight--1",
+      "guard_usd": 0.0119637,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--D-BLUR-01--flat--2",
+      "guard_usd": 0.0086371,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--D-BLUR-01--flat--3",
+      "guard_usd": 0.0106851,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--D-GLARE-01--flat--3",
+      "guard_usd": 0.0099331,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--D-WARP-01--flat--2",
+      "guard_usd": 0.0097891,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--D-WARP-01--flat--3",
+      "guard_usd": 0.0085851,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--W-ABV-4045-01--flat--3",
+      "guard_usd": 0.0093291,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--W-BRAND-SPLITLINE-01--flat--2",
+      "guard_usd": 0.0091611,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--W-BRAND-SPLITLINE-01--flat--3",
+      "guard_usd": 0.0121011,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--W-BRAND-WRONG-01--flat--3",
+      "guard_usd": 0.0087331,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--W-NETCONTENTS-WRONG-01--flat--3",
+      "guard_usd": 0.0110611,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--W-WARN-REWORD-01--flat--3",
+      "guard_usd": 0.0101891,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-ABV-WRONG-01--angle--1",
+      "guard_usd": 0.001964,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-ABV-WRONG-01--glare--1",
+      "guard_usd": 0.0019445,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-ABV-WRONG-01--straight--1",
+      "guard_usd": 0.001964,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-BRAND-CASE-01--angle--1",
+      "guard_usd": 0.0019655,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-BRAND-CASE-01--glare--1",
+      "guard_usd": 0.0019655,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-BRAND-CASE-01--straight--1",
+      "guard_usd": 0.0019655,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-FIELD-MISSING-01--angle--1",
+      "guard_usd": 0.001934,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-FIELD-MISSING-01--glare--1",
+      "guard_usd": 0.00191,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-FIELD-MISSING-01--straight--1",
+      "guard_usd": 0.001934,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-INJECT-PROMPT-01--angle--1",
+      "guard_usd": 0.0019595,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-INJECT-PROMPT-01--glare--1",
+      "guard_usd": 0.001937,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-INJECT-PROMPT-01--straight--1",
+      "guard_usd": 0.0019595,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-WARN-BOLDBODY-01--angle--1",
+      "guard_usd": 0.00197,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-WARN-BOLDBODY-01--glare--1",
+      "guard_usd": 0.0019655,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-WARN-BOLDBODY-01--straight--1",
+      "guard_usd": 0.00197,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-WARN-TITLECASE-01--angle--1",
+      "guard_usd": 0.0019625,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-WARN-TITLECASE-01--glare--1",
+      "guard_usd": 0.0019655,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-WARN-TITLECASE-01--straight--1",
+      "guard_usd": 0.0019625,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--C-MALT-01--angle--1",
+      "guard_usd": 0.0019685,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--C-MALT-01--glare--1",
+      "guard_usd": 0.0019685,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--C-MALT-01--straight--1",
+      "guard_usd": 0.001967,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--C-SPIRITS-01--angle--1",
+      "guard_usd": 0.0019655,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--C-SPIRITS-01--glare--1",
+      "guard_usd": 0.0019625,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--C-SPIRITS-01--straight--1",
+      "guard_usd": 0.0019655,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--C-SPIRITS-IMPORT-01--angle--1",
+      "guard_usd": 0.0019745,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--C-SPIRITS-IMPORT-01--glare--1",
+      "guard_usd": 0.001976,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--C-SPIRITS-IMPORT-01--straight--1",
+      "guard_usd": 0.0019745,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--C-WINE-01--angle--1",
+      "guard_usd": 0.00197,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--C-WINE-01--glare--1",
+      "guard_usd": 0.0019655,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--C-WINE-01--straight--1",
+      "guard_usd": 0.00197,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--D-BLUR-01--angle--1",
+      "guard_usd": 0.001967,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--D-BLUR-01--straight--1",
+      "guard_usd": 0.0019655,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--D-GLARE-01--angle--1",
+      "guard_usd": 0.0019685,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--D-GLARE-01--straight--1",
+      "guard_usd": 0.0019685,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--D-WARP-01--angle--1",
+      "guard_usd": 0.00197,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--D-WARP-01--straight--1",
+      "guard_usd": 0.00197,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--W-ABV-4045-01--angle--1",
+      "guard_usd": 0.0019835,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--W-ABV-4045-01--straight--1",
+      "guard_usd": 0.0019835,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--W-BRAND-SPLITLINE-01--angle--1",
+      "guard_usd": 0.001967,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--W-BRAND-SPLITLINE-01--straight--1",
+      "guard_usd": 0.0019655,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--W-BRAND-WRONG-01--angle--1",
+      "guard_usd": 0.0019655,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--W-BRAND-WRONG-01--straight--1",
+      "guard_usd": 0.0019655,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--W-NETCONTENTS-WRONG-01--angle--1",
+      "guard_usd": 0.0019655,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--W-NETCONTENTS-WRONG-01--straight--1",
+      "guard_usd": 0.0019655,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--W-WARN-REWORD-01--angle--1",
+      "guard_usd": 0.001967,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--W-WARN-REWORD-01--straight--1",
+      "guard_usd": 0.001967,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-ABV-WRONG-01--angle--1",
+      "guard_usd": 0.001324,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-ABV-WRONG-01--glare--1",
+      "guard_usd": 0.0012072,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-ABV-WRONG-01--straight--1",
+      "guard_usd": 0.001324,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-BRAND-CASE-01--angle--1",
+      "guard_usd": 0.0012184,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-BRAND-CASE-01--glare--1",
+      "guard_usd": 0.0012984,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-BRAND-CASE-01--straight--1",
+      "guard_usd": 0.0013224,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-FIELD-MISSING-01--angle--1",
+      "guard_usd": 0.0011976,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-FIELD-MISSING-01--glare--1",
+      "guard_usd": 0.0011864,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-FIELD-MISSING-01--straight--1",
+      "guard_usd": 0.001268,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-INJECT-PROMPT-01--angle--1",
+      "guard_usd": 0.001292,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-INJECT-PROMPT-01--glare--1",
+      "guard_usd": 0.0012984,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-INJECT-PROMPT-01--straight--1",
+      "guard_usd": 0.00122,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-WARN-BOLDBODY-01--angle--1",
+      "guard_usd": 0.001188,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-WARN-BOLDBODY-01--glare--1",
+      "guard_usd": 0.0013144,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-WARN-BOLDBODY-01--straight--1",
+      "guard_usd": 0.0013112,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-WARN-TITLECASE-01--angle--1",
+      "guard_usd": 0.0013208,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-WARN-TITLECASE-01--glare--1",
+      "guard_usd": 0.001284,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-WARN-TITLECASE-01--straight--1",
+      "guard_usd": 0.0013208,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--C-MALT-01--angle--1",
+      "guard_usd": 0.001324,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--C-MALT-01--glare--1",
+      "guard_usd": 0.0013096,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--C-MALT-01--straight--1",
+      "guard_usd": 0.001324,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--C-SPIRITS-01--angle--1",
+      "guard_usd": 0.0013256,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--C-SPIRITS-01--glare--1",
+      "guard_usd": 0.0012008,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--C-SPIRITS-01--straight--1",
+      "guard_usd": 0.0013256,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--C-SPIRITS-IMPORT-01--angle--1",
+      "guard_usd": 0.0013368,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--C-SPIRITS-IMPORT-01--glare--1",
+      "guard_usd": 0.001316,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--C-SPIRITS-IMPORT-01--straight--1",
+      "guard_usd": 0.0013368,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--C-WINE-01--angle--1",
+      "guard_usd": 0.0013256,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--C-WINE-01--glare--1",
+      "guard_usd": 0.0012984,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--C-WINE-01--straight--1",
+      "guard_usd": 0.0013256,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--D-BLUR-01--angle--1",
+      "guard_usd": 0.0012216,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--D-BLUR-01--straight--1",
+      "guard_usd": 0.001196,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--D-GLARE-01--angle--1",
+      "guard_usd": 0.0012184,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--D-GLARE-01--straight--1",
+      "guard_usd": 0.0011864,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--D-WARP-01--angle--1",
+      "guard_usd": 0.0013256,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--D-WARP-01--straight--1",
+      "guard_usd": 0.0011912,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--W-ABV-4045-01--angle--1",
+      "guard_usd": 0.00134,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--W-ABV-4045-01--straight--1",
+      "guard_usd": 0.00134,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--W-BRAND-SPLITLINE-01--angle--1",
+      "guard_usd": 0.0013224,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--W-BRAND-SPLITLINE-01--straight--1",
+      "guard_usd": 0.0011864,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--W-BRAND-WRONG-01--angle--1",
+      "guard_usd": 0.0013256,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--W-BRAND-WRONG-01--straight--1",
+      "guard_usd": 0.0012216,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--W-NETCONTENTS-WRONG-01--angle--1",
+      "guard_usd": 0.0013224,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--W-NETCONTENTS-WRONG-01--straight--1",
+      "guard_usd": 0.0013224,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--W-WARN-REWORD-01--angle--1",
+      "guard_usd": 0.0013304,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--W-WARN-REWORD-01--straight--1",
+      "guard_usd": 0.0011928,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-ABV-WRONG-01--angle--1",
+      "guard_usd": 0.00291925,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-ABV-WRONG-01--glare--1",
+      "guard_usd": 0.00342925,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-ABV-WRONG-01--straight--1",
+      "guard_usd": 0.00273325,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-BRAND-CASE-01--angle--1",
+      "guard_usd": 0.00265325,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-BRAND-CASE-01--glare--1",
+      "guard_usd": 0.00450325,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-BRAND-CASE-01--straight--1",
+      "guard_usd": 0.00285725,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-FIELD-MISSING-01--angle--1",
+      "guard_usd": 0.00261725,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-FIELD-MISSING-01--glare--1",
+      "guard_usd": 0.00457525,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-FIELD-MISSING-01--straight--1",
+      "guard_usd": 0.00235125,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-INJECT-PROMPT-01--angle--1",
+      "guard_usd": 0.00214125,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-INJECT-PROMPT-01--glare--1",
+      "guard_usd": 0.00532925,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-INJECT-PROMPT-01--straight--1",
+      "guard_usd": 0.00234125,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-WARN-BOLDBODY-01--angle--1",
+      "guard_usd": 0.00265125,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-WARN-BOLDBODY-01--glare--1",
+      "guard_usd": 0.00429725,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-WARN-BOLDBODY-01--straight--1",
+      "guard_usd": 0.00249725,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-WARN-TITLECASE-01--angle--1",
+      "guard_usd": 0.00228125,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-WARN-TITLECASE-01--glare--1",
+      "guard_usd": 0.00370525,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-WARN-TITLECASE-01--straight--1",
+      "guard_usd": 0.00257925,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--C-MALT-01--angle--1",
+      "guard_usd": 0.00290325,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--C-MALT-01--glare--1",
+      "guard_usd": 0.00372125,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--C-MALT-01--straight--1",
+      "guard_usd": 0.00267725,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--C-SPIRITS-01--angle--1",
+      "guard_usd": 0.00292725,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--C-SPIRITS-01--glare--1",
+      "guard_usd": 0.00511525,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--C-SPIRITS-01--straight--1",
+      "guard_usd": 0.00300125,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--C-SPIRITS-IMPORT-01--angle--1",
+      "guard_usd": 0.00312525,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--C-SPIRITS-IMPORT-01--glare--1",
+      "guard_usd": 0.00414525,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--C-SPIRITS-IMPORT-01--straight--1",
+      "guard_usd": 0.00251725,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--C-WINE-01--angle--1",
+      "guard_usd": 0.00269925,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--C-WINE-01--glare--1",
+      "guard_usd": 0.00522525,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--C-WINE-01--straight--1",
+      "guard_usd": 0.00259325,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--D-BLUR-01--angle--1",
+      "guard_usd": 0.00340325,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--D-BLUR-01--straight--1",
+      "guard_usd": 0.00325725,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--D-GLARE-01--angle--1",
+      "guard_usd": 0.00272725,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--D-GLARE-01--straight--1",
+      "guard_usd": 0.00242325,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--D-WARP-01--angle--1",
+      "guard_usd": 0.00246125,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--D-WARP-01--straight--1",
+      "guard_usd": 0.00303125,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--W-ABV-4045-01--angle--1",
+      "guard_usd": 0.00272125,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--W-ABV-4045-01--straight--1",
+      "guard_usd": 0.00272325,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--W-BRAND-SPLITLINE-01--angle--1",
+      "guard_usd": 0.00287725,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--W-BRAND-SPLITLINE-01--straight--1",
+      "guard_usd": 0.00288325,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--W-BRAND-WRONG-01--angle--1",
+      "guard_usd": 0.00326125,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--W-BRAND-WRONG-01--straight--1",
+      "guard_usd": 0.00274125,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--W-NETCONTENTS-WRONG-01--angle--1",
+      "guard_usd": 0.00270925,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--W-NETCONTENTS-WRONG-01--straight--1",
+      "guard_usd": 0.00229925,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--W-WARN-REWORD-01--angle--1",
+      "guard_usd": 0.00301325,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--W-WARN-REWORD-01--straight--1",
+      "guard_usd": 0.00275925,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-ABV-WRONG-01--angle--1",
+      "guard_usd": 0.0006158,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-ABV-WRONG-01--glare--1",
+      "guard_usd": 0.0006038,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-ABV-WRONG-01--straight--1",
+      "guard_usd": 0.0006163,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-BRAND-CASE-01--angle--1",
+      "guard_usd": 0.0006163,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-BRAND-CASE-01--glare--1",
+      "guard_usd": 0.0006123,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-BRAND-CASE-01--straight--1",
+      "guard_usd": 0.0006163,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-FIELD-MISSING-01--angle--1",
+      "guard_usd": 0.0006028,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-FIELD-MISSING-01--glare--1",
+      "guard_usd": 0.0006028,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-FIELD-MISSING-01--straight--1",
+      "guard_usd": 0.0006093,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-INJECT-PROMPT-01--angle--1",
+      "guard_usd": 0.0006158,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-INJECT-PROMPT-01--glare--1",
+      "guard_usd": 0.0006143,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-INJECT-PROMPT-01--straight--1",
+      "guard_usd": 0.0006168,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-WARN-BOLDBODY-01--angle--1",
+      "guard_usd": 0.0006168,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-WARN-BOLDBODY-01--glare--1",
+      "guard_usd": 0.0006128,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-WARN-BOLDBODY-01--straight--1",
+      "guard_usd": 0.0006158,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-WARN-TITLECASE-01--angle--1",
+      "guard_usd": 0.0006178,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-WARN-TITLECASE-01--glare--1",
+      "guard_usd": 0.0006113,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-WARN-TITLECASE-01--straight--1",
+      "guard_usd": 0.0006193,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--C-MALT-01--angle--1",
+      "guard_usd": 0.0006348,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--C-MALT-01--glare--1",
+      "guard_usd": 0.0006133,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--C-MALT-01--straight--1",
+      "guard_usd": 0.0006158,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--C-SPIRITS-01--angle--1",
+      "guard_usd": 0.0006173,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--C-SPIRITS-01--glare--1",
+      "guard_usd": 0.0006128,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--C-SPIRITS-01--straight--1",
+      "guard_usd": 0.0006173,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--C-SPIRITS-IMPORT-01--angle--1",
+      "guard_usd": 0.0006218,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--C-SPIRITS-IMPORT-01--glare--1",
+      "guard_usd": 0.0006073,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--C-SPIRITS-IMPORT-01--straight--1",
+      "guard_usd": 0.0006203,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--C-WINE-01--angle--1",
+      "guard_usd": 0.0006173,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--C-WINE-01--glare--1",
+      "guard_usd": 0.0006058,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--C-WINE-01--straight--1",
+      "guard_usd": 0.0006173,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--D-BLUR-01--angle--1",
+      "guard_usd": 0.0006183,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--D-BLUR-01--straight--1",
+      "guard_usd": 0.0006353,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--D-GLARE-01--angle--1",
+      "guard_usd": 0.0006153,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--D-GLARE-01--straight--1",
+      "guard_usd": 0.0006338,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--D-WARP-01--angle--1",
+      "guard_usd": 0.0006138,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--D-WARP-01--straight--1",
+      "guard_usd": 0.0006173,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--W-ABV-4045-01--angle--1",
+      "guard_usd": 0.0006208,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--W-ABV-4045-01--straight--1",
+      "guard_usd": 0.0006193,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--W-BRAND-SPLITLINE-01--angle--1",
+      "guard_usd": 0.0006158,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--W-BRAND-SPLITLINE-01--straight--1",
+      "guard_usd": 0.0006103,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--W-BRAND-WRONG-01--angle--1",
+      "guard_usd": 0.0006158,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--W-BRAND-WRONG-01--straight--1",
+      "guard_usd": 0.0006158,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--W-NETCONTENTS-WRONG-01--angle--1",
+      "guard_usd": 0.0006173,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--W-NETCONTENTS-WRONG-01--straight--1",
+      "guard_usd": 0.0006178,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--W-WARN-REWORD-01--angle--1",
+      "guard_usd": 0.0006183,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--W-WARN-REWORD-01--straight--1",
+      "guard_usd": 0.0006168,
+      "status": "usage-guard"
+    },
+    {
+      "id": "inherited-incurred-and-unknown",
+      "guard_usd": 7.8558323,
+      "status": "reserved"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-ABV-WRONG-01--angle--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-ABV-WRONG-01--flat--3",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-ABV-WRONG-01--glare--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-ABV-WRONG-01--straight--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-BRAND-CASE-01--angle--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-BRAND-CASE-01--flat--3",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-BRAND-CASE-01--glare--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-BRAND-CASE-01--straight--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-FIELD-MISSING-01--angle--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-FIELD-MISSING-01--flat--3",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-FIELD-MISSING-01--glare--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-FIELD-MISSING-01--straight--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-INJECT-PROMPT-01--angle--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-INJECT-PROMPT-01--flat--3",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-INJECT-PROMPT-01--glare--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-INJECT-PROMPT-01--straight--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-WARN-BOLDBODY-01--angle--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-WARN-BOLDBODY-01--flat--3",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-WARN-BOLDBODY-01--glare--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-WARN-BOLDBODY-01--straight--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-WARN-TITLECASE-01--angle--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-WARN-TITLECASE-01--flat--3",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-WARN-TITLECASE-01--glare--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-WARN-TITLECASE-01--straight--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-MALT-01--angle--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-MALT-01--flat--3",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-MALT-01--glare--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-MALT-01--straight--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-SPIRITS-01--angle--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-SPIRITS-01--flat--3",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-SPIRITS-01--glare--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-SPIRITS-01--straight--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-SPIRITS-IMPORT-01--angle--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-SPIRITS-IMPORT-01--flat--3",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-SPIRITS-IMPORT-01--glare--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-SPIRITS-IMPORT-01--straight--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-WINE-01--angle--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-WINE-01--flat--2",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-WINE-01--flat--3",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-WINE-01--glare--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-WINE-01--straight--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--D-BLUR-01--angle--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--D-BLUR-01--flat--3",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--D-BLUR-01--straight--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--D-GLARE-01--angle--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--D-GLARE-01--flat--3",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--D-GLARE-01--straight--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--D-WARP-01--angle--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--D-WARP-01--flat--3",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--D-WARP-01--straight--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--W-ABV-4045-01--angle--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--W-ABV-4045-01--flat--3",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--W-ABV-4045-01--straight--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--W-BRAND-SPLITLINE-01--angle--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--W-BRAND-SPLITLINE-01--flat--3",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--W-BRAND-SPLITLINE-01--straight--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--W-BRAND-WRONG-01--angle--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--W-BRAND-WRONG-01--flat--3",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--W-BRAND-WRONG-01--straight--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--W-NETCONTENTS-WRONG-01--angle--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--W-NETCONTENTS-WRONG-01--flat--3",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--W-NETCONTENTS-WRONG-01--straight--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--W-WARN-REWORD-01--angle--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--W-WARN-REWORD-01--flat--3",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--W-WARN-REWORD-01--straight--1",
+      "guard_usd": 0.003,
+      "status": "usage-guard"
+    }
+  ]
+}

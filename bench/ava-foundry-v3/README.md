@@ -4,6 +4,12 @@ Execution owner: AVA. Reviewer: ARGUS, one consolidated read-only PASS/REVISE; *
 
 This directory is an additive evidence integration. It does not change the original application, historical benchmark, inherited runner, or historical verdict cache.
 
+**Latest results: `recovery-v4/REPORT.txt`. Full benchmark remains INCOMPLETE for realistic glare.** Alex rejected the broad opaque glare band; all59 existing calls on it are retained only as rejected artificial-occlusion evidence, never as realistic-glare validation. The final continuation produced49 missing-flat observations and199 straight/angle bottle observations. Five deployments completed36 straight/angle images each; Kimi completed19/36, with17 calls blocked by the existing conservative $10 guard. No approved real-camera validation or unattended compliance engine is claimed.
+
+`recovery-v4/primary-summary.json` excludes the rejected glare condition; `rejected-occlusion-summary.json` preserves it separately. The v3 report is a legacy detailed accounting view, superseded by v4 scope statements. `GLARE-CORRECTION-HANDOFF.txt` preserves the scope correction. OCR page-accounting corrections and original snapshots are retained in v3; provider responses and model predictions were never rewritten.
+
+Final authoritative root: `/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v4/`; same Windows mapping under `C:\Users\alexm\.hermes\benchmarks\ttb-foundry-20260918-v1\recovery-v4\`. `verification.json` records offline acceptance; `artifact-hashes.json` hashes the source evidence; `git-integration.json` is emitted after the final commit in the authoritative root to avoid self-referential commit hashing. No push/deployment is performed by this closeout lane.
+
 - `original-ava/`: immutable copied original harness, response bodies, scored rows, 18 pixel-composite bottles and pricing snapshots.
 - `recovery-v2/`: recovered ARGUS observations/logs/source and strict offline reconciliation. Its old blockers/status are historical; the v3 report supersedes them.
 - `scorer-4039ccc/`: frozen strict scorer source used by AVA, deliberately separate from the inherited ARGUS scorer at repository base `d74bd6a9fecb06118e171be0a895761f609a4439`.

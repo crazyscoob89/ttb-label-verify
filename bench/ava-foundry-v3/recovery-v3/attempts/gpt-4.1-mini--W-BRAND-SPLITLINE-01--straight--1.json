@@ -1,0 +1,58 @@
+{
+  "id": "gpt-4.1-mini--W-BRAND-SPLITLINE-01--straight--1",
+  "operator": "AVA-v3",
+  "model": "gpt-4.1-mini",
+  "engine": "gpt-4.1-mini",
+  "fixture_id": "W-BRAND-SPLITLINE-01",
+  "repeat": 1,
+  "condition": "straight",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.0011864,
+  "request_sha256": "7a64642248fe8566fc757a952f1d95b76e567a4976d12b254960104e804f97eb",
+  "image_sha256": "0d808655c0372f5c6ceb60d280a4773e20f8e35b33c3c599263112be17899b8a",
+  "transport": "chat",
+  "started_at": "2026-09-18T16:48:07.266510+00:00",
+  "reserved_usd": 0.46665344,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/W-BRAND-SPLITLINE-01__straight.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "cc94fe4c-8341-43e0-a94f-d1ed9417cc8f",
+  "latency_s": 5.164437867933884,
+  "response_sha256": "5ca85ad39fa088b2d0996a82bacbbab309cf8de95e3e9095bf35bbf813c37479",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-4.1-mini--W-BRAND-SPLITLINE-01--straight--1.json",
+  "tokens_in": 2070,
+  "tokens_out": 224,
+  "pages_processed": null,
+  "usage": {
+    "completion_tokens": 224,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "latency_checkpoint": {
+      "engine_tbt_ms": 9,
+      "engine_ttft_ms": 762,
+      "engine_ttlt_ms": 2703,
+      "pre_inference_ms": 285,
+      "service_tbt_ms": 9,
+      "service_ttft_ms": 1548,
+      "service_ttlt_ms": 3485,
+      "user_visible_ttft_ms": 1263
+    },
+    "prompt_tokens": 2070,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 0,
+      "image_tokens": 840
+    },
+    "total_tokens": 2294
+  },
+  "returned_model": "gpt-4.1-mini-2025-04-14"
+}

@@ -1,0 +1,44 @@
+{
+  "id": "gpt-5-mini--W-BRAND-SPLITLINE-01--angle--1",
+  "operator": "AVA-v3",
+  "model": "gpt-5-mini",
+  "engine": "gpt-5-mini",
+  "fixture_id": "W-BRAND-SPLITLINE-01",
+  "repeat": 1,
+  "condition": "angle",
+  "route": "Azure Foundry responses",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.00287725,
+  "request_sha256": "86c21620ddd2ac2d89d4c540aa9a972d99fdefec56273fd37bec30aaf2609e6a",
+  "image_sha256": "a91b9a32e8c7e71ab9f11cbee726811d5a89cc939c01edfe6bdab23179c8e823",
+  "transport": "responses",
+  "started_at": "2026-09-18T16:48:26.504133+00:00",
+  "reserved_usd": 0.2949584,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/W-BRAND-SPLITLINE-01__angle.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "00b24684-24b3-453b-9265-3bedd91fb400",
+  "latency_s": 15.861053202999756,
+  "response_sha256": "5e290a52d39e08caa2c08e0315775abe3749ef7842088e4a172f3a8f1a900eaa",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-5-mini--W-BRAND-SPLITLINE-01--angle--1.json",
+  "tokens_in": 1717,
+  "tokens_out": 1224,
+  "pages_processed": null,
+  "usage": {
+    "input_tokens": 1717,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1224,
+    "output_tokens_details": {
+      "reasoning_tokens": 896
+    },
+    "total_tokens": 2941
+  },
+  "returned_model": "gpt-5-mini"
+}

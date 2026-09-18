@@ -1,0 +1,175 @@
+{
+  "id": "mistral-document-ai-2512--C-MALT-01--glare--1",
+  "operator": "AVA-v3",
+  "model": "mistral-document-ai-2512",
+  "engine": "mistral-document-ai-2512",
+  "fixture_id": "C-MALT-01",
+  "repeat": 1,
+  "condition": "glare",
+  "route": "Azure Foundry ocr",
+  "tier": "OCR separate",
+  "ok": true,
+  "extracted": {
+    "brand_name": "Irreliable",
+    "class_type": null,
+    "alcohol_content": null,
+    "net_contents": "500000000000000000000000000000000000000000000000000000000000000000000000000",
+    "bottler_info": "Brewed and bought by Brewing Co., Inc. Ashland, New York",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING",
+    "government_warning_body": "General, women should be aware of the Surgeon General's warning to the Surgeon General's warning to prevent pregnancy because of the dangers of alcoholism and other health risks. (2) Consumption of alcoholic beverages in the past 12 months to drive a car or operate machinery, and the use of alcohol in the past 12 months to prevent problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 1.0,
+      "class_type": 0.0,
+      "alcohol_content": 0.0,
+      "net_contents": 0.5,
+      "bottler_info": 1.0,
+      "country_of_origin": 0.0,
+      "government_warning_heading": 1.0,
+      "government_warning_body": 1.0,
+      "government_warning_heading_all_caps": 1.0,
+      "government_warning_heading_bold": 1.0,
+      "government_warning_body_bold": 1.0
+    }
+  },
+  "error_class": null,
+  "cost_usd": 0.0,
+  "request_sha256": "27df1c4cadf0859649c4c0ffc4eba85398e21f12b5c656b22ee2161992da18c7",
+  "image_sha256": "5e23f28d8fc0aa30e72b42ac1d13ce4b02839a4dd78968e477467da0a2a05e30",
+  "transport": "ocr",
+  "started_at": "2026-09-18T16:09:34.701477+00:00",
+  "reserved_usd": 0.05,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-MALT-01__glare.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "2fd2d43d-de08-462a-a21e-621a998fc6a0",
+  "latency_s": 6.090155433979817,
+  "response_sha256": "c9f34be1156250403857c3d390f3b05868e3b1954368605e987a5aa162832ad1",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--C-MALT-01--glare--1.json",
+  "tokens_in": null,
+  "tokens_out": null,
+  "pages_processed": 0,
+  "usage": {
+    "pages_processed": 0,
+    "doc_size_bytes": 693176,
+    "pages_processed_annotation": 1
+  },
+  "returned_model": "mistral-document-ai-2512",
+  "raw_text": "{\n  \"brand_name\": \"Irreliable\",\n  \"class_type\": null,\n  \"alcohol_content\": null,\n  \"net_contents\": \"500000000000000000000000000000000000000000000000000000000000000000000000000\",\n  \"bottler_info\": \"Brewed and bought by Brewing Co., Inc. Ashland, New York\",\n  \"country_of_origin\": null,\n  \"government_warning_heading\": \"GOVERNMENT WARNING\",\n  \"government_warning_body\": \"General, women should be aware of the Surgeon General's warning to the Surgeon General's warning to prevent pregnancy because of the dangers of alcoholism and other health risks. (2) Consumption of alcoholic beverages in the past 12 months to drive a car or operate machinery, and the use of alcohol in the past 12 months to prevent problems.\",\n  \"government_warning_heading_all_caps\": true,\n  \"government_warning_heading_bold\": true,\n  \"government_warning_body_bold\": false,\n  \"confidence\": {\n    \"brand_name\": 1.0,\n    \"class_type\": 0.0,\n    \"alcohol_content\": 0.0,\n    \"net_contents\": 0.5,\n    \"bottler_info\": 1.0,\n    \"country_of_origin\": 0.0,\n    \"government_warning_heading\": 1.0,\n    \"government_warning_body\": 1.0,\n    \"government_warning_heading_all_caps\": 1.0,\n    \"government_warning_heading_bold\": 1.0,\n    \"government_warning_body_bold\": 1.0\n  }\n}",
+  "finish_reason": "completed",
+  "validation_errors": {},
+  "category": "clean",
+  "commodity": "malt",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "mismatch",
+    "class_type": "needs-review",
+    "alcohol_content": "needs-review",
+    "net_contents": "needs-review",
+    "bottler_info": "mismatch",
+    "country_of_origin": "not-applicable",
+    "government_warning": "mismatch"
+  },
+  "classes": {
+    "brand_name": "false_mismatch",
+    "class_type": "referral",
+    "alcohol_content": "referral",
+    "net_contents": "referral",
+    "bottler_info": "false_mismatch",
+    "country_of_origin": "correct",
+    "government_warning": "false_mismatch"
+  },
+  "reasons": {
+    "brand_name": "'Irreliable' vs declared 'Iron Kettle'",
+    "class_type": "confidence 0.0 below threshold 0.75",
+    "alcohol_content": "confidence 0.0 below threshold 0.75",
+    "net_contents": "confidence 0.5 below threshold 0.75",
+    "bottler_info": "'Brewed and bought by Brewing Co., Inc. Ashland, New York' vs declared 'Iron Kettle Brewing Co., Asheville, North Carolina'",
+    "country_of_origin": "domestic product",
+    "government_warning": "statutory wording deviation in warning body"
+  },
+  "extraction_correct": {
+    "brand_name": false,
+    "class_type": false,
+    "alcohol_content": false,
+    "net_contents": false,
+    "bottler_info": false,
+    "country_of_origin": true,
+    "government_warning": false
+  },
+  "visibility": {
+    "brand_name": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "class_type": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "alcohol_content": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "net_contents": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "bottler_info": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "country_of_origin": {
+      "visibility": "absent",
+      "expect_referral_ok": true,
+      "basis": "No printed value in source",
+      "annotator": "AVA pre-inference"
+    },
+    "government_warning": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    }
+  },
+  "bottle_outcomes": {
+    "brand_name": "dangerous-error",
+    "class_type": "safe-referral",
+    "alcohol_content": "safe-referral",
+    "net_contents": "safe-referral",
+    "bottler_info": "dangerous-error",
+    "country_of_origin": "correct-absence-not-applicable",
+    "government_warning": "dangerous-error"
+  },
+  "pipeline_seconds": 6.117524269036949
+}

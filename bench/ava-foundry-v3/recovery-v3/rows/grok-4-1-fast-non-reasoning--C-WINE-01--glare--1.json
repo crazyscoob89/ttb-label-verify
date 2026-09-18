@@ -1,0 +1,192 @@
+{
+  "id": "grok-4-1-fast-non-reasoning--C-WINE-01--glare--1",
+  "operator": "AVA-v3",
+  "model": "grok-4-1-fast-non-reasoning",
+  "engine": "grok-4-1-fast-non-reasoning",
+  "fixture_id": "C-WINE-01",
+  "repeat": 1,
+  "condition": "glare",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": {
+    "brand_name": "Cluff",
+    "class_type": "RED WINE",
+    "alcohol_content": null,
+    "net_contents": "1 L",
+    "bottler_info": "Produced and Bottled by Cluff Cellars, He ia",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARN",
+    "government_warning_body": "General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": null,
+    "government_warning_body_bold": null,
+    "confidence": {
+      "brand_name": 0.95,
+      "class_type": 1.0,
+      "alcohol_content": 1.0,
+      "net_contents": 0.9,
+      "bottler_info": 0.6,
+      "country_of_origin": 1.0,
+      "government_warning_heading": 0.7,
+      "government_warning_body": 0.5,
+      "government_warning_heading_all_caps": 0.9,
+      "government_warning_heading_bold": null,
+      "government_warning_body_bold": null
+    }
+  },
+  "error_class": "schema-or-incomplete-output",
+  "cost_usd": 0.0006058,
+  "request_sha256": "7b4f7fe6bb26c77ba020f514dca524fd0fd45b677950e4062569ec2bad80a1a3",
+  "image_sha256": "be58424d4c2537a60247154ecc533d4eaf46b9213f517a2c24b2bbdcde1df11e",
+  "transport": "chat",
+  "started_at": "2026-09-18T16:05:57.898104+00:00",
+  "reserved_usd": 0.23233672,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-WINE-01__glare.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "0f1f87dd-e429-4146-81e7-d8c23f482a3e",
+  "latency_s": 5.3439972930355,
+  "response_sha256": "27403d7d92ccc0cb9593698b859ec3c40a03a643d94e4677d2bd81760f885d06",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/grok-4-1-fast-non-reasoning--C-WINE-01--glare--1.json",
+  "tokens_in": 2489,
+  "tokens_out": 216,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 2489,
+    "completion_tokens": 216,
+    "total_tokens": 2705,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 858,
+      "audio_tokens": 0,
+      "text_tokens": 697,
+      "image_tokens": 1792
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "num_sources_used": 0
+  },
+  "returned_model": "grok-4-1-fast-non-reasoning",
+  "raw_text": "{\"brand_name\":\"Cluff\",\"class_type\":\"RED WINE\",\"alcohol_content\":null,\"net_contents\":\"1 L\",\"bottler_info\":\"Produced and Bottled by Cluff Cellars, He ia\",\"country_of_origin\":null,\"government_warning_heading\":\"GOVERNMENT WARN\",\"government_warning_body\":\"General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\"government_warning_heading_all_caps\":true,\"government_warning_heading_bold\":null,\"government_warning_body_bold\":null,\"confidence\":{\"brand_name\":0.95,\"class_type\":1.0,\"alcohol_content\":1.0,\"net_contents\":0.9,\"bottler_info\":0.6,\"country_of_origin\":1.0,\"government_warning_heading\":0.7,\"government_warning_body\":0.5,\"government_warning_heading_all_caps\":0.9,\"government_warning_heading_bold\":null,\"government_warning_body_bold\":null}}",
+  "finish_reason": "stop",
+  "validation_errors": {
+    "government_warning_heading_bold": "missing or invalid component confidence",
+    "government_warning_body_bold": "missing or invalid component confidence"
+  },
+  "category": "clean",
+  "commodity": "wine",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "needs-review",
+    "class_type": "needs-review",
+    "alcohol_content": "needs-review",
+    "net_contents": "needs-review",
+    "bottler_info": "needs-review",
+    "country_of_origin": "needs-review",
+    "government_warning": "needs-review"
+  },
+  "classes": {
+    "brand_name": "referral",
+    "class_type": "referral",
+    "alcohol_content": "referral",
+    "net_contents": "referral",
+    "bottler_info": "referral",
+    "country_of_origin": "referral",
+    "government_warning": "referral"
+  },
+  "reasons": {
+    "brand_name": "extraction failure: schema-or-incomplete-output",
+    "class_type": "extraction failure: schema-or-incomplete-output",
+    "alcohol_content": "extraction failure: schema-or-incomplete-output",
+    "net_contents": "extraction failure: schema-or-incomplete-output",
+    "bottler_info": "extraction failure: schema-or-incomplete-output",
+    "country_of_origin": "extraction failure: schema-or-incomplete-output",
+    "government_warning": "extraction failure: schema-or-incomplete-output"
+  },
+  "extraction_correct": {
+    "brand_name": false,
+    "class_type": false,
+    "alcohol_content": false,
+    "net_contents": false,
+    "bottler_info": false,
+    "country_of_origin": false,
+    "government_warning": false
+  },
+  "visibility": {
+    "brand_name": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "class_type": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "alcohol_content": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "net_contents": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "bottler_info": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "country_of_origin": {
+      "visibility": "absent",
+      "expect_referral_ok": true,
+      "basis": "No printed value in source",
+      "annotator": "AVA pre-inference"
+    },
+    "government_warning": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    }
+  },
+  "bottle_outcomes": {
+    "brand_name": "failure-referral",
+    "class_type": "failure-referral",
+    "alcohol_content": "failure-referral",
+    "net_contents": "failure-referral",
+    "bottler_info": "failure-referral",
+    "country_of_origin": "failure-referral",
+    "government_warning": "failure-referral"
+  },
+  "pipeline_seconds": 5.369088202947751
+}

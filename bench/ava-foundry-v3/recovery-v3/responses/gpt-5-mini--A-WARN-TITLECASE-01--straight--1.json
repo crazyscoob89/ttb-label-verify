@@ -1,0 +1,167 @@
+{
+  "id": "resp_082212670c8b8a4e006aad63e66a3c8190a40a45d09683f3e2",
+  "object": "response",
+  "created_at": 1789748198,
+  "status": "completed",
+  "background": false,
+  "completed_at": 1789748211,
+  "content_filters": [
+    {
+      "blocked": false,
+      "source_type": "prompt",
+      "content_filter_raw": [],
+      "content_filter_results": {
+        "hate": {
+          "filtered": false,
+          "severity": "safe"
+        },
+        "sexual": {
+          "filtered": false,
+          "severity": "safe"
+        },
+        "violence": {
+          "filtered": false,
+          "severity": "safe"
+        },
+        "self_harm": {
+          "filtered": false,
+          "severity": "safe"
+        },
+        "jailbreak": {
+          "detected": false,
+          "filtered": false
+        }
+      },
+      "content_filter_offsets": {
+        "start_offset": 0,
+        "end_offset": 4127,
+        "check_offset": 0
+      }
+    },
+    {
+      "blocked": false,
+      "source_type": "completion",
+      "content_filter_raw": [],
+      "content_filter_results": {
+        "protected_material_code": {
+          "detected": false,
+          "filtered": false
+        },
+        "protected_material_text": {
+          "detected": false,
+          "filtered": false
+        },
+        "hate": {
+          "filtered": false,
+          "severity": "safe"
+        },
+        "sexual": {
+          "filtered": false,
+          "severity": "safe"
+        },
+        "violence": {
+          "filtered": false,
+          "severity": "safe"
+        },
+        "self_harm": {
+          "filtered": false,
+          "severity": "safe"
+        }
+      },
+      "content_filter_offsets": {
+        "start_offset": 0,
+        "end_offset": 4493,
+        "check_offset": 0
+      }
+    }
+  ],
+  "error": null,
+  "frequency_penalty": 0.0,
+  "incomplete_details": null,
+  "instructions": null,
+  "max_output_tokens": 3000,
+  "max_tool_calls": null,
+  "model": "gpt-5-mini",
+  "moderation": null,
+  "output": [
+    {
+      "id": "rs_082212670c8b8a4e006aad63e776688190af9ef163eab7b4ae",
+      "type": "reasoning",
+      "content": [],
+      "encrypted_content": "gAAAAABqrWPzkrQaDJ9aPV2s1VDKs55lqJqM9JW2C9w-bse4q76HtDrJBi4MadXiP16u7HZfEI85BsScjbrt4j-tJ5a84toVpQaGJAAY93w3POzm-xWOhAc-AkKr42fEyV3VmbMG6JanGwlu3jyYDNbEsMxAUFNjbKqrR_pmuBAYKjhBOcpA55NM7FlELYw4gALXO1T8vFWlgRbe3eWYNHBY7B9miJ4jlrljO09cwi6cHeIJqlwTWKrZBEGZR83jWtexXRjR_Yh30sZYfGtGmgg6p30cyuwYVZyOYxtJaCQHnvufOrPILPti4YWu0P82zcVgDYne_I09ot2jP-pBuSUGdiUZRy7nvUDnR6gbImFBKAgQUvCW4FltG5rrjgGu-7W_nkk3btocPk6MjeevSCTHDLcWEUfzLy4788dEq-No2n4e_EkH_06Zqgl7A76M2Tp2fD6CZ5GWiw4oAFya9eTmXwZytfo3-PHG8KP_dR4gnygfkQVvC6z_k6WuZUIcb7kgtu4EA2wX0KklNTf-USRZoHTSZS_O3V2P-C-5k7BxwgypJS8NFER0vAd7poM7KWI0mY_EsfoqQMLWfvGRS8wX06EU4OH7-PI6fiswODK8IRXS3lIobnWGx4jui8Psc480PVIlMkYHg_RlNlzQk2dFlu8rQlqZfUyd5FM7fwIK3Z-A0LqsgpKSCg0kqtmIQyOsiAmo4i2UJZpSPggmtQYwd2nEhNvynMF-_J6VAdW0sAddAfFgZu_AB1JwtPKbO7Q5mp9p6omH59XmNl7n-8ZTwKd1MxSYEWoLx6MDEBXwke4y0lzD_GtZb5s61t5zIVGpPFfFR3ud1g3fTiCePE4jD4884VJAs1o9johUgtzlzUICB1z9yX-6oGgRpcp0ierN62ATjNnv9XrS_b9Y3EkmYjhFibdvF8YbbZaZlpvpAPfgeI1qiRY6uNk9B7CePJcl6o1676eYDVeD3dpazBU3q3KRsmv7YcsxADRq_w-XizsmiveabwQIAjwGnmiOfdAy4kUgeZKi7R8J2qPKwaolrlJ8g6GuVfYUXCeMOfYXcOIjgUhQJBGgxv1zWwn5p1egStbVf_ASnSYW2wdORh9djBPSVxRuEQxJ8luRqdXKlmIEAb-FrgfbU2JTe5AASkaPRT7qAv_Le0ZLUJMjJB0QJUn1EMgokJHasmpsfL_XXRx2IXjyZD1sRKvGRQWAl2YR2gs6mkK46Cz9YQDiGgVdJXNoEi5IZr2bjhb4r7cGaMSAQUwrKVS7n62pRYVo-tbMQEQpoRyPjt4MwppFUnGPyQACh-DXmydPJFUPOY8ABIIISbNIOh5ESpEuMyk9T3Vh92vTAtLlMFmORL6G0fsQkG-jBtNApvt2O3LRUucSxFW407nHSfLHYBW877X09Pnr8_v6GRXjD2jsGZgs0D2hJdOJnBDnYiIjWZIyvKxb1cbwoxyQJLQKv1QDpi_Ii-plkIFMxNhHRP2V9Koy7ACL-OiackQgugge-kcOpqTIgRZ5bD368wJDEeBhotWAa566h_CO08FxeHnO8v30bdGktsEnsftGYcH9gzSMPy3L4GoDtcd2_oBswQnl4dUzGgg71tk-AV-W2crRxxZaaVnSvPjpmisARB-KOoCtAPS7YiBRdMSRq7HDPL-l-TAqMUgtCrjQuAVqFRPYY49-lnamo008GfmfyX4MAOlUJ7CZGk7KY1NF9NROHrEQe7qIbtmTeUAccCzsz7pleiFBOktxE3IrofKnTQIPzsbNouAgycOSE-DpSJMf5UmNZ_hQ2WcjbKo1Z23l3drHdI1GXsd2kIC4OGKqdkVpkNOTDBXQlaZmp2NxGqj0_mIwmumz2uB6mR5tnHWrcggShDjgfztnEnKAjdAw03rNxqFWlwJ70NNlN2mu5Fk3lmnbjRlLEM690BIQa6VeZBeT7l8Yx5MSHx8jbq3uuKQA2UCTxSMw_GkdMMqwWY0_spDvHLJ-WUOJxV0g0TP0wLO3gHxx5-BMEfXOjBXVBGSeuw6GRcrC1a03WBzSFRnJ4_tEg7BUESajyHRQdZwEk1V5I9xcWgUbCJPaEx-PKgr9PVt1cjMyQhZbDsqwPvbuyuZeFEfUiftAB25xsHSoJTK9yBfXvBfa71YGgQaqFCcbyl2DIyXwyC6sVPnPws7wy9e-gjRsdLfCHHcnYzKUFOQbiUxoXI8q34BcPQIbnA89BSF12524QzTmrLxW9YkPO5_LASFzfkeBiWboDZSeGatGZgeb4L_9I6LsMDB3ebV-VwM_v33NH_behVC80HK9lUeHuqgDcpJ47oITut_bDVV7PntIa1MCWvTvFXKfALirLkYfREdb25tTh6qSONeaE14W2K1GuZv6QrjWJnHXKYBOEa552c0qqrRvdnL-JHtAvwqSGk7GOkWwuqOZFi5MdlF7T1VLBZ2lWKf5i8o48eeBa4W7Nx_dKyKXNJhYWPNwRz4m9Mj1O3HLp5RemSJR3oFH5x23G2bFhkIt870UrOCj1eVZgmdLmHpJb8zJ0aD8j6pRMBIbpnHkEIsyBCkLlU7MISMGKJjcH29fOPYhM9tfABpMgfdZP81CsfOg7k_YiMPkuszK6xjwbbKj2Efka73wyqNhMHdYwqhLs1FVRiM29Q1DM6WRzZtODrbAK6c4Hr_7H_cbdMcRtIQMiELDpcv1om9Mrpt9GUacQyDxfEOIwphnbbNID2dNDAk8xHMDZa6OMLHlc9_bfyEViNuau0Ih643TVb9sUdlt8EySN296IYu34QhW49RK3x56OiFrX96OhO8DgTiLXuFwy9wOTVG-RxxByB5Vm-WY3e9XetIQNmKMLjTJH-felZO_bB96dT8hdIO5vML3IVIhv5QTo6Q61sjlxnq5_kFr3FDA2WA4JSI0zbFOHNSGs4dSeREFs4sVI9hEjSxUU04217IrODiIigdrt8kl5sqyT27yN6vW2eLNU5MRyLXYBXXaLQ9k0VRWaxPQLgpo09XDATfnsOSzvqavZa88pxg-RYHrf1NFr1qF_G7e-cfh2h2TEF8-KDAj1s-SW9ljA-ZNTFURrMx-VYwvlONLQy5M4HfLUGllnJNRlxC04z66pZ0uapKu7JcEZBNu4HoPz3tvotYEvLNUcoXzbLY722WNe2kP6iX_Xyh3fbR6QhVXquXRiI-yPLl19Tt70unPsc237IefOWLdzy5oyzLIWhRa1ZBg1CuMqPv_0iGpQTSuNxAJxdZNitKSmBMP_BCttR2TVU7HfE55j6ITQLIoSdY9HK38qj4Mn_x-YqQZAujLQEQCPVcBNvO-OS7K1Ox_fLDpx_Y6tWiY7QrlW8uwDlIkkqQPPmnw_wnY3i0T7vVZ0c24jB2HAqHZZSdPzYzW-X8DM1K8l6CELzakhW3l5o1OAMeJCG7njorWObMZukHe4lmVXCaRbimVN3yCXP15iOPKfOp1cHGnAQr87P0L-Yy-CwzM-qcLHOqAz_Fp1500CbSfAkV8PnrB93Dj18pYO0Lr3B7LxWgj-ghrD7X9yrwHNq1XbMZ9nOnyhw5aSLCNsm9O0CxftmulL5PFwfaIP1PJQlzxa_z-9PAGDVRxMNsFHzPZHzTGLWDCW9AEt0Lf-Yaff58OIAvOnqarb0AE5AgFWgRXIWEJxMUYuzv6Zo4j8MlJOC4MRtMCTJkHvizor77bZjz1gKNx222oJj0Fp38fJ-PGdMJhWGKM38dvrk56ISeFwnyOV7p1Lr1C14mb1OVthbvLQ_ov1DVngoArgSy6ama33cIS8CiU3JjdNiUU51R-74BznIc1V76BqZXLrLiiBXEH_OzPkdwn1gzJFEvRDLmScViLyebRwg2eeor-_A4519UAIBUzlxKbMoL6edjHq6HFzBVSZUeFINWZnjXvJ_W9MGj3E4UEtFE1lOPehbIiRscStO_FdaIjxp7FHNmoF9OppQkrCgTJrYJY_8GjzUFDTcRVQV1JG6F4POh6KnEqpt_Z4YtSHIo4tiGxIVq9Dm-zL9W56K2_oOTm7Y84UMDHxRI5GGkdni3gLyQaj8ioTBMtmkICD0bxeHxakuo6Izhu-gohDucSV8-QpxhXcV9Us0mr0mCvjuEAoLAPDnqar7-EMg9_BfDvef3t6bl06RgIwaj75dCMW5qFrrXoomEnpgMecWVXWAavBG6HFwQUrJUMd0rv4ZsyjJv8eT2IhcRkPc7WJdlPxmRdbFlDWsUEG1mMf4m_IzDSuRgzNY1HSxjqYapA02gp7kA4I1GkB98eypVyudSlk8b7OUGgmTCWGnJDXqU9p5rElRoXSSgKefpirPzjxdlALnMuGVuMaO7lVafY2h3nlgs_BRcl51zL68FuGkC73eb17TkMgv4WjDAH3IaYZ4OgZgd3r33YDSUXM_IJSwFOxl0EaisRpjjE4fHTEi7IMcxQUr6BkJNFuJ-d-46t0wfNXotK8sdDk9xesdCzqj6rwbZaVWQM0ehHixLgiAB6YpEig8zUk_xD2zVXdCViSrYQhj_MDOthH6dKuTznj9kHjV4P5WSULt-lBI4GwLmGg3TvoJkVvF3j5Od77adTdYhMoGE0moS4J0GcocPMGRAtoFTfUKB39MqHqal29Yvm_rm0FxlAZmYibf7EBgEF6LETUm0ZbhJJgroWA9NOvpdoPvIUmXVcSF5XZEg9-Phd-n_zBz_uKxBzMKse7Zv2MM1WZpA87gY1yspbvi2MbHBqfyP89SrG2cTGuxz5pHOKOYkEjPh_96ODQYWbvW9CLkspMhV0K3uUBhZ6hqF-qAGHHIkZ4JVwwcs_V2VeHMjDpNKxrP5S0vd_q9MrB7QbUexZSA-nw6KqAAK1a7fqPtL6jnURNISBYOs8OYxiQrkKB8jdfOT4o9xRGUus-wOoZTUuXtEgAA-WDfgTIdtToTorgSGgj_vZGxEZJdFO3ttqgk7wo1JBtCMn38wMdKF8G5OvhVI13sdjrXyw3aExNCEW0y75COlgB8qYo7wySWj72GpnyU9qXSyNtkhs_CIpa5fQf8FM-BxcoQk5a_w8uSjxxOY5a_wY6-eDnNb1AvI2LKokzb8lpJPetSgi_ILx2xZ6dHsQHw4o8J06tipIapzXhJZChE0IFt0FiBnUnMStb-x9sBKeSLwN4LfFnZyKHLVLekH9MCIIfZ-GI3HcSBt__f2r_RxlbNEDoXCufq7FttcOvHFMNWNEIZk44YXvbNHOww2khhSsts-u3ueGnn1nXbKrRb85sSf2VWc1k-lFYIsgslak4hBADgTkiqBsVglfhAn932OIRe8UYWOda6Hq4FkFbXR8bzcGCPUJWYvRiHdZb66DEwBLPn7jIqbnKXruNcgd6QyRwySVuz05BTmEeArwsZps0yA6w-YO26S5X2h8BBelCpcKEMrordM_Ek5Ji2QBbicOezeyyS3zPJM27NdEpV_dZpejfkGR2UHaTrHpraSWvhcCbC0cic2J9eGF5kBbjVUCq4l5wHjqH6A5GLnQidMQJ4cmebDwEQX6Zc7jM434wr2Jo-uBiR0-n2fyClZmC-IGX-yGjN_uKKaV_Fhde_TcHs6YinRgfbwxmgSYT5IOA3PMspBDV_ft9dVNIQgbnozEUQRkF1iuH9dR8uZpX0_fhYbn4CLCgt-QgQbHphv2Hr46h65P8gAnNPA6h5-qFs0ALua6fD778nlG7-rl-riFOPRbOeYOM2P9kTbY2kCSDPaGhqOqPtTCTa3i4TCWwm39Yw==",
+      "summary": []
+    },
+    {
+      "id": "msg_082212670c8b8a4e006aad63f04e388190969510caeebda10c",
+      "type": "message",
+      "status": "completed",
+      "content": [
+        {
+          "type": "output_text",
+          "annotations": [],
+          "logprobs": [],
+          "text": "{\n  \"brand_name\": \"Old Harbor\",\n  \"class_type\": \"VODKA\",\n  \"alcohol_content\": \"40% ALC/VOL (80 PROOF)\",\n  \"net_contents\": \"750 mL\",\n  \"bottler_info\": \"Distilled and bottled by Old Harbor Distilling Co., Portland, Maine\",\n  \"country_of_origin\": null,\n  \"government_warning_heading\": \"Government Warning:\",\n  \"government_warning_body\": \"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\n  \"government_warning_heading_all_caps\": false,\n  \"government_warning_heading_bold\": true,\n  \"government_warning_body_bold\": false,\n  \"confidence\": {\n    \"brand_name\": 0.98,\n    \"class_type\": 0.98,\n    \"alcohol_content\": 0.98,\n    \"net_contents\": 0.98,\n    \"bottler_info\": 0.95,\n    \"country_of_origin\": 0.90,\n    \"government_warning_heading\": 0.97,\n    \"government_warning_body\": 0.96,\n    \"government_warning_heading_all_caps\": 0.95,\n    \"government_warning_heading_bold\": 0.90,\n    \"government_warning_body_bold\": 0.85\n  }\n}"
+        }
+      ],
+      "role": "assistant"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "presence_penalty": 0.0,
+  "previous_response_id": null,
+  "prompt_cache_key": null,
+  "prompt_cache_retention": "in_memory",
+  "reasoning": {
+    "context": "current_turn",
+    "effort": "medium",
+    "mode": "standard",
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "store": true,
+  "temperature": 1.0,
+  "text": {
+    "format": {
+      "type": "json_object"
+    },
+    "verbosity": "medium"
+  },
+  "tool_choice": "auto",
+  "tool_usage": {
+    "image_gen": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "image_tokens": 0,
+        "text_tokens": 0
+      },
+      "total_tokens": 0
+    },
+    "web_search": {
+      "num_requests": 0
+    }
+  },
+  "tools": [],
+  "top_logprobs": 0,
+  "top_p": 1.0,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 1717,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1075,
+    "output_tokens_details": {
+      "reasoning_tokens": 704
+    },
+    "total_tokens": 2792
+  },
+  "user": null,
+  "metadata": {}
+}

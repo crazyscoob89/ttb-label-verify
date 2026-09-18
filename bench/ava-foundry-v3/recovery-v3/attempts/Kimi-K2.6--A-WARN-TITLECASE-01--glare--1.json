@@ -1,0 +1,42 @@
+{
+  "id": "Kimi-K2.6--A-WARN-TITLECASE-01--glare--1",
+  "operator": "AVA-v3",
+  "model": "Kimi-K2.6",
+  "engine": "Kimi-K2.6",
+  "fixture_id": "A-WARN-TITLECASE-01",
+  "repeat": 1,
+  "condition": "glare",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.016679700000000002,
+  "request_sha256": "e97257c0ca51067213af0506949040a38bf224c9c270215bf07e79fd7ba6a919",
+  "image_sha256": "1f6f32170c939455d5db73d712779957490b6003c1123af703a4b62e268b95b6",
+  "transport": "chat",
+  "started_at": "2026-09-18T16:24:50.888032+00:00",
+  "reserved_usd": 1.10896192,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-WARN-TITLECASE-01__glare.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "ecb71de2-1863-4a9f-918b-d6ae1dbc1167",
+  "latency_s": 28.0469149799319,
+  "response_sha256": "ef9588b07e80e6194186643d50cd22770e7fedd7d6ff0d2c2d8c5bb1b8b8ed50",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--A-WARN-TITLECASE-01--glare--1.json",
+  "tokens_in": 4926,
+  "tokens_out": 3000,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 4926,
+    "completion_tokens": 3000,
+    "total_tokens": 7926,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 704,
+      "image_tokens": 4212
+    }
+  },
+  "returned_model": "Kimi-K2.6"
+}

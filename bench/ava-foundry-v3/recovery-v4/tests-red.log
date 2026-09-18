@@ -1,0 +1,71 @@
+FFFFFF
+======================================================================
+FAIL: test_duplicate_pair_is_rejected_not_pooled (test_closeout.CloseoutTests.test_duplicate_pair_is_rejected_not_pooled)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v4/test_closeout.py", line 27, in test_duplicate_pair_is_rejected_not_pooled
+    m=self.mod();b=self.row();a=self.row();a.update(operator='AVA',condition='flat')
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v4/test_closeout.py", line 7, in mod
+    self.assertTrue((ROOT/'closeout.py').exists(),'versioned closeout implementation missing')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : versioned closeout implementation missing
+
+======================================================================
+FAIL: test_failure_retained_in_visible_denominator (test_closeout.CloseoutTests.test_failure_retained_in_visible_denominator)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v4/test_closeout.py", line 30, in test_failure_retained_in_visible_denominator
+    m=self.mod();r=self.row();r['ok']=False;r['extraction_correct']={f:False for f in r['extraction_correct']};r['verdicts']={f:'needs-review' for f in r['verdicts']};r['bottle_outcomes']={f:'failure-referral' for f in r['bottle_outcomes']}
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v4/test_closeout.py", line 7, in mod
+    self.assertTrue((ROOT/'closeout.py').exists(),'versioned closeout implementation missing')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : versioned closeout implementation missing
+
+======================================================================
+FAIL: test_field_denominators_hidden_no_visual_credit (test_closeout.CloseoutTests.test_field_denominators_hidden_no_visual_credit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v4/test_closeout.py", line 13, in test_field_denominators_hidden_no_visual_credit
+    m=self.mod();r=self.row();r['visibility']['brand_name']={'visibility':'obscured','expect_referral_ok':True};r['bottle_outcomes']['brand_name']='unverifiable-correct-not-recovery'
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v4/test_closeout.py", line 7, in mod
+    self.assertTrue((ROOT/'closeout.py').exists(),'versioned closeout implementation missing')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : versioned closeout implementation missing
+
+======================================================================
+FAIL: test_fixed_pairs_exclude_other_operator_and_repeat (test_closeout.CloseoutTests.test_fixed_pairs_exclude_other_operator_and_repeat)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v4/test_closeout.py", line 24, in test_fixed_pairs_exclude_other_operator_and_repeat
+    m=self.mod();b=self.row();a=self.row();a.update(operator='AVA',condition='flat');other=dict(a,operator='ARGUS');rep=dict(a,repeat=2)
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v4/test_closeout.py", line 7, in mod
+    self.assertTrue((ROOT/'closeout.py').exists(),'versioned closeout implementation missing')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : versioned closeout implementation missing
+
+======================================================================
+FAIL: test_negative_denominator_and_dangerous_referral (test_closeout.CloseoutTests.test_negative_denominator_and_dangerous_referral)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v4/test_closeout.py", line 16, in test_negative_denominator_and_dangerous_referral
+    m=self.mod();r=self.row();r['truth']['brand_name']='mismatch';r['extraction_correct']['brand_name']=False;r['bottle_outcomes']['brand_name']='dangerous-error'
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v4/test_closeout.py", line 7, in mod
+    self.assertTrue((ROOT/'closeout.py').exists(),'versioned closeout implementation missing')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : versioned closeout implementation missing
+
+======================================================================
+FAIL: test_unknown_cost_not_zero_and_ocr_components (test_closeout.CloseoutTests.test_unknown_cost_not_zero_and_ocr_components)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v4/test_closeout.py", line 21, in test_unknown_cost_not_zero_and_ocr_components
+    m=self.mod();a=self.row();b=self.row();b.update(model='mistral-document-ai-2512',cost_usd=.003,pages_processed=1,tokens_in=None,tokens_out=None);c=self.row();c['cost_usd']=None;c['tokens_in']=None;c['tokens_out']=None
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v4/test_closeout.py", line 7, in mod
+    self.assertTrue((ROOT/'closeout.py').exists(),'versioned closeout implementation missing')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : versioned closeout implementation missing
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.013s
+
+FAILED (failures=6)

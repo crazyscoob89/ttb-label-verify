@@ -1,0 +1,44 @@
+{
+  "id": "gpt-5-mini--C-MALT-01--angle--1",
+  "operator": "AVA-v3",
+  "model": "gpt-5-mini",
+  "engine": "gpt-5-mini",
+  "fixture_id": "C-MALT-01",
+  "repeat": 1,
+  "condition": "angle",
+  "route": "Azure Foundry responses",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.00290325,
+  "request_sha256": "c9ee1ff1c1671716526bc827e00cbcaa2d6aef36c2f044ec143fa97c7e447438",
+  "image_sha256": "100bd7c87577aba93c3630fbf7526d52054343f853a545bae81196227dc9a026",
+  "transport": "responses",
+  "started_at": "2026-09-18T16:07:32.140548+00:00",
+  "reserved_usd": 0.2949584,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-MALT-01__angle.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "29d12a90-5746-4024-b1e9-cfe20c390cd0",
+  "latency_s": 14.27439144696109,
+  "response_sha256": "a1abc3bd8197afeffa490a2a73825efc6a6da21b0d7bd879a34b066b72944714",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-5-mini--C-MALT-01--angle--1.json",
+  "tokens_in": 1717,
+  "tokens_out": 1237,
+  "pages_processed": null,
+  "usage": {
+    "input_tokens": 1717,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1237,
+    "output_tokens_details": {
+      "reasoning_tokens": 896
+    },
+    "total_tokens": 2954
+  },
+  "returned_model": "gpt-5-mini"
+}

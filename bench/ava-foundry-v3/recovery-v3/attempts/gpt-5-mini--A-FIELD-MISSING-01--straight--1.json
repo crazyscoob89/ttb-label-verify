@@ -1,0 +1,44 @@
+{
+  "id": "gpt-5-mini--A-FIELD-MISSING-01--straight--1",
+  "operator": "AVA-v3",
+  "model": "gpt-5-mini",
+  "engine": "gpt-5-mini",
+  "fixture_id": "A-FIELD-MISSING-01",
+  "repeat": 1,
+  "condition": "straight",
+  "route": "Azure Foundry responses",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.00235125,
+  "request_sha256": "463a7b93c5f8b44acc706a2e4d34c911db6d7d6326feadabc925c3587e2bcb3f",
+  "image_sha256": "fbe2320836ee47d13e1d3c9438d7575cb1bd0f453c44f8513bb610f960d4a3a5",
+  "transport": "responses",
+  "started_at": "2026-09-18T16:34:42.017670+00:00",
+  "reserved_usd": 0.2949584,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-FIELD-MISSING-01__straight.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "c8dc2eea-dcc6-4dd4-8fb3-2119a757a303",
+  "latency_s": 10.168473506928422,
+  "response_sha256": "6f223efad19fcc81f89037f8628e837211ba3e3b0c602b8cda85dcc37c238296",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-5-mini--A-FIELD-MISSING-01--straight--1.json",
+  "tokens_in": 1717,
+  "tokens_out": 961,
+  "pages_processed": null,
+  "usage": {
+    "input_tokens": 1717,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 961,
+    "output_tokens_details": {
+      "reasoning_tokens": 640
+    },
+    "total_tokens": 2678
+  },
+  "returned_model": "gpt-5-mini"
+}

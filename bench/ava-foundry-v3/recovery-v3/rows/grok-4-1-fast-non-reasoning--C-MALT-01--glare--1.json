@@ -1,0 +1,191 @@
+{
+  "id": "grok-4-1-fast-non-reasoning--C-MALT-01--glare--1",
+  "operator": "AVA-v3",
+  "model": "grok-4-1-fast-non-reasoning",
+  "engine": "grok-4-1-fast-non-reasoning",
+  "fixture_id": "C-MALT-01",
+  "repeat": 1,
+  "condition": "glare",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": {
+    "brand_name": "Ridge 5L",
+    "class_type": "Brewed and bottled",
+    "alcohol_content": null,
+    "net_contents": "5L",
+    "bottler_info": "Ridge Brewing Co., North Carolina",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "General women should not consume alcoholic beverages during pregnancy because they can cause birth defects (2) Consumption of alcohol beverages during pregnancy can cause birth defects (2) Consumption of alcohol beverages during pregnancy can cause birth defects.",
+    "government_warning_heading_all_caps": true,
+    "confidence": {
+      "brand_name": 0.9,
+      "class_type": 0.8,
+      "alcohol_content": 1.0,
+      "net_contents": 0.9,
+      "bottler_info": 0.8,
+      "country_of_origin": 1.0,
+      "government_warning_heading": 1.0,
+      "government_warning_body": 0.7,
+      "government_warning_heading_all_caps": true,
+      "government_warning_heading_bold": true,
+      "government_warning_body_bold": false
+    }
+  },
+  "error_class": "schema-or-incomplete-output",
+  "cost_usd": 0.0006133,
+  "request_sha256": "2a2f314f041fe64ed2386a4bdf9938bca0d389c045a101d9a6ea77fb9ae39093",
+  "image_sha256": "5e23f28d8fc0aa30e72b42ac1d13ce4b02839a4dd78968e477467da0a2a05e30",
+  "transport": "chat",
+  "started_at": "2026-09-18T16:08:55.630151+00:00",
+  "reserved_usd": 0.23233672,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-MALT-01__glare.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "fc5a0c57-3b7f-4091-a6cb-3538a0821ca6",
+  "latency_s": 6.253641782095656,
+  "response_sha256": "e2eac13a9739a8521dbc1fdc581381be9f2d0f5556d333eb13cdb9ec5a641c2a",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/grok-4-1-fast-non-reasoning--C-MALT-01--glare--1.json",
+  "tokens_in": 2489,
+  "tokens_out": 231,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 2489,
+    "completion_tokens": 231,
+    "total_tokens": 2720,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 858,
+      "audio_tokens": 0,
+      "text_tokens": 697,
+      "image_tokens": 1792
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "num_sources_used": 0
+  },
+  "returned_model": "grok-4-1-fast-non-reasoning",
+  "raw_text": "{\"brand_name\": \"Ridge 5L\", \"class_type\": \"Brewed and bottled\", \"alcohol_content\": null, \"net_contents\": \"5L\", \"bottler_info\": \"Ridge Brewing Co., North Carolina\", \"country_of_origin\": null, \"government_warning_heading\": \"GOVERNMENT WARNING:\", \"government_warning_body\": \"General women should not consume alcoholic beverages during pregnancy because they can cause birth defects (2) Consumption of alcohol beverages during pregnancy can cause birth defects (2) Consumption of alcohol beverages during pregnancy can cause birth defects.\", \"government_warning_heading_all_caps\": true, \"confidence\": {\"brand_name\": 0.9, \"class_type\": 0.8, \"alcohol_content\": 1.0, \"net_contents\": 0.9, \"bottler_info\": 0.8, \"country_of_origin\": 1.0, \"government_warning_heading\": 1.0, \"government_warning_body\": 0.7, \"government_warning_heading_all_caps\": true, \"government_warning_heading_bold\": true, \"government_warning_body_bold\": false}}",
+  "finish_reason": "stop",
+  "validation_errors": {
+    "government_warning_heading_all_caps": "missing or invalid component confidence",
+    "government_warning_heading_bold": "missing or invalid component confidence",
+    "government_warning_body_bold": "missing or invalid component confidence"
+  },
+  "category": "clean",
+  "commodity": "malt",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "needs-review",
+    "class_type": "needs-review",
+    "alcohol_content": "needs-review",
+    "net_contents": "needs-review",
+    "bottler_info": "needs-review",
+    "country_of_origin": "needs-review",
+    "government_warning": "needs-review"
+  },
+  "classes": {
+    "brand_name": "referral",
+    "class_type": "referral",
+    "alcohol_content": "referral",
+    "net_contents": "referral",
+    "bottler_info": "referral",
+    "country_of_origin": "referral",
+    "government_warning": "referral"
+  },
+  "reasons": {
+    "brand_name": "extraction failure: schema-or-incomplete-output",
+    "class_type": "extraction failure: schema-or-incomplete-output",
+    "alcohol_content": "extraction failure: schema-or-incomplete-output",
+    "net_contents": "extraction failure: schema-or-incomplete-output",
+    "bottler_info": "extraction failure: schema-or-incomplete-output",
+    "country_of_origin": "extraction failure: schema-or-incomplete-output",
+    "government_warning": "extraction failure: schema-or-incomplete-output"
+  },
+  "extraction_correct": {
+    "brand_name": false,
+    "class_type": false,
+    "alcohol_content": false,
+    "net_contents": false,
+    "bottler_info": false,
+    "country_of_origin": false,
+    "government_warning": false
+  },
+  "visibility": {
+    "brand_name": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "class_type": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "alcohol_content": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "net_contents": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "bottler_info": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "country_of_origin": {
+      "visibility": "absent",
+      "expect_referral_ok": true,
+      "basis": "No printed value in source",
+      "annotator": "AVA pre-inference"
+    },
+    "government_warning": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    }
+  },
+  "bottle_outcomes": {
+    "brand_name": "failure-referral",
+    "class_type": "failure-referral",
+    "alcohol_content": "failure-referral",
+    "net_contents": "failure-referral",
+    "bottler_info": "failure-referral",
+    "country_of_origin": "failure-referral",
+    "government_warning": "failure-referral"
+  },
+  "pipeline_seconds": 6.2786197600653395
+}

@@ -1,0 +1,42 @@
+{
+  "id": "Kimi-K2.6--A-BRAND-CASE-01--flat--3",
+  "operator": "AVA-v3",
+  "model": "Kimi-K2.6",
+  "engine": "Kimi-K2.6",
+  "fixture_id": "A-BRAND-CASE-01",
+  "repeat": 3,
+  "condition": "flat",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.0083331,
+  "request_sha256": "99b698468b0911fc12f6922f3443108bd4ad6fab4952a0768b278d676ff7c778",
+  "image_sha256": "6c3e7b4bc076cbfffe5b7d3379c7d167847370a8d24cae052a0850807e7a9329",
+  "transport": "chat",
+  "started_at": "2026-09-18T15:54:14.039216+00:00",
+  "reserved_usd": 1.10896192,
+  "source_image": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/A-BRAND-CASE-01.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "5afa12fc-d0b4-4878-8edc-0cfa8885f1dd",
+  "latency_s": 14.759714535088278,
+  "response_sha256": "73432ae3dbca11e78f2fb0618895376bbcff45d63f4ad53813a769a9fe40e4ef",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--A-BRAND-CASE-01--flat--3.json",
+  "tokens_in": 2658,
+  "tokens_out": 1452,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 2658,
+    "completion_tokens": 1452,
+    "total_tokens": 4110,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 704,
+      "image_tokens": 1944
+    }
+  },
+  "returned_model": "Kimi-K2.6"
+}

@@ -1,0 +1,41 @@
+test_denominators_failure_latency (__main__.ReportTests.test_denominators_failure_latency) ... FAIL
+test_group_identity_preserves_operator_condition (__main__.ReportTests.test_group_identity_preserves_operator_condition) ... FAIL
+test_hidden_correct_never_clean_auto (__main__.ReportTests.test_hidden_correct_never_clean_auto) ... FAIL
+
+======================================================================
+FAIL: test_denominators_failure_latency (__main__.ReportTests.test_denominators_failure_latency)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_report.py", line 9, in test_denominators_failure_latency
+    m=self.module();r={'ok':True,'fixture_id':'a','repeat':1,'latency_s':2,'category':'clean','truth':{f:'match' for f in V.S.FIELDS},'verdicts':{f:'match' for f in V.S.FIELDS},'extraction_correct':{f:True for f in V.S.FIELDS},'classes':{f:'correct' for f in V.S.FIELDS},'cost_usd':.1}
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_report.py", line 6, in module
+    self.assertTrue((V.ROOT/'report.py').exists(),'report module required')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : report module required
+
+======================================================================
+FAIL: test_group_identity_preserves_operator_condition (__main__.ReportTests.test_group_identity_preserves_operator_condition)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_report.py", line 16, in test_group_identity_preserves_operator_condition
+    m=self.module();self.assertNotEqual(m.group_key({'operator':'AVA','model':'x','condition':'flat'}),m.group_key({'operator':'ARGUS','model':'x','condition':'flat'}));self.assertNotEqual(m.group_key({'operator':'AVA','model':'x','condition':'flat'}),m.group_key({'operator':'AVA','model':'x','condition':'glare'}))
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_report.py", line 6, in module
+    self.assertTrue((V.ROOT/'report.py').exists(),'report module required')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : report module required
+
+======================================================================
+FAIL: test_hidden_correct_never_clean_auto (__main__.ReportTests.test_hidden_correct_never_clean_auto)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_report.py", line 13, in test_hidden_correct_never_clean_auto
+    m=self.module();r={'ok':True,'fixture_id':'a','repeat':1,'latency_s':2,'category':'clean','truth':{f:'match' for f in V.S.FIELDS},'verdicts':{f:'match' for f in V.S.FIELDS},'extraction_correct':{f:True for f in V.S.FIELDS},'classes':{f:'correct' for f in V.S.FIELDS},'bottle_outcomes':{f:'unverifiable-correct-not-recovery' for f in V.S.FIELDS},'cost_usd':.1}
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_report.py", line 6, in module
+    self.assertTrue((V.ROOT/'report.py').exists(),'report module required')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : report module required
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.008s
+
+FAILED (failures=3)

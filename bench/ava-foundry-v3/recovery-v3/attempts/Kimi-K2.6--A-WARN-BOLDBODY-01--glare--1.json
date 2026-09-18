@@ -1,0 +1,42 @@
+{
+  "id": "Kimi-K2.6--A-WARN-BOLDBODY-01--glare--1",
+  "operator": "AVA-v3",
+  "model": "Kimi-K2.6",
+  "engine": "Kimi-K2.6",
+  "fixture_id": "A-WARN-BOLDBODY-01",
+  "repeat": 1,
+  "condition": "glare",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.016679700000000002,
+  "request_sha256": "475b4148c184815b58761bf1f333e3e2e266c8a3b1f8d19a5e9c220ba58f5d07",
+  "image_sha256": "b819c64a759e1aa44478c3ef2b6e6ac223d75c127119564d5ba9a13df8a9c02e",
+  "transport": "chat",
+  "started_at": "2026-09-18T16:27:53.966827+00:00",
+  "reserved_usd": 1.10896192,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-WARN-BOLDBODY-01__glare.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "b1d3817a-7937-4ffb-9dc5-b08690d54794",
+  "latency_s": 26.61390920705162,
+  "response_sha256": "f0f8b3d1016cdeb3c47df64fce18bc5918d107248a6e76178ffa47bac54bf348",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--A-WARN-BOLDBODY-01--glare--1.json",
+  "tokens_in": 4926,
+  "tokens_out": 3000,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 4926,
+    "completion_tokens": 3000,
+    "total_tokens": 7926,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 704,
+      "image_tokens": 4212
+    }
+  },
+  "returned_model": "Kimi-K2.6"
+}

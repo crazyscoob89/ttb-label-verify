@@ -1,0 +1,196 @@
+{
+  "id": "gpt-4.1-mini--A-ABV-WRONG-01--glare--1",
+  "operator": "AVA-v3",
+  "model": "gpt-4.1-mini",
+  "engine": "gpt-4.1-mini",
+  "fixture_id": "A-ABV-WRONG-01",
+  "repeat": 1,
+  "condition": "glare",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": true,
+  "extracted": {
+    "brand_name": "Mars Lantern",
+    "class_type": "PINOT NOIR",
+    "alcohol_content": "13.5% ALC",
+    "net_contents": null,
+    "bottler_info": "Produced and bottled by Mars Lantern Winery, Monterey, California",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 0.9,
+      "class_type": 0.7,
+      "alcohol_content": 0.6,
+      "net_contents": 0.0,
+      "bottler_info": 0.7,
+      "country_of_origin": 0.0,
+      "government_warning_heading": 0.9,
+      "government_warning_body": 0.75,
+      "government_warning_heading_all_caps": 0.9,
+      "government_warning_heading_bold": 0.9,
+      "government_warning_body_bold": 0.8
+    }
+  },
+  "error_class": null,
+  "cost_usd": 0.0012072,
+  "request_sha256": "daca3033cd288c38f1b1fc082c0b0625e669fbb4b65e3999ef434c0db39284c0",
+  "image_sha256": "3fb81c20a9678d22d9a7a43c8c5144670d5bcc4cfb4ddcbfacdbbb9076c21df9",
+  "transport": "chat",
+  "started_at": "2026-09-18T16:33:53.075111+00:00",
+  "reserved_usd": 0.46665344,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-ABV-WRONG-01__glare.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "c124aec0-c9c9-497c-8598-2a2306e31efa",
+  "latency_s": 5.414458176936023,
+  "response_sha256": "998023bd1bddc50d8c0c38176df4afd93bfe35642583387b81996ef6e3db5d8b",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-4.1-mini--A-ABV-WRONG-01--glare--1.json",
+  "tokens_in": 2070,
+  "tokens_out": 237,
+  "pages_processed": null,
+  "usage": {
+    "completion_tokens": 237,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "latency_checkpoint": {
+      "engine_tbt_ms": 9,
+      "engine_ttft_ms": 720,
+      "engine_ttlt_ms": 2790,
+      "pre_inference_ms": 326,
+      "service_tbt_ms": 9,
+      "service_ttft_ms": 1510,
+      "service_ttlt_ms": 3576,
+      "user_visible_ttft_ms": 1184
+    },
+    "prompt_tokens": 2070,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 0,
+      "image_tokens": 840
+    },
+    "total_tokens": 2307
+  },
+  "returned_model": "gpt-4.1-mini-2025-04-14",
+  "raw_text": "{\"brand_name\":\"Mars Lantern\",\"class_type\":\"PINOT NOIR\",\"alcohol_content\":\"13.5% ALC\",\"net_contents\":null,\"bottler_info\":\"Produced and bottled by Mars Lantern Winery, Monterey, California\",\"country_of_origin\":null,\"government_warning_heading\":\"GOVERNMENT WARNING:\",\"government_warning_body\":\"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\"government_warning_heading_all_caps\":true,\"government_warning_heading_bold\":true,\"government_warning_body_bold\":false,\"confidence\":{\"brand_name\":0.9,\"class_type\":0.7,\"alcohol_content\":0.6,\"net_contents\":0.0,\"bottler_info\":0.7,\"country_of_origin\":0.0,\"government_warning_heading\":0.9,\"government_warning_body\":0.75,\"government_warning_heading_all_caps\":0.9,\"government_warning_heading_bold\":0.9,\"government_warning_body_bold\":0.8}}",
+  "finish_reason": "stop",
+  "validation_errors": {},
+  "category": "adversarial",
+  "commodity": "wine",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "mismatch",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "mismatch",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "mismatch",
+    "class_type": "needs-review",
+    "alcohol_content": "needs-review",
+    "net_contents": "needs-review",
+    "bottler_info": "needs-review",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "classes": {
+    "brand_name": "false_mismatch",
+    "class_type": "referral",
+    "alcohol_content": "referral",
+    "net_contents": "referral",
+    "bottler_info": "referral",
+    "country_of_origin": "correct",
+    "government_warning": "correct"
+  },
+  "reasons": {
+    "brand_name": "'Mars Lantern' vs declared 'Marsh Lantern'",
+    "class_type": "confidence 0.7 below threshold 0.75",
+    "alcohol_content": "confidence 0.6 below threshold 0.75",
+    "net_contents": "confidence 0.0 below threshold 0.75",
+    "bottler_info": "confidence 0.7 below threshold 0.75",
+    "country_of_origin": "domestic product",
+    "government_warning": "exact statutory wording and formatting"
+  },
+  "extraction_correct": {
+    "brand_name": false,
+    "class_type": true,
+    "alcohol_content": false,
+    "net_contents": false,
+    "bottler_info": false,
+    "country_of_origin": true,
+    "government_warning": true
+  },
+  "visibility": {
+    "brand_name": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "class_type": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "alcohol_content": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "net_contents": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "bottler_info": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "country_of_origin": {
+      "visibility": "absent",
+      "expect_referral_ok": true,
+      "basis": "No printed value in source",
+      "annotator": "AVA pre-inference"
+    },
+    "government_warning": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    }
+  },
+  "bottle_outcomes": {
+    "brand_name": "dangerous-error",
+    "class_type": "safe-referral",
+    "alcohol_content": "safe-referral",
+    "net_contents": "safe-referral",
+    "bottler_info": "safe-referral",
+    "country_of_origin": "correct-absence-not-applicable",
+    "government_warning": "unverifiable-correct-not-recovery"
+  },
+  "pipeline_seconds": 5.44058429391589
+}

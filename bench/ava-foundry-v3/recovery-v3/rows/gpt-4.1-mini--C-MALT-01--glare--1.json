@@ -1,0 +1,196 @@
+{
+  "id": "gpt-4.1-mini--C-MALT-01--glare--1",
+  "operator": "AVA-v3",
+  "model": "gpt-4.1-mini",
+  "engine": "gpt-4.1-mini",
+  "fixture_id": "C-MALT-01",
+  "repeat": 1,
+  "condition": "glare",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": true,
+  "extracted": {
+    "brand_name": "Iron Kettle",
+    "class_type": null,
+    "alcohol_content": "5% ALC/VOL",
+    "net_contents": null,
+    "bottler_info": "Brewed and bottled by Iron Kettle Brewing Co., Asheville, Carolina",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING",
+    "government_warning_body": "According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 0.95,
+      "class_type": 0.0,
+      "alcohol_content": 0.9,
+      "net_contents": 0.0,
+      "bottler_info": 0.85,
+      "country_of_origin": 0.0,
+      "government_warning_heading": 0.9,
+      "government_warning_body": 0.9,
+      "government_warning_heading_all_caps": 1.0,
+      "government_warning_heading_bold": 0.9,
+      "government_warning_body_bold": 0.7
+    }
+  },
+  "error_class": null,
+  "cost_usd": 0.0013096,
+  "request_sha256": "dacd6f5b08b489444d8c9d4a8664d0c86e91c1600f8b734803d447e31d047a38",
+  "image_sha256": "5e23f28d8fc0aa30e72b42ac1d13ce4b02839a4dd78968e477467da0a2a05e30",
+  "transport": "chat",
+  "started_at": "2026-09-18T16:08:43.628064+00:00",
+  "reserved_usd": 0.46665344,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-MALT-01__glare.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "b9e1b9f4-3efb-4a5e-8a6e-ff0e04260f82",
+  "latency_s": 5.4951118130702525,
+  "response_sha256": "82a089f1e307bb4ad061e306c0200a542febe395b32a9b6190ed2ce3cfe8a275",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-4.1-mini--C-MALT-01--glare--1.json",
+  "tokens_in": 2070,
+  "tokens_out": 301,
+  "pages_processed": null,
+  "usage": {
+    "completion_tokens": 301,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "latency_checkpoint": {
+      "engine_tbt_ms": 8,
+      "engine_ttft_ms": 713,
+      "engine_ttlt_ms": 3101,
+      "pre_inference_ms": 234,
+      "service_tbt_ms": 8,
+      "service_ttft_ms": 1356,
+      "service_ttlt_ms": 3738,
+      "user_visible_ttft_ms": 1122
+    },
+    "prompt_tokens": 2070,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 0,
+      "image_tokens": 840
+    },
+    "total_tokens": 2371
+  },
+  "returned_model": "gpt-4.1-mini-2025-04-14",
+  "raw_text": "{\n  \"brand_name\": \"Iron Kettle\",\n  \"class_type\": null,\n  \"alcohol_content\": \"5% ALC/VOL\",\n  \"net_contents\": null,\n  \"bottler_info\": \"Brewed and bottled by Iron Kettle Brewing Co., Asheville, Carolina\",\n  \"country_of_origin\": null,\n  \"government_warning_heading\": \"GOVERNMENT WARNING\",\n  \"government_warning_body\": \"According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\n  \"government_warning_heading_all_caps\": true,\n  \"government_warning_heading_bold\": true,\n  \"government_warning_body_bold\": false,\n  \"confidence\": {\n    \"brand_name\": 0.95,\n    \"class_type\": 0.0,\n    \"alcohol_content\": 0.9,\n    \"net_contents\": 0.0,\n    \"bottler_info\": 0.85,\n    \"country_of_origin\": 0.0,\n    \"government_warning_heading\": 0.9,\n    \"government_warning_body\": 0.9,\n    \"government_warning_heading_all_caps\": 1.0,\n    \"government_warning_heading_bold\": 0.9,\n    \"government_warning_body_bold\": 0.7\n  }\n}",
+  "finish_reason": "stop",
+  "validation_errors": {},
+  "category": "clean",
+  "commodity": "malt",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "match",
+    "class_type": "needs-review",
+    "alcohol_content": "mismatch",
+    "net_contents": "needs-review",
+    "bottler_info": "mismatch",
+    "country_of_origin": "not-applicable",
+    "government_warning": "needs-review"
+  },
+  "classes": {
+    "brand_name": "correct",
+    "class_type": "referral",
+    "alcohol_content": "false_mismatch",
+    "net_contents": "referral",
+    "bottler_info": "false_mismatch",
+    "country_of_origin": "correct",
+    "government_warning": "referral"
+  },
+  "reasons": {
+    "brand_name": "normalized equivalence",
+    "class_type": "confidence 0.0 below threshold 0.75",
+    "alcohol_content": "label 5.0 vs declared 5.6",
+    "net_contents": "confidence 0.0 below threshold 0.75",
+    "bottler_info": "'Brewed and bottled by Iron Kettle Brewing Co., Asheville, Carolina' vs declared 'Iron Kettle Brewing Co., Asheville, North Carolina'",
+    "country_of_origin": "domestic product",
+    "government_warning": "confidence 0.7 below threshold 0.75"
+  },
+  "extraction_correct": {
+    "brand_name": true,
+    "class_type": false,
+    "alcohol_content": false,
+    "net_contents": false,
+    "bottler_info": false,
+    "country_of_origin": true,
+    "government_warning": false
+  },
+  "visibility": {
+    "brand_name": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "class_type": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "alcohol_content": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "net_contents": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "bottler_info": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "country_of_origin": {
+      "visibility": "absent",
+      "expect_referral_ok": true,
+      "basis": "No printed value in source",
+      "annotator": "AVA pre-inference"
+    },
+    "government_warning": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    }
+  },
+  "bottle_outcomes": {
+    "brand_name": "unverifiable-correct-not-recovery",
+    "class_type": "safe-referral",
+    "alcohol_content": "dangerous-error",
+    "net_contents": "safe-referral",
+    "bottler_info": "dangerous-error",
+    "country_of_origin": "correct-absence-not-applicable",
+    "government_warning": "safe-referral"
+  },
+  "pipeline_seconds": 5.51909690303728
+}

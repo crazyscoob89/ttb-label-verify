@@ -1,0 +1,42 @@
+{
+  "id": "Kimi-K2.6--W-ABV-4045-01--flat--3",
+  "operator": "AVA-v3",
+  "model": "Kimi-K2.6",
+  "engine": "Kimi-K2.6",
+  "fixture_id": "W-ABV-4045-01",
+  "repeat": 3,
+  "condition": "flat",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.0093291,
+  "request_sha256": "cdbf28811d6b8e1216ad184053b977d79d5498905c3a9fd42fdcd9894bf5fc98",
+  "image_sha256": "2717efcdf4b2ef5e30570b11d8646c49f4bc82d70ee80d0d1a1fe6711f8f7435",
+  "transport": "chat",
+  "started_at": "2026-09-18T15:55:49.465059+00:00",
+  "reserved_usd": 1.10896192,
+  "source_image": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/W-ABV-4045-01.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "0a4f8463-63da-43be-822e-4aca2fcbd32c",
+  "latency_s": 22.000449960003607,
+  "response_sha256": "0827656049f1ae8b16e1c9c7448d1ae75d761560c2528ab33b31b5b269834487",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--W-ABV-4045-01--flat--3.json",
+  "tokens_in": 2658,
+  "tokens_out": 1701,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 2658,
+    "completion_tokens": 1701,
+    "total_tokens": 4359,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 704,
+      "image_tokens": 1944
+    }
+  },
+  "returned_model": "Kimi-K2.6"
+}
