@@ -40,8 +40,8 @@ def load_evidence(here=HERE):
             raise ValueError('fixture/evidence hash mismatch: ' + name)
     # The manifest must cover every immutable fixture, not a selective subset.
     required = {'bench/raw_results.json', 'fixtures/manifest.json'}
-    required |= {str(p.relative_to(here.parent)) for p in (here.parent / 'fixtures/ground_truth').glob('*.json')}
-    required |= {str(p.relative_to(here.parent)) for p in (here.parent / 'fixtures/images').glob('*.png')}
+    required |= {p.relative_to(here.parent).as_posix() for p in (here.parent / 'fixtures/ground_truth').glob('*.json')}
+    required |= {p.relative_to(here.parent).as_posix() for p in (here.parent / 'fixtures/images').glob('*.png')}
     if set(manifest) != required:
         raise ValueError('incomplete immutable-evidence manifest')
     return raw, fixtures

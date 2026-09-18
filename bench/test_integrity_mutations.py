@@ -6,8 +6,9 @@ import json
 import shutil
 import tempfile
 import unittest
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 from unittest.mock import patch
+import replay
 import test_results_integrity as gate
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -35,6 +36,45 @@ class IntegrityMutationTests(unittest.TestCase):
 
     def test_clean_evidence_passes(self):
         self.assertEqual(self.run_gate(), 0)
+
+    @contextlib.contextmanager
+    def windows_relative_paths(self):
+        """Exercise real replay with Windows relative-path rendering on any OS.
+
+        Only the relative path representation is substituted; fixture discovery,
+        file reads, hashes, scoring and report validation remain real.
+        """
+        original = Path.relative_to
+        observed = []
+
+        def relative(path, *args, **kwargs):
+            result = PureWindowsPath(*original(path, *args, **kwargs).parts)
+            observed.append(str(result))
+            return result
+
+        with patch.object(Path, 'relative_to', relative):
+            yield observed
+
+    def test_windows_relative_paths_pass_full_gate(self):
+        with self.windows_relative_paths() as observed:
+            result = self.run_gate()
+        self.assertTrue(any('ground_truth' + chr(92) in name for name in observed))
+        self.assertTrue(any('images' + chr(92) in name for name in observed))
+        self.assertEqual(result, 0, 'Windows path separators must not reject untouched evidence')
+
+    def test_windows_relative_paths_still_reject_missing_manifest_entry(self):
+        self.mutate_json('evidence_manifest.json',
+                         lambda data: data.pop('fixtures/images/C-WINE-01.png'))
+        with self.windows_relative_paths():
+            with self.assertRaisesRegex(ValueError, 'incomplete immutable-evidence manifest'):
+                replay.load_evidence(self.root / 'bench')
+
+    def test_windows_relative_paths_still_reject_changed_fixture(self):
+        image = self.root / 'fixtures/images/C-WINE-01.png'
+        image.write_bytes(image.read_bytes() + b'changed')
+        with self.windows_relative_paths():
+            with self.assertRaisesRegex(ValueError, 'fixture/evidence hash mismatch'):
+                replay.load_evidence(self.root / 'bench')
 
     def test_changed_raw_extraction_rejects_stale_verdict(self):
         def change(data):
