@@ -1,0 +1,136 @@
+{
+  "engine": "gpt-4.1-mini",
+  "model": "gpt-4.1-mini",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "repeat": 1,
+  "ok": true,
+  "extracted": {
+    "brand_name": "Quarry Row",
+    "class_type": "MALT LIQUOR",
+    "alcohol_content": "8.1% ALC/VOL",
+    "net_contents": null,
+    "bottler_info": null,
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 1,
+      "class_type": 1,
+      "alcohol_content": 1,
+      "net_contents": 0,
+      "bottler_info": 0,
+      "country_of_origin": 0,
+      "government_warning_heading": 1,
+      "government_warning_body": 1,
+      "government_warning_heading_all_caps": 1,
+      "government_warning_heading_bold": 1,
+      "government_warning_body_bold": 1
+    }
+  },
+  "error_class": null,
+  "raw_text": "{\n  \"brand_name\": \"Quarry Row\",\n  \"class_type\": \"MALT LIQUOR\",\n  \"alcohol_content\": \"8.1% ALC/VOL\",\n  \"net_contents\": null,\n  \"bottler_info\": null,\n  \"country_of_origin\": null,\n  \"government_warning_heading\": \"GOVERNMENT WARNING:\",\n  \"government_warning_body\": \"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\n  \"government_warning_heading_all_caps\": true,\n  \"government_warning_heading_bold\": true,\n  \"government_warning_body_bold\": false,\n  \"confidence\": {\n    \"brand_name\": 1,\n    \"class_type\": 1,\n    \"alcohol_content\": 1,\n    \"net_contents\": 0,\n    \"bottler_info\": 0,\n    \"country_of_origin\": 0,\n    \"government_warning_heading\": 1,\n    \"government_warning_body\": 1,\n    \"government_warning_heading_all_caps\": 1,\n    \"government_warning_heading_bold\": 1,\n    \"government_warning_body_bold\": 1\n  }\n}",
+  "tokens_in": 2109,
+  "tokens_out": 273,
+  "started_at": "2026-09-18T14:39:52.331285+00:00",
+  "request_sha256": "83092e4844e554495bd10ec687fa51bf615ad886a6adfb356f3250b7119edbe9",
+  "image_sha256": "bccda011d9dfb0c9b5c14cd422930a5d62c315e7caa0519dfd47f988ae94497a",
+  "transport": "chat",
+  "cost_usd": null,
+  "http_status": 200,
+  "response_bytes": 2568,
+  "request_id": "4052358a-ea57-4927-9291-7f597164b158",
+  "latency_s": 4.803468,
+  "finish_reason": "stop",
+  "returned_model": "gpt-4.1-mini-2025-04-14",
+  "usage": {
+    "completion_tokens": 273,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "latency_checkpoint": {
+      "engine_tbt_ms": 8,
+      "engine_ttft_ms": 572,
+      "engine_ttlt_ms": 2677,
+      "pre_inference_ms": 320,
+      "service_tbt_ms": 8,
+      "service_ttft_ms": 1449,
+      "service_ttlt_ms": 3549,
+      "user_visible_ttft_ms": 1129
+    },
+    "prompt_tokens": 2109,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 0,
+      "image_tokens": 864
+    },
+    "total_tokens": 2382
+  },
+  "validation_errors": {},
+  "guard_charge_usd": 0.0038214,
+  "unknown_charge_reserved_usd": 0,
+  "fixture_id": "A-FIELD-MISSING-01",
+  "category": "adversarial",
+  "commodity": "malt",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "needs-review",
+    "bottler_info": "needs-review",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "needs-review",
+    "bottler_info": "needs-review",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "needs-review",
+    "bottler_info": "needs-review",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "classes": {
+    "brand_name": "correct",
+    "class_type": "correct",
+    "alcohol_content": "correct",
+    "net_contents": "referral",
+    "bottler_info": "referral",
+    "country_of_origin": "correct",
+    "government_warning": "correct"
+  },
+  "reasons": {
+    "brand_name": "normalized equivalence",
+    "class_type": "normalized equivalence",
+    "alcohol_content": "8.1 == 8.1",
+    "net_contents": "confidence 0 below threshold 0.75",
+    "bottler_info": "confidence 0 below threshold 0.75",
+    "country_of_origin": "domestic product",
+    "government_warning": "exact statutory wording and formatting"
+  },
+  "extraction_correct": {
+    "brand_name": true,
+    "class_type": true,
+    "alcohol_content": true,
+    "net_contents": true,
+    "bottler_info": true,
+    "country_of_origin": true,
+    "government_warning": true
+  },
+  "pipeline_seconds": 4.830282
+}

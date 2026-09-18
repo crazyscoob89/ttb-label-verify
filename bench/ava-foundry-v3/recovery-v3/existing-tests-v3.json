@@ -1,0 +1,85 @@
+[
+  {
+    "name": "hardened-suite",
+    "command": [
+      "python3",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "bench",
+      "-p",
+      "test_*.py"
+    ],
+    "cwd": "/opt/data/projects/ttb-label-verify-revision",
+    "exit_code": 0,
+    "log": "hardened-suite.log"
+  },
+  {
+    "name": "hardened-scoring",
+    "command": [
+      "python3",
+      "-B",
+      "bench/test_scoring.py"
+    ],
+    "cwd": "/opt/data/projects/ttb-label-verify-revision",
+    "exit_code": 0,
+    "log": "hardened-scoring.log"
+  },
+  {
+    "name": "hardened-integrity",
+    "command": [
+      "python3",
+      "-B",
+      "bench/test_results_integrity.py"
+    ],
+    "cwd": "/opt/data/projects/ttb-label-verify-revision",
+    "exit_code": 0,
+    "log": "hardened-integrity.log"
+  },
+  {
+    "name": "inherited-scoring",
+    "command": [
+      "python3",
+      "-B",
+      "bench/test_scoring.py"
+    ],
+    "cwd": "/opt/data/projects/ttb-label-verify-ava-recovery-v2",
+    "exit_code": 0,
+    "log": "inherited-scoring.log"
+  },
+  {
+    "name": "inherited-integrity",
+    "command": [
+      "python3",
+      "-B",
+      "bench/test_results_integrity.py"
+    ],
+    "cwd": "/opt/data/projects/ttb-label-verify-ava-recovery-v2",
+    "exit_code": 0,
+    "log": "inherited-integrity.log"
+  },
+  {
+    "name": "original-harness",
+    "command": [
+      "python3",
+      "-B",
+      "test_harness.py"
+    ],
+    "cwd": "/opt/data/benchmarks/ttb-foundry-20260918-v1",
+    "exit_code": 0,
+    "log": "original-harness.log"
+  },
+  {
+    "name": "original-bottles",
+    "command": [
+      "/opt/data/asset-venv/bin/python",
+      "-B",
+      "test_corpus.py"
+    ],
+    "cwd": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles",
+    "exit_code": 0,
+    "log": "original-bottles.log"
+  }
+]

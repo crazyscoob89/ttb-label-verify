@@ -1,0 +1,127 @@
+{
+  "probe_metadata": {
+    "timestamp_utc": "2026-09-18T14:34:17.291924+00:00",
+    "endpoint": "https://ttb-foundry-trial-resource.openai.azure.com/openai/v1",
+    "auth": "api-key header",
+    "method": "chat/completions with base64 image_url part",
+    "gate": "A deployment counts as vision-capable only if it reads back a random secret token rendered in the probe image. HTTP 200 alone is insufficient: text-only deployments may silently ignore the image and answer blind, which would yield fabricated benchmark extractions.",
+    "secret_token_len": 5,
+    "vision_capable": [
+      "gpt-4.1-mini",
+      "gpt-5-mini",
+      "Kimi-K2.6",
+      "Mistral-Large-3"
+    ],
+    "vision_degraded": [
+      "grok-4-1-fast-non-reasoning"
+    ],
+    "benchmark_set": [
+      "gpt-4.1-mini",
+      "gpt-5-mini",
+      "Kimi-K2.6",
+      "Mistral-Large-3",
+      "grok-4-1-fast-non-reasoning"
+    ],
+    "excluded": [
+      {
+        "deployment": "mistral-document-ai-2512",
+        "status": "call_failed",
+        "reason": "Deployment EXISTS in the endpoint's model catalog (verified via GET /models), so the 404 is not a name typo. It is a document-AI/OCR model that is not served over the chat/completions route; a probe of the Mistral OCR route on this resource also returned 404. Excluded from the benchmark: the battery is defined over chat/completions with an image part, and this deployment does not expose that interface here."
+      }
+    ]
+  },
+  "results": [
+    {
+      "deployment": "gpt-4.1-mini",
+      "status": "vision_ok",
+      "reply": "NZGW2",
+      "expected_token": "NZGW2",
+      "token_read_back": true,
+      "latency_s": 2.19,
+      "tokens_in": 113,
+      "tokens_out": 3,
+      "max_tokens_param": "max_completion_tokens",
+      "max_tokens_budget": 300,
+      "param_dialects_tried": [
+        "max_completion_tokens"
+      ],
+      "note": ""
+    },
+    {
+      "deployment": "gpt-5-mini",
+      "status": "vision_ok",
+      "reply": "NZGW2",
+      "expected_token": "NZGW2",
+      "token_read_back": true,
+      "latency_s": 2.495,
+      "tokens_in": 95,
+      "tokens_out": 12,
+      "max_tokens_param": "max_completion_tokens",
+      "max_tokens_budget": 2000,
+      "param_dialects_tried": [
+        "max_completion_tokens"
+      ],
+      "note": ""
+    },
+    {
+      "deployment": "Kimi-K2.6",
+      "status": "vision_ok",
+      "reply": "NZGW2",
+      "expected_token": "NZGW2",
+      "token_read_back": true,
+      "latency_s": 1.927,
+      "tokens_in": 114,
+      "tokens_out": 89,
+      "max_tokens_param": "max_completion_tokens",
+      "max_tokens_budget": 2000,
+      "param_dialects_tried": [
+        "max_completion_tokens"
+      ],
+      "note": ""
+    },
+    {
+      "deployment": "grok-4-1-fast-non-reasoning",
+      "status": "vision_degraded",
+      "reply": "NZGWGW2",
+      "expected_token": "NZGW2",
+      "token_read_back": false,
+      "latency_s": 1.822,
+      "tokens_in": 298,
+      "tokens_out": 4,
+      "max_tokens_param": "max_completion_tokens",
+      "max_tokens_budget": 300,
+      "param_dialects_tried": [
+        "max_completion_tokens"
+      ],
+      "note": "token characters present in order with extra noise; genuine vision, imprecise transcription"
+    },
+    {
+      "deployment": "Mistral-Large-3",
+      "status": "vision_ok",
+      "reply": "NZGW2",
+      "expected_token": "NZGW2",
+      "token_read_back": true,
+      "latency_s": 2.011,
+      "tokens_in": 109,
+      "tokens_out": 4,
+      "max_tokens_param": "max_tokens",
+      "max_tokens_budget": 300,
+      "param_dialects_tried": [
+        "max_completion_tokens",
+        "max_tokens"
+      ],
+      "note": ""
+    },
+    {
+      "deployment": "mistral-document-ai-2512",
+      "status": "call_failed",
+      "error_class": "http_404",
+      "error_detail": "NOT FOUND\nPlease check this guide to understand why this error code might have been returned \nhttps://docs.microsoft.com/en-us/azure/machine-learning/how-to-troubleshoot-online-endpoints#http-status-codes\n",
+      "latency_s": 1.275,
+      "param_dialects_tried": [
+        "max_completion_tokens"
+      ],
+      "route_note": "Deployment EXISTS in the endpoint's model catalog (verified via GET /models), so the 404 is not a name typo. It is a document-AI/OCR model that is not served over the chat/completions route; a probe of the Mistral OCR route on this resource also returned 404. Excluded from the benchmark: the battery is defined over chat/completions with an image part, and this deployment does not expose that interface here."
+    }
+  ]
+}

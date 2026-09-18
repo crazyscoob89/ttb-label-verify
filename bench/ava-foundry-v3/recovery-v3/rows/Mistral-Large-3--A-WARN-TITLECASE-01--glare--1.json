@@ -1,0 +1,176 @@
+{
+  "id": "Mistral-Large-3--A-WARN-TITLECASE-01--glare--1",
+  "operator": "AVA-v3",
+  "model": "Mistral-Large-3",
+  "engine": "Mistral-Large-3",
+  "fixture_id": "A-WARN-TITLECASE-01",
+  "repeat": 1,
+  "condition": "glare",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": true,
+  "extracted": {
+    "brand_name": "Ole Smoky",
+    "class_type": "Moonshine",
+    "alcohol_content": "40% Alc/Vol (80 PROOF)",
+    "net_contents": null,
+    "bottler_info": "Distilled and bottled by Ole Smoky Distilling Co.",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 0.95,
+      "class_type": 0.95,
+      "alcohol_content": 0.98,
+      "net_contents": 0.0,
+      "bottler_info": 0.95,
+      "country_of_origin": 0.0,
+      "government_warning_heading": 0.98,
+      "government_warning_body": 0.95,
+      "government_warning_heading_all_caps": 1.0,
+      "government_warning_heading_bold": 1.0,
+      "government_warning_body_bold": 1.0
+    }
+  },
+  "error_class": null,
+  "cost_usd": 0.0019655,
+  "request_sha256": "ac962dca1c129c196028cfeccd78d209f3968a9cfa75b40d328992e2f9db0090",
+  "image_sha256": "1f6f32170c939455d5db73d712779957490b6003c1123af703a4b62e268b95b6",
+  "transport": "chat",
+  "started_at": "2026-09-18T16:24:39.486495+00:00",
+  "reserved_usd": 0.5816668,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-WARN-TITLECASE-01__glare.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "fc9e9b71-0947-463b-a6dc-d885808ed5b0",
+  "latency_s": 5.669229710008949,
+  "response_sha256": "db5695d15a908684cac6a58baad423293d81b3933fa9add876c4e1efae8c7c86",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Mistral-Large-3--A-WARN-TITLECASE-01--glare--1.json",
+  "tokens_in": 2878,
+  "tokens_out": 351,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 2878,
+    "completion_tokens": 351,
+    "total_tokens": 3229,
+    "audio_prompt_tokens": 0
+  },
+  "returned_model": "mistral-large-3",
+  "raw_text": "{\n  \"brand_name\": \"Ole Smoky\",\n  \"class_type\": \"Moonshine\",\n  \"alcohol_content\": \"40% Alc/Vol (80 PROOF)\",\n  \"net_contents\": null,\n  \"bottler_info\": \"Distilled and bottled by Ole Smoky Distilling Co.\",\n  \"country_of_origin\": null,\n  \"government_warning_heading\": \"GOVERNMENT WARNING:\",\n  \"government_warning_body\": \"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\n  \"government_warning_heading_all_caps\": true,\n  \"government_warning_heading_bold\": true,\n  \"government_warning_body_bold\": false,\n  \"confidence\": {\n    \"brand_name\": 0.95,\n    \"class_type\": 0.95,\n    \"alcohol_content\": 0.98,\n    \"net_contents\": 0.0,\n    \"bottler_info\": 0.95,\n    \"country_of_origin\": 0.0,\n    \"government_warning_heading\": 0.98,\n    \"government_warning_body\": 0.95,\n    \"government_warning_heading_all_caps\": 1.0,\n    \"government_warning_heading_bold\": 1.0,\n    \"government_warning_body_bold\": 1.0\n  }\n}",
+  "finish_reason": "stop",
+  "validation_errors": {},
+  "category": "adversarial",
+  "commodity": "spirits",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "mismatch"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "mismatch"
+  },
+  "verdicts": {
+    "brand_name": "mismatch",
+    "class_type": "mismatch",
+    "alcohol_content": "match",
+    "net_contents": "needs-review",
+    "bottler_info": "mismatch",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "classes": {
+    "brand_name": "false_mismatch",
+    "class_type": "false_mismatch",
+    "alcohol_content": "correct",
+    "net_contents": "referral",
+    "bottler_info": "false_mismatch",
+    "country_of_origin": "correct",
+    "government_warning": "false_match"
+  },
+  "reasons": {
+    "brand_name": "'Ole Smoky' vs declared 'Old Harbor'",
+    "class_type": "'Moonshine' vs declared 'Vodka'",
+    "alcohol_content": "40.0 == 40.0",
+    "net_contents": "confidence 0.0 below threshold 0.75",
+    "bottler_info": "'Distilled and bottled by Ole Smoky Distilling Co.' vs declared 'Old Harbor Distilling Co., Portland, Maine'",
+    "country_of_origin": "domestic product",
+    "government_warning": "exact statutory wording and formatting"
+  },
+  "extraction_correct": {
+    "brand_name": false,
+    "class_type": false,
+    "alcohol_content": true,
+    "net_contents": false,
+    "bottler_info": false,
+    "country_of_origin": true,
+    "government_warning": false
+  },
+  "visibility": {
+    "brand_name": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "class_type": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "alcohol_content": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "net_contents": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "bottler_info": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "country_of_origin": {
+      "visibility": "absent",
+      "expect_referral_ok": true,
+      "basis": "No printed value in source",
+      "annotator": "AVA pre-inference"
+    },
+    "government_warning": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    }
+  },
+  "bottle_outcomes": {
+    "brand_name": "dangerous-error",
+    "class_type": "dangerous-error",
+    "alcohol_content": "unverifiable-correct-not-recovery",
+    "net_contents": "safe-referral",
+    "bottler_info": "dangerous-error",
+    "country_of_origin": "correct-absence-not-applicable",
+    "government_warning": "dangerous-error"
+  },
+  "pipeline_seconds": 5.707829843042418
+}

@@ -1,0 +1,51 @@
+{
+  "id": "grok-4-1-fast-non-reasoning--C-MALT-01--angle--1",
+  "operator": "AVA-v3",
+  "model": "grok-4-1-fast-non-reasoning",
+  "engine": "grok-4-1-fast-non-reasoning",
+  "fixture_id": "C-MALT-01",
+  "repeat": 1,
+  "condition": "angle",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.0006347999999999999,
+  "request_sha256": "2905733e2ff4720d0168c94e93f630a2a01f300b52984604e5a2a02ea8d97f5d",
+  "image_sha256": "100bd7c87577aba93c3630fbf7526d52054343f853a545bae81196227dc9a026",
+  "transport": "chat",
+  "started_at": "2026-09-18T16:08:00.306357+00:00",
+  "reserved_usd": 0.23233672,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-MALT-01__angle.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "fd34aa90-e732-4c17-9df3-c45f9ba19b17",
+  "latency_s": 6.811426973901689,
+  "response_sha256": "4a10f2809b8599a8efbaa24ab69e368b9fd94e15a9517b2cd51c0bcb0a320628",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/grok-4-1-fast-non-reasoning--C-MALT-01--angle--1.json",
+  "tokens_in": 2489,
+  "tokens_out": 274,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 2489,
+    "completion_tokens": 274,
+    "total_tokens": 2763,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 858,
+      "audio_tokens": 0,
+      "text_tokens": 697,
+      "image_tokens": 1792
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "num_sources_used": 0
+  },
+  "returned_model": "grok-4-1-fast-non-reasoning"
+}

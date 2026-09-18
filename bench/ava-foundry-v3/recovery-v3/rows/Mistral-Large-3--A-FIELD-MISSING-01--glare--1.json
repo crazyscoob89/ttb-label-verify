@@ -1,0 +1,176 @@
+{
+  "id": "Mistral-Large-3--A-FIELD-MISSING-01--glare--1",
+  "operator": "AVA-v3",
+  "model": "Mistral-Large-3",
+  "engine": "Mistral-Large-3",
+  "fixture_id": "A-FIELD-MISSING-01",
+  "repeat": 1,
+  "condition": "glare",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": true,
+  "extracted": {
+    "brand_name": "Quail Morel",
+    "class_type": null,
+    "alcohol_content": null,
+    "net_contents": null,
+    "bottler_info": null,
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 0.95,
+      "class_type": 0.0,
+      "alcohol_content": 0.0,
+      "net_contents": 0.0,
+      "bottler_info": 0.0,
+      "country_of_origin": 0.0,
+      "government_warning_heading": 0.99,
+      "government_warning_body": 0.98,
+      "government_warning_heading_all_caps": 1.0,
+      "government_warning_heading_bold": 1.0,
+      "government_warning_body_bold": 1.0
+    }
+  },
+  "error_class": null,
+  "cost_usd": 0.00191,
+  "request_sha256": "9abc7f2399273ae73a8db065f2685b305bc119a0249ef8fc9a9c82749a1b4e82",
+  "image_sha256": "01166f896580ee6133c9cfa31b0366a2310548423b6271f0fc06af8db06d9663",
+  "transport": "chat",
+  "started_at": "2026-09-18T16:37:14.540546+00:00",
+  "reserved_usd": 0.5816668,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-FIELD-MISSING-01__glare.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "19c69ff5-4ace-46e2-98fa-dc9dbd180e21",
+  "latency_s": 4.915236491011456,
+  "response_sha256": "ebccd1cb0317217dce69b534d1cfa376be5c3f95d7ebc6d048e0922e9b9564b7",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Mistral-Large-3--A-FIELD-MISSING-01--glare--1.json",
+  "tokens_in": 2878,
+  "tokens_out": 314,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 2878,
+    "completion_tokens": 314,
+    "total_tokens": 3192,
+    "audio_prompt_tokens": 0
+  },
+  "returned_model": "mistral-large-3",
+  "raw_text": "{\n  \"brand_name\": \"Quail Morel\",\n  \"class_type\": null,\n  \"alcohol_content\": null,\n  \"net_contents\": null,\n  \"bottler_info\": null,\n  \"country_of_origin\": null,\n  \"government_warning_heading\": \"GOVERNMENT WARNING:\",\n  \"government_warning_body\": \"General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\n  \"government_warning_heading_all_caps\": true,\n  \"government_warning_heading_bold\": true,\n  \"government_warning_body_bold\": false,\n  \"confidence\": {\n    \"brand_name\": 0.95,\n    \"class_type\": 0.0,\n    \"alcohol_content\": 0.0,\n    \"net_contents\": 0.0,\n    \"bottler_info\": 0.0,\n    \"country_of_origin\": 0.0,\n    \"government_warning_heading\": 0.99,\n    \"government_warning_body\": 0.98,\n    \"government_warning_heading_all_caps\": 1.0,\n    \"government_warning_heading_bold\": 1.0,\n    \"government_warning_body_bold\": 1.0\n  }\n}",
+  "finish_reason": "stop",
+  "validation_errors": {},
+  "category": "adversarial",
+  "commodity": "malt",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "needs-review",
+    "bottler_info": "needs-review",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "needs-review",
+    "bottler_info": "needs-review",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "mismatch",
+    "class_type": "needs-review",
+    "alcohol_content": "needs-review",
+    "net_contents": "needs-review",
+    "bottler_info": "needs-review",
+    "country_of_origin": "not-applicable",
+    "government_warning": "mismatch"
+  },
+  "classes": {
+    "brand_name": "false_mismatch",
+    "class_type": "referral",
+    "alcohol_content": "referral",
+    "net_contents": "referral",
+    "bottler_info": "referral",
+    "country_of_origin": "correct",
+    "government_warning": "false_mismatch"
+  },
+  "reasons": {
+    "brand_name": "'Quail Morel' vs declared 'Quarry Row'",
+    "class_type": "confidence 0.0 below threshold 0.75",
+    "alcohol_content": "confidence 0.0 below threshold 0.75",
+    "net_contents": "confidence 0.0 below threshold 0.75",
+    "bottler_info": "confidence 0.0 below threshold 0.75",
+    "country_of_origin": "domestic product",
+    "government_warning": "statutory wording deviation in warning body"
+  },
+  "extraction_correct": {
+    "brand_name": false,
+    "class_type": false,
+    "alcohol_content": false,
+    "net_contents": true,
+    "bottler_info": true,
+    "country_of_origin": true,
+    "government_warning": false
+  },
+  "visibility": {
+    "brand_name": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "class_type": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "alcohol_content": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "net_contents": {
+      "visibility": "absent",
+      "expect_referral_ok": true,
+      "basis": "No printed value in source",
+      "annotator": "AVA pre-inference"
+    },
+    "bottler_info": {
+      "visibility": "absent",
+      "expect_referral_ok": true,
+      "basis": "No printed value in source",
+      "annotator": "AVA pre-inference"
+    },
+    "country_of_origin": {
+      "visibility": "absent",
+      "expect_referral_ok": true,
+      "basis": "No printed value in source",
+      "annotator": "AVA pre-inference"
+    },
+    "government_warning": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    }
+  },
+  "bottle_outcomes": {
+    "brand_name": "dangerous-error",
+    "class_type": "safe-referral",
+    "alcohol_content": "safe-referral",
+    "net_contents": "safe-referral",
+    "bottler_info": "safe-referral",
+    "country_of_origin": "correct-absence-not-applicable",
+    "government_warning": "dangerous-error"
+  },
+  "pipeline_seconds": 4.945958339027129
+}

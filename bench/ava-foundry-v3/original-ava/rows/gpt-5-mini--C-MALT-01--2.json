@@ -1,0 +1,122 @@
+{
+  "engine": "gpt-5-mini",
+  "model": "gpt-5-mini",
+  "route": "Azure Foundry responses",
+  "tier": "vision",
+  "repeat": 2,
+  "ok": true,
+  "extracted": {
+    "brand_name": "Iron Kettle",
+    "class_type": "ALE",
+    "alcohol_content": "5.6% ALC/VOL",
+    "net_contents": "12 FL OZ",
+    "bottler_info": "Brewed and bottled by Iron Kettle Brewing Co., Asheville, North Carolina",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 0.99,
+      "class_type": 0.99,
+      "alcohol_content": 0.99,
+      "net_contents": 0.99,
+      "bottler_info": 0.95,
+      "country_of_origin": 0.95,
+      "government_warning_heading": 0.99,
+      "government_warning_body": 0.98,
+      "government_warning_heading_all_caps": 0.99,
+      "government_warning_heading_bold": 0.95,
+      "government_warning_body_bold": 0.95
+    }
+  },
+  "error_class": null,
+  "raw_text": "{\"brand_name\":\"Iron Kettle\",\"class_type\":\"ALE\",\"alcohol_content\":\"5.6% ALC/VOL\",\"net_contents\":\"12 FL OZ\",\"bottler_info\":\"Brewed and bottled by Iron Kettle Brewing Co., Asheville, North Carolina\",\"country_of_origin\":null,\"government_warning_heading\":\"GOVERNMENT WARNING:\",\"government_warning_body\":\"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\"government_warning_heading_all_caps\":true,\"government_warning_heading_bold\":true,\"government_warning_body_bold\":false,\"confidence\":{\"brand_name\":0.99,\"class_type\":0.99,\"alcohol_content\":0.99,\"net_contents\":0.99,\"bottler_info\":0.95,\"country_of_origin\":0.95,\"government_warning_heading\":0.99,\"government_warning_body\":0.98,\"government_warning_heading_all_caps\":0.99,\"government_warning_heading_bold\":0.95,\"government_warning_body_bold\":0.95}}",
+  "tokens_in": 1745,
+  "tokens_out": 1097,
+  "started_at": "2026-09-18T14:43:16.600853+00:00",
+  "request_sha256": "59fa7a79c78dff356d6ad0bd48dd06dcb849c751eb6ace482b33f50f536f6278",
+  "image_sha256": "36f92b6f24b80111d5abe6a3aac8ae7538252bc58640893aa369af67fc33a559",
+  "transport": "responses",
+  "cost_usd": null,
+  "http_status": 200,
+  "response_bytes": 10823,
+  "request_id": "3a18ea9c-7a64-4bcd-a0c1-d4b309eaf0fc",
+  "latency_s": 9.481247,
+  "finish_reason": "completed",
+  "returned_model": "gpt-5-mini",
+  "usage": {
+    "input_tokens": 1745,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 1536
+    },
+    "output_tokens": 1097,
+    "output_tokens_details": {
+      "reasoning_tokens": 832
+    },
+    "total_tokens": 2842
+  },
+  "validation_errors": {},
+  "guard_charge_usd": 0.007953,
+  "unknown_charge_reserved_usd": 0,
+  "fixture_id": "C-MALT-01",
+  "category": "clean",
+  "commodity": "malt",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "classes": {
+    "brand_name": "correct",
+    "class_type": "correct",
+    "alcohol_content": "correct",
+    "net_contents": "correct",
+    "bottler_info": "correct",
+    "country_of_origin": "correct",
+    "government_warning": "correct"
+  },
+  "reasons": {
+    "brand_name": "normalized equivalence",
+    "class_type": "normalized equivalence",
+    "alcohol_content": "5.6 == 5.6",
+    "net_contents": "354.88mL ~= 354.88mL",
+    "bottler_info": "full normalized bottler identity and address",
+    "country_of_origin": "domestic product",
+    "government_warning": "exact statutory wording and formatting"
+  },
+  "extraction_correct": {
+    "brand_name": true,
+    "class_type": true,
+    "alcohol_content": true,
+    "net_contents": true,
+    "bottler_info": true,
+    "country_of_origin": true,
+    "government_warning": true
+  },
+  "pipeline_seconds": 9.497501
+}

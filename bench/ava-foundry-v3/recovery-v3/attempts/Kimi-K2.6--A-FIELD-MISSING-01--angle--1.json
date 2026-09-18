@@ -1,0 +1,42 @@
+{
+  "id": "Kimi-K2.6--A-FIELD-MISSING-01--angle--1",
+  "operator": "AVA-v3",
+  "model": "Kimi-K2.6",
+  "engine": "Kimi-K2.6",
+  "fixture_id": "A-FIELD-MISSING-01",
+  "repeat": 1,
+  "condition": "angle",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.0104997,
+  "request_sha256": "112fd53f9ce4757060195639e3fc5c20e8fc6890f6a6bbde2fda4638cf9c30f7",
+  "image_sha256": "4f6abfc0a0f6089a4ce323bcb22b25b785c2cf0bfadcfecf0a9c733730ad8f23",
+  "transport": "chat",
+  "started_at": "2026-09-18T16:36:36.737784+00:00",
+  "reserved_usd": 1.10896192,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-FIELD-MISSING-01__angle.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "ea31a6b2-022b-4007-ad90-7a61003e6b8f",
+  "latency_s": 11.938863824936561,
+  "response_sha256": "1cdc285d860c88d2ea5b4f83b7d97e9f67122446dc38950e7329fbe06766f150",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--A-FIELD-MISSING-01--angle--1.json",
+  "tokens_in": 4926,
+  "tokens_out": 1455,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 4926,
+    "completion_tokens": 1455,
+    "total_tokens": 6381,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 704,
+      "image_tokens": 4212
+    }
+  },
+  "returned_model": "Kimi-K2.6"
+}

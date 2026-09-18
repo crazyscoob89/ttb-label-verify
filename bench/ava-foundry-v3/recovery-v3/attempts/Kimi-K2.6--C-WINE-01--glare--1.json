@@ -1,0 +1,42 @@
+{
+  "id": "Kimi-K2.6--C-WINE-01--glare--1",
+  "operator": "AVA-v3",
+  "model": "Kimi-K2.6",
+  "engine": "Kimi-K2.6",
+  "fixture_id": "C-WINE-01",
+  "repeat": 1,
+  "condition": "glare",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.016679700000000002,
+  "request_sha256": "46b6a7c7e6eec98dc4b98d62b4cb959c2b3edaa97e36b1af6103bf38f3a8a7e8",
+  "image_sha256": "be58424d4c2537a60247154ecc533d4eaf46b9213f517a2c24b2bbdcde1df11e",
+  "transport": "chat",
+  "started_at": "2026-09-18T16:06:03.328937+00:00",
+  "reserved_usd": 1.10896192,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-WINE-01__glare.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "156b44c6-6bd5-4182-8b54-150c6885ca4c",
+  "latency_s": 32.67612668510992,
+  "response_sha256": "db618652521c44b2741e4b637cb1589f35f880770a5c89777e6e023c7818c97b",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--C-WINE-01--glare--1.json",
+  "tokens_in": 4926,
+  "tokens_out": 3000,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 4926,
+    "completion_tokens": 3000,
+    "total_tokens": 7926,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 704,
+      "image_tokens": 4212
+    }
+  },
+  "returned_model": "Kimi-K2.6"
+}

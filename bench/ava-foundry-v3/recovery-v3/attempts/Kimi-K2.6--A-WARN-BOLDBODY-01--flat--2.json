@@ -1,0 +1,42 @@
+{
+  "id": "Kimi-K2.6--A-WARN-BOLDBODY-01--flat--2",
+  "operator": "AVA-v3",
+  "model": "Kimi-K2.6",
+  "engine": "Kimi-K2.6",
+  "fixture_id": "A-WARN-BOLDBODY-01",
+  "repeat": 2,
+  "condition": "flat",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.0145251,
+  "request_sha256": "bb5c78fda4a9624ad004f56f904bccc83c7b5c9adefc114c22069407129f4647",
+  "image_sha256": "07ead341ecdafc55c1cb6b2215ad7eb5fbd2d83793bbe439bbd3458eafb70d1e",
+  "transport": "chat",
+  "started_at": "2026-09-18T15:53:15.008654+00:00",
+  "reserved_usd": 1.10896192,
+  "source_image": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/A-WARN-BOLDBODY-01.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "ba0b3dd8-e19f-4d64-831a-6eee72ea3555",
+  "latency_s": 22.270874168956652,
+  "response_sha256": "bcf4166bd43d4bfce92e09d8f96fc372100497ef5c636579386f23ab0362c5d5",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--A-WARN-BOLDBODY-01--flat--2.json",
+  "tokens_in": 2658,
+  "tokens_out": 3000,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 2658,
+    "completion_tokens": 3000,
+    "total_tokens": 5658,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 704,
+      "image_tokens": 1944
+    }
+  },
+  "returned_model": "Kimi-K2.6"
+}

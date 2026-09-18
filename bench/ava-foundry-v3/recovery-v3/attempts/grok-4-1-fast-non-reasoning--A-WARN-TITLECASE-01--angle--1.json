@@ -1,0 +1,51 @@
+{
+  "id": "grok-4-1-fast-non-reasoning--A-WARN-TITLECASE-01--angle--1",
+  "operator": "AVA-v3",
+  "model": "grok-4-1-fast-non-reasoning",
+  "engine": "grok-4-1-fast-non-reasoning",
+  "fixture_id": "A-WARN-TITLECASE-01",
+  "repeat": 1,
+  "condition": "angle",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.0006178,
+  "request_sha256": "541feb63e4b7821b913c60af18b1ec9499970d9507e1c3cd73168a60b2f0f7fa",
+  "image_sha256": "aaad89d07afad631a686f0603cac790d3fd29e4d1059ec0ad02b7b12bdace94b",
+  "transport": "chat",
+  "started_at": "2026-09-18T16:23:49.453097+00:00",
+  "reserved_usd": 0.23233672,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-WARN-TITLECASE-01__angle.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "70240106-f1c1-4f8a-849c-6766bb24996d",
+  "latency_s": 6.892619631020352,
+  "response_sha256": "8acfb9dfe315d9920fc1b18e9ed7ebf1a01a1f9a7b8b22b847f02ad86747fb4d",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/grok-4-1-fast-non-reasoning--A-WARN-TITLECASE-01--angle--1.json",
+  "tokens_in": 2489,
+  "tokens_out": 240,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 2489,
+    "completion_tokens": 240,
+    "total_tokens": 2729,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 858,
+      "audio_tokens": 0,
+      "text_tokens": 697,
+      "image_tokens": 1792
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "num_sources_used": 0
+  },
+  "returned_model": "grok-4-1-fast-non-reasoning"
+}

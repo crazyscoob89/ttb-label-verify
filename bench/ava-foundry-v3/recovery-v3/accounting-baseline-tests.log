@@ -1,0 +1,153 @@
+test_report (unittest.loader._FailedTest.test_report) ... ERROR
+test_runner (unittest.loader._FailedTest.test_runner) ... ERROR
+test_corpus_coverage_truth_hashes (test_v3.V3Tests.test_corpus_coverage_truth_hashes) ... ERROR
+test_parallel_reservations (test_v3.V3Tests.test_parallel_reservations) ... ERROR
+test_payload_no_truth_and_protocol (test_v3.V3Tests.test_payload_no_truth_and_protocol) ... ERROR
+test_queue_excludes_all_attempts_and_tail (test_v3.V3Tests.test_queue_excludes_all_attempts_and_tail) ... ERROR
+test_referral_policy (test_v3.V3Tests.test_referral_policy) ... ERROR
+test_renderer_deterministic_bounds (test_v3.V3Tests.test_renderer_deterministic_bounds) ... ERROR
+test_reservation_restart_unknown_overage (test_v3.V3Tests.test_reservation_restart_unknown_overage) ... ERROR
+
+======================================================================
+ERROR: test_report (unittest.loader._FailedTest.test_report)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_report
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/usr/lib/python3.13/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_report.py", line 3, in <module>
+    import v3 as V
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/v3.py", line 7, in <module>
+    from PIL import Image,ImageDraw,ImageFilter,ImageFont
+ModuleNotFoundError: No module named 'PIL'
+
+
+======================================================================
+ERROR: test_runner (unittest.loader._FailedTest.test_runner)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_runner
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/usr/lib/python3.13/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_runner.py", line 3, in <module>
+    import v3 as V
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/v3.py", line 7, in <module>
+    from PIL import Image,ImageDraw,ImageFilter,ImageFont
+ModuleNotFoundError: No module named 'PIL'
+
+
+======================================================================
+ERROR: test_corpus_coverage_truth_hashes (test_v3.V3Tests.test_corpus_coverage_truth_hashes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_v3.py", line 50, in test_corpus_coverage_truth_hashes
+    m=self.mod(); manifest=ROOT/'bottles/manifest.json'
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_v3.py", line 7, in mod
+    spec=importlib.util.spec_from_file_location('v3',ROOT/'v3.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
+                                                                                                           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/v3.py", line 7, in <module>
+    from PIL import Image,ImageDraw,ImageFilter,ImageFont
+ModuleNotFoundError: No module named 'PIL'
+
+======================================================================
+ERROR: test_parallel_reservations (test_v3.V3Tests.test_parallel_reservations)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_v3.py", line 26, in test_parallel_reservations
+    m=self.mod(); import concurrent.futures
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_v3.py", line 7, in mod
+    spec=importlib.util.spec_from_file_location('v3',ROOT/'v3.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
+                                                                                                           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/v3.py", line 7, in <module>
+    from PIL import Image,ImageDraw,ImageFilter,ImageFont
+ModuleNotFoundError: No module named 'PIL'
+
+======================================================================
+ERROR: test_payload_no_truth_and_protocol (test_v3.V3Tests.test_payload_no_truth_and_protocol)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_v3.py", line 39, in test_payload_no_truth_and_protocol
+    m=self.mod(); f=m.source_manifest()['fixtures'][0];p=m.BASE/'bottles'/f['image']
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_v3.py", line 7, in mod
+    spec=importlib.util.spec_from_file_location('v3',ROOT/'v3.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
+                                                                                                           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/v3.py", line 7, in <module>
+    from PIL import Image,ImageDraw,ImageFilter,ImageFont
+ModuleNotFoundError: No module named 'PIL'
+
+======================================================================
+ERROR: test_queue_excludes_all_attempts_and_tail (test_v3.V3Tests.test_queue_excludes_all_attempts_and_tail)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_v3.py", line 46, in test_queue_excludes_all_attempts_and_tail
+    m=self.mod();q=m.flat_queue();recon=json.loads((m.BASE/'recovery-v2/reconciliation.json').read_text())
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_v3.py", line 7, in mod
+    spec=importlib.util.spec_from_file_location('v3',ROOT/'v3.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
+                                                                                                           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/v3.py", line 7, in <module>
+    from PIL import Image,ImageDraw,ImageFilter,ImageFont
+ModuleNotFoundError: No module named 'PIL'
+
+======================================================================
+ERROR: test_referral_policy (test_v3.V3Tests.test_referral_policy)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_v3.py", line 9, in test_referral_policy
+    m=self.mod()
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_v3.py", line 7, in mod
+    spec=importlib.util.spec_from_file_location('v3',ROOT/'v3.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
+                                                                                                           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/v3.py", line 7, in <module>
+    from PIL import Image,ImageDraw,ImageFilter,ImageFont
+ModuleNotFoundError: No module named 'PIL'
+
+======================================================================
+ERROR: test_renderer_deterministic_bounds (test_v3.V3Tests.test_renderer_deterministic_bounds)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_v3.py", line 32, in test_renderer_deterministic_bounds
+    m=self.mod(); f=m.source_manifest()['fixtures'][0]
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_v3.py", line 7, in mod
+    spec=importlib.util.spec_from_file_location('v3',ROOT/'v3.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
+                                                                                                           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/v3.py", line 7, in <module>
+    from PIL import Image,ImageDraw,ImageFilter,ImageFont
+ModuleNotFoundError: No module named 'PIL'
+
+======================================================================
+ERROR: test_reservation_restart_unknown_overage (test_v3.V3Tests.test_reservation_restart_unknown_overage)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_v3.py", line 17, in test_reservation_restart_unknown_overage
+    m=self.mod()
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_v3.py", line 7, in mod
+    spec=importlib.util.spec_from_file_location('v3',ROOT/'v3.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
+                                                                                                           ~~~~~~~~~~~~~~~~~~~~~~~^^^
+  File "<frozen importlib._bootstrap_external>", line 1026, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/v3.py", line 7, in <module>
+    from PIL import Image,ImageDraw,ImageFilter,ImageFont
+ModuleNotFoundError: No module named 'PIL'
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.059s
+
+FAILED (errors=9)

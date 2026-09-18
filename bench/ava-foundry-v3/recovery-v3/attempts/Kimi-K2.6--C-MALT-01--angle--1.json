@@ -1,0 +1,42 @@
+{
+  "id": "Kimi-K2.6--C-MALT-01--angle--1",
+  "operator": "AVA-v3",
+  "model": "Kimi-K2.6",
+  "engine": "Kimi-K2.6",
+  "fixture_id": "C-MALT-01",
+  "repeat": 1,
+  "condition": "angle",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.011887700000000001,
+  "request_sha256": "21f29076516f2d8648137c853357756dc8dcbb5264b32f0f7bca7ee1fffdc0d9",
+  "image_sha256": "100bd7c87577aba93c3630fbf7526d52054343f853a545bae81196227dc9a026",
+  "transport": "chat",
+  "started_at": "2026-09-18T16:08:07.225052+00:00",
+  "reserved_usd": 1.10896192,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-MALT-01__angle.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "ac0b966e-e0bb-4d86-93f4-f833283e1607",
+  "latency_s": 17.18596841697581,
+  "response_sha256": "199be3665e522b1e447d3a0c2e0059bb45da0785d7d20bb340444fb78d307ee9",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--C-MALT-01--angle--1.json",
+  "tokens_in": 4926,
+  "tokens_out": 1802,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 4926,
+    "completion_tokens": 1802,
+    "total_tokens": 6728,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 704,
+      "image_tokens": 4212
+    }
+  },
+  "returned_model": "Kimi-K2.6"
+}

@@ -1,0 +1,54 @@
+{
+  "fixture_id": "D-GLARE-01",
+  "category": "degraded",
+  "commodity": "malt",
+  "description": "C-MALT-01 with a blown-out specular glare obscuring part of the text.",
+  "image": "images/D-GLARE-01.png",
+  "synthetic": true,
+  "generated_by": "fixtures/generate_labels.py (programmatic Pillow rendering, no AI)",
+  "degraded": true,
+  "derived_from": "C-MALT-01",
+  "transform": "glare",
+  "application": {
+    "brand_name": "Iron Kettle",
+    "class_type": "Ale",
+    "alcohol_content": "5.6% ALC/VOL",
+    "net_contents": "12 FL OZ",
+    "bottler_info": "Iron Kettle Brewing Co., Asheville, North Carolina",
+    "country_of_origin": null,
+    "is_imported": false
+  },
+  "label_actual": {
+    "brand_name": "Iron Kettle",
+    "brand_as_rendered": "Iron Kettle",
+    "class_type": "ALE",
+    "alcohol_content": "5.6% ALC/VOL",
+    "net_contents": "12 FL OZ",
+    "bottler_info": "Brewed and bottled by Iron Kettle Brewing Co., Asheville, North Carolina",
+    "country_of_origin": null,
+    "government_warning": {
+      "heading": "GOVERNMENT WARNING:",
+      "body": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+      "heading_is_all_caps": true,
+      "heading_is_bold": true,
+      "body_is_bold": false,
+      "body_is_statutory_exact": true
+    },
+    "fine_print": null
+  },
+  "expected": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "statutory_warning_reference": {
+    "citation": "27 CFR 16.21",
+    "heading": "GOVERNMENT WARNING:",
+    "body": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems."
+  },
+  "notes": "expected[] holds the TRUTH verdict of label-vs-declared per field (match/mismatch/not-applicable). needs-review is never a truth value; it is an acceptable engine outcome scored as a referral per PLAN.md's Uncertainty Invariant."
+}

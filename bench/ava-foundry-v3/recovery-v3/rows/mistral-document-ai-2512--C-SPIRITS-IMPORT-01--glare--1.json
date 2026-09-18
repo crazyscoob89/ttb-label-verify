@@ -1,0 +1,175 @@
+{
+  "id": "mistral-document-ai-2512--C-SPIRITS-IMPORT-01--glare--1",
+  "operator": "AVA-v3",
+  "model": "mistral-document-ai-2512",
+  "engine": "mistral-document-ai-2512",
+  "fixture_id": "C-SPIRITS-IMPORT-01",
+  "repeat": 1,
+  "condition": "glare",
+  "route": "Azure Foundry ocr",
+  "tier": "OCR separate",
+  "ok": true,
+  "extracted": {
+    "brand_name": "Coorsaris",
+    "class_type": "BLENDED FOR A WHISKY",
+    "alcohol_content": "43% ALLOWED PROOF",
+    "net_contents": null,
+    "bottler_info": "Imported by N. M. S. Ltd., Boston.",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "General, women should be aware of the dangers of pregnancy because of the dangers of alcoholics. (2) Consumption of alcoholic beverages in the United States is not the only choice a car or other vehicle. (3) Consumption of other products is a problem.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 1.0,
+      "class_type": 1.0,
+      "alcohol_content": 0.8,
+      "net_contents": 0.0,
+      "bottler_info": 1.0,
+      "country_of_origin": 0.0,
+      "government_warning_heading": 1.0,
+      "government_warning_body": 0.9,
+      "government_warning_heading_all_caps": 1.0,
+      "government_warning_heading_bold": 1.0,
+      "government_warning_body_bold": 1.0
+    }
+  },
+  "error_class": null,
+  "cost_usd": 0.003,
+  "request_sha256": "b96718f3ab4ba848497dfcd0ddd76984990bb983f49ab6c40cf482ecb9899cf0",
+  "image_sha256": "227f055bfdcd2d6348004ec8748381c49031813f6ddacd4cd188fad1c516b56d",
+  "transport": "ocr",
+  "started_at": "2026-09-18T16:16:32.435111+00:00",
+  "reserved_usd": 0.05,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-SPIRITS-IMPORT-01__glare.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "6adddb0c-1a46-4a62-8246-9e1b48ae3220",
+  "latency_s": 4.509385876008309,
+  "response_sha256": "ecad9b82480ef4ec03057aae75592cfbfa5031f38bb01048127e7eb16c0982d5",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--C-SPIRITS-IMPORT-01--glare--1.json",
+  "tokens_in": null,
+  "tokens_out": null,
+  "pages_processed": 1,
+  "usage": {
+    "pages_processed": 0,
+    "doc_size_bytes": 684769,
+    "pages_processed_annotation": 1
+  },
+  "returned_model": "mistral-document-ai-2512",
+  "raw_text": "{\n  \"brand_name\": \"Coorsaris\",\n  \"class_type\": \"BLENDED FOR A WHISKY\",\n  \"alcohol_content\": \"43% ALLOWED PROOF\",\n  \"net_contents\": null,\n  \"bottler_info\": \"Imported by N. M. S. Ltd., Boston.\",\n  \"country_of_origin\": null,\n  \"government_warning_heading\": \"GOVERNMENT WARNING:\",\n  \"government_warning_body\": \"General, women should be aware of the dangers of pregnancy because of the dangers of alcoholics. (2) Consumption of alcoholic beverages in the United States is not the only choice a car or other vehicle. (3) Consumption of other products is a problem.\",\n  \"government_warning_heading_all_caps\": true,\n  \"government_warning_heading_bold\": true,\n  \"government_warning_body_bold\": false,\n  \"confidence\": {\n    \"brand_name\": 1.0,\n    \"class_type\": 1.0,\n    \"alcohol_content\": 0.8,\n    \"net_contents\": 0.0,\n    \"bottler_info\": 1.0,\n    \"country_of_origin\": 0.0,\n    \"government_warning_heading\": 1.0,\n    \"government_warning_body\": 0.9,\n    \"government_warning_heading_all_caps\": 1.0,\n    \"government_warning_heading_bold\": 1.0,\n    \"government_warning_body_bold\": 1.0\n  }\n}",
+  "finish_reason": "completed",
+  "validation_errors": {},
+  "category": "clean",
+  "commodity": "spirits",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "match",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "match",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "mismatch",
+    "class_type": "mismatch",
+    "alcohol_content": "match",
+    "net_contents": "needs-review",
+    "bottler_info": "mismatch",
+    "country_of_origin": "needs-review",
+    "government_warning": "mismatch"
+  },
+  "classes": {
+    "brand_name": "false_mismatch",
+    "class_type": "false_mismatch",
+    "alcohol_content": "correct",
+    "net_contents": "referral",
+    "bottler_info": "false_mismatch",
+    "country_of_origin": "referral",
+    "government_warning": "false_mismatch"
+  },
+  "reasons": {
+    "brand_name": "'Coorsaris' vs declared 'Cordon Gris'",
+    "class_type": "'BLENDED FOR A WHISKY' vs declared 'Blended Scotch Whisky'",
+    "alcohol_content": "43.0 == 43.0",
+    "net_contents": "confidence 0.0 below threshold 0.75",
+    "bottler_info": "'Imported by N. M. S. Ltd., Boston.' vs declared 'Northgate Imports Ltd., Boston, Massachusetts'",
+    "country_of_origin": "confidence 0.0 below threshold 0.75",
+    "government_warning": "statutory wording deviation in warning body"
+  },
+  "extraction_correct": {
+    "brand_name": false,
+    "class_type": false,
+    "alcohol_content": false,
+    "net_contents": false,
+    "bottler_info": false,
+    "country_of_origin": false,
+    "government_warning": false
+  },
+  "visibility": {
+    "brand_name": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "class_type": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "alcohol_content": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "net_contents": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "bottler_info": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "country_of_origin": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "government_warning": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    }
+  },
+  "bottle_outcomes": {
+    "brand_name": "dangerous-error",
+    "class_type": "dangerous-error",
+    "alcohol_content": "dangerous-error",
+    "net_contents": "safe-referral",
+    "bottler_info": "dangerous-error",
+    "country_of_origin": "safe-referral",
+    "government_warning": "dangerous-error"
+  },
+  "pipeline_seconds": 4.53262160893064
+}

@@ -1,0 +1,136 @@
+{
+  "engine": "gpt-4.1-mini",
+  "model": "gpt-4.1-mini",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "repeat": 2,
+  "ok": true,
+  "extracted": {
+    "brand_name": "Copper Trestle",
+    "class_type": "STRAIGHT BOURBON WHISKEY",
+    "alcohol_content": "40% ALC/VOL (80 PROOF)",
+    "net_contents": "750 mL",
+    "bottler_info": "Distilled and bottled by Copper Trestle Distillery, Bardstown, Kentucky",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 1,
+      "class_type": 1,
+      "alcohol_content": 1,
+      "net_contents": 1,
+      "bottler_info": 1,
+      "country_of_origin": 0.8,
+      "government_warning_heading": 1,
+      "government_warning_body": 1,
+      "government_warning_heading_all_caps": 1,
+      "government_warning_heading_bold": 1,
+      "government_warning_body_bold": 0.9
+    }
+  },
+  "error_class": null,
+  "raw_text": "{\"brand_name\":\"Copper Trestle\",\"class_type\":\"STRAIGHT BOURBON WHISKEY\",\"alcohol_content\":\"40% ALC/VOL (80 PROOF)\",\"net_contents\":\"750 mL\",\"bottler_info\":\"Distilled and bottled by Copper Trestle Distillery, Bardstown, Kentucky\",\"country_of_origin\":null,\"government_warning_heading\":\"GOVERNMENT WARNING:\",\"government_warning_body\":\"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\"government_warning_heading_all_caps\":true,\"government_warning_heading_bold\":true,\"government_warning_body_bold\":false,\"confidence\":{\"brand_name\":1,\"class_type\":1,\"alcohol_content\":1,\"net_contents\":1,\"bottler_info\":1,\"country_of_origin\":0.8,\"government_warning_heading\":1,\"government_warning_body\":1,\"government_warning_heading_all_caps\":1,\"government_warning_heading_bold\":1,\"government_warning_body_bold\":0.9}}",
+  "tokens_in": 2109,
+  "tokens_out": 237,
+  "started_at": "2026-09-18T14:40:29.467657+00:00",
+  "request_sha256": "db8fffab4c5844e10b6f59938629ce8f6a37464d086fd37049596199033af506",
+  "image_sha256": "2717efcdf4b2ef5e30570b11d8646c49f4bc82d70ee80d0d1a1fe6711f8f7435",
+  "transport": "chat",
+  "cost_usd": null,
+  "http_status": 200,
+  "response_bytes": 2537,
+  "request_id": "c8a1c369-37be-408e-ad15-0676f9ed2ef0",
+  "latency_s": 5.603576,
+  "finish_reason": "stop",
+  "returned_model": "gpt-4.1-mini-2025-04-14",
+  "usage": {
+    "completion_tokens": 237,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "latency_checkpoint": {
+      "engine_tbt_ms": 13,
+      "engine_ttft_ms": 480,
+      "engine_ttlt_ms": 3456,
+      "pre_inference_ms": 407,
+      "service_tbt_ms": 13,
+      "service_ttft_ms": 1366,
+      "service_ttlt_ms": 4337,
+      "user_visible_ttft_ms": 959
+    },
+    "prompt_tokens": 2109,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 1536,
+      "image_tokens": 864
+    },
+    "total_tokens": 2346
+  },
+  "validation_errors": {},
+  "guard_charge_usd": 0.0036234,
+  "unknown_charge_reserved_usd": 0,
+  "fixture_id": "W-ABV-4045-01",
+  "category": "wrong-answer",
+  "commodity": "spirits",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "mismatch",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "mismatch",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "mismatch",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "classes": {
+    "brand_name": "correct",
+    "class_type": "correct",
+    "alcohol_content": "correct",
+    "net_contents": "correct",
+    "bottler_info": "correct",
+    "country_of_origin": "correct",
+    "government_warning": "correct"
+  },
+  "reasons": {
+    "brand_name": "normalized equivalence",
+    "class_type": "normalized equivalence",
+    "alcohol_content": "label 40.0 vs declared 45.0",
+    "net_contents": "750.00mL ~= 750.00mL",
+    "bottler_info": "full normalized bottler identity and address",
+    "country_of_origin": "domestic product",
+    "government_warning": "exact statutory wording and formatting"
+  },
+  "extraction_correct": {
+    "brand_name": true,
+    "class_type": true,
+    "alcohol_content": true,
+    "net_contents": true,
+    "bottler_info": true,
+    "country_of_origin": true,
+    "government_warning": true
+  },
+  "pipeline_seconds": 5.619517
+}

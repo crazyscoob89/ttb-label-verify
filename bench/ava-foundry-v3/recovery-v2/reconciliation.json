@@ -1,0 +1,3199 @@
+{
+  "status": "offline complete for available persisted records; provider billing and log-only outputs unresolved",
+  "paid_calls": 0,
+  "network_calls": 0,
+  "ownership": {
+    "execution": "AVA",
+    "QA": "ARGUS",
+    "note": "Latest human assignment supersedes old handover"
+  },
+  "human_cap_usd": 10,
+  "groups": [
+    {
+      "operator": "ARGUS",
+      "model": "Mistral-Large-3",
+      "routes": [
+        "Azure AI Foundry -> Mistral-Large-3"
+      ],
+      "calls": 54,
+      "ok_calls": 54,
+      "unique_fixtures": 18,
+      "total_field_outcomes": 378,
+      "extraction_correct_n": 370,
+      "negative_outcomes": 24,
+      "false_match_n": 3,
+      "false_match_rate": 0.125,
+      "classes": {
+        "correct": 369,
+        "false_match": 3,
+        "referral": 6
+      },
+      "safe_referral_n": 6,
+      "clean_calls": 12,
+      "clean_fully_automated_correct_n": 12,
+      "latency_s": {
+        "n": 54,
+        "mean": 9.745485185185185,
+        "median": 8.2746,
+        "p95": 20.795019999999973,
+        "min": 5.7984,
+        "max": 33.0478
+      }
+    },
+    {
+      "operator": "ARGUS",
+      "model": "grok-4-1-fast-non-reasoning",
+      "routes": [
+        "Azure AI Foundry -> grok-4-1-fast-non-reasoning"
+      ],
+      "calls": 54,
+      "ok_calls": 51,
+      "unique_fixtures": 18,
+      "total_field_outcomes": 378,
+      "extraction_correct_n": 313,
+      "negative_outcomes": 24,
+      "false_match_n": 0,
+      "false_match_rate": 0.0,
+      "classes": {
+        "correct": 315,
+        "false_mismatch": 36,
+        "referral": 27
+      },
+      "safe_referral_n": 27,
+      "clean_calls": 12,
+      "clean_fully_automated_correct_n": 0,
+      "latency_s": {
+        "n": 54,
+        "mean": 5.068712962962963,
+        "median": 5.0360499999999995,
+        "p95": 6.066635,
+        "min": 3.9144,
+        "max": 6.5715
+      }
+    },
+    {
+      "operator": "AVA",
+      "model": "Kimi-K2.6",
+      "routes": [
+        "Azure Foundry chat"
+      ],
+      "calls": 23,
+      "ok_calls": 23,
+      "unique_fixtures": 18,
+      "total_field_outcomes": 161,
+      "extraction_correct_n": 161,
+      "negative_outcomes": 12,
+      "false_match_n": 0,
+      "false_match_rate": 0.0,
+      "classes": {
+        "correct": 159,
+        "referral": 2
+      },
+      "safe_referral_n": 2,
+      "clean_calls": 4,
+      "clean_fully_automated_correct_n": 4,
+      "latency_s": {
+        "n": 23,
+        "mean": 16.648395391304348,
+        "median": 14.662792,
+        "p95": 27.9679114,
+        "min": 7.676967,
+        "max": 28.623784
+      }
+    },
+    {
+      "operator": "AVA",
+      "model": "Mistral-Large-3",
+      "routes": [
+        "Azure Foundry chat"
+      ],
+      "calls": 44,
+      "ok_calls": 44,
+      "unique_fixtures": 18,
+      "total_field_outcomes": 308,
+      "extraction_correct_n": 303,
+      "negative_outcomes": 22,
+      "false_match_n": 2,
+      "false_match_rate": 0.09090909090909091,
+      "classes": {
+        "correct": 302,
+        "referral": 4,
+        "false_match": 2
+      },
+      "safe_referral_n": 4,
+      "clean_calls": 9,
+      "clean_fully_automated_correct_n": 9,
+      "latency_s": {
+        "n": 44,
+        "mean": 8.611289522727272,
+        "median": 7.4021835,
+        "p95": 15.906316900000004,
+        "min": 4.570157,
+        "max": 24.760552
+      }
+    },
+    {
+      "operator": "AVA",
+      "model": "gpt-4.1-mini",
+      "routes": [
+        "Azure Foundry chat"
+      ],
+      "calls": 54,
+      "ok_calls": 51,
+      "unique_fixtures": 18,
+      "total_field_outcomes": 378,
+      "extraction_correct_n": 357,
+      "negative_outcomes": 24,
+      "false_match_n": 0,
+      "false_match_rate": 0.0,
+      "classes": {
+        "correct": 351,
+        "referral": 27
+      },
+      "safe_referral_n": 27,
+      "clean_calls": 12,
+      "clean_fully_automated_correct_n": 10,
+      "latency_s": {
+        "n": 54,
+        "mean": 5.312991222222222,
+        "median": 5.217505,
+        "p95": 6.43576065,
+        "min": 4.244074,
+        "max": 6.714636
+      }
+    },
+    {
+      "operator": "AVA",
+      "model": "gpt-5-mini",
+      "routes": [
+        "Azure Foundry responses"
+      ],
+      "calls": 35,
+      "ok_calls": 35,
+      "unique_fixtures": 18,
+      "total_field_outcomes": 245,
+      "extraction_correct_n": 244,
+      "negative_outcomes": 16,
+      "false_match_n": 1,
+      "false_match_rate": 0.0625,
+      "classes": {
+        "correct": 239,
+        "referral": 5,
+        "false_match": 1
+      },
+      "safe_referral_n": 5,
+      "clean_calls": 7,
+      "clean_fully_automated_correct_n": 7,
+      "latency_s": {
+        "n": 35,
+        "mean": 10.911973828571428,
+        "median": 10.363178,
+        "p95": 15.849463,
+        "min": 6.724908,
+        "max": 20.574692
+      }
+    },
+    {
+      "operator": "AVA",
+      "model": "grok-4-1-fast-non-reasoning",
+      "routes": [
+        "Azure Foundry chat"
+      ],
+      "calls": 54,
+      "ok_calls": 46,
+      "unique_fixtures": 18,
+      "total_field_outcomes": 378,
+      "extraction_correct_n": 276,
+      "negative_outcomes": 24,
+      "false_match_n": 0,
+      "false_match_rate": 0.0,
+      "classes": {
+        "false_mismatch": 38,
+        "correct": 278,
+        "referral": 62
+      },
+      "safe_referral_n": 62,
+      "clean_calls": 12,
+      "clean_fully_automated_correct_n": 2,
+      "latency_s": {
+        "n": 54,
+        "mean": 5.081437888888889,
+        "median": 4.844653,
+        "p95": 7.088256199999997,
+        "min": 3.338202,
+        "max": 7.886481
+      }
+    },
+    {
+      "operator": "AVA",
+      "model": "mistral-document-ai-2512",
+      "routes": [
+        "Azure Foundry ocr"
+      ],
+      "calls": 35,
+      "ok_calls": 33,
+      "unique_fixtures": 18,
+      "total_field_outcomes": 245,
+      "extraction_correct_n": 223,
+      "negative_outcomes": 16,
+      "false_match_n": 2,
+      "false_match_rate": 0.125,
+      "classes": {
+        "correct": 223,
+        "referral": 18,
+        "false_match": 2,
+        "false_mismatch": 2
+      },
+      "safe_referral_n": 18,
+      "clean_calls": 7,
+      "clean_fully_automated_correct_n": 6,
+      "latency_s": {
+        "n": 35,
+        "mean": 3.783154742857143,
+        "median": 3.831434,
+        "p95": 4.679689799999996,
+        "min": 0.277172,
+        "max": 6.990228
+      }
+    },
+    {
+      "operator": "historical",
+      "model": "anthropic/claude-haiku-4.5",
+      "routes": [
+        "OpenRouter -> Anthropic"
+      ],
+      "calls": 54,
+      "ok_calls": 54,
+      "unique_fixtures": 18,
+      "total_field_outcomes": 378,
+      "extraction_correct_n": 378,
+      "negative_outcomes": 24,
+      "false_match_n": 0,
+      "false_match_rate": 0.0,
+      "classes": {
+        "correct": 372,
+        "referral": 6
+      },
+      "safe_referral_n": 6,
+      "clean_calls": 12,
+      "clean_fully_automated_correct_n": 12,
+      "latency_s": {
+        "n": 54,
+        "mean": 4.040688888888889,
+        "median": 4.00065,
+        "p95": 4.342255,
+        "min": 3.6793,
+        "max": 4.609
+      }
+    },
+    {
+      "operator": "historical",
+      "model": "anthropic/claude-sonnet-4.5",
+      "routes": [
+        "OpenRouter -> Anthropic"
+      ],
+      "calls": 54,
+      "ok_calls": 53,
+      "unique_fixtures": 18,
+      "total_field_outcomes": 378,
+      "extraction_correct_n": 368,
+      "negative_outcomes": 24,
+      "false_match_n": 3,
+      "false_match_rate": 0.125,
+      "classes": {
+        "correct": 362,
+        "false_match": 3,
+        "referral": 13
+      },
+      "safe_referral_n": 13,
+      "clean_calls": 12,
+      "clean_fully_automated_correct_n": 12,
+      "latency_s": {
+        "n": 54,
+        "mean": 9.014661111111112,
+        "median": 5.698499999999999,
+        "p95": 6.458765,
+        "min": 5.0363,
+        "max": 180.0535
+      }
+    },
+    {
+      "operator": "historical",
+      "model": "gpt-5-mini",
+      "routes": [
+        "OpenAI Responses API (direct)"
+      ],
+      "calls": 54,
+      "ok_calls": 54,
+      "unique_fixtures": 18,
+      "total_field_outcomes": 378,
+      "extraction_correct_n": 376,
+      "negative_outcomes": 24,
+      "false_match_n": 2,
+      "false_match_rate": 0.08333333333333333,
+      "classes": {
+        "correct": 369,
+        "false_match": 2,
+        "referral": 7
+      },
+      "safe_referral_n": 7,
+      "clean_calls": 12,
+      "clean_fully_automated_correct_n": 12,
+      "latency_s": {
+        "n": 54,
+        "mean": 11.714448148148149,
+        "median": 11.6486,
+        "p95": 15.687279999999998,
+        "min": 8.6522,
+        "max": 16.288
+      }
+    }
+  ],
+  "counts": {
+    "AVA_rows": 245,
+    "AVA_response_bodies": 243,
+    "ARGUS_persisted_rows": 108,
+    "historical_rows": 162,
+    "rescored_rows": 515,
+    "ARGUS_probe_summary_records": 6
+  },
+  "scoring": {
+    "basis": "4039ccc deterministic scorer and extraction accuracy; uniform strict adapter validation before scoring",
+    "no_output_repair": true,
+    "coverage": 515,
+    "historical_and_ARGUS_original_ok_preserved": true,
+    "newly_invalid_records": 3,
+    "hashes": {
+      "scoring.py": "8150c9d0f48897fea66cbad68ca2ed6dfb536813503f756ba991ea1b5820307b",
+      "replay.py": "9979e6b315365886a6ff7fce48f1ffd451a407736495099f37437538796cdf99",
+      "extraction_validation.py": "e350e8313c1771b90da2d3aa915019b0d7d8661cf7be6050d413ac2d09b4eb7d"
+    }
+  },
+  "equivalence": {
+    "fixture_bytes_equal": true,
+    "prompts_equal": true,
+    "original_scorers_equal": false,
+    "source_hashes_verified": true,
+    "caveat": "Equal fixture/prompt sources do not establish identical provider settings or model revisions. OCR uses adapted prompt."
+  },
+  "ledger": {
+    "attempted_ids": [
+      "Kimi-K2.6--A-ABV-WRONG-01--1",
+      "Kimi-K2.6--A-ABV-WRONG-01--2",
+      "Kimi-K2.6--A-BRAND-CASE-01--1",
+      "Kimi-K2.6--A-FIELD-MISSING-01--1",
+      "Kimi-K2.6--A-INJECT-PROMPT-01--1",
+      "Kimi-K2.6--A-WARN-BOLDBODY-01--1",
+      "Kimi-K2.6--A-WARN-TITLECASE-01--1",
+      "Kimi-K2.6--C-MALT-01--1",
+      "Kimi-K2.6--C-SPIRITS-01--1",
+      "Kimi-K2.6--C-SPIRITS-IMPORT-01--1",
+      "Kimi-K2.6--C-WINE-01--1",
+      "Kimi-K2.6--D-BLUR-01--1",
+      "Kimi-K2.6--D-GLARE-01--1",
+      "Kimi-K2.6--D-GLARE-01--2",
+      "Kimi-K2.6--D-WARP-01--1",
+      "Kimi-K2.6--W-ABV-4045-01--1",
+      "Kimi-K2.6--W-ABV-4045-01--2",
+      "Kimi-K2.6--W-BRAND-SPLITLINE-01--1",
+      "Kimi-K2.6--W-BRAND-WRONG-01--1",
+      "Kimi-K2.6--W-BRAND-WRONG-01--2",
+      "Kimi-K2.6--W-NETCONTENTS-WRONG-01--1",
+      "Kimi-K2.6--W-NETCONTENTS-WRONG-01--2",
+      "Kimi-K2.6--W-WARN-REWORD-01--1",
+      "Kimi-K2.6--W-WARN-REWORD-01--2",
+      "Mistral-Large-3--A-ABV-WRONG-01--1",
+      "Mistral-Large-3--A-ABV-WRONG-01--2",
+      "Mistral-Large-3--A-ABV-WRONG-01--3",
+      "Mistral-Large-3--A-BRAND-CASE-01--1",
+      "Mistral-Large-3--A-BRAND-CASE-01--2",
+      "Mistral-Large-3--A-FIELD-MISSING-01--1",
+      "Mistral-Large-3--A-FIELD-MISSING-01--2",
+      "Mistral-Large-3--A-INJECT-PROMPT-01--1",
+      "Mistral-Large-3--A-INJECT-PROMPT-01--2",
+      "Mistral-Large-3--A-INJECT-PROMPT-01--3",
+      "Mistral-Large-3--A-WARN-BOLDBODY-01--1",
+      "Mistral-Large-3--A-WARN-BOLDBODY-01--2",
+      "Mistral-Large-3--A-WARN-TITLECASE-01--1",
+      "Mistral-Large-3--A-WARN-TITLECASE-01--2",
+      "Mistral-Large-3--C-MALT-01--1",
+      "Mistral-Large-3--C-MALT-01--2",
+      "Mistral-Large-3--C-MALT-01--3",
+      "Mistral-Large-3--C-SPIRITS-01--1",
+      "Mistral-Large-3--C-SPIRITS-01--2",
+      "Mistral-Large-3--C-SPIRITS-01--3",
+      "Mistral-Large-3--C-SPIRITS-IMPORT-01--1",
+      "Mistral-Large-3--C-SPIRITS-IMPORT-01--2",
+      "Mistral-Large-3--C-WINE-01--1",
+      "Mistral-Large-3--C-WINE-01--2",
+      "Mistral-Large-3--D-BLUR-01--1",
+      "Mistral-Large-3--D-BLUR-01--2",
+      "Mistral-Large-3--D-GLARE-01--1",
+      "Mistral-Large-3--D-GLARE-01--2",
+      "Mistral-Large-3--D-GLARE-01--3",
+      "Mistral-Large-3--D-WARP-01--1",
+      "Mistral-Large-3--D-WARP-01--2",
+      "Mistral-Large-3--W-ABV-4045-01--1",
+      "Mistral-Large-3--W-ABV-4045-01--2",
+      "Mistral-Large-3--W-ABV-4045-01--3",
+      "Mistral-Large-3--W-BRAND-SPLITLINE-01--1",
+      "Mistral-Large-3--W-BRAND-SPLITLINE-01--2",
+      "Mistral-Large-3--W-BRAND-WRONG-01--1",
+      "Mistral-Large-3--W-BRAND-WRONG-01--2",
+      "Mistral-Large-3--W-BRAND-WRONG-01--3",
+      "Mistral-Large-3--W-NETCONTENTS-WRONG-01--1",
+      "Mistral-Large-3--W-NETCONTENTS-WRONG-01--2",
+      "Mistral-Large-3--W-NETCONTENTS-WRONG-01--3",
+      "Mistral-Large-3--W-WARN-REWORD-01--1",
+      "Mistral-Large-3--W-WARN-REWORD-01--2",
+      "Mistral-Large-3--W-WARN-REWORD-01--3",
+      "gpt-4.1-mini--A-ABV-WRONG-01--1",
+      "gpt-4.1-mini--A-ABV-WRONG-01--2",
+      "gpt-4.1-mini--A-ABV-WRONG-01--3",
+      "gpt-4.1-mini--A-BRAND-CASE-01--1",
+      "gpt-4.1-mini--A-BRAND-CASE-01--2",
+      "gpt-4.1-mini--A-BRAND-CASE-01--3",
+      "gpt-4.1-mini--A-FIELD-MISSING-01--1",
+      "gpt-4.1-mini--A-FIELD-MISSING-01--2",
+      "gpt-4.1-mini--A-FIELD-MISSING-01--3",
+      "gpt-4.1-mini--A-INJECT-PROMPT-01--1",
+      "gpt-4.1-mini--A-INJECT-PROMPT-01--2",
+      "gpt-4.1-mini--A-INJECT-PROMPT-01--3",
+      "gpt-4.1-mini--A-WARN-BOLDBODY-01--1",
+      "gpt-4.1-mini--A-WARN-BOLDBODY-01--2",
+      "gpt-4.1-mini--A-WARN-BOLDBODY-01--3",
+      "gpt-4.1-mini--A-WARN-TITLECASE-01--1",
+      "gpt-4.1-mini--A-WARN-TITLECASE-01--2",
+      "gpt-4.1-mini--A-WARN-TITLECASE-01--3",
+      "gpt-4.1-mini--C-MALT-01--1",
+      "gpt-4.1-mini--C-MALT-01--2",
+      "gpt-4.1-mini--C-MALT-01--3",
+      "gpt-4.1-mini--C-SPIRITS-01--1",
+      "gpt-4.1-mini--C-SPIRITS-01--2",
+      "gpt-4.1-mini--C-SPIRITS-01--3",
+      "gpt-4.1-mini--C-SPIRITS-IMPORT-01--1",
+      "gpt-4.1-mini--C-SPIRITS-IMPORT-01--2",
+      "gpt-4.1-mini--C-SPIRITS-IMPORT-01--3",
+      "gpt-4.1-mini--C-WINE-01--1",
+      "gpt-4.1-mini--C-WINE-01--2",
+      "gpt-4.1-mini--C-WINE-01--3",
+      "gpt-4.1-mini--D-BLUR-01--1",
+      "gpt-4.1-mini--D-BLUR-01--2",
+      "gpt-4.1-mini--D-BLUR-01--3",
+      "gpt-4.1-mini--D-GLARE-01--1",
+      "gpt-4.1-mini--D-GLARE-01--2",
+      "gpt-4.1-mini--D-GLARE-01--3",
+      "gpt-4.1-mini--D-WARP-01--1",
+      "gpt-4.1-mini--D-WARP-01--2",
+      "gpt-4.1-mini--D-WARP-01--3",
+      "gpt-4.1-mini--W-ABV-4045-01--1",
+      "gpt-4.1-mini--W-ABV-4045-01--2",
+      "gpt-4.1-mini--W-ABV-4045-01--3",
+      "gpt-4.1-mini--W-BRAND-SPLITLINE-01--1",
+      "gpt-4.1-mini--W-BRAND-SPLITLINE-01--2",
+      "gpt-4.1-mini--W-BRAND-SPLITLINE-01--3",
+      "gpt-4.1-mini--W-BRAND-WRONG-01--1",
+      "gpt-4.1-mini--W-BRAND-WRONG-01--2",
+      "gpt-4.1-mini--W-BRAND-WRONG-01--3",
+      "gpt-4.1-mini--W-NETCONTENTS-WRONG-01--1",
+      "gpt-4.1-mini--W-NETCONTENTS-WRONG-01--2",
+      "gpt-4.1-mini--W-NETCONTENTS-WRONG-01--3",
+      "gpt-4.1-mini--W-WARN-REWORD-01--1",
+      "gpt-4.1-mini--W-WARN-REWORD-01--2",
+      "gpt-4.1-mini--W-WARN-REWORD-01--3",
+      "gpt-5-mini--A-ABV-WRONG-01--1",
+      "gpt-5-mini--A-ABV-WRONG-01--2",
+      "gpt-5-mini--A-BRAND-CASE-01--1",
+      "gpt-5-mini--A-BRAND-CASE-01--2",
+      "gpt-5-mini--A-FIELD-MISSING-01--1",
+      "gpt-5-mini--A-FIELD-MISSING-01--2",
+      "gpt-5-mini--A-INJECT-PROMPT-01--1",
+      "gpt-5-mini--A-INJECT-PROMPT-01--2",
+      "gpt-5-mini--A-WARN-BOLDBODY-01--1",
+      "gpt-5-mini--A-WARN-BOLDBODY-01--2",
+      "gpt-5-mini--A-WARN-TITLECASE-01--1",
+      "gpt-5-mini--A-WARN-TITLECASE-01--2",
+      "gpt-5-mini--C-MALT-01--1",
+      "gpt-5-mini--C-MALT-01--2",
+      "gpt-5-mini--C-SPIRITS-01--1",
+      "gpt-5-mini--C-SPIRITS-01--2",
+      "gpt-5-mini--C-SPIRITS-IMPORT-01--1",
+      "gpt-5-mini--C-SPIRITS-IMPORT-01--2",
+      "gpt-5-mini--C-WINE-01--1",
+      "gpt-5-mini--C-WINE-01--2",
+      "gpt-5-mini--D-BLUR-01--1",
+      "gpt-5-mini--D-BLUR-01--2",
+      "gpt-5-mini--D-GLARE-01--1",
+      "gpt-5-mini--D-GLARE-01--2",
+      "gpt-5-mini--D-WARP-01--1",
+      "gpt-5-mini--D-WARP-01--2",
+      "gpt-5-mini--W-ABV-4045-01--1",
+      "gpt-5-mini--W-ABV-4045-01--2",
+      "gpt-5-mini--W-BRAND-SPLITLINE-01--1",
+      "gpt-5-mini--W-BRAND-SPLITLINE-01--2",
+      "gpt-5-mini--W-BRAND-WRONG-01--1",
+      "gpt-5-mini--W-BRAND-WRONG-01--2",
+      "gpt-5-mini--W-NETCONTENTS-WRONG-01--1",
+      "gpt-5-mini--W-NETCONTENTS-WRONG-01--2",
+      "gpt-5-mini--W-WARN-REWORD-01--1",
+      "gpt-5-mini--W-WARN-REWORD-01--2",
+      "grok-4-1-fast-non-reasoning--A-ABV-WRONG-01--1",
+      "grok-4-1-fast-non-reasoning--A-ABV-WRONG-01--2",
+      "grok-4-1-fast-non-reasoning--A-ABV-WRONG-01--3",
+      "grok-4-1-fast-non-reasoning--A-BRAND-CASE-01--1",
+      "grok-4-1-fast-non-reasoning--A-BRAND-CASE-01--2",
+      "grok-4-1-fast-non-reasoning--A-BRAND-CASE-01--3",
+      "grok-4-1-fast-non-reasoning--A-FIELD-MISSING-01--1",
+      "grok-4-1-fast-non-reasoning--A-FIELD-MISSING-01--2",
+      "grok-4-1-fast-non-reasoning--A-FIELD-MISSING-01--3",
+      "grok-4-1-fast-non-reasoning--A-INJECT-PROMPT-01--1",
+      "grok-4-1-fast-non-reasoning--A-INJECT-PROMPT-01--2",
+      "grok-4-1-fast-non-reasoning--A-INJECT-PROMPT-01--3",
+      "grok-4-1-fast-non-reasoning--A-WARN-BOLDBODY-01--1",
+      "grok-4-1-fast-non-reasoning--A-WARN-BOLDBODY-01--2",
+      "grok-4-1-fast-non-reasoning--A-WARN-BOLDBODY-01--3",
+      "grok-4-1-fast-non-reasoning--A-WARN-TITLECASE-01--1",
+      "grok-4-1-fast-non-reasoning--A-WARN-TITLECASE-01--2",
+      "grok-4-1-fast-non-reasoning--A-WARN-TITLECASE-01--3",
+      "grok-4-1-fast-non-reasoning--C-MALT-01--1",
+      "grok-4-1-fast-non-reasoning--C-MALT-01--2",
+      "grok-4-1-fast-non-reasoning--C-MALT-01--3",
+      "grok-4-1-fast-non-reasoning--C-SPIRITS-01--1",
+      "grok-4-1-fast-non-reasoning--C-SPIRITS-01--2",
+      "grok-4-1-fast-non-reasoning--C-SPIRITS-01--3",
+      "grok-4-1-fast-non-reasoning--C-SPIRITS-IMPORT-01--1",
+      "grok-4-1-fast-non-reasoning--C-SPIRITS-IMPORT-01--2",
+      "grok-4-1-fast-non-reasoning--C-SPIRITS-IMPORT-01--3",
+      "grok-4-1-fast-non-reasoning--C-WINE-01--1",
+      "grok-4-1-fast-non-reasoning--C-WINE-01--2",
+      "grok-4-1-fast-non-reasoning--C-WINE-01--3",
+      "grok-4-1-fast-non-reasoning--D-BLUR-01--1",
+      "grok-4-1-fast-non-reasoning--D-BLUR-01--2",
+      "grok-4-1-fast-non-reasoning--D-BLUR-01--3",
+      "grok-4-1-fast-non-reasoning--D-GLARE-01--1",
+      "grok-4-1-fast-non-reasoning--D-GLARE-01--2",
+      "grok-4-1-fast-non-reasoning--D-GLARE-01--3",
+      "grok-4-1-fast-non-reasoning--D-WARP-01--1",
+      "grok-4-1-fast-non-reasoning--D-WARP-01--2",
+      "grok-4-1-fast-non-reasoning--D-WARP-01--3",
+      "grok-4-1-fast-non-reasoning--W-ABV-4045-01--1",
+      "grok-4-1-fast-non-reasoning--W-ABV-4045-01--2",
+      "grok-4-1-fast-non-reasoning--W-ABV-4045-01--3",
+      "grok-4-1-fast-non-reasoning--W-BRAND-SPLITLINE-01--1",
+      "grok-4-1-fast-non-reasoning--W-BRAND-SPLITLINE-01--2",
+      "grok-4-1-fast-non-reasoning--W-BRAND-SPLITLINE-01--3",
+      "grok-4-1-fast-non-reasoning--W-BRAND-WRONG-01--1",
+      "grok-4-1-fast-non-reasoning--W-BRAND-WRONG-01--2",
+      "grok-4-1-fast-non-reasoning--W-BRAND-WRONG-01--3",
+      "grok-4-1-fast-non-reasoning--W-NETCONTENTS-WRONG-01--1",
+      "grok-4-1-fast-non-reasoning--W-NETCONTENTS-WRONG-01--2",
+      "grok-4-1-fast-non-reasoning--W-NETCONTENTS-WRONG-01--3",
+      "grok-4-1-fast-non-reasoning--W-WARN-REWORD-01--1",
+      "grok-4-1-fast-non-reasoning--W-WARN-REWORD-01--2",
+      "grok-4-1-fast-non-reasoning--W-WARN-REWORD-01--3",
+      "mistral-document-ai-2512--A-ABV-WRONG-01--1",
+      "mistral-document-ai-2512--A-ABV-WRONG-01--2",
+      "mistral-document-ai-2512--A-BRAND-CASE-01--1",
+      "mistral-document-ai-2512--A-BRAND-CASE-01--2",
+      "mistral-document-ai-2512--A-FIELD-MISSING-01--1",
+      "mistral-document-ai-2512--A-FIELD-MISSING-01--2",
+      "mistral-document-ai-2512--A-INJECT-PROMPT-01--1",
+      "mistral-document-ai-2512--A-INJECT-PROMPT-01--2",
+      "mistral-document-ai-2512--A-WARN-BOLDBODY-01--1",
+      "mistral-document-ai-2512--A-WARN-BOLDBODY-01--2",
+      "mistral-document-ai-2512--A-WARN-TITLECASE-01--1",
+      "mistral-document-ai-2512--A-WARN-TITLECASE-01--2",
+      "mistral-document-ai-2512--C-MALT-01--1",
+      "mistral-document-ai-2512--C-MALT-01--2",
+      "mistral-document-ai-2512--C-SPIRITS-01--1",
+      "mistral-document-ai-2512--C-SPIRITS-01--2",
+      "mistral-document-ai-2512--C-SPIRITS-IMPORT-01--1",
+      "mistral-document-ai-2512--C-SPIRITS-IMPORT-01--2",
+      "mistral-document-ai-2512--C-WINE-01--1",
+      "mistral-document-ai-2512--D-BLUR-01--1",
+      "mistral-document-ai-2512--D-BLUR-01--2",
+      "mistral-document-ai-2512--D-GLARE-01--1",
+      "mistral-document-ai-2512--D-GLARE-01--2",
+      "mistral-document-ai-2512--D-WARP-01--1",
+      "mistral-document-ai-2512--D-WARP-01--2",
+      "mistral-document-ai-2512--W-ABV-4045-01--1",
+      "mistral-document-ai-2512--W-ABV-4045-01--2",
+      "mistral-document-ai-2512--W-BRAND-SPLITLINE-01--1",
+      "mistral-document-ai-2512--W-BRAND-SPLITLINE-01--2",
+      "mistral-document-ai-2512--W-BRAND-WRONG-01--1",
+      "mistral-document-ai-2512--W-BRAND-WRONG-01--2",
+      "mistral-document-ai-2512--W-NETCONTENTS-WRONG-01--1",
+      "mistral-document-ai-2512--W-NETCONTENTS-WRONG-01--2",
+      "mistral-document-ai-2512--W-WARN-REWORD-01--1",
+      "mistral-document-ai-2512--W-WARN-REWORD-01--2"
+    ],
+    "all_known_foundry_attempted_ids": [
+      "Kimi-K2.6--A-ABV-WRONG-01--1",
+      "Kimi-K2.6--A-ABV-WRONG-01--2",
+      "Kimi-K2.6--A-BRAND-CASE-01--1",
+      "Kimi-K2.6--A-FIELD-MISSING-01--1",
+      "Kimi-K2.6--A-INJECT-PROMPT-01--1",
+      "Kimi-K2.6--A-WARN-BOLDBODY-01--1",
+      "Kimi-K2.6--A-WARN-TITLECASE-01--1",
+      "Kimi-K2.6--C-MALT-01--1",
+      "Kimi-K2.6--C-SPIRITS-01--1",
+      "Kimi-K2.6--C-SPIRITS-IMPORT-01--1",
+      "Kimi-K2.6--C-WINE-01--1",
+      "Kimi-K2.6--D-BLUR-01--1",
+      "Kimi-K2.6--D-GLARE-01--1",
+      "Kimi-K2.6--D-GLARE-01--2",
+      "Kimi-K2.6--D-WARP-01--1",
+      "Kimi-K2.6--W-ABV-4045-01--1",
+      "Kimi-K2.6--W-ABV-4045-01--2",
+      "Kimi-K2.6--W-BRAND-SPLITLINE-01--1",
+      "Kimi-K2.6--W-BRAND-WRONG-01--1",
+      "Kimi-K2.6--W-BRAND-WRONG-01--2",
+      "Kimi-K2.6--W-NETCONTENTS-WRONG-01--1",
+      "Kimi-K2.6--W-NETCONTENTS-WRONG-01--2",
+      "Kimi-K2.6--W-WARN-REWORD-01--1",
+      "Kimi-K2.6--W-WARN-REWORD-01--2",
+      "Mistral-Large-3--A-ABV-WRONG-01--1",
+      "Mistral-Large-3--A-ABV-WRONG-01--2",
+      "Mistral-Large-3--A-ABV-WRONG-01--3",
+      "Mistral-Large-3--A-BRAND-CASE-01--1",
+      "Mistral-Large-3--A-BRAND-CASE-01--2",
+      "Mistral-Large-3--A-BRAND-CASE-01--3",
+      "Mistral-Large-3--A-FIELD-MISSING-01--1",
+      "Mistral-Large-3--A-FIELD-MISSING-01--2",
+      "Mistral-Large-3--A-FIELD-MISSING-01--3",
+      "Mistral-Large-3--A-INJECT-PROMPT-01--1",
+      "Mistral-Large-3--A-INJECT-PROMPT-01--2",
+      "Mistral-Large-3--A-INJECT-PROMPT-01--3",
+      "Mistral-Large-3--A-WARN-BOLDBODY-01--1",
+      "Mistral-Large-3--A-WARN-BOLDBODY-01--2",
+      "Mistral-Large-3--A-WARN-BOLDBODY-01--3",
+      "Mistral-Large-3--A-WARN-TITLECASE-01--1",
+      "Mistral-Large-3--A-WARN-TITLECASE-01--2",
+      "Mistral-Large-3--A-WARN-TITLECASE-01--3",
+      "Mistral-Large-3--C-MALT-01--1",
+      "Mistral-Large-3--C-MALT-01--2",
+      "Mistral-Large-3--C-MALT-01--3",
+      "Mistral-Large-3--C-SPIRITS-01--1",
+      "Mistral-Large-3--C-SPIRITS-01--2",
+      "Mistral-Large-3--C-SPIRITS-01--3",
+      "Mistral-Large-3--C-SPIRITS-IMPORT-01--1",
+      "Mistral-Large-3--C-SPIRITS-IMPORT-01--2",
+      "Mistral-Large-3--C-SPIRITS-IMPORT-01--3",
+      "Mistral-Large-3--C-WINE-01--1",
+      "Mistral-Large-3--C-WINE-01--2",
+      "Mistral-Large-3--C-WINE-01--3",
+      "Mistral-Large-3--D-BLUR-01--1",
+      "Mistral-Large-3--D-BLUR-01--2",
+      "Mistral-Large-3--D-BLUR-01--3",
+      "Mistral-Large-3--D-GLARE-01--1",
+      "Mistral-Large-3--D-GLARE-01--2",
+      "Mistral-Large-3--D-GLARE-01--3",
+      "Mistral-Large-3--D-WARP-01--1",
+      "Mistral-Large-3--D-WARP-01--2",
+      "Mistral-Large-3--D-WARP-01--3",
+      "Mistral-Large-3--W-ABV-4045-01--1",
+      "Mistral-Large-3--W-ABV-4045-01--2",
+      "Mistral-Large-3--W-ABV-4045-01--3",
+      "Mistral-Large-3--W-BRAND-SPLITLINE-01--1",
+      "Mistral-Large-3--W-BRAND-SPLITLINE-01--2",
+      "Mistral-Large-3--W-BRAND-SPLITLINE-01--3",
+      "Mistral-Large-3--W-BRAND-WRONG-01--1",
+      "Mistral-Large-3--W-BRAND-WRONG-01--2",
+      "Mistral-Large-3--W-BRAND-WRONG-01--3",
+      "Mistral-Large-3--W-NETCONTENTS-WRONG-01--1",
+      "Mistral-Large-3--W-NETCONTENTS-WRONG-01--2",
+      "Mistral-Large-3--W-NETCONTENTS-WRONG-01--3",
+      "Mistral-Large-3--W-WARN-REWORD-01--1",
+      "Mistral-Large-3--W-WARN-REWORD-01--2",
+      "Mistral-Large-3--W-WARN-REWORD-01--3",
+      "gpt-4.1-mini--A-ABV-WRONG-01--1",
+      "gpt-4.1-mini--A-ABV-WRONG-01--2",
+      "gpt-4.1-mini--A-ABV-WRONG-01--3",
+      "gpt-4.1-mini--A-BRAND-CASE-01--1",
+      "gpt-4.1-mini--A-BRAND-CASE-01--2",
+      "gpt-4.1-mini--A-BRAND-CASE-01--3",
+      "gpt-4.1-mini--A-FIELD-MISSING-01--1",
+      "gpt-4.1-mini--A-FIELD-MISSING-01--2",
+      "gpt-4.1-mini--A-FIELD-MISSING-01--3",
+      "gpt-4.1-mini--A-INJECT-PROMPT-01--1",
+      "gpt-4.1-mini--A-INJECT-PROMPT-01--2",
+      "gpt-4.1-mini--A-INJECT-PROMPT-01--3",
+      "gpt-4.1-mini--A-WARN-BOLDBODY-01--1",
+      "gpt-4.1-mini--A-WARN-BOLDBODY-01--2",
+      "gpt-4.1-mini--A-WARN-BOLDBODY-01--3",
+      "gpt-4.1-mini--A-WARN-TITLECASE-01--1",
+      "gpt-4.1-mini--A-WARN-TITLECASE-01--2",
+      "gpt-4.1-mini--A-WARN-TITLECASE-01--3",
+      "gpt-4.1-mini--C-MALT-01--1",
+      "gpt-4.1-mini--C-MALT-01--2",
+      "gpt-4.1-mini--C-MALT-01--3",
+      "gpt-4.1-mini--C-SPIRITS-01--1",
+      "gpt-4.1-mini--C-SPIRITS-01--2",
+      "gpt-4.1-mini--C-SPIRITS-01--3",
+      "gpt-4.1-mini--C-SPIRITS-IMPORT-01--1",
+      "gpt-4.1-mini--C-SPIRITS-IMPORT-01--2",
+      "gpt-4.1-mini--C-SPIRITS-IMPORT-01--3",
+      "gpt-4.1-mini--C-WINE-01--1",
+      "gpt-4.1-mini--C-WINE-01--2",
+      "gpt-4.1-mini--C-WINE-01--3",
+      "gpt-4.1-mini--D-BLUR-01--1",
+      "gpt-4.1-mini--D-BLUR-01--2",
+      "gpt-4.1-mini--D-BLUR-01--3",
+      "gpt-4.1-mini--D-GLARE-01--1",
+      "gpt-4.1-mini--D-GLARE-01--2",
+      "gpt-4.1-mini--D-GLARE-01--3",
+      "gpt-4.1-mini--D-WARP-01--1",
+      "gpt-4.1-mini--D-WARP-01--2",
+      "gpt-4.1-mini--D-WARP-01--3",
+      "gpt-4.1-mini--W-ABV-4045-01--1",
+      "gpt-4.1-mini--W-ABV-4045-01--2",
+      "gpt-4.1-mini--W-ABV-4045-01--3",
+      "gpt-4.1-mini--W-BRAND-SPLITLINE-01--1",
+      "gpt-4.1-mini--W-BRAND-SPLITLINE-01--2",
+      "gpt-4.1-mini--W-BRAND-SPLITLINE-01--3",
+      "gpt-4.1-mini--W-BRAND-WRONG-01--1",
+      "gpt-4.1-mini--W-BRAND-WRONG-01--2",
+      "gpt-4.1-mini--W-BRAND-WRONG-01--3",
+      "gpt-4.1-mini--W-NETCONTENTS-WRONG-01--1",
+      "gpt-4.1-mini--W-NETCONTENTS-WRONG-01--2",
+      "gpt-4.1-mini--W-NETCONTENTS-WRONG-01--3",
+      "gpt-4.1-mini--W-WARN-REWORD-01--1",
+      "gpt-4.1-mini--W-WARN-REWORD-01--2",
+      "gpt-4.1-mini--W-WARN-REWORD-01--3",
+      "gpt-5-mini--A-ABV-WRONG-01--1",
+      "gpt-5-mini--A-ABV-WRONG-01--2",
+      "gpt-5-mini--A-ABV-WRONG-01--3",
+      "gpt-5-mini--A-BRAND-CASE-01--1",
+      "gpt-5-mini--A-BRAND-CASE-01--2",
+      "gpt-5-mini--A-BRAND-CASE-01--3",
+      "gpt-5-mini--A-FIELD-MISSING-01--1",
+      "gpt-5-mini--A-FIELD-MISSING-01--2",
+      "gpt-5-mini--A-FIELD-MISSING-01--3",
+      "gpt-5-mini--A-INJECT-PROMPT-01--1",
+      "gpt-5-mini--A-INJECT-PROMPT-01--2",
+      "gpt-5-mini--A-INJECT-PROMPT-01--3",
+      "gpt-5-mini--A-WARN-BOLDBODY-01--1",
+      "gpt-5-mini--A-WARN-BOLDBODY-01--2",
+      "gpt-5-mini--A-WARN-BOLDBODY-01--3",
+      "gpt-5-mini--A-WARN-TITLECASE-01--1",
+      "gpt-5-mini--A-WARN-TITLECASE-01--2",
+      "gpt-5-mini--A-WARN-TITLECASE-01--3",
+      "gpt-5-mini--C-MALT-01--1",
+      "gpt-5-mini--C-MALT-01--2",
+      "gpt-5-mini--C-MALT-01--3",
+      "gpt-5-mini--C-SPIRITS-01--1",
+      "gpt-5-mini--C-SPIRITS-01--2",
+      "gpt-5-mini--C-SPIRITS-01--3",
+      "gpt-5-mini--C-SPIRITS-IMPORT-01--1",
+      "gpt-5-mini--C-SPIRITS-IMPORT-01--2",
+      "gpt-5-mini--C-SPIRITS-IMPORT-01--3",
+      "gpt-5-mini--C-WINE-01--1",
+      "gpt-5-mini--C-WINE-01--2",
+      "gpt-5-mini--C-WINE-01--3",
+      "gpt-5-mini--D-BLUR-01--1",
+      "gpt-5-mini--D-BLUR-01--2",
+      "gpt-5-mini--D-GLARE-01--1",
+      "gpt-5-mini--D-GLARE-01--2",
+      "gpt-5-mini--D-WARP-01--1",
+      "gpt-5-mini--D-WARP-01--2",
+      "gpt-5-mini--W-ABV-4045-01--1",
+      "gpt-5-mini--W-ABV-4045-01--2",
+      "gpt-5-mini--W-ABV-4045-01--3",
+      "gpt-5-mini--W-BRAND-SPLITLINE-01--1",
+      "gpt-5-mini--W-BRAND-SPLITLINE-01--2",
+      "gpt-5-mini--W-BRAND-SPLITLINE-01--3",
+      "gpt-5-mini--W-BRAND-WRONG-01--1",
+      "gpt-5-mini--W-BRAND-WRONG-01--2",
+      "gpt-5-mini--W-BRAND-WRONG-01--3",
+      "gpt-5-mini--W-NETCONTENTS-WRONG-01--1",
+      "gpt-5-mini--W-NETCONTENTS-WRONG-01--2",
+      "gpt-5-mini--W-NETCONTENTS-WRONG-01--3",
+      "gpt-5-mini--W-WARN-REWORD-01--1",
+      "gpt-5-mini--W-WARN-REWORD-01--2",
+      "gpt-5-mini--W-WARN-REWORD-01--3",
+      "grok-4-1-fast-non-reasoning--A-ABV-WRONG-01--1",
+      "grok-4-1-fast-non-reasoning--A-ABV-WRONG-01--2",
+      "grok-4-1-fast-non-reasoning--A-ABV-WRONG-01--3",
+      "grok-4-1-fast-non-reasoning--A-BRAND-CASE-01--1",
+      "grok-4-1-fast-non-reasoning--A-BRAND-CASE-01--2",
+      "grok-4-1-fast-non-reasoning--A-BRAND-CASE-01--3",
+      "grok-4-1-fast-non-reasoning--A-FIELD-MISSING-01--1",
+      "grok-4-1-fast-non-reasoning--A-FIELD-MISSING-01--2",
+      "grok-4-1-fast-non-reasoning--A-FIELD-MISSING-01--3",
+      "grok-4-1-fast-non-reasoning--A-INJECT-PROMPT-01--1",
+      "grok-4-1-fast-non-reasoning--A-INJECT-PROMPT-01--2",
+      "grok-4-1-fast-non-reasoning--A-INJECT-PROMPT-01--3",
+      "grok-4-1-fast-non-reasoning--A-WARN-BOLDBODY-01--1",
+      "grok-4-1-fast-non-reasoning--A-WARN-BOLDBODY-01--2",
+      "grok-4-1-fast-non-reasoning--A-WARN-BOLDBODY-01--3",
+      "grok-4-1-fast-non-reasoning--A-WARN-TITLECASE-01--1",
+      "grok-4-1-fast-non-reasoning--A-WARN-TITLECASE-01--2",
+      "grok-4-1-fast-non-reasoning--A-WARN-TITLECASE-01--3",
+      "grok-4-1-fast-non-reasoning--C-MALT-01--1",
+      "grok-4-1-fast-non-reasoning--C-MALT-01--2",
+      "grok-4-1-fast-non-reasoning--C-MALT-01--3",
+      "grok-4-1-fast-non-reasoning--C-SPIRITS-01--1",
+      "grok-4-1-fast-non-reasoning--C-SPIRITS-01--2",
+      "grok-4-1-fast-non-reasoning--C-SPIRITS-01--3",
+      "grok-4-1-fast-non-reasoning--C-SPIRITS-IMPORT-01--1",
+      "grok-4-1-fast-non-reasoning--C-SPIRITS-IMPORT-01--2",
+      "grok-4-1-fast-non-reasoning--C-SPIRITS-IMPORT-01--3",
+      "grok-4-1-fast-non-reasoning--C-WINE-01--1",
+      "grok-4-1-fast-non-reasoning--C-WINE-01--2",
+      "grok-4-1-fast-non-reasoning--C-WINE-01--3",
+      "grok-4-1-fast-non-reasoning--D-BLUR-01--1",
+      "grok-4-1-fast-non-reasoning--D-BLUR-01--2",
+      "grok-4-1-fast-non-reasoning--D-BLUR-01--3",
+      "grok-4-1-fast-non-reasoning--D-GLARE-01--1",
+      "grok-4-1-fast-non-reasoning--D-GLARE-01--2",
+      "grok-4-1-fast-non-reasoning--D-GLARE-01--3",
+      "grok-4-1-fast-non-reasoning--D-WARP-01--1",
+      "grok-4-1-fast-non-reasoning--D-WARP-01--2",
+      "grok-4-1-fast-non-reasoning--D-WARP-01--3",
+      "grok-4-1-fast-non-reasoning--W-ABV-4045-01--1",
+      "grok-4-1-fast-non-reasoning--W-ABV-4045-01--2",
+      "grok-4-1-fast-non-reasoning--W-ABV-4045-01--3",
+      "grok-4-1-fast-non-reasoning--W-BRAND-SPLITLINE-01--1",
+      "grok-4-1-fast-non-reasoning--W-BRAND-SPLITLINE-01--2",
+      "grok-4-1-fast-non-reasoning--W-BRAND-SPLITLINE-01--3",
+      "grok-4-1-fast-non-reasoning--W-BRAND-WRONG-01--1",
+      "grok-4-1-fast-non-reasoning--W-BRAND-WRONG-01--2",
+      "grok-4-1-fast-non-reasoning--W-BRAND-WRONG-01--3",
+      "grok-4-1-fast-non-reasoning--W-NETCONTENTS-WRONG-01--1",
+      "grok-4-1-fast-non-reasoning--W-NETCONTENTS-WRONG-01--2",
+      "grok-4-1-fast-non-reasoning--W-NETCONTENTS-WRONG-01--3",
+      "grok-4-1-fast-non-reasoning--W-WARN-REWORD-01--1",
+      "grok-4-1-fast-non-reasoning--W-WARN-REWORD-01--2",
+      "grok-4-1-fast-non-reasoning--W-WARN-REWORD-01--3",
+      "mistral-document-ai-2512--A-ABV-WRONG-01--1",
+      "mistral-document-ai-2512--A-ABV-WRONG-01--2",
+      "mistral-document-ai-2512--A-BRAND-CASE-01--1",
+      "mistral-document-ai-2512--A-BRAND-CASE-01--2",
+      "mistral-document-ai-2512--A-FIELD-MISSING-01--1",
+      "mistral-document-ai-2512--A-FIELD-MISSING-01--2",
+      "mistral-document-ai-2512--A-INJECT-PROMPT-01--1",
+      "mistral-document-ai-2512--A-INJECT-PROMPT-01--2",
+      "mistral-document-ai-2512--A-WARN-BOLDBODY-01--1",
+      "mistral-document-ai-2512--A-WARN-BOLDBODY-01--2",
+      "mistral-document-ai-2512--A-WARN-TITLECASE-01--1",
+      "mistral-document-ai-2512--A-WARN-TITLECASE-01--2",
+      "mistral-document-ai-2512--C-MALT-01--1",
+      "mistral-document-ai-2512--C-MALT-01--2",
+      "mistral-document-ai-2512--C-SPIRITS-01--1",
+      "mistral-document-ai-2512--C-SPIRITS-01--2",
+      "mistral-document-ai-2512--C-SPIRITS-IMPORT-01--1",
+      "mistral-document-ai-2512--C-SPIRITS-IMPORT-01--2",
+      "mistral-document-ai-2512--C-WINE-01--1",
+      "mistral-document-ai-2512--D-BLUR-01--1",
+      "mistral-document-ai-2512--D-BLUR-01--2",
+      "mistral-document-ai-2512--D-GLARE-01--1",
+      "mistral-document-ai-2512--D-GLARE-01--2",
+      "mistral-document-ai-2512--D-WARP-01--1",
+      "mistral-document-ai-2512--D-WARP-01--2",
+      "mistral-document-ai-2512--W-ABV-4045-01--1",
+      "mistral-document-ai-2512--W-ABV-4045-01--2",
+      "mistral-document-ai-2512--W-BRAND-SPLITLINE-01--1",
+      "mistral-document-ai-2512--W-BRAND-SPLITLINE-01--2",
+      "mistral-document-ai-2512--W-BRAND-WRONG-01--1",
+      "mistral-document-ai-2512--W-BRAND-WRONG-01--2",
+      "mistral-document-ai-2512--W-NETCONTENTS-WRONG-01--1",
+      "mistral-document-ai-2512--W-NETCONTENTS-WRONG-01--2",
+      "mistral-document-ai-2512--W-WARN-REWORD-01--1",
+      "mistral-document-ai-2512--W-WARN-REWORD-01--2"
+    ],
+    "entries": [
+      {
+        "id": "Kimi-K2.6--A-ABV-WRONG-01--1",
+        "guard_usd": 0.0106733,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Kimi-K2.6--A-ABV-WRONG-01--2",
+        "guard_usd": 0.0172953,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Kimi-K2.6--A-BRAND-CASE-01--1",
+        "guard_usd": 0.0070873,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Kimi-K2.6--A-FIELD-MISSING-01--1",
+        "guard_usd": 0.0099033,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Kimi-K2.6--A-INJECT-PROMPT-01--1",
+        "guard_usd": 0.0129943,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Kimi-K2.6--A-WARN-BOLDBODY-01--1",
+        "guard_usd": 0.0128623,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Kimi-K2.6--A-WARN-TITLECASE-01--1",
+        "guard_usd": 0.0106348,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Kimi-K2.6--C-MALT-01--1",
+        "guard_usd": 0.0146003,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Kimi-K2.6--C-SPIRITS-01--1",
+        "guard_usd": 0.0101288,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Kimi-K2.6--C-SPIRITS-IMPORT-01--1",
+        "guard_usd": 0.0129723,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Kimi-K2.6--C-WINE-01--1",
+        "guard_usd": 0.0094963,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Kimi-K2.6--D-BLUR-01--1",
+        "guard_usd": 0.0101728,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Kimi-K2.6--D-GLARE-01--1",
+        "guard_usd": 0.0102828,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Kimi-K2.6--D-GLARE-01--2",
+        "guard_usd": 0.0118833,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Kimi-K2.6--D-WARP-01--1",
+        "guard_usd": 0.0170863,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Kimi-K2.6--W-ABV-4045-01--1",
+        "guard_usd": 0.0159038,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Kimi-K2.6--W-ABV-4045-01--2",
+        "guard_usd": 0.0110088,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Kimi-K2.6--W-BRAND-SPLITLINE-01--1",
+        "guard_usd": 0.0075383,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Kimi-K2.6--W-BRAND-WRONG-01--1",
+        "guard_usd": 0.0087043,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Kimi-K2.6--W-BRAND-WRONG-01--2",
+        "guard_usd": 1.1699336,
+        "status": "reserved"
+      },
+      {
+        "id": "Kimi-K2.6--W-NETCONTENTS-WRONG-01--1",
+        "guard_usd": 0.0182468,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Kimi-K2.6--W-NETCONTENTS-WRONG-01--2",
+        "guard_usd": 0.0162778,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Kimi-K2.6--W-WARN-REWORD-01--1",
+        "guard_usd": 0.0139018,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Kimi-K2.6--W-WARN-REWORD-01--2",
+        "guard_usd": 0.0145948,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--A-ABV-WRONG-01--1",
+        "guard_usd": 0.0049291,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--A-ABV-WRONG-01--2",
+        "guard_usd": 0.0049291,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--A-ABV-WRONG-01--3",
+        "guard_usd": 0.0049291,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--A-BRAND-CASE-01--1",
+        "guard_usd": 0.0049346,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--A-BRAND-CASE-01--2",
+        "guard_usd": 0.0049346,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--A-FIELD-MISSING-01--1",
+        "guard_usd": 0.0048191,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--A-FIELD-MISSING-01--2",
+        "guard_usd": 0.0048191,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--A-INJECT-PROMPT-01--1",
+        "guard_usd": 0.0049126,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--A-INJECT-PROMPT-01--2",
+        "guard_usd": 0.0049126,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--A-INJECT-PROMPT-01--3",
+        "guard_usd": 0.0049126,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--A-WARN-BOLDBODY-01--1",
+        "guard_usd": 0.0049511,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--A-WARN-BOLDBODY-01--2",
+        "guard_usd": 0.0049511,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--A-WARN-TITLECASE-01--1",
+        "guard_usd": 0.0049236,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--A-WARN-TITLECASE-01--2",
+        "guard_usd": 0.0049236,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--C-MALT-01--1",
+        "guard_usd": 0.0049456,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--C-MALT-01--2",
+        "guard_usd": 0.0049456,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--C-MALT-01--3",
+        "guard_usd": 1.1699336,
+        "status": "reserved"
+      },
+      {
+        "id": "Mistral-Large-3--C-SPIRITS-01--1",
+        "guard_usd": 0.0049346,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--C-SPIRITS-01--2",
+        "guard_usd": 0.0049346,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--C-SPIRITS-01--3",
+        "guard_usd": 0.0049346,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--C-SPIRITS-IMPORT-01--1",
+        "guard_usd": 0.0049676,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--C-SPIRITS-IMPORT-01--2",
+        "guard_usd": 0.0049676,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--C-WINE-01--1",
+        "guard_usd": 0.0049511,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--C-WINE-01--2",
+        "guard_usd": 0.0049511,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--D-BLUR-01--1",
+        "guard_usd": 0.0049346,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--D-BLUR-01--2",
+        "guard_usd": 0.0049346,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--D-GLARE-01--1",
+        "guard_usd": 0.0049456,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--D-GLARE-01--2",
+        "guard_usd": 0.0049456,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--D-GLARE-01--3",
+        "guard_usd": 0.0049456,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--D-WARP-01--1",
+        "guard_usd": 0.0049511,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--D-WARP-01--2",
+        "guard_usd": 0.0049511,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--W-ABV-4045-01--1",
+        "guard_usd": 0.0050006,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--W-ABV-4045-01--2",
+        "guard_usd": 0.0050006,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--W-ABV-4045-01--3",
+        "guard_usd": 0.0050006,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--W-BRAND-SPLITLINE-01--1",
+        "guard_usd": 0.0049456,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--W-BRAND-SPLITLINE-01--2",
+        "guard_usd": 0.0049456,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--W-BRAND-WRONG-01--1",
+        "guard_usd": 0.0049346,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--W-BRAND-WRONG-01--2",
+        "guard_usd": 0.0049346,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--W-BRAND-WRONG-01--3",
+        "guard_usd": 0.0049346,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--W-NETCONTENTS-WRONG-01--1",
+        "guard_usd": 0.0049401,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--W-NETCONTENTS-WRONG-01--2",
+        "guard_usd": 0.0049346,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--W-NETCONTENTS-WRONG-01--3",
+        "guard_usd": 0.0049346,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--W-WARN-REWORD-01--1",
+        "guard_usd": 0.0049401,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--W-WARN-REWORD-01--2",
+        "guard_usd": 0.0049401,
+        "status": "usage-guard"
+      },
+      {
+        "id": "Mistral-Large-3--W-WARN-REWORD-01--3",
+        "guard_usd": 0.0049401,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--A-ABV-WRONG-01--1",
+        "guard_usd": 0.0040249,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--A-ABV-WRONG-01--2",
+        "guard_usd": 0.0035519,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--A-ABV-WRONG-01--3",
+        "guard_usd": 0.0040249,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--A-BRAND-CASE-01--1",
+        "guard_usd": 0.0040194,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--A-BRAND-CASE-01--2",
+        "guard_usd": 0.0035629,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--A-BRAND-CASE-01--3",
+        "guard_usd": 0.0036619,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--A-FIELD-MISSING-01--1",
+        "guard_usd": 0.0038214,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--A-FIELD-MISSING-01--2",
+        "guard_usd": 0.0039424,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--A-FIELD-MISSING-01--3",
+        "guard_usd": 0.0035904,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--A-INJECT-PROMPT-01--1",
+        "guard_usd": 0.0035574,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--A-INJECT-PROMPT-01--2",
+        "guard_usd": 0.0040249,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--A-INJECT-PROMPT-01--3",
+        "guard_usd": 0.0036674,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--A-WARN-BOLDBODY-01--1",
+        "guard_usd": 0.0039094,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--A-WARN-BOLDBODY-01--2",
+        "guard_usd": 0.0040304,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--A-WARN-BOLDBODY-01--3",
+        "guard_usd": 0.0040304,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--A-WARN-TITLECASE-01--1",
+        "guard_usd": 0.0040139,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--A-WARN-TITLECASE-01--2",
+        "guard_usd": 0.0036564,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--A-WARN-TITLECASE-01--3",
+        "guard_usd": 0.0035354,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--C-MALT-01--1",
+        "guard_usd": 0.0036619,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--C-MALT-01--2",
+        "guard_usd": 0.0034969,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--C-MALT-01--3",
+        "guard_usd": 0.0040249,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--C-SPIRITS-01--1",
+        "guard_usd": 0.0035629,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--C-SPIRITS-01--2",
+        "guard_usd": 0.0040304,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--C-SPIRITS-01--3",
+        "guard_usd": 0.0040304,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--C-SPIRITS-IMPORT-01--1",
+        "guard_usd": 0.0035409,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--C-SPIRITS-IMPORT-01--2",
+        "guard_usd": 0.0037059,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--C-SPIRITS-IMPORT-01--3",
+        "guard_usd": 0.0040689,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--C-WINE-01--1",
+        "guard_usd": 0.0036674,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--C-WINE-01--2",
+        "guard_usd": 0.0040304,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--C-WINE-01--3",
+        "guard_usd": 0.0035629,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--D-BLUR-01--1",
+        "guard_usd": 0.0039314,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--D-BLUR-01--2",
+        "guard_usd": 0.0040304,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--D-BLUR-01--3",
+        "guard_usd": 0.0040304,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--D-GLARE-01--1",
+        "guard_usd": 0.0036619,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--D-GLARE-01--2",
+        "guard_usd": 0.0040249,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--D-GLARE-01--3",
+        "guard_usd": 0.0036619,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--D-WARP-01--1",
+        "guard_usd": 0.0040304,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--D-WARP-01--2",
+        "guard_usd": 0.0039204,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--D-WARP-01--3",
+        "guard_usd": 0.0040304,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--W-ABV-4045-01--1",
+        "guard_usd": 0.0040799,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--W-ABV-4045-01--2",
+        "guard_usd": 0.0036234,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--W-ABV-4045-01--3",
+        "guard_usd": 0.0040799,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--W-BRAND-SPLITLINE-01--1",
+        "guard_usd": 0.0036619,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--W-BRAND-SPLITLINE-01--2",
+        "guard_usd": 0.0040194,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--W-BRAND-SPLITLINE-01--3",
+        "guard_usd": 0.0036619,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--W-BRAND-WRONG-01--1",
+        "guard_usd": 0.0040304,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--W-BRAND-WRONG-01--2",
+        "guard_usd": 0.0040304,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--W-BRAND-WRONG-01--3",
+        "guard_usd": 0.0036729,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--W-NETCONTENTS-WRONG-01--1",
+        "guard_usd": 0.0040194,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--W-NETCONTENTS-WRONG-01--2",
+        "guard_usd": 0.0034969,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--W-NETCONTENTS-WRONG-01--3",
+        "guard_usd": 0.0036619,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--W-WARN-REWORD-01--1",
+        "guard_usd": 0.0035629,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--W-WARN-REWORD-01--2",
+        "guard_usd": 0.0040469,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-4.1-mini--W-WARN-REWORD-01--3",
+        "guard_usd": 0.0035849,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--A-ABV-WRONG-01--1",
+        "guard_usd": 0.006732,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--A-ABV-WRONG-01--2",
+        "guard_usd": 0.007293,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--A-BRAND-CASE-01--1",
+        "guard_usd": 0.0084865,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--A-BRAND-CASE-01--2",
+        "guard_usd": 0.0072215,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--A-FIELD-MISSING-01--1",
+        "guard_usd": 0.006556,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--A-FIELD-MISSING-01--2",
+        "guard_usd": 0.007051,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--A-INJECT-PROMPT-01--1",
+        "guard_usd": 0.007832,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--A-INJECT-PROMPT-01--2",
+        "guard_usd": 0.007601,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--A-WARN-BOLDBODY-01--1",
+        "guard_usd": 0.0076395,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--A-WARN-BOLDBODY-01--2",
+        "guard_usd": 0.0072765,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--A-WARN-TITLECASE-01--1",
+        "guard_usd": 0.007095,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--A-WARN-TITLECASE-01--2",
+        "guard_usd": 0.0079585,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--C-MALT-01--1",
+        "guard_usd": 0.007513,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--C-MALT-01--2",
+        "guard_usd": 0.007953,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--C-SPIRITS-01--1",
+        "guard_usd": 0.0079365,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--C-SPIRITS-01--2",
+        "guard_usd": 0.0075295,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--C-SPIRITS-IMPORT-01--1",
+        "guard_usd": 0.007656,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--C-SPIRITS-IMPORT-01--2",
+        "guard_usd": 0.0081125,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--C-WINE-01--1",
+        "guard_usd": 0.00704,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--C-WINE-01--2",
+        "guard_usd": 1.1699336,
+        "status": "reserved"
+      },
+      {
+        "id": "gpt-5-mini--D-BLUR-01--1",
+        "guard_usd": 0.0082115,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--D-BLUR-01--2",
+        "guard_usd": 0.00814,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--D-GLARE-01--1",
+        "guard_usd": 0.007744,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--D-GLARE-01--2",
+        "guard_usd": 0.008052,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--D-WARP-01--1",
+        "guard_usd": 0.0081235,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--D-WARP-01--2",
+        "guard_usd": 0.007755,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--W-ABV-4045-01--1",
+        "guard_usd": 0.007271,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--W-ABV-4045-01--2",
+        "guard_usd": 0.0070125,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--W-BRAND-SPLITLINE-01--1",
+        "guard_usd": 0.0075295,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--W-BRAND-SPLITLINE-01--2",
+        "guard_usd": 0.0086845,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--W-BRAND-WRONG-01--1",
+        "guard_usd": 0.0078045,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--W-BRAND-WRONG-01--2",
+        "guard_usd": 0.0079475,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--W-NETCONTENTS-WRONG-01--1",
+        "guard_usd": 0.0080245,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--W-NETCONTENTS-WRONG-01--2",
+        "guard_usd": 0.0062425,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--W-WARN-REWORD-01--1",
+        "guard_usd": 0.007843,
+        "status": "usage-guard"
+      },
+      {
+        "id": "gpt-5-mini--W-WARN-REWORD-01--2",
+        "guard_usd": 0.006963,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--A-ABV-WRONG-01--1",
+        "guard_usd": 0.0042889,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--A-ABV-WRONG-01--2",
+        "guard_usd": 0.0042614,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--A-ABV-WRONG-01--3",
+        "guard_usd": 0.0040414,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--A-BRAND-CASE-01--1",
+        "guard_usd": 0.0040414,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--A-BRAND-CASE-01--2",
+        "guard_usd": 0.0040414,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--A-BRAND-CASE-01--3",
+        "guard_usd": 0.0040414,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--A-FIELD-MISSING-01--1",
+        "guard_usd": 0.0039699,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--A-FIELD-MISSING-01--2",
+        "guard_usd": 0.0039754,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--A-FIELD-MISSING-01--3",
+        "guard_usd": 0.0039754,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--A-INJECT-PROMPT-01--1",
+        "guard_usd": 0.0040469,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--A-INJECT-PROMPT-01--2",
+        "guard_usd": 0.0040469,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--A-INJECT-PROMPT-01--3",
+        "guard_usd": 0.0040469,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--A-WARN-BOLDBODY-01--1",
+        "guard_usd": 0.0040524,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--A-WARN-BOLDBODY-01--2",
+        "guard_usd": 0.0040469,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--A-WARN-BOLDBODY-01--3",
+        "guard_usd": 0.0040524,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--A-WARN-TITLECASE-01--1",
+        "guard_usd": 0.0040359,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--A-WARN-TITLECASE-01--2",
+        "guard_usd": 0.0039259,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--A-WARN-TITLECASE-01--3",
+        "guard_usd": 0.0040359,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--C-MALT-01--1",
+        "guard_usd": 0.0040359,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--C-MALT-01--2",
+        "guard_usd": 0.0040304,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--C-MALT-01--3",
+        "guard_usd": 0.0040359,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--C-SPIRITS-01--1",
+        "guard_usd": 0.0040469,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--C-SPIRITS-01--2",
+        "guard_usd": 0.0040524,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--C-SPIRITS-01--3",
+        "guard_usd": 0.0040524,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--C-SPIRITS-IMPORT-01--1",
+        "guard_usd": 0.0042999,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--C-SPIRITS-IMPORT-01--2",
+        "guard_usd": 0.0040854,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--C-SPIRITS-IMPORT-01--3",
+        "guard_usd": 0.0040194,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--C-WINE-01--1",
+        "guard_usd": 0.0041899,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--C-WINE-01--2",
+        "guard_usd": 0.0040524,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--C-WINE-01--3",
+        "guard_usd": 0.0038709,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--D-BLUR-01--1",
+        "guard_usd": 0.0039809,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--D-BLUR-01--2",
+        "guard_usd": 0.0040524,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--D-BLUR-01--3",
+        "guard_usd": 0.0040469,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--D-GLARE-01--1",
+        "guard_usd": 0.0040359,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--D-GLARE-01--2",
+        "guard_usd": 0.0040359,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--D-GLARE-01--3",
+        "guard_usd": 0.0040139,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--D-WARP-01--1",
+        "guard_usd": 0.0040084,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--D-WARP-01--2",
+        "guard_usd": 0.0040524,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--D-WARP-01--3",
+        "guard_usd": 0.0040524,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--W-ABV-4045-01--1",
+        "guard_usd": 0.0043274,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--W-ABV-4045-01--2",
+        "guard_usd": 0.0041019,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--W-ABV-4045-01--3",
+        "guard_usd": 0.0046299,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--W-BRAND-SPLITLINE-01--1",
+        "guard_usd": 0.0040469,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--W-BRAND-SPLITLINE-01--2",
+        "guard_usd": 0.0043604,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--W-BRAND-SPLITLINE-01--3",
+        "guard_usd": 0.0040414,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--W-BRAND-WRONG-01--1",
+        "guard_usd": 0.0039919,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--W-BRAND-WRONG-01--2",
+        "guard_usd": 0.0040524,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--W-BRAND-WRONG-01--3",
+        "guard_usd": 0.0042724,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--W-NETCONTENTS-WRONG-01--1",
+        "guard_usd": 0.0040524,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--W-NETCONTENTS-WRONG-01--2",
+        "guard_usd": 0.0040524,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--W-NETCONTENTS-WRONG-01--3",
+        "guard_usd": 0.0040524,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--W-WARN-REWORD-01--1",
+        "guard_usd": 0.0040689,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--W-WARN-REWORD-01--2",
+        "guard_usd": 0.0040689,
+        "status": "usage-guard"
+      },
+      {
+        "id": "grok-4-1-fast-non-reasoning--W-WARN-REWORD-01--3",
+        "guard_usd": 0.0040689,
+        "status": "usage-guard"
+      },
+      {
+        "id": "mistral-document-ai-2512--A-ABV-WRONG-01--1",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--A-ABV-WRONG-01--2",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--A-BRAND-CASE-01--1",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--A-BRAND-CASE-01--2",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--A-FIELD-MISSING-01--1",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--A-FIELD-MISSING-01--2",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--A-INJECT-PROMPT-01--1",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--A-INJECT-PROMPT-01--2",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--A-WARN-BOLDBODY-01--1",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--A-WARN-BOLDBODY-01--2",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--A-WARN-TITLECASE-01--1",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--A-WARN-TITLECASE-01--2",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--C-MALT-01--1",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--C-MALT-01--2",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--C-SPIRITS-01--1",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--C-SPIRITS-01--2",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--C-SPIRITS-IMPORT-01--1",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--C-SPIRITS-IMPORT-01--2",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--C-WINE-01--1",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--D-BLUR-01--1",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--D-BLUR-01--2",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--D-GLARE-01--1",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--D-GLARE-01--2",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--D-WARP-01--1",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--D-WARP-01--2",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--W-ABV-4045-01--1",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--W-ABV-4045-01--2",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--W-BRAND-SPLITLINE-01--1",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--W-BRAND-SPLITLINE-01--2",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--W-BRAND-WRONG-01--1",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--W-BRAND-WRONG-01--2",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--W-NETCONTENTS-WRONG-01--1",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--W-NETCONTENTS-WRONG-01--2",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--W-WARN-REWORD-01--1",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      },
+      {
+        "id": "mistral-document-ai-2512--W-WARN-REWORD-01--2",
+        "guard_usd": 0.05,
+        "status": "unknown-charge"
+      }
+    ],
+    "interrupted": [
+      {
+        "id": "Kimi-K2.6--W-BRAND-WRONG-01--2",
+        "guard_usd": 1.1699336,
+        "status": "reserved"
+      },
+      {
+        "id": "Mistral-Large-3--C-MALT-01--3",
+        "guard_usd": 1.1699336,
+        "status": "reserved"
+      },
+      {
+        "id": "gpt-5-mini--C-WINE-01--2",
+        "guard_usd": 1.1699336,
+        "status": "reserved"
+      }
+    ],
+    "http429_count": 2,
+    "status_counts": {
+      "usage-guard": 210,
+      "reserved": 3,
+      "unknown-charge": 35
+    },
+    "guard_total_usd": 6.4538618
+  },
+  "argus_log_only": {
+    "completed_logged_calls": 99,
+    "records": [
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "C-SPIRITS-01",
+        "repeat": 1,
+        "latency_s": 4.8,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "C-SPIRITS-01",
+        "repeat": 2,
+        "latency_s": 6.2,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "C-SPIRITS-01",
+        "repeat": 3,
+        "latency_s": 5.7,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "C-WINE-01",
+        "repeat": 1,
+        "latency_s": 5.0,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "C-WINE-01",
+        "repeat": 2,
+        "latency_s": 4.8,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "C-WINE-01",
+        "repeat": 3,
+        "latency_s": 4.2,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "C-MALT-01",
+        "repeat": 1,
+        "latency_s": 5.3,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "C-MALT-01",
+        "repeat": 2,
+        "latency_s": 5.6,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "C-MALT-01",
+        "repeat": 3,
+        "latency_s": 4.9,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "C-SPIRITS-IMPORT-01",
+        "repeat": 1,
+        "latency_s": 5.3,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "C-SPIRITS-IMPORT-01",
+        "repeat": 2,
+        "latency_s": 5.6,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "C-SPIRITS-IMPORT-01",
+        "repeat": 3,
+        "latency_s": 4.4,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "A-WARN-TITLECASE-01",
+        "repeat": 1,
+        "latency_s": 5.7,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "A-WARN-TITLECASE-01",
+        "repeat": 2,
+        "latency_s": 4.3,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "A-WARN-TITLECASE-01",
+        "repeat": 3,
+        "latency_s": 5.1,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "A-WARN-BOLDBODY-01",
+        "repeat": 1,
+        "latency_s": 5.6,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "A-WARN-BOLDBODY-01",
+        "repeat": 2,
+        "latency_s": 5.3,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "A-WARN-BOLDBODY-01",
+        "repeat": 3,
+        "latency_s": 4.6,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "A-BRAND-CASE-01",
+        "repeat": 1,
+        "latency_s": 4.7,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "A-BRAND-CASE-01",
+        "repeat": 2,
+        "latency_s": 5.5,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "A-BRAND-CASE-01",
+        "repeat": 3,
+        "latency_s": 5.3,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "A-ABV-WRONG-01",
+        "repeat": 1,
+        "latency_s": 4.9,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "A-ABV-WRONG-01",
+        "repeat": 2,
+        "latency_s": 4.7,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "A-ABV-WRONG-01",
+        "repeat": 3,
+        "latency_s": 6.6,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "A-FIELD-MISSING-01",
+        "repeat": 1,
+        "latency_s": 4.9,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "A-FIELD-MISSING-01",
+        "repeat": 2,
+        "latency_s": 5.8,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "A-FIELD-MISSING-01",
+        "repeat": 3,
+        "latency_s": 5.1,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "A-INJECT-PROMPT-01",
+        "repeat": 1,
+        "latency_s": 4.8,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "A-INJECT-PROMPT-01",
+        "repeat": 2,
+        "latency_s": 4.9,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "A-INJECT-PROMPT-01",
+        "repeat": 3,
+        "latency_s": 5.3,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "W-BRAND-WRONG-01",
+        "repeat": 1,
+        "latency_s": 5.2,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "W-BRAND-WRONG-01",
+        "repeat": 2,
+        "latency_s": 4.8,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "W-BRAND-WRONG-01",
+        "repeat": 3,
+        "latency_s": 4.6,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "W-ABV-4045-01",
+        "repeat": 1,
+        "latency_s": 5.1,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "W-ABV-4045-01",
+        "repeat": 2,
+        "latency_s": 7.3,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "W-ABV-4045-01",
+        "repeat": 3,
+        "latency_s": 6.3,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "W-NETCONTENTS-WRONG-01",
+        "repeat": 1,
+        "latency_s": 4.5,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "W-NETCONTENTS-WRONG-01",
+        "repeat": 2,
+        "latency_s": 4.4,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "W-NETCONTENTS-WRONG-01",
+        "repeat": 3,
+        "latency_s": 4.5,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "W-WARN-REWORD-01",
+        "repeat": 1,
+        "latency_s": 6.0,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "W-WARN-REWORD-01",
+        "repeat": 2,
+        "latency_s": 4.4,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "W-WARN-REWORD-01",
+        "repeat": 3,
+        "latency_s": 6.7,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "W-BRAND-SPLITLINE-01",
+        "repeat": 1,
+        "latency_s": 5.8,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "W-BRAND-SPLITLINE-01",
+        "repeat": 2,
+        "latency_s": 5.7,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "W-BRAND-SPLITLINE-01",
+        "repeat": 3,
+        "latency_s": 5.2,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "D-BLUR-01",
+        "repeat": 1,
+        "latency_s": 5.9,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "D-BLUR-01",
+        "repeat": 2,
+        "latency_s": 4.6,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "D-BLUR-01",
+        "repeat": 3,
+        "latency_s": 5.4,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "D-WARP-01",
+        "repeat": 1,
+        "latency_s": 6.0,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "D-WARP-01",
+        "repeat": 2,
+        "latency_s": 6.4,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "D-WARP-01",
+        "repeat": 3,
+        "latency_s": 6.5,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "D-GLARE-01",
+        "repeat": 1,
+        "latency_s": 6.2,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "D-GLARE-01",
+        "repeat": 2,
+        "latency_s": 5.0,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-4.1-mini",
+        "fixture_id": "D-GLARE-01",
+        "repeat": 3,
+        "latency_s": 6.0,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "C-SPIRITS-01",
+        "repeat": 1,
+        "latency_s": 9.2,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "C-SPIRITS-01",
+        "repeat": 2,
+        "latency_s": 10.4,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "C-SPIRITS-01",
+        "repeat": 3,
+        "latency_s": 12.0,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "C-WINE-01",
+        "repeat": 1,
+        "latency_s": 11.9,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "C-WINE-01",
+        "repeat": 2,
+        "latency_s": 12.6,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "C-WINE-01",
+        "repeat": 3,
+        "latency_s": 13.7,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "C-MALT-01",
+        "repeat": 1,
+        "latency_s": 13.0,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "C-MALT-01",
+        "repeat": 2,
+        "latency_s": 13.4,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "C-MALT-01",
+        "repeat": 3,
+        "latency_s": 13.0,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "C-SPIRITS-IMPORT-01",
+        "repeat": 1,
+        "latency_s": 11.4,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "C-SPIRITS-IMPORT-01",
+        "repeat": 2,
+        "latency_s": 12.4,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "C-SPIRITS-IMPORT-01",
+        "repeat": 3,
+        "latency_s": 12.2,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "A-WARN-TITLECASE-01",
+        "repeat": 1,
+        "latency_s": 13.0,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "A-WARN-TITLECASE-01",
+        "repeat": 2,
+        "latency_s": 11.8,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "A-WARN-TITLECASE-01",
+        "repeat": 3,
+        "latency_s": 11.8,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "A-WARN-BOLDBODY-01",
+        "repeat": 1,
+        "latency_s": 13.3,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "A-WARN-BOLDBODY-01",
+        "repeat": 2,
+        "latency_s": 14.3,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "A-WARN-BOLDBODY-01",
+        "repeat": 3,
+        "latency_s": 12.3,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "A-BRAND-CASE-01",
+        "repeat": 1,
+        "latency_s": 11.2,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "A-BRAND-CASE-01",
+        "repeat": 2,
+        "latency_s": 12.4,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "A-BRAND-CASE-01",
+        "repeat": 3,
+        "latency_s": 12.6,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "A-ABV-WRONG-01",
+        "repeat": 1,
+        "latency_s": 10.8,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "A-ABV-WRONG-01",
+        "repeat": 2,
+        "latency_s": 12.4,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "A-ABV-WRONG-01",
+        "repeat": 3,
+        "latency_s": 13.7,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "A-FIELD-MISSING-01",
+        "repeat": 1,
+        "latency_s": 11.5,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "A-FIELD-MISSING-01",
+        "repeat": 2,
+        "latency_s": 10.9,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "A-FIELD-MISSING-01",
+        "repeat": 3,
+        "latency_s": 12.7,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "A-INJECT-PROMPT-01",
+        "repeat": 1,
+        "latency_s": 10.7,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "A-INJECT-PROMPT-01",
+        "repeat": 2,
+        "latency_s": 10.8,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "A-INJECT-PROMPT-01",
+        "repeat": 3,
+        "latency_s": 10.7,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "W-BRAND-WRONG-01",
+        "repeat": 1,
+        "latency_s": 11.9,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "W-BRAND-WRONG-01",
+        "repeat": 2,
+        "latency_s": 14.2,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "W-BRAND-WRONG-01",
+        "repeat": 3,
+        "latency_s": 11.3,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "W-ABV-4045-01",
+        "repeat": 1,
+        "latency_s": 13.2,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "W-ABV-4045-01",
+        "repeat": 2,
+        "latency_s": 12.3,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "W-ABV-4045-01",
+        "repeat": 3,
+        "latency_s": 12.6,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "W-NETCONTENTS-WRONG-01",
+        "repeat": 1,
+        "latency_s": 12.4,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "W-NETCONTENTS-WRONG-01",
+        "repeat": 2,
+        "latency_s": 13.3,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "W-NETCONTENTS-WRONG-01",
+        "repeat": 3,
+        "latency_s": 13.8,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "W-WARN-REWORD-01",
+        "repeat": 1,
+        "latency_s": 11.5,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "W-WARN-REWORD-01",
+        "repeat": 2,
+        "latency_s": 11.0,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "W-WARN-REWORD-01",
+        "repeat": 3,
+        "latency_s": 12.4,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "W-BRAND-SPLITLINE-01",
+        "repeat": 1,
+        "latency_s": 10.6,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "W-BRAND-SPLITLINE-01",
+        "repeat": 2,
+        "latency_s": 12.4,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      },
+      {
+        "model": "gpt-5-mini",
+        "fixture_id": "W-BRAND-SPLITLINE-01",
+        "repeat": 3,
+        "latency_s": 9.8,
+        "source": "_foundry_run2.log.utf8.txt",
+        "precision": "rounded log only"
+      }
+    ],
+    "groups": [
+      {
+        "model": "gpt-4.1-mini",
+        "calls": 54,
+        "latency_s": {
+          "mean": 5.322222222222222,
+          "median": 5.25,
+          "p95": 6.534999999999999
+        },
+        "scoring_available": false
+      },
+      {
+        "model": "gpt-5-mini",
+        "calls": 45,
+        "latency_s": {
+          "mean": 12.106666666666667,
+          "median": 12.3,
+          "p95": 13.78
+        },
+        "scoring_available": false
+      }
+    ],
+    "logged_cumulative_estimate_usd": 0.1853,
+    "note": "Run2 has no persisted extraction/usage records in recovered evidence. Run1 logs duplicate the 108 saved records and are NOT added again. Log2 truncates before run completion."
+  },
+  "costs": {
+    "ava_measured_estimate_usd": 0.58834265,
+    "ava_chat_estimate_usd": 0.48934265,
+    "ava_observed_ocr_pages": 33,
+    "argus_saved_record_estimate_usd": 0.135582,
+    "argus_saved_metadata_estimate_usd": 0.135593,
+    "argus_probe_observed_usage_estimate_usd": 0.00068415,
+    "combined_measured_estimate_usd": 0.7246087999999999,
+    "combined_including_log_only_estimate_usd": 0.9099088,
+    "prior_AVA_smoke_estimate_usd": 0.0001217,
+    "historical_saved_metadata_estimate_usd": 1.061848,
+    "rounding_note": "Summed rounded row costs differ from run metadata: both preserved; combined totals use row sums, not a claim of exact billing.",
+    "historical_saved_record_estimate_usd": 1.061835,
+    "all_observed_including_historical_and_smoke_estimate_usd": 1.9718655,
+    "invoice_verified": false,
+    "unknown_charges": [
+      {
+        "operator": "AVA",
+        "kind": "interrupted/cancelled dispatch",
+        "id": "Kimi-K2.6--W-BRAND-WRONG-01--2",
+        "guard_usd": 1.1699336,
+        "status": "reserved"
+      },
+      {
+        "operator": "AVA",
+        "kind": "interrupted/cancelled dispatch",
+        "id": "Mistral-Large-3--C-MALT-01--3",
+        "guard_usd": 1.1699336,
+        "status": "reserved"
+      },
+      {
+        "operator": "AVA",
+        "kind": "interrupted/cancelled dispatch",
+        "id": "gpt-5-mini--C-WINE-01--2",
+        "guard_usd": 1.1699336,
+        "status": "reserved"
+      },
+      {
+        "operator": "AVA",
+        "kind": "HTTP429 charge unresolved",
+        "id": "mistral-document-ai-2512--C-SPIRITS-IMPORT-01--2"
+      },
+      {
+        "operator": "AVA",
+        "kind": "HTTP429 charge unresolved",
+        "id": "mistral-document-ai-2512--D-WARP-01--2"
+      },
+      {
+        "operator": "ARGUS",
+        "kind": "probe failed HTTP404; no usage",
+        "model": "mistral-document-ai-2512"
+      },
+      {
+        "operator": "ARGUS",
+        "kind": "additional probe dialect/route attempts and any in-flight run2 tail not captured by logs; dispatch count and charges unknown"
+      }
+    ],
+    "rates_per_million_assumed": {
+      "gpt-4.1-mini": [
+        0.4,
+        1.6
+      ],
+      "gpt-5-mini": [
+        0.25,
+        2
+      ],
+      "grok-4-1-fast-non-reasoning": [
+        0.2,
+        0.5
+      ],
+      "Mistral-Large-3": [
+        0.5,
+        1.5
+      ],
+      "Kimi-K2.6": [
+        0.95,
+        4
+      ]
+    },
+    "pricing_note": "AVA and probe use saved eastus2 Global Standard retail assumptions, no cache discount; ARGUS saved rows retain original rounded/unverified aggregator estimates. Log-only cost is rounded cumulative log estimate. Not invoices, not final spend or permission to consume remaining cap."
+  },
+  "tests_existing": [
+    {
+      "name": "inherited-scoring",
+      "command": [
+        "python3",
+        "-B",
+        "bench/test_scoring.py"
+      ],
+      "cwd": "/opt/data/projects/ttb-label-verify-ava-recovery-v2",
+      "exit_code": 0,
+      "log": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v2/inherited-scoring.log"
+    },
+    {
+      "name": "inherited-integrity",
+      "command": [
+        "python3",
+        "-B",
+        "bench/test_results_integrity.py"
+      ],
+      "cwd": "/opt/data/projects/ttb-label-verify-ava-recovery-v2",
+      "exit_code": 0,
+      "log": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v2/inherited-integrity.log"
+    },
+    {
+      "name": "hardened-suite",
+      "command": [
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "bench",
+        "-p",
+        "test_*.py"
+      ],
+      "cwd": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v2/scorer-4039ccc",
+      "exit_code": 1,
+      "log": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v2/hardened-suite.log"
+    },
+    {
+      "name": "ava-harness",
+      "command": [
+        "python3",
+        "-B",
+        "test_harness.py"
+      ],
+      "cwd": "/opt/data/benchmarks/ttb-foundry-20260918-v1",
+      "exit_code": 0,
+      "log": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v2/ava-harness.log"
+    },
+    {
+      "name": "bottle-corpus",
+      "command": [
+        "/opt/hermes/.venv/bin/python",
+        "-B",
+        "test_corpus.py"
+      ],
+      "cwd": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles",
+      "exit_code": 1,
+      "log": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v2/bottle-corpus.log"
+    },
+    {
+      "name": "hardened-suite-source",
+      "command": [
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "bench",
+        "-p",
+        "test_*.py"
+      ],
+      "cwd": "/opt/data/projects/ttb-label-verify-revision",
+      "exit_code": 0,
+      "log": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v2/hardened-suite-source.log"
+    },
+    {
+      "name": "hardened-scoring",
+      "command": [
+        "python3",
+        "-B",
+        "bench/test_scoring.py"
+      ],
+      "cwd": "/opt/data/projects/ttb-label-verify-revision",
+      "exit_code": 0,
+      "log": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v2/hardened-scoring.log"
+    },
+    {
+      "name": "hardened-integrity",
+      "command": [
+        "python3",
+        "-B",
+        "bench/test_results_integrity.py"
+      ],
+      "cwd": "/opt/data/projects/ttb-label-verify-revision",
+      "exit_code": 0,
+      "log": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v2/hardened-integrity.log"
+    },
+    {
+      "name": "bottle-corpus-asset-venv",
+      "command": [
+        "/opt/data/asset-venv/bin/python",
+        "-B",
+        "test_corpus.py"
+      ],
+      "cwd": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles",
+      "exit_code": 0,
+      "log": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v2/bottle-corpus-asset-venv.log"
+    }
+  ],
+  "blockers": [
+    "99 log-only completions have no saved extraction or exact usage: cannot rescore or verify exact cost.",
+    "ARGUS cancelled/in-flight tail lacks a durable dispatch ledger: additional attempts/charges cannot be bounded; missing queues remain tentative and disabled.",
+    "Provider invoice/account-wide costs unverified; all unknown charges retained.",
+    "No bottle inference evidence in this recovered set; flat-label coverage is not bottle evaluation."
+  ],
+  "caveats": [
+    "Historical Claude Haiku/Sonnet: OpenRouter -> Anthropic; historical GPT-5 mini: direct OpenAI Responses API. New calls are Azure Foundry, not interchangeable routes.",
+    "Operator groups remain separate; repetitions/overlaps are not new unique-image coverage.",
+    "Latency is full nonstreaming request duration, not TTFT or UI end-to-end; host, concurrency and transport confound comparisons.",
+    "OCR is a separate adapted-schema track.",
+    "Strict adapter-level revalidation can differ from original saved historical/ARGUS verdict caches; original evidence untouched."
+  ]
+}

@@ -15,6 +15,8 @@ controls. No new provider run is authorized by this documentation audit.
 
 ## Documentation and evidence
 
+- [docs/CONSOLIDATION.md](docs/CONSOLIDATION.md) — consolidated benchmark candidate: canonical scorer, frozen historical archives, current severity-run exclusion and review status
+
 - [docs/reviews/README.md](docs/reviews/README.md) — management review register: findings, historical verdicts, evidence, owners and open decisions
 
 - [docs/PLAN.md](docs/PLAN.md) — scope, planned architecture, matching rules

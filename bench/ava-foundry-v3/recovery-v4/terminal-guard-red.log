@@ -1,0 +1,14 @@
+E
+======================================================================
+ERROR: test_stop_file_terminal_is_not_finished_scope (test_closeout.CloseoutTests.test_stop_file_terminal_is_not_finished_scope)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v4/test_closeout.py", line 34, in test_stop_file_terminal_is_not_finished_scope
+    self.assertFalse(m.finished_scope({'terminal':True,'blocked':[{'reason':'stop-file'}]},['a'],[]))
+                     ^^^^^^^^^^^^^^^^
+AttributeError: module 'closeout' has no attribute 'finished_scope'
+
+----------------------------------------------------------------------
+Ran 1 test in 1.055s
+
+FAILED (errors=1)

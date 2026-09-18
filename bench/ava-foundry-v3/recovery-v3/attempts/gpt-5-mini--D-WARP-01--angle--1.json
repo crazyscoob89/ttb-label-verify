@@ -1,0 +1,44 @@
+{
+  "id": "gpt-5-mini--D-WARP-01--angle--1",
+  "operator": "AVA-v3",
+  "model": "gpt-5-mini",
+  "engine": "gpt-5-mini",
+  "fixture_id": "D-WARP-01",
+  "repeat": 1,
+  "condition": "angle",
+  "route": "Azure Foundry responses",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.00246125,
+  "request_sha256": "633abafc8d7aee48bec9b5119e56d234db5fab21b231f534d45447c0dd7f9553",
+  "image_sha256": "fa60bfd51117c2454b9e6c2ca35922647fcad7682048cb41d948d01ae72b2cc5",
+  "transport": "responses",
+  "started_at": "2026-09-18T16:51:08.462666+00:00",
+  "reserved_usd": 0.2949584,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/D-WARP-01__angle.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "13f357f5-10d2-43a7-a9a2-edcc016e8ba3",
+  "latency_s": 11.042415441945195,
+  "response_sha256": "93e4052ad33f39cfebe52d7beb7990fa780cdd8d6e0394279094207238ca1445",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-5-mini--D-WARP-01--angle--1.json",
+  "tokens_in": 1717,
+  "tokens_out": 1016,
+  "pages_processed": null,
+  "usage": {
+    "input_tokens": 1717,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1016,
+    "output_tokens_details": {
+      "reasoning_tokens": 704
+    },
+    "total_tokens": 2733
+  },
+  "returned_model": "gpt-5-mini"
+}

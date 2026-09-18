@@ -1,0 +1,51 @@
+{
+  "id": "grok-4-1-fast-non-reasoning--C-SPIRITS-01--glare--1",
+  "operator": "AVA-v3",
+  "model": "grok-4-1-fast-non-reasoning",
+  "engine": "grok-4-1-fast-non-reasoning",
+  "fixture_id": "C-SPIRITS-01",
+  "repeat": 1,
+  "condition": "glare",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.0006127999999999999,
+  "request_sha256": "aba31a1ed8744a32a84580194fcb6f04255f6e75cacb3ae2669a9ceb24368f87",
+  "image_sha256": "8bc92f112a4a536bd3c46a13dec97b0fe3833e92e9d8d63cd61855951251aa03",
+  "transport": "chat",
+  "started_at": "2026-09-18T16:02:51.655297+00:00",
+  "reserved_usd": 0.23233672,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-SPIRITS-01__glare.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "27fede1d-3805-4942-9980-70753babb2f1",
+  "latency_s": 4.950682964059524,
+  "response_sha256": "1452ab397c807c0a4bd02c83b85f7c737897b3cc70e97a7e5621bbca654896a5",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/grok-4-1-fast-non-reasoning--C-SPIRITS-01--glare--1.json",
+  "tokens_in": 2489,
+  "tokens_out": 230,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 2489,
+    "completion_tokens": 230,
+    "total_tokens": 2719,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 858,
+      "audio_tokens": 0,
+      "text_tokens": 697,
+      "image_tokens": 1792
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "num_sources_used": 0
+  },
+  "returned_model": "grok-4-1-fast-non-reasoning"
+}

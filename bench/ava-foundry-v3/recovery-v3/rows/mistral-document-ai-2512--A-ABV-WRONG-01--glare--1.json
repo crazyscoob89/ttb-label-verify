@@ -1,0 +1,175 @@
+{
+  "id": "mistral-document-ai-2512--A-ABV-WRONG-01--glare--1",
+  "operator": "AVA-v3",
+  "model": "mistral-document-ai-2512",
+  "engine": "mistral-document-ai-2512",
+  "fixture_id": "A-ABV-WRONG-01",
+  "repeat": 1,
+  "condition": "glare",
+  "route": "Azure Foundry ocr",
+  "tier": "OCR separate",
+  "ok": true,
+  "extracted": {
+    "brand_name": null,
+    "class_type": null,
+    "alcohol_content": null,
+    "net_contents": null,
+    "bottler_info": "Produced and bought by Manuf. Eastern Winery, Maryland, USA",
+    "country_of_origin": "USA",
+    "government_warning_heading": "GOVERNMENT WARNING",
+    "government_warning_body": "General, women should be aware of the dangers of pregnancy because of the dangers of alcoholics, and the dangers of alcoholics to drive a car or other vehicle. The government is not responsible for the dangers of pregnancy, but for the problems of the health care system.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 0.0,
+      "class_type": 0.0,
+      "alcohol_content": 0.0,
+      "net_contents": 0.0,
+      "bottler_info": 1.0,
+      "country_of_origin": 1.0,
+      "government_warning_heading": 1.0,
+      "government_warning_body": 1.0,
+      "government_warning_heading_all_caps": 1.0,
+      "government_warning_heading_bold": 1.0,
+      "government_warning_body_bold": 1.0
+    }
+  },
+  "error_class": null,
+  "cost_usd": 0.003,
+  "request_sha256": "8d0158bc3f4ff06e1c265cb1db3418d6998b673571828ddc566bddd90bf058a1",
+  "image_sha256": "3fb81c20a9678d22d9a7a43c8c5144670d5bcc4cfb4ddcbfacdbbb9076c21df9",
+  "transport": "ocr",
+  "started_at": "2026-09-18T16:34:37.417330+00:00",
+  "reserved_usd": 0.05,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-ABV-WRONG-01__glare.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "a632e5a0-6cbb-466b-88b4-e2b06d6f173e",
+  "latency_s": 4.500555346952751,
+  "response_sha256": "45cc679ce7cc2e3a153743a2d765c4471daab45ec5209d31e47a32ac2389b67c",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--A-ABV-WRONG-01--glare--1.json",
+  "tokens_in": null,
+  "tokens_out": null,
+  "pages_processed": 1,
+  "usage": {
+    "pages_processed": 0,
+    "doc_size_bytes": 666724,
+    "pages_processed_annotation": 1
+  },
+  "returned_model": "mistral-document-ai-2512",
+  "raw_text": "{\n  \"brand_name\": null,\n  \"class_type\": null,\n  \"alcohol_content\": null,\n  \"net_contents\": null,\n  \"bottler_info\": \"Produced and bought by Manuf. Eastern Winery, Maryland, USA\",\n  \"country_of_origin\": \"USA\",\n  \"government_warning_heading\": \"GOVERNMENT WARNING\",\n  \"government_warning_body\": \"General, women should be aware of the dangers of pregnancy because of the dangers of alcoholics, and the dangers of alcoholics to drive a car or other vehicle. The government is not responsible for the dangers of pregnancy, but for the problems of the health care system.\",\n  \"government_warning_heading_all_caps\": true,\n  \"government_warning_heading_bold\": true,\n  \"government_warning_body_bold\": false,\n  \"confidence\": {\n    \"brand_name\": 0.0,\n    \"class_type\": 0.0,\n    \"alcohol_content\": 0.0,\n    \"net_contents\": 0.0,\n    \"bottler_info\": 1.0,\n    \"country_of_origin\": 1.0,\n    \"government_warning_heading\": 1.0,\n    \"government_warning_body\": 1.0,\n    \"government_warning_heading_all_caps\": 1.0,\n    \"government_warning_heading_bold\": 1.0,\n    \"government_warning_body_bold\": 1.0\n  }\n}",
+  "finish_reason": "completed",
+  "validation_errors": {},
+  "category": "adversarial",
+  "commodity": "wine",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "mismatch",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "mismatch",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "needs-review",
+    "class_type": "needs-review",
+    "alcohol_content": "needs-review",
+    "net_contents": "needs-review",
+    "bottler_info": "mismatch",
+    "country_of_origin": "not-applicable",
+    "government_warning": "mismatch"
+  },
+  "classes": {
+    "brand_name": "referral",
+    "class_type": "referral",
+    "alcohol_content": "referral",
+    "net_contents": "referral",
+    "bottler_info": "false_mismatch",
+    "country_of_origin": "correct",
+    "government_warning": "false_mismatch"
+  },
+  "reasons": {
+    "brand_name": "confidence 0.0 below threshold 0.75",
+    "class_type": "confidence 0.0 below threshold 0.75",
+    "alcohol_content": "confidence 0.0 below threshold 0.75",
+    "net_contents": "confidence 0.0 below threshold 0.75",
+    "bottler_info": "'Produced and bought by Manuf. Eastern Winery, Maryland, USA' vs declared 'Marsh Lantern Winery, McMinnville, Oregon'",
+    "country_of_origin": "domestic product",
+    "government_warning": "statutory wording deviation in warning body"
+  },
+  "extraction_correct": {
+    "brand_name": false,
+    "class_type": false,
+    "alcohol_content": false,
+    "net_contents": false,
+    "bottler_info": false,
+    "country_of_origin": false,
+    "government_warning": false
+  },
+  "visibility": {
+    "brand_name": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "class_type": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "alcohol_content": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "net_contents": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "bottler_info": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "country_of_origin": {
+      "visibility": "absent",
+      "expect_referral_ok": true,
+      "basis": "No printed value in source",
+      "annotator": "AVA pre-inference"
+    },
+    "government_warning": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    }
+  },
+  "bottle_outcomes": {
+    "brand_name": "safe-referral",
+    "class_type": "safe-referral",
+    "alcohol_content": "safe-referral",
+    "net_contents": "safe-referral",
+    "bottler_info": "dangerous-error",
+    "country_of_origin": "dangerous-error",
+    "government_warning": "dangerous-error"
+  },
+  "pipeline_seconds": 4.526209666975774
+}

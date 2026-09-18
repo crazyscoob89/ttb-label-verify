@@ -1,0 +1,168 @@
+TTB FOUNDRY + SYNTHETIC BOTTLE BENCHMARK — AVA RECOVERY V3
+
+STATUS: EXECUTION TERMINAL; scope below is actual coverage, not an assertion of balanced completeness.
+Preserved/rescored: 515 earlier saved calls; added 49 flat calls and 258/324 planned one-repeat bottle calls.
+Historical: Haiku/Sonnet via OpenRouter -> Anthropic. Historical GPT-5 mini DIRECT OpenAI Responses. New calls Azure Foundry.
+No production deployment. AVA implements/executes; ARGUS one read-only consolidated PASS/REVISE.
+
+1. RESULTS — OPERATOR/PROTOCOL GROUPS ARE NOT POOLED
+operator | model | condition | valid/calls | exact-normalized extraction/7-fields-per-call | false-match/negative fields | referrals/all fields | clean-auto/clean calls | median/p95 seconds | estimated USD
+ARGUS | Mistral-Large-3 | flat | 54/54 | 370/378 | 3/24 | 6/378 | 12/12 | 8.275/20.795 | 0.10219900
+ARGUS | grok-4-1-fast-non-reasoning | flat | 51/54 | 313/378 | 0/24 | 27/378 | 0/12 | 5.036/6.067 | 0.03338300
+AVA | Kimi-K2.6 | flat | 23/23 | 161/161 | 0/12 | 2/161 | 4/4 | 14.663/27.968 | 0.21589730
+AVA | Mistral-Large-3 | flat | 44/44 | 303/308 | 2/22 | 4/308 | 9/9 | 7.402/15.906 | 0.08328250
+AVA | gpt-4.1-mini | flat | 51/54 | 357/378 | 0/24 | 27/378 | 10/12 | 5.218/6.436 | 0.06920240
+AVA | gpt-5-mini | flat | 35/35 | 244/245 | 1/16 | 5/245 | 7/7 | 10.363/15.849 | 0.08750475
+AVA | grok-4-1-fast-non-reasoning | flat | 46/54 | 276/378 | 0/24 | 62/378 | 2/12 | 4.845/7.088 | 0.03345570
+AVA | mistral-document-ai-2512 | flat | 33/35 | 223/245 | 2/16 | 18/245 | 6/7 | 3.831/4.680 | 0.09900000
+AVA-v3 | Kimi-K2.6 | angle | 8/9 | 55/63 | 1/3 | 9/63 | 3/4 | 19.152/27.405 | 0.11674130
+AVA-v3 | Kimi-K2.6 | flat | 28/30 | 196/210 | 0/11 | 18/210 | 8/8 | 17.130/25.676 | 0.30075300
+AVA-v3 | Kimi-K2.6 | glare | 0/9 | 0/63 | 0/3 | 63/63 | 0/4 | 28.840/32.657 | 0.15011730
+AVA-v3 | Kimi-K2.6 | straight | 8/10 | 56/70 | 0/4 | 14/70 | 3/4 | 18.196/27.972 | 0.12455700
+AVA-v3 | Mistral-Large-3 | angle | 18/18 | 123/126 | 1/8 | 2/126 | 4/4 | 6.369/38.048 | 0.03538800
+AVA-v3 | Mistral-Large-3 | glare | 10/10 | 24/70 | 2/4 | 13/70 | 0/4 | 6.592/8.467 | 0.01956050
+AVA-v3 | Mistral-Large-3 | straight | 18/18 | 123/126 | 1/8 | 2/126 | 3/4 | 7.466/18.489 | 0.03538350
+AVA-v3 | gpt-4.1-mini | angle | 18/18 | 125/126 | 1/8 | 3/126 | 4/4 | 6.534/7.940 | 0.02325920
+AVA-v3 | gpt-4.1-mini | glare | 3/10 | 9/70 | 0/4 | 57/70 | 0/4 | 6.001/6.751 | 0.01271360
+AVA-v3 | gpt-4.1-mini | straight | 17/18 | 119/126 | 0/8 | 9/126 | 4/4 | 6.479/7.689 | 0.02291520
+AVA-v3 | gpt-5-mini | angle | 18/18 | 125/126 | 1/8 | 3/126 | 4/4 | 12.658/14.926 | 0.05009250
+AVA-v3 | gpt-5-mini | glare | 10/10 | 13/70 | 0/4 | 60/70 | 0/4 | 16.034/24.638 | 0.04404650
+AVA-v3 | gpt-5-mini | straight | 18/18 | 125/126 | 1/8 | 2/126 | 4/4 | 11.014/14.320 | 0.04826650
+AVA-v3 | grok-4-1-fast-non-reasoning | angle | 16/18 | 96/126 | 2/8 | 14/126 | 2/4 | 5.867/6.980 | 0.01111190
+AVA-v3 | grok-4-1-fast-non-reasoning | glare | 8/10 | 14/70 | 0/4 | 38/70 | 0/4 | 5.092/5.925 | 0.00609650
+AVA-v3 | grok-4-1-fast-non-reasoning | straight | 18/18 | 114/126 | 0/8 | 4/126 | 3/4 | 5.134/6.880 | 0.01113090
+AVA-v3 | mistral-document-ai-2512 | angle | 18/18 | 124/126 | 1/8 | 2/126 | 4/4 | 4.577/4.955 | 0.05400000
+AVA-v3 | mistral-document-ai-2512 | flat | 19/19 | 130/133 | 1/8 | 2/133 | 5/5 | 3.928/4.375 | 0.05700000
+AVA-v3 | mistral-document-ai-2512 | glare | 10/10 | 10/70 | 0/4 | 32/70 | 0/4 | 4.505/6.558 | 0.03000000
+AVA-v3 | mistral-document-ai-2512 | straight | 18/18 | 124/126 | 1/8 | 2/126 | 4/4 | 4.550/5.058 | 0.05400000
+historical | anthropic/claude-haiku-4.5 | flat | 54/54 | 378/378 | 0/24 | 6/378 | 12/12 | 4.001/4.342 | 0.23161100
+historical | anthropic/claude-sonnet-4.5 | flat | 53/54 | 368/378 | 3/24 | 13/378 | 12/12 | 5.698/6.459 | 0.68202600
+historical | gpt-5-mini | flat | 54/54 | 376/378 | 2/24 | 7/378 | 12/12 | 11.649/15.687 | 0.14819800
+
+Extraction includes correctly null absent fields. Semantic correctness on obscured fields is NOT visual recovery. Runtime verdicts never receive visibility/truth; annotations only affect offline evaluation.
+
+2. BOTTLE VISIBILITY / DANGEROUS ERRORS
+model | condition | visual-correct | correct-hidden-NOT-recovery | confident-wrong | safe-referrals | all field outcomes
+Kimi-K2.6 | angle | 45 | 0 | 1 | 2 | 63
+Kimi-K2.6 | glare | 0 | 0 | 0 | 0 | 63
+Kimi-K2.6 | straight | 48 | 0 | 0 | 0 | 70
+Mistral-Large-3 | angle | 105 | 1 | 3 | 2 | 126
+Mistral-Large-3 | glare | 0 | 14 | 35 | 13 | 70
+Mistral-Large-3 | straight | 104 | 1 | 3 | 2 | 126
+gpt-4.1-mini | angle | 104 | 1 | 1 | 2 | 126
+gpt-4.1-mini | glare | 0 | 5 | 5 | 8 | 70
+gpt-4.1-mini | straight | 100 | 1 | 0 | 2 | 126
+gpt-5-mini | angle | 104 | 1 | 1 | 2 | 126
+gpt-5-mini | glare | 0 | 1 | 0 | 60 | 70
+gpt-5-mini | straight | 105 | 1 | 1 | 2 | 126
+grok-4-1-fast-non-reasoning | angle | 80 | 1 | 16 | 0 | 126
+grok-4-1-fast-non-reasoning | glare | 0 | 5 | 20 | 24 | 70
+grok-4-1-fast-non-reasoning | straight | 95 | 0 | 10 | 2 | 126
+mistral-document-ai-2512 | angle | 104 | 1 | 2 | 2 | 126
+mistral-document-ai-2512 | glare | 0 | 0 | 30 | 32 | 70
+mistral-document-ai-2512 | straight | 104 | 1 | 2 | 2 | 126
+Confident-wrong is an incorrect extraction allowed into a non-referral deterministic verdict; this is broader than false-match among negative application fields. Invalid-schema/HTTP failures yield failure-referrals, never rewarded as perceptual abstention.
+An exact hidden value receives unverifiable-correct-not-recovery, not visual credit or clean automatic success. Absent domestic origin resolved not-applicable is counted separately.
+54 images = original18 x straight/angle/glare. Straight preserves original bottle pixels. Angle uses cos(30-degree) horizontal affine foreshortening plus shear, not a physically accurate 3D rotation. Glare has an opaque central core plus 0.65px blur.
+No retyped/regenerated text; source label -> original cylindrical composite -> condition image hashes retained. Semantic truth files copied byte-for-byte.
+Resolution 2200x3200, label approximately1200x1800 before angle: provider resizing may change effective text resolution. Not real-camera validation, not physical point-size certification.
+Pre-inference AVA visual annotations: all54 overview crops, native degraded/typography/glare representatives. No model outputs used. Not independent human inter-rater validation; not 54 exhaustive native transcriptions.
+D-BLUR warning typography marked uncertain (referral acceptable); D-GLARE original low-contrast letters readable in native view, not automatically obscured. New glare fields genuinely lose central characters.
+
+3. WARNING WORDING VS TYPOGRAPHY
+operator | model | condition | wording correct/calls | three typography flags correct/calls
+ARGUS | Mistral-Large-3 | flat | 54/54 | 51/54
+ARGUS | grok-4-1-fast-non-reasoning | flat | 10/54 | 47/54
+AVA | Kimi-K2.6 | flat | 23/23 | 23/23
+AVA | Mistral-Large-3 | flat | 44/44 | 42/44
+AVA | gpt-4.1-mini | flat | 51/54 | 51/54
+AVA | gpt-5-mini | flat | 35/35 | 34/35
+AVA | grok-4-1-fast-non-reasoning | flat | 9/54 | 41/54
+AVA | mistral-document-ai-2512 | flat | 31/35 | 31/35
+AVA-v3 | Kimi-K2.6 | angle | 8/9 | 7/9
+AVA-v3 | Kimi-K2.6 | flat | 28/30 | 28/30
+AVA-v3 | Kimi-K2.6 | glare | 0/9 | 0/9
+AVA-v3 | Kimi-K2.6 | straight | 8/10 | 8/10
+AVA-v3 | Mistral-Large-3 | angle | 18/18 | 17/18
+AVA-v3 | Mistral-Large-3 | glare | 7/10 | 8/10
+AVA-v3 | Mistral-Large-3 | straight | 17/18 | 17/18
+AVA-v3 | gpt-4.1-mini | angle | 18/18 | 17/18
+AVA-v3 | gpt-4.1-mini | glare | 1/10 | 2/10
+AVA-v3 | gpt-4.1-mini | straight | 17/18 | 17/18
+AVA-v3 | gpt-5-mini | angle | 18/18 | 17/18
+AVA-v3 | gpt-5-mini | glare | 0/10 | 7/10
+AVA-v3 | gpt-5-mini | straight | 18/18 | 17/18
+AVA-v3 | grok-4-1-fast-non-reasoning | angle | 7/18 | 15/18
+AVA-v3 | grok-4-1-fast-non-reasoning | glare | 4/10 | 2/10
+AVA-v3 | grok-4-1-fast-non-reasoning | straight | 12/18 | 16/18
+AVA-v3 | mistral-document-ai-2512 | angle | 18/18 | 17/18
+AVA-v3 | mistral-document-ai-2512 | flat | 18/19 | 18/19
+AVA-v3 | mistral-document-ai-2512 | glare | 0/10 | 6/10
+AVA-v3 | mistral-document-ai-2512 | straight | 18/18 | 17/18
+historical | anthropic/claude-haiku-4.5 | flat | 54/54 | 54/54
+historical | anthropic/claude-sonnet-4.5 | flat | 53/54 | 50/54
+historical | gpt-5-mini | flat | 54/54 | 52/54
+These are semantic comparisons, not recovery claims for glare. Exact warning heading + normalized body words tested separately from all-caps/heading-bold/body-bold booleans.
+
+4. COVERAGE, FAILURE AND LOST OUTPUTS
+gpt-5-mini: 35/54 unique flat fixture-repeat identities with saved output (35 observations across separate operators).
+gpt-4.1-mini: 54/54 unique flat fixture-repeat identities with saved output (54 observations across separate operators).
+Mistral-Large-3: 54/54 unique flat fixture-repeat identities with saved output (98 observations across separate operators).
+grok-4-1-fast-non-reasoning: 54/54 unique flat fixture-repeat identities with saved output (108 observations across separate operators).
+Kimi-K2.6: 53/54 unique flat fixture-repeat identities with saved output (53 observations across separate operators).
+mistral-document-ai-2512: 54/54 unique flat fixture-repeat identities with saved output (54 observations across separate operators).
+Log-only ARGUS completions retained: 99; no recoverable extraction/body/exact usage. Not rerun for parity. They are excluded from accuracy, not invented as successes.
+Log-only gpt-4.1-mini: n=54; rounded latency median=5.250s p95=6.535s; accuracy unavailable.
+Log-only gpt-5-mini: n=45; rounded latency median=12.300s p95=13.780s; accuracy unavailable.
+ARGUS run2 args allowed GPT4.1 + GPT5 only, sequential source. Latest logged GPT5 has45/54; all nine possible unlogged tail attempts reserved/excluded. No Kimi battery could dispatch from that invocation.
+New skipped candidates: 66; reasons {'budget': 17, 'user-rejected-artificial-occlusion-not-realistic-glare': 49}. Exact per-call boundary in execution-result.json.
+ARGUS grok-4-1-fast-non-reasoning flat: 3/54 failed strict gate; {'offline-schema-validation-failed': 3}
+AVA gpt-4.1-mini flat: 3/54 failed strict gate; {'schema-or-incomplete-output': 3}
+AVA grok-4-1-fast-non-reasoning flat: 8/54 failed strict gate; {'schema-or-incomplete-output': 8}
+AVA mistral-document-ai-2512 flat: 2/35 failed strict gate; {'http-429': 2}
+AVA-v3 Kimi-K2.6 angle: 1/9 failed strict gate; {'JSONDecodeError': 1}
+AVA-v3 Kimi-K2.6 flat: 2/30 failed strict gate; {'JSONDecodeError': 2}
+AVA-v3 Kimi-K2.6 glare: 9/9 failed strict gate; {'JSONDecodeError': 9}
+AVA-v3 Kimi-K2.6 straight: 2/10 failed strict gate; {'JSONDecodeError': 2}
+AVA-v3 gpt-4.1-mini glare: 7/10 failed strict gate; {'schema-or-incomplete-output': 7}
+AVA-v3 gpt-4.1-mini straight: 1/18 failed strict gate; {'schema-or-incomplete-output': 1}
+AVA-v3 grok-4-1-fast-non-reasoning angle: 2/18 failed strict gate; {'schema-or-incomplete-output': 2}
+AVA-v3 grok-4-1-fast-non-reasoning glare: 2/10 failed strict gate; {'schema-or-incomplete-output': 2}
+historical anthropic/claude-sonnet-4.5 flat: 1/54 failed strict gate; {'TimeoutError': 1}
+
+5. SPEND — RETAIL ESTIMATES, NOT INVOICE ACTUALS
+Human allowance: $10.00, NOT $20. New observed estimated cost: $1.20713340.
+Combined Foundry observed estimate incl historical run1/run2 saved/log-only and prior AVA smoke: $2.11716390, PLUS unresolved charges. Additional ARGUS five-smoke console estimate about $0.024 (rounding-limited).
+Conservative incurred + unknown + new ledger liability: $9.06296570; initial liability $7.85583230; initial headroom $2.14416770.
+Historical prior comparison cost separate: $1.061835; not charged again against this continuation. Original AVA guard $6.4538618 was not spend.
+Liability components (positive unknowns never forgiven):
+  observed: $0.91003050 — retail estimate, includes rounded log-only
+  AVA-interrupted-three: $3.50980080 — original full reservations retained
+  AVA-two-429: $0.10000000 — original two OCR .05 reservations retained
+  ARGUS-run2-entire-tail: $2.50329600 — all nine possible GPT5 requests at full 1,048,576-input bound + actual inherited 8,000-output cap; no retry dialect triggered for GPT
+  ARGUS-rejected-dialects: $0.39770500 — 54 saved Mistral battery + one smoke: each rejected dialect retains twice largest measured same fixed-corpus input + full output cap, even though validation rejection has no generated output
+  ARGUS-probes-and-route-triage: $0.40000000 — source shows 3 six-deployment tiny-image sweeps + two route attempts. .40 reserve covers 24 attempts at 4,096 input + 2,000 output using elevated 1.1/5.5 guard rates (.3721344), including final observed probes already counted (intentional overlap)
+  ARGUS-five-adapter-smokes: $0.02500000 — console reported .0006 + .0019 + .0012 + .0025 + .0178; rounded upward, not exact token bodies
+  rounding: $0.01000000 — rounding slack for original logs/rows/pricing
+33 previously returned OCR pages reconciled at .003/page; only two HTTP429 page attempts retain .05 each. Three interrupted AVA chat reservations retain1.1699336 each.
+Probe/dialect bounds rely on fixed payload source and observed input sizes with generous slack, NOT provider invoice verification: 4096 tiny-probe input vs observed max298; rejected Mistral identical-corpus input bound5462 vs max2731. Entire GPT5 tail instead uses full1048576 input and8000 output cap. Pricing scope/assumptions explicit in budget-basis.json.
+New chat reservation uses1048576 input +3000 output at model-specific snapshot rates with10% extra; new OCR .05/page. One request at a time, no automatic retries. Unknown errors keep full reservation; observed overage persists then stops.
+USD per million input/output: GPT4.1mini .40/1.60; GPT5mini .25/2.00; MistralLarge3 .50/1.50; Grok .20/.50; Kimi .95/4.00. OCR .003/page. No cache discount. Existing eastus2 Global retail lookup is a pricing assumption for the EastUS Global deployment, not an invoice.
+Raw input/output tokens, pages, original rounded operator costs and cumulative rounded log estimates are retained. ARGUS original rates included unverified third-party estimates; common report does not upgrade their provenance.
+
+6. COMPARABILITY AND TIMING
+All latency is nonstreaming request dispatch to full response, NOT TTFT, NOT upload-to-UI. Includes failed requests where duration exists. p95 linear interpolation from frozen scorer; small samples descriptive, not SLA.
+Historical runs and ARGUS have distinct host/concurrency/time/API settings. AVA original up to six simultaneous streams; v3 global concurrency1. ARGUS GPT5 uses Chat Completions +8000 reasoning-inclusive cap; AVA GPT5 uses Responses +3000 matching historical route shape. Do NOT pool operator results as one controlled protocol.
+Bottle repeat count1 versus flat target3 is disclosed; no stability claim from a single bottle result. Historical Claude bottle inference was not rerun; no Azure Claude comparison is claimed.
+OCR is its own annotation-schema track, not an interchangeable vision chat model. Predictions contain no expected values/application declarations. Frozen original prompt/image detail/API choices reused per AVA model.
+Uniform strict extraction schema +4039ccc deterministic scorer revalidates original evidence without repair; 3 original-ok prior rows rejected. Original ok/verdicts remain in evidence. ARGUS original scorer differed; common replay is versioned, not replacement.
+
+7. ARTIFACTS / REPRODUCTION / QA
+all-rescored-records.json: every scored field, confidence/raw-text where available, operator/source provenance. per-field.csv: each sample/condition/repeat/field with denominator context. per-sample-summary.json and summary.json: grouped metrics.
+rows/, responses/, attempts/: incremental v3 exact provider bodies including schema failures and HTTP bodies; no auth headers. budget.sqlite and costs-final.json retain uncertainty.
+bottles/manifest.json + ground_truth/ + images/: source/derived hashes, transforms, seed, frozen visibility. visibility-freeze.json precedes inference. runner-state.json contains exact cancelled host job evidence.
+test_v3.py, test_runner.py, test_report.py and RED/GREEN logs. Existing original suites and final verification outputs listed in verification.json. No production deployment or external contact.
+Commands: /opt/data/asset-venv/bin/python -B -m unittest discover -s recovery-v3 -p test_*.py (run from benchmark parent with PYTHONPATH=recovery-v3). report.py is offline. runner.py without --run is dry. Do NOT rerun paid inference during QA.
+Primary evidence root: /opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3
+Windows shared path: C:\Users\alexm\.hermes\benchmarks\ttb-foundry-20260918-v1\recovery-v3\
+QA request: one consolidated read-only PASS/REVISE, no implementation/no paid reruns. Remaining limitations are part of result, not hidden passes.
