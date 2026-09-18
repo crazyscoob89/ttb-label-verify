@@ -92,6 +92,19 @@ on fresh LF and `core.autocrlf=true` Git checkouts. This simulates Git's checkou
 behavior on Linux, not native Windows Python execution. README documents the
 cross-platform contract and fresh-checkout guidance for reviewers.
 
+## Subsequent native Windows finding: path separators
+
+ARGUS subsequently reported three of six gates failing at `e162de5` on native
+Windows. Fixture hashes passed, but `str(relative_path)` generated backslashes
+while the manifest keys used forward slashes. The two discovered path sets now
+use `.as_posix()` in `3e8d52b`; byte hashes and exact manifest coverage remain
+unchanged. The integrity script now has 13 tests, including a RED/GREEN full-gate
+Windows-path reproduction and negative missing-manifest/hash controls. This
+builder reproduction uses Windows path objects on Linux, not native Windows.
+Independent native Windows re-verification remains required. See
+[round 07](reviews/07-windows-path-repair.md) and the single
+[review register](reviews/README.md).
+
 ## Still open, not claimed complete
 
 ARGUS independent review; app implementation and acceptance; verified global

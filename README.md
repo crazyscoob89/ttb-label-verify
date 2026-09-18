@@ -81,6 +81,11 @@ Text report/replay I/O explicitly uses UTF-8, independent of the host locale.
 checkout with `core.autocrlf=true`, checks every evidence hash, then runs the
 required integrity gate. Both LF and Windows-style Git checkouts were tested;
 that is not a claim of having executed native Windows Python in this environment.
+Discovered evidence paths use `.as_posix()` to compare with manifest keys across
+operating systems. The integrity mutation suite also exercises Windows relative
+path rendering while retaining complete-manifest and byte-hash rejection checks.
+See [the native Windows finding and repair](docs/reviews/07-windows-path-repair.md)
+for the separate path-separator defect discovered after the line-ending repair.
 
 ## Known limitations and open gates
 

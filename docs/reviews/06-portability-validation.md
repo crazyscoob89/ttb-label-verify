@@ -41,3 +41,9 @@ Python execution. ARGUS supplies independent verification and platform evidence.
 The visible channel references job `d4f934`, but no final verdict is supplied in
 this record. Haiku remains a provisional choice from finite synthetic evidence.
 Public access, real-data use and application acceptance remain separate gates.
+
+## Subsequent reviewer finding
+
+ARGUS subsequently reported native Windows **REVISE**: three of six gates
+failed because discovered manifest paths used backslashes. See [round 07](07-windows-path-repair.md).
+This supersedes the pending status above, not the archived Linux test outputs.
