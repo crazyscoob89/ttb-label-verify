@@ -1,4 +1,13 @@
-# Consolidated benchmark baseline — review candidate
+# Consolidated benchmark baseline
+
+**Review update:** ARGUS supplied final PASS on
+`30beea903cb6c9fbe14aff8d259698ef3df90a4d`, superseding his preliminary REVISE.
+The Windows cold-checkout instructions are now in README; both review stages
+are preserved in [round 08](reviews/08-consolidation-review.md). Alex approved
+this documentation follow-up and consolidation promotion. The sections below
+record the original candidate's scope and builder handoff; their historical
+pending-review/no-merge wording does not override this later authorization.
+Consult PR #2/master for actual merge status. App build/deployment remain separate.
 
 This is a source/evidence consolidation, **not an application release, new model
 run, deployment, model recommendation, or independent final review approval**.

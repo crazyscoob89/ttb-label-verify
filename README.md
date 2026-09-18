@@ -29,6 +29,23 @@ controls. No new provider run is authorized by this documentation audit.
 
 ## Offline review
 
+**Windows checkout warning:** cloning the older `master` and then switching to
+this reviewed branch can leave unchanged hash-pinned files with CRLF bytes from
+that first checkout. New `.gitattributes` rules may not rematerialize those files.
+Do not replace evidence hashes or normalize the evidence to make a gate pass.
+Use a new directory with line-ending conversion disabled **before any checkout**:
+
+```sh
+git -c core.autocrlf=false clone --no-checkout https://github.com/crazyscoob89/ttb-label-verify.git ttb-label-verify-review
+git -C ttb-label-verify-review config core.autocrlf false
+git -C ttb-label-verify-review checkout --detach <reviewed-commit-sha>
+```
+
+Replace `<reviewed-commit-sha>` with the full commit under review. Keep existing
+working copies and local edits intact; do not use destructive cleanup commands.
+See [ARGUS's consolidation review and resolution](docs/reviews/08-consolidation-review.md)
+for the reported Windows reproduction and final verdict.
+
 From the repository root, with Python 3.10+ installed (standard library only for offline gates):
 
 ```sh

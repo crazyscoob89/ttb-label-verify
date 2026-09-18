@@ -6,7 +6,15 @@
 **Current independent reviewer:** ARGUS. Earlier planning/benchmark reviews were
 performed by AVA while ARGUS owned implementation.
 
-**Executive status: Stage 2 repair tranche PASS** at
+**Current consolidation review: ARGUS PASS** on
+`30beea903cb6c9fbe14aff8d259698ef3df90a4d`, with a Windows checkout documentation
+follow-up applied. His final verdict supersedes his preliminary REVISE; both are
+preserved in [round 08](08-consolidation-review.md). Alex approved the follow-up
+and consolidation promotion. This does not complete the running severity tests,
+authorize an app build or certify deployment. Actual merge status is tracked by
+PR #2 and the master ref, not inferred from this review record.
+
+**Historical executive status: Stage 2 repair tranche PASS** at
 `05312d0c2a61d061de903cfcba3dc0970a28dfe8`. Alex supplied ARGUS's independent
 verdict: all six gates passed on a fresh default-settings native Windows clone
 and the working tree; evidence bytes and fingerprint remained unchanged.
@@ -25,6 +33,7 @@ This is not approval to merge, deploy, spend again, or start the application.
 | 05 Independent repair review | `eec5da7fb4e7e1c55b7726cbb225bb2161de8ce9` | REVISE, as relayed in channel | [Review and diagnosis](05-repair-review.md) |
 | 06 Portability repair | `e162de5373ce3ecdfd67b0e96085327df67abf31` | Builder Linux checks passed; subsequent native Windows REVISE reported | [Validation](06-portability-validation.md) |
 | 07 Windows path repair | `05312d0c2a61d061de903cfcba3dc0970a28dfe8` (includes repair `3e8d52b`) | PASS: ARGUS native Windows verification, relayed by Alex | [Path repair and final verdict](07-windows-path-repair.md) |
+| 08 Consolidation | `30beea903cb6c9fbe14aff8d259698ef3df90a4d` | Final ARGUS PASS supersedes preliminary REVISE; checkout documentation follow-up applied | [Consolidation review](08-consolidation-review.md) |
 
 These are the source-backed rounds recovered for this register, not a claim
 that every historical message or review job has been recovered. Planning
