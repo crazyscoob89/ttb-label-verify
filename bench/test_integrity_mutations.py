@@ -29,9 +29,9 @@ class IntegrityMutationTests(unittest.TestCase):
 
     def mutate_json(self, name, fn):
         p = self.root / 'bench' / name
-        data = json.loads(p.read_text())
+        data = json.loads(p.read_text(encoding='utf-8'))
         fn(data)
-        p.write_text(json.dumps(data))
+        p.write_text(json.dumps(data), encoding='utf-8')
 
     def test_clean_evidence_passes(self):
         self.assertEqual(self.run_gate(), 0)
@@ -53,15 +53,15 @@ class IntegrityMutationTests(unittest.TestCase):
 
     def test_report_engine_row_swap_fails(self):
         p = self.root / 'bench' / 'RESULTS.md'
-        text = p.read_text()
+        text = p.read_text(encoding='utf-8')
         text = text.replace('| **claude-haiku-4-5** |', '| __SWAP__ |', 1)
         text = text.replace('| gpt-5-mini |', '| **claude-haiku-4-5** |', 1)
         text = text.replace('| __SWAP__ |', '| gpt-5-mini |', 1)
         # New deterministic report uses unbolded labels.
-        if text == p.read_text():
+        if text == p.read_text(encoding='utf-8'):
             text = text.replace('| claude-haiku-4-5 |', '| __SWAP__ |', 1).replace('| gpt-5-mini |', '| claude-haiku-4-5 |', 1).replace('| __SWAP__ |', '| gpt-5-mini |', 1)
-        self.assertNotEqual(text, p.read_text())
-        p.write_text(text)
+        self.assertNotEqual(text, p.read_text(encoding='utf-8'))
+        p.write_text(text, encoding='utf-8')
         self.assertNotEqual(self.run_gate(), 0)
 
     def test_current_verdict_cache_mutation_fails(self):
@@ -76,9 +76,9 @@ class IntegrityMutationTests(unittest.TestCase):
 
     def test_fixture_truth_mutation_fails(self):
         p = self.root / 'fixtures' / 'ground_truth' / 'C-WINE-01.json'
-        data = json.loads(p.read_text())
+        data = json.loads(p.read_text(encoding='utf-8'))
         data['expected']['brand_name'] = 'mismatch'
-        p.write_text(json.dumps(data))
+        p.write_text(json.dumps(data), encoding='utf-8')
         self.assertNotEqual(self.run_gate(), 0)
 
     def test_missing_replayed_evidence_fails(self):

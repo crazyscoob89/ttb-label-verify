@@ -31,7 +31,7 @@ def load_evidence(here=HERE):
         raise ValueError('missing, duplicate or unexpected engine/fixture/repeat record')
     if len(raw['results']) != meta['calls_executed'] or meta['calls_planned'] != len(expected):
         raise ValueError('record coverage differs from run metadata')
-    manifest = json.loads((here / 'evidence_manifest.json').read_text())
+    manifest = json.loads((here / 'evidence_manifest.json').read_text(encoding='utf-8'))
     for name, sha in manifest.items():
         rel = Path(name)
         if rel.is_absolute() or '..' in rel.parts:
@@ -114,5 +114,5 @@ def derive(here=HERE):
 
 if __name__ == '__main__':
     data = derive()
-    (HERE / 'replayed_results.json').write_text(json.dumps(data, indent=2) + '\n')
+    (HERE / 'replayed_results.json').write_text(json.dumps(data, indent=2) + '\n', encoding='utf-8')
     print('Offline replay written; paid calls: 0; changed verdicts:', len(data['replay_metadata']['verdict_changes']))

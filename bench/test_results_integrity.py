@@ -12,16 +12,16 @@ H = Path(__file__).resolve().parent
 
 def verify(here):
     data = derive(here)
-    stored = json.loads((here / 'replayed_results.json').read_text())
+    stored = json.loads((here / 'replayed_results.json').read_text(encoding='utf-8'))
     if stored != data:
         raise ValueError('replayed records differ from raw observations + current rules + fixture truth')
     analysis = analyze(data)
-    if json.loads((here / 'analysis.json').read_text()) != analysis:
+    if json.loads((here / 'analysis.json').read_text(encoding='utf-8')) != analysis:
         raise ValueError('analysis differs from independently recomputed aggregates')
-    if (here / 'RESULTS.md').read_text() != render(data, analysis):
+    if (here / 'RESULTS.md').read_text(encoding='utf-8') != render(data, analysis):
         raise ValueError('report differs from recomputed figures/engine rows/provenance')
     for name in ('raw_results.json','replayed_results.json','analysis.json','RESULTS.md'):
-        if re.search(r'sk-[A-Za-z0-9_\-]{20,}', (here / name).read_text()):
+        if re.search(r'sk-[A-Za-z0-9_\-]{20,}', (here / name).read_text(encoding='utf-8')):
             raise ValueError('possible API credential in ' + name)
     return data
 

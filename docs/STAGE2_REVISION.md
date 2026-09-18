@@ -55,6 +55,7 @@ python3 bench/test_extraction_safety.py
 python3 bench/test_results_integrity.py
 python3 bench/test_integrity_mutations.py
 python3 bench/test_archived_spend.py
+python3 bench/test_checkout_portability.py
 python3 bench/run_bench.py --dry-run
 python3 -m compileall -q bench
 ```
@@ -73,6 +74,23 @@ For intentional offline regeneration only:
 python3 bench/reporting.py
 python3 bench/test_results_integrity.py
 ```
+
+## Reviewer follow-up: checkout portability
+
+The prior gates were green on the LF checkout but failed after Git's Windows
+`core.autocrlf=true` converted the same committed evidence to CRLF. The committed
+raw fingerprint was correct; the checkout bytes differed. Reproduced the exact
+reviewer hash and failure in an isolated Windows-style checkout before fixing it.
+
+Added `.gitattributes` to preserve pinned JSON/PNG bytes and explicit UTF-8 I/O
+for replay/report tooling. Neither the raw fingerprint nor any original evidence
+was changed. Added one checkout regression that initially failed for converted
+JSON and the integrity gate, then passed with the byte-preserving attributes.
+The existing 303 assertions, 15 safety tests, 10 integrity tests, and 3 paid-lock
+tests remain green; the new checkout test is additional. Full gates are rerun
+on fresh LF and `core.autocrlf=true` Git checkouts. This simulates Git's checkout
+behavior on Linux, not native Windows Python execution. README documents the
+cross-platform contract and fresh-checkout guidance for reviewers.
 
 ## Still open, not claimed complete
 

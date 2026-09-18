@@ -33,6 +33,7 @@ python3 bench/test_extraction_safety.py
 python3 bench/test_results_integrity.py
 python3 bench/test_integrity_mutations.py
 python3 bench/test_archived_spend.py
+python3 bench/test_checkout_portability.py
 python3 bench/run_bench.py --dry-run
 ```
 
@@ -59,6 +60,25 @@ paid run, obtain authorization and implement/prove a spending bound accounting
 for failures, concurrent callers and previous spend; no manual boolean flag
 pretends to verify a provider cap. Application install/build/deploy instructions
 remain pending because the Next.js application has not been built.
+
+## Cross-platform evidence integrity
+
+Hash-pinned observations and fixture JSON must keep the **exact committed
+bytes**. `.gitattributes` disables Git text conversion for those evidence paths
+and marks PNG fixtures binary. Windows `core.autocrlf=true` may otherwise change
+LF to CRLF while Git still regards the checkout as clean, invalidating byte-level
+SHA-256 checks. Do not replace a fingerprint with the hash of that transformed
+copy or weaken evidence validation. Use a fresh checkout of this revision when
+verifying an older Windows clone; preserve any local edits before refreshing it.
+
+The raw committed hash remains `1b7fa04ba503de42ece3bcc382232fe2f5ccc19435f365eaf48ab9ce01efbcc0`.
+Its former CRLF-converted checkout hashes to
+`67167d2513ee4409979c28d4ab9828cd321b13977e9df3cb54cfde182776e300`.
+Text report/replay I/O explicitly uses UTF-8, independent of the host locale.
+`test_checkout_portability.py` requires Git and makes an isolated temporary
+checkout with `core.autocrlf=true`, checks every evidence hash, then runs the
+required integrity gate. Both LF and Windows-style Git checkouts were tested;
+that is not a claim of having executed native Windows Python in this environment.
 
 ## Known limitations and open gates
 

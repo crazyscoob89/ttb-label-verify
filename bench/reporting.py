@@ -69,8 +69,8 @@ def main():
     data=derive(HERE)
     analysis=analyze(data)
     for name,obj in [('replayed_results.json',data),('analysis.json',analysis)]:
-        (HERE/name).write_text(json.dumps(obj,indent=2)+'\n')
-    (HERE/'RESULTS.md').write_text(render(data,analysis))
+        (HERE/name).write_text(json.dumps(obj,indent=2)+'\n', encoding='utf-8')
+    (HERE/'RESULTS.md').write_text(render(data,analysis), encoding='utf-8')
     print('Regenerated replay, analysis and report OFFLINE; paid calls: 0')
 
 if __name__=='__main__':

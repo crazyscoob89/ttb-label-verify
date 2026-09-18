@@ -1,0 +1,6 @@
+# Hash-pinned observations/fixtures must retain the exact committed bytes.
+# Do not let Windows core.autocrlf change inputs to the evidence gate.
+/bench/raw_results.json -text
+/fixtures/manifest.json -text
+/fixtures/ground_truth/*.json -text
+/fixtures/images/*.png binary
