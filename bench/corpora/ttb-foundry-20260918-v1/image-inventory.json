@@ -1,0 +1,955 @@
+{
+  "summary": {
+    "source_images": 94,
+    "new_image_paths": 76,
+    "existing_source_label_paths": 18,
+    "all_source_image_bytes": 66031394,
+    "new_image_bytes": 64015424,
+    "largest_image_bytes": 1397351,
+    "source_root": "ttb-foundry-20260918-v1",
+    "base_branch": "ava/stage2-review-revision",
+    "base_sha": "4039ccce1912130e3cc9c015e439bf62f720d32f"
+  },
+  "images": [
+    {
+      "source_relative_path": "bottles/contact-sheet.jpg",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/bottles/contact-sheet.jpg",
+      "bytes": 345737,
+      "sha256": "b512f683b8c2f83c38c5cc274afe72a9ec07fc6c8ed815fa66ae58a8d0a06e08",
+      "git_blob_sha1": "11b98edf570134ab2907c3ed5182220e8c26cc74",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "contact_sheet"
+    },
+    {
+      "source_relative_path": "bottles/images/A-ABV-WRONG-01.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/bottles/images/A-ABV-WRONG-01.png",
+      "bytes": 682734,
+      "sha256": "7535698250fa4d7cfd76f9936305f2376dcde95e4bb1ec1bedc66cf77198bebd",
+      "git_blob_sha1": "345f849001f411f939dd0b14c9c4dc0102928395",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "bottles/images/A-BRAND-CASE-01.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/bottles/images/A-BRAND-CASE-01.png",
+      "bytes": 675087,
+      "sha256": "eaa677746bdc68b71b3e07cafaa8a382dfafd69f69406e688c37960ca33a2b90",
+      "git_blob_sha1": "039e43edc139c663bd0ade1d2fced9a55c9ec235",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "bottles/images/A-FIELD-MISSING-01.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/bottles/images/A-FIELD-MISSING-01.png",
+      "bytes": 658459,
+      "sha256": "fbe2320836ee47d13e1d3c9438d7575cb1bd0f453c44f8513bb610f960d4a3a5",
+      "git_blob_sha1": "7748e3d5d7ab604074abd46e08b6ac671c9a574e",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "bottles/images/A-INJECT-PROMPT-01.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/bottles/images/A-INJECT-PROMPT-01.png",
+      "bytes": 664860,
+      "sha256": "862b359239fa121158387e419a7aba15fb7316a33af8fa1ed3bd64ce9ecae5f7",
+      "git_blob_sha1": "a6379f813dba0917340bd2604c14ec53b8853281",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "bottles/images/A-WARN-BOLDBODY-01.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/bottles/images/A-WARN-BOLDBODY-01.png",
+      "bytes": 689343,
+      "sha256": "e691c2f4a862cce743f914f46fd073e0b2c10a6426778cffd9fd94c4c7f69938",
+      "git_blob_sha1": "50fe308283244070c54294cce485b494199b5cf7",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "bottles/images/A-WARN-TITLECASE-01.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/bottles/images/A-WARN-TITLECASE-01.png",
+      "bytes": 673424,
+      "sha256": "0d4b1d5936b6e9aaed69a0b9ab16c101b3cf7d6834bf17fb69f4992bcada7ed6",
+      "git_blob_sha1": "81d09181e8c95dd64f07f7277663edf9798d0ba6",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "bottles/images/C-MALT-01.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/bottles/images/C-MALT-01.png",
+      "bytes": 700641,
+      "sha256": "d94072ceaa20bb53d3bcab4829e235258c2e0cc09f211e1b5959ecb2b1a8a917",
+      "git_blob_sha1": "47c3d7672e591259ecf2fcda8511222072fd39fb",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "bottles/images/C-SPIRITS-01.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/bottles/images/C-SPIRITS-01.png",
+      "bytes": 674589,
+      "sha256": "bd601f2d9a3b0fd1b31257fd46e24eb148969519fa4833678ac604df20e037ec",
+      "git_blob_sha1": "f259aaad0d366ba7f93a001f236c1e3e42be5665",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "bottles/images/C-SPIRITS-IMPORT-01.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/bottles/images/C-SPIRITS-IMPORT-01.png",
+      "bytes": 707521,
+      "sha256": "7557567bdfcfb73dbbf29ca3c1ee615857dd958bd0f44c144788ce0b898206ec",
+      "git_blob_sha1": "1f12646d741a7529c56e557126e56ddff04857b5",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "bottles/images/C-WINE-01.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/bottles/images/C-WINE-01.png",
+      "bytes": 679733,
+      "sha256": "3e2506cb620c53fb1a267cd3bf12f38397c02bfdab849bd4aa87a2b528537eb3",
+      "git_blob_sha1": "c4aae9fa46e3fa36f0f227172b5a4272734bba20",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "bottles/images/D-BLUR-01.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/bottles/images/D-BLUR-01.png",
+      "bytes": 768476,
+      "sha256": "79c8cdb4cc6e0f3be886f66e84dca9a70dd75d8e2e70215abe913a1a5ab8e4d4",
+      "git_blob_sha1": "48edbde79434d6643a08db14d0f1794e2aec1270",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "bottles/images/D-GLARE-01.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/bottles/images/D-GLARE-01.png",
+      "bytes": 814848,
+      "sha256": "4bb6cfeccacf118647cfd357c33044ec5453f1f4723947615f071e3f8e74adfa",
+      "git_blob_sha1": "cec11e147bd50902caff0dccd7df57a8785785ba",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "bottles/images/D-WARP-01.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/bottles/images/D-WARP-01.png",
+      "bytes": 903714,
+      "sha256": "47429b89bd864d13388c38895810746c7355631fda7fd19d02d2a4dc03e8159f",
+      "git_blob_sha1": "338f90a85dce23cfbddd49b2b64b1433a899d4b5",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "bottles/images/W-ABV-4045-01.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/bottles/images/W-ABV-4045-01.png",
+      "bytes": 708122,
+      "sha256": "d2e674fae1a068ca6fbdbca8af6e337eb197dcc54f75b6f1a8c651646a7daaf4",
+      "git_blob_sha1": "74c44e510c25e868324d65fe263837c30c10266f",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "bottles/images/W-BRAND-SPLITLINE-01.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/bottles/images/W-BRAND-SPLITLINE-01.png",
+      "bytes": 687928,
+      "sha256": "0d808655c0372f5c6ceb60d280a4773e20f8e35b33c3c599263112be17899b8a",
+      "git_blob_sha1": "06430a2e8e00da92f3354c562c14de1c845d60ab",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "bottles/images/W-BRAND-WRONG-01.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/bottles/images/W-BRAND-WRONG-01.png",
+      "bytes": 677044,
+      "sha256": "a1a4443f8838733ba6478df90d170d6d3c3cc925e2d2fe6e6e606a6e11a0639b",
+      "git_blob_sha1": "21eeef576ed390508727d891bb101b2adfe73f4c",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "bottles/images/W-NETCONTENTS-WRONG-01.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/bottles/images/W-NETCONTENTS-WRONG-01.png",
+      "bytes": 672455,
+      "sha256": "7abf8c9d973a8c781c2516f1615420d02db5654ea2492b98e9f326074136f128",
+      "git_blob_sha1": "05321393de9456148f80e2461587d0eadc086eca",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "bottles/images/W-WARN-REWORD-01.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/bottles/images/W-WARN-REWORD-01.png",
+      "bytes": 717691,
+      "sha256": "4abd681601b86e9147aecf5bd277e15b1ea928e92e5110674b71d1ba6d46e5a8",
+      "git_blob_sha1": "23ee451dd054b63d508e58de6404f12faba3981d",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v2/scorer-4039ccc/fixtures/images/A-ABV-WRONG-01.png",
+      "repository_path": "fixtures/images/A-ABV-WRONG-01.png",
+      "bytes": 81205,
+      "sha256": "bb19b282fe059b2f429d0f91904639cb82e1fc256b0f026ee7d484e39cfad135",
+      "git_blob_sha1": "44c2c3639546b42267c398ed887aeb4941fdf8eb",
+      "already_tracked_at_base": true,
+      "synthetic": true,
+      "kind": "source_label"
+    },
+    {
+      "source_relative_path": "recovery-v2/scorer-4039ccc/fixtures/images/A-BRAND-CASE-01.png",
+      "repository_path": "fixtures/images/A-BRAND-CASE-01.png",
+      "bytes": 83587,
+      "sha256": "6c3e7b4bc076cbfffe5b7d3379c7d167847370a8d24cae052a0850807e7a9329",
+      "git_blob_sha1": "c9adab61dd563f66ac772bdc50ef227e253d26b5",
+      "already_tracked_at_base": true,
+      "synthetic": true,
+      "kind": "source_label"
+    },
+    {
+      "source_relative_path": "recovery-v2/scorer-4039ccc/fixtures/images/A-FIELD-MISSING-01.png",
+      "repository_path": "fixtures/images/A-FIELD-MISSING-01.png",
+      "bytes": 69397,
+      "sha256": "bccda011d9dfb0c9b5c14cd422930a5d62c315e7caa0519dfd47f988ae94497a",
+      "git_blob_sha1": "09829a2079346896158a908098dff5016bbfcf40",
+      "already_tracked_at_base": true,
+      "synthetic": true,
+      "kind": "source_label"
+    },
+    {
+      "source_relative_path": "recovery-v2/scorer-4039ccc/fixtures/images/A-INJECT-PROMPT-01.png",
+      "repository_path": "fixtures/images/A-INJECT-PROMPT-01.png",
+      "bytes": 78601,
+      "sha256": "f06963b651dec88f5226032a417a35bfbcce1c0bce7adbee74b304749d65b5eb",
+      "git_blob_sha1": "7b9a6157d4fe30a71fb8a22180d0504fa2017872",
+      "already_tracked_at_base": true,
+      "synthetic": true,
+      "kind": "source_label"
+    },
+    {
+      "source_relative_path": "recovery-v2/scorer-4039ccc/fixtures/images/A-WARN-BOLDBODY-01.png",
+      "repository_path": "fixtures/images/A-WARN-BOLDBODY-01.png",
+      "bytes": 83604,
+      "sha256": "07ead341ecdafc55c1cb6b2215ad7eb5fbd2d83793bbe439bbd3458eafb70d1e",
+      "git_blob_sha1": "85630345d4bf86b141fe737ac4c838a61b50b57a",
+      "already_tracked_at_base": true,
+      "synthetic": true,
+      "kind": "source_label"
+    },
+    {
+      "source_relative_path": "recovery-v2/scorer-4039ccc/fixtures/images/A-WARN-TITLECASE-01.png",
+      "repository_path": "fixtures/images/A-WARN-TITLECASE-01.png",
+      "bytes": 85210,
+      "sha256": "a332b9612bc45547db698b2a7a005895a086d668319925bc8d06d2966f20a75f",
+      "git_blob_sha1": "2cbf038a74120f1e4e66a9d35f0a1a005b3f8972",
+      "already_tracked_at_base": true,
+      "synthetic": true,
+      "kind": "source_label"
+    },
+    {
+      "source_relative_path": "recovery-v2/scorer-4039ccc/fixtures/images/C-MALT-01.png",
+      "repository_path": "fixtures/images/C-MALT-01.png",
+      "bytes": 78350,
+      "sha256": "36f92b6f24b80111d5abe6a3aac8ae7538252bc58640893aa369af67fc33a559",
+      "git_blob_sha1": "7938b941591ad354479eb6bb42fdfb4651280670",
+      "already_tracked_at_base": true,
+      "synthetic": true,
+      "kind": "source_label"
+    },
+    {
+      "source_relative_path": "recovery-v2/scorer-4039ccc/fixtures/images/C-SPIRITS-01.png",
+      "repository_path": "fixtures/images/C-SPIRITS-01.png",
+      "bytes": 85007,
+      "sha256": "6db5c6cf43a3a09e324c9e086220594ba35f8611c6e1a4966ccec9a14cce7470",
+      "git_blob_sha1": "0a602a0609e5979f87d030d9865563978c1f5e83",
+      "already_tracked_at_base": true,
+      "synthetic": true,
+      "kind": "source_label"
+    },
+    {
+      "source_relative_path": "recovery-v2/scorer-4039ccc/fixtures/images/C-SPIRITS-IMPORT-01.png",
+      "repository_path": "fixtures/images/C-SPIRITS-IMPORT-01.png",
+      "bytes": 93585,
+      "sha256": "a1a8009fec8552dbbaa4610274f08b3fffaf841efc092f0de53a1af953d5e24d",
+      "git_blob_sha1": "f36f5a950826aeea75b762728f8a75e67b6d2496",
+      "already_tracked_at_base": true,
+      "synthetic": true,
+      "kind": "source_label"
+    },
+    {
+      "source_relative_path": "recovery-v2/scorer-4039ccc/fixtures/images/C-WINE-01.png",
+      "repository_path": "fixtures/images/C-WINE-01.png",
+      "bytes": 83313,
+      "sha256": "c718da519884fd0f496e166a97250a40decd98bf90a8511c7af335cab5bea771",
+      "git_blob_sha1": "8fcc4d02afae147d32a63d15d0af0c3d8706c8d9",
+      "already_tracked_at_base": true,
+      "synthetic": true,
+      "kind": "source_label"
+    },
+    {
+      "source_relative_path": "recovery-v2/scorer-4039ccc/fixtures/images/D-BLUR-01.png",
+      "repository_path": "fixtures/images/D-BLUR-01.png",
+      "bytes": 205711,
+      "sha256": "d12ce32310048021081b0406c2bbecba4c29eb8c654d83d4514484d8e0e5dceb",
+      "git_blob_sha1": "9241288327193ad586aa593e4c367ce6dd0bdcfc",
+      "already_tracked_at_base": true,
+      "synthetic": true,
+      "kind": "source_label"
+    },
+    {
+      "source_relative_path": "recovery-v2/scorer-4039ccc/fixtures/images/D-GLARE-01.png",
+      "repository_path": "fixtures/images/D-GLARE-01.png",
+      "bytes": 221739,
+      "sha256": "02a00f894da7459c30bb799d7d59fabdd3c56bfdb9408182e559688cb23af83d",
+      "git_blob_sha1": "7f734c371327ed6c03349d9a562a3c0a30adea28",
+      "already_tracked_at_base": true,
+      "synthetic": true,
+      "kind": "source_label"
+    },
+    {
+      "source_relative_path": "recovery-v2/scorer-4039ccc/fixtures/images/D-WARP-01.png",
+      "repository_path": "fixtures/images/D-WARP-01.png",
+      "bytes": 334841,
+      "sha256": "bc3f95244d8d5141becd870068df8f66bff809c4c8945e787cf02c51b8a72545",
+      "git_blob_sha1": "f18b91f894f4db008a5733b47afcee88ed37f85f",
+      "already_tracked_at_base": true,
+      "synthetic": true,
+      "kind": "source_label"
+    },
+    {
+      "source_relative_path": "recovery-v2/scorer-4039ccc/fixtures/images/W-ABV-4045-01.png",
+      "repository_path": "fixtures/images/W-ABV-4045-01.png",
+      "bytes": 91914,
+      "sha256": "2717efcdf4b2ef5e30570b11d8646c49f4bc82d70ee80d0d1a1fe6711f8f7435",
+      "git_blob_sha1": "2fb99d4c27a3f94b5fb5302feaa805b3873e5cb6",
+      "already_tracked_at_base": true,
+      "synthetic": true,
+      "kind": "source_label"
+    },
+    {
+      "source_relative_path": "recovery-v2/scorer-4039ccc/fixtures/images/W-BRAND-SPLITLINE-01.png",
+      "repository_path": "fixtures/images/W-BRAND-SPLITLINE-01.png",
+      "bytes": 87203,
+      "sha256": "b83ade16f1e48719f138eadaa2af82ca8154909b4d60113299a0d47c1249f4e2",
+      "git_blob_sha1": "60b01b35874d12f14097f3c6adf859219ace0d36",
+      "already_tracked_at_base": true,
+      "synthetic": true,
+      "kind": "source_label"
+    },
+    {
+      "source_relative_path": "recovery-v2/scorer-4039ccc/fixtures/images/W-BRAND-WRONG-01.png",
+      "repository_path": "fixtures/images/W-BRAND-WRONG-01.png",
+      "bytes": 85711,
+      "sha256": "27d358e7cc919454f3388fb73d4868878b59f7b1b6433ee2bce514e0e670ca9d",
+      "git_blob_sha1": "bc818a9e65c3ffaa63579d1146cfbbc6675607e2",
+      "already_tracked_at_base": true,
+      "synthetic": true,
+      "kind": "source_label"
+    },
+    {
+      "source_relative_path": "recovery-v2/scorer-4039ccc/fixtures/images/W-NETCONTENTS-WRONG-01.png",
+      "repository_path": "fixtures/images/W-NETCONTENTS-WRONG-01.png",
+      "bytes": 80813,
+      "sha256": "8ab0a782eda4738fa245b02721eaff28ecce889f012293ef5685b7f2c8cca8aa",
+      "git_blob_sha1": "82c0e2c554cd8f48f599d87853fdc03f56756722",
+      "already_tracked_at_base": true,
+      "synthetic": true,
+      "kind": "source_label"
+    },
+    {
+      "source_relative_path": "recovery-v2/scorer-4039ccc/fixtures/images/W-WARN-REWORD-01.png",
+      "repository_path": "fixtures/images/W-WARN-REWORD-01.png",
+      "bytes": 86179,
+      "sha256": "ad1ceec2aa92e01537484a4c991602c9397a5f31563c4d494c4bbe88b2c4eedd",
+      "git_blob_sha1": "73ea17e7c8351fcf7139a21c85d1533f6bebec1e",
+      "already_tracked_at_base": true,
+      "synthetic": true,
+      "kind": "source_label"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/angle-sheet.jpg",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/angle-sheet.jpg",
+      "bytes": 638528,
+      "sha256": "d3e9cbff98e809edb8e09d3cb4a38022d1ad5de1f5d059ea2a760018c3fc43d9",
+      "git_blob_sha1": "e5b3a3843f46a11b55f7627790f83fad087d7d59",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "contact_sheet"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/glare-sheet.jpg",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/glare-sheet.jpg",
+      "bytes": 452614,
+      "sha256": "af2bb6547495c61ab3800cfe4aaba3e7f1f8bf80d97770790bdc24f13f5cf50b",
+      "git_blob_sha1": "78a4eb9c9fb71a301aeca063baa8b16edba64138",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "contact_sheet"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/A-ABV-WRONG-01__angle.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-ABV-WRONG-01__angle.png",
+      "bytes": 1309996,
+      "sha256": "0c9931326ceb391f407ebed119bc79501845c69fb73d119fa943b4fb2d701ab9",
+      "git_blob_sha1": "b1a1562002d6cd63c6952354b605c717a60e0b74",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/A-ABV-WRONG-01__glare.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-ABV-WRONG-01__glare.png",
+      "bytes": 666724,
+      "sha256": "3fb81c20a9678d22d9a7a43c8c5144670d5bcc4cfb4ddcbfacdbbb9076c21df9",
+      "git_blob_sha1": "301d958e4e2e5551e279c2c4f140ca567c4c9d67",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/A-ABV-WRONG-01__straight.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-ABV-WRONG-01__straight.png",
+      "bytes": 682734,
+      "sha256": "7535698250fa4d7cfd76f9936305f2376dcde95e4bb1ec1bedc66cf77198bebd",
+      "git_blob_sha1": "345f849001f411f939dd0b14c9c4dc0102928395",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/A-BRAND-CASE-01__angle.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-BRAND-CASE-01__angle.png",
+      "bytes": 1341782,
+      "sha256": "39b0a63f6dd8515612a912facbfc0374e66d6b943b34fe02a686c10d2435b7a7",
+      "git_blob_sha1": "2a293732794c3598699accc70a5c8a75b7df265b",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/A-BRAND-CASE-01__glare.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-BRAND-CASE-01__glare.png",
+      "bytes": 663441,
+      "sha256": "bae101a1ecea88c6bcd69da82938f87caad093d98842ced502cb6a4f9c30e0b8",
+      "git_blob_sha1": "059355066532f5105255a33dfd7d1c87de013ae4",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/A-BRAND-CASE-01__straight.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-BRAND-CASE-01__straight.png",
+      "bytes": 675087,
+      "sha256": "eaa677746bdc68b71b3e07cafaa8a382dfafd69f69406e688c37960ca33a2b90",
+      "git_blob_sha1": "039e43edc139c663bd0ade1d2fced9a55c9ec235",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/A-FIELD-MISSING-01__angle.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-FIELD-MISSING-01__angle.png",
+      "bytes": 1269732,
+      "sha256": "4f6abfc0a0f6089a4ce323bcb22b25b785c2cf0bfadcfecf0a9c733730ad8f23",
+      "git_blob_sha1": "8adf9bfc278db3d6ad16bf06794b19b504cf0943",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/A-FIELD-MISSING-01__glare.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-FIELD-MISSING-01__glare.png",
+      "bytes": 675216,
+      "sha256": "01166f896580ee6133c9cfa31b0366a2310548423b6271f0fc06af8db06d9663",
+      "git_blob_sha1": "3e9db0bf55cd75cd3be78fcfd24f31e6ddc0ea10",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/A-FIELD-MISSING-01__straight.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-FIELD-MISSING-01__straight.png",
+      "bytes": 658459,
+      "sha256": "fbe2320836ee47d13e1d3c9438d7575cb1bd0f453c44f8513bb610f960d4a3a5",
+      "git_blob_sha1": "7748e3d5d7ab604074abd46e08b6ac671c9a574e",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/A-INJECT-PROMPT-01__angle.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-INJECT-PROMPT-01__angle.png",
+      "bytes": 1334304,
+      "sha256": "377036d98054cb4b1d5d55a7b188f6b319d5d8b9e2bbbdb4ee06642a69d34a23",
+      "git_blob_sha1": "901c83527b0d154ef4958040b1f903db26b3ca3f",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/A-INJECT-PROMPT-01__glare.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-INJECT-PROMPT-01__glare.png",
+      "bytes": 664124,
+      "sha256": "0c39c467955c5dd113cf4bb0021fe01f18919d7c268a7f12909b7b87827eb672",
+      "git_blob_sha1": "e8653a56b7d978129ffdd649ceee231e20ebc9ee",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/A-INJECT-PROMPT-01__straight.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-INJECT-PROMPT-01__straight.png",
+      "bytes": 664860,
+      "sha256": "862b359239fa121158387e419a7aba15fb7316a33af8fa1ed3bd64ce9ecae5f7",
+      "git_blob_sha1": "a6379f813dba0917340bd2604c14ec53b8853281",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/A-WARN-BOLDBODY-01__angle.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-WARN-BOLDBODY-01__angle.png",
+      "bytes": 1323343,
+      "sha256": "a270691ac61d272320059bd7d4ab846a829768eb6bb616410552c91d1d90b6e2",
+      "git_blob_sha1": "2a1df96241e710e628be61638682a3623cdcc3d0",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/A-WARN-BOLDBODY-01__glare.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-WARN-BOLDBODY-01__glare.png",
+      "bytes": 681646,
+      "sha256": "b819c64a759e1aa44478c3ef2b6e6ac223d75c127119564d5ba9a13df8a9c02e",
+      "git_blob_sha1": "a0c5cced5fb61a524329f72c84b6abee148513f0",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/A-WARN-BOLDBODY-01__straight.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-WARN-BOLDBODY-01__straight.png",
+      "bytes": 689343,
+      "sha256": "e691c2f4a862cce743f914f46fd073e0b2c10a6426778cffd9fd94c4c7f69938",
+      "git_blob_sha1": "50fe308283244070c54294cce485b494199b5cf7",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/A-WARN-TITLECASE-01__angle.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-WARN-TITLECASE-01__angle.png",
+      "bytes": 1340671,
+      "sha256": "aaad89d07afad631a686f0603cac790d3fd29e4d1059ec0ad02b7b12bdace94b",
+      "git_blob_sha1": "21faa84178eff2bad0073d6e4a85d4314e1a98a3",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/A-WARN-TITLECASE-01__glare.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-WARN-TITLECASE-01__glare.png",
+      "bytes": 647733,
+      "sha256": "1f6f32170c939455d5db73d712779957490b6003c1123af703a4b62e268b95b6",
+      "git_blob_sha1": "a30c676704eeec6a8f7c029129b220096efbed23",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/A-WARN-TITLECASE-01__straight.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-WARN-TITLECASE-01__straight.png",
+      "bytes": 673424,
+      "sha256": "0d4b1d5936b6e9aaed69a0b9ab16c101b3cf7d6834bf17fb69f4992bcada7ed6",
+      "git_blob_sha1": "81d09181e8c95dd64f07f7277663edf9798d0ba6",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/C-MALT-01__angle.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-MALT-01__angle.png",
+      "bytes": 1323094,
+      "sha256": "100bd7c87577aba93c3630fbf7526d52054343f853a545bae81196227dc9a026",
+      "git_blob_sha1": "a61845a807aab5f8e8f2ea1e9210c3484d5ad64f",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/C-MALT-01__glare.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-MALT-01__glare.png",
+      "bytes": 693176,
+      "sha256": "5e23f28d8fc0aa30e72b42ac1d13ce4b02839a4dd78968e477467da0a2a05e30",
+      "git_blob_sha1": "6d293f26369494412ec39b12fc697e55d5066b68",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/C-MALT-01__straight.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-MALT-01__straight.png",
+      "bytes": 700641,
+      "sha256": "d94072ceaa20bb53d3bcab4829e235258c2e0cc09f211e1b5959ecb2b1a8a917",
+      "git_blob_sha1": "47c3d7672e591259ecf2fcda8511222072fd39fb",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/C-SPIRITS-01__angle.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-SPIRITS-01__angle.png",
+      "bytes": 1345963,
+      "sha256": "0dca0b5d36fc89fd9db503b88c50466fa4309790b698daf2de25ab29e6c8565c",
+      "git_blob_sha1": "1e9d232576c049e5074c2527509358177722ec89",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/C-SPIRITS-01__glare.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-SPIRITS-01__glare.png",
+      "bytes": 654016,
+      "sha256": "8bc92f112a4a536bd3c46a13dec97b0fe3833e92e9d8d63cd61855951251aa03",
+      "git_blob_sha1": "0b9d565bc7d76ffb00ada3eed4b474f6541d84aa",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/C-SPIRITS-01__straight.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-SPIRITS-01__straight.png",
+      "bytes": 674589,
+      "sha256": "bd601f2d9a3b0fd1b31257fd46e24eb148969519fa4833678ac604df20e037ec",
+      "git_blob_sha1": "f259aaad0d366ba7f93a001f236c1e3e42be5665",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/C-SPIRITS-IMPORT-01__angle.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-SPIRITS-IMPORT-01__angle.png",
+      "bytes": 1389969,
+      "sha256": "1625c15054c1a1f4fb83c0f1d5d3cf50490f8891ae6adb94e53ad9657b1a7625",
+      "git_blob_sha1": "1b06d56490be2fd1ff46d68ac82483290afcedd4",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/C-SPIRITS-IMPORT-01__glare.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-SPIRITS-IMPORT-01__glare.png",
+      "bytes": 684769,
+      "sha256": "227f055bfdcd2d6348004ec8748381c49031813f6ddacd4cd188fad1c516b56d",
+      "git_blob_sha1": "12f942ee40d9890dfe53f908f44b41637dd6205a",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/C-SPIRITS-IMPORT-01__straight.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-SPIRITS-IMPORT-01__straight.png",
+      "bytes": 707521,
+      "sha256": "7557567bdfcfb73dbbf29ca3c1ee615857dd958bd0f44c144788ce0b898206ec",
+      "git_blob_sha1": "1f12646d741a7529c56e557126e56ddff04857b5",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/C-WINE-01__angle.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-WINE-01__angle.png",
+      "bytes": 1307658,
+      "sha256": "3352f3a96fc840f67725cee6ee26724e88ccf8103a276238f8ff3c8025d09a41",
+      "git_blob_sha1": "19e45b80df14e4224ef36cd635c2c8f351b85e9e",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/C-WINE-01__glare.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-WINE-01__glare.png",
+      "bytes": 665673,
+      "sha256": "be58424d4c2537a60247154ecc533d4eaf46b9213f517a2c24b2bbdcde1df11e",
+      "git_blob_sha1": "cdbdf32fbaeb2ba7f913ec187463bdab54e6ebea",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/C-WINE-01__straight.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-WINE-01__straight.png",
+      "bytes": 679733,
+      "sha256": "3e2506cb620c53fb1a267cd3bf12f38397c02bfdab849bd4aa87a2b528537eb3",
+      "git_blob_sha1": "c4aae9fa46e3fa36f0f227172b5a4272734bba20",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/D-BLUR-01__angle.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/D-BLUR-01__angle.png",
+      "bytes": 1384417,
+      "sha256": "1cc770bb040445d3ed39219c840e0d8b40e5040b8a66d27a228de044e6d1f417",
+      "git_blob_sha1": "c19b6962b1d7e17dc64b49d0f3eeb19da03029e1",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/D-BLUR-01__glare.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/D-BLUR-01__glare.png",
+      "bytes": 663778,
+      "sha256": "408c2d54f5b30398d443d20b3da6b2d2463305b754ea8ab9cd605e5570c8209a",
+      "git_blob_sha1": "b1e7d56861d942eb4d4a60bc38192590e8d035fb",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/D-BLUR-01__straight.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/D-BLUR-01__straight.png",
+      "bytes": 768476,
+      "sha256": "79c8cdb4cc6e0f3be886f66e84dca9a70dd75d8e2e70215abe913a1a5ab8e4d4",
+      "git_blob_sha1": "48edbde79434d6643a08db14d0f1794e2aec1270",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/D-GLARE-01__angle.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/D-GLARE-01__angle.png",
+      "bytes": 1397351,
+      "sha256": "b466ba1c66ed12f7e359bf72a49432cd053dde87636c057de3437a59f378abff",
+      "git_blob_sha1": "64a7667675cbe2c9775786b38d5b469a5242368a",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/D-GLARE-01__glare.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/D-GLARE-01__glare.png",
+      "bytes": 725671,
+      "sha256": "87e61e2bfaca95e0960df2c59738e47cad79ebacd331520d4d5b792d0b218e4c",
+      "git_blob_sha1": "227f32d34d723fd247e229736181df80b2d8bca2",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/D-GLARE-01__straight.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/D-GLARE-01__straight.png",
+      "bytes": 814848,
+      "sha256": "4bb6cfeccacf118647cfd357c33044ec5453f1f4723947615f071e3f8e74adfa",
+      "git_blob_sha1": "cec11e147bd50902caff0dccd7df57a8785785ba",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/D-WARP-01__angle.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/D-WARP-01__angle.png",
+      "bytes": 1366618,
+      "sha256": "fa60bfd51117c2454b9e6c2ca35922647fcad7682048cb41d948d01ae72b2cc5",
+      "git_blob_sha1": "3af115d4546b30a4cd26192aba5b57bdeafd689b",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/D-WARP-01__glare.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/D-WARP-01__glare.png",
+      "bytes": 763751,
+      "sha256": "d592ca5aeecbd1d808be9faf36a2d510c2931a9cc4c8248ad5a35d8db2d47122",
+      "git_blob_sha1": "eeb8fc36943f45ba56a67fa1497a06ef7da706b2",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/D-WARP-01__straight.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/D-WARP-01__straight.png",
+      "bytes": 903714,
+      "sha256": "47429b89bd864d13388c38895810746c7355631fda7fd19d02d2a4dc03e8159f",
+      "git_blob_sha1": "338f90a85dce23cfbddd49b2b64b1433a899d4b5",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/W-ABV-4045-01__angle.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/W-ABV-4045-01__angle.png",
+      "bytes": 1391057,
+      "sha256": "7d602204d655b24660d1d26c7dbe0f6cf57139cfda5d19fd4127c454f04de820",
+      "git_blob_sha1": "99f034ec6432a384e83f8fecbcf905635f42aa61",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/W-ABV-4045-01__glare.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/W-ABV-4045-01__glare.png",
+      "bytes": 695608,
+      "sha256": "221d2b08d22c58b7f50221f32d7cb4535a1ddac892a9ed0b10697251e9cf73eb",
+      "git_blob_sha1": "d3130108c2f87e10edb50f8372d61438dcbb89bd",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/W-ABV-4045-01__straight.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/W-ABV-4045-01__straight.png",
+      "bytes": 708122,
+      "sha256": "d2e674fae1a068ca6fbdbca8af6e337eb197dcc54f75b6f1a8c651646a7daaf4",
+      "git_blob_sha1": "74c44e510c25e868324d65fe263837c30c10266f",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/W-BRAND-SPLITLINE-01__angle.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/W-BRAND-SPLITLINE-01__angle.png",
+      "bytes": 1361063,
+      "sha256": "a91b9a32e8c7e71ab9f11cbee726811d5a89cc939c01edfe6bdab23179c8e823",
+      "git_blob_sha1": "7f49d79e01ad7441a60641e69884133697d5f54d",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/W-BRAND-SPLITLINE-01__glare.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/W-BRAND-SPLITLINE-01__glare.png",
+      "bytes": 661960,
+      "sha256": "c65cfbac3514393cf20f82d64b785be95460993b7fc458e901fb7aef3d504831",
+      "git_blob_sha1": "7ea8df782c5b86795ebce0055b10be59ab4fece5",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/W-BRAND-SPLITLINE-01__straight.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/W-BRAND-SPLITLINE-01__straight.png",
+      "bytes": 687928,
+      "sha256": "0d808655c0372f5c6ceb60d280a4773e20f8e35b33c3c599263112be17899b8a",
+      "git_blob_sha1": "06430a2e8e00da92f3354c562c14de1c845d60ab",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/W-BRAND-WRONG-01__angle.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/W-BRAND-WRONG-01__angle.png",
+      "bytes": 1348277,
+      "sha256": "b7fd0b6d4e7bce885ae7e6e08f0d52ec075fef739816a37a13cc7d3be1575342",
+      "git_blob_sha1": "ca8d5f3dec395b95a77ca4f632522a210d85d41c",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/W-BRAND-WRONG-01__glare.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/W-BRAND-WRONG-01__glare.png",
+      "bytes": 656989,
+      "sha256": "582d87e187421127c040b66c7ec8fe34f83842d86ab8dd9ab815487b1bbfa74d",
+      "git_blob_sha1": "c4b583a58c74d5ec789e0a1905c1eff855a2e87a",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/W-BRAND-WRONG-01__straight.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/W-BRAND-WRONG-01__straight.png",
+      "bytes": 677044,
+      "sha256": "a1a4443f8838733ba6478df90d170d6d3c3cc925e2d2fe6e6e606a6e11a0639b",
+      "git_blob_sha1": "21eeef576ed390508727d891bb101b2adfe73f4c",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/W-NETCONTENTS-WRONG-01__angle.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/W-NETCONTENTS-WRONG-01__angle.png",
+      "bytes": 1343498,
+      "sha256": "20ff730d4a362450cbfc5b0abeb9a5de1054d014c927f1b66fceffb910589c0f",
+      "git_blob_sha1": "4a0bd11e2f5cde28b6f428763d60014a5579ba0c",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/W-NETCONTENTS-WRONG-01__glare.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/W-NETCONTENTS-WRONG-01__glare.png",
+      "bytes": 655370,
+      "sha256": "c0e0118ed521112ef60ea4461c93b1b6f0a8936bd2cc3e9f1fc4798e89627511",
+      "git_blob_sha1": "49e1d8a5d9a6c637ef7ee3e9e30f386ddb82470e",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/W-NETCONTENTS-WRONG-01__straight.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/W-NETCONTENTS-WRONG-01__straight.png",
+      "bytes": 672455,
+      "sha256": "7abf8c9d973a8c781c2516f1615420d02db5654ea2492b98e9f326074136f128",
+      "git_blob_sha1": "05321393de9456148f80e2461587d0eadc086eca",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/W-WARN-REWORD-01__angle.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/W-WARN-REWORD-01__angle.png",
+      "bytes": 1345912,
+      "sha256": "900d60046eee73f45479df5d9b4d0337c3f6277da790dac2988a6280dc9a9d74",
+      "git_blob_sha1": "4a8e55923795d78c28832bdd28881ff618c1b3ca",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/W-WARN-REWORD-01__glare.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/W-WARN-REWORD-01__glare.png",
+      "bytes": 714631,
+      "sha256": "09823aa4194ef17c16482919d527e64288d6a3c1462121006b16034a8b3b667f",
+      "git_blob_sha1": "a1f12390232be75ada69be285317346c70e723c4",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/images/W-WARN-REWORD-01__straight.png",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/images/W-WARN-REWORD-01__straight.png",
+      "bytes": 717691,
+      "sha256": "4abd681601b86e9147aecf5bd277e15b1ea928e92e5110674b71d1ba6d46e5a8",
+      "git_blob_sha1": "23ee451dd054b63d508e58de6404f12faba3981d",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "bottle_mockup"
+    },
+    {
+      "source_relative_path": "recovery-v3/bottles/straight-sheet.jpg",
+      "repository_path": "bench/corpora/ttb-foundry-20260918-v1/recovery-v3/bottles/straight-sheet.jpg",
+      "bytes": 606226,
+      "sha256": "f1e0678d492ba41c8625eb0ecd18ae33e27a354929ca47920abf2e72f4de78fe",
+      "git_blob_sha1": "0bebbb7e3bb4b685874c44380209f11231268cf1",
+      "already_tracked_at_base": false,
+      "synthetic": true,
+      "kind": "contact_sheet"
+    }
+  ]
+}
