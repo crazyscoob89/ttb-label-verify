@@ -113,3 +113,13 @@ engine perception on non-bold-heading and genuinely unreadable/cropped images;
 and deployed end-to-end timing. New paid testing requires separate authority and
 a proven spend bound. Public provider-backed access and non-synthetic use remain
 blocked by the documented gates.
+
+## Final independent review closeout
+
+ARGUS's native Windows **PASS** on `05312d0c2a61d061de903cfcba3dc0970a28dfe8`
+was relayed by Alex. All six gate scripts passed on a fresh default-settings
+Windows clone and the working tree, with original evidence/fingerprint preserved.
+See [the attributed final verdict](reviews/07-windows-path-repair.md#final-independent-verdict-pass).
+This supersedes independent-review-pending statements above for the Stage 2
+repair tranche only. Engine approval, master promotion, app implementation,
+spending/privacy controls and deployment remain separate gates.
