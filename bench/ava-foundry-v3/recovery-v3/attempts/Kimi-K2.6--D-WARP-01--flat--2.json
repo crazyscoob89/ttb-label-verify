@@ -1,0 +1,42 @@
+{
+  "id": "Kimi-K2.6--D-WARP-01--flat--2",
+  "operator": "AVA-v3",
+  "model": "Kimi-K2.6",
+  "engine": "Kimi-K2.6",
+  "fixture_id": "D-WARP-01",
+  "repeat": 2,
+  "condition": "flat",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.0097891,
+  "request_sha256": "cd25a0d78470dbe2fd476e384646e67ee997f0bc3418fb1f1776c8b8a0122bec",
+  "image_sha256": "bc3f95244d8d5141becd870068df8f66bff809c4c8945e787cf02c51b8a72545",
+  "transport": "chat",
+  "started_at": "2026-09-18T15:58:05.854911+00:00",
+  "reserved_usd": 1.10896192,
+  "source_image": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/D-WARP-01.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "a0c4a470-4a14-4f92-8ca3-64f18bbb84fe",
+  "latency_s": 17.492830935050733,
+  "response_sha256": "7ff216da5bf1b6c50c7d2713f39a7be6b43c74f228a5c39a1bb6c603cd91549f",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--D-WARP-01--flat--2.json",
+  "tokens_in": 2658,
+  "tokens_out": 1816,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 2658,
+    "completion_tokens": 1816,
+    "total_tokens": 4474,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 704,
+      "image_tokens": 1944
+    }
+  },
+  "returned_model": "Kimi-K2.6"
+}

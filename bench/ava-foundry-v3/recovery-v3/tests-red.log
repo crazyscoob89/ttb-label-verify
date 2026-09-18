@@ -1,0 +1,89 @@
+test_corpus_coverage_truth_hashes (__main__.V3Tests.test_corpus_coverage_truth_hashes) ... FAIL
+test_parallel_reservations (__main__.V3Tests.test_parallel_reservations) ... FAIL
+test_payload_no_truth_and_protocol (__main__.V3Tests.test_payload_no_truth_and_protocol) ... FAIL
+test_queue_excludes_all_attempts_and_tail (__main__.V3Tests.test_queue_excludes_all_attempts_and_tail) ... FAIL
+test_referral_policy (__main__.V3Tests.test_referral_policy) ... FAIL
+test_renderer_deterministic_bounds (__main__.V3Tests.test_renderer_deterministic_bounds) ... FAIL
+test_reservation_restart_unknown_overage (__main__.V3Tests.test_reservation_restart_unknown_overage) ... FAIL
+
+======================================================================
+FAIL: test_corpus_coverage_truth_hashes (__main__.V3Tests.test_corpus_coverage_truth_hashes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_v3.py", line 50, in test_corpus_coverage_truth_hashes
+    m=self.mod(); manifest=ROOT/'bottles/manifest.json'
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_v3.py", line 6, in mod
+    self.assertTrue((ROOT/'v3.py').exists(),'versioned implementation must exist')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : versioned implementation must exist
+
+======================================================================
+FAIL: test_parallel_reservations (__main__.V3Tests.test_parallel_reservations)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_v3.py", line 26, in test_parallel_reservations
+    m=self.mod(); import concurrent.futures
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_v3.py", line 6, in mod
+    self.assertTrue((ROOT/'v3.py').exists(),'versioned implementation must exist')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : versioned implementation must exist
+
+======================================================================
+FAIL: test_payload_no_truth_and_protocol (__main__.V3Tests.test_payload_no_truth_and_protocol)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_v3.py", line 39, in test_payload_no_truth_and_protocol
+    m=self.mod(); f=m.source_manifest()['fixtures'][0];p=m.BASE/'bottles'/f['image']
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_v3.py", line 6, in mod
+    self.assertTrue((ROOT/'v3.py').exists(),'versioned implementation must exist')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : versioned implementation must exist
+
+======================================================================
+FAIL: test_queue_excludes_all_attempts_and_tail (__main__.V3Tests.test_queue_excludes_all_attempts_and_tail)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_v3.py", line 46, in test_queue_excludes_all_attempts_and_tail
+    m=self.mod();q=m.flat_queue();recon=json.loads((m.BASE/'recovery-v2/reconciliation.json').read_text())
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_v3.py", line 6, in mod
+    self.assertTrue((ROOT/'v3.py').exists(),'versioned implementation must exist')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : versioned implementation must exist
+
+======================================================================
+FAIL: test_referral_policy (__main__.V3Tests.test_referral_policy)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_v3.py", line 9, in test_referral_policy
+    m=self.mod()
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_v3.py", line 6, in mod
+    self.assertTrue((ROOT/'v3.py').exists(),'versioned implementation must exist')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : versioned implementation must exist
+
+======================================================================
+FAIL: test_renderer_deterministic_bounds (__main__.V3Tests.test_renderer_deterministic_bounds)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_v3.py", line 32, in test_renderer_deterministic_bounds
+    m=self.mod(); f=m.source_manifest()['fixtures'][0]
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_v3.py", line 6, in mod
+    self.assertTrue((ROOT/'v3.py').exists(),'versioned implementation must exist')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : versioned implementation must exist
+
+======================================================================
+FAIL: test_reservation_restart_unknown_overage (__main__.V3Tests.test_reservation_restart_unknown_overage)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_v3.py", line 17, in test_reservation_restart_unknown_overage
+    m=self.mod()
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/test_v3.py", line 6, in mod
+    self.assertTrue((ROOT/'v3.py').exists(),'versioned implementation must exist')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : versioned implementation must exist
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.011s
+
+FAILED (failures=7)

@@ -35,19 +35,7 @@ DEFAULT_ENV_PATH = r"C:\Users\alexm\.ocplatform\workspace\.env"
 # Extraction contract
 # --------------------------------------------------------------------------
 
-EXTRACTION_SCHEMA_FIELDS = [
-    "brand_name",
-    "class_type",
-    "alcohol_content",
-    "net_contents",
-    "bottler_info",
-    "country_of_origin",
-    "government_warning_heading",
-    "government_warning_body",
-    "government_warning_heading_all_caps",
-    "government_warning_heading_bold",
-    "government_warning_body_bold",
-]
+from extraction_validation import EXTRACTION_SCHEMA_FIELDS, validate_extraction
 
 SYSTEM_PROMPT = (
     "You are a transcription instrument for alcohol beverage label images. "
@@ -161,6 +149,88 @@ ENGINES = {
         "route": "OpenRouter -> Anthropic",
     },
 }
+
+# --------------------------------------------------------------------------
+# Azure AI Foundry deployments (project 'ttb-foundry-trial', East US)
+# --------------------------------------------------------------------------
+# Reached over the OpenAI-compatible endpoint: base URL + `api-key` header,
+# with `model` set to the DEPLOYMENT name. Membership here is gated by
+# bench/foundry_vision_probe.py -- only deployments that demonstrably READ a
+# probe image are listed, so the battery can never score a blind model's
+# fabrications as if they were extractions.
+#
+# PRICE PROVENANCE. Azure's pricing tables are rendered client-side, so the
+# published per-1M rates could not be scraped from the static pricing pages at
+# build time. Every price below therefore carries `price_verified`:
+#   True  -- corroborated by a first-party source (Microsoft blog/docs) or by
+#            the model vendor's own list pricing.
+#   False -- taken from third-party pricing aggregators only. Cost-per-label
+#            figures derived from these MUST be labelled as indicative in the
+#            comparison report rather than quoted as authoritative.
+# Latency and accuracy in this benchmark are measured; cost is arithmetic over
+# measured token counts and these rates, so an unverified rate affects only the
+# cost column, never the accuracy or latency columns.
+
+FOUNDRY_ENGINES = {
+    "foundry-gpt-4.1-mini": {
+        "deployment": "gpt-4.1-mini",
+        "tier": "fast",
+        "price_in": 0.40,
+        "price_out": 1.60,
+        "price_verified": True,
+        "price_source": "OpenAI list pricing for gpt-4.1-mini, matched by Azure trackers",
+        "reasoning": False,
+    },
+    "foundry-gpt-5-mini": {
+        "deployment": "gpt-5-mini",
+        "tier": "fast (reasoning)",
+        "price_in": 0.25,
+        "price_out": 2.00,
+        "price_verified": True,
+        "price_source": "Microsoft Foundry August 2025 update (Global pricing)",
+        "reasoning": True,
+    },
+    "foundry-kimi-k2.6": {
+        "deployment": "Kimi-K2.6",
+        "tier": "open-weight",
+        "price_in": 0.95,
+        "price_out": 4.00,
+        "price_verified": True,
+        "price_source": "Microsoft Foundry blog: Introducing Kimi K2.6 in Microsoft Foundry",
+        "reasoning": True,
+    },
+    "foundry-mistral-large-3": {
+        "deployment": "Mistral-Large-3",
+        "tier": "open-weight",
+        "price_in": 0.50,
+        "price_out": 1.50,
+        "price_verified": False,
+        "price_source": "third-party aggregator only; Azure page is JS-rendered",
+        "reasoning": False,
+    },
+    "foundry-grok-4-1-fast": {
+        "deployment": "grok-4-1-fast-non-reasoning",
+        "tier": "fast",
+        "price_in": 0.20,
+        "price_out": 0.50,
+        "price_verified": False,
+        "price_source": "third-party aggregator only; Azure page is JS-rendered",
+        "reasoning": False,
+    },
+}
+
+for _key, _c in FOUNDRY_ENGINES.items():
+    ENGINES[_key] = {
+        "provider": "foundry",
+        "model": _c["deployment"],
+        "tier": _c["tier"],
+        "price_in": _c["price_in"],
+        "price_out": _c["price_out"],
+        "price_verified": _c["price_verified"],
+        "price_source": _c["price_source"],
+        "reasoning": _c["reasoning"],
+        "route": f"Azure AI Foundry -> {_c['deployment']}",
+    }
 
 
 def _post(url: str, payload: dict, headers: dict, timeout: int = 180) -> dict:
@@ -308,10 +378,100 @@ def call_openrouter(cfg: dict, image_path, env: dict, timeout: int = 180) -> dic
     }
 
 
+def call_foundry(cfg: dict, image_path, env: dict, timeout: int = 180) -> dict:
+    """Azure AI Foundry over its OpenAI-compatible chat/completions route.
+
+    Identical prompt and image encoding to every other adapter -- the point of
+    the benchmark is to vary the MODEL, not the instructions, so nothing here
+    may diverge from the shared SYSTEM_PROMPT/USER_PROMPT contract.
+
+    Three Foundry-specific behaviours are handled, each found empirically by
+    bench/foundry_vision_probe.py:
+
+    1. Parameter dialect. Some deployments (Mistral family) reject
+       `max_completion_tokens` with HTTP 422 `extra_forbidden` and require the
+       older `max_tokens`. We retry once in the alternate dialect so a naming
+       difference is never recorded as a model failure.
+    2. Reasoning budget. Reasoning deployments spend tokens thinking before
+       emitting visible text. Too small a budget returns an EMPTY completion
+       that would parse as a schema failure and unfairly tank the model's
+       score, so reasoning deployments get a much larger allowance.
+    3. Truncation detection. `finish_reason == "length"` means the answer was
+       cut off mid-JSON. That is a budget failure, not a model quality signal,
+       so it is surfaced as its own error class instead of being silently
+       lumped in with malformed-output failures.
+    """
+    base = env.get("AZURE_TTB_FOUNDRY_OPENAI_ENDPOINT", "").rstrip("/")
+    url = base + "/chat/completions"
+    headers = {"api-key": env["AZURE_TTB_FOUNDRY_API_KEY"], "Content-Type": "application/json"}
+
+    # Reasoning models must fit hidden reasoning tokens AND a full 11-field JSON
+    # object inside one budget; 8000 leaves ample room for both.
+    budget = 8000 if cfg.get("reasoning") else 3000
+
+    def build(token_param: str) -> dict:
+        return {
+            "model": cfg["model"],
+            "messages": [
+                {"role": "system", "content": SYSTEM_PROMPT},
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "text", "text": USER_PROMPT},
+                        {
+                            "type": "image_url",
+                            "image_url": {
+                                "url": f"data:image/png;base64,{_b64(image_path)}"
+                            },
+                        },
+                    ],
+                },
+            ],
+            "response_format": {"type": "json_object"},
+            token_param: budget,
+        }
+
+    last_http: urllib.error.HTTPError | None = None
+    for token_param in ("max_completion_tokens", "max_tokens"):
+        try:
+            d = _post(url, build(token_param), headers, timeout)
+        except urllib.error.HTTPError as e:
+            detail = ""
+            try:
+                detail = e.read().decode("utf-8", "replace")[:400]
+            except Exception:
+                pass
+            if e.code == 422 and "extra_forbidden" in detail:
+                last_http = e
+                continue  # retry in the other dialect
+            raise
+
+        if "choices" not in d or not d["choices"]:
+            raise RuntimeError(f"no choices in response: {json.dumps(d)[:200]}")
+        choice = d["choices"][0]
+        text = choice.get("message", {}).get("content") or ""
+        if choice.get("finish_reason") == "length":
+            raise RuntimeError(
+                f"output truncated at {token_param}={budget} "
+                f"(finish_reason=length); raise the budget for this deployment"
+            )
+        u = d.get("usage", {}) or {}
+        return {
+            "raw_text": text,
+            "tokens_in": u.get("prompt_tokens", 0),
+            "tokens_out": u.get("completion_tokens", 0),
+        }
+
+    if last_http is not None:
+        raise last_http
+    raise RuntimeError("foundry call failed in all parameter dialects")
+
+
 _DISPATCH = {
     "openai": call_openai,
     "anthropic": call_anthropic,
     "openrouter": call_openrouter,
+    "foundry": call_foundry,
 }
 
 
@@ -375,7 +535,8 @@ def call_engine(engine_key: str, image_path, env: dict, timeout: int = 180) -> d
             "schema_valid": False,
         }
 
-    missing = [k for k in EXTRACTION_SCHEMA_FIELDS if k not in parsed]
+    missing = [k for k in EXTRACTION_SCHEMA_FIELDS + ["confidence"] if k not in parsed]
+    errors = validate_extraction(parsed)
     return {
         "ok": True,
         "extracted": parsed,
@@ -383,33 +544,12 @@ def call_engine(engine_key: str, image_path, env: dict, timeout: int = 180) -> d
         "tokens_in": r["tokens_in"],
         "tokens_out": r["tokens_out"],
         "cost_usd": cost,
-        "schema_valid": len(missing) == 0,
+        "schema_valid": not errors,
         "missing_keys": missing,
+        "validation_errors": errors,
     }
 
 
 if __name__ == "__main__":
-    import sys
-
-    env = load_env()
-    img = Path(__file__).resolve().parent.parent / "fixtures" / "images" / "C-SPIRITS-01.png"
-    keys = sys.argv[1:] or list(ENGINES)
-    total = 0.0
-    for k in keys:
-        r = call_engine(k, img, env)
-        total += r["cost_usd"]
-        if r["ok"]:
-            ex = r["extracted"]
-            print(
-                f"{k:<20} OK  {r['latency_s']:.2f}s  in={r['tokens_in']} out={r['tokens_out']} "
-                f"${r['cost_usd']:.5f}  schema_ok={r['schema_valid']}"
-            )
-            print(f"    brand={ex.get('brand_name')!r} abv={ex.get('alcohol_content')!r}")
-            print(
-                f"    heading={ex.get('government_warning_heading')!r} "
-                f"caps={ex.get('government_warning_heading_all_caps')} "
-                f"body_bold={ex.get('government_warning_body_bold')}"
-            )
-        else:
-            print(f"{k:<20} FAIL {r['error_class']}: {r.get('error_detail','')[:160]}")
-    print(f"\nprobe spend: ${total:.5f}")
+    print("PAID PROBE DISABLED: this benchmark is archived. A future paid run requires renewed authorization and a verified spending bound.")
+    raise SystemExit(2)

@@ -1,0 +1,42 @@
+{
+  "id": "Kimi-K2.6--A-WARN-TITLECASE-01--angle--1",
+  "operator": "AVA-v3",
+  "model": "Kimi-K2.6",
+  "engine": "Kimi-K2.6",
+  "fixture_id": "A-WARN-TITLECASE-01",
+  "repeat": 1,
+  "condition": "angle",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.012935700000000001,
+  "request_sha256": "c1c312d531e8b02fafd40595a091190798d3a823e451c30f4eb96d40e7e1b727",
+  "image_sha256": "aaad89d07afad631a686f0603cac790d3fd29e4d1059ec0ad02b7b12bdace94b",
+  "transport": "chat",
+  "started_at": "2026-09-18T16:23:56.474148+00:00",
+  "reserved_usd": 1.10896192,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-WARN-TITLECASE-01__angle.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "040c65f3-f30c-4715-9ab1-0f2c0f63f15f",
+  "latency_s": 16.89441385900136,
+  "response_sha256": "e9e3b899f9642847c9a740ab6e1b7e084113726ba7ab736c448b71e387954c85",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--A-WARN-TITLECASE-01--angle--1.json",
+  "tokens_in": 4926,
+  "tokens_out": 2064,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 4926,
+    "completion_tokens": 2064,
+    "total_tokens": 6990,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "image_tokens": 4212
+    }
+  },
+  "returned_model": "Kimi-K2.6"
+}

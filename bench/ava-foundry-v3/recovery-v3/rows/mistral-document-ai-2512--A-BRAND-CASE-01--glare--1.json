@@ -1,0 +1,175 @@
+{
+  "id": "mistral-document-ai-2512--A-BRAND-CASE-01--glare--1",
+  "operator": "AVA-v3",
+  "model": "mistral-document-ai-2512",
+  "engine": "mistral-document-ai-2512",
+  "fixture_id": "A-BRAND-CASE-01",
+  "repeat": 1,
+  "condition": "glare",
+  "route": "Azure Foundry ocr",
+  "tier": "OCR separate",
+  "ok": true,
+  "extracted": {
+    "brand_name": "Stokker Arrow",
+    "class_type": null,
+    "alcohol_content": "44% ALUMINUM PROOF)",
+    "net_contents": null,
+    "bottler_info": "Grow Spirits, Austin.",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "General, women should be prepared to give the necessary beverages during pregnancy because of the pregnancy. (2) Consumption of alcoholic beverages in the United States is not the only choice a car or a problem.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 1.0,
+      "class_type": 0.0,
+      "alcohol_content": 0.8,
+      "net_contents": 0.0,
+      "bottler_info": 1.0,
+      "country_of_origin": 0.0,
+      "government_warning_heading": 1.0,
+      "government_warning_body": 0.9,
+      "government_warning_heading_all_caps": 1.0,
+      "government_warning_heading_bold": 1.0,
+      "government_warning_body_bold": 1.0
+    }
+  },
+  "error_class": null,
+  "cost_usd": 0.003,
+  "request_sha256": "32174bab4b3271fd6ce9f3ef4b7fcc3eb4fe8958f73636cf8763d4c5ffe966a1",
+  "image_sha256": "bae101a1ecea88c6bcd69da82938f87caad093d98842ced502cb6a4f9c30e0b8",
+  "transport": "ocr",
+  "started_at": "2026-09-18T16:31:20.796823+00:00",
+  "reserved_usd": 0.05,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-BRAND-CASE-01__glare.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "34482259-f52c-4682-a612-6c57126ab17b",
+  "latency_s": 4.651846352033317,
+  "response_sha256": "77d714b66722ecddd4a48d2df438c3012727766110b6ba705e7c2bb136a2bfad",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--A-BRAND-CASE-01--glare--1.json",
+  "tokens_in": null,
+  "tokens_out": null,
+  "pages_processed": 1,
+  "usage": {
+    "pages_processed": 0,
+    "doc_size_bytes": 663441,
+    "pages_processed_annotation": 1
+  },
+  "returned_model": "mistral-document-ai-2512",
+  "raw_text": "{\n  \"brand_name\": \"Stokker Arrow\",\n  \"class_type\": null,\n  \"alcohol_content\": \"44% ALUMINUM PROOF)\",\n  \"net_contents\": null,\n  \"bottler_info\": \"Grow Spirits, Austin.\",\n  \"country_of_origin\": null,\n  \"government_warning_heading\": \"GOVERNMENT WARNING:\",\n  \"government_warning_body\": \"General, women should be prepared to give the necessary beverages during pregnancy because of the pregnancy. (2) Consumption of alcoholic beverages in the United States is not the only choice a car or a problem.\",\n  \"government_warning_heading_all_caps\": true,\n  \"government_warning_heading_bold\": true,\n  \"government_warning_body_bold\": false,\n  \"confidence\": {\n    \"brand_name\": 1.0,\n    \"class_type\": 0.0,\n    \"alcohol_content\": 0.8,\n    \"net_contents\": 0.0,\n    \"bottler_info\": 1.0,\n    \"country_of_origin\": 0.0,\n    \"government_warning_heading\": 1.0,\n    \"government_warning_body\": 0.9,\n    \"government_warning_heading_all_caps\": 1.0,\n    \"government_warning_heading_bold\": 1.0,\n    \"government_warning_body_bold\": 1.0\n  }\n}",
+  "finish_reason": "completed",
+  "validation_errors": {},
+  "category": "adversarial",
+  "commodity": "spirits",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "mismatch",
+    "class_type": "needs-review",
+    "alcohol_content": "match",
+    "net_contents": "needs-review",
+    "bottler_info": "mismatch",
+    "country_of_origin": "not-applicable",
+    "government_warning": "mismatch"
+  },
+  "classes": {
+    "brand_name": "false_mismatch",
+    "class_type": "referral",
+    "alcohol_content": "correct",
+    "net_contents": "referral",
+    "bottler_info": "false_mismatch",
+    "country_of_origin": "correct",
+    "government_warning": "false_mismatch"
+  },
+  "reasons": {
+    "brand_name": "'Stokker Arrow' vs declared \"STONE'S THROW\"",
+    "class_type": "confidence 0.0 below threshold 0.75",
+    "alcohol_content": "44.0 == 44.0",
+    "net_contents": "confidence 0.0 below threshold 0.75",
+    "bottler_info": "'Grow Spirits, Austin.' vs declared \"Stone's Throw Spirits, Austin, Texas\"",
+    "country_of_origin": "domestic product",
+    "government_warning": "statutory wording deviation in warning body"
+  },
+  "extraction_correct": {
+    "brand_name": false,
+    "class_type": false,
+    "alcohol_content": false,
+    "net_contents": false,
+    "bottler_info": false,
+    "country_of_origin": true,
+    "government_warning": false
+  },
+  "visibility": {
+    "brand_name": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "class_type": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "alcohol_content": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "net_contents": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "bottler_info": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "country_of_origin": {
+      "visibility": "absent",
+      "expect_referral_ok": true,
+      "basis": "No printed value in source",
+      "annotator": "AVA pre-inference"
+    },
+    "government_warning": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    }
+  },
+  "bottle_outcomes": {
+    "brand_name": "dangerous-error",
+    "class_type": "safe-referral",
+    "alcohol_content": "dangerous-error",
+    "net_contents": "safe-referral",
+    "bottler_info": "dangerous-error",
+    "country_of_origin": "correct-absence-not-applicable",
+    "government_warning": "dangerous-error"
+  },
+  "pipeline_seconds": 4.67380247998517
+}

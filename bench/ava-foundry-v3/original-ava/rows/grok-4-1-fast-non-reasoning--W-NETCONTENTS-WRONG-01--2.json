@@ -1,0 +1,129 @@
+{
+  "engine": "grok-4-1-fast-non-reasoning",
+  "model": "grok-4-1-fast-non-reasoning",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "repeat": 2,
+  "ok": true,
+  "extracted": {
+    "brand_name": "Salt Marsh Coastal Reserve",
+    "class_type": "GIN",
+    "alcohol_content": "47% ALC/VOL (94 PROOF)",
+    "net_contents": "750 mL",
+    "bottler_info": "Distilled and bottled by Salt Marsh Distillers, Charleston, South Carolina",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING: (1) According to the Surgeon",
+    "government_warning_body": "General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 1.0,
+      "class_type": 1.0,
+      "alcohol_content": 1.0,
+      "net_contents": 1.0,
+      "bottler_info": 1.0,
+      "country_of_origin": 1.0,
+      "government_warning_heading": 1.0,
+      "government_warning_body": 1.0,
+      "government_warning_heading_all_caps": 1.0,
+      "government_warning_heading_bold": 0.9,
+      "government_warning_body_bold": 0.9
+    }
+  },
+  "error_class": null,
+  "raw_text": "{\"brand_name\":\"Salt Marsh Coastal Reserve\",\"class_type\":\"GIN\",\"alcohol_content\":\"47% ALC/VOL (94 PROOF)\",\"net_contents\":\"750 mL\",\"bottler_info\":\"Distilled and bottled by Salt Marsh Distillers, Charleston, South Carolina\",\"country_of_origin\":null,\"government_warning_heading\":\"GOVERNMENT WARNING: (1) According to the Surgeon\",\"government_warning_body\":\"General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\"government_warning_heading_all_caps\":true,\"government_warning_heading_bold\":true,\"government_warning_body_bold\":false,\"confidence\":{\"brand_name\":1.0,\"class_type\":1.0,\"alcohol_content\":1.0,\"net_contents\":1.0,\"bottler_info\":1.0,\"country_of_origin\":1.0,\"government_warning_heading\":1.0,\"government_warning_body\":1.0,\"government_warning_heading_all_caps\":1.0,\"government_warning_heading_bold\":0.9,\"government_warning_body_bold\":0.9}}",
+  "tokens_in": 2489,
+  "tokens_out": 239,
+  "started_at": "2026-09-18T14:40:11.111906+00:00",
+  "request_sha256": "93c6fdaae2dfe074453474569c9bfc33a3ef1558ccafd2dd6ff52cf99c1402b2",
+  "image_sha256": "8ab0a782eda4738fa245b02721eaff28ecce889f012293ef5685b7f2c8cca8aa",
+  "transport": "chat",
+  "cost_usd": null,
+  "http_status": 200,
+  "response_bytes": 1682,
+  "request_id": "bb97d7a6-63f7-4f1b-a92e-1bfa9ad751ad",
+  "latency_s": 4.828042,
+  "finish_reason": "stop",
+  "returned_model": "grok-4-1-fast-non-reasoning",
+  "usage": {
+    "prompt_tokens": 2489,
+    "completion_tokens": 239,
+    "total_tokens": 2728,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 2656,
+      "audio_tokens": 0,
+      "text_tokens": 697,
+      "image_tokens": 1792
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "num_sources_used": 0
+  },
+  "validation_errors": {},
+  "guard_charge_usd": 0.0040524,
+  "unknown_charge_reserved_usd": 0,
+  "fixture_id": "W-NETCONTENTS-WRONG-01",
+  "category": "wrong-answer",
+  "commodity": "spirits",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "mismatch",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "mismatch",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "mismatch",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "mismatch",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "mismatch"
+  },
+  "classes": {
+    "brand_name": "false_mismatch",
+    "class_type": "correct",
+    "alcohol_content": "correct",
+    "net_contents": "correct",
+    "bottler_info": "correct",
+    "country_of_origin": "correct",
+    "government_warning": "false_mismatch"
+  },
+  "reasons": {
+    "brand_name": "'Salt Marsh Coastal Reserve' vs declared 'Salt Marsh'",
+    "class_type": "normalized equivalence",
+    "alcohol_content": "47.0 == 47.0",
+    "net_contents": "label 750.00mL vs declared 1000.00mL",
+    "bottler_info": "full normalized bottler identity and address",
+    "country_of_origin": "domestic product",
+    "government_warning": "heading 'GOVERNMENT WARNING: (1) According to the Surgeon' != 'GOVERNMENT WARNING:'"
+  },
+  "extraction_correct": {
+    "brand_name": false,
+    "class_type": true,
+    "alcohol_content": true,
+    "net_contents": true,
+    "bottler_info": true,
+    "country_of_origin": true,
+    "government_warning": false
+  },
+  "pipeline_seconds": 4.845152
+}

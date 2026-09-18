@@ -1,0 +1,155 @@
+{
+  "id": "Kimi-K2.6--C-SPIRITS-01--glare--1",
+  "operator": "AVA-v3",
+  "model": "Kimi-K2.6",
+  "engine": "Kimi-K2.6",
+  "fixture_id": "C-SPIRITS-01",
+  "repeat": 1,
+  "condition": "glare",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": "JSONDecodeError",
+  "cost_usd": 0.016679700000000002,
+  "request_sha256": "053bb9c961e1f2f49abbd273db95f0036cda95f6960499343221c9735434f86a",
+  "image_sha256": "8bc92f112a4a536bd3c46a13dec97b0fe3833e92e9d8d63cd61855951251aa03",
+  "transport": "chat",
+  "started_at": "2026-09-18T16:02:56.699677+00:00",
+  "reserved_usd": 1.10896192,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-SPIRITS-01__glare.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "6c40ea76-265e-4aca-93ee-5291507dc1a8",
+  "latency_s": 28.840235506067984,
+  "response_sha256": "ccc90098a38d03391230db83435c29ffb543d65ce917ba09297cb5131fd4a594",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--C-SPIRITS-01--glare--1.json",
+  "tokens_in": 4926,
+  "tokens_out": 3000,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 4926,
+    "completion_tokens": 3000,
+    "total_tokens": 7926,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 704,
+      "image_tokens": 4212
+    }
+  },
+  "returned_model": "Kimi-K2.6",
+  "raw_text": "",
+  "finish_reason": "length",
+  "error": "Expecting value: line 1 column 1 (char 0)",
+  "category": "clean",
+  "commodity": "spirits",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "needs-review",
+    "class_type": "needs-review",
+    "alcohol_content": "needs-review",
+    "net_contents": "needs-review",
+    "bottler_info": "needs-review",
+    "country_of_origin": "needs-review",
+    "government_warning": "needs-review"
+  },
+  "classes": {
+    "brand_name": "referral",
+    "class_type": "referral",
+    "alcohol_content": "referral",
+    "net_contents": "referral",
+    "bottler_info": "referral",
+    "country_of_origin": "referral",
+    "government_warning": "referral"
+  },
+  "reasons": {
+    "brand_name": "extraction failure: JSONDecodeError",
+    "class_type": "extraction failure: JSONDecodeError",
+    "alcohol_content": "extraction failure: JSONDecodeError",
+    "net_contents": "extraction failure: JSONDecodeError",
+    "bottler_info": "extraction failure: JSONDecodeError",
+    "country_of_origin": "extraction failure: JSONDecodeError",
+    "government_warning": "extraction failure: JSONDecodeError"
+  },
+  "extraction_correct": {
+    "brand_name": false,
+    "class_type": false,
+    "alcohol_content": false,
+    "net_contents": false,
+    "bottler_info": false,
+    "country_of_origin": false,
+    "government_warning": false
+  },
+  "visibility": {
+    "brand_name": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "class_type": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "alcohol_content": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "net_contents": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "bottler_info": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "country_of_origin": {
+      "visibility": "absent",
+      "expect_referral_ok": true,
+      "basis": "No printed value in source",
+      "annotator": "AVA pre-inference"
+    },
+    "government_warning": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    }
+  },
+  "bottle_outcomes": {
+    "brand_name": "failure-referral",
+    "class_type": "failure-referral",
+    "alcohol_content": "failure-referral",
+    "net_contents": "failure-referral",
+    "bottler_info": "failure-referral",
+    "country_of_origin": "failure-referral",
+    "government_warning": "failure-referral"
+  },
+  "pipeline_seconds": 28.89108945603948
+}

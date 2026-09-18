@@ -1,0 +1,189 @@
+{
+  "id": "grok-4-1-fast-non-reasoning--C-SPIRITS-IMPORT-01--glare--1",
+  "operator": "AVA-v3",
+  "model": "grok-4-1-fast-non-reasoning",
+  "engine": "grok-4-1-fast-non-reasoning",
+  "fixture_id": "C-SPIRITS-IMPORT-01",
+  "repeat": 1,
+  "condition": "glare",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": true,
+  "extracted": {
+    "brand_name": "Coriris",
+    "class_type": "BLENDED WHISKY",
+    "alcohol_content": "43% ALC. PROOF",
+    "net_contents": null,
+    "bottler_info": "Imported by Ltd, Boston.",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARN",
+    "government_warning_body": "General, women should not drink alcoholic beverages in pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": null,
+    "government_warning_body_bold": null,
+    "confidence": {
+      "brand_name": 0.95,
+      "class_type": 1.0,
+      "alcohol_content": 0.9,
+      "net_contents": 1.0,
+      "bottler_info": 0.95,
+      "country_of_origin": 1.0,
+      "government_warning_heading": 0.85,
+      "government_warning_body": 0.75,
+      "government_warning_heading_all_caps": 1.0,
+      "government_warning_heading_bold": 0.0,
+      "government_warning_body_bold": 0.0
+    }
+  },
+  "error_class": null,
+  "cost_usd": 0.0006073,
+  "request_sha256": "645b6a42aa0508a8fef800fb5d36656deda3bb501d0bf998b5d405677681eb4c",
+  "image_sha256": "227f055bfdcd2d6348004ec8748381c49031813f6ddacd4cd188fad1c516b56d",
+  "transport": "chat",
+  "started_at": "2026-09-18T16:15:59.825607+00:00",
+  "reserved_usd": 0.23233672,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-SPIRITS-IMPORT-01__glare.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "2b7955c4-d3ab-4b03-be00-934025a0253c",
+  "latency_s": 5.233292424934916,
+  "response_sha256": "9fb8f5a48f43416c3b4d0d7bc2976086bb715c9b3013edb0e4d807a572eb80c6",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/grok-4-1-fast-non-reasoning--C-SPIRITS-IMPORT-01--glare--1.json",
+  "tokens_in": 2489,
+  "tokens_out": 219,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 2489,
+    "completion_tokens": 219,
+    "total_tokens": 2708,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 858,
+      "audio_tokens": 0,
+      "text_tokens": 697,
+      "image_tokens": 1792
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "num_sources_used": 0
+  },
+  "returned_model": "grok-4-1-fast-non-reasoning",
+  "raw_text": "{\"brand_name\":\"Coriris\",\"class_type\":\"BLENDED WHISKY\",\"alcohol_content\":\"43% ALC. PROOF\",\"net_contents\":null,\"bottler_info\":\"Imported by Ltd, Boston.\",\"country_of_origin\":null,\"government_warning_heading\":\"GOVERNMENT WARN\",\"government_warning_body\":\"General, women should not drink alcoholic beverages in pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\"government_warning_heading_all_caps\":true,\"government_warning_heading_bold\":null,\"government_warning_body_bold\":null,\"confidence\":{\"brand_name\":0.95,\"class_type\":1.0,\"alcohol_content\":0.9,\"net_contents\":1.0,\"bottler_info\":0.95,\"country_of_origin\":1.0,\"government_warning_heading\":0.85,\"government_warning_body\":0.75,\"government_warning_heading_all_caps\":1.0,\"government_warning_heading_bold\":0.0,\"government_warning_body_bold\":0.0}}",
+  "finish_reason": "stop",
+  "validation_errors": {},
+  "category": "clean",
+  "commodity": "spirits",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "match",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "match",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "mismatch",
+    "class_type": "mismatch",
+    "alcohol_content": "match",
+    "net_contents": "needs-review",
+    "bottler_info": "needs-review",
+    "country_of_origin": "needs-review",
+    "government_warning": "needs-review"
+  },
+  "classes": {
+    "brand_name": "false_mismatch",
+    "class_type": "false_mismatch",
+    "alcohol_content": "correct",
+    "net_contents": "referral",
+    "bottler_info": "referral",
+    "country_of_origin": "referral",
+    "government_warning": "referral"
+  },
+  "reasons": {
+    "brand_name": "'Coriris' vs declared 'Cordon Gris'",
+    "class_type": "'BLENDED WHISKY' vs declared 'Blended Scotch Whisky'",
+    "alcohol_content": "43.0 == 43.0",
+    "net_contents": "no readable net contents (absent or illegible)",
+    "bottler_info": "partial bottler extraction cannot certify full declared identity",
+    "country_of_origin": "imported but no origin statement extracted",
+    "government_warning": "confidence 0.0 below threshold 0.75"
+  },
+  "extraction_correct": {
+    "brand_name": false,
+    "class_type": false,
+    "alcohol_content": false,
+    "net_contents": false,
+    "bottler_info": false,
+    "country_of_origin": false,
+    "government_warning": false
+  },
+  "visibility": {
+    "brand_name": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "class_type": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "alcohol_content": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "net_contents": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "bottler_info": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "country_of_origin": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "government_warning": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    }
+  },
+  "bottle_outcomes": {
+    "brand_name": "dangerous-error",
+    "class_type": "dangerous-error",
+    "alcohol_content": "dangerous-error",
+    "net_contents": "safe-referral",
+    "bottler_info": "safe-referral",
+    "country_of_origin": "safe-referral",
+    "government_warning": "safe-referral"
+  },
+  "pipeline_seconds": 5.259870937909
+}

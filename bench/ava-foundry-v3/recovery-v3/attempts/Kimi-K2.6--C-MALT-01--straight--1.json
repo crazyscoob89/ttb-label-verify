@@ -1,0 +1,42 @@
+{
+  "id": "Kimi-K2.6--C-MALT-01--straight--1",
+  "operator": "AVA-v3",
+  "model": "Kimi-K2.6",
+  "engine": "Kimi-K2.6",
+  "fixture_id": "C-MALT-01",
+  "repeat": 1,
+  "condition": "straight",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.0095717,
+  "request_sha256": "675d15cc7b2e0185d9da5c3f394c57b2b50dfa6dd1d33d7e2be4c5bce2145fac",
+  "image_sha256": "d94072ceaa20bb53d3bcab4829e235258c2e0cc09f211e1b5959ecb2b1a8a917",
+  "transport": "chat",
+  "started_at": "2026-09-18T16:07:13.817586+00:00",
+  "reserved_usd": 1.10896192,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-MALT-01__straight.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "b568a45d-7d65-4813-a6dc-6f4dc21d8f9b",
+  "latency_s": 13.558028765022755,
+  "response_sha256": "28c69081938e2d1f8d91b41f6901a990efa2813b2354e99a9e29d3e2c05bca5e",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--C-MALT-01--straight--1.json",
+  "tokens_in": 4926,
+  "tokens_out": 1223,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 4926,
+    "completion_tokens": 1223,
+    "total_tokens": 6149,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 704,
+      "image_tokens": 4212
+    }
+  },
+  "returned_model": "Kimi-K2.6"
+}

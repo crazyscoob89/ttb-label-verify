@@ -1,0 +1,1313 @@
+{
+  "rate_usd_per_image": 0.003,
+  "rate_basis": "harness.py RESERVE_OCR existing retail global estimate, not actual bill",
+  "policy": "maximum positive exact-int extraction/annotation count or returned-page list length; overlapping counts not added; no evidence means unknown",
+  "ledger_before_usd": 8.43233215,
+  "human_cap_usd": 10,
+  "inherited_before": {
+    "id": "inherited-incurred-and-unknown",
+    "guard_usd": 7.8558323,
+    "status": "reserved"
+  },
+  "source_hashes": {
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-4.1-mini--A-WARN-TITLECASE-01--straight--1.json": "7f7a2a50070d692d0663ab7760095ab4a16aed9b8aad29c4ef136b96b967ce5c",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-4.1-mini--C-MALT-01--angle--1.json": "886b41753c0a94c236d3e41ab3aafb075ea5340d47b5b86b4a5051ee26278930",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-4.1-mini--C-MALT-01--glare--1.json": "82a089f1e307bb4ad061e306c0200a542febe395b32a9b6190ed2ce3cfe8a275",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-4.1-mini--C-MALT-01--straight--1.json": "be56dc8e110d65728b537d90a6261b917cfb394dab74802e207faded792d4bb6",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-4.1-mini--C-SPIRITS-01--angle--1.json": "8437af12720530a6224d7003165b7f5a73d02024815e07a3a85cfd4ebbe4a068",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-4.1-mini--C-SPIRITS-01--glare--1.json": "93778fdffb445dcfba210be81504c0b27fc5828e903955517e47844529796a97",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-4.1-mini--C-SPIRITS-01--straight--1.json": "ff9d4b3f3549d43b938e46d70e1c5982ce080930f937ea6d7c2880e8e89b87e8",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-4.1-mini--C-SPIRITS-IMPORT-01--angle--1.json": "c94d7f8d2d8901310bd689cedd6ea7f63133ab5b5c5419c3982ea6cc8815314b",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-4.1-mini--C-SPIRITS-IMPORT-01--glare--1.json": "9d393e0c8e4585f693bcbc5094874f0f656bd17dbd95a0951d296a6c76f2e695",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-4.1-mini--C-SPIRITS-IMPORT-01--straight--1.json": "e44e5c7623ea01bbaed8d708679bdb1e1a9224247d3db0940f442e3490eef8c8",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-4.1-mini--C-WINE-01--angle--1.json": "a2ef97e53e10f58e9143e76a16b6fae2b3b1ab522477a2b9bef065e7521dee7d",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-4.1-mini--C-WINE-01--glare--1.json": "0ece8631e588b48b8de1e08edb93b9208b80b069cf0dce494bc48d6cd686c41b",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-4.1-mini--C-WINE-01--straight--1.json": "1ac451aa7c1b45857de34ea8fb8270eae4a04978a7c2d378dd45e06bbf2348f1",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-5-mini--A-WARN-TITLECASE-01--straight--1.json": "a2efccf24be5314cf10f315ee6f5c56ffa02e824ff1d7975e8f8397b0a8c8952",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-5-mini--C-MALT-01--angle--1.json": "a1abc3bd8197afeffa490a2a73825efc6a6da21b0d7bd879a34b066b72944714",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-5-mini--C-MALT-01--glare--1.json": "7c254ecddf57d745c68f1aa1d998ea5b0f7231256db7e090b9dde8fcd4818016",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-5-mini--C-MALT-01--straight--1.json": "4185601b75edc9ad9b71af024e130ddfe2fa7f6fa092e26bb04715a24b28b382",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-5-mini--C-SPIRITS-01--angle--1.json": "dd8fcecb4617296c6e527117db9bf76ea6f009d75bbe793c2760d84a82cff477",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-5-mini--C-SPIRITS-01--glare--1.json": "a6130c2f2e919bf3fe74e3c9f25800b700f207cbc7da3ad64116e1a006e58bc4",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-5-mini--C-SPIRITS-01--straight--1.json": "0b4c2597413ffa584f7c35395e785147bc14cecf1a659a3d265e5227c93080a5",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-5-mini--C-SPIRITS-IMPORT-01--angle--1.json": "51bc0f216786749f8953975e473226c0919aad349679cbae18f6461697a1e3be",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-5-mini--C-SPIRITS-IMPORT-01--glare--1.json": "99615a43592be7111c9a78458abe134737ae05844c73a01fab8be9036cb14332",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-5-mini--C-SPIRITS-IMPORT-01--straight--1.json": "72c666e860475f91d213411dba39779407727c8c80fe7e69a2216d52b44ecfe8",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-5-mini--C-WINE-01--angle--1.json": "c990aa4b6778f7b995a9ff0761b476c602a0dc54bb07b9a06aff1ed975700346",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-5-mini--C-WINE-01--glare--1.json": "31cc16b9074799ce180ca4adadda2e47d12b8c961dd46e4c49e3f14b628f0a13",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-5-mini--C-WINE-01--straight--1.json": "27e6e3ac543ce3a2d95e856f6542c60b690fa54c42e7c575b50ba3e8b3a419aa",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/grok-4-1-fast-non-reasoning--A-WARN-TITLECASE-01--straight--1.json": "03deb8d6c931042558e2d1c39673cb3365a6fd20b98229c1d5639fe389d675b0",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/grok-4-1-fast-non-reasoning--C-MALT-01--angle--1.json": "4a10f2809b8599a8efbaa24ab69e368b9fd94e15a9517b2cd51c0bcb0a320628",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/grok-4-1-fast-non-reasoning--C-MALT-01--glare--1.json": "e2eac13a9739a8521dbc1fdc581381be9f2d0f5556d333eb13cdb9ec5a641c2a",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/grok-4-1-fast-non-reasoning--C-MALT-01--straight--1.json": "bed57cff03d9dfc3793eb961fba5527be6efd428431b9629dedc2d3171a4c5d3",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/grok-4-1-fast-non-reasoning--C-SPIRITS-01--angle--1.json": "857afc374066e331b04f50664d237043c01669c46055f28bb9b9ae5efc9df6b9",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/grok-4-1-fast-non-reasoning--C-SPIRITS-01--glare--1.json": "1452ab397c807c0a4bd02c83b85f7c737897b3cc70e97a7e5621bbca654896a5",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/grok-4-1-fast-non-reasoning--C-SPIRITS-01--straight--1.json": "efe8843a6dbd55e939a324c716e8d3bf86b7404384d8f893d5a7012cee047418",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/grok-4-1-fast-non-reasoning--C-SPIRITS-IMPORT-01--angle--1.json": "a41ea1391bc94ec804a1c3c8977469e43b489a9fa7ff9ecabd358482da20b7fb",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/grok-4-1-fast-non-reasoning--C-SPIRITS-IMPORT-01--glare--1.json": "9fb8f5a48f43416c3b4d0d7bc2976086bb715c9b3013edb0e4d807a572eb80c6",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/grok-4-1-fast-non-reasoning--C-SPIRITS-IMPORT-01--straight--1.json": "560fa5ab2c6c04e7f4542236579085c44dbab889dd99f040ced1b011857e65f5",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/grok-4-1-fast-non-reasoning--C-WINE-01--angle--1.json": "471ddd984e4a0da8602fb7ebcbdf38775c12e04784c018c36688bef26401caea",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/grok-4-1-fast-non-reasoning--C-WINE-01--glare--1.json": "27403d7d92ccc0cb9593698b859ec3c40a03a643d94e4677d2bd81760f885d06",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/grok-4-1-fast-non-reasoning--C-WINE-01--straight--1.json": "dfa75dec5db56269d432f48a3f4cb74866908ba212acb4a87ecf71781613b825",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--A-ABV-WRONG-01--flat--3.json": "88e60befc89733ed6fbe0b4157d363d4cbaf9639cdfe21f7c3b3f007097f335e",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--A-BRAND-CASE-01--flat--2.json": "5b17d7fd3fa4d27a6bbaad42afe640e24394c9304361356789aad1e4d60ca300",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--A-BRAND-CASE-01--flat--3.json": "73432ae3dbca11e78f2fb0618895376bbcff45d63f4ad53813a769a9fe40e4ef",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--A-FIELD-MISSING-01--flat--2.json": "b22389f248ee82702e052f6f1263983c9fb8e9f0d777dce7faac0ab85419867a",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--A-FIELD-MISSING-01--flat--3.json": "f6b1972830f637748b4535a40e069116f5ff0a8d92f5feeff599026264e0afed",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--A-INJECT-PROMPT-01--flat--2.json": "e1a9e2dc240dd9d84ba60f109d55775e1e5a4995014028094503a997f1e117b2",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--A-INJECT-PROMPT-01--flat--3.json": "e14f318d79a403f52de52d8a9c3898f1a2f67fcd7aca60c503645fe68aa9da68",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--A-WARN-BOLDBODY-01--flat--2.json": "bcf4166bd43d4bfce92e09d8f96fc372100497ef5c636579386f23ab0362c5d5",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--A-WARN-BOLDBODY-01--flat--3.json": "d16a7487634bf20e7f7415fe7b86f11c2e69403a993c635979e44acff33e8ef4",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--A-WARN-TITLECASE-01--flat--2.json": "0015531f2c2ec288237619ad7abb6f441cfb0fa7192e2a3ef3b46cdecb1e591c",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--A-WARN-TITLECASE-01--flat--3.json": "fb39f07ee6a0f1412a4aaec13ccf8059629ee59bab0ae7e3a8c71e75facf7aae",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--A-WARN-TITLECASE-01--straight--1.json": "fea57fb5a95d5b8b155c5f1ea03014289aeed4a4c816a69b0bd10acd92758b27",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--C-MALT-01--angle--1.json": "199be3665e522b1e447d3a0c2e0059bb45da0785d7d20bb340444fb78d307ee9",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--C-MALT-01--flat--2.json": "2e79c213895eaed2c29bf4b62877af836077ec4fcd9ed98f53b4db35f8fda497",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--C-MALT-01--flat--3.json": "f6cb7ec2b5351fff8aca009836143dc6ccea3f4af36cc82c4c6b45c868bb101d",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--C-MALT-01--glare--1.json": "6c3c8404e11d078b0c4f64dc452f95765ca2a7a099c44f378758819f01a22b57",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--C-MALT-01--straight--1.json": "28c69081938e2d1f8d91b41f6901a990efa2813b2354e99a9e29d3e2c05bca5e",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--C-SPIRITS-01--angle--1.json": "6ff0f61f82c73981c53983ce07815063faf270f6980607af5e454f266c4e42e9",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--C-SPIRITS-01--flat--2.json": "f8fd6e272556698feecdabbf958e2df437c3c4851f53b87fb3e888f7242b273b",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--C-SPIRITS-01--flat--3.json": "46a620e948e5a835f25b4f5e845da55f755b037b4da1ca49b0bfae6eeeb48759",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--C-SPIRITS-01--glare--1.json": "ccc90098a38d03391230db83435c29ffb543d65ce917ba09297cb5131fd4a594",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--C-SPIRITS-01--straight--1.json": "eb929d9bc05f7d5348214e1ebe2ed9f4e0a5e5afe4ee7f955e0674610e7a353b",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--C-SPIRITS-IMPORT-01--angle--1.json": "fb1bab738e82ee8fe2512deb0ffda1076b07163ab689a9d6de733202f3f3e6d9",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--C-SPIRITS-IMPORT-01--flat--2.json": "41cffa2e1f10966bcc99759fe39484025e3ecbbb88b2f7c2b6bc67b2e192931e",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--C-SPIRITS-IMPORT-01--flat--3.json": "eac41d4067eed18243247ce502e2e6c60f0591af08dfe0c883e179c7059e1c00",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--C-SPIRITS-IMPORT-01--glare--1.json": "7548ebb41858550313849878b516972a4f316648021ab13ab493efc587abe9e3",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--C-SPIRITS-IMPORT-01--straight--1.json": "110474a613f97a177ecfe8cc8b73a591b3ac2b64c2ec98e6912977c36c3f6b7b",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--C-WINE-01--angle--1.json": "eb077d062b840f4f0a2544eb33b3f2dad9d21602bb18988619b22b2cd25ad901",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--C-WINE-01--flat--2.json": "115fa1245e5d5d1d6d672cbe74ba777b528bb2edcfcf05caa8be87d5bfbc1feb",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--C-WINE-01--flat--3.json": "8fca118c66173be761ca0ca3b6bc836cbaa6939d5ca552af9b06372535effd15",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--C-WINE-01--glare--1.json": "db618652521c44b2741e4b637cb1589f35f880770a5c89777e6e023c7818c97b",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--C-WINE-01--straight--1.json": "6f8714269e6111f7a379f1658f932f1876690e4500b8aba88626dd6bc47b6363",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--D-BLUR-01--flat--2.json": "87b991a185bf43ee3d9cf23e4022ca87e956ac61c2e137e1de270a1b9df95db9",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--D-BLUR-01--flat--3.json": "e6b0a45e1381eb56d5c78bf81db636f1137e8d9134f5f35cd3fde22d61326b2a",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--D-GLARE-01--flat--3.json": "2987d059c0dfdd402be64c0c69d98b23c9b5e203da3c85a9e1d9804db03fe81a",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--D-WARP-01--flat--2.json": "7ff216da5bf1b6c50c7d2713f39a7be6b43c74f228a5c39a1bb6c603cd91549f",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--D-WARP-01--flat--3.json": "98edaccfa30d7ea644c0168043acc166c971fb406ea801b35c6a4173ce6885e6",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--W-ABV-4045-01--flat--3.json": "0827656049f1ae8b16e1c9c7448d1ae75d761560c2528ab33b31b5b269834487",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--W-BRAND-SPLITLINE-01--flat--2.json": "df823d7bd62c7904910e5c9f71674ac460de0feb15a24fe0f204832a5874c2ee",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--W-BRAND-SPLITLINE-01--flat--3.json": "8a81e1e47394bd2c8e0fbc7903f4fef2d6030179c7cca92ba683ba733e613455",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--W-BRAND-WRONG-01--flat--3.json": "7da48d0bee1c958a01d84a807a7c35bd0bf9a03433aa0fa65d13d7319c0d2230",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--W-NETCONTENTS-WRONG-01--flat--3.json": "3ec62524680b01654a1d81e042be922bccf6e9fdaf8382adb1281397c59923e3",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--W-WARN-REWORD-01--flat--3.json": "295179fece1566b3e17a7546791ca9797beb5c267ab6ec12e397ca0ec6dfce7b",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--A-ABV-WRONG-01--flat--3.json": "c102c65e5b935f75397dafbbad93a4e5913f37b047431a46ad52504db04688e3",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--A-BRAND-CASE-01--flat--3.json": "6756c2f74c6b1e508d8182604a49705bdf518c50f031be7e861eaa6b366ed837",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--A-FIELD-MISSING-01--flat--3.json": "7543d317c7269d5b7aba986d6a37f73de7f6d3d549f59b79401e32a358c13fc0",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--A-INJECT-PROMPT-01--flat--3.json": "22ab163a447edceb5ae4e0cee0cdbc3f458d85a5567329f2216889b807545a12",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--A-WARN-BOLDBODY-01--flat--3.json": "a1dfa3ef4120989a7fe331e4b26c349fb841a72a2b662c45017a8d4567aa1325",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--A-WARN-TITLECASE-01--flat--3.json": "35d152984ffa1899b330d71a88a94b2687f0543d4270790536b1de1c24c373e5",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--C-MALT-01--angle--1.json": "a850a10284a310785c50c4982b825c0dcccfb7349be9ea08910b0d016ad8a59c",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--C-MALT-01--flat--3.json": "23a52f03bc4de9586e9a3c568a8807cc40228c0e46ed297962ee85eebb809e18",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--C-MALT-01--glare--1.json": "c9f34be1156250403857c3d390f3b05868e3b1954368605e987a5aa162832ad1",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--C-MALT-01--straight--1.json": "1f5dedec9f172680c9f78f934490b3139499d41799de3b92c36c8e5981b906d0",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--C-SPIRITS-01--angle--1.json": "f99680e48d18e4f6bbf3a5ea9698d2001ca83d0023701c549ef0691031063209",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--C-SPIRITS-01--flat--3.json": "384ba4767200a2b00f1fd551215dc726fadc6546ad1747860b1f6f23b9b26290",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--C-SPIRITS-01--glare--1.json": "d94be44998c255c08f9d7293e07fb3e9a359e8a98ed8e9435448f3fc4e1b3874",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--C-SPIRITS-01--straight--1.json": "b995fd98a16035ae7b20fe70d380efe6851121454908aa3abcb0bb0272d60124",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--C-SPIRITS-IMPORT-01--angle--1.json": "c68a3d7a1ddf161bf7d46f0e812dba481a842507c50403e5fa1fe44270d4a9f3",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--C-SPIRITS-IMPORT-01--flat--3.json": "185d1f27a9751e9e0ce69ee87d96bf7173b64ca0d0cee99ef986aa7eaa80a179",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--C-SPIRITS-IMPORT-01--glare--1.json": "ecad9b82480ef4ec03057aae75592cfbfa5031f38bb01048127e7eb16c0982d5",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--C-SPIRITS-IMPORT-01--straight--1.json": "fbaf6924792e3b67f3d39876a7b6e3664f9ba1b8ad80cff58c5fe0b0098399e8",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--C-WINE-01--angle--1.json": "25590b1bbf40ff7e002fd92b874b25748aec32ae5a93488b2ee0b09978ebed5e",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--C-WINE-01--flat--2.json": "6e1b3215cdeba21e905a8e912f22377a6f75595f6f458549ca6d86d1d85ec8b6",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--C-WINE-01--flat--3.json": "89e20ead06c1254ab2a9a5c08b7616a60f4f8d82c7eedf447a31ddde36dd2f2b",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--C-WINE-01--glare--1.json": "7e4972b2d3bce73626258ab20ce4ab03d51883121a1d0083f541773cac9dc4c5",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--C-WINE-01--straight--1.json": "b8e1f68b501fd69a2ee402619ba1216e45005613beb84d2b22bed84ed5163e14",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--D-BLUR-01--flat--3.json": "e83032b7776967add825a804c6528d95302881ab3513119eb7a640219c1a7a32",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--D-GLARE-01--flat--3.json": "240b09b53397a4d2e3973e792a5df900db77c159b315cbb8cb87366156111751",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--D-WARP-01--flat--3.json": "742b61f354add9957fa684e51090679f22c1bbd5a4958da0a25ded62b4ff43c4",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--W-ABV-4045-01--flat--3.json": "87d9476f75c08185fd80f803798925e1b17641dccb3513ba0cf697771d6d74dc",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--W-BRAND-SPLITLINE-01--flat--3.json": "be8949857a85db1c4fd276fc1467f0dcf1fbb10e79ecc61a64ab116b5faaa87f",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--W-BRAND-WRONG-01--flat--3.json": "27a7a32ca95138fd0ef7f7c1b0bc23fa257fbbf238392cb8c0a4bc55613d6165",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--W-NETCONTENTS-WRONG-01--flat--3.json": "cb45b729973a50d23a405d56f03da9753e516e46280943936603c009ef0fce1c",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--W-WARN-REWORD-01--flat--3.json": "46bb76a159692201b48316cb7bb421fa27c48959e58b6c79a971fd3ace00529d",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Mistral-Large-3--A-WARN-TITLECASE-01--straight--1.json": "b6036fbbd0a969b9e2be30fb674b1e2d553941a356fd3f9df38b42972beed384",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Mistral-Large-3--C-MALT-01--angle--1.json": "e886cbf48efa19c3936431e22209bde7cd770b1e4f26b4269614008514451e8c",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Mistral-Large-3--C-MALT-01--glare--1.json": "9d3af78e2411fa9e62eaf262cef51b9e3e56b5df0962147fd195aace0c1a19b4",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Mistral-Large-3--C-MALT-01--straight--1.json": "0ba31cf865570cd8be62147e9be3bc26a1f1f13aaacea97dcd6e36c63fd00564",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Mistral-Large-3--C-SPIRITS-01--angle--1.json": "6bc3343663a96787c4a2d46bfb7bf2d93703af15fcde03184d138dfd7ce1d680",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Mistral-Large-3--C-SPIRITS-01--glare--1.json": "b9d713e1d3b1236620dfbc3fc97e1662bca0500cbb426906d4f92b67963d695d",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Mistral-Large-3--C-SPIRITS-01--straight--1.json": "51a7016a11aa50ab127ab774b50e5c72125130147e6c00ba920bd65d15471560",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Mistral-Large-3--C-SPIRITS-IMPORT-01--angle--1.json": "0359dd8fb331608779ef535cce4b2a4de6898e97d0b62d4260efa11f24356f4c",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Mistral-Large-3--C-SPIRITS-IMPORT-01--glare--1.json": "199172d8d82b4ed5791a7ab000ac5f7f69bea83805763e97af365828dd941be7",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Mistral-Large-3--C-SPIRITS-IMPORT-01--straight--1.json": "43b9ef37c7a379c75a513ecc75228afbf8f4a9300f9a07306b2a03a20e50a1e2",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Mistral-Large-3--C-WINE-01--angle--1.json": "25e1c3a14e3737347e6c523979aac12b362ab5067785d271a02a251813b74a45",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Mistral-Large-3--C-WINE-01--glare--1.json": "bb5a25c97c39fae5773940c227616b89181252f83e2853e0f8eb85a0a5894944",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Mistral-Large-3--C-WINE-01--straight--1.json": "755be907d14412925fb75852858025e13ea6672b3b37c6c08b3b5cd52212cf2e",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/budget-basis.json": "7e6a9e312083a31d9fdb830bfae5d849228451585e705cfacfdb7a4c790f643b",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/visibility-freeze.json": "d616b407a09366c9100be57b1f4f3442965df968fc5a3d24985afb1fe729a4ee",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/manifest.json": "b728b0fcde3ae3200e2f3b52e818d985d52b911551c79e1579510c10407de5c8",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/report.py": "8f9f048ada8807f70433c7977e5e41fa883c965702c1e22c43bdf29dcf128ae5",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/harness.py": "14d40fd45693f44315c34a2407ecb35b8693acefe22b6e59d44fc08acb05f738"
+  },
+  "source_before": {
+    "runner.py": "a0d231abb4299beb36cba6be471e1c8150249a361db2845d8ea5531b47b81201",
+    "test_runner.py": "4deed7086fc04b9ffe8001b6415493a0e683e1f07942ce050f4187e2b13da8bc"
+  },
+  "source_after": {
+    "runner.py": "f75a2a98c0eee305cb5bbf41996df582306ac560f6605936e60161a76b100c81",
+    "test_runner.py": "fcb6d82327e35ee7c7d7a91b676f4c87a6270c3d07a2b7d70c82c22395707cf0"
+  },
+  "corrections": [
+    {
+      "id": "mistral-document-ai-2512--A-ABV-WRONG-01--flat--3",
+      "response_sha256": "c102c65e5b935f75397dafbbad93a4e5913f37b047431a46ad52504db04688e3",
+      "usage": null,
+      "usage_info": {
+        "pages_processed": 0,
+        "doc_size_bytes": 81205,
+        "pages_processed_annotation": 1
+      },
+      "returned_pages": 1,
+      "old_cost_usd": 0.0,
+      "cost_usd": 0.003,
+      "pages_processed": 1,
+      "ledger_before": {
+        "id": "mistral-document-ai-2512--A-ABV-WRONG-01--flat--3",
+        "guard_usd": 0.0,
+        "status": "usage-guard"
+      },
+      "files": [
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/rows/mistral-document-ai-2512--A-ABV-WRONG-01--flat--3.json",
+          "before_sha256": "eec522b7710536d7d966c92a280223ca2ca88ad0ce723427b3f4b6522237fd79",
+          "after_sha256": "14ce16535e1b3040b4e8991769163e69f91080d2a9e42ec36174e51fb6ede490"
+        },
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/attempts/mistral-document-ai-2512--A-ABV-WRONG-01--flat--3.json",
+          "before_sha256": "e37791f33d3ec1cf3c313263951456882c8340220ab5508c08a4d68979de05b4",
+          "after_sha256": "0f36011648c98d580173b86f163b9ff42c82a2f19e7c1b52db80cb97b6cd248d"
+        }
+      ],
+      "settle_notice": "Budget.settle committed increased observed estimate then raised; corrective reconciliation of past responses, not new spending",
+      "ledger_after": {
+        "id": "mistral-document-ai-2512--A-ABV-WRONG-01--flat--3",
+        "guard_usd": 0.003,
+        "status": "usage-guard"
+      }
+    },
+    {
+      "id": "mistral-document-ai-2512--A-BRAND-CASE-01--flat--3",
+      "response_sha256": "6756c2f74c6b1e508d8182604a49705bdf518c50f031be7e861eaa6b366ed837",
+      "usage": null,
+      "usage_info": {
+        "pages_processed": 0,
+        "doc_size_bytes": 83587,
+        "pages_processed_annotation": 1
+      },
+      "returned_pages": 1,
+      "old_cost_usd": 0.0,
+      "cost_usd": 0.003,
+      "pages_processed": 1,
+      "ledger_before": {
+        "id": "mistral-document-ai-2512--A-BRAND-CASE-01--flat--3",
+        "guard_usd": 0.0,
+        "status": "usage-guard"
+      },
+      "files": [
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/rows/mistral-document-ai-2512--A-BRAND-CASE-01--flat--3.json",
+          "before_sha256": "e295f21569540438c61df260ecedb9b1c86c687c70621a675a3be5c5fe43e3af",
+          "after_sha256": "83deac06f6344b9306a2394cd00532994ced607c5b6884581774c82c2c2969b1"
+        },
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/attempts/mistral-document-ai-2512--A-BRAND-CASE-01--flat--3.json",
+          "before_sha256": "36e87cac8e811ec6b52d1277b87054dc4e6d264d4b27a003b6f25d622df26bc5",
+          "after_sha256": "7ef39850ac1736858ee88c8b3f0d5ac4039437893009da72e2287c054db4ebe5"
+        }
+      ],
+      "settle_notice": "Budget.settle committed increased observed estimate then raised; corrective reconciliation of past responses, not new spending",
+      "ledger_after": {
+        "id": "mistral-document-ai-2512--A-BRAND-CASE-01--flat--3",
+        "guard_usd": 0.003,
+        "status": "usage-guard"
+      }
+    },
+    {
+      "id": "mistral-document-ai-2512--A-FIELD-MISSING-01--flat--3",
+      "response_sha256": "7543d317c7269d5b7aba986d6a37f73de7f6d3d549f59b79401e32a358c13fc0",
+      "usage": null,
+      "usage_info": {
+        "pages_processed": 0,
+        "doc_size_bytes": 69397,
+        "pages_processed_annotation": 1
+      },
+      "returned_pages": 1,
+      "old_cost_usd": 0.0,
+      "cost_usd": 0.003,
+      "pages_processed": 1,
+      "ledger_before": {
+        "id": "mistral-document-ai-2512--A-FIELD-MISSING-01--flat--3",
+        "guard_usd": 0.0,
+        "status": "usage-guard"
+      },
+      "files": [
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/rows/mistral-document-ai-2512--A-FIELD-MISSING-01--flat--3.json",
+          "before_sha256": "81f7a2d7b34e21aec5f8dbd8f0b86e78703e8f8cb1d0c9947ef296c2abba32b5",
+          "after_sha256": "807f600715215d2bfe88004e602e5a82146375922ab1cfbbc9354f9c028a3289"
+        },
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/attempts/mistral-document-ai-2512--A-FIELD-MISSING-01--flat--3.json",
+          "before_sha256": "0be12e63fef9112a184ddb34dd9d9f4b8d8be416591140f6a63c914176f5c923",
+          "after_sha256": "4724d5d088ae4b436c54beaf19aa99ba400d38db0d599a73c6f058097ba4fef5"
+        }
+      ],
+      "settle_notice": "Budget.settle committed increased observed estimate then raised; corrective reconciliation of past responses, not new spending",
+      "ledger_after": {
+        "id": "mistral-document-ai-2512--A-FIELD-MISSING-01--flat--3",
+        "guard_usd": 0.003,
+        "status": "usage-guard"
+      }
+    },
+    {
+      "id": "mistral-document-ai-2512--A-INJECT-PROMPT-01--flat--3",
+      "response_sha256": "22ab163a447edceb5ae4e0cee0cdbc3f458d85a5567329f2216889b807545a12",
+      "usage": null,
+      "usage_info": {
+        "pages_processed": 0,
+        "doc_size_bytes": 78601,
+        "pages_processed_annotation": 1
+      },
+      "returned_pages": 1,
+      "old_cost_usd": 0.0,
+      "cost_usd": 0.003,
+      "pages_processed": 1,
+      "ledger_before": {
+        "id": "mistral-document-ai-2512--A-INJECT-PROMPT-01--flat--3",
+        "guard_usd": 0.0,
+        "status": "usage-guard"
+      },
+      "files": [
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/rows/mistral-document-ai-2512--A-INJECT-PROMPT-01--flat--3.json",
+          "before_sha256": "427dffa5d2a3fe2539447ef1ddb679300b581729cf46bf46d92a3561222e24a2",
+          "after_sha256": "e5638ca2bee1a810a442053d2b980301472fa33e77536b4d13b87f8497acf5bf"
+        },
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/attempts/mistral-document-ai-2512--A-INJECT-PROMPT-01--flat--3.json",
+          "before_sha256": "acc16708244dd8f349e90ebe57559252f6dd8044ea5f160d6c0e716b490fb5db",
+          "after_sha256": "20990d5012aa2bf3c912f71707184c48c138d70cd357a73ebf2a8b3eee703bec"
+        }
+      ],
+      "settle_notice": "Budget.settle committed increased observed estimate then raised; corrective reconciliation of past responses, not new spending",
+      "ledger_after": {
+        "id": "mistral-document-ai-2512--A-INJECT-PROMPT-01--flat--3",
+        "guard_usd": 0.003,
+        "status": "usage-guard"
+      }
+    },
+    {
+      "id": "mistral-document-ai-2512--A-WARN-BOLDBODY-01--flat--3",
+      "response_sha256": "a1dfa3ef4120989a7fe331e4b26c349fb841a72a2b662c45017a8d4567aa1325",
+      "usage": null,
+      "usage_info": {
+        "pages_processed": 0,
+        "doc_size_bytes": 83604,
+        "pages_processed_annotation": 1
+      },
+      "returned_pages": 1,
+      "old_cost_usd": 0.0,
+      "cost_usd": 0.003,
+      "pages_processed": 1,
+      "ledger_before": {
+        "id": "mistral-document-ai-2512--A-WARN-BOLDBODY-01--flat--3",
+        "guard_usd": 0.0,
+        "status": "usage-guard"
+      },
+      "files": [
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/rows/mistral-document-ai-2512--A-WARN-BOLDBODY-01--flat--3.json",
+          "before_sha256": "b0c47ebea9e88c2e61319e1d91e2f0c77b25b88c7f4ce8d808e8f27a4b8ad93c",
+          "after_sha256": "2e2717fd4c8743c6af5f021f09cf10f73b2047cf43ded75822677011645fbf95"
+        },
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/attempts/mistral-document-ai-2512--A-WARN-BOLDBODY-01--flat--3.json",
+          "before_sha256": "ccae271972bcf8f30599b428038b701ea87dea69dabd63a9fcd7568b3662e3bb",
+          "after_sha256": "0f83bfac0896e6052b28930758846e7869c4eea3f4c386b16d206027516d0f6a"
+        }
+      ],
+      "settle_notice": "Budget.settle committed increased observed estimate then raised; corrective reconciliation of past responses, not new spending",
+      "ledger_after": {
+        "id": "mistral-document-ai-2512--A-WARN-BOLDBODY-01--flat--3",
+        "guard_usd": 0.003,
+        "status": "usage-guard"
+      }
+    },
+    {
+      "id": "mistral-document-ai-2512--A-WARN-TITLECASE-01--flat--3",
+      "response_sha256": "35d152984ffa1899b330d71a88a94b2687f0543d4270790536b1de1c24c373e5",
+      "usage": null,
+      "usage_info": {
+        "pages_processed": 0,
+        "doc_size_bytes": 85210,
+        "pages_processed_annotation": 1
+      },
+      "returned_pages": 1,
+      "old_cost_usd": 0.0,
+      "cost_usd": 0.003,
+      "pages_processed": 1,
+      "ledger_before": {
+        "id": "mistral-document-ai-2512--A-WARN-TITLECASE-01--flat--3",
+        "guard_usd": 0.0,
+        "status": "usage-guard"
+      },
+      "files": [
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/rows/mistral-document-ai-2512--A-WARN-TITLECASE-01--flat--3.json",
+          "before_sha256": "e8506142085487928abad8a8143ea8fae2ada87d74e7860a4aafeeefeced6ab5",
+          "after_sha256": "642ba158342ee99a8d90b07dc33349deafac25dd7dcb8b5cb7ca37563830e0ea"
+        },
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/attempts/mistral-document-ai-2512--A-WARN-TITLECASE-01--flat--3.json",
+          "before_sha256": "40b1352d5d9bad5fe8f42df56d6bd99fd784b5873f9410d6203306ee10d21b5d",
+          "after_sha256": "5cb3fb0f1e478ae54bacd62af8f77a6fbd3a07fd86f564a1f5f3713856edffbb"
+        }
+      ],
+      "settle_notice": "Budget.settle committed increased observed estimate then raised; corrective reconciliation of past responses, not new spending",
+      "ledger_after": {
+        "id": "mistral-document-ai-2512--A-WARN-TITLECASE-01--flat--3",
+        "guard_usd": 0.003,
+        "status": "usage-guard"
+      }
+    },
+    {
+      "id": "mistral-document-ai-2512--C-MALT-01--angle--1",
+      "response_sha256": "a850a10284a310785c50c4982b825c0dcccfb7349be9ea08910b0d016ad8a59c",
+      "usage": null,
+      "usage_info": {
+        "pages_processed": 0,
+        "doc_size_bytes": 1323094,
+        "pages_processed_annotation": 1
+      },
+      "returned_pages": 1,
+      "old_cost_usd": 0.0,
+      "cost_usd": 0.003,
+      "pages_processed": 1,
+      "ledger_before": {
+        "id": "mistral-document-ai-2512--C-MALT-01--angle--1",
+        "guard_usd": 0.0,
+        "status": "usage-guard"
+      },
+      "files": [
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/rows/mistral-document-ai-2512--C-MALT-01--angle--1.json",
+          "before_sha256": "383d8f0e36325b33c5d97905fbfe5ecf6f9b271b7cfdfa4408668f8a554a91ab",
+          "after_sha256": "4da6c4da7d73b67f54b2e806de117cb939ad646db46ef1b9d059f6f0872d9abf"
+        },
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/attempts/mistral-document-ai-2512--C-MALT-01--angle--1.json",
+          "before_sha256": "8ec27b8382ff1e53cdb76bdb1a132e731c688b8935ab34e7f8105113e4c10452",
+          "after_sha256": "dd660dd624bf6930fe18c3bedd9cc24e8d3ebb67978113fe3b5f276d339776fc"
+        }
+      ],
+      "settle_notice": "Budget.settle committed increased observed estimate then raised; corrective reconciliation of past responses, not new spending",
+      "ledger_after": {
+        "id": "mistral-document-ai-2512--C-MALT-01--angle--1",
+        "guard_usd": 0.003,
+        "status": "usage-guard"
+      }
+    },
+    {
+      "id": "mistral-document-ai-2512--C-MALT-01--flat--3",
+      "response_sha256": "23a52f03bc4de9586e9a3c568a8807cc40228c0e46ed297962ee85eebb809e18",
+      "usage": null,
+      "usage_info": {
+        "pages_processed": 0,
+        "doc_size_bytes": 78350,
+        "pages_processed_annotation": 1
+      },
+      "returned_pages": 1,
+      "old_cost_usd": 0.0,
+      "cost_usd": 0.003,
+      "pages_processed": 1,
+      "ledger_before": {
+        "id": "mistral-document-ai-2512--C-MALT-01--flat--3",
+        "guard_usd": 0.0,
+        "status": "usage-guard"
+      },
+      "files": [
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/rows/mistral-document-ai-2512--C-MALT-01--flat--3.json",
+          "before_sha256": "a9954bf813a92c17c8a0541440abcf93155666ab10ec6e95851b6d3036f3a376",
+          "after_sha256": "edc699750563bf302a3a448d08bfdfd7ff1830afd8c78965a286545973035738"
+        },
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/attempts/mistral-document-ai-2512--C-MALT-01--flat--3.json",
+          "before_sha256": "0bdeedf4c256eeb6847e188c7559d5448b5d807f9c079c5599e1fe863b146c38",
+          "after_sha256": "2aea3b0e9f8e69708bfb358cf7804e898be61dcf8e51433635c7b0c62779f1c0"
+        }
+      ],
+      "settle_notice": "Budget.settle committed increased observed estimate then raised; corrective reconciliation of past responses, not new spending",
+      "ledger_after": {
+        "id": "mistral-document-ai-2512--C-MALT-01--flat--3",
+        "guard_usd": 0.003,
+        "status": "usage-guard"
+      }
+    },
+    {
+      "id": "mistral-document-ai-2512--C-MALT-01--glare--1",
+      "response_sha256": "c9f34be1156250403857c3d390f3b05868e3b1954368605e987a5aa162832ad1",
+      "usage": null,
+      "usage_info": {
+        "pages_processed": 0,
+        "doc_size_bytes": 693176,
+        "pages_processed_annotation": 1
+      },
+      "returned_pages": 1,
+      "old_cost_usd": 0.0,
+      "cost_usd": 0.003,
+      "pages_processed": 1,
+      "ledger_before": {
+        "id": "mistral-document-ai-2512--C-MALT-01--glare--1",
+        "guard_usd": 0.0,
+        "status": "usage-guard"
+      },
+      "files": [
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/rows/mistral-document-ai-2512--C-MALT-01--glare--1.json",
+          "before_sha256": "0957aac6a6f2c0c96debfb91f56b256664dbc36c626d60b92ab4d376135b4d6f",
+          "after_sha256": "1161a702f281442db8d008fbf11f59a908d7634de4fe67acfc1c2e7d5649cfb5"
+        },
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/attempts/mistral-document-ai-2512--C-MALT-01--glare--1.json",
+          "before_sha256": "cdc1ef03855633649011188fe805d009d03655e6650f0979ffe86f1fe4cb394e",
+          "after_sha256": "2663f49f3ca4f3461eba5b96822bf54c0a6e882ef1efbff8c9e293d4c085257f"
+        }
+      ],
+      "settle_notice": "Budget.settle committed increased observed estimate then raised; corrective reconciliation of past responses, not new spending",
+      "ledger_after": {
+        "id": "mistral-document-ai-2512--C-MALT-01--glare--1",
+        "guard_usd": 0.003,
+        "status": "usage-guard"
+      }
+    },
+    {
+      "id": "mistral-document-ai-2512--C-MALT-01--straight--1",
+      "response_sha256": "1f5dedec9f172680c9f78f934490b3139499d41799de3b92c36c8e5981b906d0",
+      "usage": null,
+      "usage_info": {
+        "pages_processed": 0,
+        "doc_size_bytes": 700641,
+        "pages_processed_annotation": 1
+      },
+      "returned_pages": 1,
+      "old_cost_usd": 0.0,
+      "cost_usd": 0.003,
+      "pages_processed": 1,
+      "ledger_before": {
+        "id": "mistral-document-ai-2512--C-MALT-01--straight--1",
+        "guard_usd": 0.0,
+        "status": "usage-guard"
+      },
+      "files": [
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/rows/mistral-document-ai-2512--C-MALT-01--straight--1.json",
+          "before_sha256": "3519a35c3cd5094d87da1c03dd479a026b90c96b708d9f258528827ddb5dd021",
+          "after_sha256": "3d4892af20c4b468b1e2a44b392272bfd562f7094323cbad78a91771c678556c"
+        },
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/attempts/mistral-document-ai-2512--C-MALT-01--straight--1.json",
+          "before_sha256": "60c2d907644ae7a50ce57d654592ac59d336aa9fa6d78f822d3e713ebf382112",
+          "after_sha256": "f4041f5ba466fd32ebd4a46edcf440852399b71d58eaf07b8dbbc1f5fa4c4ee1"
+        }
+      ],
+      "settle_notice": "Budget.settle committed increased observed estimate then raised; corrective reconciliation of past responses, not new spending",
+      "ledger_after": {
+        "id": "mistral-document-ai-2512--C-MALT-01--straight--1",
+        "guard_usd": 0.003,
+        "status": "usage-guard"
+      }
+    },
+    {
+      "id": "mistral-document-ai-2512--C-SPIRITS-01--angle--1",
+      "response_sha256": "f99680e48d18e4f6bbf3a5ea9698d2001ca83d0023701c549ef0691031063209",
+      "usage": null,
+      "usage_info": {
+        "pages_processed": 0,
+        "doc_size_bytes": 1345963,
+        "pages_processed_annotation": 1
+      },
+      "returned_pages": 1,
+      "old_cost_usd": 0.0,
+      "cost_usd": 0.003,
+      "pages_processed": 1,
+      "ledger_before": {
+        "id": "mistral-document-ai-2512--C-SPIRITS-01--angle--1",
+        "guard_usd": 0.0,
+        "status": "usage-guard"
+      },
+      "files": [
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/rows/mistral-document-ai-2512--C-SPIRITS-01--angle--1.json",
+          "before_sha256": "cd4eca0e791e6d648f59513e6256d2fa01728b0d5c6c6a62727e4b774f6d2d99",
+          "after_sha256": "ee1cb1d2ab55cf15ae924eec24707715ff7b6576f0acf18d6d27dab30cb5a9d5"
+        },
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/attempts/mistral-document-ai-2512--C-SPIRITS-01--angle--1.json",
+          "before_sha256": "99aa08ace54c564130854f5504b4ff89ce1856e4c2936a86ff3ea4ed49f1e17b",
+          "after_sha256": "3bcc23f4237908914fd7315d99637e6ec3d7091e919ee637030c355b1972842f"
+        }
+      ],
+      "settle_notice": "Budget.settle committed increased observed estimate then raised; corrective reconciliation of past responses, not new spending",
+      "ledger_after": {
+        "id": "mistral-document-ai-2512--C-SPIRITS-01--angle--1",
+        "guard_usd": 0.003,
+        "status": "usage-guard"
+      }
+    },
+    {
+      "id": "mistral-document-ai-2512--C-SPIRITS-01--flat--3",
+      "response_sha256": "384ba4767200a2b00f1fd551215dc726fadc6546ad1747860b1f6f23b9b26290",
+      "usage": null,
+      "usage_info": {
+        "pages_processed": 0,
+        "doc_size_bytes": 85007,
+        "pages_processed_annotation": 1
+      },
+      "returned_pages": 1,
+      "old_cost_usd": 0.0,
+      "cost_usd": 0.003,
+      "pages_processed": 1,
+      "ledger_before": {
+        "id": "mistral-document-ai-2512--C-SPIRITS-01--flat--3",
+        "guard_usd": 0.0,
+        "status": "usage-guard"
+      },
+      "files": [
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/rows/mistral-document-ai-2512--C-SPIRITS-01--flat--3.json",
+          "before_sha256": "42e51339624476ba1880ebfe507617125a1bdb9f6e8f12951fb5ba9039e68887",
+          "after_sha256": "b65b33ac12608404ea9f042d09ae2a2a27eceb046732cefe36ead49c7172b358"
+        },
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/attempts/mistral-document-ai-2512--C-SPIRITS-01--flat--3.json",
+          "before_sha256": "3e6766a41ee1d122ec32e6a65a1d92834b562a2f60d18ccc6ef4897ac6c7e109",
+          "after_sha256": "38139dfc46e35ddf438dc7a2fbccfa542077bd1dae97e88d716e8d0b642b8a60"
+        }
+      ],
+      "settle_notice": "Budget.settle committed increased observed estimate then raised; corrective reconciliation of past responses, not new spending",
+      "ledger_after": {
+        "id": "mistral-document-ai-2512--C-SPIRITS-01--flat--3",
+        "guard_usd": 0.003,
+        "status": "usage-guard"
+      }
+    },
+    {
+      "id": "mistral-document-ai-2512--C-SPIRITS-01--glare--1",
+      "response_sha256": "d94be44998c255c08f9d7293e07fb3e9a359e8a98ed8e9435448f3fc4e1b3874",
+      "usage": null,
+      "usage_info": {
+        "pages_processed": 0,
+        "doc_size_bytes": 654016,
+        "pages_processed_annotation": 1
+      },
+      "returned_pages": 1,
+      "old_cost_usd": 0.0,
+      "cost_usd": 0.003,
+      "pages_processed": 1,
+      "ledger_before": {
+        "id": "mistral-document-ai-2512--C-SPIRITS-01--glare--1",
+        "guard_usd": 0.0,
+        "status": "usage-guard"
+      },
+      "files": [
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/rows/mistral-document-ai-2512--C-SPIRITS-01--glare--1.json",
+          "before_sha256": "15b3c4c5759a5028fd0dacd86e06fb499a8e094431b203ed78992d66a58dae07",
+          "after_sha256": "849b7d9e628edd9af3218be102746817a0180adadec1c6e5f8c482c9f4d588c4"
+        },
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/attempts/mistral-document-ai-2512--C-SPIRITS-01--glare--1.json",
+          "before_sha256": "5d315760d7eb30068b2cc1da2290fdfba9c3970788300f6c86d8f902b0404722",
+          "after_sha256": "5c3ab2948977cfa0a8bdda1d709518c616022f8089c2b7be31e1d901d5ad7e1a"
+        }
+      ],
+      "settle_notice": "Budget.settle committed increased observed estimate then raised; corrective reconciliation of past responses, not new spending",
+      "ledger_after": {
+        "id": "mistral-document-ai-2512--C-SPIRITS-01--glare--1",
+        "guard_usd": 0.003,
+        "status": "usage-guard"
+      }
+    },
+    {
+      "id": "mistral-document-ai-2512--C-SPIRITS-01--straight--1",
+      "response_sha256": "b995fd98a16035ae7b20fe70d380efe6851121454908aa3abcb0bb0272d60124",
+      "usage": null,
+      "usage_info": {
+        "pages_processed": 0,
+        "doc_size_bytes": 674589,
+        "pages_processed_annotation": 1
+      },
+      "returned_pages": 1,
+      "old_cost_usd": 0.0,
+      "cost_usd": 0.003,
+      "pages_processed": 1,
+      "ledger_before": {
+        "id": "mistral-document-ai-2512--C-SPIRITS-01--straight--1",
+        "guard_usd": 0.0,
+        "status": "usage-guard"
+      },
+      "files": [
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/rows/mistral-document-ai-2512--C-SPIRITS-01--straight--1.json",
+          "before_sha256": "35b71bf196bde458d239c440cff9c5ab3a9c9337551d9d07bb5fcc1a9ed18001",
+          "after_sha256": "d4a3f5322244d06332cb1876487554133e9b82004eee1fa8512af5a874a67743"
+        },
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/attempts/mistral-document-ai-2512--C-SPIRITS-01--straight--1.json",
+          "before_sha256": "ecc183ce3e3ead046cc66bf8595de992feff54af80654152d22a43fe99147234",
+          "after_sha256": "bedaa013519eb8570d6df9e4fa27ad72854f786fde2d647e88befc18d75c334b"
+        }
+      ],
+      "settle_notice": "Budget.settle committed increased observed estimate then raised; corrective reconciliation of past responses, not new spending",
+      "ledger_after": {
+        "id": "mistral-document-ai-2512--C-SPIRITS-01--straight--1",
+        "guard_usd": 0.003,
+        "status": "usage-guard"
+      }
+    },
+    {
+      "id": "mistral-document-ai-2512--C-SPIRITS-IMPORT-01--angle--1",
+      "response_sha256": "c68a3d7a1ddf161bf7d46f0e812dba481a842507c50403e5fa1fe44270d4a9f3",
+      "usage": null,
+      "usage_info": {
+        "pages_processed": 0,
+        "doc_size_bytes": 1389969,
+        "pages_processed_annotation": 1
+      },
+      "returned_pages": 1,
+      "old_cost_usd": 0.0,
+      "cost_usd": 0.003,
+      "pages_processed": 1,
+      "ledger_before": {
+        "id": "mistral-document-ai-2512--C-SPIRITS-IMPORT-01--angle--1",
+        "guard_usd": 0.0,
+        "status": "usage-guard"
+      },
+      "files": [
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/rows/mistral-document-ai-2512--C-SPIRITS-IMPORT-01--angle--1.json",
+          "before_sha256": "f68b83a82ab72c66768981141320209cccb2a003cbb1f06bc7f69df6141d3611",
+          "after_sha256": "257af670f945d2681bbc5ade9d257ac78e9e21e53847cfa598e19ff71b544694"
+        },
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/attempts/mistral-document-ai-2512--C-SPIRITS-IMPORT-01--angle--1.json",
+          "before_sha256": "4ae3cac3ed235d745a87df20725d973926a65d8987ef086f992db94724295656",
+          "after_sha256": "8d25ae6ab6ff8aecddab288197a17966fa36695c788d24887a5570cc3541f7e5"
+        }
+      ],
+      "settle_notice": "Budget.settle committed increased observed estimate then raised; corrective reconciliation of past responses, not new spending",
+      "ledger_after": {
+        "id": "mistral-document-ai-2512--C-SPIRITS-IMPORT-01--angle--1",
+        "guard_usd": 0.003,
+        "status": "usage-guard"
+      }
+    },
+    {
+      "id": "mistral-document-ai-2512--C-SPIRITS-IMPORT-01--flat--3",
+      "response_sha256": "185d1f27a9751e9e0ce69ee87d96bf7173b64ca0d0cee99ef986aa7eaa80a179",
+      "usage": null,
+      "usage_info": {
+        "pages_processed": 0,
+        "doc_size_bytes": 93585,
+        "pages_processed_annotation": 1
+      },
+      "returned_pages": 1,
+      "old_cost_usd": 0.0,
+      "cost_usd": 0.003,
+      "pages_processed": 1,
+      "ledger_before": {
+        "id": "mistral-document-ai-2512--C-SPIRITS-IMPORT-01--flat--3",
+        "guard_usd": 0.0,
+        "status": "usage-guard"
+      },
+      "files": [
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/rows/mistral-document-ai-2512--C-SPIRITS-IMPORT-01--flat--3.json",
+          "before_sha256": "eb5b870ab92996f5e5aeaced09fcf2e15067dd552b372c73acce1843b12d9981",
+          "after_sha256": "f32e9ac13aff27078c857236d3b272b122a4b6399ee8250e9760c5524e6e3beb"
+        },
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/attempts/mistral-document-ai-2512--C-SPIRITS-IMPORT-01--flat--3.json",
+          "before_sha256": "8c42a1e9ecbb9cc78e4f55bfb00b5a951b7cf4116af08aa0f628647ac660df75",
+          "after_sha256": "b5f99ee7e3923c1240713c98c4d389ad8a768bbad4dd3ca26e12dead88e8234f"
+        }
+      ],
+      "settle_notice": "Budget.settle committed increased observed estimate then raised; corrective reconciliation of past responses, not new spending",
+      "ledger_after": {
+        "id": "mistral-document-ai-2512--C-SPIRITS-IMPORT-01--flat--3",
+        "guard_usd": 0.003,
+        "status": "usage-guard"
+      }
+    },
+    {
+      "id": "mistral-document-ai-2512--C-SPIRITS-IMPORT-01--glare--1",
+      "response_sha256": "ecad9b82480ef4ec03057aae75592cfbfa5031f38bb01048127e7eb16c0982d5",
+      "usage": null,
+      "usage_info": {
+        "pages_processed": 0,
+        "doc_size_bytes": 684769,
+        "pages_processed_annotation": 1
+      },
+      "returned_pages": 1,
+      "old_cost_usd": 0.0,
+      "cost_usd": 0.003,
+      "pages_processed": 1,
+      "ledger_before": {
+        "id": "mistral-document-ai-2512--C-SPIRITS-IMPORT-01--glare--1",
+        "guard_usd": 0.0,
+        "status": "usage-guard"
+      },
+      "files": [
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/rows/mistral-document-ai-2512--C-SPIRITS-IMPORT-01--glare--1.json",
+          "before_sha256": "6c2d18acc0be3000082a7ea6de21c42ac0b6033aaad7377e631b51b3e7bee3ec",
+          "after_sha256": "addd15072e47d813c9c32ec92b79616e77b860b86d2a509103ca14a2c8d11e69"
+        },
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/attempts/mistral-document-ai-2512--C-SPIRITS-IMPORT-01--glare--1.json",
+          "before_sha256": "e369dbdeda320450426b7f01d33e2ed4aee4efab112890699fc01a694214243e",
+          "after_sha256": "0bede2b484b221843dd648cc565a4e1d2277b57c6cb90b33d4041ca71dfac5e2"
+        }
+      ],
+      "settle_notice": "Budget.settle committed increased observed estimate then raised; corrective reconciliation of past responses, not new spending",
+      "ledger_after": {
+        "id": "mistral-document-ai-2512--C-SPIRITS-IMPORT-01--glare--1",
+        "guard_usd": 0.003,
+        "status": "usage-guard"
+      }
+    },
+    {
+      "id": "mistral-document-ai-2512--C-SPIRITS-IMPORT-01--straight--1",
+      "response_sha256": "fbaf6924792e3b67f3d39876a7b6e3664f9ba1b8ad80cff58c5fe0b0098399e8",
+      "usage": null,
+      "usage_info": {
+        "pages_processed": 0,
+        "doc_size_bytes": 707521,
+        "pages_processed_annotation": 1
+      },
+      "returned_pages": 1,
+      "old_cost_usd": 0.0,
+      "cost_usd": 0.003,
+      "pages_processed": 1,
+      "ledger_before": {
+        "id": "mistral-document-ai-2512--C-SPIRITS-IMPORT-01--straight--1",
+        "guard_usd": 0.0,
+        "status": "usage-guard"
+      },
+      "files": [
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/rows/mistral-document-ai-2512--C-SPIRITS-IMPORT-01--straight--1.json",
+          "before_sha256": "1c835d13fc63bb92c9a8f937eda1969fe14400e176b2d5c49b0826e2c9796f82",
+          "after_sha256": "39c6a2acb7e7b965086e3580bd223c7016a2e55204b380d09054da7e32a0c05b"
+        },
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/attempts/mistral-document-ai-2512--C-SPIRITS-IMPORT-01--straight--1.json",
+          "before_sha256": "0ba020c95ba765ec9bf9a656bc61b1460a73a0cf0a5455b775ff345ad52a4d9e",
+          "after_sha256": "009facfa430009a1d469f3dcee3cd03b6e8f840c18250f593b96179debe86cbe"
+        }
+      ],
+      "settle_notice": "Budget.settle committed increased observed estimate then raised; corrective reconciliation of past responses, not new spending",
+      "ledger_after": {
+        "id": "mistral-document-ai-2512--C-SPIRITS-IMPORT-01--straight--1",
+        "guard_usd": 0.003,
+        "status": "usage-guard"
+      }
+    },
+    {
+      "id": "mistral-document-ai-2512--C-WINE-01--angle--1",
+      "response_sha256": "25590b1bbf40ff7e002fd92b874b25748aec32ae5a93488b2ee0b09978ebed5e",
+      "usage": null,
+      "usage_info": {
+        "pages_processed": 0,
+        "doc_size_bytes": 1307658,
+        "pages_processed_annotation": 1
+      },
+      "returned_pages": 1,
+      "old_cost_usd": 0.0,
+      "cost_usd": 0.003,
+      "pages_processed": 1,
+      "ledger_before": {
+        "id": "mistral-document-ai-2512--C-WINE-01--angle--1",
+        "guard_usd": 0.0,
+        "status": "usage-guard"
+      },
+      "files": [
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/rows/mistral-document-ai-2512--C-WINE-01--angle--1.json",
+          "before_sha256": "11b2c5aac26c1198151e751a4e0b978bf814fdc74b97c59451a06c1f072db532",
+          "after_sha256": "89b0505b15384be1c38b121df3ce415e33d0f499f69c28df38a86cad453d12d9"
+        },
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/attempts/mistral-document-ai-2512--C-WINE-01--angle--1.json",
+          "before_sha256": "c73871fb90ac36ea9e233bafdf786d916408538b909c4f78024cc73c74d72422",
+          "after_sha256": "c6e8f63a6d8887f0cf23495be501f66a9ed2ac844cbd75b98afd0a209bf95cd9"
+        }
+      ],
+      "settle_notice": "Budget.settle committed increased observed estimate then raised; corrective reconciliation of past responses, not new spending",
+      "ledger_after": {
+        "id": "mistral-document-ai-2512--C-WINE-01--angle--1",
+        "guard_usd": 0.003,
+        "status": "usage-guard"
+      }
+    },
+    {
+      "id": "mistral-document-ai-2512--C-WINE-01--flat--2",
+      "response_sha256": "6e1b3215cdeba21e905a8e912f22377a6f75595f6f458549ca6d86d1d85ec8b6",
+      "usage": null,
+      "usage_info": {
+        "pages_processed": 0,
+        "doc_size_bytes": 83313,
+        "pages_processed_annotation": 1
+      },
+      "returned_pages": 1,
+      "old_cost_usd": 0.0,
+      "cost_usd": 0.003,
+      "pages_processed": 1,
+      "ledger_before": {
+        "id": "mistral-document-ai-2512--C-WINE-01--flat--2",
+        "guard_usd": 0.0,
+        "status": "usage-guard"
+      },
+      "files": [
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/rows/mistral-document-ai-2512--C-WINE-01--flat--2.json",
+          "before_sha256": "28e536c34e4084db042c708980dac2ff57d10e533206c554106c942818461718",
+          "after_sha256": "b3d9efd5de5a25318bff67b3058cf51d12272434f7ed8779f32d229398144c2c"
+        },
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/attempts/mistral-document-ai-2512--C-WINE-01--flat--2.json",
+          "before_sha256": "0141ce8a8f65909d22d93b108957b477fec8e81ceaffc1b7ab7dd4a57ea4a821",
+          "after_sha256": "77f80e182625ea814baeafccef8d370ee44bd80ff6311bcc216b7e9ce9f1e9e0"
+        }
+      ],
+      "settle_notice": "Budget.settle committed increased observed estimate then raised; corrective reconciliation of past responses, not new spending",
+      "ledger_after": {
+        "id": "mistral-document-ai-2512--C-WINE-01--flat--2",
+        "guard_usd": 0.003,
+        "status": "usage-guard"
+      }
+    },
+    {
+      "id": "mistral-document-ai-2512--C-WINE-01--flat--3",
+      "response_sha256": "89e20ead06c1254ab2a9a5c08b7616a60f4f8d82c7eedf447a31ddde36dd2f2b",
+      "usage": null,
+      "usage_info": {
+        "pages_processed": 0,
+        "doc_size_bytes": 83313,
+        "pages_processed_annotation": 1
+      },
+      "returned_pages": 1,
+      "old_cost_usd": 0.0,
+      "cost_usd": 0.003,
+      "pages_processed": 1,
+      "ledger_before": {
+        "id": "mistral-document-ai-2512--C-WINE-01--flat--3",
+        "guard_usd": 0.0,
+        "status": "usage-guard"
+      },
+      "files": [
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/rows/mistral-document-ai-2512--C-WINE-01--flat--3.json",
+          "before_sha256": "399f3bee8b36c2742e76140219c5af076c530a4102f6adb3734a688cfce44a23",
+          "after_sha256": "86930268b8627e3babeca80247bec9d66e3c4401c5bbb470bf9f01b235476b99"
+        },
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/attempts/mistral-document-ai-2512--C-WINE-01--flat--3.json",
+          "before_sha256": "e973aa2467d5746b95db9997a76ce0c1b2f9c91fe11cfe9d76546c242acf5a96",
+          "after_sha256": "20015413853fae01c43fd328ecd6cfbf520c1d608107f45be653e85334e588cb"
+        }
+      ],
+      "settle_notice": "Budget.settle committed increased observed estimate then raised; corrective reconciliation of past responses, not new spending",
+      "ledger_after": {
+        "id": "mistral-document-ai-2512--C-WINE-01--flat--3",
+        "guard_usd": 0.003,
+        "status": "usage-guard"
+      }
+    },
+    {
+      "id": "mistral-document-ai-2512--C-WINE-01--glare--1",
+      "response_sha256": "7e4972b2d3bce73626258ab20ce4ab03d51883121a1d0083f541773cac9dc4c5",
+      "usage": null,
+      "usage_info": {
+        "pages_processed": 0,
+        "doc_size_bytes": 665673,
+        "pages_processed_annotation": 1
+      },
+      "returned_pages": 1,
+      "old_cost_usd": 0.0,
+      "cost_usd": 0.003,
+      "pages_processed": 1,
+      "ledger_before": {
+        "id": "mistral-document-ai-2512--C-WINE-01--glare--1",
+        "guard_usd": 0.0,
+        "status": "usage-guard"
+      },
+      "files": [
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/rows/mistral-document-ai-2512--C-WINE-01--glare--1.json",
+          "before_sha256": "73c17611e5e73920e9e260bb2b19fac993082545219dc515265d1fc22868591c",
+          "after_sha256": "ab1fa306548fa1dc1b52a602725df50b3561bd4007ddbb8750cc71f77ace1fae"
+        },
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/attempts/mistral-document-ai-2512--C-WINE-01--glare--1.json",
+          "before_sha256": "ef28fa4bfdfb1106f15c95d6f532eb998e0d07b5d14edf31e70740b51f708d8b",
+          "after_sha256": "27f2c5eb6c8a3ff3d33c9fe9d3c9f1ee48ac33b4a2ec94afeaf329f8a63a7ace"
+        }
+      ],
+      "settle_notice": "Budget.settle committed increased observed estimate then raised; corrective reconciliation of past responses, not new spending",
+      "ledger_after": {
+        "id": "mistral-document-ai-2512--C-WINE-01--glare--1",
+        "guard_usd": 0.003,
+        "status": "usage-guard"
+      }
+    },
+    {
+      "id": "mistral-document-ai-2512--C-WINE-01--straight--1",
+      "response_sha256": "b8e1f68b501fd69a2ee402619ba1216e45005613beb84d2b22bed84ed5163e14",
+      "usage": null,
+      "usage_info": {
+        "pages_processed": 0,
+        "doc_size_bytes": 679733,
+        "pages_processed_annotation": 1
+      },
+      "returned_pages": 1,
+      "old_cost_usd": 0.0,
+      "cost_usd": 0.003,
+      "pages_processed": 1,
+      "ledger_before": {
+        "id": "mistral-document-ai-2512--C-WINE-01--straight--1",
+        "guard_usd": 0.0,
+        "status": "usage-guard"
+      },
+      "files": [
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/rows/mistral-document-ai-2512--C-WINE-01--straight--1.json",
+          "before_sha256": "2f61a11ef231f6368ea2060555ef91df70ba77094126d29b215e547673538fcb",
+          "after_sha256": "33bfb61adf7c6c16763ad5ff424a06810298d1ce1cd80c2396f0a459e0fcfedf"
+        },
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/attempts/mistral-document-ai-2512--C-WINE-01--straight--1.json",
+          "before_sha256": "b9665b8dfe6dfa520d35d6ad4e543413855b98b0a07b99b10b89ebaf91df9d34",
+          "after_sha256": "a6cd6cfd20509b87d61ec21723b2a88cdaa0751ab874cd8e405df5f9dfc8186c"
+        }
+      ],
+      "settle_notice": "Budget.settle committed increased observed estimate then raised; corrective reconciliation of past responses, not new spending",
+      "ledger_after": {
+        "id": "mistral-document-ai-2512--C-WINE-01--straight--1",
+        "guard_usd": 0.003,
+        "status": "usage-guard"
+      }
+    },
+    {
+      "id": "mistral-document-ai-2512--D-BLUR-01--flat--3",
+      "response_sha256": "e83032b7776967add825a804c6528d95302881ab3513119eb7a640219c1a7a32",
+      "usage": null,
+      "usage_info": {
+        "pages_processed": 0,
+        "doc_size_bytes": 205711,
+        "pages_processed_annotation": 1
+      },
+      "returned_pages": 1,
+      "old_cost_usd": 0.0,
+      "cost_usd": 0.003,
+      "pages_processed": 1,
+      "ledger_before": {
+        "id": "mistral-document-ai-2512--D-BLUR-01--flat--3",
+        "guard_usd": 0.0,
+        "status": "usage-guard"
+      },
+      "files": [
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/rows/mistral-document-ai-2512--D-BLUR-01--flat--3.json",
+          "before_sha256": "798a5a0fdbbe9c2fafbce87044d62402944967cf4ec3f5e306a1d04ef1ec07e6",
+          "after_sha256": "8f1f3211e8c6f2881fa5b3d6909066e5e021d9f793900de9d6a12d2fefe7c28f"
+        },
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/attempts/mistral-document-ai-2512--D-BLUR-01--flat--3.json",
+          "before_sha256": "120aa3ab319d7601d64bfc88ea13dc6214ae6cfdfef2e1297258b68a4b2a1640",
+          "after_sha256": "04db83706799c72be9743f280790b524f8020344931d9fe6e03ab882436e69bd"
+        }
+      ],
+      "settle_notice": "Budget.settle committed increased observed estimate then raised; corrective reconciliation of past responses, not new spending",
+      "ledger_after": {
+        "id": "mistral-document-ai-2512--D-BLUR-01--flat--3",
+        "guard_usd": 0.003,
+        "status": "usage-guard"
+      }
+    },
+    {
+      "id": "mistral-document-ai-2512--D-GLARE-01--flat--3",
+      "response_sha256": "240b09b53397a4d2e3973e792a5df900db77c159b315cbb8cb87366156111751",
+      "usage": null,
+      "usage_info": {
+        "pages_processed": 0,
+        "doc_size_bytes": 221739,
+        "pages_processed_annotation": 1
+      },
+      "returned_pages": 1,
+      "old_cost_usd": 0.0,
+      "cost_usd": 0.003,
+      "pages_processed": 1,
+      "ledger_before": {
+        "id": "mistral-document-ai-2512--D-GLARE-01--flat--3",
+        "guard_usd": 0.0,
+        "status": "usage-guard"
+      },
+      "files": [
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/rows/mistral-document-ai-2512--D-GLARE-01--flat--3.json",
+          "before_sha256": "c5336e95b2e4abf8b674e98ba43e328b08231e3b21a4a9e95d8333b056ee9003",
+          "after_sha256": "205a84217d7466d7fbd4b790d3ca08af1d8dccb6038dc07d9201164fc05840b6"
+        },
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/attempts/mistral-document-ai-2512--D-GLARE-01--flat--3.json",
+          "before_sha256": "2fc535caa1d6433aaecbbbe87d125bfcd5448008240555367ccc111b06c6ed38",
+          "after_sha256": "0a1aeeb05dcec8c897fb11322937cc33d8a56aa735a1b78601449ca641ec2cb2"
+        }
+      ],
+      "settle_notice": "Budget.settle committed increased observed estimate then raised; corrective reconciliation of past responses, not new spending",
+      "ledger_after": {
+        "id": "mistral-document-ai-2512--D-GLARE-01--flat--3",
+        "guard_usd": 0.003,
+        "status": "usage-guard"
+      }
+    },
+    {
+      "id": "mistral-document-ai-2512--D-WARP-01--flat--3",
+      "response_sha256": "742b61f354add9957fa684e51090679f22c1bbd5a4958da0a25ded62b4ff43c4",
+      "usage": null,
+      "usage_info": {
+        "pages_processed": 0,
+        "doc_size_bytes": 334841,
+        "pages_processed_annotation": 1
+      },
+      "returned_pages": 1,
+      "old_cost_usd": 0.0,
+      "cost_usd": 0.003,
+      "pages_processed": 1,
+      "ledger_before": {
+        "id": "mistral-document-ai-2512--D-WARP-01--flat--3",
+        "guard_usd": 0.0,
+        "status": "usage-guard"
+      },
+      "files": [
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/rows/mistral-document-ai-2512--D-WARP-01--flat--3.json",
+          "before_sha256": "2e42419cbd8e92de1bb52da02aeb58bb7e8e706957c99b125e4ef5a35bb42448",
+          "after_sha256": "eb23caa27297cc0f28cec7c84468f9046ce537319dd3478de4f21cc7fdb01166"
+        },
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/attempts/mistral-document-ai-2512--D-WARP-01--flat--3.json",
+          "before_sha256": "e9d4f064463a561244a5afa62b9113481f157a9b73186c1e6bc1b6b80689c79e",
+          "after_sha256": "cb3f28e408a4075447876f5410d7e963af759e646f5f3d33c488674c7a3be5f6"
+        }
+      ],
+      "settle_notice": "Budget.settle committed increased observed estimate then raised; corrective reconciliation of past responses, not new spending",
+      "ledger_after": {
+        "id": "mistral-document-ai-2512--D-WARP-01--flat--3",
+        "guard_usd": 0.003,
+        "status": "usage-guard"
+      }
+    },
+    {
+      "id": "mistral-document-ai-2512--W-ABV-4045-01--flat--3",
+      "response_sha256": "87d9476f75c08185fd80f803798925e1b17641dccb3513ba0cf697771d6d74dc",
+      "usage": null,
+      "usage_info": {
+        "pages_processed": 0,
+        "doc_size_bytes": 91914,
+        "pages_processed_annotation": 1
+      },
+      "returned_pages": 1,
+      "old_cost_usd": 0.0,
+      "cost_usd": 0.003,
+      "pages_processed": 1,
+      "ledger_before": {
+        "id": "mistral-document-ai-2512--W-ABV-4045-01--flat--3",
+        "guard_usd": 0.0,
+        "status": "usage-guard"
+      },
+      "files": [
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/rows/mistral-document-ai-2512--W-ABV-4045-01--flat--3.json",
+          "before_sha256": "52111ec3cd62025db05b04c311f26a74440807dbbe15b934bc557536784187b8",
+          "after_sha256": "39dc7f83759a21a574f68dfc50be57449cbb6114304e4a812cd3eb5fa8be7da0"
+        },
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/attempts/mistral-document-ai-2512--W-ABV-4045-01--flat--3.json",
+          "before_sha256": "88165e4e5a08138a9727be7c44d16a6cb3ea6f9e079f1200bfe85e4810864250",
+          "after_sha256": "9176b99068da9e48f56ad9d6e6f18bac316589e27ddbf7861b779a45d71cc990"
+        }
+      ],
+      "settle_notice": "Budget.settle committed increased observed estimate then raised; corrective reconciliation of past responses, not new spending",
+      "ledger_after": {
+        "id": "mistral-document-ai-2512--W-ABV-4045-01--flat--3",
+        "guard_usd": 0.003,
+        "status": "usage-guard"
+      }
+    },
+    {
+      "id": "mistral-document-ai-2512--W-BRAND-SPLITLINE-01--flat--3",
+      "response_sha256": "be8949857a85db1c4fd276fc1467f0dcf1fbb10e79ecc61a64ab116b5faaa87f",
+      "usage": null,
+      "usage_info": {
+        "pages_processed": 0,
+        "doc_size_bytes": 87203,
+        "pages_processed_annotation": 1
+      },
+      "returned_pages": 1,
+      "old_cost_usd": 0.0,
+      "cost_usd": 0.003,
+      "pages_processed": 1,
+      "ledger_before": {
+        "id": "mistral-document-ai-2512--W-BRAND-SPLITLINE-01--flat--3",
+        "guard_usd": 0.0,
+        "status": "usage-guard"
+      },
+      "files": [
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/rows/mistral-document-ai-2512--W-BRAND-SPLITLINE-01--flat--3.json",
+          "before_sha256": "5e7e144731aadc86acee8590dbcffe0e25bf381a30442bead8f739fb20c2244a",
+          "after_sha256": "6cce1a0b019955924531051c0579b4bb103a808e522ac0364ecdc597b728d78b"
+        },
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/attempts/mistral-document-ai-2512--W-BRAND-SPLITLINE-01--flat--3.json",
+          "before_sha256": "e691630329154f1b2ee6248ad13c5a5bccee08ecb91cfb1dd8d88e1764df9ce9",
+          "after_sha256": "0e697e59d8ce12020176bad339e32f1c2ff494bedfba37c718a6b53281103b71"
+        }
+      ],
+      "settle_notice": "Budget.settle committed increased observed estimate then raised; corrective reconciliation of past responses, not new spending",
+      "ledger_after": {
+        "id": "mistral-document-ai-2512--W-BRAND-SPLITLINE-01--flat--3",
+        "guard_usd": 0.003,
+        "status": "usage-guard"
+      }
+    },
+    {
+      "id": "mistral-document-ai-2512--W-BRAND-WRONG-01--flat--3",
+      "response_sha256": "27a7a32ca95138fd0ef7f7c1b0bc23fa257fbbf238392cb8c0a4bc55613d6165",
+      "usage": null,
+      "usage_info": {
+        "pages_processed": 0,
+        "doc_size_bytes": 85711,
+        "pages_processed_annotation": 1
+      },
+      "returned_pages": 1,
+      "old_cost_usd": 0.0,
+      "cost_usd": 0.003,
+      "pages_processed": 1,
+      "ledger_before": {
+        "id": "mistral-document-ai-2512--W-BRAND-WRONG-01--flat--3",
+        "guard_usd": 0.0,
+        "status": "usage-guard"
+      },
+      "files": [
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/rows/mistral-document-ai-2512--W-BRAND-WRONG-01--flat--3.json",
+          "before_sha256": "8b08c192a891cc3a3842ffb528abdc83ea7707b893ce476da09310fa81aee43b",
+          "after_sha256": "30f0424a0198c9d8ce4aadd0a128b0e310ff01648106347a31f34d56babaf077"
+        },
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/attempts/mistral-document-ai-2512--W-BRAND-WRONG-01--flat--3.json",
+          "before_sha256": "b22d032908b0541604679d91b3ce3e947ce2291a05e376b994c629977ba76219",
+          "after_sha256": "81c18bf8b98cfb1d48384f6b13174c8f26e20a1a83bda4a4398a1b23374defd6"
+        }
+      ],
+      "settle_notice": "Budget.settle committed increased observed estimate then raised; corrective reconciliation of past responses, not new spending",
+      "ledger_after": {
+        "id": "mistral-document-ai-2512--W-BRAND-WRONG-01--flat--3",
+        "guard_usd": 0.003,
+        "status": "usage-guard"
+      }
+    },
+    {
+      "id": "mistral-document-ai-2512--W-NETCONTENTS-WRONG-01--flat--3",
+      "response_sha256": "cb45b729973a50d23a405d56f03da9753e516e46280943936603c009ef0fce1c",
+      "usage": null,
+      "usage_info": {
+        "pages_processed": 0,
+        "doc_size_bytes": 80813,
+        "pages_processed_annotation": 1
+      },
+      "returned_pages": 1,
+      "old_cost_usd": 0.0,
+      "cost_usd": 0.003,
+      "pages_processed": 1,
+      "ledger_before": {
+        "id": "mistral-document-ai-2512--W-NETCONTENTS-WRONG-01--flat--3",
+        "guard_usd": 0.0,
+        "status": "usage-guard"
+      },
+      "files": [
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/rows/mistral-document-ai-2512--W-NETCONTENTS-WRONG-01--flat--3.json",
+          "before_sha256": "83bf22b90e48893aa1cf9cfc75ea065c0ede5d9cce7381e5b726665681c1852b",
+          "after_sha256": "7437c47de99b3fdee2a46fca7f947d42280551b3dcedebf6a273377b00dcbb7e"
+        },
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/attempts/mistral-document-ai-2512--W-NETCONTENTS-WRONG-01--flat--3.json",
+          "before_sha256": "76c2931e26923c39bab2a14617a52f9021656dbdce80436a4e2fb1c0896305c4",
+          "after_sha256": "ca4b15ae63f22f3df28a346007348b58b1144e18990559ec082768fd0bc19655"
+        }
+      ],
+      "settle_notice": "Budget.settle committed increased observed estimate then raised; corrective reconciliation of past responses, not new spending",
+      "ledger_after": {
+        "id": "mistral-document-ai-2512--W-NETCONTENTS-WRONG-01--flat--3",
+        "guard_usd": 0.003,
+        "status": "usage-guard"
+      }
+    },
+    {
+      "id": "mistral-document-ai-2512--W-WARN-REWORD-01--flat--3",
+      "response_sha256": "46bb76a159692201b48316cb7bb421fa27c48959e58b6c79a971fd3ace00529d",
+      "usage": null,
+      "usage_info": {
+        "pages_processed": 0,
+        "doc_size_bytes": 86179,
+        "pages_processed_annotation": 1
+      },
+      "returned_pages": 1,
+      "old_cost_usd": 0.0,
+      "cost_usd": 0.003,
+      "pages_processed": 1,
+      "ledger_before": {
+        "id": "mistral-document-ai-2512--W-WARN-REWORD-01--flat--3",
+        "guard_usd": 0.0,
+        "status": "usage-guard"
+      },
+      "files": [
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/rows/mistral-document-ai-2512--W-WARN-REWORD-01--flat--3.json",
+          "before_sha256": "e1da5177b528ad79a5d1b0299a2fee51ed0935e8b22a6073e5d2d7c7e2fb74ba",
+          "after_sha256": "7e81da475950f5d46cebbd706a45ecb9fde7311e1c434732f48014c093076c6b"
+        },
+        {
+          "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/attempts/mistral-document-ai-2512--W-WARN-REWORD-01--flat--3.json",
+          "before_sha256": "d2865e9a92bf39f1086a15da2aa0066b13b4306435d52fa72e06a56344d25cdb",
+          "after_sha256": "95c6afd843880d727be8197dc24356f771466c6000c984b3a12735d2d3a63a06"
+        }
+      ],
+      "settle_notice": "Budget.settle committed increased observed estimate then raised; corrective reconciliation of past responses, not new spending",
+      "ledger_after": {
+        "id": "mistral-document-ai-2512--W-WARN-REWORD-01--flat--3",
+        "guard_usd": 0.003,
+        "status": "usage-guard"
+      }
+    }
+  ],
+  "unknowns": [],
+  "ledger_after_usd": 8.52533215,
+  "ocr_corrected_cost_usd": 0.093,
+  "row_count": 126,
+  "inherited_after": {
+    "id": "inherited-incurred-and-unknown",
+    "guard_usd": 7.8558323,
+    "status": "reserved"
+  },
+  "protected_hashes_verified": true,
+  "settled_cost_usd": 0.66949985
+}

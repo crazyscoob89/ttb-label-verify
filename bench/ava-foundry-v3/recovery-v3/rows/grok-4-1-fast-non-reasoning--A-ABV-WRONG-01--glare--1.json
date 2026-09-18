@@ -1,0 +1,189 @@
+{
+  "id": "grok-4-1-fast-non-reasoning--A-ABV-WRONG-01--glare--1",
+  "operator": "AVA-v3",
+  "model": "grok-4-1-fast-non-reasoning",
+  "engine": "grok-4-1-fast-non-reasoning",
+  "fixture_id": "A-ABV-WRONG-01",
+  "repeat": 1,
+  "condition": "glare",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": true,
+  "extracted": {
+    "brand_name": "Martern",
+    "class_type": null,
+    "alcohol_content": "12.0 L",
+    "net_contents": null,
+    "bottler_info": "Produced and Bottled Lantern Winery.",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARN",
+    "government_warning_body": "General, women should not drink alcoholic beverages because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": null,
+    "government_warning_body_bold": null,
+    "confidence": {
+      "brand_name": 0.95,
+      "class_type": 1.0,
+      "alcohol_content": 0.85,
+      "net_contents": 1.0,
+      "bottler_info": 0.75,
+      "country_of_origin": 1.0,
+      "government_warning_heading": 0.6,
+      "government_warning_body": 0.4,
+      "government_warning_heading_all_caps": 0.9,
+      "government_warning_heading_bold": 0.0,
+      "government_warning_body_bold": 0.0
+    }
+  },
+  "error_class": null,
+  "cost_usd": 0.0006037999999999999,
+  "request_sha256": "9cdcc684daaf1aab14a302c4de72098f468c7eb0f1d4e14b39aaeb74a7c7deac",
+  "image_sha256": "3fb81c20a9678d22d9a7a43c8c5144670d5bcc4cfb4ddcbfacdbbb9076c21df9",
+  "transport": "chat",
+  "started_at": "2026-09-18T16:34:06.531885+00:00",
+  "reserved_usd": 0.23233672,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-ABV-WRONG-01__glare.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "4797af08-2c7e-4247-9159-3aa1109e8086",
+  "latency_s": 4.099221652024426,
+  "response_sha256": "e1301002f9d3368650dbe77fc464435534dbf434ccdc4c6fca3161da9e2c59c7",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/grok-4-1-fast-non-reasoning--A-ABV-WRONG-01--glare--1.json",
+  "tokens_in": 2489,
+  "tokens_out": 212,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 2489,
+    "completion_tokens": 212,
+    "total_tokens": 2701,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 858,
+      "audio_tokens": 0,
+      "text_tokens": 697,
+      "image_tokens": 1792
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "num_sources_used": 0
+  },
+  "returned_model": "grok-4-1-fast-non-reasoning",
+  "raw_text": "{\"brand_name\":\"Martern\",\"class_type\":null,\"alcohol_content\":\"12.0 L\",\"net_contents\":null,\"bottler_info\":\"Produced and Bottled Lantern Winery.\",\"country_of_origin\":null,\"government_warning_heading\":\"GOVERNMENT WARN\",\"government_warning_body\":\"General, women should not drink alcoholic beverages because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\"government_warning_heading_all_caps\":true,\"government_warning_heading_bold\":null,\"government_warning_body_bold\":null,\"confidence\":{\"brand_name\":0.95,\"class_type\":1.0,\"alcohol_content\":0.85,\"net_contents\":1.0,\"bottler_info\":0.75,\"country_of_origin\":1.0,\"government_warning_heading\":0.6,\"government_warning_body\":0.4,\"government_warning_heading_all_caps\":0.9,\"government_warning_heading_bold\":0.0,\"government_warning_body_bold\":0.0}}",
+  "finish_reason": "stop",
+  "validation_errors": {},
+  "category": "adversarial",
+  "commodity": "wine",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "mismatch",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "mismatch",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "mismatch",
+    "class_type": "needs-review",
+    "alcohol_content": "mismatch",
+    "net_contents": "needs-review",
+    "bottler_info": "mismatch",
+    "country_of_origin": "not-applicable",
+    "government_warning": "needs-review"
+  },
+  "classes": {
+    "brand_name": "false_mismatch",
+    "class_type": "referral",
+    "alcohol_content": "correct",
+    "net_contents": "referral",
+    "bottler_info": "false_mismatch",
+    "country_of_origin": "correct",
+    "government_warning": "referral"
+  },
+  "reasons": {
+    "brand_name": "'Martern' vs declared 'Marsh Lantern'",
+    "class_type": "no value extracted",
+    "alcohol_content": "label 12.0 vs declared 11.0",
+    "net_contents": "no readable net contents (absent or illegible)",
+    "bottler_info": "'Produced and Bottled Lantern Winery.' vs declared 'Marsh Lantern Winery, McMinnville, Oregon'",
+    "country_of_origin": "domestic product",
+    "government_warning": "confidence 0.0 below threshold 0.75"
+  },
+  "extraction_correct": {
+    "brand_name": false,
+    "class_type": false,
+    "alcohol_content": false,
+    "net_contents": false,
+    "bottler_info": false,
+    "country_of_origin": true,
+    "government_warning": false
+  },
+  "visibility": {
+    "brand_name": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "class_type": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "alcohol_content": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "net_contents": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "bottler_info": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "country_of_origin": {
+      "visibility": "absent",
+      "expect_referral_ok": true,
+      "basis": "No printed value in source",
+      "annotator": "AVA pre-inference"
+    },
+    "government_warning": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    }
+  },
+  "bottle_outcomes": {
+    "brand_name": "dangerous-error",
+    "class_type": "safe-referral",
+    "alcohol_content": "dangerous-error",
+    "net_contents": "safe-referral",
+    "bottler_info": "dangerous-error",
+    "country_of_origin": "correct-absence-not-applicable",
+    "government_warning": "safe-referral"
+  },
+  "pipeline_seconds": 4.122111071948893
+}

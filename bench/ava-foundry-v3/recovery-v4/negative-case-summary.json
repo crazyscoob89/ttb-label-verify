@@ -1,0 +1,219 @@
+[
+  {
+    "operator": "ARGUS",
+    "model": "Mistral-Large-3",
+    "condition": "flat",
+    "negative_calls": 24,
+    "calls_with_false_match": 3
+  },
+  {
+    "operator": "ARGUS",
+    "model": "grok-4-1-fast-non-reasoning",
+    "condition": "flat",
+    "negative_calls": 24,
+    "calls_with_false_match": 0
+  },
+  {
+    "operator": "AVA",
+    "model": "Kimi-K2.6",
+    "condition": "flat",
+    "negative_calls": 12,
+    "calls_with_false_match": 0
+  },
+  {
+    "operator": "AVA",
+    "model": "Mistral-Large-3",
+    "condition": "flat",
+    "negative_calls": 22,
+    "calls_with_false_match": 2
+  },
+  {
+    "operator": "AVA",
+    "model": "gpt-4.1-mini",
+    "condition": "flat",
+    "negative_calls": 24,
+    "calls_with_false_match": 0
+  },
+  {
+    "operator": "AVA",
+    "model": "gpt-5-mini",
+    "condition": "flat",
+    "negative_calls": 16,
+    "calls_with_false_match": 1
+  },
+  {
+    "operator": "AVA",
+    "model": "grok-4-1-fast-non-reasoning",
+    "condition": "flat",
+    "negative_calls": 24,
+    "calls_with_false_match": 0
+  },
+  {
+    "operator": "AVA",
+    "model": "mistral-document-ai-2512",
+    "condition": "flat",
+    "negative_calls": 16,
+    "calls_with_false_match": 2
+  },
+  {
+    "operator": "AVA-v3",
+    "model": "Kimi-K2.6",
+    "condition": "angle",
+    "negative_calls": 3,
+    "calls_with_false_match": 1
+  },
+  {
+    "operator": "AVA-v3",
+    "model": "Kimi-K2.6",
+    "condition": "flat",
+    "negative_calls": 11,
+    "calls_with_false_match": 0
+  },
+  {
+    "operator": "AVA-v3",
+    "model": "Kimi-K2.6",
+    "condition": "glare",
+    "negative_calls": 3,
+    "calls_with_false_match": 0
+  },
+  {
+    "operator": "AVA-v3",
+    "model": "Kimi-K2.6",
+    "condition": "straight",
+    "negative_calls": 4,
+    "calls_with_false_match": 0
+  },
+  {
+    "operator": "AVA-v3",
+    "model": "Mistral-Large-3",
+    "condition": "angle",
+    "negative_calls": 8,
+    "calls_with_false_match": 1
+  },
+  {
+    "operator": "AVA-v3",
+    "model": "Mistral-Large-3",
+    "condition": "glare",
+    "negative_calls": 4,
+    "calls_with_false_match": 2
+  },
+  {
+    "operator": "AVA-v3",
+    "model": "Mistral-Large-3",
+    "condition": "straight",
+    "negative_calls": 8,
+    "calls_with_false_match": 1
+  },
+  {
+    "operator": "AVA-v3",
+    "model": "gpt-4.1-mini",
+    "condition": "angle",
+    "negative_calls": 8,
+    "calls_with_false_match": 1
+  },
+  {
+    "operator": "AVA-v3",
+    "model": "gpt-4.1-mini",
+    "condition": "glare",
+    "negative_calls": 4,
+    "calls_with_false_match": 0
+  },
+  {
+    "operator": "AVA-v3",
+    "model": "gpt-4.1-mini",
+    "condition": "straight",
+    "negative_calls": 8,
+    "calls_with_false_match": 0
+  },
+  {
+    "operator": "AVA-v3",
+    "model": "gpt-5-mini",
+    "condition": "angle",
+    "negative_calls": 8,
+    "calls_with_false_match": 1
+  },
+  {
+    "operator": "AVA-v3",
+    "model": "gpt-5-mini",
+    "condition": "glare",
+    "negative_calls": 4,
+    "calls_with_false_match": 0
+  },
+  {
+    "operator": "AVA-v3",
+    "model": "gpt-5-mini",
+    "condition": "straight",
+    "negative_calls": 8,
+    "calls_with_false_match": 1
+  },
+  {
+    "operator": "AVA-v3",
+    "model": "grok-4-1-fast-non-reasoning",
+    "condition": "angle",
+    "negative_calls": 8,
+    "calls_with_false_match": 2
+  },
+  {
+    "operator": "AVA-v3",
+    "model": "grok-4-1-fast-non-reasoning",
+    "condition": "glare",
+    "negative_calls": 4,
+    "calls_with_false_match": 0
+  },
+  {
+    "operator": "AVA-v3",
+    "model": "grok-4-1-fast-non-reasoning",
+    "condition": "straight",
+    "negative_calls": 8,
+    "calls_with_false_match": 0
+  },
+  {
+    "operator": "AVA-v3",
+    "model": "mistral-document-ai-2512",
+    "condition": "angle",
+    "negative_calls": 8,
+    "calls_with_false_match": 1
+  },
+  {
+    "operator": "AVA-v3",
+    "model": "mistral-document-ai-2512",
+    "condition": "flat",
+    "negative_calls": 8,
+    "calls_with_false_match": 1
+  },
+  {
+    "operator": "AVA-v3",
+    "model": "mistral-document-ai-2512",
+    "condition": "glare",
+    "negative_calls": 4,
+    "calls_with_false_match": 0
+  },
+  {
+    "operator": "AVA-v3",
+    "model": "mistral-document-ai-2512",
+    "condition": "straight",
+    "negative_calls": 8,
+    "calls_with_false_match": 1
+  },
+  {
+    "operator": "historical",
+    "model": "anthropic/claude-haiku-4.5",
+    "condition": "flat",
+    "negative_calls": 24,
+    "calls_with_false_match": 0
+  },
+  {
+    "operator": "historical",
+    "model": "anthropic/claude-sonnet-4.5",
+    "condition": "flat",
+    "negative_calls": 24,
+    "calls_with_false_match": 3
+  },
+  {
+    "operator": "historical",
+    "model": "gpt-5-mini",
+    "condition": "flat",
+    "negative_calls": 24,
+    "calls_with_false_match": 2
+  }
+]

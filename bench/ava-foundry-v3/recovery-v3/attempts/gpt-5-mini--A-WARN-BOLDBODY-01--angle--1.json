@@ -1,0 +1,44 @@
+{
+  "id": "gpt-5-mini--A-WARN-BOLDBODY-01--angle--1",
+  "operator": "AVA-v3",
+  "model": "gpt-5-mini",
+  "engine": "gpt-5-mini",
+  "fixture_id": "A-WARN-BOLDBODY-01",
+  "repeat": 1,
+  "condition": "angle",
+  "route": "Azure Foundry responses",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.00265125,
+  "request_sha256": "c26a800cb1c0a482d2d197f683b3605d460fc534477cbb15e1b2f05fe16dca30",
+  "image_sha256": "a270691ac61d272320059bd7d4ab846a829768eb6bb616410552c91d1d90b6e2",
+  "transport": "responses",
+  "started_at": "2026-09-18T16:26:28.786765+00:00",
+  "reserved_usd": 0.2949584,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-WARN-BOLDBODY-01__angle.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "86c3815f-1587-4a22-90f4-5e1a5dc52eca",
+  "latency_s": 10.873618812998757,
+  "response_sha256": "bedba629970c6b5ff93c703514768e33b6b4141b8b66c14e0630a47f867ca2a6",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-5-mini--A-WARN-BOLDBODY-01--angle--1.json",
+  "tokens_in": 1717,
+  "tokens_out": 1111,
+  "pages_processed": null,
+  "usage": {
+    "input_tokens": 1717,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1111,
+    "output_tokens_details": {
+      "reasoning_tokens": 768
+    },
+    "total_tokens": 2828
+  },
+  "returned_model": "gpt-5-mini"
+}

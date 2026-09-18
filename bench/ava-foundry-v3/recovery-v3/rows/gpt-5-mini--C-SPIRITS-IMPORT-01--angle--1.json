@@ -1,0 +1,182 @@
+{
+  "id": "gpt-5-mini--C-SPIRITS-IMPORT-01--angle--1",
+  "operator": "AVA-v3",
+  "model": "gpt-5-mini",
+  "engine": "gpt-5-mini",
+  "fixture_id": "C-SPIRITS-IMPORT-01",
+  "repeat": 1,
+  "condition": "angle",
+  "route": "Azure Foundry responses",
+  "tier": "vision",
+  "ok": true,
+  "extracted": {
+    "brand_name": "Cordon Gris",
+    "class_type": "BLENDED SCOTCH WHISKY",
+    "alcohol_content": "43% ALC/VOL (86 PROOF)",
+    "net_contents": "700 mL",
+    "bottler_info": "Imported by Northgate Imports Ltd., Boston, Massachusetts",
+    "country_of_origin": "PRODUCT OF SCOTLAND",
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 0.99,
+      "class_type": 0.99,
+      "alcohol_content": 0.98,
+      "net_contents": 0.99,
+      "bottler_info": 0.94,
+      "country_of_origin": 0.98,
+      "government_warning_heading": 0.99,
+      "government_warning_body": 0.95,
+      "government_warning_heading_all_caps": 0.99,
+      "government_warning_heading_bold": 0.95,
+      "government_warning_body_bold": 0.9
+    }
+  },
+  "error_class": null,
+  "cost_usd": 0.00312525,
+  "request_sha256": "5d0c0d2c4358fe1fe0c04f22e464d1acce3d138f041c1ceaf9e5de1f4cd8091f",
+  "image_sha256": "1625c15054c1a1f4fb83c0f1d5d3cf50490f8891ae6adb94e53ad9657b1a7625",
+  "transport": "responses",
+  "started_at": "2026-09-18T16:14:25.043651+00:00",
+  "reserved_usd": 0.2949584,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-SPIRITS-IMPORT-01__angle.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "68ddd657-63de-413c-9a54-19e19efbd007",
+  "latency_s": 14.283012120984495,
+  "response_sha256": "51bc0f216786749f8953975e473226c0919aad349679cbae18f6461697a1e3be",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-5-mini--C-SPIRITS-IMPORT-01--angle--1.json",
+  "tokens_in": 1717,
+  "tokens_out": 1348,
+  "pages_processed": null,
+  "usage": {
+    "input_tokens": 1717,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1348,
+    "output_tokens_details": {
+      "reasoning_tokens": 1024
+    },
+    "total_tokens": 3065
+  },
+  "returned_model": "gpt-5-mini",
+  "raw_text": "{\n  \"brand_name\": \"Cordon Gris\",\n  \"class_type\": \"BLENDED SCOTCH WHISKY\",\n  \"alcohol_content\": \"43% ALC/VOL (86 PROOF)\",\n  \"net_contents\": \"700 mL\",\n  \"bottler_info\": \"Imported by Northgate Imports Ltd., Boston, Massachusetts\",\n  \"country_of_origin\": \"PRODUCT OF SCOTLAND\",\n  \"government_warning_heading\": \"GOVERNMENT WARNING:\",\n  \"government_warning_body\": \"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\n  \"government_warning_heading_all_caps\": true,\n  \"government_warning_heading_bold\": true,\n  \"government_warning_body_bold\": false,\n  \"confidence\": {\n    \"brand_name\": 0.99,\n    \"class_type\": 0.99,\n    \"alcohol_content\": 0.98,\n    \"net_contents\": 0.99,\n    \"bottler_info\": 0.94,\n    \"country_of_origin\": 0.98,\n    \"government_warning_heading\": 0.99,\n    \"government_warning_body\": 0.95,\n    \"government_warning_heading_all_caps\": 0.99,\n    \"government_warning_heading_bold\": 0.95,\n    \"government_warning_body_bold\": 0.90\n  }\n}",
+  "finish_reason": "completed",
+  "validation_errors": {},
+  "category": "clean",
+  "commodity": "spirits",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "match",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "match",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "match",
+    "government_warning": "match"
+  },
+  "classes": {
+    "brand_name": "correct",
+    "class_type": "correct",
+    "alcohol_content": "correct",
+    "net_contents": "correct",
+    "bottler_info": "correct",
+    "country_of_origin": "correct",
+    "government_warning": "correct"
+  },
+  "reasons": {
+    "brand_name": "normalized equivalence",
+    "class_type": "normalized equivalence",
+    "alcohol_content": "43.0 == 43.0",
+    "net_contents": "700.00mL ~= 700.00mL",
+    "bottler_info": "full normalized bottler identity and address",
+    "country_of_origin": "declared country present in origin statement",
+    "government_warning": "exact statutory wording and formatting"
+  },
+  "extraction_correct": {
+    "brand_name": true,
+    "class_type": true,
+    "alcohol_content": true,
+    "net_contents": true,
+    "bottler_info": true,
+    "country_of_origin": true,
+    "government_warning": true
+  },
+  "visibility": {
+    "brand_name": {
+      "visibility": "visible",
+      "expect_referral_ok": false,
+      "basis": "Pre-inference contact-sheet inspection; native representative/degraded/typography QA; same fixed layout. No prediction-based annotation.",
+      "annotator": "AVA pre-inference"
+    },
+    "class_type": {
+      "visibility": "visible",
+      "expect_referral_ok": false,
+      "basis": "Pre-inference contact-sheet inspection; native representative/degraded/typography QA; same fixed layout. No prediction-based annotation.",
+      "annotator": "AVA pre-inference"
+    },
+    "alcohol_content": {
+      "visibility": "visible",
+      "expect_referral_ok": false,
+      "basis": "Pre-inference contact-sheet inspection; native representative/degraded/typography QA; same fixed layout. No prediction-based annotation.",
+      "annotator": "AVA pre-inference"
+    },
+    "net_contents": {
+      "visibility": "visible",
+      "expect_referral_ok": false,
+      "basis": "Pre-inference contact-sheet inspection; native representative/degraded/typography QA; same fixed layout. No prediction-based annotation.",
+      "annotator": "AVA pre-inference"
+    },
+    "bottler_info": {
+      "visibility": "visible",
+      "expect_referral_ok": false,
+      "basis": "Pre-inference contact-sheet inspection; native representative/degraded/typography QA; same fixed layout. No prediction-based annotation.",
+      "annotator": "AVA pre-inference"
+    },
+    "country_of_origin": {
+      "visibility": "visible",
+      "expect_referral_ok": false,
+      "basis": "Pre-inference contact-sheet inspection; native representative/degraded/typography QA; same fixed layout. No prediction-based annotation.",
+      "annotator": "AVA pre-inference"
+    },
+    "government_warning": {
+      "visibility": "visible",
+      "expect_referral_ok": false,
+      "basis": "Pre-inference contact-sheet inspection; native representative/degraded/typography QA; same fixed layout. No prediction-based annotation.",
+      "annotator": "AVA pre-inference"
+    }
+  },
+  "bottle_outcomes": {
+    "brand_name": "visual-correct",
+    "class_type": "visual-correct",
+    "alcohol_content": "visual-correct",
+    "net_contents": "visual-correct",
+    "bottler_info": "visual-correct",
+    "country_of_origin": "visual-correct",
+    "government_warning": "visual-correct"
+  },
+  "pipeline_seconds": 14.30833444709424
+}

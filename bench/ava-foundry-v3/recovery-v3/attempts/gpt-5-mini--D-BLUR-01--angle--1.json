@@ -1,0 +1,44 @@
+{
+  "id": "gpt-5-mini--D-BLUR-01--angle--1",
+  "operator": "AVA-v3",
+  "model": "gpt-5-mini",
+  "engine": "gpt-5-mini",
+  "fixture_id": "D-BLUR-01",
+  "repeat": 1,
+  "condition": "angle",
+  "route": "Azure Foundry responses",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.00340325,
+  "request_sha256": "e188ff55e7efe890820d26b0918809ba351a42548f2ea0990fe82bc4e3872fcd",
+  "image_sha256": "1cc770bb040445d3ed39219c840e0d8b40e5040b8a66d27a228de044e6d1f417",
+  "transport": "responses",
+  "started_at": "2026-09-18T16:49:46.102660+00:00",
+  "reserved_usd": 0.2949584,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/D-BLUR-01__angle.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "b59da4a1-ed3e-4b16-9710-9bb7e59afb5e",
+  "latency_s": 14.048663390916772,
+  "response_sha256": "47599ba4b5b8809bbe5d296e7e992c00075d7c74f65dc117894936065bc739af",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-5-mini--D-BLUR-01--angle--1.json",
+  "tokens_in": 1717,
+  "tokens_out": 1487,
+  "pages_processed": null,
+  "usage": {
+    "input_tokens": 1717,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1487,
+    "output_tokens_details": {
+      "reasoning_tokens": 1152
+    },
+    "total_tokens": 3204
+  },
+  "returned_model": "gpt-5-mini"
+}

@@ -1,11 +1,10 @@
 # THREAT_MODEL.md — TTB Label Verification Prototype (Skeleton)
 
-This is a planning-stage threat model skeleton. It identifies the primary
-threat categories the prototype must defend against and the intended
-mitigation strategy for each, per `PLAN.md`. Detailed implementation-level
-threat modeling (STRIDE tables, specific attack trees) is deferred to the
-build stage; this document establishes the categories and mitigation intent
-that implementation must satisfy.
+This threat model defines requirements, not verified application controls.
+Stage 2 has implemented an offline benchmark harness and recorded synthetic
+engine evidence; the planned application and deployment controls remain
+unverified. Detailed implementation-level threat modeling is deferred to
+the application build; these gates must be satisfied before deployment.
 
 ## Scope
 
@@ -120,14 +119,12 @@ making a promise it cannot keep under real Vercel concurrency — this must
 not be asserted as a global spend bound anywhere in this document or the
 app.
 
-**Honest prototype-scope enforcement:** given the above, the prototype's
-spend bounding is layered across what *is* achievable per-instance plus
-what is *actually global* (provider-side and platform-side), rather than
-pretending an in-memory limiter achieves global bounding:
+**Required prototype controls (not yet verified):** layer per-request and
+per-instance defenses with a proven global bound, rather than pretending
+an in-memory limiter achieves global bounding:
 
-1. **Hard per-request limits, enforced in every instance.** These are true
-   regardless of instance count because they bound the cost of each
-   individual request, not the aggregate across instances:
+1. **Hard per-request limits, to be enforced in every instance.** These
+   limit each request's resource use, not aggregate spend across instances:
    - **Max image size** (bytes and/or pixel dimensions, per the Upload
      Hardening limits in `PLAN.md`), checked and enforced *before* the
      image is ever sent to the extraction provider — oversized images are
@@ -135,82 +132,58 @@ pretending an in-memory limiter achieves global bounding:
    - **Max images per request** (a hard cap on how many images a single
      request/batch item can bundle), so one request cannot itself
      multiply into many provider calls.
-   - **Request timeout** on the provider call, so a single request cannot
-     hang and accumulate cost or hold provider concurrency indefinitely.
-   - These per-request limits are real per-instance mitigations (every
-     instance independently enforces them on every request it handles),
-     but they bound *per-request* cost, not *aggregate* spend across
-     however many instances Vercel happens to be running.
-2. **Provider-side spend cap, set at the API account level (the true
-   global bound).** Because per-instance in-memory limiting cannot see
-   across instances, the actual mechanism that bounds *total* spend is
-   configured on the provider account itself — a hard monthly/daily
-   dollar or request-volume cap set in the extraction provider's billing
-   console, which applies globally to the API key regardless of how many
-   Vercel instances are calling it. This is the control that is actually
-   authoritative for "total spend cannot exceed X," and it is required,
-   not optional, for the deployed prototype.
+   - **Request timeout** bounds how long the application waits. A timeout
+     does not prove provider cancellation or zero billing; the provider may
+     continue processing and charge for a timed-out call.
+   - These controls must be tested in the application. Input limits and
+     timeouts alone are not proof of a maximum bill: a quota-based global
+     spending bound also needs a justified worst-case cost per admitted
+     call, including output and retries.
+2. **Verified global spend bound (required, not yet met).** A provider-side
+   account/key cap is acceptable only if verified to enforce a global stop
+   across all instances and routes using that credential. Alternatively,
+   a tested shared atomic quota or another proven global bound may satisfy
+   the gate. A request quota must also bound cost per admitted request,
+   including retries and in-flight work. Provider hard-cap availability
+   and behavior are not assumed; budget alerts are not enforcement.
 3. **Vercel's own concurrency/invocation limits (optional, secondary).**
    Vercel's platform-level function concurrency and invocation-count
    controls (plan-level or project-level, as available) can be configured
    as an additional coarse backstop on total invocation volume. This is
    documented as optional because it is a platform knob, not something
    the application code enforces, but it stacks usefully with the
-   provider-side cap above.
+   verified global bound above; availability/configuration is unverified.
 4. **Per-instance in-memory rate limiting / concurrency cap and per-IP
-   rate limiting remain in place as defense-in-depth**, and they do provide
-   real value — they reduce the *rate* at which any single instance can
+   rate limiting are required defense-in-depth**, not asserted as already
+   implemented. Once enforced, they reduce the rate at which an instance can
    burn through the per-request cost, and in low/moderate-traffic
    prototype conditions where Vercel is not aggressively scaling out
    instances, they meaningfully throttle abuse. But they are explicitly
    **not** the mechanism relied upon to guarantee a global spend ceiling —
-   that guarantee comes from control #2.
+   any such guarantee must come from verified control #2.
 
-**Pre-deployment verification (required gate, not assumed):** Before public
-access to the deployed prototype is enabled, the hard-cap behavior described
-in control #2 above must be **verified, not assumed** from marketing copy or
-a budget-alert email. Concretely:
-- Confirm, by direct inspection of the chosen provider's account/billing
-  console, that the spend/request cap setting actually **stops requests**
-  once the limit is reached (a true hard limit) — not merely a threshold
-  that triggers a notification email while the API keeps accepting and
-  billing calls.
-- **Document the observed behavior** before go-live: the provider name, the
-  exact console setting/feature name used, and a one-line description of
-  the enforcement behavior actually observed (e.g., "Provider X usage
-  limits — Settings > Billing > Hard limit — requests return an error/429
-  once the monthly hard limit is reached, verified by test call after
-  setting a low temporary limit").
-- **If the chosen provider only offers alert-style notifications (no true
-  request-stopping hard cap), this deployment gate FAILS** until one of the
-  following is true:
-  (a) a different provider offering an actual hard spend/request cap is
-      selected instead, **or**
-  (b) a server-side **global kill switch** is implemented and tested — an
-      environment-variable-driven flag checked on every request (e.g., an
-      `EXTRACTION_DISABLED` flag that short-circuits before any provider
-      call is made) — **plus** a server-enforced **daily-quota environment
-      cap** (a hard numeric ceiling on extraction calls/day, read from an
-      env var, enforced per-instance as a floor-level backstop) — both
-      implemented and exercised by a test before the gate is considered
-      passed.
-- This verification is a **go/no-go gate** for enabling public access, not
-  an optional nicety — an alert-only provider configuration must never be
-  treated as equivalent to a hard cap anywhere in this document, the code,
-  or deployment sign-off. (See `ACCEPTANCE_CHECKLIST.md` Delivery Gate for
-  the corresponding checklist item.)
+**Pre-deployment verification (required gate, NOT MET):** Public
+provider-backed access must remain disabled until control #2 is verified.
+Record the provider/account/key scope, configured ceiling and period,
+exact enforcement mechanism, and observed rejection behavior at the limit.
+For a shared atomic quota, test concurrent instances, resets/restarts,
+retries, and fail-closed behavior when quota state is unavailable. Document
+how in-flight requests, billing lag, and maximum per-request cost fit within
+the bound. Console inspection or an alert email alone is not a stop test.
 
-**Production upgrade path (explicitly not in the prototype):**
-**Distributed rate limiting backed by a shared store** (e.g.,
-Redis/Upstash, or a database-backed counter) that all instances read/write
-to, giving a true cross-instance request-rate and concurrency bound at the
-application layer, is the correct production-grade solution to the
-multi-instance problem. It is explicitly **not implemented in this
-prototype** — the prototype relies on per-request limits (control #1) plus
-the provider-side spend cap (control #2) as its honest, achievable
-spend-bounding story, and this document states plainly that distributed
-rate limiting is deferred to a production hardening stage, not silently
-assumed to already exist via the in-memory limiter.
+**A manual environment-variable kill switch plus a per-instance daily
+quota does NOT pass this gate**, even if each works in isolation. The
+quota resets or multiplies across instances; a manual switch only stops
+future calls after intervention/propagation. Both remain defense in depth,
+not a proven global spending ceiling. If the provider offers only alerts,
+select and verify a hard-cap provider or implement and test a shared atomic
+quota/other proven bound; otherwise public provider-backed access stays off.
+See `ACCEPTANCE_CHECKLIST.md` for the corresponding open delivery gate.
+
+**Shared-store option (not implemented or verified):** A distributed quota
+could provide cross-instance enforcement, but a rate limiter by itself is
+not a total-spend cap. This document requires proof of the actual bound;
+it does not assert a provider cap or shared quota already exists.
 
 **Additional mitigations (per PLAN.md):**
 - Bounded batch queue design (browser-side) prevents a single batch
@@ -260,57 +233,34 @@ that dumps request bodies), or captured in error-tracking tooling — any of
 which would create an unintended, un-governed copy of what may be
 sensitive/proprietary label artwork or an applicant's business data.
 
-**Concrete image lifecycle policy (required, absolute in the main text —
-nothing is stored, no exceptions):**
-- **Processed in-memory only.** From the moment an image is received by
-  the server to the moment the response is returned, the image bytes exist
-  only in server process memory (buffers), never written to a file on disk
-  and never written to any blob/object storage service (no S3-equivalent,
-  no Vercel Blob, no temp-file fallback for "large" uploads).
-- **Discarded after response.** Once the request/response cycle completes
-  (successfully or with an error), the in-memory image buffer is not
-  retained — no in-process cache, no session store, no queue that persists
-  the raw bytes beyond the single request's lifetime. This matches the
-  Stateless, in-memory processing principle in `PLAN.md`.
-- **Never written to durable disk or blob storage, under any code path** —
-  including error/exception paths (a crash or thrown error handling an
-  image must not fall back to writing the image to disk for
-  debugging/recovery purposes). Nothing is stored, full stop — there is no
-  exception language here for "temporary files" or "extracted-data logs";
-  the one unavoidable technical caveat (transient OS-level buffers used
-  internally by external libraries) is called out precisely, separately,
-  below, rather than blended into this policy as a soft exception.
-- **No logging of image bytes or extracted label text.** Application logs
-  never contain raw image data, base64-encoded image content, any other
-  representation of pixel data, or the full extracted label text content —
-  not in debug logs, not in error logs, not in request-body logging
-  middleware (which must explicitly exclude/redact the image field and the
-  raw extracted-text field if any general-purpose request logging is
-  used).
+**Required application lifecycle policy — buffer-only, not yet verified:**
+- Uploaded images, applicant data, extracted values, and results must be
+  processed in memory for the request only. No application-controlled
+  disk, temp-file, database, blob storage, persistent queue, or content
+  cache is permitted, including on error/exception paths.
+- After success or failure, release request buffers and do not retain
+  content in application caches or sessions. This is a lifecycle
+  requirement, not a claim of physical memory erasure.
+- Test the chosen multipart parser, image decoder/re-encoder, framework,
+  and provider SDK in their actual configuration for buffer-only operation,
+  including oversized/error paths. Library-created temp files are not an
+  allowed exception. If buffer-only operation cannot be achieved, **stop
+  the deployment gate pending an explicitly disclosed and approved
+  alternative**; do not describe that implementation as memory-only.
+- Application logs must exclude image bytes/base64, extracted label text,
+  and applicant-declared values, including debug logs, provider error
+  bodies, and request-body logging middleware.
 
-**Transient OS-level buffers (the one unavoidable technical caveat,
-precisely scoped, not a storage exception):** some underlying libraries
-(e.g., a native image re-encoding library, or the OS/runtime's own
-network/multipart-parsing stack) may, as an implementation detail outside
-the application's direct control, touch an OS-managed temp buffer or
-ephemeral temp-file path transiently during processing. This is bounded
-precisely:
-- Only whichever library/runtime internals require it may touch disk this
-  way — application code itself never deliberately writes image bytes to
-  disk.
-- Any such transient buffer/file is **deleted before the response
-  completes** — it does not outlive the single request, is never in a
-  durable or blob-storage location, and is never read back by application
-  logic for any purpose beyond the original processing step.
-- This is verified against the specific re-encoding library selected at
-  build time (see Residual risk below); if the chosen library is confirmed
-  to operate entirely on in-memory buffers with no internal temp file, this
-  caveat does not apply at all and the policy is fully memory-only with
-  zero disk touch.
+**Scope:** Synthetic offline benchmark fixtures, raw outputs, and derived
+results are intentionally stored on disk for reproducibility. They are
+not production uploads and are excluded from this application policy.
+Their existence does not verify the planned application's retention
+behavior. Browser, hosting-platform, and external-provider copies are
+separate boundaries, addressed below.
 
-**What DOES appear in logs (field-level verdict metadata ONLY — exact
-field list; no image bytes, no extracted full text, ever):** logs contain
-operational and verdict metadata limited to exactly these fields:
+**Permitted application log metadata (not verified implementation):**
+Operational/verdict metadata may be logged only from this allowlist;
+this is not permission to retain full results or input/extracted values:
 - Request timestamp
 - Source IP (for rate-limit enforcement)
 - File size in bytes
@@ -329,61 +279,40 @@ operational and verdict metadata limited to exactly these fields:
   malformed/schema-violating and routed to needs-review (per the
   Uncertainty Invariant in `PLAN.md`)
 
-Explicitly excluded from logs, with no exception: image bytes, any base64
+Explicitly excluded from application logs: image bytes, any base64
 dump, the raw extracted label text (brand text, warning text, etc. as read
 from the image), and the raw applicant-declared field values. Only the
-verdict outcome and the metadata list above are ever logged.
+verdict outcome and the metadata list above may be logged.
 
 **Mitigations:**
 - Code review / lint rule at build time to catch accidental `console.log`
   or logger calls that include the raw request body or image buffer.
 - Any error-tracking/APM integration (if added) is configured to scrub or
   exclude file upload fields from captured request context.
-- The in-memory-only, never-persisted design (per `PLAN.md`) is itself the
-  primary mitigation — there is no disk/blob write path for image bytes to
-  accidentally end up in, by construction, not just by policy.
+- Verify that the implemented application and selected libraries have no
+  content disk/blob write path; a design requirement is not proof that
+  this mitigation already exists.
 
-**Residual risk to document at build time:** whether any third-party image
-processing or extraction-provider SDK internally writes temp files as an
-implementation detail outside the application's direct control (needs to be
-verified against the specific library chosen), and confirmation that the
-hosting platform (Vercel) does not itself persist request bodies in a way
-that conflicts with this policy.
-
-**Provider Data Retention (the external dimension — not covered by the
-application's own no-storage policy above):** the application-controlled
-no-storage policy above governs only what *this application* writes to
-storage it controls. It does **not**, and cannot, govern what happens to an
-uploaded image after it is transmitted to the external vision extraction
-provider for processing — that is a separate, external copy governed by the
-provider's own policies, not this application's code.
-- **Uploaded images ARE transmitted to the external vision API.**
-  Extraction requires sending image bytes to an external provider's API;
-  this is an unavoidable external transmission, not an application storage
-  decision, and it must be stated plainly rather than obscured by the
-  in-app "nothing is stored" language above.
-- **The provider's retention policy — not this application's policy —
-  governs that transmitted copy.** Once the image leaves the application's
-  process boundary as part of an API call, how long the provider retains
-  it, whether it is used for model training, and whether provider-side
-  logs/caches capture it are entirely up to the provider's own data
-  handling terms, independent of anything documented in this file.
-- **Deployment documentation must cite the chosen provider's stated
-  retention/training-use policy by name**, before go-live — including
-  whether the provider offers a zero-data-retention (ZDR) option or
-  equivalent, and whether that option is selected for this deployment.
-  This citation is a required deployment artifact, not optional
-  background reading.
-- **This is disclosed in `README.md` as a known limitation** for a
-  production federal deployment: label images (which may contain
-  proprietary or pre-market-sensitive artwork) are sent to an external
-  commercial API subject to that vendor's retention/training terms unless
-  a zero-data-retention configuration is confirmed. On-tenant Azure/
-  Microsoft Foundry hosting (already documented in `PLAN.md` as the
-  firewall-compatible production path) resolves this concern for a
-  production federal deployment by keeping the vision call within the
-  tenant's own governed boundary — this is the existing architectural
-  answer to this exact risk, cross-referenced here rather than restated.
+**Browser, platform, and provider retention — separate, unverified gates:**
+- Browser-held files, previews, caches, and result state are outside the
+  server's buffer-only claim. Document and test their actual lifecycle;
+  do not promise that the browser retains nothing.
+- Verify hosting-platform request-body capture, logs, caches, diagnostics,
+  and retention against actual configuration and documented terms. The
+  application policy does not establish what Vercel or its tooling retains.
+- Provider-backed extraction transmits image bytes externally. For routes
+  through **OpenRouter and an upstream model provider**, document both
+  parties' actual retention/training-use terms and selected routing/privacy
+  settings, including any fallback providers. A routing intermediary's
+  policy alone does not cover the upstream copy.
+- Before non-synthetic use, cite the actual services' policy names/links,
+  applicable configurations, retention periods, training use, logging, and
+  any ZDR option and whether it is enabled. These facts remain unverified;
+  **synthetic-only use until verified**. No current terms are asserted here.
+- Azure/Microsoft Foundry is a possible governed deployment path, not an
+  automatic elimination of external retention concerns. Its actual model,
+  hosting boundary, logging, and contractual terms also need verification.
+  See the disclosure in `README.md`.
 
 ## Explicitly Out of Scope for This Threat Model (Prototype Stage)
 
@@ -396,8 +325,8 @@ provider's own policies, not this application's code.
 
 ## Status
 
-This is a **skeleton document** produced during the planning stage. It
-establishes the threat categories and intended mitigation strategy per
-`PLAN.md`; it does not yet reflect an implemented, tested system. It should
-be revisited and filled in with implementation-specific detail (library
-choices, exact limits, test coverage) once the build stage begins.
+The Stage 2 benchmark is not a deployed application security test. This
+document specifies required controls; global spending enforcement,
+buffer-only processing, and external retention verification remain open.
+Public provider-backed access must remain disabled until the spending
+gate is met; non-synthetic data must not be used until retention is verified.

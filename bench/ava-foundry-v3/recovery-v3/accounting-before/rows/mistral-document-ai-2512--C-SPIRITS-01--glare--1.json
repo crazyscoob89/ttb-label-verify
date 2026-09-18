@@ -1,0 +1,175 @@
+{
+  "id": "mistral-document-ai-2512--C-SPIRITS-01--glare--1",
+  "operator": "AVA-v3",
+  "model": "mistral-document-ai-2512",
+  "engine": "mistral-document-ai-2512",
+  "fixture_id": "C-SPIRITS-01",
+  "repeat": 1,
+  "condition": "glare",
+  "route": "Azure Foundry ocr",
+  "tier": "OCR separate",
+  "ok": true,
+  "extracted": {
+    "brand_name": "Old Sproofer",
+    "class_type": null,
+    "alcohol_content": "40% ALUMINUM PROOF)",
+    "net_contents": null,
+    "bottler_info": "Distilled and boiled Sproofer or Distilling Co.,",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "General, women should be prepared to prepare their beverages during pregnancy because of their high risk of alcoholism. (2) Consumption of alcohol beverages in the past 12 months is not a corollar or problem.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": null,
+    "government_warning_body_bold": null,
+    "confidence": {
+      "brand_name": 1.0,
+      "class_type": 0.0,
+      "alcohol_content": 0.8,
+      "net_contents": 0.0,
+      "bottler_info": 0.7,
+      "country_of_origin": 0.0,
+      "government_warning_heading": 1.0,
+      "government_warning_body": 1.0,
+      "government_warning_heading_all_caps": 1.0,
+      "government_warning_heading_bold": 0.0,
+      "government_warning_body_bold": 0.0
+    }
+  },
+  "error_class": null,
+  "cost_usd": 0.0,
+  "request_sha256": "7b7487f5eb476cdef4bfb06f3b0182b6d8be6a499cef6602d32567c8abfc7063",
+  "image_sha256": "8bc92f112a4a536bd3c46a13dec97b0fe3833e92e9d8d63cd61855951251aa03",
+  "transport": "ocr",
+  "started_at": "2026-09-18T16:03:25.722007+00:00",
+  "reserved_usd": 0.05,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-SPIRITS-01__glare.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "3c58f942-ad92-416e-9ea9-d1e34a68c9f6",
+  "latency_s": 3.772010861081071,
+  "response_sha256": "d94be44998c255c08f9d7293e07fb3e9a359e8a98ed8e9435448f3fc4e1b3874",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--C-SPIRITS-01--glare--1.json",
+  "tokens_in": null,
+  "tokens_out": null,
+  "pages_processed": 0,
+  "usage": {
+    "pages_processed": 0,
+    "doc_size_bytes": 654016,
+    "pages_processed_annotation": 1
+  },
+  "returned_model": "mistral-document-ai-2512",
+  "raw_text": "{\n  \"brand_name\": \"Old Sproofer\",\n  \"class_type\": null,\n  \"alcohol_content\": \"40% ALUMINUM PROOF)\",\n  \"net_contents\": null,\n  \"bottler_info\": \"Distilled and boiled Sproofer or Distilling Co.,\",\n  \"country_of_origin\": null,\n  \"government_warning_heading\": \"GOVERNMENT WARNING:\",\n  \"government_warning_body\": \"General, women should be prepared to prepare their beverages during pregnancy because of their high risk of alcoholism. (2) Consumption of alcohol beverages in the past 12 months is not a corollar or problem.\",\n  \"government_warning_heading_all_caps\": true,\n  \"government_warning_heading_bold\": null,\n  \"government_warning_body_bold\": null,\n  \"confidence\": {\n    \"brand_name\": 1.0,\n    \"class_type\": 0.0,\n    \"alcohol_content\": 0.8,\n    \"net_contents\": 0.0,\n    \"bottler_info\": 0.7,\n    \"country_of_origin\": 0.0,\n    \"government_warning_heading\": 1.0,\n    \"government_warning_body\": 1.0,\n    \"government_warning_heading_all_caps\": 1.0,\n    \"government_warning_heading_bold\": 0.0,\n    \"government_warning_body_bold\": 0.0\n  }\n}",
+  "finish_reason": "completed",
+  "validation_errors": {},
+  "category": "clean",
+  "commodity": "spirits",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "mismatch",
+    "class_type": "needs-review",
+    "alcohol_content": "match",
+    "net_contents": "needs-review",
+    "bottler_info": "needs-review",
+    "country_of_origin": "not-applicable",
+    "government_warning": "needs-review"
+  },
+  "classes": {
+    "brand_name": "false_mismatch",
+    "class_type": "referral",
+    "alcohol_content": "correct",
+    "net_contents": "referral",
+    "bottler_info": "referral",
+    "country_of_origin": "correct",
+    "government_warning": "referral"
+  },
+  "reasons": {
+    "brand_name": "'Old Sproofer' vs declared 'Old Harbor'",
+    "class_type": "confidence 0.0 below threshold 0.75",
+    "alcohol_content": "40.0 == 40.0",
+    "net_contents": "confidence 0.0 below threshold 0.75",
+    "bottler_info": "confidence 0.7 below threshold 0.75",
+    "country_of_origin": "domestic product",
+    "government_warning": "confidence 0.0 below threshold 0.75"
+  },
+  "extraction_correct": {
+    "brand_name": false,
+    "class_type": false,
+    "alcohol_content": false,
+    "net_contents": false,
+    "bottler_info": false,
+    "country_of_origin": true,
+    "government_warning": false
+  },
+  "visibility": {
+    "brand_name": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "class_type": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "alcohol_content": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "net_contents": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "bottler_info": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "country_of_origin": {
+      "visibility": "absent",
+      "expect_referral_ok": true,
+      "basis": "No printed value in source",
+      "annotator": "AVA pre-inference"
+    },
+    "government_warning": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    }
+  },
+  "bottle_outcomes": {
+    "brand_name": "dangerous-error",
+    "class_type": "safe-referral",
+    "alcohol_content": "dangerous-error",
+    "net_contents": "safe-referral",
+    "bottler_info": "safe-referral",
+    "country_of_origin": "correct-absence-not-applicable",
+    "government_warning": "safe-referral"
+  },
+  "pipeline_seconds": 3.799599763005972
+}

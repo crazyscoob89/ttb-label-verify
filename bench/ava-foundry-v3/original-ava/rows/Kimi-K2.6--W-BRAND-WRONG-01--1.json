@@ -1,0 +1,120 @@
+{
+  "engine": "Kimi-K2.6",
+  "model": "Kimi-K2.6",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "repeat": 1,
+  "ok": true,
+  "extracted": {
+    "brand_name": "Old Harbour",
+    "class_type": "VODKA",
+    "alcohol_content": "40% ALC/VOL (80 PROOF)",
+    "net_contents": "750 mL",
+    "bottler_info": "Distilled and bottled by Old Harbour Distilling Co., Portland, Maine",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 1.0,
+      "class_type": 1.0,
+      "alcohol_content": 1.0,
+      "net_contents": 1.0,
+      "bottler_info": 1.0,
+      "country_of_origin": 1.0,
+      "government_warning_heading": 1.0,
+      "government_warning_body": 1.0,
+      "government_warning_heading_all_caps": 1.0,
+      "government_warning_heading_bold": 1.0,
+      "government_warning_body_bold": 1.0
+    }
+  },
+  "error_class": null,
+  "raw_text": "{\"brand_name\":\"Old Harbour\",\"class_type\":\"VODKA\",\"alcohol_content\":\"40% ALC/VOL (80 PROOF)\",\"net_contents\":\"750 mL\",\"bottler_info\":\"Distilled and bottled by Old Harbour Distilling Co., Portland, Maine\",\"country_of_origin\":null,\"government_warning_heading\":\"GOVERNMENT WARNING:\",\"government_warning_body\":\"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\"government_warning_heading_all_caps\":true,\"government_warning_heading_bold\":true,\"government_warning_body_bold\":false,\"confidence\":{\"brand_name\":1.0,\"class_type\":1.0,\"alcohol_content\":1.0,\"net_contents\":1.0,\"bottler_info\":1.0,\"country_of_origin\":1.0,\"government_warning_heading\":1.0,\"government_warning_body\":1.0,\"government_warning_heading_all_caps\":1.0,\"government_warning_heading_bold\":1.0,\"government_warning_body_bold\":1.0}}",
+  "tokens_in": 2658,
+  "tokens_out": 1051,
+  "started_at": "2026-09-18T14:40:19.016782+00:00",
+  "request_sha256": "6ac8fa743716868f4dcade8f34fbb818842292c1d703e92293ebf52e7bc69a7a",
+  "image_sha256": "27d358e7cc919454f3388fb73d4868878b59f7b1b6433ee2bce514e0e670ca9d",
+  "transport": "chat",
+  "cost_usd": null,
+  "http_status": 200,
+  "response_bytes": 4959,
+  "request_id": "3535b7a9-0a9a-42d2-ac83-ed0256d53743",
+  "latency_s": 7.792283,
+  "finish_reason": "stop",
+  "returned_model": "Kimi-K2.6",
+  "usage": {
+    "prompt_tokens": 2658,
+    "completion_tokens": 1051,
+    "total_tokens": 3709,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 704,
+      "image_tokens": 1944
+    }
+  },
+  "validation_errors": {},
+  "guard_charge_usd": 0.0087043,
+  "unknown_charge_reserved_usd": 0,
+  "fixture_id": "W-BRAND-WRONG-01",
+  "category": "wrong-answer",
+  "commodity": "spirits",
+  "truth": {
+    "brand_name": "mismatch",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "mismatch",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "mismatch",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "classes": {
+    "brand_name": "correct",
+    "class_type": "correct",
+    "alcohol_content": "correct",
+    "net_contents": "correct",
+    "bottler_info": "correct",
+    "country_of_origin": "correct",
+    "government_warning": "correct"
+  },
+  "reasons": {
+    "brand_name": "'Old Harbour' vs declared 'Old Harbor'",
+    "class_type": "normalized equivalence",
+    "alcohol_content": "40.0 == 40.0",
+    "net_contents": "750.00mL ~= 750.00mL",
+    "bottler_info": "full normalized bottler identity and address",
+    "country_of_origin": "domestic product",
+    "government_warning": "exact statutory wording and formatting"
+  },
+  "extraction_correct": {
+    "brand_name": true,
+    "class_type": true,
+    "alcohol_content": true,
+    "net_contents": true,
+    "bottler_info": true,
+    "country_of_origin": true,
+    "government_warning": true
+  },
+  "pipeline_seconds": 7.809762
+}

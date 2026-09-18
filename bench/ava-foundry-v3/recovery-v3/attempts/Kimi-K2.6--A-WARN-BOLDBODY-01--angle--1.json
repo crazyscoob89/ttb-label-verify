@@ -1,0 +1,42 @@
+{
+  "id": "Kimi-K2.6--A-WARN-BOLDBODY-01--angle--1",
+  "operator": "AVA-v3",
+  "model": "Kimi-K2.6",
+  "engine": "Kimi-K2.6",
+  "fixture_id": "A-WARN-BOLDBODY-01",
+  "repeat": 1,
+  "condition": "angle",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.013091700000000001,
+  "request_sha256": "ac3d719d941666bc819b7f9a67bea898d01fec468158637fcbd4045bc0a53677",
+  "image_sha256": "a270691ac61d272320059bd7d4ab846a829768eb6bb616410552c91d1d90b6e2",
+  "transport": "chat",
+  "started_at": "2026-09-18T16:26:55.629126+00:00",
+  "reserved_usd": 1.10896192,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-WARN-BOLDBODY-01__angle.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "429394a3-a7fb-4f90-9160-02f532d4c4b1",
+  "latency_s": 19.15214747900609,
+  "response_sha256": "1bacac108863947ef1b2709085be501788af9900652e7a617981ef27b0dbe66e",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--A-WARN-BOLDBODY-01--angle--1.json",
+  "tokens_in": 4926,
+  "tokens_out": 2103,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 4926,
+    "completion_tokens": 2103,
+    "total_tokens": 7029,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 704,
+      "image_tokens": 4212
+    }
+  },
+  "returned_model": "Kimi-K2.6"
+}

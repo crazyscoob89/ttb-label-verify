@@ -1,0 +1,176 @@
+{
+  "id": "Mistral-Large-3--C-WINE-01--glare--1",
+  "operator": "AVA-v3",
+  "model": "Mistral-Large-3",
+  "engine": "Mistral-Large-3",
+  "fixture_id": "C-WINE-01",
+  "repeat": 1,
+  "condition": "glare",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": true,
+  "extracted": {
+    "brand_name": "Cedaruff",
+    "class_type": "RED WINE",
+    "alcohol_content": "14% ALC/VOL",
+    "net_contents": "750 ML",
+    "bottler_info": "Produced and bottled by Cedaruff Cellars, Pennsylvania",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 0.95,
+      "class_type": 0.98,
+      "alcohol_content": 0.98,
+      "net_contents": 0.98,
+      "bottler_info": 0.95,
+      "country_of_origin": 1.0,
+      "government_warning_heading": 0.99,
+      "government_warning_body": 0.98,
+      "government_warning_heading_all_caps": 1.0,
+      "government_warning_heading_bold": 1.0,
+      "government_warning_body_bold": 1.0
+    }
+  },
+  "error_class": null,
+  "cost_usd": 0.0019655,
+  "request_sha256": "3daf0d827e152ec0b7a33ffbd0c274179759db1980975273fd4a736a6f44244d",
+  "image_sha256": "be58424d4c2537a60247154ecc533d4eaf46b9213f517a2c24b2bbdcde1df11e",
+  "transport": "chat",
+  "started_at": "2026-09-18T16:05:50.945439+00:00",
+  "reserved_usd": 0.5816668,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-WINE-01__glare.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "0936d7b2-057f-4ccb-adae-fc5b00bfd381",
+  "latency_s": 6.86313175491523,
+  "response_sha256": "bb5a25c97c39fae5773940c227616b89181252f83e2853e0f8eb85a0a5894944",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Mistral-Large-3--C-WINE-01--glare--1.json",
+  "tokens_in": 2878,
+  "tokens_out": 351,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 2878,
+    "completion_tokens": 351,
+    "total_tokens": 3229,
+    "audio_prompt_tokens": 0
+  },
+  "returned_model": "mistral-large-3",
+  "raw_text": "{\n  \"brand_name\": \"Cedaruff\",\n  \"class_type\": \"RED WINE\",\n  \"alcohol_content\": \"14% ALC/VOL\",\n  \"net_contents\": \"750 ML\",\n  \"bottler_info\": \"Produced and bottled by Cedaruff Cellars, Pennsylvania\",\n  \"country_of_origin\": null,\n  \"government_warning_heading\": \"GOVERNMENT WARNING:\",\n  \"government_warning_body\": \"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\n  \"government_warning_heading_all_caps\": true,\n  \"government_warning_heading_bold\": true,\n  \"government_warning_body_bold\": false,\n  \"confidence\": {\n    \"brand_name\": 0.95,\n    \"class_type\": 0.98,\n    \"alcohol_content\": 0.98,\n    \"net_contents\": 0.98,\n    \"bottler_info\": 0.95,\n    \"country_of_origin\": 1.0,\n    \"government_warning_heading\": 0.99,\n    \"government_warning_body\": 0.98,\n    \"government_warning_heading_all_caps\": 1.0,\n    \"government_warning_heading_bold\": 1.0,\n    \"government_warning_body_bold\": 1.0\n  }\n}",
+  "finish_reason": "stop",
+  "validation_errors": {},
+  "category": "clean",
+  "commodity": "wine",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "mismatch",
+    "class_type": "mismatch",
+    "alcohol_content": "mismatch",
+    "net_contents": "match",
+    "bottler_info": "mismatch",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "classes": {
+    "brand_name": "false_mismatch",
+    "class_type": "false_mismatch",
+    "alcohol_content": "false_mismatch",
+    "net_contents": "correct",
+    "bottler_info": "false_mismatch",
+    "country_of_origin": "correct",
+    "government_warning": "correct"
+  },
+  "reasons": {
+    "brand_name": "'Cedaruff' vs declared 'Cedar Bluff'",
+    "class_type": "'RED WINE' vs declared 'Red Table Wine'",
+    "alcohol_content": "label 14.0 vs declared 13.5",
+    "net_contents": "750.00mL ~= 750.00mL",
+    "bottler_info": "'Produced and bottled by Cedaruff Cellars, Pennsylvania' vs declared 'Cedar Bluff Cellars, Healdsburg, California'",
+    "country_of_origin": "domestic product",
+    "government_warning": "exact statutory wording and formatting"
+  },
+  "extraction_correct": {
+    "brand_name": false,
+    "class_type": false,
+    "alcohol_content": false,
+    "net_contents": true,
+    "bottler_info": false,
+    "country_of_origin": true,
+    "government_warning": true
+  },
+  "visibility": {
+    "brand_name": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "class_type": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "alcohol_content": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "net_contents": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "bottler_info": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "country_of_origin": {
+      "visibility": "absent",
+      "expect_referral_ok": true,
+      "basis": "No printed value in source",
+      "annotator": "AVA pre-inference"
+    },
+    "government_warning": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    }
+  },
+  "bottle_outcomes": {
+    "brand_name": "dangerous-error",
+    "class_type": "dangerous-error",
+    "alcohol_content": "dangerous-error",
+    "net_contents": "unverifiable-correct-not-recovery",
+    "bottler_info": "dangerous-error",
+    "country_of_origin": "correct-absence-not-applicable",
+    "government_warning": "unverifiable-correct-not-recovery"
+  },
+  "pipeline_seconds": 6.888054326991551
+}

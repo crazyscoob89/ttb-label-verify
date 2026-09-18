@@ -1,0 +1,175 @@
+{
+  "id": "mistral-document-ai-2512--C-WINE-01--glare--1",
+  "operator": "AVA-v3",
+  "model": "mistral-document-ai-2512",
+  "engine": "mistral-document-ai-2512",
+  "fixture_id": "C-WINE-01",
+  "repeat": 1,
+  "condition": "glare",
+  "route": "Azure Foundry ocr",
+  "tier": "OCR separate",
+  "ok": true,
+  "extracted": {
+    "brand_name": "Co. Huff",
+    "class_type": "RED CROWNE",
+    "alcohol_content": null,
+    "net_contents": null,
+    "bottler_info": null,
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING",
+    "government_warning_body": "General, women should be aware of the dangers of pregnancy because of the dangers of alcoholism. (2) Consumption of alcoholic beverages in the past 12 months to drive a car or other vehicle is prohibited. (3) Consumption of alcoholic beverages in the past 12 months to drive a car or other vehicle is prohibited.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 1.0,
+      "class_type": 1.0,
+      "alcohol_content": 0.0,
+      "net_contents": 0.0,
+      "bottler_info": 0.0,
+      "country_of_origin": 0.0,
+      "government_warning_heading": 1.0,
+      "government_warning_body": 1.0,
+      "government_warning_heading_all_caps": 1.0,
+      "government_warning_heading_bold": 1.0,
+      "government_warning_body_bold": 1.0
+    }
+  },
+  "error_class": null,
+  "cost_usd": 0.0,
+  "request_sha256": "c68f43c95fddd549f2e0c05aec443669403a098eb1600070d56d896e35121eb9",
+  "image_sha256": "be58424d4c2537a60247154ecc533d4eaf46b9213f517a2c24b2bbdcde1df11e",
+  "transport": "ocr",
+  "started_at": "2026-09-18T16:06:36.096539+00:00",
+  "reserved_usd": 0.05,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-WINE-01__glare.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "16f5b54b-1ed1-4821-9792-ccb12cb90a19",
+  "latency_s": 6.334793972899206,
+  "response_sha256": "7e4972b2d3bce73626258ab20ce4ab03d51883121a1d0083f541773cac9dc4c5",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/mistral-document-ai-2512--C-WINE-01--glare--1.json",
+  "tokens_in": null,
+  "tokens_out": null,
+  "pages_processed": 0,
+  "usage": {
+    "pages_processed": 0,
+    "doc_size_bytes": 665673,
+    "pages_processed_annotation": 1
+  },
+  "returned_model": "mistral-document-ai-2512",
+  "raw_text": "{\n  \"brand_name\": \"Co. Huff\",\n  \"class_type\": \"RED CROWNE\",\n  \"alcohol_content\": null,\n  \"net_contents\": null,\n  \"bottler_info\": null,\n  \"country_of_origin\": null,\n  \"government_warning_heading\": \"GOVERNMENT WARNING\",\n  \"government_warning_body\": \"General, women should be aware of the dangers of pregnancy because of the dangers of alcoholism. (2) Consumption of alcoholic beverages in the past 12 months to drive a car or other vehicle is prohibited. (3) Consumption of alcoholic beverages in the past 12 months to drive a car or other vehicle is prohibited.\",\n  \"government_warning_heading_all_caps\": true,\n  \"government_warning_heading_bold\": true,\n  \"government_warning_body_bold\": false,\n  \"confidence\": {\n    \"brand_name\": 1.0,\n    \"class_type\": 1.0,\n    \"alcohol_content\": 0.0,\n    \"net_contents\": 0.0,\n    \"bottler_info\": 0.0,\n    \"country_of_origin\": 0.0,\n    \"government_warning_heading\": 1.0,\n    \"government_warning_body\": 1.0,\n    \"government_warning_heading_all_caps\": 1.0,\n    \"government_warning_heading_bold\": 1.0,\n    \"government_warning_body_bold\": 1.0\n  }\n}",
+  "finish_reason": "completed",
+  "validation_errors": {},
+  "category": "clean",
+  "commodity": "wine",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "mismatch",
+    "class_type": "mismatch",
+    "alcohol_content": "needs-review",
+    "net_contents": "needs-review",
+    "bottler_info": "needs-review",
+    "country_of_origin": "not-applicable",
+    "government_warning": "mismatch"
+  },
+  "classes": {
+    "brand_name": "false_mismatch",
+    "class_type": "false_mismatch",
+    "alcohol_content": "referral",
+    "net_contents": "referral",
+    "bottler_info": "referral",
+    "country_of_origin": "correct",
+    "government_warning": "false_mismatch"
+  },
+  "reasons": {
+    "brand_name": "'Co. Huff' vs declared 'Cedar Bluff'",
+    "class_type": "'RED CROWNE' vs declared 'Red Table Wine'",
+    "alcohol_content": "confidence 0.0 below threshold 0.75",
+    "net_contents": "confidence 0.0 below threshold 0.75",
+    "bottler_info": "confidence 0.0 below threshold 0.75",
+    "country_of_origin": "domestic product",
+    "government_warning": "statutory wording deviation in warning body"
+  },
+  "extraction_correct": {
+    "brand_name": false,
+    "class_type": false,
+    "alcohol_content": false,
+    "net_contents": false,
+    "bottler_info": false,
+    "country_of_origin": true,
+    "government_warning": false
+  },
+  "visibility": {
+    "brand_name": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "class_type": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "alcohol_content": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "net_contents": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "bottler_info": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    },
+    "country_of_origin": {
+      "visibility": "absent",
+      "expect_referral_ok": true,
+      "basis": "No printed value in source",
+      "annotator": "AVA pre-inference"
+    },
+    "government_warning": {
+      "visibility": "obscured",
+      "expect_referral_ok": true,
+      "basis": "Opaque central specular core removes characters",
+      "annotator": "AVA pre-inference"
+    }
+  },
+  "bottle_outcomes": {
+    "brand_name": "dangerous-error",
+    "class_type": "dangerous-error",
+    "alcohol_content": "safe-referral",
+    "net_contents": "safe-referral",
+    "bottler_info": "safe-referral",
+    "country_of_origin": "correct-absence-not-applicable",
+    "government_warning": "dangerous-error"
+  },
+  "pipeline_seconds": 6.357549876905978
+}

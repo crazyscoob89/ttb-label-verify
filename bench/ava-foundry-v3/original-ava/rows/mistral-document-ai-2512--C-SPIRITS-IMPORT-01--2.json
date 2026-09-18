@@ -1,0 +1,81 @@
+{
+  "engine": "mistral-document-ai-2512",
+  "model": "mistral-document-ai-2512",
+  "route": "Azure Foundry ocr",
+  "tier": "OCR separate",
+  "repeat": 2,
+  "ok": false,
+  "extracted": null,
+  "error_class": "http-429",
+  "raw_text": "",
+  "tokens_in": null,
+  "tokens_out": null,
+  "started_at": "2026-09-18T14:40:49.900540+00:00",
+  "request_sha256": "85d73a49b286c5423b11e34fb59ce8561e678501c72239398a0b0e3b393148ee",
+  "image_sha256": "a1a8009fec8552dbbaa4610274f08b3fffaf841efc092f0de53a1af953d5e24d",
+  "transport": "ocr",
+  "cost_usd": null,
+  "latency_s": 0.277172,
+  "http_status": 429,
+  "error": "{\"error\":{\"code\":\"RateLimitReached\",\"message\":\"Your requests to mistral-document-ai-2512 for mistral-document-ai-2512 in eastus have exceeded rate limit.\",\"details\":\"Your requests to mistral-document-ai-2512 for mistral-document-ai-2512 in eastus have exceeded rate limit.\"}}",
+  "guard_charge_usd": null,
+  "unknown_charge_reserved_usd": 0.05,
+  "fixture_id": "C-SPIRITS-IMPORT-01",
+  "category": "clean",
+  "commodity": "spirits",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "match",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "match",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "needs-review",
+    "class_type": "needs-review",
+    "alcohol_content": "needs-review",
+    "net_contents": "needs-review",
+    "bottler_info": "needs-review",
+    "country_of_origin": "needs-review",
+    "government_warning": "needs-review"
+  },
+  "classes": {
+    "brand_name": "referral",
+    "class_type": "referral",
+    "alcohol_content": "referral",
+    "net_contents": "referral",
+    "bottler_info": "referral",
+    "country_of_origin": "referral",
+    "government_warning": "referral"
+  },
+  "reasons": {
+    "brand_name": "extraction failure: http-429",
+    "class_type": "extraction failure: http-429",
+    "alcohol_content": "extraction failure: http-429",
+    "net_contents": "extraction failure: http-429",
+    "bottler_info": "extraction failure: http-429",
+    "country_of_origin": "extraction failure: http-429",
+    "government_warning": "extraction failure: http-429"
+  },
+  "extraction_correct": {
+    "brand_name": false,
+    "class_type": false,
+    "alcohol_content": false,
+    "net_contents": false,
+    "bottler_info": false,
+    "country_of_origin": false,
+    "government_warning": false
+  },
+  "pipeline_seconds": 0.3132
+}

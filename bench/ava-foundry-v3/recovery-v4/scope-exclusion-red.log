@@ -1,0 +1,14 @@
+F
+======================================================================
+FAIL: test_stop_file_terminal_is_not_finished_scope (test_closeout.CloseoutTests.test_stop_file_terminal_is_not_finished_scope)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v4/test_closeout.py", line 38, in test_stop_file_terminal_is_not_finished_scope
+    self.assertTrue(m.finished_scope({'terminal':True,'blocked':[{'id':'a','reason':'user-rejected-artificial-occlusion-not-realistic-glare'}]},['a'],[]))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 1 test in 0.925s
+
+FAILED (failures=1)

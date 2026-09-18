@@ -1,0 +1,42 @@
+{
+  "id": "Kimi-K2.6--A-FIELD-MISSING-01--glare--1",
+  "operator": "AVA-v3",
+  "model": "Kimi-K2.6",
+  "engine": "Kimi-K2.6",
+  "fixture_id": "A-FIELD-MISSING-01",
+  "repeat": 1,
+  "condition": "glare",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.016679700000000002,
+  "request_sha256": "3836f437b0ef74ff434bcc07064957eb2dc2b0af13ac806c5d7b096210cbd00d",
+  "image_sha256": "01166f896580ee6133c9cfa31b0366a2310548423b6271f0fc06af8db06d9663",
+  "transport": "chat",
+  "started_at": "2026-09-18T16:37:24.980841+00:00",
+  "reserved_usd": 1.10896192,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-FIELD-MISSING-01__glare.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "87a086a7-b2d4-4b66-9ed2-9cafef4dafdd",
+  "latency_s": 32.09102751198225,
+  "response_sha256": "ff7873df274c0401223e3b93f1158beb641cd2ad308d15e9d840431067852148",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--A-FIELD-MISSING-01--glare--1.json",
+  "tokens_in": 4926,
+  "tokens_out": 3000,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 4926,
+    "completion_tokens": 3000,
+    "total_tokens": 7926,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 704,
+      "image_tokens": 4212
+    }
+  },
+  "returned_model": "Kimi-K2.6"
+}

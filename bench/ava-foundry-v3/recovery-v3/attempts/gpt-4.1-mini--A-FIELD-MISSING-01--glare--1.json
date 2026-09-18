@@ -1,0 +1,58 @@
+{
+  "id": "gpt-4.1-mini--A-FIELD-MISSING-01--glare--1",
+  "operator": "AVA-v3",
+  "model": "gpt-4.1-mini",
+  "engine": "gpt-4.1-mini",
+  "fixture_id": "A-FIELD-MISSING-01",
+  "repeat": 1,
+  "condition": "glare",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.0011864,
+  "request_sha256": "d55265e7cb802b32f84559bf9ca64a73a64065f31f9554c615d1d29f6d9cee96",
+  "image_sha256": "01166f896580ee6133c9cfa31b0366a2310548423b6271f0fc06af8db06d9663",
+  "transport": "chat",
+  "started_at": "2026-09-18T16:37:09.678068+00:00",
+  "reserved_usd": 0.46665344,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-FIELD-MISSING-01__glare.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "bc080a90-3fb3-4df7-9b55-960863e0d74c",
+  "latency_s": 4.769287706003524,
+  "response_sha256": "2a60b225310581c8fdc7dd9219e4b409ca85309d5ae0e8b5e8aef10101494412",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-4.1-mini--A-FIELD-MISSING-01--glare--1.json",
+  "tokens_in": 2070,
+  "tokens_out": 224,
+  "pages_processed": null,
+  "usage": {
+    "completion_tokens": 224,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "latency_checkpoint": {
+      "engine_tbt_ms": 8,
+      "engine_ttft_ms": 770,
+      "engine_ttlt_ms": 2538,
+      "pre_inference_ms": 253,
+      "service_tbt_ms": 8,
+      "service_ttft_ms": 1448,
+      "service_ttlt_ms": 3210,
+      "user_visible_ttft_ms": 1195
+    },
+    "prompt_tokens": 2070,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 0,
+      "image_tokens": 840
+    },
+    "total_tokens": 2294
+  },
+  "returned_model": "gpt-4.1-mini-2025-04-14"
+}

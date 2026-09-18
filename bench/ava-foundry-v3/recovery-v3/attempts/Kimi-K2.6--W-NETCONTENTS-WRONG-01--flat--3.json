@@ -1,0 +1,42 @@
+{
+  "id": "Kimi-K2.6--W-NETCONTENTS-WRONG-01--flat--3",
+  "operator": "AVA-v3",
+  "model": "Kimi-K2.6",
+  "engine": "Kimi-K2.6",
+  "fixture_id": "W-NETCONTENTS-WRONG-01",
+  "repeat": 3,
+  "condition": "flat",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.0110611,
+  "request_sha256": "99637cb3cdaa4f834ab4ad438a3e1ca1b1fb648a768f2970b900d8ad8b48aa6f",
+  "image_sha256": "8ab0a782eda4738fa245b02721eaff28ecce889f012293ef5685b7f2c8cca8aa",
+  "transport": "chat",
+  "started_at": "2026-09-18T15:56:11.545859+00:00",
+  "reserved_usd": 1.10896192,
+  "source_image": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/W-NETCONTENTS-WRONG-01.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "0e18d058-ffd5-4844-b6a3-76aedb3b7926",
+  "latency_s": 16.766757379984483,
+  "response_sha256": "3ec62524680b01654a1d81e042be922bccf6e9fdaf8382adb1281397c59923e3",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--W-NETCONTENTS-WRONG-01--flat--3.json",
+  "tokens_in": 2658,
+  "tokens_out": 2134,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 2658,
+    "completion_tokens": 2134,
+    "total_tokens": 4792,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 704,
+      "image_tokens": 1944
+    }
+  },
+  "returned_model": "Kimi-K2.6"
+}

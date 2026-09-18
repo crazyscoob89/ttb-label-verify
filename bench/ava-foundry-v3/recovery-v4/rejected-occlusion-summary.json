@@ -1,0 +1,279 @@
+[
+  {
+    "calls": 9,
+    "valid": 0,
+    "unique_images": 9,
+    "field_n": 63,
+    "extraction_n": 0,
+    "negative_fields": 3,
+    "false_matches": 0,
+    "referrals": 63,
+    "clean_n": 4,
+    "clean_auto_n": 0,
+    "failure_n": 9,
+    "failure_classes": {
+      "JSONDecodeError": 9
+    },
+    "median_s": 28.840235506067984,
+    "p95_s": 32.65692142185289,
+    "latency_n": 9,
+    "observed_cost_usd": 0.1501173,
+    "unknown_cost_calls": 0,
+    "input_tokens": 44334,
+    "output_tokens": 27000,
+    "pages": 0,
+    "classes": {
+      "referral": 63
+    },
+    "visual_recovery_n": 0,
+    "hidden_correct_n": 0,
+    "dangerous_extraction_n": 0,
+    "safe_referral_n": 0,
+    "bottle_outcomes": {
+      "failure-referral": 63
+    },
+    "operator": "AVA-v3",
+    "model": "Kimi-K2.6",
+    "condition": "glare",
+    "warning_wording_n": 0,
+    "warning_typography_n": 0,
+    "warning_denominator": 9,
+    "returned_models": [
+      "Kimi-K2.6"
+    ]
+  },
+  {
+    "calls": 10,
+    "valid": 10,
+    "unique_images": 10,
+    "field_n": 70,
+    "extraction_n": 24,
+    "negative_fields": 4,
+    "false_matches": 2,
+    "referrals": 13,
+    "clean_n": 4,
+    "clean_auto_n": 0,
+    "failure_n": 0,
+    "failure_classes": {},
+    "median_s": 6.592301786935423,
+    "p95_s": 8.466654536372515,
+    "latency_n": 10,
+    "observed_cost_usd": 0.019560499999999998,
+    "unknown_cost_calls": 0,
+    "input_tokens": 28780,
+    "output_tokens": 3447,
+    "pages": 0,
+    "classes": {
+      "false_mismatch": 29,
+      "referral": 13,
+      "correct": 26,
+      "false_match": 2
+    },
+    "visual_recovery_n": 0,
+    "hidden_correct_n": 14,
+    "dangerous_extraction_n": 35,
+    "safe_referral_n": 13,
+    "bottle_outcomes": {
+      "dangerous-error": 35,
+      "safe-referral": 13,
+      "correct-absence-not-applicable": 8,
+      "unverifiable-correct-not-recovery": 14
+    },
+    "operator": "AVA-v3",
+    "model": "Mistral-Large-3",
+    "condition": "glare",
+    "warning_wording_n": 7,
+    "warning_typography_n": 8,
+    "warning_denominator": 10,
+    "returned_models": [
+      "mistral-large-3"
+    ]
+  },
+  {
+    "calls": 10,
+    "valid": 3,
+    "unique_images": 10,
+    "field_n": 70,
+    "extraction_n": 9,
+    "negative_fields": 4,
+    "false_matches": 0,
+    "referrals": 57,
+    "clean_n": 4,
+    "clean_auto_n": 0,
+    "failure_n": 7,
+    "failure_classes": {
+      "schema-or-incomplete-output": 7
+    },
+    "median_s": 6.001320973504335,
+    "p95_s": 6.751301678124582,
+    "latency_n": 10,
+    "observed_cost_usd": 0.0127136,
+    "unknown_cost_calls": 0,
+    "input_tokens": 20700,
+    "output_tokens": 2771,
+    "pages": 0,
+    "classes": {
+      "false_mismatch": 4,
+      "referral": 57,
+      "correct": 9
+    },
+    "visual_recovery_n": 0,
+    "hidden_correct_n": 5,
+    "dangerous_extraction_n": 5,
+    "safe_referral_n": 8,
+    "bottle_outcomes": {
+      "dangerous-error": 5,
+      "safe-referral": 8,
+      "correct-absence-not-applicable": 3,
+      "unverifiable-correct-not-recovery": 5,
+      "failure-referral": 49
+    },
+    "operator": "AVA-v3",
+    "model": "gpt-4.1-mini",
+    "condition": "glare",
+    "warning_wording_n": 1,
+    "warning_typography_n": 2,
+    "warning_denominator": 10,
+    "returned_models": [
+      "gpt-4.1-mini-2025-04-14"
+    ]
+  },
+  {
+    "calls": 10,
+    "valid": 10,
+    "unique_images": 10,
+    "field_n": 70,
+    "extraction_n": 13,
+    "negative_fields": 4,
+    "false_matches": 0,
+    "referrals": 60,
+    "clean_n": 4,
+    "clean_auto_n": 0,
+    "failure_n": 0,
+    "failure_classes": {},
+    "median_s": 16.03352643753169,
+    "p95_s": 24.638014619628663,
+    "latency_n": 10,
+    "observed_cost_usd": 0.0440465,
+    "unknown_cost_calls": 0,
+    "input_tokens": 17170,
+    "output_tokens": 19877,
+    "pages": 0,
+    "classes": {
+      "referral": 60,
+      "correct": 10
+    },
+    "visual_recovery_n": 0,
+    "hidden_correct_n": 1,
+    "dangerous_extraction_n": 0,
+    "safe_referral_n": 60,
+    "bottle_outcomes": {
+      "safe-referral": 60,
+      "correct-absence-not-applicable": 9,
+      "unverifiable-correct-not-recovery": 1
+    },
+    "operator": "AVA-v3",
+    "model": "gpt-5-mini",
+    "condition": "glare",
+    "warning_wording_n": 0,
+    "warning_typography_n": 7,
+    "warning_denominator": 10,
+    "returned_models": [
+      "gpt-5-mini"
+    ]
+  },
+  {
+    "calls": 10,
+    "valid": 8,
+    "unique_images": 10,
+    "field_n": 70,
+    "extraction_n": 14,
+    "negative_fields": 4,
+    "false_matches": 0,
+    "referrals": 38,
+    "clean_n": 4,
+    "clean_auto_n": 0,
+    "failure_n": 2,
+    "failure_classes": {
+      "schema-or-incomplete-output": 2
+    },
+    "median_s": 5.09198769449722,
+    "p95_s": 5.925034170411527,
+    "latency_n": 10,
+    "observed_cost_usd": 0.0060964999999999995,
+    "unknown_cost_calls": 0,
+    "input_tokens": 24890,
+    "output_tokens": 2237,
+    "pages": 0,
+    "classes": {
+      "false_mismatch": 17,
+      "referral": 38,
+      "correct": 15
+    },
+    "visual_recovery_n": 0,
+    "hidden_correct_n": 5,
+    "dangerous_extraction_n": 20,
+    "safe_referral_n": 24,
+    "bottle_outcomes": {
+      "dangerous-error": 20,
+      "safe-referral": 24,
+      "correct-absence-not-applicable": 7,
+      "unverifiable-correct-not-recovery": 5,
+      "failure-referral": 14
+    },
+    "operator": "AVA-v3",
+    "model": "grok-4-1-fast-non-reasoning",
+    "condition": "glare",
+    "warning_wording_n": 4,
+    "warning_typography_n": 2,
+    "warning_denominator": 10,
+    "returned_models": [
+      "grok-4-1-fast-non-reasoning"
+    ]
+  },
+  {
+    "calls": 10,
+    "valid": 10,
+    "unique_images": 10,
+    "field_n": 70,
+    "extraction_n": 10,
+    "negative_fields": 4,
+    "false_matches": 0,
+    "referrals": 32,
+    "clean_n": 4,
+    "clean_auto_n": 0,
+    "failure_n": 0,
+    "failure_classes": {},
+    "median_s": 4.50497061148053,
+    "p95_s": 6.557728785014478,
+    "latency_n": 10,
+    "observed_cost_usd": 0.03,
+    "unknown_cost_calls": 0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "pages": 10,
+    "classes": {
+      "referral": 32,
+      "false_mismatch": 23,
+      "correct": 15
+    },
+    "visual_recovery_n": 0,
+    "hidden_correct_n": 0,
+    "dangerous_extraction_n": 30,
+    "safe_referral_n": 32,
+    "bottle_outcomes": {
+      "safe-referral": 32,
+      "dangerous-error": 30,
+      "correct-absence-not-applicable": 8
+    },
+    "operator": "AVA-v3",
+    "model": "mistral-document-ai-2512",
+    "condition": "glare",
+    "warning_wording_n": 0,
+    "warning_typography_n": 6,
+    "warning_denominator": 10,
+    "returned_models": [
+      "mistral-document-ai-2512"
+    ]
+  }
+]

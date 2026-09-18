@@ -1,0 +1,129 @@
+{
+  "engine": "grok-4-1-fast-non-reasoning",
+  "model": "grok-4-1-fast-non-reasoning",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "repeat": 2,
+  "ok": true,
+  "extracted": {
+    "brand_name": "Stoney's Throw",
+    "class_type": "GIN",
+    "alcohol_content": "44% ALC/VOL (88 PROOF)",
+    "net_contents": "750 mL",
+    "bottler_info": "Distilled and bottled by Stoney's Throw Spirits, Austin, Texas",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 1.0,
+      "class_type": 1.0,
+      "alcohol_content": 1.0,
+      "net_contents": 1.0,
+      "bottler_info": 1.0,
+      "country_of_origin": 1.0,
+      "government_warning_heading": 1.0,
+      "government_warning_body": 1.0,
+      "government_warning_heading_all_caps": 1.0,
+      "government_warning_heading_bold": 1.0,
+      "government_warning_body_bold": 1.0
+    }
+  },
+  "error_class": null,
+  "raw_text": "{\"brand_name\": \"Stoney's Throw\", \"class_type\": \"GIN\", \"alcohol_content\": \"44% ALC/VOL (88 PROOF)\", \"net_contents\": \"750 mL\", \"bottler_info\": \"Distilled and bottled by Stoney's Throw Spirits, Austin, Texas\", \"country_of_origin\": null, \"government_warning_heading\": \"GOVERNMENT WARNING:\", \"government_warning_body\": \"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\", \"government_warning_heading_all_caps\": true, \"government_warning_heading_bold\": true, \"government_warning_body_bold\": false, \"confidence\": {\"brand_name\": 1.0, \"class_type\": 1.0, \"alcohol_content\": 1.0, \"net_contents\": 1.0, \"bottler_info\": 1.0, \"country_of_origin\": 1.0, \"government_warning_heading\": 1.0, \"government_warning_body\": 1.0, \"government_warning_heading_all_caps\": 1.0, \"government_warning_heading_bold\": 1.0, \"government_warning_body_bold\": 1.0, \"alcohol_content\": 1.0, \"net_contents\": 1.0}}",
+  "tokens_in": 2489,
+  "tokens_out": 295,
+  "started_at": "2026-09-18T14:40:55.675867+00:00",
+  "request_sha256": "9fec654d38f1dea56e825ac9387dc8f7c2bf3f68f0933b7b9297745dd31db7a1",
+  "image_sha256": "b83ade16f1e48719f138eadaa2af82ca8154909b4d60113299a0d47c1249f4e2",
+  "transport": "chat",
+  "cost_usd": null,
+  "http_status": 200,
+  "response_bytes": 1751,
+  "request_id": "b2fe55e2-0a95-4112-8d5c-ef5b41749a5e",
+  "latency_s": 5.886662,
+  "finish_reason": "stop",
+  "returned_model": "grok-4-1-fast-non-reasoning",
+  "usage": {
+    "prompt_tokens": 2489,
+    "completion_tokens": 295,
+    "total_tokens": 2784,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 2656,
+      "audio_tokens": 0,
+      "text_tokens": 697,
+      "image_tokens": 1792
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "num_sources_used": 0
+  },
+  "validation_errors": {},
+  "guard_charge_usd": 0.0043603999999999995,
+  "unknown_charge_reserved_usd": 0,
+  "fixture_id": "W-BRAND-SPLITLINE-01",
+  "category": "wrong-answer",
+  "commodity": "spirits",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "mismatch",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "mismatch",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "classes": {
+    "brand_name": "false_mismatch",
+    "class_type": "correct",
+    "alcohol_content": "correct",
+    "net_contents": "correct",
+    "bottler_info": "false_mismatch",
+    "country_of_origin": "correct",
+    "government_warning": "correct"
+  },
+  "reasons": {
+    "brand_name": "\"Stoney's Throw\" vs declared \"Stone's Throw\"",
+    "class_type": "normalized equivalence",
+    "alcohol_content": "44.0 == 44.0",
+    "net_contents": "750.00mL ~= 750.00mL",
+    "bottler_info": "\"Distilled and bottled by Stoney's Throw Spirits, Austin, Texas\" vs declared \"Stone's Throw Spirits, Austin, Texas\"",
+    "country_of_origin": "domestic product",
+    "government_warning": "exact statutory wording and formatting"
+  },
+  "extraction_correct": {
+    "brand_name": false,
+    "class_type": true,
+    "alcohol_content": true,
+    "net_contents": true,
+    "bottler_info": false,
+    "country_of_origin": true,
+    "government_warning": true
+  },
+  "pipeline_seconds": 5.901982
+}

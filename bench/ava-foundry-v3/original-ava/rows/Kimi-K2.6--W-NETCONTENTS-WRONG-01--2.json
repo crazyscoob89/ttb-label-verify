@@ -1,0 +1,120 @@
+{
+  "engine": "Kimi-K2.6",
+  "model": "Kimi-K2.6",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "repeat": 2,
+  "ok": true,
+  "extracted": {
+    "brand_name": "Salt Marsh",
+    "class_type": "GIN",
+    "alcohol_content": "47% ALC/VOL (94 PROOF)",
+    "net_contents": "750 mL",
+    "bottler_info": "Distilled and bottled by Salt Marsh Distillers, Charleston, South Carolina",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 1.0,
+      "class_type": 1.0,
+      "alcohol_content": 1.0,
+      "net_contents": 1.0,
+      "bottler_info": 1.0,
+      "country_of_origin": 1.0,
+      "government_warning_heading": 1.0,
+      "government_warning_body": 1.0,
+      "government_warning_heading_all_caps": 1.0,
+      "government_warning_heading_bold": 1.0,
+      "government_warning_body_bold": 1.0
+    }
+  },
+  "error_class": null,
+  "raw_text": "{\"brand_name\":\"Salt Marsh\",\"class_type\":\"GIN\",\"alcohol_content\":\"47% ALC/VOL (94 PROOF)\",\"net_contents\":\"750 mL\",\"bottler_info\":\"Distilled and bottled by Salt Marsh Distillers, Charleston, South Carolina\",\"country_of_origin\":null,\"government_warning_heading\":\"GOVERNMENT WARNING:\",\"government_warning_body\":\"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\"government_warning_heading_all_caps\":true,\"government_warning_heading_bold\":true,\"government_warning_body_bold\":false,\"confidence\":{\"brand_name\":1.0,\"class_type\":1.0,\"alcohol_content\":1.0,\"net_contents\":1.0,\"bottler_info\":1.0,\"country_of_origin\":1.0,\"government_warning_heading\":1.0,\"government_warning_body\":1.0,\"government_warning_heading_all_caps\":1.0,\"government_warning_heading_bold\":1.0,\"government_warning_body_bold\":1.0}}",
+  "tokens_in": 2658,
+  "tokens_out": 2428,
+  "started_at": "2026-09-18T14:43:37.474587+00:00",
+  "request_sha256": "99637cb3cdaa4f834ab4ad438a3e1ca1b1fb648a768f2970b900d8ad8b48aa6f",
+  "image_sha256": "8ab0a782eda4738fa245b02721eaff28ecce889f012293ef5685b7f2c8cca8aa",
+  "transport": "chat",
+  "cost_usd": null,
+  "http_status": 200,
+  "response_bytes": 11137,
+  "request_id": "8d1a634f-b929-462e-9050-c0f220f58e02",
+  "latency_s": 26.836147,
+  "finish_reason": "stop",
+  "returned_model": "Kimi-K2.6",
+  "usage": {
+    "prompt_tokens": 2658,
+    "completion_tokens": 2428,
+    "total_tokens": 5086,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 704,
+      "image_tokens": 1944
+    }
+  },
+  "validation_errors": {},
+  "guard_charge_usd": 0.0162778,
+  "unknown_charge_reserved_usd": 0,
+  "fixture_id": "W-NETCONTENTS-WRONG-01",
+  "category": "wrong-answer",
+  "commodity": "spirits",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "mismatch",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "mismatch",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "mismatch",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "classes": {
+    "brand_name": "correct",
+    "class_type": "correct",
+    "alcohol_content": "correct",
+    "net_contents": "correct",
+    "bottler_info": "correct",
+    "country_of_origin": "correct",
+    "government_warning": "correct"
+  },
+  "reasons": {
+    "brand_name": "normalized equivalence",
+    "class_type": "normalized equivalence",
+    "alcohol_content": "47.0 == 47.0",
+    "net_contents": "label 750.00mL vs declared 1000.00mL",
+    "bottler_info": "full normalized bottler identity and address",
+    "country_of_origin": "domestic product",
+    "government_warning": "exact statutory wording and formatting"
+  },
+  "extraction_correct": {
+    "brand_name": true,
+    "class_type": true,
+    "alcohol_content": true,
+    "net_contents": true,
+    "bottler_info": true,
+    "country_of_origin": true,
+    "government_warning": true
+  },
+  "pipeline_seconds": 26.8515
+}

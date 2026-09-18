@@ -1,0 +1,136 @@
+{
+  "engine": "gpt-4.1-mini",
+  "model": "gpt-4.1-mini",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "repeat": 3,
+  "ok": true,
+  "extracted": {
+    "brand_name": "Cordon Gris",
+    "class_type": "BLENDED SCOTCH WHISKY",
+    "alcohol_content": "43% ALC/VOL (86 PROOF)",
+    "net_contents": "700 mL",
+    "bottler_info": "Imported by Northgate Imports Ltd., Boston, Massachusetts",
+    "country_of_origin": "PRODUCT OF SCOTLAND",
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 1.0,
+      "class_type": 1.0,
+      "alcohol_content": 1.0,
+      "net_contents": 1.0,
+      "bottler_info": 1.0,
+      "country_of_origin": 1.0,
+      "government_warning_heading": 1.0,
+      "government_warning_body": 1.0,
+      "government_warning_heading_all_caps": 1.0,
+      "government_warning_heading_bold": 1.0,
+      "government_warning_body_bold": 0.9
+    }
+  },
+  "error_class": null,
+  "raw_text": "{\n  \"brand_name\": \"Cordon Gris\",\n  \"class_type\": \"BLENDED SCOTCH WHISKY\",\n  \"alcohol_content\": \"43% ALC/VOL (86 PROOF)\",\n  \"net_contents\": \"700 mL\",\n  \"bottler_info\": \"Imported by Northgate Imports Ltd., Boston, Massachusetts\",\n  \"country_of_origin\": \"PRODUCT OF SCOTLAND\",\n  \"government_warning_heading\": \"GOVERNMENT WARNING:\",\n  \"government_warning_body\": \"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\n  \"government_warning_heading_all_caps\": true,\n  \"government_warning_heading_bold\": true,\n  \"government_warning_body_bold\": false,\n  \"confidence\": {\n    \"brand_name\": 1.0,\n    \"class_type\": 1.0,\n    \"alcohol_content\": 1.0,\n    \"net_contents\": 1.0,\n    \"bottler_info\": 1.0,\n    \"country_of_origin\": 1.0,\n    \"government_warning_heading\": 1.0,\n    \"government_warning_body\": 1.0,\n    \"government_warning_heading_all_caps\": 1.0,\n    \"government_warning_heading_bold\": 1.0,\n    \"government_warning_body_bold\": 0.9\n  }\n}",
+  "tokens_in": 2109,
+  "tokens_out": 318,
+  "started_at": "2026-09-18T14:43:08.855363+00:00",
+  "request_sha256": "22b5ecdfd2519434a9dc000373125ddc3d9e4dd712cc6e6240da2c59aa2af412",
+  "image_sha256": "a1a8009fec8552dbbaa4610274f08b3fffaf841efc092f0de53a1af953d5e24d",
+  "transport": "chat",
+  "cost_usd": null,
+  "http_status": 200,
+  "response_bytes": 2575,
+  "request_id": "eef88509-a97e-46ec-8625-81db48c7ccca",
+  "latency_s": 6.306731,
+  "finish_reason": "stop",
+  "returned_model": "gpt-4.1-mini-2025-04-14",
+  "usage": {
+    "completion_tokens": 318,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "latency_checkpoint": {
+      "engine_tbt_ms": 10,
+      "engine_ttft_ms": 523,
+      "engine_ttlt_ms": 3765,
+      "pre_inference_ms": 268,
+      "service_tbt_ms": 10,
+      "service_ttft_ms": 1807,
+      "service_ttlt_ms": 5045,
+      "user_visible_ttft_ms": 1539
+    },
+    "prompt_tokens": 2109,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 1536,
+      "image_tokens": 864
+    },
+    "total_tokens": 2427
+  },
+  "validation_errors": {},
+  "guard_charge_usd": 0.0040689,
+  "unknown_charge_reserved_usd": 0,
+  "fixture_id": "C-SPIRITS-IMPORT-01",
+  "category": "clean",
+  "commodity": "spirits",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "match",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "match",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "match",
+    "government_warning": "match"
+  },
+  "classes": {
+    "brand_name": "correct",
+    "class_type": "correct",
+    "alcohol_content": "correct",
+    "net_contents": "correct",
+    "bottler_info": "correct",
+    "country_of_origin": "correct",
+    "government_warning": "correct"
+  },
+  "reasons": {
+    "brand_name": "normalized equivalence",
+    "class_type": "normalized equivalence",
+    "alcohol_content": "43.0 == 43.0",
+    "net_contents": "700.00mL ~= 700.00mL",
+    "bottler_info": "full normalized bottler identity and address",
+    "country_of_origin": "declared country present in origin statement",
+    "government_warning": "exact statutory wording and formatting"
+  },
+  "extraction_correct": {
+    "brand_name": true,
+    "class_type": true,
+    "alcohol_content": true,
+    "net_contents": true,
+    "bottler_info": true,
+    "country_of_origin": true,
+    "government_warning": true
+  },
+  "pipeline_seconds": 6.323602
+}

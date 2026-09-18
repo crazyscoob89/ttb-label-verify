@@ -1,0 +1,102 @@
+{
+  "id": "Kimi-K2.6--A-WARN-TITLECASE-01--flat--2",
+  "operator": "AVA-v3",
+  "model": "Kimi-K2.6",
+  "engine": "Kimi-K2.6",
+  "fixture_id": "A-WARN-TITLECASE-01",
+  "repeat": 2,
+  "condition": "flat",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": "JSONDecodeError",
+  "cost_usd": 0.0145251,
+  "request_sha256": "e2e417289f4aa5698c035bceceb8147427c515aeae03a4d36c3d69f2a5d73e66",
+  "image_sha256": "a332b9612bc45547db698b2a7a005895a086d668319925bc8d06d2966f20a75f",
+  "transport": "chat",
+  "started_at": "2026-09-18T15:52:19.276513+00:00",
+  "reserved_usd": 1.10896192,
+  "source_image": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/A-WARN-TITLECASE-01.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "e175b007-51c4-4232-b439-9710552b7c99",
+  "latency_s": 31.63988310599234,
+  "response_sha256": "0015531f2c2ec288237619ad7abb6f441cfb0fa7192e2a3ef3b46cdecb1e591c",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--A-WARN-TITLECASE-01--flat--2.json",
+  "tokens_in": 2658,
+  "tokens_out": 3000,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 2658,
+    "completion_tokens": 3000,
+    "total_tokens": 5658,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 704,
+      "image_tokens": 1944
+    }
+  },
+  "returned_model": "Kimi-K2.6",
+  "raw_text": "{\"brand_name\": \"Old Harbor\", \"class_type\": \"VODKA\", \"alcohol_content\": \"40",
+  "finish_reason": "length",
+  "error": "Unterminated string starting at: line 1 column 72 (char 71)",
+  "category": "adversarial",
+  "commodity": "spirits",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "mismatch"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "mismatch"
+  },
+  "verdicts": {
+    "brand_name": "needs-review",
+    "class_type": "needs-review",
+    "alcohol_content": "needs-review",
+    "net_contents": "needs-review",
+    "bottler_info": "needs-review",
+    "country_of_origin": "needs-review",
+    "government_warning": "needs-review"
+  },
+  "classes": {
+    "brand_name": "referral",
+    "class_type": "referral",
+    "alcohol_content": "referral",
+    "net_contents": "referral",
+    "bottler_info": "referral",
+    "country_of_origin": "referral",
+    "government_warning": "referral"
+  },
+  "reasons": {
+    "brand_name": "extraction failure: JSONDecodeError",
+    "class_type": "extraction failure: JSONDecodeError",
+    "alcohol_content": "extraction failure: JSONDecodeError",
+    "net_contents": "extraction failure: JSONDecodeError",
+    "bottler_info": "extraction failure: JSONDecodeError",
+    "country_of_origin": "extraction failure: JSONDecodeError",
+    "government_warning": "extraction failure: JSONDecodeError"
+  },
+  "extraction_correct": {
+    "brand_name": false,
+    "class_type": false,
+    "alcohol_content": false,
+    "net_contents": false,
+    "bottler_info": false,
+    "country_of_origin": false,
+    "government_warning": false
+  },
+  "pipeline_seconds": 31.66495807096362
+}

@@ -1,0 +1,42 @@
+{
+  "id": "Kimi-K2.6--C-SPIRITS-01--flat--2",
+  "operator": "AVA-v3",
+  "model": "Kimi-K2.6",
+  "engine": "Kimi-K2.6",
+  "fixture_id": "C-SPIRITS-01",
+  "repeat": 2,
+  "condition": "flat",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.0132011,
+  "request_sha256": "2f1bfb0d8166f3557cf5e510ba4ed3f629c7be6cf33e80dabd27401ee50102e3",
+  "image_sha256": "6db5c6cf43a3a09e324c9e086220594ba35f8611c6e1a4966ccec9a14cce7470",
+  "transport": "chat",
+  "started_at": "2026-09-18T15:50:14.509576+00:00",
+  "reserved_usd": 1.10896192,
+  "source_image": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/C-SPIRITS-01.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "d2af4ca5-aac4-419a-aee5-c3fba5830a0d",
+  "latency_s": 22.740913531044498,
+  "response_sha256": "f8fd6e272556698feecdabbf958e2df437c3c4851f53b87fb3e888f7242b273b",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--C-SPIRITS-01--flat--2.json",
+  "tokens_in": 2658,
+  "tokens_out": 2669,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 2658,
+    "completion_tokens": 2669,
+    "total_tokens": 5327,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 2624,
+      "image_tokens": 1944
+    }
+  },
+  "returned_model": "Kimi-K2.6"
+}

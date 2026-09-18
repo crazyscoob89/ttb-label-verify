@@ -1,0 +1,196 @@
+{
+  "id": "gpt-4.1-mini--A-WARN-BOLDBODY-01--angle--1",
+  "operator": "AVA-v3",
+  "model": "gpt-4.1-mini",
+  "engine": "gpt-4.1-mini",
+  "fixture_id": "A-WARN-BOLDBODY-01",
+  "repeat": 1,
+  "condition": "angle",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": true,
+  "extracted": {
+    "brand_name": "Cedar Bluff",
+    "class_type": "RED TABLE WINE",
+    "alcohol_content": "13.5% ALC/VOL",
+    "net_contents": "750 mL",
+    "bottler_info": "Produced and bottled by Cedar Bluff Cellars, Healdsburg, California",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 1,
+      "class_type": 1,
+      "alcohol_content": 1,
+      "net_contents": 1,
+      "bottler_info": 1,
+      "country_of_origin": 0,
+      "government_warning_heading": 1,
+      "government_warning_body": 1,
+      "government_warning_heading_all_caps": 1,
+      "government_warning_heading_bold": 1,
+      "government_warning_body_bold": 0.8
+    }
+  },
+  "error_class": null,
+  "cost_usd": 0.001188,
+  "request_sha256": "7a56b2889a4cecc14ff77b78326606e03433b4d48745eee84144fcf8f3444d39",
+  "image_sha256": "a270691ac61d272320059bd7d4ab846a829768eb6bb616410552c91d1d90b6e2",
+  "transport": "chat",
+  "started_at": "2026-09-18T16:26:39.769313+00:00",
+  "reserved_usd": 0.46665344,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/A-WARN-BOLDBODY-01__angle.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "8736474d-d8fa-4e94-914c-1171a4a1b377",
+  "latency_s": 6.1372576910071075,
+  "response_sha256": "12be89dbc80017122ceee2d38530f0057fa6a9e63db1bc463cc7fd8a2de772db",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-4.1-mini--A-WARN-BOLDBODY-01--angle--1.json",
+  "tokens_in": 2070,
+  "tokens_out": 225,
+  "pages_processed": null,
+  "usage": {
+    "completion_tokens": 225,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "latency_checkpoint": {
+      "engine_tbt_ms": 9,
+      "engine_ttft_ms": 713,
+      "engine_ttlt_ms": 2854,
+      "pre_inference_ms": 321,
+      "service_tbt_ms": 9,
+      "service_ttft_ms": 1974,
+      "service_ttlt_ms": 4111,
+      "user_visible_ttft_ms": 1653
+    },
+    "prompt_tokens": 2070,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 0,
+      "image_tokens": 840
+    },
+    "total_tokens": 2295
+  },
+  "returned_model": "gpt-4.1-mini-2025-04-14",
+  "raw_text": "{\"brand_name\":\"Cedar Bluff\",\"class_type\":\"RED TABLE WINE\",\"alcohol_content\":\"13.5% ALC/VOL\",\"net_contents\":\"750 mL\",\"bottler_info\":\"Produced and bottled by Cedar Bluff Cellars, Healdsburg, California\",\"country_of_origin\":null,\"government_warning_heading\":\"GOVERNMENT WARNING:\",\"government_warning_body\":\"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\"government_warning_heading_all_caps\":true,\"government_warning_heading_bold\":true,\"government_warning_body_bold\":false,\"confidence\":{\"brand_name\":1,\"class_type\":1,\"alcohol_content\":1,\"net_contents\":1,\"bottler_info\":1,\"country_of_origin\":0,\"government_warning_heading\":1,\"government_warning_body\":1,\"government_warning_heading_all_caps\":1,\"government_warning_heading_bold\":1,\"government_warning_body_bold\":0.8}}",
+  "finish_reason": "stop",
+  "validation_errors": {},
+  "category": "adversarial",
+  "commodity": "wine",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "mismatch"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "mismatch"
+  },
+  "verdicts": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "classes": {
+    "brand_name": "correct",
+    "class_type": "correct",
+    "alcohol_content": "correct",
+    "net_contents": "correct",
+    "bottler_info": "correct",
+    "country_of_origin": "correct",
+    "government_warning": "false_match"
+  },
+  "reasons": {
+    "brand_name": "normalized equivalence",
+    "class_type": "normalized equivalence",
+    "alcohol_content": "13.5 == 13.5",
+    "net_contents": "750.00mL ~= 750.00mL",
+    "bottler_info": "full normalized bottler identity and address",
+    "country_of_origin": "domestic product",
+    "government_warning": "exact statutory wording and formatting"
+  },
+  "extraction_correct": {
+    "brand_name": true,
+    "class_type": true,
+    "alcohol_content": true,
+    "net_contents": true,
+    "bottler_info": true,
+    "country_of_origin": true,
+    "government_warning": false
+  },
+  "visibility": {
+    "brand_name": {
+      "visibility": "visible",
+      "expect_referral_ok": false,
+      "basis": "Pre-inference contact-sheet inspection; native representative/degraded/typography QA; same fixed layout. No prediction-based annotation.",
+      "annotator": "AVA pre-inference"
+    },
+    "class_type": {
+      "visibility": "visible",
+      "expect_referral_ok": false,
+      "basis": "Pre-inference contact-sheet inspection; native representative/degraded/typography QA; same fixed layout. No prediction-based annotation.",
+      "annotator": "AVA pre-inference"
+    },
+    "alcohol_content": {
+      "visibility": "visible",
+      "expect_referral_ok": false,
+      "basis": "Pre-inference contact-sheet inspection; native representative/degraded/typography QA; same fixed layout. No prediction-based annotation.",
+      "annotator": "AVA pre-inference"
+    },
+    "net_contents": {
+      "visibility": "visible",
+      "expect_referral_ok": false,
+      "basis": "Pre-inference contact-sheet inspection; native representative/degraded/typography QA; same fixed layout. No prediction-based annotation.",
+      "annotator": "AVA pre-inference"
+    },
+    "bottler_info": {
+      "visibility": "visible",
+      "expect_referral_ok": false,
+      "basis": "Pre-inference contact-sheet inspection; native representative/degraded/typography QA; same fixed layout. No prediction-based annotation.",
+      "annotator": "AVA pre-inference"
+    },
+    "country_of_origin": {
+      "visibility": "absent",
+      "expect_referral_ok": true,
+      "basis": "No printed value in source",
+      "annotator": "AVA pre-inference"
+    },
+    "government_warning": {
+      "visibility": "visible",
+      "expect_referral_ok": false,
+      "basis": "Pre-inference contact-sheet inspection; native representative/degraded/typography QA; same fixed layout. No prediction-based annotation.",
+      "annotator": "AVA pre-inference"
+    }
+  },
+  "bottle_outcomes": {
+    "brand_name": "visual-correct",
+    "class_type": "visual-correct",
+    "alcohol_content": "visual-correct",
+    "net_contents": "visual-correct",
+    "bottler_info": "visual-correct",
+    "country_of_origin": "correct-absence-not-applicable",
+    "government_warning": "dangerous-error"
+  },
+  "pipeline_seconds": 6.1633090559626
+}

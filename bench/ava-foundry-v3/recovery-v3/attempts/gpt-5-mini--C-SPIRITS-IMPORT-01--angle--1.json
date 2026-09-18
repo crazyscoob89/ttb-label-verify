@@ -1,0 +1,44 @@
+{
+  "id": "gpt-5-mini--C-SPIRITS-IMPORT-01--angle--1",
+  "operator": "AVA-v3",
+  "model": "gpt-5-mini",
+  "engine": "gpt-5-mini",
+  "fixture_id": "C-SPIRITS-IMPORT-01",
+  "repeat": 1,
+  "condition": "angle",
+  "route": "Azure Foundry responses",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.00312525,
+  "request_sha256": "5d0c0d2c4358fe1fe0c04f22e464d1acce3d138f041c1ceaf9e5de1f4cd8091f",
+  "image_sha256": "1625c15054c1a1f4fb83c0f1d5d3cf50490f8891ae6adb94e53ad9657b1a7625",
+  "transport": "responses",
+  "started_at": "2026-09-18T16:14:25.043651+00:00",
+  "reserved_usd": 0.2949584,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-SPIRITS-IMPORT-01__angle.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "68ddd657-63de-413c-9a54-19e19efbd007",
+  "latency_s": 14.283012120984495,
+  "response_sha256": "51bc0f216786749f8953975e473226c0919aad349679cbae18f6461697a1e3be",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/gpt-5-mini--C-SPIRITS-IMPORT-01--angle--1.json",
+  "tokens_in": 1717,
+  "tokens_out": 1348,
+  "pages_processed": null,
+  "usage": {
+    "input_tokens": 1717,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1348,
+    "output_tokens_details": {
+      "reasoning_tokens": 1024
+    },
+    "total_tokens": 3065
+  },
+  "returned_model": "gpt-5-mini"
+}

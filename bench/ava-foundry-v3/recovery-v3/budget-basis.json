@@ -1,0 +1,64 @@
+{
+  "allowance_usd": 10,
+  "base_liability_usd": 7.8558323,
+  "headroom_usd": 2.1441676999999997,
+  "parts": [
+    {
+      "id": "observed",
+      "usd": 0.9100305,
+      "kind": "retail estimate, includes rounded log-only"
+    },
+    {
+      "id": "AVA-interrupted-three",
+      "usd": 3.5098008,
+      "kind": "original full reservations retained"
+    },
+    {
+      "id": "AVA-two-429",
+      "usd": 0.1,
+      "kind": "original two OCR .05 reservations retained"
+    },
+    {
+      "id": "ARGUS-run2-entire-tail",
+      "usd": 2.503296,
+      "kind": "all nine possible GPT5 requests at full 1,048,576-input bound + actual inherited 8,000-output cap; no retry dialect triggered for GPT"
+    },
+    {
+      "id": "ARGUS-rejected-dialects",
+      "usd": 0.397705,
+      "kind": "54 saved Mistral battery + one smoke: each rejected dialect retains twice largest measured same fixed-corpus input + full output cap, even though validation rejection has no generated output"
+    },
+    {
+      "id": "ARGUS-probes-and-route-triage",
+      "usd": 0.4,
+      "kind": "source shows 3 six-deployment tiny-image sweeps + two route attempts. .40 reserve covers 24 attempts at 4,096 input + 2,000 output using elevated 1.1/5.5 guard rates (.3721344), including final observed probes already counted (intentional overlap)"
+    },
+    {
+      "id": "ARGUS-five-adapter-smokes",
+      "usd": 0.025,
+      "kind": "console reported .0006 + .0019 + .0012 + .0025 + .0178; rounded upward, not exact token bodies"
+    },
+    {
+      "id": "rounding",
+      "usd": 0.01,
+      "kind": "rounding slack for original logs/rows/pricing"
+    }
+  ],
+  "pricing": "existing retail snapshot, no cache discount, not invoice-verified",
+  "scope": "Foundry comparison only; historical $1.061835 separate prior experiment",
+  "assumptions": [
+    "Fixed original images/prompts; observed same-model input usage provides size bound for rejected identical dialect bodies (2x slack).",
+    "Tiny 320x120 probe source payload bounded at 4096 input (observed maximum298); max output2000. These are conservative request-size bounds, not provider invoice certifications.",
+    "9-tail bound deliberately assumes every remaining GPT5 request could have dispatched, despite sequential runner and terminal cancellation.",
+    "No account-wide spending outside these runners is controlled."
+  ],
+  "reconciled_OCR_pages": 33,
+  "original_guard_not_spend": 6.4538618,
+  "source_hashes": {
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/harness.py": "14d40fd45693f44315c34a2407ecb35b8693acefe22b6e59d44fc08acb05f738",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/budget.sqlite": "cc9c1b0ac97169f88ff3936ab32111dfb2570fc2b36e0eca5fa9f6d68d54cb63",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v2/inherited-evidence/run_bench.py": "d4732e5c320f9c8f2ab13fc330458a2f357995330aa6649f180c06ff2e37694e",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v2/inherited-evidence/engines.py": "d5799b06b8db4ea764552439e036941003e20126d5466776f254ba1314171966",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v2/inherited-evidence/_foundry_run2.log.utf8.txt": "a8c3a19f8d32985d0cb00256cc33b18b9033f83967136a11eb363fd6bb6c81b8"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "id": "Kimi-K2.6--D-GLARE-01--flat--3",
+  "operator": "AVA-v3",
+  "model": "Kimi-K2.6",
+  "engine": "Kimi-K2.6",
+  "fixture_id": "D-GLARE-01",
+  "repeat": 3,
+  "condition": "flat",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.0099331,
+  "request_sha256": "10c4d5a096306d81ffc269a9007697a9e6e32f93cbca4345cc77fc43ab917853",
+  "image_sha256": "02a00f894da7459c30bb799d7d59fabdd3c56bfdb9408182e559688cb23af83d",
+  "transport": "chat",
+  "started_at": "2026-09-18T15:58:39.331714+00:00",
+  "reserved_usd": 1.10896192,
+  "source_image": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/D-GLARE-01.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "c5e8c1d5-549a-4ae4-a496-3612eb59d7f1",
+  "latency_s": 19.680400897050276,
+  "response_sha256": "2987d059c0dfdd402be64c0c69d98b23c9b5e203da3c85a9e1d9804db03fe81a",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/Kimi-K2.6--D-GLARE-01--flat--3.json",
+  "tokens_in": 2658,
+  "tokens_out": 1852,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 2658,
+    "completion_tokens": 1852,
+    "total_tokens": 4510,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 704,
+      "image_tokens": 1944
+    }
+  },
+  "returned_model": "Kimi-K2.6"
+}

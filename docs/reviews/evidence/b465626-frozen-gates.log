@@ -1,0 +1,196 @@
+Frozen SHA b4656265cd3c3a1dd0fd16e4d74f5d2280267494
+Environment Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.41 Python 3.13.5
+Native Windows execution NOT performed; Windows path rendering and Git conversion simulated.
+
+core.autocrlf=false COMMAND /usr/bin/python3 bench/test_scoring.py
+passed: 303
+ALL SCORING TESTS PASSED (no network, no model calls)
+
+EXIT 0
+
+core.autocrlf=false COMMAND /usr/bin/python3 bench/test_extraction_safety.py
+test_absent_confidence_never_certifies_clean_oracle (__main__.ExtractionSafetyTests.test_absent_confidence_never_certifies_clean_oracle) ... ok
+test_aggregate_warning_confidence_cannot_replace_components (__main__.ExtractionSafetyTests.test_aggregate_warning_confidence_cannot_replace_components) ... ok
+test_bottler_requires_full_declared_identity (__main__.ExtractionSafetyTests.test_bottler_requires_full_declared_identity) ... ok
+test_confident_nonbold_heading_is_mismatch (__main__.ExtractionSafetyTests.test_confident_nonbold_heading_is_mismatch) ... ok
+test_deleted_keys_block_affected_fields_despite_claimed_validity (__main__.ExtractionSafetyTests.test_deleted_keys_block_affected_fields_despite_claimed_validity) ... ok
+test_every_component_requires_its_own_valid_confidence (__main__.ExtractionSafetyTests.test_every_component_requires_its_own_valid_confidence) ... ok
+test_full_bottler_matches_normalization_and_known_prefixes (__main__.ExtractionSafetyTests.test_full_bottler_matches_normalization_and_known_prefixes) ... ok
+test_genuinely_unreadable_field_is_review (__main__.ExtractionSafetyTests.test_genuinely_unreadable_field_is_review) ... ok
+test_invalid_value_types_cannot_be_trusted_via_schema_valid_true (__main__.ExtractionSafetyTests.test_invalid_value_types_cannot_be_trusted_via_schema_valid_true) ... ok
+test_low_confidence_all_warning_components_gate (__main__.ExtractionSafetyTests.test_low_confidence_all_warning_components_gate) ... ok
+test_malformed_confidence_map (__main__.ExtractionSafetyTests.test_malformed_confidence_map) ... ok
+test_nonobject_extractions_are_referrals_not_exceptions (__main__.ExtractionSafetyTests.test_nonobject_extractions_are_referrals_not_exceptions) ... ok
+test_optional_aggregate_cannot_override_component_uncertainty (__main__.ExtractionSafetyTests.test_optional_aggregate_cannot_override_component_uncertainty) ... ok
+test_valid_contract_including_nulls_and_confidence_bounds (__main__.ExtractionSafetyTests.test_valid_contract_including_nulls_and_confidence_bounds) ... ok
+test_warning_unreadable_or_unknown_formatting_refers (__main__.ExtractionSafetyTests.test_warning_unreadable_or_unknown_formatting_refers) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.035s
+
+OK
+
+EXIT 0
+
+core.autocrlf=false COMMAND /usr/bin/python3 bench/test_results_integrity.py
+PASS: 162 unique records / 1134 field verdicts independently replayed; fixture hashes, current caches, aggregates and entire report match. Zero paid calls.
+
+EXIT 0
+
+core.autocrlf=false COMMAND /usr/bin/python3 bench/test_integrity_mutations.py
+test_changed_analysis_fails (__main__.IntegrityMutationTests.test_changed_analysis_fails) ... ok
+test_changed_raw_extraction_rejects_stale_verdict (__main__.IntegrityMutationTests.test_changed_raw_extraction_rejects_stale_verdict) ... ok
+test_clean_evidence_passes (__main__.IntegrityMutationTests.test_clean_evidence_passes) ... ok
+test_current_class_cache_mutation_fails (__main__.IntegrityMutationTests.test_current_class_cache_mutation_fails) ... ok
+test_current_verdict_cache_mutation_fails (__main__.IntegrityMutationTests.test_current_verdict_cache_mutation_fails) ... ok
+test_duplicate_record_fails (__main__.IntegrityMutationTests.test_duplicate_record_fails) ... ok
+test_fixture_truth_mutation_fails (__main__.IntegrityMutationTests.test_fixture_truth_mutation_fails) ... ok
+test_missing_replayed_evidence_fails (__main__.IntegrityMutationTests.test_missing_replayed_evidence_fails) ... ok
+test_missing_required_evidence_fails (__main__.IntegrityMutationTests.test_missing_required_evidence_fails) ... ok
+test_report_engine_row_swap_fails (__main__.IntegrityMutationTests.test_report_engine_row_swap_fails) ... ok
+test_windows_relative_paths_pass_full_gate (__main__.IntegrityMutationTests.test_windows_relative_paths_pass_full_gate) ... ok
+test_windows_relative_paths_still_reject_changed_fixture (__main__.IntegrityMutationTests.test_windows_relative_paths_still_reject_changed_fixture) ... ok
+test_windows_relative_paths_still_reject_missing_manifest_entry (__main__.IntegrityMutationTests.test_windows_relative_paths_still_reject_missing_manifest_entry) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.451s
+
+OK
+
+EXIT 0
+
+core.autocrlf=false COMMAND /usr/bin/python3 bench/test_archived_spend.py
+test_dry_run_remains_offline_and_successful (__main__.ArchivedSpendTests.test_dry_run_remains_offline_and_successful) ... ok
+test_paid_execution_refuses_before_credentials_or_dispatch (__main__.ArchivedSpendTests.test_paid_execution_refuses_before_credentials_or_dispatch) ... ok
+test_standalone_provider_probe_is_disabled (__main__.ArchivedSpendTests.test_standalone_provider_probe_is_disabled) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.049s
+
+OK
+
+EXIT 0
+
+core.autocrlf=false COMMAND /usr/bin/python3 bench/test_checkout_portability.py
+test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.435s
+
+OK
+
+EXIT 0
+
+core.autocrlf=false COMMAND /usr/bin/python3 bench/run_bench.py --dry-run
+DRY RUN: 18 fixtures x 3 engines x 3 repeats = 162 planned calls; ZERO issued.
+  gpt-5-mini: gpt-5-mini via OpenAI Responses API (direct) (historical configuration)
+  claude-haiku-4-5: anthropic/claude-haiku-4.5 via OpenRouter -> Anthropic (historical configuration)
+  claude-sonnet-4-5: anthropic/claude-sonnet-4.5 via OpenRouter -> Anthropic (historical configuration)
+
+EXIT 0
+
+core.autocrlf=false COMMAND /usr/bin/python3 -m compileall -q bench
+
+EXIT 0
+
+core.autocrlf=false COMMAND git diff --check
+
+EXIT 0
+PASS: all pinned benchmark bytes match 2ca813e; checkout clean
+
+core.autocrlf=true COMMAND /usr/bin/python3 bench/test_scoring.py
+passed: 303
+ALL SCORING TESTS PASSED (no network, no model calls)
+
+EXIT 0
+
+core.autocrlf=true COMMAND /usr/bin/python3 bench/test_extraction_safety.py
+test_absent_confidence_never_certifies_clean_oracle (__main__.ExtractionSafetyTests.test_absent_confidence_never_certifies_clean_oracle) ... ok
+test_aggregate_warning_confidence_cannot_replace_components (__main__.ExtractionSafetyTests.test_aggregate_warning_confidence_cannot_replace_components) ... ok
+test_bottler_requires_full_declared_identity (__main__.ExtractionSafetyTests.test_bottler_requires_full_declared_identity) ... ok
+test_confident_nonbold_heading_is_mismatch (__main__.ExtractionSafetyTests.test_confident_nonbold_heading_is_mismatch) ... ok
+test_deleted_keys_block_affected_fields_despite_claimed_validity (__main__.ExtractionSafetyTests.test_deleted_keys_block_affected_fields_despite_claimed_validity) ... ok
+test_every_component_requires_its_own_valid_confidence (__main__.ExtractionSafetyTests.test_every_component_requires_its_own_valid_confidence) ... ok
+test_full_bottler_matches_normalization_and_known_prefixes (__main__.ExtractionSafetyTests.test_full_bottler_matches_normalization_and_known_prefixes) ... ok
+test_genuinely_unreadable_field_is_review (__main__.ExtractionSafetyTests.test_genuinely_unreadable_field_is_review) ... ok
+test_invalid_value_types_cannot_be_trusted_via_schema_valid_true (__main__.ExtractionSafetyTests.test_invalid_value_types_cannot_be_trusted_via_schema_valid_true) ... ok
+test_low_confidence_all_warning_components_gate (__main__.ExtractionSafetyTests.test_low_confidence_all_warning_components_gate) ... ok
+test_malformed_confidence_map (__main__.ExtractionSafetyTests.test_malformed_confidence_map) ... ok
+test_nonobject_extractions_are_referrals_not_exceptions (__main__.ExtractionSafetyTests.test_nonobject_extractions_are_referrals_not_exceptions) ... ok
+test_optional_aggregate_cannot_override_component_uncertainty (__main__.ExtractionSafetyTests.test_optional_aggregate_cannot_override_component_uncertainty) ... ok
+test_valid_contract_including_nulls_and_confidence_bounds (__main__.ExtractionSafetyTests.test_valid_contract_including_nulls_and_confidence_bounds) ... ok
+test_warning_unreadable_or_unknown_formatting_refers (__main__.ExtractionSafetyTests.test_warning_unreadable_or_unknown_formatting_refers) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.056s
+
+OK
+
+EXIT 0
+
+core.autocrlf=true COMMAND /usr/bin/python3 bench/test_results_integrity.py
+PASS: 162 unique records / 1134 field verdicts independently replayed; fixture hashes, current caches, aggregates and entire report match. Zero paid calls.
+
+EXIT 0
+
+core.autocrlf=true COMMAND /usr/bin/python3 bench/test_integrity_mutations.py
+test_changed_analysis_fails (__main__.IntegrityMutationTests.test_changed_analysis_fails) ... ok
+test_changed_raw_extraction_rejects_stale_verdict (__main__.IntegrityMutationTests.test_changed_raw_extraction_rejects_stale_verdict) ... ok
+test_clean_evidence_passes (__main__.IntegrityMutationTests.test_clean_evidence_passes) ... ok
+test_current_class_cache_mutation_fails (__main__.IntegrityMutationTests.test_current_class_cache_mutation_fails) ... ok
+test_current_verdict_cache_mutation_fails (__main__.IntegrityMutationTests.test_current_verdict_cache_mutation_fails) ... ok
+test_duplicate_record_fails (__main__.IntegrityMutationTests.test_duplicate_record_fails) ... ok
+test_fixture_truth_mutation_fails (__main__.IntegrityMutationTests.test_fixture_truth_mutation_fails) ... ok
+test_missing_replayed_evidence_fails (__main__.IntegrityMutationTests.test_missing_replayed_evidence_fails) ... ok
+test_missing_required_evidence_fails (__main__.IntegrityMutationTests.test_missing_required_evidence_fails) ... ok
+test_report_engine_row_swap_fails (__main__.IntegrityMutationTests.test_report_engine_row_swap_fails) ... ok
+test_windows_relative_paths_pass_full_gate (__main__.IntegrityMutationTests.test_windows_relative_paths_pass_full_gate) ... ok
+test_windows_relative_paths_still_reject_changed_fixture (__main__.IntegrityMutationTests.test_windows_relative_paths_still_reject_changed_fixture) ... ok
+test_windows_relative_paths_still_reject_missing_manifest_entry (__main__.IntegrityMutationTests.test_windows_relative_paths_still_reject_missing_manifest_entry) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.460s
+
+OK
+
+EXIT 0
+
+core.autocrlf=true COMMAND /usr/bin/python3 bench/test_archived_spend.py
+test_dry_run_remains_offline_and_successful (__main__.ArchivedSpendTests.test_dry_run_remains_offline_and_successful) ... ok
+test_paid_execution_refuses_before_credentials_or_dispatch (__main__.ArchivedSpendTests.test_paid_execution_refuses_before_credentials_or_dispatch) ... ok
+test_standalone_provider_probe_is_disabled (__main__.ArchivedSpendTests.test_standalone_provider_probe_is_disabled) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.048s
+
+OK
+
+EXIT 0
+
+core.autocrlf=true COMMAND /usr/bin/python3 bench/test_checkout_portability.py
+test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.422s
+
+OK
+
+EXIT 0
+
+core.autocrlf=true COMMAND /usr/bin/python3 bench/run_bench.py --dry-run
+DRY RUN: 18 fixtures x 3 engines x 3 repeats = 162 planned calls; ZERO issued.
+  gpt-5-mini: gpt-5-mini via OpenAI Responses API (direct) (historical configuration)
+  claude-haiku-4-5: anthropic/claude-haiku-4.5 via OpenRouter -> Anthropic (historical configuration)
+  claude-sonnet-4-5: anthropic/claude-sonnet-4.5 via OpenRouter -> Anthropic (historical configuration)
+
+EXIT 0
+
+core.autocrlf=true COMMAND /usr/bin/python3 -m compileall -q bench
+
+EXIT 0
+
+core.autocrlf=true COMMAND git diff --check
+
+EXIT 0
+PASS: all pinned benchmark bytes match 2ca813e; checkout clean
+PASS: documentation links, limited secret-pattern scan, master documentation ancestry

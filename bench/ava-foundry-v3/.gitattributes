@@ -1,0 +1,4 @@
+# Preserve evidence bytes across native Windows/Linux checkouts.
+** -text
+# CSV's standard CRLF is a record terminator, not trailing field whitespace.
+*.csv whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

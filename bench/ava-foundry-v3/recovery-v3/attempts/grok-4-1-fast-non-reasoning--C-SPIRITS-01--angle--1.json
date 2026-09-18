@@ -1,0 +1,51 @@
+{
+  "id": "grok-4-1-fast-non-reasoning--C-SPIRITS-01--angle--1",
+  "operator": "AVA-v3",
+  "model": "grok-4-1-fast-non-reasoning",
+  "engine": "grok-4-1-fast-non-reasoning",
+  "fixture_id": "C-SPIRITS-01",
+  "repeat": 1,
+  "condition": "angle",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.0006173,
+  "request_sha256": "a2a8b8733573dbc831dace317dd8655c5dd9bcbea53e9c95fa3af16e8528a208",
+  "image_sha256": "0dca0b5d36fc89fd9db503b88c50466fa4309790b698daf2de25ab29e6c8565c",
+  "transport": "chat",
+  "started_at": "2026-09-18T16:01:35.830866+00:00",
+  "reserved_usd": 0.23233672,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-SPIRITS-01__angle.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "http_status": 200,
+  "request_id": "b8e6f0ae-70a9-4034-afa7-b496c4e112c3",
+  "latency_s": 5.823617802001536,
+  "response_sha256": "857afc374066e331b04f50664d237043c01669c46055f28bb9b9ae5efc9df6b9",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/responses/grok-4-1-fast-non-reasoning--C-SPIRITS-01--angle--1.json",
+  "tokens_in": 2489,
+  "tokens_out": 239,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 2489,
+    "completion_tokens": 239,
+    "total_tokens": 2728,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 858,
+      "audio_tokens": 0,
+      "text_tokens": 697,
+      "image_tokens": 1792
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "num_sources_used": 0
+  },
+  "returned_model": "grok-4-1-fast-non-reasoning"
+}
