@@ -1,0 +1,1637 @@
+{
+  "corpus": "TTB paired deterministic synthetic bottle mockups v1",
+  "synthetic": true,
+  "photographs": false,
+  "renderer": "render.py",
+  "renderer_sha256": "b128aa31bf4daf55f851becda52f6efe71299a549c91e41ae5c4cbda02951fc8",
+  "seed": 20260918,
+  "source_root": "/opt/data/projects/ttb-label-verify-revision/fixtures",
+  "source_manifest_sha256": "52dc578ab95728dfb986b4e7a32ff3daf860cc14753ea0008f86b51892f0f68a",
+  "resolution": [
+    2200,
+    3200
+  ],
+  "limitations": [
+    "Not photographs; stylized opaque shaded raster bottles, not physically based glass.",
+    "Full original label is mounted on front, including original whitespace and any preexisting degradations.",
+    "No new text, OCR, inference, external image assets or generative imaging.",
+    "Bilinear resampling and gentle multiplicative shading change pixel values, not intended wording.",
+    "Clean paired baseline: no new glare, blur, occlusion or severe perspective; cannot establish real-world photo accuracy.",
+    "A PNG preserves rendered pixels; JPEG contact sheet is preview only."
+  ],
+  "fixtures": [
+    {
+      "fixture_id": "C-SPIRITS-01",
+      "commodity": "spirits",
+      "category": "clean",
+      "source_image": "images/C-SPIRITS-01.png",
+      "source_ground_truth": "ground_truth/C-SPIRITS-01.json",
+      "ground_truth": "ground_truth/C-SPIRITS-01.json",
+      "source_sha256": "6db5c6cf43a3a09e324c9e086220594ba35f8611c6e1a4966ccec9a14cce7470",
+      "ground_truth_sha256": "cee4f112da89aa39bec0c5a760e862dfdef0911beb254c18830564622f4f6ddf",
+      "image": "images/C-SPIRITS-01.png",
+      "derived_sha256": "bd601f2d9a3b0fd1b31257fd46e24eb148969519fa4833678ac604df20e037ec",
+      "transform": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260918,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": -12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1079.0,
+          1700.0,
+          2943.052292
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      }
+    },
+    {
+      "fixture_id": "C-WINE-01",
+      "commodity": "wine",
+      "category": "clean",
+      "source_image": "images/C-WINE-01.png",
+      "source_ground_truth": "ground_truth/C-WINE-01.json",
+      "ground_truth": "ground_truth/C-WINE-01.json",
+      "source_sha256": "c718da519884fd0f496e166a97250a40decd98bf90a8511c7af335cab5bea771",
+      "ground_truth_sha256": "35ff0e303cd93337c5a88893ab8c495e1280c5d245be318f389ec1afa7b3fc9b",
+      "image": "images/C-WINE-01.png",
+      "derived_sha256": "3e2506cb620c53fb1a267cd3bf12f38397c02bfdab849bd4aa87a2b528537eb3",
+      "transform": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260919,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 0,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1091.0,
+          1700.0,
+          2943.470912
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            150
+          ],
+          [
+            230,
+            160
+          ],
+          [
+            620,
+            160
+          ],
+          [
+            710,
+            195
+          ],
+          [
+            800,
+            315
+          ],
+          [
+            900,
+            530
+          ],
+          [
+            1040,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          42.0,
+          67.0,
+          37.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      }
+    },
+    {
+      "fixture_id": "C-MALT-01",
+      "commodity": "malt",
+      "category": "clean",
+      "source_image": "images/C-MALT-01.png",
+      "source_ground_truth": "ground_truth/C-MALT-01.json",
+      "ground_truth": "ground_truth/C-MALT-01.json",
+      "source_sha256": "36f92b6f24b80111d5abe6a3aac8ae7538252bc58640893aa369af67fc33a559",
+      "ground_truth_sha256": "fb9473919ea1e500db579ea4592ed7a8f81b82273ddf7e4ee2eaa3ae3a1aa674",
+      "image": "images/C-MALT-01.png",
+      "derived_sha256": "d94072ceaa20bb53d3bcab4829e235258c2e0cc09f211e1b5959ecb2b1a8a917",
+      "transform": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260920,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1097.0,
+          1700.0,
+          2945.563952
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            160
+          ],
+          [
+            215,
+            155
+          ],
+          [
+            540,
+            155
+          ],
+          [
+            680,
+            235
+          ],
+          [
+            800,
+            405
+          ],
+          [
+            980,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          110.0,
+          64.0,
+          26.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      }
+    },
+    {
+      "fixture_id": "C-SPIRITS-IMPORT-01",
+      "commodity": "spirits",
+      "category": "clean",
+      "source_image": "images/C-SPIRITS-IMPORT-01.png",
+      "source_ground_truth": "ground_truth/C-SPIRITS-IMPORT-01.json",
+      "ground_truth": "ground_truth/C-SPIRITS-IMPORT-01.json",
+      "source_sha256": "a1a8009fec8552dbbaa4610274f08b3fffaf841efc092f0de53a1af953d5e24d",
+      "ground_truth_sha256": "a5929f251146c3ecce0ec5f411795438343f4cd05f50af61b5e355eb76dd9425",
+      "image": "images/C-SPIRITS-IMPORT-01.png",
+      "derived_sha256": "7557567bdfcfb73dbbf29ca3c1ee615857dd958bd0f44c144788ce0b898206ec",
+      "transform": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260921,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": -12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1079.0,
+          1700.0,
+          2943.052292
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      }
+    },
+    {
+      "fixture_id": "A-WARN-TITLECASE-01",
+      "commodity": "spirits",
+      "category": "adversarial",
+      "source_image": "images/A-WARN-TITLECASE-01.png",
+      "source_ground_truth": "ground_truth/A-WARN-TITLECASE-01.json",
+      "ground_truth": "ground_truth/A-WARN-TITLECASE-01.json",
+      "source_sha256": "a332b9612bc45547db698b2a7a005895a086d668319925bc8d06d2966f20a75f",
+      "ground_truth_sha256": "9ec3427ce736aee449665839760bc3c489d983a48937115534d3b08af89a2ff6",
+      "image": "images/A-WARN-TITLECASE-01.png",
+      "derived_sha256": "0d4b1d5936b6e9aaed69a0b9ab16c101b3cf7d6834bf17fb69f4992bcada7ed6",
+      "transform": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260922,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 0,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1091.0,
+          1700.0,
+          2943.470912
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      }
+    },
+    {
+      "fixture_id": "A-WARN-BOLDBODY-01",
+      "commodity": "wine",
+      "category": "adversarial",
+      "source_image": "images/A-WARN-BOLDBODY-01.png",
+      "source_ground_truth": "ground_truth/A-WARN-BOLDBODY-01.json",
+      "ground_truth": "ground_truth/A-WARN-BOLDBODY-01.json",
+      "source_sha256": "07ead341ecdafc55c1cb6b2215ad7eb5fbd2d83793bbe439bbd3458eafb70d1e",
+      "ground_truth_sha256": "674d4c55bf1f241f834367f871e5122c0871be529728d1c36743935329567c9e",
+      "image": "images/A-WARN-BOLDBODY-01.png",
+      "derived_sha256": "e691c2f4a862cce743f914f46fd073e0b2c10a6426778cffd9fd94c4c7f69938",
+      "transform": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260923,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1097.0,
+          1700.0,
+          2945.563952
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            150
+          ],
+          [
+            230,
+            160
+          ],
+          [
+            620,
+            160
+          ],
+          [
+            710,
+            195
+          ],
+          [
+            800,
+            315
+          ],
+          [
+            900,
+            530
+          ],
+          [
+            1040,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          42.0,
+          67.0,
+          37.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      }
+    },
+    {
+      "fixture_id": "A-BRAND-CASE-01",
+      "commodity": "spirits",
+      "category": "adversarial",
+      "source_image": "images/A-BRAND-CASE-01.png",
+      "source_ground_truth": "ground_truth/A-BRAND-CASE-01.json",
+      "ground_truth": "ground_truth/A-BRAND-CASE-01.json",
+      "source_sha256": "6c3e7b4bc076cbfffe5b7d3379c7d167847370a8d24cae052a0850807e7a9329",
+      "ground_truth_sha256": "657c7672b54ed3fbe1baad89a9efcada4ac9cf9cd93c580cae064bbc60c91422",
+      "image": "images/A-BRAND-CASE-01.png",
+      "derived_sha256": "eaa677746bdc68b71b3e07cafaa8a382dfafd69f69406e688c37960ca33a2b90",
+      "transform": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260924,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": -12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1079.0,
+          1700.0,
+          2943.052292
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      }
+    },
+    {
+      "fixture_id": "A-ABV-WRONG-01",
+      "commodity": "wine",
+      "category": "adversarial",
+      "source_image": "images/A-ABV-WRONG-01.png",
+      "source_ground_truth": "ground_truth/A-ABV-WRONG-01.json",
+      "ground_truth": "ground_truth/A-ABV-WRONG-01.json",
+      "source_sha256": "bb19b282fe059b2f429d0f91904639cb82e1fc256b0f026ee7d484e39cfad135",
+      "ground_truth_sha256": "ed423edb1fc7d0dd5158bb9fc302c702644567ac4dcd1718eb63c601d15a3d1e",
+      "image": "images/A-ABV-WRONG-01.png",
+      "derived_sha256": "7535698250fa4d7cfd76f9936305f2376dcde95e4bb1ec1bedc66cf77198bebd",
+      "transform": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260925,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 0,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1091.0,
+          1700.0,
+          2943.470912
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            150
+          ],
+          [
+            230,
+            160
+          ],
+          [
+            620,
+            160
+          ],
+          [
+            710,
+            195
+          ],
+          [
+            800,
+            315
+          ],
+          [
+            900,
+            530
+          ],
+          [
+            1040,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          42.0,
+          67.0,
+          37.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      }
+    },
+    {
+      "fixture_id": "A-FIELD-MISSING-01",
+      "commodity": "malt",
+      "category": "adversarial",
+      "source_image": "images/A-FIELD-MISSING-01.png",
+      "source_ground_truth": "ground_truth/A-FIELD-MISSING-01.json",
+      "ground_truth": "ground_truth/A-FIELD-MISSING-01.json",
+      "source_sha256": "bccda011d9dfb0c9b5c14cd422930a5d62c315e7caa0519dfd47f988ae94497a",
+      "ground_truth_sha256": "caf84125de42c1a8df25b6c18dd3f1351c41314a7ef621568ca77d1553f211f4",
+      "image": "images/A-FIELD-MISSING-01.png",
+      "derived_sha256": "fbe2320836ee47d13e1d3c9438d7575cb1bd0f453c44f8513bb610f960d4a3a5",
+      "transform": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260926,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1097.0,
+          1700.0,
+          2945.563952
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            160
+          ],
+          [
+            215,
+            155
+          ],
+          [
+            540,
+            155
+          ],
+          [
+            680,
+            235
+          ],
+          [
+            800,
+            405
+          ],
+          [
+            980,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          110.0,
+          64.0,
+          26.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      }
+    },
+    {
+      "fixture_id": "A-INJECT-PROMPT-01",
+      "commodity": "spirits",
+      "category": "injection",
+      "source_image": "images/A-INJECT-PROMPT-01.png",
+      "source_ground_truth": "ground_truth/A-INJECT-PROMPT-01.json",
+      "ground_truth": "ground_truth/A-INJECT-PROMPT-01.json",
+      "source_sha256": "f06963b651dec88f5226032a417a35bfbcce1c0bce7adbee74b304749d65b5eb",
+      "ground_truth_sha256": "7928707303d9009f475d9723ddf6d23ea544e10f2066ecf00071ed9344cdf84e",
+      "image": "images/A-INJECT-PROMPT-01.png",
+      "derived_sha256": "862b359239fa121158387e419a7aba15fb7316a33af8fa1ed3bd64ce9ecae5f7",
+      "transform": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260927,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": -12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1079.0,
+          1700.0,
+          2943.052292
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      }
+    },
+    {
+      "fixture_id": "W-BRAND-WRONG-01",
+      "commodity": "spirits",
+      "category": "wrong-answer",
+      "source_image": "images/W-BRAND-WRONG-01.png",
+      "source_ground_truth": "ground_truth/W-BRAND-WRONG-01.json",
+      "ground_truth": "ground_truth/W-BRAND-WRONG-01.json",
+      "source_sha256": "27d358e7cc919454f3388fb73d4868878b59f7b1b6433ee2bce514e0e670ca9d",
+      "ground_truth_sha256": "b4983b90a789772ec7837b2798132997b60f96bf91f0eb00c911060015f2a425",
+      "image": "images/W-BRAND-WRONG-01.png",
+      "derived_sha256": "a1a4443f8838733ba6478df90d170d6d3c3cc925e2d2fe6e6e606a6e11a0639b",
+      "transform": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260928,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 0,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1091.0,
+          1700.0,
+          2943.470912
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      }
+    },
+    {
+      "fixture_id": "W-ABV-4045-01",
+      "commodity": "spirits",
+      "category": "wrong-answer",
+      "source_image": "images/W-ABV-4045-01.png",
+      "source_ground_truth": "ground_truth/W-ABV-4045-01.json",
+      "ground_truth": "ground_truth/W-ABV-4045-01.json",
+      "source_sha256": "2717efcdf4b2ef5e30570b11d8646c49f4bc82d70ee80d0d1a1fe6711f8f7435",
+      "ground_truth_sha256": "16924fefa452e316b4d3d68975410f0bf2700cea2e67795ea0e627ac10d2c239",
+      "image": "images/W-ABV-4045-01.png",
+      "derived_sha256": "d2e674fae1a068ca6fbdbca8af6e337eb197dcc54f75b6f1a8c651646a7daaf4",
+      "transform": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260929,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1097.0,
+          1700.0,
+          2945.563952
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      }
+    },
+    {
+      "fixture_id": "W-NETCONTENTS-WRONG-01",
+      "commodity": "spirits",
+      "category": "wrong-answer",
+      "source_image": "images/W-NETCONTENTS-WRONG-01.png",
+      "source_ground_truth": "ground_truth/W-NETCONTENTS-WRONG-01.json",
+      "ground_truth": "ground_truth/W-NETCONTENTS-WRONG-01.json",
+      "source_sha256": "8ab0a782eda4738fa245b02721eaff28ecce889f012293ef5685b7f2c8cca8aa",
+      "ground_truth_sha256": "824379bccceb528c95b561ae7e0a2d0ac7e26c1f50eac6d0d122d3cedc0b5ca9",
+      "image": "images/W-NETCONTENTS-WRONG-01.png",
+      "derived_sha256": "7abf8c9d973a8c781c2516f1615420d02db5654ea2492b98e9f326074136f128",
+      "transform": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260930,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": -12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1079.0,
+          1700.0,
+          2943.052292
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      }
+    },
+    {
+      "fixture_id": "W-WARN-REWORD-01",
+      "commodity": "malt",
+      "category": "wrong-answer",
+      "source_image": "images/W-WARN-REWORD-01.png",
+      "source_ground_truth": "ground_truth/W-WARN-REWORD-01.json",
+      "ground_truth": "ground_truth/W-WARN-REWORD-01.json",
+      "source_sha256": "ad1ceec2aa92e01537484a4c991602c9397a5f31563c4d494c4bbe88b2c4eedd",
+      "ground_truth_sha256": "f5bc506b14b4e3fb22820264188f25f154e7707756ea8ab84cc20f0a61375d9d",
+      "image": "images/W-WARN-REWORD-01.png",
+      "derived_sha256": "4abd681601b86e9147aecf5bd277e15b1ea928e92e5110674b71d1ba6d46e5a8",
+      "transform": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260931,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 0,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1091.0,
+          1700.0,
+          2943.470912
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            160
+          ],
+          [
+            215,
+            155
+          ],
+          [
+            540,
+            155
+          ],
+          [
+            680,
+            235
+          ],
+          [
+            800,
+            405
+          ],
+          [
+            980,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          110.0,
+          64.0,
+          26.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      }
+    },
+    {
+      "fixture_id": "W-BRAND-SPLITLINE-01",
+      "commodity": "spirits",
+      "category": "wrong-answer",
+      "source_image": "images/W-BRAND-SPLITLINE-01.png",
+      "source_ground_truth": "ground_truth/W-BRAND-SPLITLINE-01.json",
+      "ground_truth": "ground_truth/W-BRAND-SPLITLINE-01.json",
+      "source_sha256": "b83ade16f1e48719f138eadaa2af82ca8154909b4d60113299a0d47c1249f4e2",
+      "ground_truth_sha256": "c281fb488bbacfde99ad8c979ddaa876128f4b902b5cecc37564ddb8c647ff68",
+      "image": "images/W-BRAND-SPLITLINE-01.png",
+      "derived_sha256": "0d808655c0372f5c6ceb60d280a4773e20f8e35b33c3c599263112be17899b8a",
+      "transform": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260932,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1097.0,
+          1700.0,
+          2945.563952
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      }
+    },
+    {
+      "fixture_id": "D-BLUR-01",
+      "commodity": "spirits",
+      "category": "degraded",
+      "source_image": "images/D-BLUR-01.png",
+      "source_ground_truth": "ground_truth/D-BLUR-01.json",
+      "ground_truth": "ground_truth/D-BLUR-01.json",
+      "source_sha256": "d12ce32310048021081b0406c2bbecba4c29eb8c654d83d4514484d8e0e5dceb",
+      "ground_truth_sha256": "911663bb68073ed4221dd14e3376950bf271e4de193a4c77730522bd071bfa2e",
+      "image": "images/D-BLUR-01.png",
+      "derived_sha256": "79c8cdb4cc6e0f3be886f66e84dca9a70dd75d8e2e70215abe913a1a5ab8e4d4",
+      "transform": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260933,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": -12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1079.0,
+          1700.0,
+          2943.052292
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      }
+    },
+    {
+      "fixture_id": "D-WARP-01",
+      "commodity": "wine",
+      "category": "degraded",
+      "source_image": "images/D-WARP-01.png",
+      "source_ground_truth": "ground_truth/D-WARP-01.json",
+      "ground_truth": "ground_truth/D-WARP-01.json",
+      "source_sha256": "bc3f95244d8d5141becd870068df8f66bff809c4c8945e787cf02c51b8a72545",
+      "ground_truth_sha256": "b1882707a88f9796073660e896244cf6549c193894c3e7d3eb5ecb96db32a67c",
+      "image": "images/D-WARP-01.png",
+      "derived_sha256": "47429b89bd864d13388c38895810746c7355631fda7fd19d02d2a4dc03e8159f",
+      "transform": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260934,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 0,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1091.0,
+          1700.0,
+          2943.470912
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            150
+          ],
+          [
+            230,
+            160
+          ],
+          [
+            620,
+            160
+          ],
+          [
+            710,
+            195
+          ],
+          [
+            800,
+            315
+          ],
+          [
+            900,
+            530
+          ],
+          [
+            1040,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          42.0,
+          67.0,
+          37.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      }
+    },
+    {
+      "fixture_id": "D-GLARE-01",
+      "commodity": "malt",
+      "category": "degraded",
+      "source_image": "images/D-GLARE-01.png",
+      "source_ground_truth": "ground_truth/D-GLARE-01.json",
+      "ground_truth": "ground_truth/D-GLARE-01.json",
+      "source_sha256": "02a00f894da7459c30bb799d7d59fabdd3c56bfdb9408182e559688cb23af83d",
+      "ground_truth_sha256": "4231822e0f6d0f6c51b18e3110d1bdc3b7871f03b51ae31c51038e8a897ed5cb",
+      "image": "images/D-GLARE-01.png",
+      "derived_sha256": "4bb6cfeccacf118647cfd357c33044ec5453f1f4723947615f071e3f8e74adfa",
+      "transform": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260935,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1097.0,
+          1700.0,
+          2945.563952
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            160
+          ],
+          [
+            215,
+            155
+          ],
+          [
+            540,
+            155
+          ],
+          [
+            680,
+            235
+          ],
+          [
+            800,
+            405
+          ],
+          [
+            980,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          110.0,
+          64.0,
+          26.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      }
+    }
+  ],
+  "immutable_source_verified": true,
+  "contact_sheet": {
+    "path": "contact-sheet.jpg",
+    "sha256": "b512f683b8c2f83c38c5cc274afe72a9ec07fc6c8ed815fa66ae58a8d0a06e08",
+    "fixture_ids": [
+      "C-SPIRITS-01",
+      "C-WINE-01",
+      "C-MALT-01",
+      "C-SPIRITS-IMPORT-01",
+      "A-WARN-BOLDBODY-01",
+      "A-FIELD-MISSING-01"
+    ]
+  }
+}

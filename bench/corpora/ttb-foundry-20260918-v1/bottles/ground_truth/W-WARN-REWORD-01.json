@@ -1,0 +1,54 @@
+{
+  "fixture_id": "W-WARN-REWORD-01",
+  "category": "wrong-answer",
+  "commodity": "malt",
+  "description": "Warning heading correct/bold, body subtly reworded mid-paragraph (drink->consume, impairs->may impair).",
+  "image": "images/W-WARN-REWORD-01.png",
+  "synthetic": true,
+  "generated_by": "fixtures/generate_labels.py (programmatic Pillow rendering, no AI)",
+  "degraded": false,
+  "derived_from": null,
+  "transform": null,
+  "application": {
+    "brand_name": "Fenwick & Doyle",
+    "class_type": "India Pale Ale",
+    "alcohol_content": "6.8% ALC/VOL",
+    "net_contents": "12 FL OZ",
+    "bottler_info": "Fenwick & Doyle Brewing, Burlington, Vermont",
+    "country_of_origin": null,
+    "is_imported": false
+  },
+  "label_actual": {
+    "brand_name": "Fenwick & Doyle",
+    "brand_as_rendered": "Fenwick & Doyle",
+    "class_type": "INDIA PALE ALE",
+    "alcohol_content": "6.8% ALC/VOL",
+    "net_contents": "12 FL OZ",
+    "bottler_info": "Brewed and bottled by Fenwick & Doyle Brewing, Burlington, Vermont",
+    "country_of_origin": null,
+    "government_warning": {
+      "heading": "GOVERNMENT WARNING:",
+      "body": "(1) According to the Surgeon General, women should not consume alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages may impair your ability to drive a car or operate machinery, and may cause health problems.",
+      "heading_is_all_caps": true,
+      "heading_is_bold": true,
+      "body_is_bold": false,
+      "body_is_statutory_exact": false
+    },
+    "fine_print": null
+  },
+  "expected": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "mismatch"
+  },
+  "statutory_warning_reference": {
+    "citation": "27 CFR 16.21",
+    "heading": "GOVERNMENT WARNING:",
+    "body": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems."
+  },
+  "notes": "expected[] holds the TRUTH verdict of label-vs-declared per field (match/mismatch/not-applicable). needs-review is never a truth value; it is an acceptable engine outcome scored as a referral per PLAN.md's Uncertainty Invariant."
+}
