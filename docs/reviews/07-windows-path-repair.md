@@ -47,3 +47,14 @@ of the final frozen handoff SHA and verifies no benchmark evidence or fingerprin
 changed. Verify the single [review register](README.md) and
 [repository identity/reconciliation](REGISTER_RECONCILIATION.md). Return one
 PASS/REVISE verdict; do not edit. AVA records the verdict after it is supplied.
+
+## Frozen candidate verification
+
+All six gate scripts, offline dry-run, compilation and whitespace check passed
+on `b4656265cd3c3a1dd0fd16e4d74f5d2280267494` in fresh `core.autocrlf=false`
+and `core.autocrlf=true` checkouts on Linux. Every pinned benchmark file matched
+its original `2ca813e` bytes and recorded hash. The checkout remained clean.
+[Full frozen-gate output](evidence/b465626-frozen-gates.log).
+This report-only addition does not change the tested implementation; the final
+handoff also requires a rerun at its exact committed SHA. Native Windows approval
+remains ARGUS's independent gate, not implied by these Linux results.
