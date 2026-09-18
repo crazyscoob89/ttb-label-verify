@@ -1,0 +1,55 @@
+{
+  "created_at": "2026-09-18T14:38:02.308261+00:00",
+  "authorization": "Alex selected $10 allowance for full comparison via clarify in current Discord task. No OpenRouter reruns.",
+  "allowance_usd": 10,
+  "models": [
+    "gpt-5-mini",
+    "gpt-4.1-mini",
+    "Mistral-Large-3",
+    "grok-4-1-fast-non-reasoning",
+    "Kimi-K2.6",
+    "mistral-document-ai-2512"
+  ],
+  "fixtures": [
+    "C-SPIRITS-01",
+    "C-WINE-01",
+    "C-MALT-01",
+    "C-SPIRITS-IMPORT-01",
+    "A-WARN-TITLECASE-01",
+    "A-WARN-BOLDBODY-01",
+    "A-BRAND-CASE-01",
+    "A-ABV-WRONG-01",
+    "A-FIELD-MISSING-01",
+    "A-INJECT-PROMPT-01",
+    "W-BRAND-WRONG-01",
+    "W-ABV-4045-01",
+    "W-NETCONTENTS-WRONG-01",
+    "W-WARN-REWORD-01",
+    "W-BRAND-SPLITLINE-01",
+    "D-BLUR-01",
+    "D-WARP-01",
+    "D-GLARE-01"
+  ],
+  "repeats": 3,
+  "max_output_tokens": 3000,
+  "auto_retries": 0,
+  "parallelism": "one sequential stream per model, up to six simultaneous requests across models",
+  "historical_raw_sha256": "1b7fa04ba503de42ece3bcc382232fe2f5ccc19435f365eaf48ab9ce01efbcc0",
+  "system_prompt_sha256": "7eee75227b6f2923fb14f3460ce2a599da98967d4dbc830d6d11ef22a8eedb0e",
+  "user_prompt_sha256": "a7ccb5470defaba9927da6a73740859ce748216653023e46409d77a5293e5393",
+  "source_files_sha256": {
+    "engines.py": "7e89c3dfa532e0b9a62b0011e600657291ca8855394493d901895b55eb2265be",
+    "scoring.py": "8150c9d0f48897fea66cbad68ca2ed6dfb536813503f756ba991ea1b5820307b",
+    "replay.py": "9979e6b315365886a6ff7fce48f1ffd451a407736495099f37437538796cdf99",
+    "extraction_validation.py": "e350e8313c1771b90da2d3aa915019b0d7d8661cf7be6050d413ac2d09b4eb7d"
+  },
+  "pricing_guard": {
+    "input_usd_per_million": 1.1,
+    "output_usd_per_million": 5.5,
+    "unobserved_chat_charge_reservation_usd": 1.1699336,
+    "ocr_usd_per_page_guard": 0.05,
+    "description": "Batch-only guard using conservative retail assumptions and measured usage; unknown errors retain full reservations. Not Azure invoice/account-wide hard cap."
+  },
+  "timing": "request start to full nonstreaming response. TTFT not measured; app/UI end-to-end not measured. pipeline_seconds includes response persistence and deterministic scoring.",
+  "protocol": "Original frozen prompts, original PNG bytes, 3000 output budget. GPT-5 mini uses Responses/default reasoning to match old direct OpenAI run. Other chat models use Chat Completions/json_object/default settings. OCR schema descriptions are an adapted separate track."
+}

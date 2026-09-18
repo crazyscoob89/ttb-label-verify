@@ -1,0 +1,48 @@
+==============================================================================
+TTB LABEL VERIFICATION -- EXTRACTION BENCHMARK
+==============================================================================
+fixtures : 18
+engines  : foundry-gpt-4.1-mini, foundry-gpt-5-mini
+repeats  : N=3
+calls    : 108
+spend cap: $6.00 (hard, enforced in-process)
+
+------------------------------------------------------------------------------
+ENGINE: foundry-gpt-4.1-mini  (gpt-4.1-mini via Azure AI Foundry -> gpt-4.1-mini)
+------------------------------------------------------------------------------
+  C-SPIRITS-01             r1:4.8s  r2:6.2s  r3:5.7s   [$0.0036]
+  C-WINE-01                r1:5.0s  r2:4.8s  r3:4.2s   [$0.0075]
+  C-MALT-01                r1:5.3s  r2:5.6s  r3:4.9s   [$0.0113]
+  C-SPIRITS-IMPORT-01      r1:5.3s  r2:5.6s  r3:4.4s   [$0.0152]
+  A-WARN-TITLECASE-01      r1:5.7s  r2:4.3s  r3:5.1s   [$0.0190]
+  A-WARN-BOLDBODY-01       r1:5.6s  r2:5.3s  r3:4.6s   [$0.0227]
+  A-BRAND-CASE-01          r1:4.7s  r2:5.5s  r3:5.3s   [$0.0266]
+  A-ABV-WRONG-01           r1:4.9s  r2:4.7s  r3:6.6s   [$0.0305]
+  A-FIELD-MISSING-01       r1:4.9s  r2:5.8s  r3:5.1s   [$0.0342]
+  A-INJECT-PROMPT-01       r1:4.8s  r2:4.9s  r3:5.3s   [$0.0378]
+  W-BRAND-WRONG-01         r1:5.2s  r2:4.8s  r3:4.6s   [$0.0416]
+  W-ABV-4045-01            r1:5.1s  r2:7.3s  r3:6.3s   [$0.0456]
+  W-NETCONTENTS-WRONG-01   r1:4.5s  r2:4.4s  r3:4.5s   [$0.0492]
+  W-WARN-REWORD-01         r1:6.0s  r2:4.4s  r3:6.7s   [$0.0531]
+  W-BRAND-SPLITLINE-01     r1:5.8s  r2:5.7s  r3:5.2s   [$0.0570]
+  D-BLUR-01                r1:5.9s  r2:4.6s  r3:5.4s   [$0.0607]
+  D-WARP-01                r1:6.0s  r2:6.4s  r3:6.5s   [$0.0646]
+  D-GLARE-01               r1:6.2s  r2:5.0s  r3:6.0s   [$0.0685]
+------------------------------------------------------------------------------
+ENGINE: foundry-gpt-5-mini  (gpt-5-mini via Azure AI Foundry -> gpt-5-mini)
+------------------------------------------------------------------------------
+  C-SPIRITS-01             r1:9.2s  r2:10.4s  r3:12.0s   [$0.0756]
+  C-WINE-01                r1:11.9s  r2:12.6s  r3:13.7s   [$0.0837]
+  C-MALT-01                r1:13.0s  r2:13.4s  r3:13.0s   [$0.0919]
+  C-SPIRITS-IMPORT-01      r1:11.4s  r2:12.4s  r3:12.2s   [$0.0995]
+  A-WARN-TITLECASE-01      r1:13.0s  r2:11.8s  r3:11.8s   [$0.1079]
+  A-WARN-BOLDBODY-01       r1:13.3s  <<< FALSE MATCH  r2:14.3s  <<< FALSE MATCH  r3:12.3s  <<< FALSE MATCH   [$0.1163]
+  A-BRAND-CASE-01          r1:11.2s  r2:12.4s  r3:12.6s   [$0.1243]
+  A-ABV-WRONG-01           r1:10.8s  r2:12.4s  r3:13.7s   [$0.1320]
+  A-FIELD-MISSING-01       r1:11.5s  r2:10.9s  r3:12.7s   [$0.1393]
+  A-INJECT-PROMPT-01       r1:10.7s  r2:10.8s  r3:10.7s   [$0.1464]
+  W-BRAND-WRONG-01         r1:11.9s  r2:14.2s  r3:11.3s   [$0.1536]
+  W-ABV-4045-01            r1:13.2s  r2:12.3s  r3:12.6s   [$0.1618]
+  W-NETCONTENTS-WRONG-01   r1:12.4s  r2:13.3s  r3:13.8s   [$0.1704]
+  W-WARN-REWORD-01         r1:11.5s  r2:11.0s  r3:12.4s   [$0.1782]
+  W-BRAND-SPLITLINE-01     r1:10.6s  r2:12.4s  r3:9.8s   [$0.1853]

@@ -1,0 +1,54 @@
+{
+  "fixture_id": "W-NETCONTENTS-WRONG-01",
+  "category": "wrong-answer",
+  "commodity": "spirits",
+  "description": "Label clearly states 750 mL; application declares 1 L.",
+  "image": "images/W-NETCONTENTS-WRONG-01.png",
+  "synthetic": true,
+  "generated_by": "fixtures/generate_labels.py (programmatic Pillow rendering, no AI)",
+  "degraded": false,
+  "derived_from": null,
+  "transform": null,
+  "application": {
+    "brand_name": "Salt Marsh",
+    "class_type": "Gin",
+    "alcohol_content": "47% ALC/VOL",
+    "net_contents": "1 L",
+    "bottler_info": "Salt Marsh Distillers, Charleston, South Carolina",
+    "country_of_origin": null,
+    "is_imported": false
+  },
+  "label_actual": {
+    "brand_name": "Salt Marsh",
+    "brand_as_rendered": "Salt Marsh",
+    "class_type": "GIN",
+    "alcohol_content": "47% ALC/VOL (94 PROOF)",
+    "net_contents": "750 mL",
+    "bottler_info": "Distilled and bottled by Salt Marsh Distillers, Charleston, South Carolina",
+    "country_of_origin": null,
+    "government_warning": {
+      "heading": "GOVERNMENT WARNING:",
+      "body": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+      "heading_is_all_caps": true,
+      "heading_is_bold": true,
+      "body_is_bold": false,
+      "body_is_statutory_exact": true
+    },
+    "fine_print": null
+  },
+  "expected": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "mismatch",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "statutory_warning_reference": {
+    "citation": "27 CFR 16.21",
+    "heading": "GOVERNMENT WARNING:",
+    "body": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems."
+  },
+  "notes": "expected[] holds the TRUTH verdict of label-vs-declared per field (match/mismatch/not-applicable). needs-review is never a truth value; it is an acceptable engine outcome scored as a referral per PLAN.md's Uncertainty Invariant."
+}

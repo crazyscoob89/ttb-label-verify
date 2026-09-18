@@ -1,0 +1,789 @@
+{
+  "paid_execution_enabled": false,
+  "execution_owner": "AVA",
+  "qa_owner": "ARGUS",
+  "human_cap_usd": 10,
+  "ava_protocol_unattempted": [
+    {
+      "id": "gpt-5-mini--C-SPIRITS-01--3",
+      "model": "gpt-5-mini",
+      "fixture_id": "C-SPIRITS-01",
+      "repeat": 3
+    },
+    {
+      "id": "gpt-5-mini--C-WINE-01--3",
+      "model": "gpt-5-mini",
+      "fixture_id": "C-WINE-01",
+      "repeat": 3
+    },
+    {
+      "id": "gpt-5-mini--C-MALT-01--3",
+      "model": "gpt-5-mini",
+      "fixture_id": "C-MALT-01",
+      "repeat": 3
+    },
+    {
+      "id": "gpt-5-mini--C-SPIRITS-IMPORT-01--3",
+      "model": "gpt-5-mini",
+      "fixture_id": "C-SPIRITS-IMPORT-01",
+      "repeat": 3
+    },
+    {
+      "id": "gpt-5-mini--A-WARN-TITLECASE-01--3",
+      "model": "gpt-5-mini",
+      "fixture_id": "A-WARN-TITLECASE-01",
+      "repeat": 3
+    },
+    {
+      "id": "gpt-5-mini--A-WARN-BOLDBODY-01--3",
+      "model": "gpt-5-mini",
+      "fixture_id": "A-WARN-BOLDBODY-01",
+      "repeat": 3
+    },
+    {
+      "id": "gpt-5-mini--A-BRAND-CASE-01--3",
+      "model": "gpt-5-mini",
+      "fixture_id": "A-BRAND-CASE-01",
+      "repeat": 3
+    },
+    {
+      "id": "gpt-5-mini--A-ABV-WRONG-01--3",
+      "model": "gpt-5-mini",
+      "fixture_id": "A-ABV-WRONG-01",
+      "repeat": 3
+    },
+    {
+      "id": "gpt-5-mini--A-FIELD-MISSING-01--3",
+      "model": "gpt-5-mini",
+      "fixture_id": "A-FIELD-MISSING-01",
+      "repeat": 3
+    },
+    {
+      "id": "gpt-5-mini--A-INJECT-PROMPT-01--3",
+      "model": "gpt-5-mini",
+      "fixture_id": "A-INJECT-PROMPT-01",
+      "repeat": 3
+    },
+    {
+      "id": "gpt-5-mini--W-BRAND-WRONG-01--3",
+      "model": "gpt-5-mini",
+      "fixture_id": "W-BRAND-WRONG-01",
+      "repeat": 3
+    },
+    {
+      "id": "gpt-5-mini--W-ABV-4045-01--3",
+      "model": "gpt-5-mini",
+      "fixture_id": "W-ABV-4045-01",
+      "repeat": 3
+    },
+    {
+      "id": "gpt-5-mini--W-NETCONTENTS-WRONG-01--3",
+      "model": "gpt-5-mini",
+      "fixture_id": "W-NETCONTENTS-WRONG-01",
+      "repeat": 3
+    },
+    {
+      "id": "gpt-5-mini--W-WARN-REWORD-01--3",
+      "model": "gpt-5-mini",
+      "fixture_id": "W-WARN-REWORD-01",
+      "repeat": 3
+    },
+    {
+      "id": "gpt-5-mini--W-BRAND-SPLITLINE-01--3",
+      "model": "gpt-5-mini",
+      "fixture_id": "W-BRAND-SPLITLINE-01",
+      "repeat": 3
+    },
+    {
+      "id": "gpt-5-mini--D-BLUR-01--3",
+      "model": "gpt-5-mini",
+      "fixture_id": "D-BLUR-01",
+      "repeat": 3
+    },
+    {
+      "id": "gpt-5-mini--D-WARP-01--3",
+      "model": "gpt-5-mini",
+      "fixture_id": "D-WARP-01",
+      "repeat": 3
+    },
+    {
+      "id": "gpt-5-mini--D-GLARE-01--3",
+      "model": "gpt-5-mini",
+      "fixture_id": "D-GLARE-01",
+      "repeat": 3
+    },
+    {
+      "id": "Mistral-Large-3--C-WINE-01--3",
+      "model": "Mistral-Large-3",
+      "fixture_id": "C-WINE-01",
+      "repeat": 3
+    },
+    {
+      "id": "Mistral-Large-3--C-SPIRITS-IMPORT-01--3",
+      "model": "Mistral-Large-3",
+      "fixture_id": "C-SPIRITS-IMPORT-01",
+      "repeat": 3
+    },
+    {
+      "id": "Mistral-Large-3--A-WARN-TITLECASE-01--3",
+      "model": "Mistral-Large-3",
+      "fixture_id": "A-WARN-TITLECASE-01",
+      "repeat": 3
+    },
+    {
+      "id": "Mistral-Large-3--A-WARN-BOLDBODY-01--3",
+      "model": "Mistral-Large-3",
+      "fixture_id": "A-WARN-BOLDBODY-01",
+      "repeat": 3
+    },
+    {
+      "id": "Mistral-Large-3--A-BRAND-CASE-01--3",
+      "model": "Mistral-Large-3",
+      "fixture_id": "A-BRAND-CASE-01",
+      "repeat": 3
+    },
+    {
+      "id": "Mistral-Large-3--A-FIELD-MISSING-01--3",
+      "model": "Mistral-Large-3",
+      "fixture_id": "A-FIELD-MISSING-01",
+      "repeat": 3
+    },
+    {
+      "id": "Mistral-Large-3--W-BRAND-SPLITLINE-01--3",
+      "model": "Mistral-Large-3",
+      "fixture_id": "W-BRAND-SPLITLINE-01",
+      "repeat": 3
+    },
+    {
+      "id": "Mistral-Large-3--D-BLUR-01--3",
+      "model": "Mistral-Large-3",
+      "fixture_id": "D-BLUR-01",
+      "repeat": 3
+    },
+    {
+      "id": "Mistral-Large-3--D-WARP-01--3",
+      "model": "Mistral-Large-3",
+      "fixture_id": "D-WARP-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--C-SPIRITS-01--2",
+      "model": "Kimi-K2.6",
+      "fixture_id": "C-SPIRITS-01",
+      "repeat": 2
+    },
+    {
+      "id": "Kimi-K2.6--C-SPIRITS-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "C-SPIRITS-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--C-WINE-01--2",
+      "model": "Kimi-K2.6",
+      "fixture_id": "C-WINE-01",
+      "repeat": 2
+    },
+    {
+      "id": "Kimi-K2.6--C-WINE-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "C-WINE-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--C-MALT-01--2",
+      "model": "Kimi-K2.6",
+      "fixture_id": "C-MALT-01",
+      "repeat": 2
+    },
+    {
+      "id": "Kimi-K2.6--C-MALT-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "C-MALT-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--C-SPIRITS-IMPORT-01--2",
+      "model": "Kimi-K2.6",
+      "fixture_id": "C-SPIRITS-IMPORT-01",
+      "repeat": 2
+    },
+    {
+      "id": "Kimi-K2.6--C-SPIRITS-IMPORT-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "C-SPIRITS-IMPORT-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--A-WARN-TITLECASE-01--2",
+      "model": "Kimi-K2.6",
+      "fixture_id": "A-WARN-TITLECASE-01",
+      "repeat": 2
+    },
+    {
+      "id": "Kimi-K2.6--A-WARN-TITLECASE-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "A-WARN-TITLECASE-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--A-WARN-BOLDBODY-01--2",
+      "model": "Kimi-K2.6",
+      "fixture_id": "A-WARN-BOLDBODY-01",
+      "repeat": 2
+    },
+    {
+      "id": "Kimi-K2.6--A-WARN-BOLDBODY-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "A-WARN-BOLDBODY-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--A-BRAND-CASE-01--2",
+      "model": "Kimi-K2.6",
+      "fixture_id": "A-BRAND-CASE-01",
+      "repeat": 2
+    },
+    {
+      "id": "Kimi-K2.6--A-BRAND-CASE-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "A-BRAND-CASE-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--A-ABV-WRONG-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "A-ABV-WRONG-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--A-FIELD-MISSING-01--2",
+      "model": "Kimi-K2.6",
+      "fixture_id": "A-FIELD-MISSING-01",
+      "repeat": 2
+    },
+    {
+      "id": "Kimi-K2.6--A-FIELD-MISSING-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "A-FIELD-MISSING-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--A-INJECT-PROMPT-01--2",
+      "model": "Kimi-K2.6",
+      "fixture_id": "A-INJECT-PROMPT-01",
+      "repeat": 2
+    },
+    {
+      "id": "Kimi-K2.6--A-INJECT-PROMPT-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "A-INJECT-PROMPT-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--W-BRAND-WRONG-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "W-BRAND-WRONG-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--W-ABV-4045-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "W-ABV-4045-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--W-NETCONTENTS-WRONG-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "W-NETCONTENTS-WRONG-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--W-WARN-REWORD-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "W-WARN-REWORD-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--W-BRAND-SPLITLINE-01--2",
+      "model": "Kimi-K2.6",
+      "fixture_id": "W-BRAND-SPLITLINE-01",
+      "repeat": 2
+    },
+    {
+      "id": "Kimi-K2.6--W-BRAND-SPLITLINE-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "W-BRAND-SPLITLINE-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--D-BLUR-01--2",
+      "model": "Kimi-K2.6",
+      "fixture_id": "D-BLUR-01",
+      "repeat": 2
+    },
+    {
+      "id": "Kimi-K2.6--D-BLUR-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "D-BLUR-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--D-WARP-01--2",
+      "model": "Kimi-K2.6",
+      "fixture_id": "D-WARP-01",
+      "repeat": 2
+    },
+    {
+      "id": "Kimi-K2.6--D-WARP-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "D-WARP-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--D-GLARE-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "D-GLARE-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--C-SPIRITS-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "C-SPIRITS-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--C-WINE-01--2",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "C-WINE-01",
+      "repeat": 2
+    },
+    {
+      "id": "mistral-document-ai-2512--C-WINE-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "C-WINE-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--C-MALT-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "C-MALT-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--C-SPIRITS-IMPORT-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "C-SPIRITS-IMPORT-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--A-WARN-TITLECASE-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "A-WARN-TITLECASE-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--A-WARN-BOLDBODY-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "A-WARN-BOLDBODY-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--A-BRAND-CASE-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "A-BRAND-CASE-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--A-ABV-WRONG-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "A-ABV-WRONG-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--A-FIELD-MISSING-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "A-FIELD-MISSING-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--A-INJECT-PROMPT-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "A-INJECT-PROMPT-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--W-BRAND-WRONG-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "W-BRAND-WRONG-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--W-ABV-4045-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "W-ABV-4045-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--W-NETCONTENTS-WRONG-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "W-NETCONTENTS-WRONG-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--W-WARN-REWORD-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "W-WARN-REWORD-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--W-BRAND-SPLITLINE-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "W-BRAND-SPLITLINE-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--D-BLUR-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "D-BLUR-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--D-WARP-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "D-WARP-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--D-GLARE-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "D-GLARE-01",
+      "repeat": 3
+    }
+  ],
+  "minimal_cross_operator_unattempted": [
+    {
+      "id": "gpt-5-mini--D-BLUR-01--3",
+      "model": "gpt-5-mini",
+      "fixture_id": "D-BLUR-01",
+      "repeat": 3
+    },
+    {
+      "id": "gpt-5-mini--D-WARP-01--3",
+      "model": "gpt-5-mini",
+      "fixture_id": "D-WARP-01",
+      "repeat": 3
+    },
+    {
+      "id": "gpt-5-mini--D-GLARE-01--3",
+      "model": "gpt-5-mini",
+      "fixture_id": "D-GLARE-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--C-SPIRITS-01--2",
+      "model": "Kimi-K2.6",
+      "fixture_id": "C-SPIRITS-01",
+      "repeat": 2
+    },
+    {
+      "id": "Kimi-K2.6--C-SPIRITS-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "C-SPIRITS-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--C-WINE-01--2",
+      "model": "Kimi-K2.6",
+      "fixture_id": "C-WINE-01",
+      "repeat": 2
+    },
+    {
+      "id": "Kimi-K2.6--C-WINE-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "C-WINE-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--C-MALT-01--2",
+      "model": "Kimi-K2.6",
+      "fixture_id": "C-MALT-01",
+      "repeat": 2
+    },
+    {
+      "id": "Kimi-K2.6--C-MALT-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "C-MALT-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--C-SPIRITS-IMPORT-01--2",
+      "model": "Kimi-K2.6",
+      "fixture_id": "C-SPIRITS-IMPORT-01",
+      "repeat": 2
+    },
+    {
+      "id": "Kimi-K2.6--C-SPIRITS-IMPORT-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "C-SPIRITS-IMPORT-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--A-WARN-TITLECASE-01--2",
+      "model": "Kimi-K2.6",
+      "fixture_id": "A-WARN-TITLECASE-01",
+      "repeat": 2
+    },
+    {
+      "id": "Kimi-K2.6--A-WARN-TITLECASE-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "A-WARN-TITLECASE-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--A-WARN-BOLDBODY-01--2",
+      "model": "Kimi-K2.6",
+      "fixture_id": "A-WARN-BOLDBODY-01",
+      "repeat": 2
+    },
+    {
+      "id": "Kimi-K2.6--A-WARN-BOLDBODY-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "A-WARN-BOLDBODY-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--A-BRAND-CASE-01--2",
+      "model": "Kimi-K2.6",
+      "fixture_id": "A-BRAND-CASE-01",
+      "repeat": 2
+    },
+    {
+      "id": "Kimi-K2.6--A-BRAND-CASE-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "A-BRAND-CASE-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--A-ABV-WRONG-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "A-ABV-WRONG-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--A-FIELD-MISSING-01--2",
+      "model": "Kimi-K2.6",
+      "fixture_id": "A-FIELD-MISSING-01",
+      "repeat": 2
+    },
+    {
+      "id": "Kimi-K2.6--A-FIELD-MISSING-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "A-FIELD-MISSING-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--A-INJECT-PROMPT-01--2",
+      "model": "Kimi-K2.6",
+      "fixture_id": "A-INJECT-PROMPT-01",
+      "repeat": 2
+    },
+    {
+      "id": "Kimi-K2.6--A-INJECT-PROMPT-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "A-INJECT-PROMPT-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--W-BRAND-WRONG-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "W-BRAND-WRONG-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--W-ABV-4045-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "W-ABV-4045-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--W-NETCONTENTS-WRONG-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "W-NETCONTENTS-WRONG-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--W-WARN-REWORD-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "W-WARN-REWORD-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--W-BRAND-SPLITLINE-01--2",
+      "model": "Kimi-K2.6",
+      "fixture_id": "W-BRAND-SPLITLINE-01",
+      "repeat": 2
+    },
+    {
+      "id": "Kimi-K2.6--W-BRAND-SPLITLINE-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "W-BRAND-SPLITLINE-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--D-BLUR-01--2",
+      "model": "Kimi-K2.6",
+      "fixture_id": "D-BLUR-01",
+      "repeat": 2
+    },
+    {
+      "id": "Kimi-K2.6--D-BLUR-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "D-BLUR-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--D-WARP-01--2",
+      "model": "Kimi-K2.6",
+      "fixture_id": "D-WARP-01",
+      "repeat": 2
+    },
+    {
+      "id": "Kimi-K2.6--D-WARP-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "D-WARP-01",
+      "repeat": 3
+    },
+    {
+      "id": "Kimi-K2.6--D-GLARE-01--3",
+      "model": "Kimi-K2.6",
+      "fixture_id": "D-GLARE-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--C-SPIRITS-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "C-SPIRITS-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--C-WINE-01--2",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "C-WINE-01",
+      "repeat": 2
+    },
+    {
+      "id": "mistral-document-ai-2512--C-WINE-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "C-WINE-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--C-MALT-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "C-MALT-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--C-SPIRITS-IMPORT-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "C-SPIRITS-IMPORT-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--A-WARN-TITLECASE-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "A-WARN-TITLECASE-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--A-WARN-BOLDBODY-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "A-WARN-BOLDBODY-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--A-BRAND-CASE-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "A-BRAND-CASE-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--A-ABV-WRONG-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "A-ABV-WRONG-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--A-FIELD-MISSING-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "A-FIELD-MISSING-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--A-INJECT-PROMPT-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "A-INJECT-PROMPT-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--W-BRAND-WRONG-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "W-BRAND-WRONG-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--W-ABV-4045-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "W-ABV-4045-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--W-NETCONTENTS-WRONG-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "W-NETCONTENTS-WRONG-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--W-WARN-REWORD-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "W-WARN-REWORD-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--W-BRAND-SPLITLINE-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "W-BRAND-SPLITLINE-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--D-BLUR-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "D-BLUR-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--D-WARP-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "D-WARP-01",
+      "repeat": 3
+    },
+    {
+      "id": "mistral-document-ai-2512--D-GLARE-01--3",
+      "model": "mistral-document-ai-2512",
+      "fixture_id": "D-GLARE-01",
+      "repeat": 3
+    }
+  ],
+  "counts": {
+    "ava_only_unattempted": 76,
+    "cross_operator_known_unattempted": 52
+  },
+  "note": "Inventory only, not executable authorization. Both sets exclude AVA reserved/cancelled attempts; cross-operator set additionally excludes all saved/logged ARGUS attempts. AVA-only set is not a dispatch queue. Cross-operator equivalence is not established; unlogged ARGUS cancellations require ledger reconciliation before any future execution.",
+  "blocked_pending": [
+    "99 log-only completions have no saved extraction or exact usage: cannot rescore or verify exact cost.",
+    "ARGUS cancelled/in-flight tail lacks a durable dispatch ledger: additional attempts/charges cannot be bounded; missing queues remain tentative and disabled.",
+    "Provider invoice/account-wide costs unverified; all unknown charges retained.",
+    "No bottle inference evidence in this recovered set; flat-label coverage is not bottle evaluation."
+  ]
+}

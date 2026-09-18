@@ -1,0 +1,266 @@
+{
+  "meta": {
+    "timestamp_utc": "2026-09-17T21:52:37.756423+00:00",
+    "fixtures": 18,
+    "engines": [
+      "gpt-5-mini",
+      "claude-haiku-4-5",
+      "claude-sonnet-4-5"
+    ],
+    "repeats": 3,
+    "calls_planned": 162,
+    "calls_executed": 162,
+    "elapsed_s": 1402.6,
+    "total_spend_usd": 1.061848,
+    "spend_cap_usd": 6.0,
+    "aborted": false,
+    "abort_reason": "",
+    "confidence_threshold": 0.75,
+    "engine_config": {
+      "gpt-5-mini": {
+        "model": "gpt-5-mini",
+        "route": "OpenAI Responses API (direct)",
+        "tier": "fast",
+        "price_in_per_1m": 0.25,
+        "price_out_per_1m": 2.0
+      },
+      "claude-haiku-4-5": {
+        "model": "anthropic/claude-haiku-4.5",
+        "route": "OpenRouter -> Anthropic",
+        "tier": "fast",
+        "price_in_per_1m": 1.0,
+        "price_out_per_1m": 5.0
+      },
+      "claude-sonnet-4-5": {
+        "model": "anthropic/claude-sonnet-4.5",
+        "route": "OpenRouter -> Anthropic",
+        "tier": "mid (reference)",
+        "price_in_per_1m": 3.0,
+        "price_out_per_1m": 15.0
+      }
+    }
+  },
+  "engines": {
+    "gpt-5-mini": {
+      "model": "gpt-5-mini",
+      "route": "OpenAI Responses API (direct)",
+      "tier": "fast",
+      "calls": 54,
+      "failed_calls": 0,
+      "failed_detail": [],
+      "total_field_outcomes": 378,
+      "extraction_correct_n": 376,
+      "safe_outcome_correct_n": 375,
+      "recorded_outcome_correct_n": 375,
+      "negative_outcomes": 24,
+      "classes": {
+        "correct": 369,
+        "false_match": 2,
+        "referral": 7
+      },
+      "false_match_n": 2,
+      "false_match_pct": 0.5291005291005291,
+      "false_match_detail": [
+        {
+          "fixture_id": "A-WARN-BOLDBODY-01",
+          "repeat": 1,
+          "field": "government_warning",
+          "extracted": false,
+          "reason": "exact statutory wording and formatting"
+        },
+        {
+          "fixture_id": "A-WARN-BOLDBODY-01",
+          "repeat": 2,
+          "field": "government_warning",
+          "extracted": false,
+          "reason": "exact statutory wording and formatting"
+        }
+      ],
+      "false_mismatch_n": 0,
+      "false_mismatch_pct": 0.0,
+      "false_mismatch_detail": [],
+      "referral_n": 7,
+      "referral_pct": 1.8518518518518519,
+      "automation_pct": 100.0,
+      "automation_definitive": 84,
+      "automation_total": 84,
+      "consistency_flip_fixtures": 2,
+      "consistency_flip_pct": 11.11111111111111,
+      "consistency_detail": [
+        {
+          "fixture_id": "A-WARN-BOLDBODY-01",
+          "fields": {
+            "government_warning": [
+              "match",
+              "mismatch"
+            ]
+          }
+        },
+        {
+          "fixture_id": "W-BRAND-WRONG-01",
+          "fields": {
+            "government_warning": [
+              "match",
+              "needs-review"
+            ]
+          }
+        }
+      ],
+      "median_latency_s": 11.61035,
+      "p95_latency_s": 15.5519,
+      "mean_latency_s": 11.714448148148149,
+      "spend_usd": 0.148198,
+      "cost_per_label_usd": 0.002744407407407407,
+      "injection_false_match": 0,
+      "injection_resistance_pct": 100.0,
+      "warning_adversarial_correct": 7,
+      "warning_adversarial_total": 9,
+      "warning_adversarial_pct": 77.77777777777777
+    },
+    "claude-haiku-4-5": {
+      "model": "anthropic/claude-haiku-4.5",
+      "route": "OpenRouter -> Anthropic",
+      "tier": "fast",
+      "calls": 54,
+      "failed_calls": 0,
+      "failed_detail": [],
+      "total_field_outcomes": 378,
+      "extraction_correct_n": 378,
+      "safe_outcome_correct_n": 378,
+      "recorded_outcome_correct_n": 378,
+      "negative_outcomes": 24,
+      "classes": {
+        "correct": 372,
+        "referral": 6
+      },
+      "false_match_n": 0,
+      "false_match_pct": 0.0,
+      "false_match_detail": [],
+      "false_mismatch_n": 0,
+      "false_mismatch_pct": 0.0,
+      "false_mismatch_detail": [],
+      "referral_n": 6,
+      "referral_pct": 1.5873015873015872,
+      "automation_pct": 100.0,
+      "automation_definitive": 84,
+      "automation_total": 84,
+      "consistency_flip_fixtures": 0,
+      "consistency_flip_pct": 0.0,
+      "consistency_detail": [],
+      "median_latency_s": 4.00065,
+      "p95_latency_s": 4.3376,
+      "mean_latency_s": 4.040688888888889,
+      "spend_usd": 0.231611,
+      "cost_per_label_usd": 0.004289092592592593,
+      "injection_false_match": 0,
+      "injection_resistance_pct": 100.0,
+      "warning_adversarial_correct": 9,
+      "warning_adversarial_total": 9,
+      "warning_adversarial_pct": 100.0
+    },
+    "claude-sonnet-4-5": {
+      "model": "anthropic/claude-sonnet-4.5",
+      "route": "OpenRouter -> Anthropic",
+      "tier": "mid (reference)",
+      "calls": 54,
+      "failed_calls": 1,
+      "failed_detail": [
+        {
+          "fixture_id": "D-WARP-01",
+          "repeat": 2,
+          "error_class": "TimeoutError"
+        }
+      ],
+      "total_field_outcomes": 378,
+      "extraction_correct_n": 368,
+      "safe_outcome_correct_n": 368,
+      "recorded_outcome_correct_n": 368,
+      "negative_outcomes": 24,
+      "classes": {
+        "correct": 362,
+        "false_match": 3,
+        "referral": 13
+      },
+      "false_match_n": 3,
+      "false_match_pct": 0.7936507936507936,
+      "false_match_detail": [
+        {
+          "fixture_id": "A-WARN-BOLDBODY-01",
+          "repeat": 1,
+          "field": "government_warning",
+          "extracted": false,
+          "reason": "exact statutory wording and formatting"
+        },
+        {
+          "fixture_id": "A-WARN-BOLDBODY-01",
+          "repeat": 2,
+          "field": "government_warning",
+          "extracted": false,
+          "reason": "exact statutory wording and formatting"
+        },
+        {
+          "fixture_id": "A-WARN-BOLDBODY-01",
+          "repeat": 3,
+          "field": "government_warning",
+          "extracted": false,
+          "reason": "exact statutory wording and formatting"
+        }
+      ],
+      "false_mismatch_n": 0,
+      "false_mismatch_pct": 0.0,
+      "false_mismatch_detail": [],
+      "referral_n": 13,
+      "referral_pct": 3.439153439153439,
+      "automation_pct": 100.0,
+      "automation_definitive": 84,
+      "automation_total": 84,
+      "consistency_flip_fixtures": 1,
+      "consistency_flip_pct": 5.555555555555555,
+      "consistency_detail": [
+        {
+          "fixture_id": "D-WARP-01",
+          "fields": {
+            "brand_name": [
+              "match",
+              "needs-review"
+            ],
+            "class_type": [
+              "match",
+              "needs-review"
+            ],
+            "alcohol_content": [
+              "match",
+              "needs-review"
+            ],
+            "net_contents": [
+              "match",
+              "needs-review"
+            ],
+            "bottler_info": [
+              "match",
+              "needs-review"
+            ],
+            "country_of_origin": [
+              "needs-review",
+              "not-applicable"
+            ],
+            "government_warning": [
+              "match",
+              "needs-review"
+            ]
+          }
+        }
+      ],
+      "median_latency_s": 5.707649999999999,
+      "p95_latency_s": 6.4329,
+      "mean_latency_s": 9.014661111111112,
+      "spend_usd": 0.682026,
+      "cost_per_label_usd": 0.012630111111111111,
+      "injection_false_match": 0,
+      "injection_resistance_pct": 100.0,
+      "warning_adversarial_correct": 6,
+      "warning_adversarial_total": 9,
+      "warning_adversarial_pct": 66.66666666666667
+    }
+  }
+}
