@@ -15,6 +15,8 @@ controls. No new provider run is authorized by this documentation audit.
 
 ## Documentation and evidence
 
+- [docs/reviews/README.md](docs/reviews/README.md) — management review register: findings, historical verdicts, evidence, owners and open decisions
+
 - [docs/PLAN.md](docs/PLAN.md) — scope, planned architecture, matching rules
 - [docs/ACCEPTANCE_CHECKLIST.md](docs/ACCEPTANCE_CHECKLIST.md) — acceptance and open deployment gates
 - [docs/THREAT_MODEL.md](docs/THREAT_MODEL.md) — required security/retention controls, not implementation certification

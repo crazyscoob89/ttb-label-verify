@@ -1,0 +1,277 @@
+test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) ...
+  test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='bench/raw_results.json') ... FAIL
+  test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/manifest.json') ... FAIL
+  test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/A-ABV-WRONG-01.json') ... FAIL
+  test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/A-BRAND-CASE-01.json') ... FAIL
+  test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/A-FIELD-MISSING-01.json') ... FAIL
+  test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/A-INJECT-PROMPT-01.json') ... FAIL
+  test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/A-WARN-BOLDBODY-01.json') ... FAIL
+  test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/A-WARN-TITLECASE-01.json') ... FAIL
+  test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/C-MALT-01.json') ... FAIL
+  test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/C-SPIRITS-01.json') ... FAIL
+  test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/C-SPIRITS-IMPORT-01.json') ... FAIL
+  test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/C-WINE-01.json') ... FAIL
+  test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/D-BLUR-01.json') ... FAIL
+  test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/D-GLARE-01.json') ... FAIL
+  test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/D-WARP-01.json') ... FAIL
+  test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/W-ABV-4045-01.json') ... FAIL
+  test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/W-BRAND-SPLITLINE-01.json') ... FAIL
+  test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/W-BRAND-WRONG-01.json') ... FAIL
+  test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/W-NETCONTENTS-WRONG-01.json') ... FAIL
+  test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/W-WARN-REWORD-01.json') ... FAIL
+test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) ... FAIL
+
+======================================================================
+FAIL: test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='bench/raw_results.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/projects/ttb-label-verify-revision/bench/test_checkout_portability.py", line 50, in test_windows_style_checkout_preserves_evidence_and_passes_gate
+    self.assertEqual(hashlib.sha256((checkout / name).read_bytes()).hexdigest(), expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: '67167d2513ee4409979c28d4ab9828cd321b13977e9df3cb54cfde182776e300' != '1b7fa04ba503de42ece3bcc382232fe2f5ccc19435f365eaf48ab9ce01efbcc0'
+- 67167d2513ee4409979c28d4ab9828cd321b13977e9df3cb54cfde182776e300
++ 1b7fa04ba503de42ece3bcc382232fe2f5ccc19435f365eaf48ab9ce01efbcc0
+
+
+======================================================================
+FAIL: test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/manifest.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/projects/ttb-label-verify-revision/bench/test_checkout_portability.py", line 50, in test_windows_style_checkout_preserves_evidence_and_passes_gate
+    self.assertEqual(hashlib.sha256((checkout / name).read_bytes()).hexdigest(), expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'd77a7a778adb54d0d8e59e39001c7c066967d9d28cec5a64cc49c22d028029b8' != '52dc578ab95728dfb986b4e7a32ff3daf860cc14753ea0008f86b51892f0f68a'
+- d77a7a778adb54d0d8e59e39001c7c066967d9d28cec5a64cc49c22d028029b8
++ 52dc578ab95728dfb986b4e7a32ff3daf860cc14753ea0008f86b51892f0f68a
+
+
+======================================================================
+FAIL: test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/A-ABV-WRONG-01.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/projects/ttb-label-verify-revision/bench/test_checkout_portability.py", line 50, in test_windows_style_checkout_preserves_evidence_and_passes_gate
+    self.assertEqual(hashlib.sha256((checkout / name).read_bytes()).hexdigest(), expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: '16a718c8bd1895117e5432e04a73b1dc687008ac70588f34bbea52b65d181105' != 'ed423edb1fc7d0dd5158bb9fc302c702644567ac4dcd1718eb63c601d15a3d1e'
+- 16a718c8bd1895117e5432e04a73b1dc687008ac70588f34bbea52b65d181105
++ ed423edb1fc7d0dd5158bb9fc302c702644567ac4dcd1718eb63c601d15a3d1e
+
+
+======================================================================
+FAIL: test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/A-BRAND-CASE-01.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/projects/ttb-label-verify-revision/bench/test_checkout_portability.py", line 50, in test_windows_style_checkout_preserves_evidence_and_passes_gate
+    self.assertEqual(hashlib.sha256((checkout / name).read_bytes()).hexdigest(), expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: '40e2a0ca0d0d2f6838dffa6b818ea48d73fbb8964d9e6e7c3747a44c820be6a1' != '657c7672b54ed3fbe1baad89a9efcada4ac9cf9cd93c580cae064bbc60c91422'
+- 40e2a0ca0d0d2f6838dffa6b818ea48d73fbb8964d9e6e7c3747a44c820be6a1
++ 657c7672b54ed3fbe1baad89a9efcada4ac9cf9cd93c580cae064bbc60c91422
+
+
+======================================================================
+FAIL: test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/A-FIELD-MISSING-01.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/projects/ttb-label-verify-revision/bench/test_checkout_portability.py", line 50, in test_windows_style_checkout_preserves_evidence_and_passes_gate
+    self.assertEqual(hashlib.sha256((checkout / name).read_bytes()).hexdigest(), expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: '8feeabdb4f90a93164cffeafc9a3664481b153500b72b0e7d3cc2c33ceb7c3bc' != 'caf84125de42c1a8df25b6c18dd3f1351c41314a7ef621568ca77d1553f211f4'
+- 8feeabdb4f90a93164cffeafc9a3664481b153500b72b0e7d3cc2c33ceb7c3bc
++ caf84125de42c1a8df25b6c18dd3f1351c41314a7ef621568ca77d1553f211f4
+
+
+======================================================================
+FAIL: test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/A-INJECT-PROMPT-01.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/projects/ttb-label-verify-revision/bench/test_checkout_portability.py", line 50, in test_windows_style_checkout_preserves_evidence_and_passes_gate
+    self.assertEqual(hashlib.sha256((checkout / name).read_bytes()).hexdigest(), expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: '125c290976698323e2041ce51dd16ecc78dd8e432912b3ee73bb4dc38f759b9f' != '7928707303d9009f475d9723ddf6d23ea544e10f2066ecf00071ed9344cdf84e'
+- 125c290976698323e2041ce51dd16ecc78dd8e432912b3ee73bb4dc38f759b9f
++ 7928707303d9009f475d9723ddf6d23ea544e10f2066ecf00071ed9344cdf84e
+
+
+======================================================================
+FAIL: test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/A-WARN-BOLDBODY-01.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/projects/ttb-label-verify-revision/bench/test_checkout_portability.py", line 50, in test_windows_style_checkout_preserves_evidence_and_passes_gate
+    self.assertEqual(hashlib.sha256((checkout / name).read_bytes()).hexdigest(), expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'bb0e55e7abe6be32f8e22d33694bde70af7ec92f9aceddda12fc1b381e8b6f6f' != '674d4c55bf1f241f834367f871e5122c0871be529728d1c36743935329567c9e'
+- bb0e55e7abe6be32f8e22d33694bde70af7ec92f9aceddda12fc1b381e8b6f6f
++ 674d4c55bf1f241f834367f871e5122c0871be529728d1c36743935329567c9e
+
+
+======================================================================
+FAIL: test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/A-WARN-TITLECASE-01.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/projects/ttb-label-verify-revision/bench/test_checkout_portability.py", line 50, in test_windows_style_checkout_preserves_evidence_and_passes_gate
+    self.assertEqual(hashlib.sha256((checkout / name).read_bytes()).hexdigest(), expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: '388cfcb2d3b8009c33deeb6d0589a9e70ec620ef3bf3418c255dec71fac41626' != '9ec3427ce736aee449665839760bc3c489d983a48937115534d3b08af89a2ff6'
+- 388cfcb2d3b8009c33deeb6d0589a9e70ec620ef3bf3418c255dec71fac41626
++ 9ec3427ce736aee449665839760bc3c489d983a48937115534d3b08af89a2ff6
+
+
+======================================================================
+FAIL: test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/C-MALT-01.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/projects/ttb-label-verify-revision/bench/test_checkout_portability.py", line 50, in test_windows_style_checkout_preserves_evidence_and_passes_gate
+    self.assertEqual(hashlib.sha256((checkout / name).read_bytes()).hexdigest(), expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: '75bda211f18fe930e5748934db098143bcf28f9cc3c3d32bd93f43a7ee9b7074' != 'fb9473919ea1e500db579ea4592ed7a8f81b82273ddf7e4ee2eaa3ae3a1aa674'
+- 75bda211f18fe930e5748934db098143bcf28f9cc3c3d32bd93f43a7ee9b7074
++ fb9473919ea1e500db579ea4592ed7a8f81b82273ddf7e4ee2eaa3ae3a1aa674
+
+
+======================================================================
+FAIL: test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/C-SPIRITS-01.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/projects/ttb-label-verify-revision/bench/test_checkout_portability.py", line 50, in test_windows_style_checkout_preserves_evidence_and_passes_gate
+    self.assertEqual(hashlib.sha256((checkout / name).read_bytes()).hexdigest(), expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: '27ac565b57710893e34128af4f76015b1d7d3f39f249fa254d8747b9202a9a39' != 'cee4f112da89aa39bec0c5a760e862dfdef0911beb254c18830564622f4f6ddf'
+- 27ac565b57710893e34128af4f76015b1d7d3f39f249fa254d8747b9202a9a39
++ cee4f112da89aa39bec0c5a760e862dfdef0911beb254c18830564622f4f6ddf
+
+
+======================================================================
+FAIL: test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/C-SPIRITS-IMPORT-01.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/projects/ttb-label-verify-revision/bench/test_checkout_portability.py", line 50, in test_windows_style_checkout_preserves_evidence_and_passes_gate
+    self.assertEqual(hashlib.sha256((checkout / name).read_bytes()).hexdigest(), expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: '6d38eced4e8f63fa285f40e2f9787132a18ecfcda724c02398678967b584ac7e' != 'a5929f251146c3ecce0ec5f411795438343f4cd05f50af61b5e355eb76dd9425'
+- 6d38eced4e8f63fa285f40e2f9787132a18ecfcda724c02398678967b584ac7e
++ a5929f251146c3ecce0ec5f411795438343f4cd05f50af61b5e355eb76dd9425
+
+
+======================================================================
+FAIL: test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/C-WINE-01.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/projects/ttb-label-verify-revision/bench/test_checkout_portability.py", line 50, in test_windows_style_checkout_preserves_evidence_and_passes_gate
+    self.assertEqual(hashlib.sha256((checkout / name).read_bytes()).hexdigest(), expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: '3097396293576f3db318e604de9ba80c9763acf72c43326698c8a3814f0a331b' != '35ff0e303cd93337c5a88893ab8c495e1280c5d245be318f389ec1afa7b3fc9b'
+- 3097396293576f3db318e604de9ba80c9763acf72c43326698c8a3814f0a331b
++ 35ff0e303cd93337c5a88893ab8c495e1280c5d245be318f389ec1afa7b3fc9b
+
+
+======================================================================
+FAIL: test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/D-BLUR-01.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/projects/ttb-label-verify-revision/bench/test_checkout_portability.py", line 50, in test_windows_style_checkout_preserves_evidence_and_passes_gate
+    self.assertEqual(hashlib.sha256((checkout / name).read_bytes()).hexdigest(), expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: '0b9f630acb94495e0f2c5da86f3b91eb6cbe768648f61095edf3f54f4ced300a' != '911663bb68073ed4221dd14e3376950bf271e4de193a4c77730522bd071bfa2e'
+- 0b9f630acb94495e0f2c5da86f3b91eb6cbe768648f61095edf3f54f4ced300a
++ 911663bb68073ed4221dd14e3376950bf271e4de193a4c77730522bd071bfa2e
+
+
+======================================================================
+FAIL: test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/D-GLARE-01.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/projects/ttb-label-verify-revision/bench/test_checkout_portability.py", line 50, in test_windows_style_checkout_preserves_evidence_and_passes_gate
+    self.assertEqual(hashlib.sha256((checkout / name).read_bytes()).hexdigest(), expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: '4fc8cd990a752bf13022218b17d5a699c19604f6f3061d8b841cbd1221e0d37a' != '4231822e0f6d0f6c51b18e3110d1bdc3b7871f03b51ae31c51038e8a897ed5cb'
+- 4fc8cd990a752bf13022218b17d5a699c19604f6f3061d8b841cbd1221e0d37a
++ 4231822e0f6d0f6c51b18e3110d1bdc3b7871f03b51ae31c51038e8a897ed5cb
+
+
+======================================================================
+FAIL: test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/D-WARP-01.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/projects/ttb-label-verify-revision/bench/test_checkout_portability.py", line 50, in test_windows_style_checkout_preserves_evidence_and_passes_gate
+    self.assertEqual(hashlib.sha256((checkout / name).read_bytes()).hexdigest(), expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'b399da596290a7b564711969e2e1b5394f5639eebb2961569f5066dfcdf47f4b' != 'b1882707a88f9796073660e896244cf6549c193894c3e7d3eb5ecb96db32a67c'
+- b399da596290a7b564711969e2e1b5394f5639eebb2961569f5066dfcdf47f4b
++ b1882707a88f9796073660e896244cf6549c193894c3e7d3eb5ecb96db32a67c
+
+
+======================================================================
+FAIL: test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/W-ABV-4045-01.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/projects/ttb-label-verify-revision/bench/test_checkout_portability.py", line 50, in test_windows_style_checkout_preserves_evidence_and_passes_gate
+    self.assertEqual(hashlib.sha256((checkout / name).read_bytes()).hexdigest(), expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'f25667c8a4d1e633551bbb089b044e9963aca12b9ba33933dabe1b89401ec171' != '16924fefa452e316b4d3d68975410f0bf2700cea2e67795ea0e627ac10d2c239'
+- f25667c8a4d1e633551bbb089b044e9963aca12b9ba33933dabe1b89401ec171
++ 16924fefa452e316b4d3d68975410f0bf2700cea2e67795ea0e627ac10d2c239
+
+
+======================================================================
+FAIL: test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/W-BRAND-SPLITLINE-01.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/projects/ttb-label-verify-revision/bench/test_checkout_portability.py", line 50, in test_windows_style_checkout_preserves_evidence_and_passes_gate
+    self.assertEqual(hashlib.sha256((checkout / name).read_bytes()).hexdigest(), expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: '7ef5cc051b84ecc4b8875d3656076a343370c1c9a984d3db6823efa7789fed5d' != 'c281fb488bbacfde99ad8c979ddaa876128f4b902b5cecc37564ddb8c647ff68'
+- 7ef5cc051b84ecc4b8875d3656076a343370c1c9a984d3db6823efa7789fed5d
++ c281fb488bbacfde99ad8c979ddaa876128f4b902b5cecc37564ddb8c647ff68
+
+
+======================================================================
+FAIL: test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/W-BRAND-WRONG-01.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/projects/ttb-label-verify-revision/bench/test_checkout_portability.py", line 50, in test_windows_style_checkout_preserves_evidence_and_passes_gate
+    self.assertEqual(hashlib.sha256((checkout / name).read_bytes()).hexdigest(), expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'b5431df8be65804a5e2fc7518901cea15afe60297b0457dbe3b486f14ef2f3d2' != 'b4983b90a789772ec7837b2798132997b60f96bf91f0eb00c911060015f2a425'
+- b5431df8be65804a5e2fc7518901cea15afe60297b0457dbe3b486f14ef2f3d2
++ b4983b90a789772ec7837b2798132997b60f96bf91f0eb00c911060015f2a425
+
+
+======================================================================
+FAIL: test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/W-NETCONTENTS-WRONG-01.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/projects/ttb-label-verify-revision/bench/test_checkout_portability.py", line 50, in test_windows_style_checkout_preserves_evidence_and_passes_gate
+    self.assertEqual(hashlib.sha256((checkout / name).read_bytes()).hexdigest(), expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: '5578d1a34915ff04a46f04fb23b38e171fabc2f152337f98c793a4cb575cae56' != '824379bccceb528c95b561ae7e0a2d0ac7e26c1f50eac6d0d122d3cedc0b5ca9'
+- 5578d1a34915ff04a46f04fb23b38e171fabc2f152337f98c793a4cb575cae56
++ 824379bccceb528c95b561ae7e0a2d0ac7e26c1f50eac6d0d122d3cedc0b5ca9
+
+
+======================================================================
+FAIL: test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate) (evidence='fixtures/ground_truth/W-WARN-REWORD-01.json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/projects/ttb-label-verify-revision/bench/test_checkout_portability.py", line 50, in test_windows_style_checkout_preserves_evidence_and_passes_gate
+    self.assertEqual(hashlib.sha256((checkout / name).read_bytes()).hexdigest(), expected)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'd8f4ed0d7e19ea11ea90451d0ffd7a184d6a4ed5f53d282fd464fc0f11520181' != 'f5bc506b14b4e3fb22820264188f25f154e7707756ea8ab84cc20f0a61375d9d'
+- d8f4ed0d7e19ea11ea90451d0ffd7a184d6a4ed5f53d282fd464fc0f11520181
++ f5bc506b14b4e3fb22820264188f25f154e7707756ea8ab84cc20f0a61375d9d
+
+
+======================================================================
+FAIL: test_windows_style_checkout_preserves_evidence_and_passes_gate (__main__.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/projects/ttb-label-verify-revision/bench/test_checkout_portability.py", line 53, in test_windows_style_checkout_preserves_evidence_and_passes_gate
+    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 0 : FAIL: required evidence integrity: original raw evidence changed; do not silently replace the frozen run
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.792s
+
+FAILED (failures=21)
