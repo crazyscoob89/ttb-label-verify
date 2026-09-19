@@ -1,0 +1,83 @@
+ARGUS REVIEW — Phase 4 source audit part 1: auth.ts + persistence/supabase.ts
+Date: Sat 2026-09-19 ~13:16 EDT
+Worktree: C:\Users\alexm\Projects\argus-phase4-review @ f5007074a33e56214d4da865bd05121665cca1e7
+Citations are file:line in the candidate tree. SOURCE-ONLY; runtime behavior NOT accepted.
+
+C1. FORGED / CROSS-WORKSPACE / EXPIRED / REVOKED DENIAL PATHS — CONFIRMED (source level)
+  web/lib/auth.ts:
+    :5-8    accessInputSchema .strict(): only {sessionToken, workspaceId}; token rejects
+            whitespace/control chars; ANY extra field (actor/context/role/time injection)
+            fails strict parse -> deny (:37 parse inside try, catch -> denied :45)
+    :9      sessionSchema requires revoked: z.literal(false) -> a revoked session reply
+            CANNOT parse; deny. Unknown fields rejected (.strict()).
+    :10     membershipSchema requires active: z.literal(true), closed role enum -> unknown
+            roles/inactive membership deny.
+    :39     expiry checked BEFORE membership lookup (session.expiresAt <= now -> deny)
+    :41-42  expiry RE-checked after membership await (checkedAt), plus exact
+            membership.userId === session.userId AND membership.workspaceId ===
+            request.workspaceId -> cross-workspace / wrong-user denies.
+    :35     no dependencies OR browser runtime (typeof window !== 'undefined') -> deny.
+    :43     result contains sessionId/userId/workspaceId/role/expiry/checkedAt — NO token.
+    :45     any adapter throw/malformed reply -> catch -> {ok:false,code:'access-denied'}.
+            Default-deny confirmed; no fallback, no cache.
+  web/lib/persistence/supabase.ts:
+    :19     sessionSchema (adapter-side) also requires revoked:false, uuid ids, strict.
+    :96-100 verifySession: candidate !== captured token -> unavailable (a DIFFERENT token
+            cannot ride a captured request instance); expiry re-checked vs Date.now().
+    :103-109 findMembership: selector workspace must equal constructed workspace; member
+            reply strictly parsed; userId/workspaceId cross-checked -> cross-workspace deny.
+    :77-80  checkedActor: workspace pinning, sessionExpiresAt <= now deny, checkedAt in
+            future deny, viewer write deny (write=true for insertImmutable :113).
+
+C2. SCOPED SERVER AUTHORITY — CONFIRMED (source level)
+    auth.ts:19-27  adapters are injected server dependencies; doc bans decoded-JWT /
+        getSession cache / request-JSON hydration / metadata roles.
+    supabase.ts:13-16  config from trusted server configuration; per request/bearer/
+        workspace; :30 browser runtime refused at construction; :44 re-refused per op.
+    supabase.ts:32-34  origin must be exact HTTPS origin (url.origin === config.origin),
+        no embedded credentials; :38 publishableKey control-char-free; :39 timeout
+        bounded 1..30000ms default 5000.
+    Workspace is an untrusted selector everywhere; authority derives from verified
+        session + authoritative membership (auth.ts:40-42, supabase.ts:103-109).
+
+C6. RESPONSE VALIDATION — CONFIRMED (source level)
+    supabase.ts:60  !response.ok || response.redirected || !response.body -> unavailable.
+    :61-70  streamed read with 64 KiB cap (MAX_RESPONSE_BYTES :21); oversize -> unavailable.
+    :112-116 insertImmutable: input record strict-checked (checkedRecord), createdBy must
+        equal actor.userId; RPC result checkedRecord AGAIN with exact evidenceId; then
+        JSON.stringify(result) === JSON.stringify(snapshot) requires the EXACT committed
+        row echo (both sides normalized through evidenceRecordSchema.parse -> stable key
+        order). An error/malformed success/different record/lost ack CANNOT fabricate a
+        receipt.
+    :118-121 readActive: authorized null allowed; otherwise strict checkedRecord with
+        exact id, workspace, revokedAt===null, expiry/creation clock checks (:82-85).
+    :89-91  spend returns Promise<unknown> intentionally — existing executeReserved
+        (web/lib/spend.ts, frozen base) remains sole strict decoder; no duplicated
+        policy. claimId uuid-validated before dispatch (:91).
+
+C7. NO RETRY-WITHOUT-IDEMPOTENCY — CONFIRMED
+    supabase.ts rpc(): single attempt, AbortController + timeout race (:51-74), no retry
+    loop anywhere; finally aborts (:74). Doc :19 "no automatic retries". Failed/ambiguous
+    insert throws 'Persistence unavailable' and produces no receipt; nothing re-dispatches.
+    grep for retry/backoff loops in web/lib/auth.ts, storage.ts, repository.ts,
+    persistence/supabase.ts: none present.
+
+C8. NO SECRETS IN SOURCE/LOGS — CONFIRMED
+    supabase.ts:17  ALL failures collapse to generic Error('Persistence unavailable');
+    no console.* in auth.ts/supabase.ts/storage.ts/repository.ts (verified by read);
+    catch blocks swallow upstream error content (auth.ts:45, supabase.ts:44-45);
+    token/key captured in closure, never returned, never included in errors;
+    no process.env access in these modules; no .env loading; test fixtures use
+    synthetic tokens only.
+
+  Notable positive: request bodies snapshotted via JSON.stringify BEFORE first await
+  (supabase.ts:49-50) — later caller mutation cannot change dispatched payload.
+  redirect:'error' + cache:'no-store' + pinned Content-Profile/Accept-Profile ttb_api
+  headers (:57-58) match the declared envelope.
+
+NO C1/C2/C6/C7/C8 defects found at source level. Runtime gateway JWT verification,
+actual session revocation semantics, and DB behavior remain EXTERNAL acceptance gates
+(out of scope, unverified — by design).
+
+NEXT: audit part 2 — storage.ts + repository.ts (immutable bindings C3) and
+001_identity_evidence.sql (grants/search_path/RLS/lock ordering C4, spend atomicity C5).

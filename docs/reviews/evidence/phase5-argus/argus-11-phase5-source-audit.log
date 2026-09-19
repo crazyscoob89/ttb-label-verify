@@ -1,0 +1,76 @@
+ARGUS REVIEW — Step 11: Phase 5 source-level scope audit (read-only)
+Date: Sat 2026-09-19 ~13:10 EDT
+Worktree: C:\Users\alexm\Projects\argus-phase5-review @ 6fca75bc52d7c7de97787b610ba0c9d2a1d5392e
+All citations are file:line within the candidate tree.
+
+S2. LIMITS — 300 items / concurrency max 2: CONFIRMED
+  web/lib/contracts.ts:5      export const MAX_BATCH_PAIRS = 300;  (frozen base file, unchanged)
+  web/lib/contracts.ts:47     manifestSchema .min(1).max(MAX_BATCH_PAIRS)
+  web/lib/batch-manifest.ts:16  arraySchema = z.array(...).max(MAX_BATCH_PAIRS)
+  web/lib/batch-manifest.ts:37  1..300 logical entries or whole-envelope reject
+  web/lib/batch-state.ts:72   concurrency = z.number().int().min(1).max(2).parse(options.concurrency ?? 2)
+                              -> default 2 AND hard max 2
+  web/lib/batch-state.ts:87   inFlight >= concurrency -> reject 'Queue is at capacity'
+  web/lib/batch-state.ts:118  dispatch-next stops at capacity
+
+S7. NO AUTO-RETRIES / MANUAL SELECTED-ITEM RETRY ONLY: CONFIRMED
+  web/lib/batch-state.ts:108-110  reducer doc: "No automatic retry, navigation dispatch,
+                                  transport or storage."
+  web/lib/batch-state.ts:86   retry path requires pair.processing === 'failed' (failed-only)
+  web/lib/batch-state.ts:112  retry only via explicit action; fresh attempt/reservation IDs
+                              enforced via usedAttemptIds/usedReservationIds (:93)
+  web/components/BatchWorkspace.tsx:103  onRetry dispatches ONLY selected.id — no loop,
+                              no queue-wide retry, gated on offlineEnabled
+  Also E2E-verified: batch.spec.ts:136 "failure cannot be reviewed, retry is manual and
+  only the selected pair runs" (passed desktop+mobile in argus-07 log)
+
+S3. EXACT-IMAGE OFFLINE FIXTURES / UNKNOWN UPLOADS UNAVAILABLE: CONFIRMED
+  web/components/BatchUpload.tsx:74-76  browser computes SHA-256 of actual bytes; asset
+      retained ONLY if digest matches committed catalog (samples[id].imageSha256);
+      filename plays no role in selection (byte identity)
+  web/components/BatchUpload.tsx:10  "not an image sanitizer. Only an exact catalog hash"
+  web/lib/offline-demo.ts:18  compareOfflineSample re-checks hash server-side of the
+      adapter: mismatch -> {processing:'failed', code:'invalid-input'} (frozen base file)
+  web/components/BatchWorkspace.tsx:62  comparison ONLY via compareOfflineSample and ONLY
+      when offlineEnabled && asset known — no other executor path exists
+
+S10. NO PRODUCTION INFERENCE / NO CLIENT AUTH AUTHORITY: CONFIRMED
+  web/lib/access.ts:3   runtimeAccess(): false  — hard false, unchanged from base
+  web/lib/access.ts:4-6 fixtureDemoEnabled = (nodeEnv==='development' && optIn==='1')
+      -> IMPORTANT: requires NODE_ENV=development. Production build DENIES EVEN WITH
+         TTB_OFFLINE_DEMO=1 — matches my independent runtime probe (argus-10 log:
+         prod server started WITH TTB_OFFLINE_DEMO=1 still returned 403 + no controls).
+  web/app/review/page.tsx:5  offlineEnabled derived SERVER-side from env, not from any
+      client input; no header/flag/localStorage path grants access
+  Network surface grep across all new components/libs (argus recorded): the ONLY fetch()
+      is BatchUpload.tsx:44 fetching sample.imagePath (local allowlisted fixture PNGs,
+      size-capped stream, 5s timeout, AbortController). No fetch to /api, no external
+      hosts, no XMLHttpRequest/axios, no localStorage/sessionStorage/indexedDB/cookies,
+      no Authorization headers, no tokens/keys in client code.
+  web/app/api/comparisons/route.ts unchanged from frozen base (empty diff, argus-03 log).
+
+S9. BY-DESIGN ABSENCES (not gaps): CONFIRMED ABSENT
+  - Saved history / save receipts: acceptSavedReview + 'save-review' referenced in ZERO
+    components (grep empty). BatchWorkspace.tsx:54 comment: "This UI never submits a
+    saved review." No validator supplied anywhere in UI. Saved counts remain zero.
+    BatchWorkspace.tsx:122,127 truthful labels: superseded versions are page-memory,
+    "Not durable saved history. Reload clears all versions."
+  - Arbitrary live extraction: no provider/executor besides compareOfflineSample;
+    'authorize-reserve-and-dispatch' commands are consumed locally (BatchWorkspace.tsx:62)
+    and explicitly documented as NOT authorization (batch-state.ts:18, 18-batch-foundation.md).
+  - web/app/review/page.tsx footer discloses: "No authenticated reviewer, saved history
+    or server review commit."
+
+S1/S4/S5/S6/S8 were verified behaviorally by the reproduced 38-test dev suite and
+4-test production suite (argus-07, argus-10) plus manifest-blocked diagnostics,
+draft isolation, replacement fencing with occupied slots, A->B->A rejection, and
+keyboard navigation scenarios; source inspection is consistent (batch-state.ts
+selectionEpoch fencing :9,:197; revision fencing :89; equalAttempt/equalSave exact
+token matching :61-62; strict receipt schema :55-59 with control-char rejection).
+
+FINDINGS: NO critical/high defects identified in the Phase 5 offline batch candidate.
+No frozen-source drift, no new deps, no auth authority, no production inference,
+truthful UI labeling of non-durable state. All 6 builder gates independently
+reproduced (argus-03..argus-10).
+
+NEXT: write ARGUS-PHASE5-VERDICT.md (PASS, offline batch scope only).

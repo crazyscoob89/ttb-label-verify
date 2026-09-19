@@ -1,0 +1,37 @@
+
+> ttb-label-review-foundation@0.1.0 test
+> vitest run
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.1 [39m[90m/tmp/ttb-phase45-reviewed-publication/web[39m
+
+ [32m✓[39m tests/auth.test.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 34[2mms[22m[39m
+ [32m✓[39m tests/rules.test.ts [2m([22m[2m117 tests[22m[2m)[22m[33m 302[2mms[22m[39m
+ [32m✓[39m tests/offline-demo.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 242[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts [2m([22m[2m46 tests[22m[2m)[22m[33m 334[2mms[22m[39m
+ [32m✓[39m tests/batch-manifest.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 340[2mms[22m[39m
+ [32m✓[39m tests/storage.test.ts [2m([22m[2m34 tests[22m[2m)[22m[33m 404[2mms[22m[39m
+ [32m✓[39m tests/batch-state.test.ts [2m([22m[2m19 tests[22m[2m)[22m[33m 458[2mms[22m[39m
+ [32m✓[39m tests/compare-service.test.ts [2m([22m[2m12 tests[22m[2m)[22m[33m 333[2mms[22m[39m
+ [32m✓[39m tests/persistence.test.ts [2m([22m[2m34 tests[22m[2m)[22m[33m 367[2mms[22m[39m
+ [32m✓[39m tests/repository.test.ts [2m([22m[2m20 tests[22m[2m)[22m[33m 593[2mms[22m[39m
+ [32m✓[39m tests/review-policy.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 168[2mms[22m[39m
+ [32m✓[39m tests/intake.test.ts [2m([22m[2m71 tests[22m[2m)[22m[33m 750[2mms[22m[39m
+ [32m✓[39m tests/db/sql-contract.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+ [32m✓[39m tests/db/gate-config.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+ [32m✓[39m tests/spend.test.ts [2m([22m[2m25 tests[22m[2m)[22m[32m 61[2mms[22m[39m
+ [32m✓[39m tests/db/gate-refusal.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 654[2mms[22m[39m
+   [32m✓[39m DB gate refusal subprocess — never connects to a DB [2m(4)[22m
+     [33m[2m✓[22m[39m fails specifically for missing isolated authorization/config, even without psql on PATH[33m 459[2mms[22m[39m
+ [32m✓[39m tests/smoke.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 19[2mms[22m[39m
+ [32m✓[39m tests/pair-input.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 23[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m18 passed[39m[22m[90m (18)[39m
+[2m      Tests [22m [1m[32m452 passed[39m[22m[90m (452)[39m
+[2m   Start at [22m 18:29:49
+[2m   Duration [22m 2.49s[2m (import 35%, tests 34%, transform 29%, worker 1%)[22m
+
+[2m  Transform [22m [33mtransforming modules took 4.41s[39m[2m · 29% of tracked time, re-done on every run[22m
+[2m            [22m [2mpersist transforms across runs with [22m[33mfsModuleCache: true[39m
+[2m            [22m [2mon CI this only helps when the cache directory is persisted between runs[22m
+[2m            [22m [2mlearn more: https://vitest.dev/guide/improving-performance#caching-between-reruns[22m

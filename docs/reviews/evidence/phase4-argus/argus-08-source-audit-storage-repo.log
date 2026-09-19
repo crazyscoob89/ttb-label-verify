@@ -1,0 +1,91 @@
+ARGUS REVIEW — Phase 4 source audit part 2: storage.ts + repository.ts (checklist C3 + supporting C2/C6/C7/C8)
+Date: Sat 2026-09-19 ~13:18 EDT
+Worktree: C:\Users\alexm\Projects\argus-phase4-review @ f5007074a33e56214d4da865bd05121665cca1e7
+SOURCE-ONLY; concrete PrivateObjectStore/EvidenceStore adapters are DELIBERATELY ABSENT
+(documented interfaces only) — this is an explicit future adapter, NOT a defect.
+
+C3. IMMUTABLE BINDINGS — CONFIRMED (source level)
+  web/lib/repository.ts:
+    :9-13   imageDescriptorSchema strict: bounded key/byteLength/width/height, exact
+            sha256 hex, closed mime enum, pixel-product cap refine.
+    :15-17  privateObjectKey: private/<workspace>/<versionUUID>/<sha256>.<png|jpg> —
+            each component re-parsed; no caller-supplied path can leak through.
+    :18-23  evidenceRecordSchema strict + refine: expiresAt > createdAt AND
+            image.objectKey MUST equal privateObjectKey(workspaceId, image) — a record
+            whose key does not match its own workspace/version/hash cannot parse.
+    :30-38  EvidenceStore doc: atomic commit-or-reject, unique evidence/object-version
+            identities, immutable (workspace, applicationId, applicationVersion) ->
+            snapshot binding, NO overwrite/upsert/rebinding even on retries, timeout
+            ambiguous, exact committed row required. (Adapter contract; DB enforcement
+            is SQL/audit part 3 + external runtime gate.)
+    :45-47  sameActor: sessionId+userId+workspaceId+role exact equality — used for all
+            pre/post-await actor drift fencing.
+    create() (:73-93):
+      :77-79  request/application/image parsed+snapshotted BEFORE first await;
+              retentionMs required, positive, <= 30 days (:79).
+      :80-81  authorize; viewer write denied.
+      :82     upload via real private storage service (which itself re-sanitizes);
+              workspace/creator of stored image must match the authorizing actor.
+      :83-84  re-authorize + sameActor after storage await.
+      :86     server generates evidenceId (randomUUID), createdAt from server clock,
+              expiresAt = createdAt + retentionMs, revokedAt null — NO caller-supplied
+              identity/time/path (claim confirmed: nothing from input reaches these).
+      :87-88  committed row from insertImmutable strict-parsed then EXACT JSON equality
+              vs the intended record (both canonicalized through schema parse) —
+              fabricated/partial acks cannot become receipts.
+      :89-90  final re-authorize + sameActor + not-yet-expired check before returning
+              deeply frozen result.
+    readEvidence() (:50-67): authorize -> strict parse row -> re-authorize -> sameActor
+      -> exact evidenceId, workspace match, revokedAt===null, createdAt<=now<expiresAt.
+      Frozen snapshot returned. Browser runtime refused (:53).
+
+  web/lib/storage.ts:
+    :8      MAX_SIGNED_URL_TTL_MS = 60_000 (60s cap as claimed).
+    :9-19   PrivateObjectStore doc: private bucket, create-if-absent, exact byte/version
+            verification, no ETag-as-version, no CDN/public fallback, no token/URL
+            logging; honest note that a disclosed bearer URL survives revocation until
+            expiry (redemption gateway = documented external gate, not claimed solved).
+    :29-30  putReceiptSchema/signReceiptSchema strict with private:true immutable:true
+            literals — an adapter that cannot attest privacy/immutability fails parse.
+    put() (:37-56):
+      :41-43  strict access/image parse; byte snapshot via imageUploadSchema transform
+              (Buffer.from copy) before awaits; viewer write denied (:44).
+      :45     REAL sanitizeImage invoked here — caller cannot supply sanitized
+              flag/hash/path to bypass decoding (claim confirmed).
+      :46-47  re-authorize + sameActor after sanitize await.
+      :48-50  fresh UUID version; key derived via privateObjectKey from VERIFIED
+              workspace; receipt must echo exact key/version/sha256/byteLength (:51).
+      :52-53  third authorize + sameActor before returning internal descriptor.
+      Failure envelope: {ok:false,code:'storage-unavailable'} only (:32,:55) — no
+      upstream exception content. Orphan-on-failure honestly documented (:36-37),
+      no retry/rollback claim.
+    sign() (:57-82):
+      :60-63  rejects object paths (evidenceSelectorSchema = {evidenceId} strict only);
+              signedOrigin must be exact HTTPS origin.
+      :64-66  reads exact active evidence binding through authorized repository
+              boundary BEFORE signing.
+      :67-69  expiresAt = min(now+60s, evidence expiry, session expiry); must be
+              in the future. NO caller TTL input exists (claim confirmed).
+      :70-72  signer receipt strict-parsed; url must be HTTPS, exact configured origin,
+              no credentials/hash; exact objectKey/objectVersionId/expiresAt echo.
+      :73-77  post-signing re-read + re-authorize: withholds URL on revocation/binding
+              drift (JSON equality of full record), actor change, session-lifetime
+              shortening (expiresAt > final session expiry), or output already expired.
+              [This is the repair from builder's 08-signing-race-red.log RED — verified
+              present in source.]
+      Success returns ONLY {evidenceId, url, expiresAt} (:78) — no internal descriptor
+      leakage.
+
+  Supporting checks in these files:
+    C2: browser refusal in every public op (storage.ts:39,:58; repository.ts:74;
+        readEvidence :53); adapters/clock server-injected; no env access.
+    C7: no retry loops anywhere; failures return closed envelopes.
+    C8: no console/log statements; no token/URL/byte content in any error path.
+
+FINDINGS: none (no critical/high source defects). The revocation-window limitation and
+orphan/ambiguity behavior are explicitly documented boundaries with deferred adapters,
+consistent with handoff "absent future adapter is not a defect".
+
+NEXT: audit part 3 — web/db/migrations/001_identity_evidence.sql (C4 grants/search_path/
+RLS/lock ordering, C5 spend reservation/claim/liability atomicity) + db-gate scripts +
+secrets sweep, then write ARGUS-PHASE4-VERDICT.md.

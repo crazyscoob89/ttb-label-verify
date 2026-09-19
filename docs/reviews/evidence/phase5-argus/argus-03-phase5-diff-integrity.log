@@ -1,0 +1,52 @@
+ARGUS REVIEW — Step 3: Phase 5 candidate diff + frozen-integrity verification
+Date: Sat 2026-09-19 ~13:04 EDT
+Worktree: C:\Users\alexm\Projects\argus-phase5-review @ 6fca75bc52d7c7de97787b610ba0c9d2a1d5392e
+
+COMMIT CHAIN (verified via git log d799821..HEAD):
+  c1ef52af05f9db5303e49cb7ba207d199ca6fe15  feat(batch): add pure manifest and review state foundations
+  6fca75bc52d7c7de97787b610ba0c9d2a1d5392e  feat(batch): add exact-byte offline fixture review workspace
+  ✅ Matches 20-phase5-batch-ui.md claimed base c1ef52a and candidate 6fca75b.
+
+FULL DIFF base d799821..candidate (22 paths):
+  A docs/reviews/18-batch-foundation.md        A docs/reviews/20-phase5-batch-ui.md
+  M web/app/review.css                         M web/app/review/page.tsx
+  A web/components/BatchQueue.tsx              A web/components/BatchSwitcher.tsx
+  A web/components/BatchUpload.tsx             A web/components/BatchWorkspace.tsx
+  M web/components/ComparisonWorkspace.tsx     M web/components/ReviewConfirmation.tsx
+  A web/components/ReviewWorkspace.tsx         A web/lib/batch-manifest.ts
+  A web/lib/batch-state.ts                     M web/playwright.config.ts
+  A web/playwright.production.config.ts        A web/tests/batch-manifest.test.ts
+  A web/tests/batch-state.test.ts              A web/tests/e2e/batch.spec.ts
+  M web/tests/e2e/review-outcomes.spec.ts      M web/tests/e2e/single.spec.ts
+  M web/tests/e2e/smoke.spec.ts                A web/tests/production/batch.spec.ts
+
+UI-commit diff c1ef52a..candidate = exactly the 17 files listed in
+candidate-manifest.json changedFileSha256. ✅ No extra/undeclared changes.
+
+FROZEN-INTEGRITY REPRODUCTION (my independent check, equivalent to builder's
+41-blob claim): git diff d799821..HEAD restricted to critical frozen paths:
+  - web/lib/**            -> ONLY additions batch-manifest.ts + batch-state.ts;
+                             access.ts, compare-service.ts, comparison-record.ts,
+                             contracts.ts, extraction/, intake.ts, offline-demo.ts,
+                             offline-samples.json, review-policy.ts, rules.ts,
+                             spend.ts ALL UNCHANGED ✅
+  - web/app/api/comparisons/route.ts -> UNCHANGED (empty diff) ✅
+  - web/next.config.ts (CSP)         -> UNCHANGED (empty diff) ✅
+  - web/package.json, web/package-lock.json -> UNCHANGED (0 diff lines) ✅
+    => NO new dependencies ✅
+  - fixtures/, bench PNG assets      -> no modifications in diff ✅
+  - docs/ui/                          -> no modifications ✅
+
+CHANGED-FILE SHA256 SPOT CHECK vs candidate-manifest.json (5 of 17):
+  web/components/BatchUpload.tsx   2f986f93...ddeddd5e ✅ match
+  web/components/BatchWorkspace.tsx f2f59039...b0c386f71 ✅ match
+  web/tests/e2e/batch.spec.ts      6eccbcf8...599dd6f21 ✅ match
+  web/tests/production/batch.spec.ts f65119d8...cabe5039d4 ✅ match
+  docs/reviews/20-phase5-batch-ui.md e6f78237...404461a1 ✅ match
+
+CONCLUSION (integrity): Candidate change surface exactly matches declaration.
+No frozen-source, dependency, CSP, API-route, or fixture-byte drift from base.
+
+NEXT: independently reproduce unit gate (vitest full regression, expect 326/11 files)
+and typecheck in the isolated worktree (npm install of frozen lockfile first if
+node_modules absent — install is reviewer-local, does not modify candidate files).
