@@ -2,7 +2,7 @@
 
 ## Active application phase
 
-[Phase 1](11-phase1-argus-pass.md) has supplied **ARGUS PASS** at `2b59abcb0cb7e95abc1639ee4e81df50930dfe1a`, no revisions; AVA agrees. ARGUS read source/diff/closure logs, did not rerun tests/build, and reported a matching native Windows clone. [Phase 2 Sprint 1](12-phase2-sprint1-rules.md) is locally implemented/tested; Sprint 2 and the whole-phase independent review remain pending. [Implementation authorization](../IMPLEMENTATION-STATUS.md) records Alex's local continuation approval. No remote writes, paid/live calls, provisioning or deployment in this step. Earlier documentation-only status below is historical.
+[Phase 1](11-phase1-argus-pass.md) has supplied **ARGUS PASS** at `2b59abcb0cb7e95abc1639ee4e81df50930dfe1a`, no revisions; AVA agrees. ARGUS read source/diff/closure logs, did not rerun tests/build, and reported a matching native Windows clone. [Phase 2 Sprint 1](12-phase2-sprint1-rules.md) and [Sprint 2](13-phase2-provider-spend.md) are locally implemented/tested; the full local candidate is ready for parent verification, with whole-phase independent review pending. Provider runtime is unwired/default-deny; shared-store contracts are not real database enforcement. [Implementation authorization](../IMPLEMENTATION-STATUS.md) records Alex's local continuation approval. No remote writes, paid/live calls, provisioning or deployment in this step. Earlier documentation-only status below is historical.
 
 ## Current documentation candidate
 
