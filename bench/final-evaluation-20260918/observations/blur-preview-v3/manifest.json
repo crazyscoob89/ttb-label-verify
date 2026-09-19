@@ -1,0 +1,2297 @@
+{
+  "status": "PREVIEW ONLY / NOT APPROVED / NOT MODEL-TESTED",
+  "effect": "blur",
+  "algorithm": "Pillow GaussianBlur sigma 5.5 native pixels, direct unchanged V2 clean/original source",
+  "source_policy": "Reuse blur-v1 verified original / clean parents for BOTH effects: D-BLUR -> C-SPIRITS, D-GLARE -> C-MALT. No previous effect outputs as input. D-WARP retains original warp/mild blur.",
+  "comparison_exception": "D-BLUR glare V1 inherited original blur; V2 now uses documented clean parent. Glare seed/location unchanged. Other glare sources unchanged.",
+  "wording": "No retyping, generated pixels, inpainting or reconstruction. Source glyph geometry remains; lighting blends or convolution necessarily change RGB values, not literal pixel identity.",
+  "clean_parent_evidence": {
+    "path": "/opt/data/projects/ttb-label-verify-revision/fixtures/generate_labels.py",
+    "sha256": "45690899f26bb807704b8e03b2ab01516b18e3a308f6da94a9f0bf931944cade",
+    "D_BLUR_lines": [
+      710,
+      715
+    ],
+    "D_GLARE_lines": [
+      726,
+      731
+    ]
+  },
+  "source_manifests": {
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/glare-preview-v1/manifest.json": "0647f4cbdc7d8d3b35298cee6c6b2c33bfba4b92bc6c902d0e6e6ce49c7dea05",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/glare-preview-v2/manifest.json": "a96fc313ac40b4c2f91f0d7438f84b3ebb6b3b756d5f4b5aba9f530130acc64a",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/blur-preview-v1/manifest.json": "581a132808774cb44c9663887cd749b307f15aab8127025c4234c6f0ba167190",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/blur-preview-v2/manifest.json": "088b7b7b0dd5f061922c0397e9d3f3cc7d9f37a9272fd5560aa9640724481c4a"
+  },
+  "environment": {
+    "python": "3.13.5",
+    "numpy": "2.5.3",
+    "pillow": "12.3.0"
+  },
+  "version": 3,
+  "requested_parameters": {
+    "gaussian_sigma_native_px": 5.5
+  },
+  "generator_sha256": "0c47e92345dde216ab6bc3b54bab0086b9ec4e33352c9e79c1c4a7876b665192",
+  "render_engine_sha256": "393da8c9aac346a6a43bfc1ef79be0e9f9d9792d8fb3f7239c9ae9ff5d766442",
+  "fixtures": [
+    {
+      "fixture_id": "C-SPIRITS-01",
+      "source_fixture_id": "C-SPIRITS-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-SPIRITS-01.png",
+      "source_sha256": "bd601f2d9a3b0fd1b31257fd46e24eb148969519fa4833678ac604df20e037ec",
+      "source_label_sha256": "6db5c6cf43a3a09e324c9e086220594ba35f8611c6e1a4966ccec9a14cce7470",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260918,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": -12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1079.0,
+          1700.0,
+          2943.052292
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-SPIRITS-01.png",
+      "original_fixture_bottle_sha256": "bd601f2d9a3b0fd1b31257fd46e24eb148969519fa4833678ac604df20e037ec",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/C-SPIRITS-01.png",
+      "original_source_label_sha256": "6db5c6cf43a3a09e324c9e086220594ba35f8611c6e1a4966ccec9a14cce7470",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/C-SPIRITS-01.json",
+      "original_truth_sha256": "cee4f112da89aa39bec0c5a760e862dfdef0911beb254c18830564622f4f6ddf",
+      "inherited_degradation": "none",
+      "parameters": {
+        "sigma_native_px": 5.5,
+        "requested_sigma_native_px": 5.5,
+        "previous_sigma_native_px": 5.2,
+        "randomness_used": false
+      },
+      "previous_parameters": {
+        "sigma_native_px": 5.2,
+        "previous_sigma_native_px": 3.6,
+        "randomness_used": false
+      },
+      "previous_output": "images/C-SPIRITS-01__blur-preview.png",
+      "previous_output_sha256": "f50fd058fb73db61099e0703ed2c0e9c86ce8dda85661f364c115151f8ea5d9c",
+      "previous_source_sha256": "bd601f2d9a3b0fd1b31257fd46e24eb148969519fa4833678ac604df20e037ec",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/C-SPIRITS-01__blur-preview.png",
+      "output_sha256": "9ae83594be371174abb08d51a7ba3f36965b435f5143fe7e58225bc9a31c6a1d",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "C-WINE-01",
+      "source_fixture_id": "C-WINE-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-WINE-01.png",
+      "source_sha256": "3e2506cb620c53fb1a267cd3bf12f38397c02bfdab849bd4aa87a2b528537eb3",
+      "source_label_sha256": "c718da519884fd0f496e166a97250a40decd98bf90a8511c7af335cab5bea771",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260919,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 0,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1091.0,
+          1700.0,
+          2943.470912
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            150
+          ],
+          [
+            230,
+            160
+          ],
+          [
+            620,
+            160
+          ],
+          [
+            710,
+            195
+          ],
+          [
+            800,
+            315
+          ],
+          [
+            900,
+            530
+          ],
+          [
+            1040,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          42.0,
+          67.0,
+          37.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-WINE-01.png",
+      "original_fixture_bottle_sha256": "3e2506cb620c53fb1a267cd3bf12f38397c02bfdab849bd4aa87a2b528537eb3",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/C-WINE-01.png",
+      "original_source_label_sha256": "c718da519884fd0f496e166a97250a40decd98bf90a8511c7af335cab5bea771",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/C-WINE-01.json",
+      "original_truth_sha256": "35ff0e303cd93337c5a88893ab8c495e1280c5d245be318f389ec1afa7b3fc9b",
+      "inherited_degradation": "none",
+      "parameters": {
+        "sigma_native_px": 5.5,
+        "requested_sigma_native_px": 5.5,
+        "previous_sigma_native_px": 5.2,
+        "randomness_used": false
+      },
+      "previous_parameters": {
+        "sigma_native_px": 5.2,
+        "previous_sigma_native_px": 3.6,
+        "randomness_used": false
+      },
+      "previous_output": "images/C-WINE-01__blur-preview.png",
+      "previous_output_sha256": "b2f4cceec9b87f55b7d9433f65499474bcacf2705611c1d1fef09a2612b653c2",
+      "previous_source_sha256": "3e2506cb620c53fb1a267cd3bf12f38397c02bfdab849bd4aa87a2b528537eb3",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/C-WINE-01__blur-preview.png",
+      "output_sha256": "b2fffe4a88a7526a9091b195ac2e28a3da635d67ca7861a9dbbdc6924b0b0e9f",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "C-MALT-01",
+      "source_fixture_id": "C-MALT-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-MALT-01.png",
+      "source_sha256": "d94072ceaa20bb53d3bcab4829e235258c2e0cc09f211e1b5959ecb2b1a8a917",
+      "source_label_sha256": "36f92b6f24b80111d5abe6a3aac8ae7538252bc58640893aa369af67fc33a559",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260920,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1097.0,
+          1700.0,
+          2945.563952
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            160
+          ],
+          [
+            215,
+            155
+          ],
+          [
+            540,
+            155
+          ],
+          [
+            680,
+            235
+          ],
+          [
+            800,
+            405
+          ],
+          [
+            980,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          110.0,
+          64.0,
+          26.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-MALT-01.png",
+      "original_fixture_bottle_sha256": "d94072ceaa20bb53d3bcab4829e235258c2e0cc09f211e1b5959ecb2b1a8a917",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/C-MALT-01.png",
+      "original_source_label_sha256": "36f92b6f24b80111d5abe6a3aac8ae7538252bc58640893aa369af67fc33a559",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/C-MALT-01.json",
+      "original_truth_sha256": "fb9473919ea1e500db579ea4592ed7a8f81b82273ddf7e4ee2eaa3ae3a1aa674",
+      "inherited_degradation": "none",
+      "parameters": {
+        "sigma_native_px": 5.5,
+        "requested_sigma_native_px": 5.5,
+        "previous_sigma_native_px": 5.2,
+        "randomness_used": false
+      },
+      "previous_parameters": {
+        "sigma_native_px": 5.2,
+        "previous_sigma_native_px": 3.6,
+        "randomness_used": false
+      },
+      "previous_output": "images/C-MALT-01__blur-preview.png",
+      "previous_output_sha256": "eb683ba2ad4d1b31821a6a1f22ec6866466cf753d9e1b9dc5a38fab12cdbe605",
+      "previous_source_sha256": "d94072ceaa20bb53d3bcab4829e235258c2e0cc09f211e1b5959ecb2b1a8a917",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/C-MALT-01__blur-preview.png",
+      "output_sha256": "ccce08867f2ec265df21ba29ddbd46e9570613dc3e66dcbc53177fd49e2e180c",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "C-SPIRITS-IMPORT-01",
+      "source_fixture_id": "C-SPIRITS-IMPORT-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-SPIRITS-IMPORT-01.png",
+      "source_sha256": "7557567bdfcfb73dbbf29ca3c1ee615857dd958bd0f44c144788ce0b898206ec",
+      "source_label_sha256": "a1a8009fec8552dbbaa4610274f08b3fffaf841efc092f0de53a1af953d5e24d",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260921,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": -12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1079.0,
+          1700.0,
+          2943.052292
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-SPIRITS-IMPORT-01.png",
+      "original_fixture_bottle_sha256": "7557567bdfcfb73dbbf29ca3c1ee615857dd958bd0f44c144788ce0b898206ec",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/C-SPIRITS-IMPORT-01.png",
+      "original_source_label_sha256": "a1a8009fec8552dbbaa4610274f08b3fffaf841efc092f0de53a1af953d5e24d",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/C-SPIRITS-IMPORT-01.json",
+      "original_truth_sha256": "a5929f251146c3ecce0ec5f411795438343f4cd05f50af61b5e355eb76dd9425",
+      "inherited_degradation": "none",
+      "parameters": {
+        "sigma_native_px": 5.5,
+        "requested_sigma_native_px": 5.5,
+        "previous_sigma_native_px": 5.2,
+        "randomness_used": false
+      },
+      "previous_parameters": {
+        "sigma_native_px": 5.2,
+        "previous_sigma_native_px": 3.6,
+        "randomness_used": false
+      },
+      "previous_output": "images/C-SPIRITS-IMPORT-01__blur-preview.png",
+      "previous_output_sha256": "6c4cb162fd99d2d336c2ece22539a397bf49a2c93fa7c52905f356e51dc2f1b8",
+      "previous_source_sha256": "7557567bdfcfb73dbbf29ca3c1ee615857dd958bd0f44c144788ce0b898206ec",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/C-SPIRITS-IMPORT-01__blur-preview.png",
+      "output_sha256": "95ab802470f7dfc8a81f2470eb6c810a51b4d3062d1a2c806798153233e525b8",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "A-WARN-TITLECASE-01",
+      "source_fixture_id": "A-WARN-TITLECASE-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-WARN-TITLECASE-01.png",
+      "source_sha256": "0d4b1d5936b6e9aaed69a0b9ab16c101b3cf7d6834bf17fb69f4992bcada7ed6",
+      "source_label_sha256": "a332b9612bc45547db698b2a7a005895a086d668319925bc8d06d2966f20a75f",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260922,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 0,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1091.0,
+          1700.0,
+          2943.470912
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-WARN-TITLECASE-01.png",
+      "original_fixture_bottle_sha256": "0d4b1d5936b6e9aaed69a0b9ab16c101b3cf7d6834bf17fb69f4992bcada7ed6",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/A-WARN-TITLECASE-01.png",
+      "original_source_label_sha256": "a332b9612bc45547db698b2a7a005895a086d668319925bc8d06d2966f20a75f",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/A-WARN-TITLECASE-01.json",
+      "original_truth_sha256": "9ec3427ce736aee449665839760bc3c489d983a48937115534d3b08af89a2ff6",
+      "inherited_degradation": "none",
+      "parameters": {
+        "sigma_native_px": 5.5,
+        "requested_sigma_native_px": 5.5,
+        "previous_sigma_native_px": 5.2,
+        "randomness_used": false
+      },
+      "previous_parameters": {
+        "sigma_native_px": 5.2,
+        "previous_sigma_native_px": 3.6,
+        "randomness_used": false
+      },
+      "previous_output": "images/A-WARN-TITLECASE-01__blur-preview.png",
+      "previous_output_sha256": "d6c242ce80b7ad1b9ae1268568cdd4ba8fa60c873ae33d61a2a389dfc53e08ee",
+      "previous_source_sha256": "0d4b1d5936b6e9aaed69a0b9ab16c101b3cf7d6834bf17fb69f4992bcada7ed6",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/A-WARN-TITLECASE-01__blur-preview.png",
+      "output_sha256": "f066a855afc8c6b78320384bb3a6b8dda94d5d72b4ef869454f9f17894b7e2e1",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "A-WARN-BOLDBODY-01",
+      "source_fixture_id": "A-WARN-BOLDBODY-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-WARN-BOLDBODY-01.png",
+      "source_sha256": "e691c2f4a862cce743f914f46fd073e0b2c10a6426778cffd9fd94c4c7f69938",
+      "source_label_sha256": "07ead341ecdafc55c1cb6b2215ad7eb5fbd2d83793bbe439bbd3458eafb70d1e",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260923,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1097.0,
+          1700.0,
+          2945.563952
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            150
+          ],
+          [
+            230,
+            160
+          ],
+          [
+            620,
+            160
+          ],
+          [
+            710,
+            195
+          ],
+          [
+            800,
+            315
+          ],
+          [
+            900,
+            530
+          ],
+          [
+            1040,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          42.0,
+          67.0,
+          37.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-WARN-BOLDBODY-01.png",
+      "original_fixture_bottle_sha256": "e691c2f4a862cce743f914f46fd073e0b2c10a6426778cffd9fd94c4c7f69938",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/A-WARN-BOLDBODY-01.png",
+      "original_source_label_sha256": "07ead341ecdafc55c1cb6b2215ad7eb5fbd2d83793bbe439bbd3458eafb70d1e",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/A-WARN-BOLDBODY-01.json",
+      "original_truth_sha256": "674d4c55bf1f241f834367f871e5122c0871be529728d1c36743935329567c9e",
+      "inherited_degradation": "none",
+      "parameters": {
+        "sigma_native_px": 5.5,
+        "requested_sigma_native_px": 5.5,
+        "previous_sigma_native_px": 5.2,
+        "randomness_used": false
+      },
+      "previous_parameters": {
+        "sigma_native_px": 5.2,
+        "previous_sigma_native_px": 3.6,
+        "randomness_used": false
+      },
+      "previous_output": "images/A-WARN-BOLDBODY-01__blur-preview.png",
+      "previous_output_sha256": "b86d731242cc9d15ccf77659ae85b2add147b39f309d5fbcbde25a56f28abd61",
+      "previous_source_sha256": "e691c2f4a862cce743f914f46fd073e0b2c10a6426778cffd9fd94c4c7f69938",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/A-WARN-BOLDBODY-01__blur-preview.png",
+      "output_sha256": "c644b122586b5f7e85520db44f15bad8194a00a5a17ccdd6e7323eb3c2cccc37",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "A-BRAND-CASE-01",
+      "source_fixture_id": "A-BRAND-CASE-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-BRAND-CASE-01.png",
+      "source_sha256": "eaa677746bdc68b71b3e07cafaa8a382dfafd69f69406e688c37960ca33a2b90",
+      "source_label_sha256": "6c3e7b4bc076cbfffe5b7d3379c7d167847370a8d24cae052a0850807e7a9329",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260924,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": -12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1079.0,
+          1700.0,
+          2943.052292
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-BRAND-CASE-01.png",
+      "original_fixture_bottle_sha256": "eaa677746bdc68b71b3e07cafaa8a382dfafd69f69406e688c37960ca33a2b90",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/A-BRAND-CASE-01.png",
+      "original_source_label_sha256": "6c3e7b4bc076cbfffe5b7d3379c7d167847370a8d24cae052a0850807e7a9329",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/A-BRAND-CASE-01.json",
+      "original_truth_sha256": "657c7672b54ed3fbe1baad89a9efcada4ac9cf9cd93c580cae064bbc60c91422",
+      "inherited_degradation": "none",
+      "parameters": {
+        "sigma_native_px": 5.5,
+        "requested_sigma_native_px": 5.5,
+        "previous_sigma_native_px": 5.2,
+        "randomness_used": false
+      },
+      "previous_parameters": {
+        "sigma_native_px": 5.2,
+        "previous_sigma_native_px": 3.6,
+        "randomness_used": false
+      },
+      "previous_output": "images/A-BRAND-CASE-01__blur-preview.png",
+      "previous_output_sha256": "7796146c2ef7acda3481e2e1162acd08d4a4a3d1c5a4266b75135ae1a4e8eda1",
+      "previous_source_sha256": "eaa677746bdc68b71b3e07cafaa8a382dfafd69f69406e688c37960ca33a2b90",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/A-BRAND-CASE-01__blur-preview.png",
+      "output_sha256": "3adbf03a58207f5ba700e3ea73ef4f7dca1c948921bd21fdf631c601bc5a0503",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "A-ABV-WRONG-01",
+      "source_fixture_id": "A-ABV-WRONG-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-ABV-WRONG-01.png",
+      "source_sha256": "7535698250fa4d7cfd76f9936305f2376dcde95e4bb1ec1bedc66cf77198bebd",
+      "source_label_sha256": "bb19b282fe059b2f429d0f91904639cb82e1fc256b0f026ee7d484e39cfad135",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260925,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 0,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1091.0,
+          1700.0,
+          2943.470912
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            150
+          ],
+          [
+            230,
+            160
+          ],
+          [
+            620,
+            160
+          ],
+          [
+            710,
+            195
+          ],
+          [
+            800,
+            315
+          ],
+          [
+            900,
+            530
+          ],
+          [
+            1040,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          42.0,
+          67.0,
+          37.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-ABV-WRONG-01.png",
+      "original_fixture_bottle_sha256": "7535698250fa4d7cfd76f9936305f2376dcde95e4bb1ec1bedc66cf77198bebd",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/A-ABV-WRONG-01.png",
+      "original_source_label_sha256": "bb19b282fe059b2f429d0f91904639cb82e1fc256b0f026ee7d484e39cfad135",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/A-ABV-WRONG-01.json",
+      "original_truth_sha256": "ed423edb1fc7d0dd5158bb9fc302c702644567ac4dcd1718eb63c601d15a3d1e",
+      "inherited_degradation": "none",
+      "parameters": {
+        "sigma_native_px": 5.5,
+        "requested_sigma_native_px": 5.5,
+        "previous_sigma_native_px": 5.2,
+        "randomness_used": false
+      },
+      "previous_parameters": {
+        "sigma_native_px": 5.2,
+        "previous_sigma_native_px": 3.6,
+        "randomness_used": false
+      },
+      "previous_output": "images/A-ABV-WRONG-01__blur-preview.png",
+      "previous_output_sha256": "1b95cea3a92e7407b49a27633038954302371f20626c9862624ee39b7db1f96b",
+      "previous_source_sha256": "7535698250fa4d7cfd76f9936305f2376dcde95e4bb1ec1bedc66cf77198bebd",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/A-ABV-WRONG-01__blur-preview.png",
+      "output_sha256": "4d1ed922eeac3910ce601abcd7fc671683392f925cce263526f4c6e7539490f0",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "A-FIELD-MISSING-01",
+      "source_fixture_id": "A-FIELD-MISSING-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-FIELD-MISSING-01.png",
+      "source_sha256": "fbe2320836ee47d13e1d3c9438d7575cb1bd0f453c44f8513bb610f960d4a3a5",
+      "source_label_sha256": "bccda011d9dfb0c9b5c14cd422930a5d62c315e7caa0519dfd47f988ae94497a",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260926,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1097.0,
+          1700.0,
+          2945.563952
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            160
+          ],
+          [
+            215,
+            155
+          ],
+          [
+            540,
+            155
+          ],
+          [
+            680,
+            235
+          ],
+          [
+            800,
+            405
+          ],
+          [
+            980,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          110.0,
+          64.0,
+          26.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-FIELD-MISSING-01.png",
+      "original_fixture_bottle_sha256": "fbe2320836ee47d13e1d3c9438d7575cb1bd0f453c44f8513bb610f960d4a3a5",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/A-FIELD-MISSING-01.png",
+      "original_source_label_sha256": "bccda011d9dfb0c9b5c14cd422930a5d62c315e7caa0519dfd47f988ae94497a",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/A-FIELD-MISSING-01.json",
+      "original_truth_sha256": "caf84125de42c1a8df25b6c18dd3f1351c41314a7ef621568ca77d1553f211f4",
+      "inherited_degradation": "none",
+      "parameters": {
+        "sigma_native_px": 5.5,
+        "requested_sigma_native_px": 5.5,
+        "previous_sigma_native_px": 5.2,
+        "randomness_used": false
+      },
+      "previous_parameters": {
+        "sigma_native_px": 5.2,
+        "previous_sigma_native_px": 3.6,
+        "randomness_used": false
+      },
+      "previous_output": "images/A-FIELD-MISSING-01__blur-preview.png",
+      "previous_output_sha256": "d32771d353b2fa2a07c7246011db645ddb300d30a41bc0696a503068dc3b4eca",
+      "previous_source_sha256": "fbe2320836ee47d13e1d3c9438d7575cb1bd0f453c44f8513bb610f960d4a3a5",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/A-FIELD-MISSING-01__blur-preview.png",
+      "output_sha256": "2ce5048762977edf291bf772b3a84d3c01d4f0e6cd0ef53a17e69a25c7a3821e",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "A-INJECT-PROMPT-01",
+      "source_fixture_id": "A-INJECT-PROMPT-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-INJECT-PROMPT-01.png",
+      "source_sha256": "862b359239fa121158387e419a7aba15fb7316a33af8fa1ed3bd64ce9ecae5f7",
+      "source_label_sha256": "f06963b651dec88f5226032a417a35bfbcce1c0bce7adbee74b304749d65b5eb",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260927,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": -12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1079.0,
+          1700.0,
+          2943.052292
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-INJECT-PROMPT-01.png",
+      "original_fixture_bottle_sha256": "862b359239fa121158387e419a7aba15fb7316a33af8fa1ed3bd64ce9ecae5f7",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/A-INJECT-PROMPT-01.png",
+      "original_source_label_sha256": "f06963b651dec88f5226032a417a35bfbcce1c0bce7adbee74b304749d65b5eb",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/A-INJECT-PROMPT-01.json",
+      "original_truth_sha256": "7928707303d9009f475d9723ddf6d23ea544e10f2066ecf00071ed9344cdf84e",
+      "inherited_degradation": "none",
+      "parameters": {
+        "sigma_native_px": 5.5,
+        "requested_sigma_native_px": 5.5,
+        "previous_sigma_native_px": 5.2,
+        "randomness_used": false
+      },
+      "previous_parameters": {
+        "sigma_native_px": 5.2,
+        "previous_sigma_native_px": 3.6,
+        "randomness_used": false
+      },
+      "previous_output": "images/A-INJECT-PROMPT-01__blur-preview.png",
+      "previous_output_sha256": "f70a384c56cb088d29e2919c129334d76ae1e033664efc1f193aa064a3f67d8e",
+      "previous_source_sha256": "862b359239fa121158387e419a7aba15fb7316a33af8fa1ed3bd64ce9ecae5f7",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/A-INJECT-PROMPT-01__blur-preview.png",
+      "output_sha256": "d722b6c556e7bf29a8f23cd2f35bb89fc49c8820508672f2f4c3f6b74b0e92f3",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "W-BRAND-WRONG-01",
+      "source_fixture_id": "W-BRAND-WRONG-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-BRAND-WRONG-01.png",
+      "source_sha256": "a1a4443f8838733ba6478df90d170d6d3c3cc925e2d2fe6e6e606a6e11a0639b",
+      "source_label_sha256": "27d358e7cc919454f3388fb73d4868878b59f7b1b6433ee2bce514e0e670ca9d",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260928,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 0,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1091.0,
+          1700.0,
+          2943.470912
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-BRAND-WRONG-01.png",
+      "original_fixture_bottle_sha256": "a1a4443f8838733ba6478df90d170d6d3c3cc925e2d2fe6e6e606a6e11a0639b",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/W-BRAND-WRONG-01.png",
+      "original_source_label_sha256": "27d358e7cc919454f3388fb73d4868878b59f7b1b6433ee2bce514e0e670ca9d",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/W-BRAND-WRONG-01.json",
+      "original_truth_sha256": "b4983b90a789772ec7837b2798132997b60f96bf91f0eb00c911060015f2a425",
+      "inherited_degradation": "none",
+      "parameters": {
+        "sigma_native_px": 5.5,
+        "requested_sigma_native_px": 5.5,
+        "previous_sigma_native_px": 5.2,
+        "randomness_used": false
+      },
+      "previous_parameters": {
+        "sigma_native_px": 5.2,
+        "previous_sigma_native_px": 3.6,
+        "randomness_used": false
+      },
+      "previous_output": "images/W-BRAND-WRONG-01__blur-preview.png",
+      "previous_output_sha256": "80f72d53c19c8d6f96d609a107371114306925ab917f3146d35da39a5c731cf9",
+      "previous_source_sha256": "a1a4443f8838733ba6478df90d170d6d3c3cc925e2d2fe6e6e606a6e11a0639b",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/W-BRAND-WRONG-01__blur-preview.png",
+      "output_sha256": "a6941f96b9f89064b8d739850e5cc5606252c681a248c5df95da3ac983a64dc8",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "W-ABV-4045-01",
+      "source_fixture_id": "W-ABV-4045-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-ABV-4045-01.png",
+      "source_sha256": "d2e674fae1a068ca6fbdbca8af6e337eb197dcc54f75b6f1a8c651646a7daaf4",
+      "source_label_sha256": "2717efcdf4b2ef5e30570b11d8646c49f4bc82d70ee80d0d1a1fe6711f8f7435",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260929,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1097.0,
+          1700.0,
+          2945.563952
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-ABV-4045-01.png",
+      "original_fixture_bottle_sha256": "d2e674fae1a068ca6fbdbca8af6e337eb197dcc54f75b6f1a8c651646a7daaf4",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/W-ABV-4045-01.png",
+      "original_source_label_sha256": "2717efcdf4b2ef5e30570b11d8646c49f4bc82d70ee80d0d1a1fe6711f8f7435",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/W-ABV-4045-01.json",
+      "original_truth_sha256": "16924fefa452e316b4d3d68975410f0bf2700cea2e67795ea0e627ac10d2c239",
+      "inherited_degradation": "none",
+      "parameters": {
+        "sigma_native_px": 5.5,
+        "requested_sigma_native_px": 5.5,
+        "previous_sigma_native_px": 5.2,
+        "randomness_used": false
+      },
+      "previous_parameters": {
+        "sigma_native_px": 5.2,
+        "previous_sigma_native_px": 3.6,
+        "randomness_used": false
+      },
+      "previous_output": "images/W-ABV-4045-01__blur-preview.png",
+      "previous_output_sha256": "9c0f7c9487590997c1be5787e16580836b1dd12a27b0765bd961fa37b89514ef",
+      "previous_source_sha256": "d2e674fae1a068ca6fbdbca8af6e337eb197dcc54f75b6f1a8c651646a7daaf4",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/W-ABV-4045-01__blur-preview.png",
+      "output_sha256": "37f2dce264615caa683203d00d614e1101fdeb56d1f1802bd06d92c055f06b35",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "W-NETCONTENTS-WRONG-01",
+      "source_fixture_id": "W-NETCONTENTS-WRONG-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-NETCONTENTS-WRONG-01.png",
+      "source_sha256": "7abf8c9d973a8c781c2516f1615420d02db5654ea2492b98e9f326074136f128",
+      "source_label_sha256": "8ab0a782eda4738fa245b02721eaff28ecce889f012293ef5685b7f2c8cca8aa",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260930,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": -12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1079.0,
+          1700.0,
+          2943.052292
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-NETCONTENTS-WRONG-01.png",
+      "original_fixture_bottle_sha256": "7abf8c9d973a8c781c2516f1615420d02db5654ea2492b98e9f326074136f128",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/W-NETCONTENTS-WRONG-01.png",
+      "original_source_label_sha256": "8ab0a782eda4738fa245b02721eaff28ecce889f012293ef5685b7f2c8cca8aa",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/W-NETCONTENTS-WRONG-01.json",
+      "original_truth_sha256": "824379bccceb528c95b561ae7e0a2d0ac7e26c1f50eac6d0d122d3cedc0b5ca9",
+      "inherited_degradation": "none",
+      "parameters": {
+        "sigma_native_px": 5.5,
+        "requested_sigma_native_px": 5.5,
+        "previous_sigma_native_px": 5.2,
+        "randomness_used": false
+      },
+      "previous_parameters": {
+        "sigma_native_px": 5.2,
+        "previous_sigma_native_px": 3.6,
+        "randomness_used": false
+      },
+      "previous_output": "images/W-NETCONTENTS-WRONG-01__blur-preview.png",
+      "previous_output_sha256": "96889402a49d1a8998e89ba7d49df185470f4e46b8c3b60fffaa392da7bd2d1b",
+      "previous_source_sha256": "7abf8c9d973a8c781c2516f1615420d02db5654ea2492b98e9f326074136f128",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/W-NETCONTENTS-WRONG-01__blur-preview.png",
+      "output_sha256": "d0dbbdd7f94b3b97b5d1cf736b66d30193b81bd68e06ca005a1fea1c0149ee05",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "W-WARN-REWORD-01",
+      "source_fixture_id": "W-WARN-REWORD-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-WARN-REWORD-01.png",
+      "source_sha256": "4abd681601b86e9147aecf5bd277e15b1ea928e92e5110674b71d1ba6d46e5a8",
+      "source_label_sha256": "ad1ceec2aa92e01537484a4c991602c9397a5f31563c4d494c4bbe88b2c4eedd",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260931,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 0,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1091.0,
+          1700.0,
+          2943.470912
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            160
+          ],
+          [
+            215,
+            155
+          ],
+          [
+            540,
+            155
+          ],
+          [
+            680,
+            235
+          ],
+          [
+            800,
+            405
+          ],
+          [
+            980,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          110.0,
+          64.0,
+          26.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-WARN-REWORD-01.png",
+      "original_fixture_bottle_sha256": "4abd681601b86e9147aecf5bd277e15b1ea928e92e5110674b71d1ba6d46e5a8",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/W-WARN-REWORD-01.png",
+      "original_source_label_sha256": "ad1ceec2aa92e01537484a4c991602c9397a5f31563c4d494c4bbe88b2c4eedd",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/W-WARN-REWORD-01.json",
+      "original_truth_sha256": "f5bc506b14b4e3fb22820264188f25f154e7707756ea8ab84cc20f0a61375d9d",
+      "inherited_degradation": "none",
+      "parameters": {
+        "sigma_native_px": 5.5,
+        "requested_sigma_native_px": 5.5,
+        "previous_sigma_native_px": 5.2,
+        "randomness_used": false
+      },
+      "previous_parameters": {
+        "sigma_native_px": 5.2,
+        "previous_sigma_native_px": 3.6,
+        "randomness_used": false
+      },
+      "previous_output": "images/W-WARN-REWORD-01__blur-preview.png",
+      "previous_output_sha256": "59f34f4319a5566ca4f7d913a8ea09d803599c9b6d2e4ab69aa7fabe9459b1cf",
+      "previous_source_sha256": "4abd681601b86e9147aecf5bd277e15b1ea928e92e5110674b71d1ba6d46e5a8",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/W-WARN-REWORD-01__blur-preview.png",
+      "output_sha256": "df67b49d1b8dedadd7b5f3979ef832184a8f4c1cbf4f7dcaa6753d9decb19277",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "W-BRAND-SPLITLINE-01",
+      "source_fixture_id": "W-BRAND-SPLITLINE-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-BRAND-SPLITLINE-01.png",
+      "source_sha256": "0d808655c0372f5c6ceb60d280a4773e20f8e35b33c3c599263112be17899b8a",
+      "source_label_sha256": "b83ade16f1e48719f138eadaa2af82ca8154909b4d60113299a0d47c1249f4e2",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260932,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1097.0,
+          1700.0,
+          2945.563952
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-BRAND-SPLITLINE-01.png",
+      "original_fixture_bottle_sha256": "0d808655c0372f5c6ceb60d280a4773e20f8e35b33c3c599263112be17899b8a",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/W-BRAND-SPLITLINE-01.png",
+      "original_source_label_sha256": "b83ade16f1e48719f138eadaa2af82ca8154909b4d60113299a0d47c1249f4e2",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/W-BRAND-SPLITLINE-01.json",
+      "original_truth_sha256": "c281fb488bbacfde99ad8c979ddaa876128f4b902b5cecc37564ddb8c647ff68",
+      "inherited_degradation": "none",
+      "parameters": {
+        "sigma_native_px": 5.5,
+        "requested_sigma_native_px": 5.5,
+        "previous_sigma_native_px": 5.2,
+        "randomness_used": false
+      },
+      "previous_parameters": {
+        "sigma_native_px": 5.2,
+        "previous_sigma_native_px": 3.6,
+        "randomness_used": false
+      },
+      "previous_output": "images/W-BRAND-SPLITLINE-01__blur-preview.png",
+      "previous_output_sha256": "5f713e8b503c6edbe27724857e66451638e795d51a60ff6916ae4a02db476053",
+      "previous_source_sha256": "0d808655c0372f5c6ceb60d280a4773e20f8e35b33c3c599263112be17899b8a",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/W-BRAND-SPLITLINE-01__blur-preview.png",
+      "output_sha256": "709bee6a36687d6566c4e96621bc0742c5b51446d877461c4311e19fac9f19a6",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "D-BLUR-01",
+      "source_fixture_id": "C-SPIRITS-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-SPIRITS-01.png",
+      "source_sha256": "bd601f2d9a3b0fd1b31257fd46e24eb148969519fa4833678ac604df20e037ec",
+      "source_label_sha256": "6db5c6cf43a3a09e324c9e086220594ba35f8611c6e1a4966ccec9a14cce7470",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260918,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": -12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1079.0,
+          1700.0,
+          2943.052292
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/D-BLUR-01.png",
+      "original_fixture_bottle_sha256": "79c8cdb4cc6e0f3be886f66e84dca9a70dd75d8e2e70215abe913a1a5ab8e4d4",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/D-BLUR-01.png",
+      "original_source_label_sha256": "d12ce32310048021081b0406c2bbecba4c29eb8c654d83d4514484d8e0e5dceb",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/D-BLUR-01.json",
+      "original_truth_sha256": "911663bb68073ed4221dd14e3376950bf271e4de193a4c77730522bd071bfa2e",
+      "inherited_degradation": "none",
+      "parameters": {
+        "sigma_native_px": 5.5,
+        "requested_sigma_native_px": 5.5,
+        "previous_sigma_native_px": 5.2,
+        "randomness_used": false
+      },
+      "previous_parameters": {
+        "sigma_native_px": 5.2,
+        "previous_sigma_native_px": 3.6,
+        "randomness_used": false
+      },
+      "previous_output": "images/D-BLUR-01__blur-preview.png",
+      "previous_output_sha256": "f50fd058fb73db61099e0703ed2c0e9c86ce8dda85661f364c115151f8ea5d9c",
+      "previous_source_sha256": "bd601f2d9a3b0fd1b31257fd46e24eb148969519fa4833678ac604df20e037ec",
+      "source_same_as_v1": true,
+      "provenance": "D-BLUR clean parent C-SPIRITS-01, declared in source generate_labels.py lines 710-715; avoids double blur.",
+      "output": "images/D-BLUR-01__blur-preview.png",
+      "output_sha256": "9ae83594be371174abb08d51a7ba3f36965b435f5143fe7e58225bc9a31c6a1d",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "D-WARP-01",
+      "source_fixture_id": "D-WARP-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/D-WARP-01.png",
+      "source_sha256": "47429b89bd864d13388c38895810746c7355631fda7fd19d02d2a4dc03e8159f",
+      "source_label_sha256": "bc3f95244d8d5141becd870068df8f66bff809c4c8945e787cf02c51b8a72545",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260934,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 0,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1091.0,
+          1700.0,
+          2943.470912
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            150
+          ],
+          [
+            230,
+            160
+          ],
+          [
+            620,
+            160
+          ],
+          [
+            710,
+            195
+          ],
+          [
+            800,
+            315
+          ],
+          [
+            900,
+            530
+          ],
+          [
+            1040,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          42.0,
+          67.0,
+          37.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/D-WARP-01.png",
+      "original_fixture_bottle_sha256": "47429b89bd864d13388c38895810746c7355631fda7fd19d02d2a4dc03e8159f",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/D-WARP-01.png",
+      "original_source_label_sha256": "bc3f95244d8d5141becd870068df8f66bff809c4c8945e787cf02c51b8a72545",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/D-WARP-01.json",
+      "original_truth_sha256": "b1882707a88f9796073660e896244cf6549c193894c3e7d3eb5ecb96db32a67c",
+      "inherited_degradation": "original perspective warp and mild source blur",
+      "parameters": {
+        "sigma_native_px": 5.5,
+        "requested_sigma_native_px": 5.5,
+        "previous_sigma_native_px": 5.2,
+        "randomness_used": false
+      },
+      "previous_parameters": {
+        "sigma_native_px": 5.2,
+        "previous_sigma_native_px": 3.6,
+        "randomness_used": false
+      },
+      "previous_output": "images/D-WARP-01__blur-preview.png",
+      "previous_output_sha256": "94ea60517da0f048771ff9c4fe36c1636cad8fdf7a5348772af0e96f34c1bfe6",
+      "previous_source_sha256": "47429b89bd864d13388c38895810746c7355631fda7fd19d02d2a4dc03e8159f",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/D-WARP-01__blur-preview.png",
+      "output_sha256": "bec43b0f9d41e15b464f7084411e95ef3956f5e6c2d629693e3dcdd366a5eada",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "D-GLARE-01",
+      "source_fixture_id": "C-MALT-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-MALT-01.png",
+      "source_sha256": "d94072ceaa20bb53d3bcab4829e235258c2e0cc09f211e1b5959ecb2b1a8a917",
+      "source_label_sha256": "36f92b6f24b80111d5abe6a3aac8ae7538252bc58640893aa369af67fc33a559",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260920,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1097.0,
+          1700.0,
+          2945.563952
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            160
+          ],
+          [
+            215,
+            155
+          ],
+          [
+            540,
+            155
+          ],
+          [
+            680,
+            235
+          ],
+          [
+            800,
+            405
+          ],
+          [
+            980,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          110.0,
+          64.0,
+          26.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/D-GLARE-01.png",
+      "original_fixture_bottle_sha256": "4bb6cfeccacf118647cfd357c33044ec5453f1f4723947615f071e3f8e74adfa",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/D-GLARE-01.png",
+      "original_source_label_sha256": "02a00f894da7459c30bb799d7d59fabdd3c56bfdb9408182e559688cb23af83d",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/D-GLARE-01.json",
+      "original_truth_sha256": "4231822e0f6d0f6c51b18e3110d1bdc3b7871f03b51ae31c51038e8a897ed5cb",
+      "inherited_degradation": "none",
+      "parameters": {
+        "sigma_native_px": 5.5,
+        "requested_sigma_native_px": 5.5,
+        "previous_sigma_native_px": 5.2,
+        "randomness_used": false
+      },
+      "previous_parameters": {
+        "sigma_native_px": 5.2,
+        "previous_sigma_native_px": 3.6,
+        "randomness_used": false
+      },
+      "previous_output": "images/D-GLARE-01__blur-preview.png",
+      "previous_output_sha256": "eb683ba2ad4d1b31821a6a1f22ec6866466cf753d9e1b9dc5a38fab12cdbe605",
+      "previous_source_sha256": "d94072ceaa20bb53d3bcab4829e235258c2e0cc09f211e1b5959ecb2b1a8a917",
+      "source_same_as_v1": true,
+      "provenance": "D-GLARE clean parent C-MALT-01, exactly inherited from glare manifest.",
+      "output": "images/D-GLARE-01__blur-preview.png",
+      "output_sha256": "ccce08867f2ec265df21ba29ddbd46e9570613dc3e66dcbc53177fd49e2e180c",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    }
+  ],
+  "comparison_artifacts": {
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/glare-preview-v3/selected3-pairs.jpg": {
+      "sha256": "dee3b314574ef064f33bd7345dd0867b87cd2f3432ca029ac65a6a75da6aacfa",
+      "bytes": 541056
+    },
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/blur-preview-v3/C-SPIRITS-01-three-way.jpg": {
+      "sha256": "67e6b2e0916ce391f048d9ecdac750af7c65c73deb53f80362e634ee208b9f8b",
+      "bytes": 267995
+    }
+  }
+}

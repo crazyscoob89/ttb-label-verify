@@ -1,0 +1,101 @@
+test_glare_allowlist (__main__.Offline.test_glare_allowlist) ... FAIL
+test_http_retains_raw_reservation_no_retry (__main__.Offline.test_http_retains_raw_reservation_no_retry) ... FAIL
+test_identity_provider_and_prompt_separation (__main__.Offline.test_identity_provider_and_prompt_separation) ... FAIL
+test_pricing_cost_separation_unknowns (__main__.Offline.test_pricing_cost_separation_unknowns) ... FAIL
+test_schema_failure_kept_and_observed_cost_settled (__main__.Offline.test_schema_failure_kept_and_observed_cost_settled) ... FAIL
+test_schema_scorer_and_payload_parity (__main__.Offline.test_schema_scorer_and_payload_parity) ... FAIL
+test_shared_cap_inheritance_exact_boundary_restart (__main__.Offline.test_shared_cap_inheritance_exact_boundary_restart) ... FAIL
+test_transport_failure_durable_unknown_and_dedupe (__main__.Offline.test_transport_failure_durable_unknown_and_dedupe) ... FAIL
+
+======================================================================
+FAIL: test_glare_allowlist (__main__.Offline.test_glare_allowlist)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/test_offline.py", line 36, in test_glare_allowlist
+    A=self.api()
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/test_offline.py", line 12, in api
+    self.assertTrue((Path(__file__).parent/'adapter.py').exists(),'separate adapter implementation missing')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : separate adapter implementation missing
+
+======================================================================
+FAIL: test_http_retains_raw_reservation_no_retry (__main__.Offline.test_http_retains_raw_reservation_no_retry)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/test_offline.py", line 51, in test_http_retains_raw_reservation_no_retry
+    A=self.api();b=A.SharedBudget(self.d/'budget.sqlite',50);im=self.d/'i.png';im.write_bytes(b'f')
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/test_offline.py", line 12, in api
+    self.assertTrue((Path(__file__).parent/'adapter.py').exists(),'separate adapter implementation missing')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : separate adapter implementation missing
+
+======================================================================
+FAIL: test_identity_provider_and_prompt_separation (__main__.Offline.test_identity_provider_and_prompt_separation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/test_offline.py", line 24, in test_identity_provider_and_prompt_separation
+    A=self.api();x=A.identity('image','prompt');self.assertEqual(x,A.identity('image','prompt'))
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/test_offline.py", line 12, in api
+    self.assertTrue((Path(__file__).parent/'adapter.py').exists(),'separate adapter implementation missing')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : separate adapter implementation missing
+
+======================================================================
+FAIL: test_pricing_cost_separation_unknowns (__main__.Offline.test_pricing_cost_separation_unknowns)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/test_offline.py", line 28, in test_pricing_cost_separation_unknowns
+    A=self.api();m={'context_length':200000,'pricing':{'prompt':'0.000001','completion':'0.000005','input_cache_write_1h':'0.000002'}}
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/test_offline.py", line 12, in api
+    self.assertTrue((Path(__file__).parent/'adapter.py').exists(),'separate adapter implementation missing')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : separate adapter implementation missing
+
+======================================================================
+FAIL: test_schema_failure_kept_and_observed_cost_settled (__main__.Offline.test_schema_failure_kept_and_observed_cost_settled)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/test_offline.py", line 69, in test_schema_failure_kept_and_observed_cost_settled
+    A=self.api();b=A.SharedBudget(self.d/'budget.sqlite',50);im=self.d/'i.png';im.write_bytes(b'fixture')
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/test_offline.py", line 12, in api
+    self.assertTrue((Path(__file__).parent/'adapter.py').exists(),'separate adapter implementation missing')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : separate adapter implementation missing
+
+======================================================================
+FAIL: test_schema_scorer_and_payload_parity (__main__.Offline.test_schema_scorer_and_payload_parity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/test_offline.py", line 58, in test_schema_scorer_and_payload_parity
+    A=self.api();raw,gs=A.H.R.load_evidence();g=gs['C-SPIRITS-01']
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/test_offline.py", line 12, in api
+    self.assertTrue((Path(__file__).parent/'adapter.py').exists(),'separate adapter implementation missing')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : separate adapter implementation missing
+
+======================================================================
+FAIL: test_shared_cap_inheritance_exact_boundary_restart (__main__.Offline.test_shared_cap_inheritance_exact_boundary_restart)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/test_offline.py", line 16, in test_shared_cap_inheritance_exact_boundary_restart
+    A=self.api();b=A.SharedBudget(self.d/'budget.sqlite',50)
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/test_offline.py", line 12, in api
+    self.assertTrue((Path(__file__).parent/'adapter.py').exists(),'separate adapter implementation missing')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : separate adapter implementation missing
+
+======================================================================
+FAIL: test_transport_failure_durable_unknown_and_dedupe (__main__.Offline.test_transport_failure_durable_unknown_and_dedupe)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/test_offline.py", line 40, in test_transport_failure_durable_unknown_and_dedupe
+    A=self.api();b=A.SharedBudget(self.d/'budget.sqlite',50);im=self.d/'image.png';im.write_bytes(b'fake')
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/test_offline.py", line 12, in api
+    self.assertTrue((Path(__file__).parent/'adapter.py').exists(),'separate adapter implementation missing')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : separate adapter implementation missing
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.019s
+
+FAILED (failures=8)

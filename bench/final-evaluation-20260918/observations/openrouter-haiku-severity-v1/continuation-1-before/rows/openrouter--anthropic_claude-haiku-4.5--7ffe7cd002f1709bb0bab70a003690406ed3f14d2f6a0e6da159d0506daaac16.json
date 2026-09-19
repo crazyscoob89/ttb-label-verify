@@ -1,0 +1,115 @@
+{
+  "id": "openrouter--anthropic_claude-haiku-4.5--7ffe7cd002f1709bb0bab70a003690406ed3f14d2f6a0e6da159d0506daaac16",
+  "provider": "openrouter",
+  "model": "anthropic/claude-haiku-4.5",
+  "engine": "anthropic/claude-haiku-4.5",
+  "route": "https://openrouter.ai/api/v1/chat/completions",
+  "upstream_policy": "Anthropic only; no provider fallback",
+  "fixture": {
+    "id": "C-MALT-01__blur-6",
+    "source_fixture": "C-MALT-01",
+    "condition": "blur-6",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/C-MALT-01__blur-6.png",
+    "sha256": "169845dd5688ee4eb4ff67ca425d7ba98b6b213818639b6ab679b683c619fb4d",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-MALT-01.png",
+    "source_sha256": "d94072ceaa20bb53d3bcab4829e235258c2e0cc09f211e1b5959ecb2b1a8a917",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/C-MALT-01.png",
+    "original_label_sha256": "36f92b6f24b80111d5abe6a3aac8ae7538252bc58640893aa369af67fc33a559",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/C-MALT-01.json",
+    "original_truth_sha256": "fb9473919ea1e500db579ea4592ed7a8f81b82273ddf7e4ee2eaa3ae3a1aa674",
+    "source_fixture_id": "C-MALT-01",
+    "clean_parent_substitution": false,
+    "inherited_degradation": "none",
+    "parameters": {
+      "sigma_native_px": 6,
+      "sigma_div_label_width": 0.005,
+      "sigma_div_label_height": 0.0032187938212626067,
+      "filter": "Pillow GaussianBlur",
+      "randomness_used": false
+    },
+    "measurements": {}
+  },
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/C-MALT-01__blur-6.png",
+  "image_sha256": "169845dd5688ee4eb4ff67ca425d7ba98b6b213818639b6ab679b683c619fb4d",
+  "prompt_settings_sha256": "ba93d7e53b184d2f74384c66eebdb59f523faf427337a9e3b2e702322f09040d",
+  "request_sha256": "261e5b05acbee87ad74deec000c07f446eb28b4ca36a8daa6852c387e19ff202",
+  "started_at": "2026-09-18T19:04:09.814623+00:00",
+  "reserved_usd": 0.4565,
+  "max_output_tokens": 3000,
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "ok": false,
+  "extracted": {
+    "brand_name": "Iron Kettle",
+    "class_type": "ALE",
+    "alcohol_content": "5.6% ALC/VOL",
+    "net_contents": "12 FL OZ",
+    "bottler_info": "Brewed and bottled by Iron Kettle Brewing Co. Asheville, North Carolina",
+    "country_of_origin": null,
+    "government_warning_heading": null,
+    "government_warning_body": null,
+    "government_warning_heading_all_caps": null,
+    "government_warning_heading_bold": null,
+    "government_warning_body_bold": null,
+    "confidence": {
+      "brand_name": 0.95,
+      "class_type": 0.95,
+      "alcohol_content": 0.85,
+      "net_contents": 0.95,
+      "bottler_info": 0.8,
+      "country_of_origin": 1.0,
+      "government_warning_heading": 1.0,
+      "government_warning_body": 0.4,
+      "government_warning_heading_all_caps": null,
+      "government_warning_heading_bold": null,
+      "government_warning_body_bold": null
+    }
+  },
+  "error_class": "schema-or-incomplete-output",
+  "usage_cost_usd": 0.00393426,
+  "retail_estimate_usd": 0.003974,
+  "http_status": 200,
+  "request_id": null,
+  "latency_s": 3.399598555988632,
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/responses/openrouter--anthropic_claude-haiku-4.5--7ffe7cd002f1709bb0bab70a003690406ed3f14d2f6a0e6da159d0506daaac16.json",
+  "response_sha256": "1c9de4c43eb4140f593dff6c9425e76c6969229d773ce49330f5c57198b0fa2c",
+  "usage": {
+    "prompt_tokens": 2354,
+    "completion_tokens": 324,
+    "total_tokens": 2678,
+    "cost": 0.00393426,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.003974,
+      "upstream_inference_prompt_cost": 0.002354,
+      "upstream_inference_completions_cost": 0.00162
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "generation_id": "gen-1789758250-ErOjZlKp8sFz1R6IQj6V",
+  "returned_model": "anthropic/claude-haiku-4.5",
+  "returned_provider": "Anthropic",
+  "raw_text": "```json\n{\n  \"brand_name\": \"Iron Kettle\",\n  \"class_type\": \"ALE\",\n  \"alcohol_content\": \"5.6% ALC/VOL\",\n  \"net_contents\": \"12 FL OZ\",\n  \"bottler_info\": \"Brewed and bottled by Iron Kettle Brewing Co. Asheville, North Carolina\",\n  \"country_of_origin\": null,\n  \"government_warning_heading\": null,\n  \"government_warning_body\": null,\n  \"government_warning_heading_all_caps\": null,\n  \"government_warning_heading_bold\": null,\n  \"government_warning_body_bold\": null,\n  \"confidence\": {\n    \"brand_name\": 0.95,\n    \"class_type\": 0.95,\n    \"alcohol_content\": 0.85,\n    \"net_contents\": 0.95,\n    \"bottler_info\": 0.80,\n    \"country_of_origin\": 1.0,\n    \"government_warning_heading\": 1.0,\n    \"government_warning_body\": 0.40,\n    \"government_warning_heading_all_caps\": null,\n    \"government_warning_heading_bold\": null,\n    \"government_warning_body_bold\": null\n  }\n}\n```",
+  "finish_reason": "stop",
+  "validation_errors": {
+    "government_warning_heading_all_caps": "missing or invalid component confidence",
+    "government_warning_heading_bold": "missing or invalid component confidence",
+    "government_warning_body_bold": "missing or invalid component confidence"
+  },
+  "unknown_charge_reserved_usd": 0,
+  "pipeline_seconds": 3.4276590279769152
+}

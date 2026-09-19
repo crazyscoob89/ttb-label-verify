@@ -1,0 +1,97 @@
+"""Offline PREVIEW ONLY. No inference/OCR/network. Native Gaussian defocus."""
+import hashlib, io, json, platform, shutil
+from pathlib import Path
+from PIL import Image, ImageFilter, ImageDraw, ImageFont, __version__ as pillow_version
+R=Path(__file__).resolve().parent
+B=R.parent
+G=B/'glare-preview-v1'
+SIGMA=3.6
+CROP=(470,1060,1730,2970)
+def sha(p): return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+def dump(p,v): p.write_text(json.dumps(v,indent=2)+'\n')
+def encode(im):
+    b=io.BytesIO(); im.save(b,format='PNG',compress_level=6); return b.getvalue()
+def render(p):
+    return Image.open(p).convert('RGB').filter(ImageFilter.GaussianBlur(SIGMA))
+def font(n): return ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',n)
+def main():
+    assert not (R/'manifest.json').exists(), 'Do not overwrite a finished preview'
+    gm=json.loads((G/'manifest.json').read_text()); sm=json.loads((B/'bottles/manifest.json').read_text())
+    original={f['fixture_id']:f for f in sm['fixtures']}; glare={f['fixture_id']:f for f in gm['fixtures']}
+    assert len(original)==len(glare)==18
+    srcroot=Path(sm['source_root']); gen=srcroot/'generate_labels.py'
+    text=gen.read_text(); assert '"derived_from": "C-SPIRITS-01"' in text
+    immutable={str(p):sha(p) for p in G.rglob('*') if p.is_file()}
+    for p in [B/'bottles/manifest.json',gen]: immutable[str(p)]=sha(p)
+    (R/'images').mkdir(exist_ok=True); (R/'ground_truth').mkdir(exist_ok=True)
+    rows=[]; tests=[]
+    for g in gm['fixtures']:
+        ident=g['fixture_id']; orig=original[ident]
+        source=glare['C-SPIRITS-01'] if ident=='D-BLUR-01' else g
+        p=Path(source['source_path']); assert sha(p)==source['source_sha256']
+        original_path=B/'bottles'/orig['image']; truth=B/'bottles'/orig['ground_truth']
+        assert sha(original_path)==orig['derived_sha256']; assert sha(truth)==orig['ground_truth_sha256']
+        for q in [p,original_path,truth,srcroot/orig['source_image']]: immutable[str(q)]=sha(q)
+        shutil.copyfile(truth,R/'ground_truth'/truth.name)
+        dest=R/'images'/(ident+'__blur-preview.png'); im=render(p); data=encode(im); dest.write_bytes(data)
+        # Independent second render/encode verifies deterministic full PNG bytes.
+        rerender=encode(render(p)); same=hashlib.sha256(rerender).hexdigest()==sha(dest)
+        native=Image.open(p).size==im.size==(2200,3200)
+        assert same and native and sha(dest)!=sha(p)
+        geo=source['source_geometry']; width=geo['label_bounds'][2]-geo['label_bounds'][0]
+        font_scale=geo['height']/1499
+        reason=('D-BLUR clean parent C-SPIRITS-01, declared in source generate_labels.py lines 710-715; avoids double blur.' if ident=='D-BLUR-01' else 'D-GLARE clean parent C-MALT-01, exactly inherited from glare manifest.' if ident=='D-GLARE-01' else 'Exact no-glare source from glare manifest.')
+        row=dict(fixture_id=ident,original_fixture_record=orig,original_fixture_bottle_path=str(original_path),original_fixture_bottle_sha256=sha(original_path),original_source_label_path=str(srcroot/orig['source_image']),original_source_label_sha256=sha(srcroot/orig['source_image']),original_truth_path=str(truth),original_truth_sha256=sha(truth),truth_copy='ground_truth/'+truth.name,truth_note='Original fixture truth retained verbatim for provenance, NOT newly validated visibility/expected outcome for this synthetic image.',source_fixture_id=source['source_fixture_id'],source_path=str(p),source_sha256=sha(p),source_label_sha256=source['source_label_sha256'],source_geometry=geo,provenance=reason,inherited_degradation=('original perspective warp and mild source blur' if ident=='D-WARP-01' else 'none'),parameters=dict(sigma_native_px=SIGMA,sigma_over_label_width=SIGMA/width,reference_warning_font_source_px=27,reference_warning_em_native_px=27*font_scale,sigma_over_reference_warning_em=SIGMA/(27*font_scale),font_scale_note='Nominal vertical em from source 27 px warning font times height/1499; not measured glyph x-height.'),output=str(dest.relative_to(R)),output_sha256=sha(dest),dimensions=list(im.size))
+        rows.append(row); tests.append(dict(fixture_id=ident,deterministic_full_png_hash=True,source_sha256_verified=True,original_truth_sha256_verified=True,native_shape_preserved=True,changed_from_source=True))
+        print('PASS',ident,flush=True)
+    selected=next(r for r in rows if r['fixture_id']=='C-SPIRITS-01')
+    paths=[Path(selected['source_path']),G/glare['C-SPIRITS-01']['output'],R/selected['output']]
+    assert sha(paths[1])==glare['C-SPIRITS-01']['output_sha256']
+    # Identical native crop bounds and identical Lanczos downsampling in all columns.
+    panel=(600,910); board=Image.new('RGB',(1848,1060),'#f5f2ec'); d=ImageDraw.Draw(board)
+    d.text((20,12),'C-SPIRITS-01 | PREVIEW ONLY',font=font(38),fill='black')
+    d.text((20,61),'Not approved / Not model-tested',font=font(26),fill='#555555')
+    for i,(title,p) in enumerate(zip(['Original','Corrected glare','Defocus blur'],paths)):
+        x=12+i*612;d.text((x,108),title,font=font(32),fill='black')
+        board.paste(Image.open(p).crop(CROP).resize(panel,Image.Resampling.LANCZOS),(x,150))
+    board.save(R/'C-SPIRITS-01-three-way.jpg',quality=95,subsampling=0)
+    Image.open(paths[2]).crop(CROP).save(R/'C-SPIRITS-01-native-label.png',compress_level=6)
+    # Full bottle is already a native PNG in images, no redundant copy needed.
+    sheet=Image.new('RGB',(1800,2040),'#f5f2ec');d=ImageDraw.Draw(sheet)
+    d.text((16,10),'ALL 18 BLUR PREVIEWS - NOT APPROVED / NOT MODEL-TESTED',font=font(28),fill='black')
+    for i,row in enumerate(rows):
+        x=i%6*300;y=70+i//6*650
+        d.text((x+5,y),row['fixture_id'],font=font(16),fill='black')
+        im=Image.open(R/row['output']);im.thumbnail((290,590),Image.Resampling.LANCZOS);sheet.paste(im,(x+(300-im.width)//2,y+30))
+    sheet.save(R/'full18-contact-sheet.jpg',quality=93,subsampling=0)
+    artifacts={str(p.relative_to(R)):dict(sha256=sha(p),bytes=p.stat().st_size) for p in [R/'C-SPIRITS-01-three-way.jpg',R/'C-SPIRITS-01-native-label.png',R/'full18-contact-sheet.jpg']}
+    assert (R/'C-SPIRITS-01-three-way.jpg').stat().st_size<=3000000
+    assert len(list((R/'images').glob('*.png')))==18
+    assert all(sha(p)==v for p,v in immutable.items())
+    dump(R/'manifest.json',dict(status='PREVIEW ONLY / NOT APPROVED / NOT MODEL TESTED',algorithm='Pillow deterministic separable Gaussian approximation, sigma 3.6 native pixels, uniform whole-frame defocus in encoded RGB; approximate optical PSF, not a calibrated lens simulation.',wording_preserved='No retyping, deletion, masks, inpainting, reconstruction or overlays. Pixel values necessarily change by convolution; geometry and native dimensions retained.',source_manifest=str(G/'manifest.json'),source_manifest_sha256=sha(G/'manifest.json'),clean_parent_evidence=dict(path=str(gen),sha256=sha(gen),D_BLUR_lines=[710,715],D_GLARE_lines=[726,731]),generator_sha256=sha(__file__),environment=dict(python=platform.python_version(),pillow=pillow_version),seed=None,randomness_used=False,comparison=dict(fixture_id='C-SPIRITS-01',paths=[str(p) for p in paths],identical_native_crop_bounds=list(CROP),native_crop_resolution=[1260,1910],identical_display_resolution=list(panel)),artifacts=artifacts,fixtures=rows))
+    dump(R/'inventory.json',dict(immutable_hashes=immutable,glare_directory_unchanged=True))
+    dump(R/'tests.json',dict(status='PASS',scope='Offline artifact integrity only; no OCR, inference or character-level acceptance testing.',fixture_count=18,derivative_png_count=18,all18_full_png_determinism=True,all18_native_dimensions=[2200,3200],sources_and_existing_glare_unchanged=True,original_truth_copies=18,comparison_under_3MB=True,comparison_identical_bounds_and_resolution=True,visual_inspection='Not performed: remote vision would conflict with offline-only/no images sent to inference. Human review required.',fixtures=tests))
+    (R/'README.md').write_text('''# BLUR PREVIEW ONLY — NOT APPROVED — NOT MODEL TESTED
+
+18 native 2200 x 3200 PNG fixture derivatives; no network, OCR or model calls.
+Run `python3 generate.py` only in a fresh preview folder adjacent to glare-preview-v1.
+
+Gaussian defocus sigma = 3.6 native pixels, uniform whole frame, deterministic Pillow Gaussian approximation in encoded RGB. This approximates optical defocus, not a calibrated physical lens. No text redrawing/deletion, masks, inpainting, geometric resampling or glare added. Native pixel positions/wording are retained; convolution necessarily changes RGB values.
+
+Severity: sigma/1200-pixel label width = 0.003; warning font reference is 27 source pixels at vertical scale 1800/1499 (about 32.42 native px/em), sigma/em about 0.111. Moderate setting; small print may become hard to read, but this is not a blank-texture transformation. Readability awaits Alex review, not algorithmic acceptance.
+
+Sources are exactly those recorded by existing glare-preview-v1, except D-BLUR-01 explicitly uses its clean C-SPIRITS-01 parent (source generator lines 710–715), avoiding stacked blur. D-GLARE-01 continues to use clean C-MALT-01, as the glare manifest specifies. D-WARP-01 retains inherited perspective warp/mild original blur: it is not a clean defocus-only control. Parent-mapped fixtures share pixels with their clean counterparts; 18 fixture identities do NOT mean 18 unique source images. Every original fixture record, original bottle/source hashes, original truth and clean substitution is explicit in manifest.json. Truth JSON copies are byte-identical originals, provenance only; visibility/outcomes have NOT been relabeled for this preview.
+
+## Review files
+- C-SPIRITS-01-three-way.jpg: one representative label, Original / Corrected glare / Defocus blur. All three use identical native crop (470,1060,1730,2970), 1260 x 1910, displayed identically at 600 x 910. Existing glare counterpart reused without rerendering.
+- images/C-SPIRITS-01__blur-preview.png: representative full native bottle.
+- C-SPIRITS-01-native-label.png: native-resolution defocused label crop.
+- full18-contact-sheet.jpg: inventory overview ONLY, not full-character QA.
+- manifest.json, inventory.json, tests.json, generate.py, ground_truth/: provenance and reproducibility.
+
+All 18 derivatives were rendered twice and full encoded PNG SHA256 matched. Source/truth hashes, counts and native shapes checked; the entire existing glare directory remained hash-identical. No active build, gateway, runner, corpus or ledger edited. No publication. No ZIP required for this preview.
+
+No automated vision inspection: offline-only and no images sent to inference take precedence over optional vision. Alex must independently inspect the native example before approval. No full-character QA or model benchmarking claimed.
+''')
+    print('COMPLETE',R,flush=True)
+if __name__=='__main__':main()

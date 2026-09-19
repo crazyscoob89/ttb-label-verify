@@ -1,0 +1,175 @@
+{
+  "id": "azure-foundry--Kimi-K2.6--1078a4126875e4cf4ace1aac87bef6e3f7ff4501b344c778178bf41b8894b87f",
+  "provider": "azure-foundry",
+  "operator": "AVA-azure-severity-v1",
+  "model": "Kimi-K2.6",
+  "engine": "Kimi-K2.6",
+  "fixture_id": "W-BRAND-SPLITLINE-01",
+  "fixture": {
+    "id": "W-BRAND-SPLITLINE-01__angle",
+    "source_fixture": "W-BRAND-SPLITLINE-01",
+    "condition": "angle",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/W-BRAND-SPLITLINE-01__angle.png",
+    "sha256": "a91b9a32e8c7e71ab9f11cbee726811d5a89cc939c01edfe6bdab23179c8e823",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/W-BRAND-SPLITLINE-01__angle.png",
+    "source_sha256": "a91b9a32e8c7e71ab9f11cbee726811d5a89cc939c01edfe6bdab23179c8e823",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/W-BRAND-SPLITLINE-01.png",
+    "original_label_sha256": "b83ade16f1e48719f138eadaa2af82ca8154909b4d60113299a0d47c1249f4e2",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/W-BRAND-SPLITLINE-01.json",
+    "original_truth_sha256": "c281fb488bbacfde99ad8c979ddaa876128f4b902b5cecc37564ddb8c647ff68",
+    "source_fixture_id": "W-BRAND-SPLITLINE-01",
+    "clean_parent_substitution": false,
+    "inherited_degradation": "unchanged accepted control; may include original source degradation",
+    "parameters": {
+      "seed": 20260918,
+      "randomness_used": false,
+      "resolution": [
+        2200,
+        3200
+      ],
+      "source_pixels_only": true,
+      "condition": "angle",
+      "content_bounds": [
+        372.5764552373597,
+        135,
+        1824.4985447626402,
+        3020
+      ],
+      "angle_degrees": 30,
+      "horizontal_scale": 0.8660254037844387,
+      "shear": 0.065,
+      "interpolation": "bicubic",
+      "physical_rotation": false
+    },
+    "measurements": {}
+  },
+  "repeat": 1,
+  "condition": "angle",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": true,
+  "extracted": {
+    "brand_name": "STONE'S THROW",
+    "class_type": "GIN",
+    "alcohol_content": "44% ALC/VOL (88 PROOF)",
+    "net_contents": "750 mL",
+    "bottler_info": "Distilled and bottled by Stone's Throw Spirits, Austin, Texas",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 1.0,
+      "class_type": 1.0,
+      "alcohol_content": 1.0,
+      "net_contents": 1.0,
+      "bottler_info": 1.0,
+      "country_of_origin": 1.0,
+      "government_warning_heading": 1.0,
+      "government_warning_body": 1.0,
+      "government_warning_heading_all_caps": 1.0,
+      "government_warning_heading_bold": 1.0,
+      "government_warning_body_bold": 1.0
+    }
+  },
+  "error_class": null,
+  "cost_usd": 0.009431700000000001,
+  "request_sha256": "b35fe97d426818a08b8727325308b478df35dac64577529cb14842ae96444a8d",
+  "prompt_settings_sha256": "cbae9f332d5065a1dd8bf55b66ae42a7a61cc7e144f79bcf3b80e25ada48a0a2",
+  "image_sha256": "a91b9a32e8c7e71ab9f11cbee726811d5a89cc939c01edfe6bdab23179c8e823",
+  "transport": "chat",
+  "started_at": "2026-09-18T19:52:42.986510+00:00",
+  "reserved_usd": 1.10896192,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/W-BRAND-SPLITLINE-01__angle.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "old_request_ids": [
+    "Kimi-K2.6--W-BRAND-SPLITLINE-01--angle--1"
+  ],
+  "http_status": 200,
+  "request_id": "c7ad37ae-c26c-4e08-a646-5586c1411e75",
+  "latency_s": 11.71144823601935,
+  "response_sha256": "720f833c224779e7dd89c74975e803665c5761f86b929bc32e62569a21b3f07d",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/azure-severity-v1/responses/azure-foundry--Kimi-K2.6--1078a4126875e4cf4ace1aac87bef6e3f7ff4501b344c778178bf41b8894b87f.json",
+  "tokens_in": 4926,
+  "tokens_out": 1188,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 4926,
+    "completion_tokens": 1188,
+    "total_tokens": 6114,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 704,
+      "image_tokens": 4212
+    }
+  },
+  "returned_model": "Kimi-K2.6",
+  "raw_text": "{\"brand_name\":\"STONE'S THROW\",\"class_type\":\"GIN\",\"alcohol_content\":\"44% ALC/VOL (88 PROOF)\",\"net_contents\":\"750 mL\",\"bottler_info\":\"Distilled and bottled by Stone's Throw Spirits, Austin, Texas\",\"country_of_origin\":null,\"government_warning_heading\":\"GOVERNMENT WARNING:\",\"government_warning_body\":\"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\"government_warning_heading_all_caps\":true,\"government_warning_heading_bold\":true,\"government_warning_body_bold\":false,\"confidence\":{\"brand_name\":1.0,\"class_type\":1.0,\"alcohol_content\":1.0,\"net_contents\":1.0,\"bottler_info\":1.0,\"country_of_origin\":1.0,\"government_warning_heading\":1.0,\"government_warning_body\":1.0,\"government_warning_heading_all_caps\":1.0,\"government_warning_heading_bold\":1.0,\"government_warning_body_bold\":1.0}}",
+  "finish_reason": "stop",
+  "validation_errors": {},
+  "category": "wrong-answer",
+  "commodity": "spirits",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "classes": {
+    "brand_name": "correct",
+    "class_type": "correct",
+    "alcohol_content": "correct",
+    "net_contents": "correct",
+    "bottler_info": "correct",
+    "country_of_origin": "correct",
+    "government_warning": "correct"
+  },
+  "reasons": {
+    "brand_name": "normalized equivalence",
+    "class_type": "normalized equivalence",
+    "alcohol_content": "44.0 == 44.0",
+    "net_contents": "750.00mL ~= 750.00mL",
+    "bottler_info": "full normalized bottler identity and address",
+    "country_of_origin": "domestic product",
+    "government_warning": "exact statutory wording and formatting"
+  },
+  "extraction_correct": {
+    "brand_name": true,
+    "class_type": true,
+    "alcohol_content": true,
+    "net_contents": true,
+    "bottler_info": true,
+    "country_of_origin": true,
+    "government_warning": true
+  },
+  "pipeline_seconds": 11.738040756084956,
+  "unknown_charge_reserved_usd": 0
+}

@@ -1,0 +1,39 @@
+ARGUS — INDEPENDENT READ-ONLY VERIFICATION
+Requested by Alex: verify the completed results before AVA presents findings or a model recommendation.
+
+Ownership: AVA implementation/evidence owner; ARGUS independent reviewer. No paid calls, retries, source edits, report overwrites, commits, or publication. Return one consolidated PASS or REVISE with exact evidence and any blocking corrections. This review is separate from the earlier PR #2 repository consolidation review.
+
+SHARED WINDOWS ROOT:
+C:\Users\alexm\.hermes\benchmarks\ttb-foundry-20260918-v1\
+AVA ROOT:
+/opt/data/benchmarks/ttb-foundry-20260918-v1/
+
+READ FIRST:
+azure-severity-v1/FINAL-COMPARISON.txt
+azure-severity-v1/execution-state.json
+azure-severity-v1/integrity.json
+openrouter-haiku-severity-v1/FINAL-REPORT.md
+openrouter-haiku-severity-v1/REVIEWER-HANDOFF.md
+
+Completion observed by AVA: Azure terminal complete, 1073 saved new request records, remaining 0; Haiku 212 saved unique request records. Counts include processing failures, not only valid outputs. Azure integrity report PASS. Shared conservative liability 15.2204951 USD against the 50 USD total cap, not invoice-confirmed spend. Independently verify these claims.
+
+IMPORTANT: azure-severity-v1/PARENT-HANDOFF.txt is an earlier RUNNING snapshot, NOT current status. Use terminal execution-state.json and final reports. Do not execute azure.py --run or run.py.
+
+PRIMARY EVIDENCE:
+Azure: comparison.json, coverage.json, scored-rows.json, queue-manifest.json, freeze.json, authorization-addendum.json; attempts/, responses/, rows/; azure.py, test_offline.py and saved test logs.
+Haiku: report.json, scored-rows.json, coverage.json, final-verification.json, continuation-final-audit.json, final-evidence-hashes.json, manifest.json, freeze.json; raw/result directories and runner/scorer sources referenced in REVIEWER-HANDOFF.md.
+Shared cost ledger: recovery-v3/budget.sqlite (read-only; includes historical costs and unresolved reservations).
+Preservation baseline: azure-severity-preservation-before/.
+
+REQUIRED VERIFICATION:
+1. Reconcile all planned Azure request IDs against attempts, raw responses and saved rows; separate missing, invalid output and transport failures. Confirm completion is not a false green from the empty failures_by_model object.
+2. Reconcile Haiku 212 unique attempts and six reported processing failures with preserved evidence; no replay or double-counted continuation.
+3. Verify reused controls, byte aliases and provenance. Azure new queue comprises 17 Kimi control catch-ups plus 1056 severity calls; 199 prior unique Azure controls were reused. Do not add overlapping clean/straight conditions as independent paid calls.
+4. Reproduce or independently sample-check seven-field scoring, failure denominators, false matches on negative fields and human-review/referral treatment against source truth. Inspect representative raw responses including false matches and malformed results. State exactly what was reproduced versus sampled.
+5. Verify latency definitions and costs: nonstreaming request-to-completion, not full-app latency; estimates/reservations separate from invoice spend; Haiku cost already included in shared liability. Preserve unresolved charges.
+6. Verify preservation hashes/freeze and prior ledger integrity, using read-only checks. Run offline tests only if network is denied and any generated outputs/temp files are isolated outside the frozen evidence.
+7. Keep historical flat-label results, synthetic bottle/severity results, separate OCR endpoint results, and OpenRouter Haiku provenance distinct. Exclude rejected old white-band glare from approved severity conclusions.
+8. Pressure-test any model-ranking interpretation. Synthetic coverage is not real-camera reliability or held-out calibration. Low false-match counts paired with excessive schema failures/referrals do not establish superiority. OpenRouter Haiku does not establish Azure Claude availability or firewall compatibility. No unattended-approval claim.
+
+RETURN:
+PASS or REVISE; concise reproduced checks, material discrepancies, exact file/record identifiers, recommended corrections and any limits on ranking. AVA holds the user-facing findings/model recommendation until your verification returns. Do not start a competing implementation or paid run. Use the shared paths above; if inaccessible, report that exact access blocker rather than assuming evidence is absent.

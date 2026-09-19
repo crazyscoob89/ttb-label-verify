@@ -1,0 +1,62 @@
+"""Network-denied focused gate; all writable ledgers and calls are temporary."""
+import unittest,importlib.util,tempfile,json,socket,io,urllib.error
+from pathlib import Path
+from unittest.mock import patch
+class Tests(unittest.TestCase):
+ @classmethod
+ def setUpClass(cls):
+  cls.path=Path(__file__).with_name('azure.py')
+ def setUp(self):
+  self.assertTrue(self.path.exists(),'Azure scoped continuation implementation is missing')
+  import azure as A
+  self.A=A
+  self.net=patch('socket.socket.connect',side_effect=AssertionError('offline network denied'));self.net.start()
+ def tearDown(self):self.net.stop()
+ def test_queue_and_approved_hashes(self):
+  A=self.A;p=A.build_plan();q=p['queue']
+  self.assertEqual(len(p['missing_kimi_old_ids']),17)
+  self.assertEqual(len(q),1073)
+  self.assertEqual(len({x['id'] for x in q}),len(q))
+  self.assertEqual(sum(x['fixture']['condition'] in ('straight','angle') for x in q),17)
+  self.assertTrue(all(x['fixture']['condition']!='glare' for x in q))
+  self.assertTrue(all(not x.get('reuse_row') for x in q))
+  self.assertEqual(sum(x['fixture']['condition'].startswith(('blur-','glare-')) for x in q),1056)
+  for x in q:self.assertEqual(A.sha(x['fixture']['image']),x['fixture']['sha256'])
+ def test_identity_provider_separation(self):
+  A=self.A;self.assertNotEqual(A.identity('m','i','p'),A.identity('m','i','p',provider='openrouter'))
+  self.assertNotEqual(A.identity('m','i','p'),A.identity('m2','i','p'))
+ def test_inherited_cap_unknown_and_dedupe(self):
+  A=self.A
+  with tempfile.TemporaryDirectory() as t:
+   b=A.Budget(Path(t)/'b.db',50)
+   self.assertTrue(b.reserve('inherited',49,{}));self.assertTrue(b.reserve('a',1,{'a':1}))
+   self.assertFalse(b.reserve('over',.000000001,{}));b.settle('a',None)
+   self.assertEqual(b.total(),50);self.assertFalse(b.reserve('a',1,{}))
+   self.assertEqual(next(x for x in b.entries() if x['id']=='a')['status'],'unknown-charge')
+ def test_payload_routes_and_failed_attempt_once(self):
+  A=self.A;fs=A.load(A.O/'manifest.json')['fixtures'];f=fs[0];_,truth=A.H.R.load_evidence()
+  for model in A.H.MODELS:
+   with self.subTest(model=model),tempfile.TemporaryDirectory() as t:
+    out=Path(t);b=A.Budget(out/'b.db',50);x=A.item(model,f);seen=[]
+    env={'AZURE_FOUNDRY_ENDPOINT':'https://ttb-foundry-trial-resource.services.ai.azure.com','AZURE_OPENAI_ENDPOINT':'https://ttb-foundry-trial-resource.openai.azure.com/openai/v1','AZURE_FOUNDRY_API_KEY':'mock-key'}
+    def transport(req,timeout):
+     seen.append(req);self.assertEqual(timeout,120)
+     self.assertTrue((out/'attempts'/(x['id']+'.json')).exists());self.assertEqual(len(b.entries()),1)
+     body=json.loads(req.data);self.assertEqual(body['model'],model)
+     kind=A.H.payload(model,f['image'])[0]
+     if kind=='ocr':
+      self.assertTrue(req.full_url.endswith('/providers/mistral/azure/ocr'));self.assertIn('document_annotation_format',body);self.assertEqual(req.get_header('Authorization'),'Bearer mock-key')
+     elif kind=='responses':self.assertTrue(req.full_url.endswith('/responses'));self.assertEqual(body['max_output_tokens'],3000)
+     else:self.assertTrue(req.full_url.endswith('/chat/completions'));self.assertEqual(body['max_tokens'],3000)
+     raise urllib.error.HTTPError(req.full_url,502,'mock',{},io.BytesIO(b'mock failure'))
+    r=A.one(x,truth,env,b,out,transport)
+    self.assertFalse(r['ok']);self.assertTrue(Path(r['response_file']).exists());self.assertEqual(b.total(),A.VR.reservation(model))
+    self.assertIsNone(A.one(x,truth,env,b,out,transport));self.assertEqual(len(seen),1)
+ def test_ocr_meter_not_free_or_double_counted(self):
+  A=self.A
+  for d in [{'usage_info':{'pages_processed':0,'pages_processed_annotation':1},'pages':[{}]},{'usage':{'pages_processed':1,'pages_processed_annotation':1},'pages':[{}]}]:self.assertEqual(A.VR.cost(A.H.OCR,d),(.003,None,None,1))
+  self.assertIsNone(A.VR.cost(A.H.OCR,{'usage':{'pages_processed':0}})[0])
+ def test_report_failure_denominator(self):
+  A=self.A;_,gt=A.H.R.load_evidence();g=next(iter(gt.values()));r=A.H.score({'ok':False,'extracted':None,'latency_s':1},g)
+  s=A.summarize([r]);self.assertEqual(s['calls'],1);self.assertEqual(s['processing_failures'],1);self.assertEqual(sum(s['field_correct'].values()),0);self.assertEqual(s['valid_referral_calls'],0)
+if __name__=='__main__':unittest.main(verbosity=2)

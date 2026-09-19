@@ -1,0 +1,124 @@
+{
+  "utc": "2026-09-18T19:18:51.390263+00:00",
+  "integrity": "PASS",
+  "planned_unique": 212,
+  "saved_unique": 212,
+  "unattempted": [],
+  "attempted_without_row": [],
+  "added_rows": 64,
+  "added_conditions": {
+    "glare-3": 16,
+    "glare-4": 16,
+    "glare-2": 16,
+    "glare-5": 16
+  },
+  "new_transport_failures": 0,
+  "all_148_prior_rows_attempts_responses_byte_identical": true,
+  "protected_file_count": 444,
+  "all_precontinuation_ledger_entries_exactly_preserved": true,
+  "precontinuation_ledger_entries": 456,
+  "frozen_changes": [
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/run.py"
+  ],
+  "new_observed_cost_usd": "0.27264699",
+  "observed_cost_usd": "0.89336115",
+  "unique_request_metrics": {
+    "calls": 212,
+    "schema_valid_calls": 206,
+    "processing_failures": 6,
+    "negative_fields": 104,
+    "false_matches": 1,
+    "negative_calls": 104,
+    "false_match_calls": 1,
+    "valid_referral_calls": 26,
+    "valid_referral_fields": 39,
+    "failure_referral_fields": 42,
+    "field_correct": {
+      "brand_name": 206,
+      "class_type": 206,
+      "alcohol_content": 200,
+      "net_contents": 205,
+      "bottler_info": 195,
+      "country_of_origin": 202,
+      "government_warning": 180
+    },
+    "all_fields_correct": 172,
+    "latency_p50_s": 4.230336955981329,
+    "latency_p95_s": 5.339415075723082
+  },
+  "processing_failures": [
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--1d25aae5419b7bf683d12cb89420292c7d79f4566dc95801a9163c79e85bf454",
+      "fixture": "A-INJECT-PROMPT-01__blur-6",
+      "error_class": "http-502",
+      "http_status": 502,
+      "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/responses/openrouter--anthropic_claude-haiku-4.5--1d25aae5419b7bf683d12cb89420292c7d79f4566dc95801a9163c79e85bf454.http-error.txt",
+      "unknown_reserve_usd": 0.4565
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--7ffe7cd002f1709bb0bab70a003690406ed3f14d2f6a0e6da159d0506daaac16",
+      "fixture": "C-MALT-01__blur-6",
+      "error_class": "schema-or-incomplete-output",
+      "http_status": 200,
+      "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/responses/openrouter--anthropic_claude-haiku-4.5--7ffe7cd002f1709bb0bab70a003690406ed3f14d2f6a0e6da159d0506daaac16.json",
+      "unknown_reserve_usd": 0
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--8b817cf7a34b50a33948e8626d237f214812d558aea34789aebb7efa560f94ad",
+      "fixture": "D-WARP-01__glare-4",
+      "error_class": "schema-or-incomplete-output",
+      "http_status": 200,
+      "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/responses/openrouter--anthropic_claude-haiku-4.5--8b817cf7a34b50a33948e8626d237f214812d558aea34789aebb7efa560f94ad.json",
+      "unknown_reserve_usd": 0
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--8cb72ea63b42d824919b2ce4e12b15ba0057a134071f5b873edea12fe522b859",
+      "fixture": "A-BRAND-CASE-01__blur-6",
+      "error_class": "schema-or-incomplete-output",
+      "http_status": 200,
+      "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/responses/openrouter--anthropic_claude-haiku-4.5--8cb72ea63b42d824919b2ce4e12b15ba0057a134071f5b873edea12fe522b859.json",
+      "unknown_reserve_usd": 0
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--cdbde4bec0821c88f98608fd567f27f46adca486192db8716e1a01e93a8d7515",
+      "fixture": "W-BRAND-SPLITLINE-01__blur-6",
+      "error_class": "schema-or-incomplete-output",
+      "http_status": 200,
+      "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/responses/openrouter--anthropic_claude-haiku-4.5--cdbde4bec0821c88f98608fd567f27f46adca486192db8716e1a01e93a8d7515.json",
+      "unknown_reserve_usd": 0
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--d0b6fd794f547d2bba8522e6849f8eff7e94554f1455128812c480cbb6ae9ab5",
+      "fixture": "W-WARN-REWORD-01__glare-1",
+      "error_class": "http-502",
+      "http_status": 502,
+      "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/responses/openrouter--anthropic_claude-haiku-4.5--d0b6fd794f547d2bba8522e6849f8eff7e94554f1455128812c480cbb6ae9ab5.http-error.txt",
+      "unknown_reserve_usd": 0.4565
+    }
+  ],
+  "false_matches": [
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--ab2384db0beb6852aa728ebf3e54c1cc6a51b623a9220b2260617605e7ea228c",
+      "fixture": "A-WARN-BOLDBODY-01__blur-4",
+      "field": "government_warning"
+    }
+  ],
+  "state": {
+    "status": "complete",
+    "pid": 20865,
+    "started_utc": "2026-09-18T19:11:42.729375+00:00",
+    "terminal": true,
+    "unique_planned": 212,
+    "reason": "queue-complete",
+    "authorized_continuation": true,
+    "current_fixture": "W-WARN-REWORD-01__glare-5",
+    "updated_utc": "2026-09-18T19:18:09.226143+00:00",
+    "finished_utc": "2026-09-18T19:18:14.455367+00:00",
+    "saved_unique_rows": 212,
+    "unscored_unique_images": 0,
+    "attempted_unscored": [],
+    "shared_liability_usd": 10.86932685
+  },
+  "runner_session": "proc_41783bb8206d",
+  "runner_pid": 20865
+}

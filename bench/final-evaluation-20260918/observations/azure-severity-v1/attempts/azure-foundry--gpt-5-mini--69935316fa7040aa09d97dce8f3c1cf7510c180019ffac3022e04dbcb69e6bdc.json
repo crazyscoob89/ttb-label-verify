@@ -1,0 +1,90 @@
+{
+  "id": "azure-foundry--gpt-5-mini--69935316fa7040aa09d97dce8f3c1cf7510c180019ffac3022e04dbcb69e6bdc",
+  "provider": "azure-foundry",
+  "operator": "AVA-azure-severity-v1",
+  "model": "gpt-5-mini",
+  "engine": "gpt-5-mini",
+  "fixture_id": "W-BRAND-SPLITLINE-01",
+  "fixture": {
+    "id": "W-BRAND-SPLITLINE-01__glare-1",
+    "source_fixture": "W-BRAND-SPLITLINE-01",
+    "condition": "glare-1",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/W-BRAND-SPLITLINE-01__glare-1.png",
+    "sha256": "6b0b82870e0f36dd9bc80b33218ee08473f3fe03b998fb408bdb9e0b58bc7d86",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-BRAND-SPLITLINE-01.png",
+    "source_sha256": "0d808655c0372f5c6ceb60d280a4773e20f8e35b33c3c599263112be17899b8a",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/W-BRAND-SPLITLINE-01.png",
+    "original_label_sha256": "b83ade16f1e48719f138eadaa2af82ca8154909b4d60113299a0d47c1249f4e2",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/W-BRAND-SPLITLINE-01.json",
+    "original_truth_sha256": "c281fb488bbacfde99ad8c979ddaa876128f4b902b5cecc37564ddb8c647ff68",
+    "source_fixture_id": "W-BRAND-SPLITLINE-01",
+    "clean_parent_substitution": false,
+    "inherited_degradation": "none",
+    "parameters": {
+      "seed": 1507575473,
+      "center_u": -0.3235146017386067,
+      "center_y": 2062.5052414739253,
+      "sigma_y": 374.2570430978624,
+      "angular_width": 0.1417351396437033,
+      "curve": -0.032762830797786836,
+      "strength": 0.3046613810787086,
+      "edge_strength": 0.13,
+      "bloom_fraction": 0.12,
+      "alpha_bound": 0.65,
+      "intensity_gain_from_v1": 1,
+      "requested_intensity_gain_from_v1": 1,
+      "opacity_cap": 0.65
+    },
+    "measurements": {
+      "effective_alpha_peak": 0.304660859519137,
+      "uncapped_alpha_peak": 0.304660859519137,
+      "opacity_cap": 0.65,
+      "clipped_pixel_count": 0,
+      "clipped_fraction_full_image": 0.0,
+      "source_weight_min": 0.695339140480863
+    }
+  },
+  "repeat": 1,
+  "condition": "glare-1",
+  "route": "Azure Foundry responses",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.00275525,
+  "request_sha256": "78ae179d9af19db55f75829bb4ba6a543a0005fa968ccc22f9a5013fdd6d9dd8",
+  "prompt_settings_sha256": "196f20e64293ebb79fcf992ad999cce80aa5a27a14685453840798f0423d2683",
+  "image_sha256": "6b0b82870e0f36dd9bc80b33218ee08473f3fe03b998fb408bdb9e0b58bc7d86",
+  "transport": "responses",
+  "started_at": "2026-09-18T21:53:00.450698+00:00",
+  "reserved_usd": 0.2949584,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/W-BRAND-SPLITLINE-01__glare-1.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "old_request_ids": [],
+  "http_status": 200,
+  "request_id": "8ea32602-2984-4f2e-9ad7-7f846234c361",
+  "latency_s": 9.654065962997265,
+  "response_sha256": "916244466e8444b9776bc371d53c28f4a0f38771252cfe90b9ff3d90b63c1985",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/azure-severity-v1/responses/azure-foundry--gpt-5-mini--69935316fa7040aa09d97dce8f3c1cf7510c180019ffac3022e04dbcb69e6bdc.json",
+  "tokens_in": 1717,
+  "tokens_out": 1163,
+  "pages_processed": null,
+  "usage": {
+    "input_tokens": 1717,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1163,
+    "output_tokens_details": {
+      "reasoning_tokens": 832
+    },
+    "total_tokens": 2880
+  },
+  "returned_model": "gpt-5-mini"
+}

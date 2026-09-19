@@ -1,0 +1,24 @@
+from pathlib import Path
+from PIL import Image,ImageDraw,ImageFont
+import hashlib,json
+OUT=Path(__file__).resolve().parent
+ROOT=OUT.parent
+font=lambda n:ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',n)
+crop=(490,2220,1710,2640)
+proof={}
+for effect,n in [('blur',6),('glare',5)]:
+    names=[('Clean baseline','baseline-0')]+[(('Sigma ' if effect=='blur' else 'Glare x')+str(i),effect+'-'+str(i)) for i in range(1,n+1)]
+    canvas=Image.new('RGB',(1680,140+390*((len(names)+1)//2)),'#f5f2ec')
+    d=ImageDraw.Draw(canvas)
+    d.text((20,12),effect.upper()+' LADDER | Same source, full-width warning detail',font=font(32),fill='black')
+    d.text((20,60),'Preview only: no model confidence measured; native test images remain uncropped.',font=font(25),fill='#333333')
+    for j,(label,suffix) in enumerate(names):
+        x=20+840*(j%2);y=140+390*(j//2)
+        d.text((x,y),label,font=font(30),fill='black')
+        p=ROOT/'images'/('C-SPIRITS-01__'+suffix+'.png')
+        im=Image.open(p).convert('RGB').crop(crop).resize((800,275),Image.Resampling.LANCZOS)
+        canvas.paste(im,(x,y+48))
+        proof[str(p.relative_to(ROOT))]=hashlib.sha256(p.read_bytes()).hexdigest()
+    p=OUT/(effect+'-ladder.jpg');canvas.save(p,quality=95,subsampling=0)
+    print(p)
+(OUT/'display-provenance.json').write_text(json.dumps({'purpose':'Display-only repair: include complete warning width instead of clipping first/last letters. Native images unchanged.','crop':crop,'native_image_hashes':proof},indent=2))

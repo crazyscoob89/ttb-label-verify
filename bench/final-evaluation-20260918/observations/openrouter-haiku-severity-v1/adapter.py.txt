@@ -1,0 +1,102 @@
+"""OpenRouter-only adapter; atomic shared-ledger attempts, unknown retention, no retry."""
+import sys
+sys.dont_write_bytecode=True
+import base64,datetime,hashlib,json,math,os,sqlite3,time,urllib.request,urllib.error
+from decimal import Decimal,ROUND_CEILING
+from pathlib import Path
+D=Path(__file__).resolve().parent;B=D.parent
+sys.path.insert(0,str(B))
+import harness as H
+MODEL='anthropic/claude-haiku-4.5';URL='https://openrouter.ai/api/v1/chat/completions'
+MAX_OUTPUT=3000
+sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
+def now():return datetime.datetime.now(datetime.timezone.utc).isoformat()
+def save(p,x):
+ p=Path(p);p.parent.mkdir(parents=True,exist_ok=True);tmp=p.with_suffix(p.suffix+'.tmp')
+ with tmp.open('w') as f:json.dump(x,f,indent=2,allow_nan=False);f.write('\n');f.flush();os.fsync(f.fileno())
+ os.replace(tmp,p)
+ fd=os.open(str(p.parent),os.O_DIRECTORY);os.fsync(fd);os.close(fd)
+def durable_bytes(p,data):
+ with Path(p).open('wb') as f:f.write(data);f.flush();os.fsync(f.fileno())
+def approved(c):return c in ['clean','straight','angle']+[f'blur-{i}' for i in range(1,7)]+[f'glare-{i}' for i in range(1,6)]
+def payload(data):
+ return {'model':MODEL,'max_tokens':MAX_OUTPUT,'messages':[{'role':'system','content':H.E.SYSTEM_PROMPT},{'role':'user','content':[{'type':'text','text':H.E.USER_PROMPT},{'type':'image_url','image_url':{'url':'data:image/png;base64,'+base64.b64encode(data).decode()}}]}],'response_format':{'type':'json_object'},'provider':{'only':['Anthropic'],'allow_fallbacks':False,'require_parameters':True}}
+def prompt_hash():return hashlib.sha256(json.dumps(payload(b''),sort_keys=True).encode()).hexdigest()
+def identity(image_hash,prompt,provider='openrouter',model=MODEL):
+ return provider+'--'+model.replace('/','_')+'--'+hashlib.sha256(json.dumps([provider,model,image_hash,prompt],separators=(',',':')).encode()).hexdigest()
+def reservation(meta):
+ prices=meta['pricing'];context=meta['context_length'];assert type(context) is int and context>MAX_OUTPUT
+ # Bound every possible input token (including image/provider framing) by the full
+ # documented context max; add full output max separately (conservative double count).
+ # Max input includes 1h cache-write surcharge even though caching is not requested.
+ pi=max(Decimal(prices[k]) for k in ['prompt','input_cache_read','input_cache_write','input_cache_write_1h'] if k in prices)
+ po=Decimal(prices['completion']);assert pi>0 and po>0
+ return float(((Decimal(context)*pi+Decimal(MAX_OUTPUT)*po)*Decimal('1.10')).quantize(Decimal('.000000001'),rounding=ROUND_CEILING))
+def valid_money(x):return type(x) in (int,float) and math.isfinite(x) and x>=0
+def cost(d,meta):
+ u=d.get('usage') or {};observed=u.get('cost');observed=observed if valid_money(observed) else None
+ ti=u.get('prompt_tokens');to=u.get('completion_tokens');retail=None
+ if type(ti) is int and type(to) is int and min(ti,to)>=0:
+  retail=float(Decimal(ti)*Decimal(meta['pricing']['prompt'])+Decimal(to)*Decimal(meta['pricing']['completion']))
+ return observed,retail
+
+class SharedBudget(H.Budget):
+ def __init__(self,path,limit):
+  super().__init__(path,limit)
+  with self.connect() as c:c.execute('CREATE TABLE IF NOT EXISTS openrouter_attempts(id TEXT PRIMARY KEY,metadata_json TEXT NOT NULL)')
+ def reserve(self,ident,amount,metadata):
+  assert valid_money(amount) and amount>0;n=int((Decimal(str(amount))*10**9).to_integral_value(rounding=ROUND_CEILING))
+  with self.connect() as c:
+   c.execute('BEGIN IMMEDIATE')
+   if c.execute('SELECT 1 FROM ledger WHERE id=?',(ident,)).fetchone():return False
+   if c.execute('SELECT COALESCE(SUM(nano),0) FROM ledger').fetchone()[0]+n>self.limit:return False
+   c.execute('INSERT INTO ledger VALUES(?,?,?)',(ident,n,'reserved'))
+   c.execute('INSERT INTO openrouter_attempts VALUES(?,?)',(ident,json.dumps(metadata,allow_nan=False)))
+  return True
+ def settle(self,ident,amount):
+  if amount is not None and not valid_money(amount):raise ValueError('invalid usage.cost')
+  with self.connect() as c:
+   c.execute('BEGIN IMMEDIATE');old=c.execute('SELECT nano FROM ledger WHERE id=?',(ident,)).fetchone()
+   if not old:raise ValueError('unreserved attempt')
+   n=old[0] if amount is None else int((Decimal(str(amount))*10**9).to_integral_value(rounding=ROUND_CEILING))
+   c.execute('UPDATE ledger SET nano=?,status=? WHERE id=?',(n,'unknown-charge' if amount is None else 'openrouter-usage-cost',ident))
+  if n>old[0]:raise ValueError('observed cost exceeds reservation')
+
+def one(image,fixture,key,budget,out,meta,transport=None):
+ if not approved(fixture['condition']):raise ValueError('Unapproved/rejected condition')
+ out=Path(out)
+ for sub in ['rows','responses','attempts']:(out/sub).mkdir(parents=True,exist_ok=True)
+ image=Path(image);ident=identity(sha(image),prompt_hash())
+ # BOTH ledger and disk evidence fence dispatch; a lost row is never replayed.
+ if (out/'attempts'/(ident+'.json')).exists() or any(e['id']==ident for e in budget.entries()):return None
+ body=json.dumps(payload(image.read_bytes())).encode();reserve=reservation(meta)
+ row={'id':ident,'provider':'openrouter','model':MODEL,'engine':MODEL,'route':URL,'upstream_policy':'Anthropic only; no provider fallback','fixture':fixture,'source_image':str(image),'image_sha256':sha(image),'prompt_settings_sha256':prompt_hash(),'request_sha256':hashlib.sha256(body).hexdigest(),'started_at':now(),'reserved_usd':reserve,'max_output_tokens':MAX_OUTPUT,'timeout_seconds':120,'auto_retries':0,'ok':False,'extracted':None,'error_class':None,'usage_cost_usd':None,'retail_estimate_usd':None}
+ if not budget.reserve(ident,reserve,row):return None
+ save(out/'attempts'/(ident+'.json'),row)
+ transport=transport or urllib.request.urlopen;start=time.perf_counter();observed=None
+ try:
+  req=urllib.request.Request(URL,data=body,headers={'Authorization':'Bearer '+key,'Content-Type':'application/json'},method='POST')
+  with transport(req,timeout=120) as response:
+   row['http_status']=response.status;raw=response.read();row['request_id']=response.headers.get('x-request-id')
+  row['latency_s']=time.perf_counter()-start
+  dest=out/'responses'/(ident+'.json');durable_bytes(dest,raw);row.update(response_file=str(dest),response_sha256=sha(dest))
+  d=json.loads(raw);observed,estimate=cost(d,meta)
+  row.update(usage_cost_usd=observed,retail_estimate_usd=estimate,usage=d.get('usage'),generation_id=d.get('id'),returned_model=d.get('model'),returned_provider=d.get('provider'))
+  save(out/'attempts'/(ident+'.json'),row)
+  text,finish=H.parse_response('chat',d);row.update(raw_text=text,finish_reason=finish)
+  row['extracted']=json.loads(H.E._strip_fences(text));row['validation_errors']=H.validate_extraction(row['extracted'])
+  row['ok']=not row['validation_errors'] and finish=='stop'
+  if not row['ok']:row['error_class']='schema-or-incomplete-output'
+ except urllib.error.HTTPError as e:
+  row.update(http_status=e.code,latency_s=time.perf_counter()-start,error_class='http-'+str(e.code))
+  dest=out/'responses'/(ident+'.http-error.txt');durable_bytes(dest,e.read().replace(key.encode(),b'[REDACTED]'));row.update(response_file=str(dest),response_sha256=sha(dest))
+ except Exception as e:
+  row.setdefault('latency_s',time.perf_counter()-start);row.update(error_class=type(e).__name__,error=str(e).replace(key,'[REDACTED]')[:1000])
+ over=False
+ try:budget.settle(ident,observed)
+ except ValueError:row['budget_overage']=True;over=True
+ row['unknown_charge_reserved_usd']=reserve if observed is None else 0;row['pipeline_seconds']=time.perf_counter()-start
+ save(out/'rows'/(ident+'.json'),row)
+ print(json.dumps({'id':ident,'condition':fixture['condition'],'source':fixture.get('source_fixture'),'ok':row['ok'],'error':row['error_class'],'seconds':row['latency_s'],'usage_cost':observed,'liability':budget.total()}),flush=True)
+ if over:raise RuntimeError('Persisted overage; stop dispatch')
+ return row

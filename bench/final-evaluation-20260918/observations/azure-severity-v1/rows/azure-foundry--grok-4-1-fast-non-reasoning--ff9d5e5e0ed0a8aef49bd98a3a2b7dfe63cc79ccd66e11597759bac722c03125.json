@@ -1,0 +1,169 @@
+{
+  "id": "azure-foundry--grok-4-1-fast-non-reasoning--ff9d5e5e0ed0a8aef49bd98a3a2b7dfe63cc79ccd66e11597759bac722c03125",
+  "provider": "azure-foundry",
+  "operator": "AVA-azure-severity-v1",
+  "model": "grok-4-1-fast-non-reasoning",
+  "engine": "grok-4-1-fast-non-reasoning",
+  "fixture_id": "A-FIELD-MISSING-01",
+  "fixture": {
+    "id": "A-FIELD-MISSING-01__blur-3",
+    "source_fixture": "A-FIELD-MISSING-01",
+    "condition": "blur-3",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/A-FIELD-MISSING-01__blur-3.png",
+    "sha256": "cecedc9cc03e1dc7fa5c87aed827ccc182b641cc44c7d357b6c43ecbcf7b8801",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-FIELD-MISSING-01.png",
+    "source_sha256": "fbe2320836ee47d13e1d3c9438d7575cb1bd0f453c44f8513bb610f960d4a3a5",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/A-FIELD-MISSING-01.png",
+    "original_label_sha256": "bccda011d9dfb0c9b5c14cd422930a5d62c315e7caa0519dfd47f988ae94497a",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/A-FIELD-MISSING-01.json",
+    "original_truth_sha256": "caf84125de42c1a8df25b6c18dd3f1351c41314a7ef621568ca77d1553f211f4",
+    "source_fixture_id": "A-FIELD-MISSING-01",
+    "clean_parent_substitution": false,
+    "inherited_degradation": "none",
+    "parameters": {
+      "sigma_native_px": 3,
+      "sigma_div_label_width": 0.0025,
+      "sigma_div_label_height": 0.0016093969106313034,
+      "filter": "Pillow GaussianBlur",
+      "randomness_used": false
+    },
+    "measurements": {}
+  },
+  "repeat": 1,
+  "condition": "blur-3",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": {
+    "brand_name": "Quarry Row",
+    "class_type": "MALT LIQUOR",
+    "alcohol_content": "8% ALC/VOL",
+    "net_contents": null,
+    "bottler_info": null,
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 1,
+      "class_type": 1,
+      "alcohol_content": 1,
+      "net_contents": 1,
+      "bottler_info": 1,
+      "country_of_origin": 1,
+      "government_warning_heading": 1,
+      "government_warning_heading_all_caps": 1,
+      "government_warning_heading_bold": 1,
+      "government_warning_body_bold": 1
+    }
+  },
+  "error_class": "schema-or-incomplete-output",
+  "cost_usd": 0.0005953,
+  "request_sha256": "11967f0b25b747f12bf5ace649edee30dad23ebd5bb439a3b080ea5be90289ed",
+  "prompt_settings_sha256": "ca6b656c366dde63e82186f064688ef8a5b3a00c42275fd218513c6df7d7f9d0",
+  "image_sha256": "cecedc9cc03e1dc7fa5c87aed827ccc182b641cc44c7d357b6c43ecbcf7b8801",
+  "transport": "chat",
+  "started_at": "2026-09-18T20:29:14.757028+00:00",
+  "reserved_usd": 0.23233672,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/A-FIELD-MISSING-01__blur-3.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "old_request_ids": [],
+  "http_status": 200,
+  "request_id": "f5c7cdb6-3a62-41de-9021-ac73b7da4b77",
+  "latency_s": 4.740958385053091,
+  "response_sha256": "f19c0c00d5f7e6f29c365048ffc826a43e158116cd8eb132a4e60c3225fdf1a8",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/azure-severity-v1/responses/azure-foundry--grok-4-1-fast-non-reasoning--ff9d5e5e0ed0a8aef49bd98a3a2b7dfe63cc79ccd66e11597759bac722c03125.json",
+  "tokens_in": 2489,
+  "tokens_out": 195,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 2489,
+    "completion_tokens": 195,
+    "total_tokens": 2684,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 858,
+      "audio_tokens": 0,
+      "text_tokens": 697,
+      "image_tokens": 1792
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "num_sources_used": 0
+  },
+  "returned_model": "grok-4-1-fast-non-reasoning",
+  "raw_text": "{\"brand_name\":\"Quarry Row\",\"class_type\":\"MALT LIQUOR\",\"alcohol_content\":\"8% ALC/VOL\",\"net_contents\":null,\"bottler_info\":null,\"country_of_origin\":null,\"government_warning_heading\":\"GOVERNMENT WARNING:\",\"government_warning_body\":\"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\"government_warning_heading_all_caps\":true,\"government_warning_heading_bold\":true,\"government_warning_body_bold\":false,\"confidence\":{\"brand_name\":1,\"class_type\":1,\"alcohol_content\":1,\"net_contents\":1,\"bottler_info\":1,\"country_of_origin\":1,\"government_warning_heading\":1,\"government_warning_heading_all_caps\":1,\"government_warning_heading_bold\":1,\"government_warning_body_bold\":1}}",
+  "finish_reason": "stop",
+  "validation_errors": {
+    "government_warning_body": "missing or invalid component confidence"
+  },
+  "category": "adversarial",
+  "commodity": "malt",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "needs-review",
+    "bottler_info": "needs-review",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "needs-review",
+    "bottler_info": "needs-review",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "needs-review",
+    "class_type": "needs-review",
+    "alcohol_content": "needs-review",
+    "net_contents": "needs-review",
+    "bottler_info": "needs-review",
+    "country_of_origin": "needs-review",
+    "government_warning": "needs-review"
+  },
+  "classes": {
+    "brand_name": "referral",
+    "class_type": "referral",
+    "alcohol_content": "referral",
+    "net_contents": "referral",
+    "bottler_info": "referral",
+    "country_of_origin": "referral",
+    "government_warning": "referral"
+  },
+  "reasons": {
+    "brand_name": "extraction failure: schema-or-incomplete-output",
+    "class_type": "extraction failure: schema-or-incomplete-output",
+    "alcohol_content": "extraction failure: schema-or-incomplete-output",
+    "net_contents": "extraction failure: schema-or-incomplete-output",
+    "bottler_info": "extraction failure: schema-or-incomplete-output",
+    "country_of_origin": "extraction failure: schema-or-incomplete-output",
+    "government_warning": "extraction failure: schema-or-incomplete-output"
+  },
+  "extraction_correct": {
+    "brand_name": false,
+    "class_type": false,
+    "alcohol_content": false,
+    "net_contents": false,
+    "bottler_info": false,
+    "country_of_origin": false,
+    "government_warning": false
+  },
+  "pipeline_seconds": 4.765987283084542,
+  "unknown_charge_reserved_usd": 0
+}

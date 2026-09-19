@@ -1,0 +1,95 @@
+{
+  "id": "openrouter--anthropic_claude-haiku-4.5--6f526fe920c4adb43ea64d108a9fc59a3dc12550cf302836656ae3111803477d",
+  "provider": "openrouter",
+  "model": "anthropic/claude-haiku-4.5",
+  "engine": "anthropic/claude-haiku-4.5",
+  "route": "https://openrouter.ai/api/v1/chat/completions",
+  "upstream_policy": "Anthropic only; no provider fallback",
+  "fixture": {
+    "id": "C-SPIRITS-01__angle",
+    "source_fixture": "C-SPIRITS-01",
+    "condition": "angle",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/C-SPIRITS-01__angle.png",
+    "sha256": "0dca0b5d36fc89fd9db503b88c50466fa4309790b698daf2de25ab29e6c8565c",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/C-SPIRITS-01__angle.png",
+    "source_sha256": "0dca0b5d36fc89fd9db503b88c50466fa4309790b698daf2de25ab29e6c8565c",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/C-SPIRITS-01.png",
+    "original_label_sha256": "6db5c6cf43a3a09e324c9e086220594ba35f8611c6e1a4966ccec9a14cce7470",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/C-SPIRITS-01.json",
+    "original_truth_sha256": "cee4f112da89aa39bec0c5a760e862dfdef0911beb254c18830564622f4f6ddf",
+    "source_fixture_id": "C-SPIRITS-01",
+    "clean_parent_substitution": false,
+    "inherited_degradation": "unchanged accepted control; may include original source degradation",
+    "parameters": {
+      "seed": 20260918,
+      "randomness_used": false,
+      "resolution": [
+        2200,
+        3200
+      ],
+      "source_pixels_only": true,
+      "condition": "angle",
+      "content_bounds": [
+        372.5764552373597,
+        135,
+        1824.4985447626402,
+        3020
+      ],
+      "angle_degrees": 30,
+      "horizontal_scale": 0.8660254037844387,
+      "shear": 0.065,
+      "interpolation": "bicubic",
+      "physical_rotation": false
+    },
+    "measurements": {}
+  },
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/C-SPIRITS-01__angle.png",
+  "image_sha256": "0dca0b5d36fc89fd9db503b88c50466fa4309790b698daf2de25ab29e6c8565c",
+  "prompt_settings_sha256": "ba93d7e53b184d2f74384c66eebdb59f523faf427337a9e3b2e702322f09040d",
+  "request_sha256": "cf0225163264669fab95f2235cc7d970fbcf86e6644a332aacc1a05fab001b0b",
+  "started_at": "2026-09-18T18:54:57.294406+00:00",
+  "reserved_usd": 0.4565,
+  "max_output_tokens": 3000,
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "usage_cost_usd": 0.00425106,
+  "retail_estimate_usd": 0.004294,
+  "http_status": 200,
+  "request_id": null,
+  "latency_s": 4.605849502026103,
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/responses/openrouter--anthropic_claude-haiku-4.5--6f526fe920c4adb43ea64d108a9fc59a3dc12550cf302836656ae3111803477d.json",
+  "response_sha256": "f1d0c3370fdb2c53dd66462a294325eae07cf9008bad0d9033968f4e8c77b019",
+  "usage": {
+    "prompt_tokens": 2354,
+    "completion_tokens": 388,
+    "total_tokens": 2742,
+    "cost": 0.00425106,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.004294,
+      "upstream_inference_prompt_cost": 0.002354,
+      "upstream_inference_completions_cost": 0.00194
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "generation_id": "gen-1789757698-Rf72i3GwlfcmlaN7KgGw",
+  "returned_model": "anthropic/claude-haiku-4.5",
+  "returned_provider": "Anthropic"
+}

@@ -1,0 +1,3144 @@
+{
+  "status": "PREVIEW ONLY / NOT APPROVED / NOT MODEL-TESTED",
+  "effect": "glare",
+  "algorithm": "V2 curved linear-light glare, coefficients 2.5 times ORIGINAL V1, pointwise opacity cap 0.65 (not unbounded 2.5 effective)",
+  "source_policy": "Reuse blur-v1 verified original / clean parents for BOTH effects: D-BLUR -> C-SPIRITS, D-GLARE -> C-MALT. No previous effect outputs as input. D-WARP retains original warp/mild blur.",
+  "comparison_exception": "D-BLUR glare V1 inherited original blur; V2 now uses documented clean parent. Glare seed/location unchanged. Other glare sources unchanged.",
+  "wording": "No retyping, generated pixels, inpainting or reconstruction. Source glyph geometry remains; lighting blends or convolution necessarily change RGB values, not literal pixel identity.",
+  "clean_parent_evidence": {
+    "path": "/opt/data/projects/ttb-label-verify-revision/fixtures/generate_labels.py",
+    "sha256": "45690899f26bb807704b8e03b2ab01516b18e3a308f6da94a9f0bf931944cade",
+    "D_BLUR_lines": [
+      710,
+      715
+    ],
+    "D_GLARE_lines": [
+      726,
+      731
+    ]
+  },
+  "source_manifests": {
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/glare-preview-v1/manifest.json": "0647f4cbdc7d8d3b35298cee6c6b2c33bfba4b92bc6c902d0e6e6ce49c7dea05",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/glare-preview-v2/manifest.json": "a96fc313ac40b4c2f91f0d7438f84b3ebb6b3b756d5f4b5aba9f530130acc64a",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/blur-preview-v1/manifest.json": "581a132808774cb44c9663887cd749b307f15aab8127025c4234c6f0ba167190",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/blur-preview-v2/manifest.json": "088b7b7b0dd5f061922c0397e9d3f3cc7d9f37a9272fd5560aa9640724481c4a"
+  },
+  "environment": {
+    "python": "3.13.5",
+    "numpy": "2.5.3",
+    "pillow": "12.3.0"
+  },
+  "version": 3,
+  "requested_parameters": {
+    "intensity_gain_from_original_v1": 2.5,
+    "opacity_cap": 0.65
+  },
+  "generator_sha256": "0c47e92345dde216ab6bc3b54bab0086b9ec4e33352c9e79c1c4a7876b665192",
+  "render_engine_sha256": "393da8c9aac346a6a43bfc1ef79be0e9f9d9792d8fb3f7239c9ae9ff5d766442",
+  "fixtures": [
+    {
+      "fixture_id": "C-SPIRITS-01",
+      "source_fixture_id": "C-SPIRITS-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-SPIRITS-01.png",
+      "source_sha256": "bd601f2d9a3b0fd1b31257fd46e24eb148969519fa4833678ac604df20e037ec",
+      "source_label_sha256": "6db5c6cf43a3a09e324c9e086220594ba35f8611c6e1a4966ccec9a14cce7470",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260918,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": -12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1079.0,
+          1700.0,
+          2943.052292
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-SPIRITS-01.png",
+      "original_fixture_bottle_sha256": "bd601f2d9a3b0fd1b31257fd46e24eb148969519fa4833678ac604df20e037ec",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/C-SPIRITS-01.png",
+      "original_source_label_sha256": "6db5c6cf43a3a09e324c9e086220594ba35f8611c6e1a4966ccec9a14cce7470",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/C-SPIRITS-01.json",
+      "original_truth_sha256": "cee4f112da89aa39bec0c5a760e862dfdef0911beb254c18830564622f4f6ddf",
+      "inherited_degradation": "none",
+      "parameters": {
+        "seed": 1507575473,
+        "center_u": -0.3235146017386067,
+        "center_y": 2062.5052414739253,
+        "sigma_y": 374.2570430978624,
+        "angular_width": 0.1417351396437033,
+        "curve": -0.032762830797786836,
+        "strength": 0.7616534526967715,
+        "edge_strength": 0.325,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 2.5,
+        "requested_intensity_gain_from_v1": 2.5,
+        "opacity_cap": 0.65
+      },
+      "previous_parameters": {
+        "seed": 1507575473,
+        "center_u": -0.3235146017386067,
+        "center_y": 2062.5052414739253,
+        "sigma_y": 374.2570430978624,
+        "angular_width": 0.1417351396437033,
+        "curve": -0.032762830797786836,
+        "strength": 0.5026912787798692,
+        "edge_strength": 0.2145,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 1.65
+      },
+      "previous_output": "images/C-SPIRITS-01__glare-preview.png",
+      "previous_output_sha256": "835338294a7d308359b34edba5f7ad2647c183b1117f5155e3057dd4df744512",
+      "previous_source_sha256": "bd601f2d9a3b0fd1b31257fd46e24eb148969519fa4833678ac604df20e037ec",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/C-SPIRITS-01__glare-preview.png",
+      "output_sha256": "1d76fec14d4f7f064faef9536c0ddd196e93e0b08524bbb277205adb4ffa31c1",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.0071049961311359655,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.29475437135720234,
+        "label_max_row_fraction_alpha_above_050": 0.16153205661948378,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 2.9958151404994484,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.7616521487978425,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 39055,
+        "effective_peak_gain_from_v1": 2.1335198002922753
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.0071049961311359655,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.29475437135720234,
+        "label_max_row_fraction_alpha_above_050": 0.16153205661948378,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 2.9958151404994484,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.7616521487978425,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 39055,
+        "effective_peak_gain_from_v1": 2.1335198002922753
+      }
+    },
+    {
+      "fixture_id": "C-WINE-01",
+      "source_fixture_id": "C-WINE-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-WINE-01.png",
+      "source_sha256": "3e2506cb620c53fb1a267cd3bf12f38397c02bfdab849bd4aa87a2b528537eb3",
+      "source_label_sha256": "c718da519884fd0f496e166a97250a40decd98bf90a8511c7af335cab5bea771",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260919,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 0,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1091.0,
+          1700.0,
+          2943.470912
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            150
+          ],
+          [
+            230,
+            160
+          ],
+          [
+            620,
+            160
+          ],
+          [
+            710,
+            195
+          ],
+          [
+            800,
+            315
+          ],
+          [
+            900,
+            530
+          ],
+          [
+            1040,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          42.0,
+          67.0,
+          37.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-WINE-01.png",
+      "original_fixture_bottle_sha256": "3e2506cb620c53fb1a267cd3bf12f38397c02bfdab849bd4aa87a2b528537eb3",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/C-WINE-01.png",
+      "original_source_label_sha256": "c718da519884fd0f496e166a97250a40decd98bf90a8511c7af335cab5bea771",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/C-WINE-01.json",
+      "original_truth_sha256": "35ff0e303cd93337c5a88893ab8c495e1280c5d245be318f389ec1afa7b3fc9b",
+      "inherited_degradation": "none",
+      "parameters": {
+        "seed": 30439589,
+        "center_u": -0.43687420195460236,
+        "center_y": 1828.122213977313,
+        "sigma_y": 362.8954158510267,
+        "angular_width": 0.1239079205742504,
+        "curve": 0.056413566178865296,
+        "strength": 0.9492436197483938,
+        "edge_strength": 0.325,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 2.5,
+        "requested_intensity_gain_from_v1": 2.5,
+        "opacity_cap": 0.65
+      },
+      "previous_parameters": {
+        "seed": 30439589,
+        "center_u": -0.43687420195460236,
+        "center_y": 1828.122213977313,
+        "sigma_y": 362.8954158510267,
+        "angular_width": 0.1239079205742504,
+        "curve": 0.056413566178865296,
+        "strength": 0.6265007890339398,
+        "edge_strength": 0.2145,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 1.65
+      },
+      "previous_output": "images/C-WINE-01__glare-preview.png",
+      "previous_output_sha256": "614db1369fb88fcd83884abf93654bcab56095ce142ce5841dd8734de6393a12",
+      "previous_source_sha256": "3e2506cb620c53fb1a267cd3bf12f38397c02bfdab849bd4aa87a2b528537eb3",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/C-WINE-01__glare-preview.png",
+      "output_sha256": "db61a5366c1f6be642c16deb8d5c805dca03d2b8c0f9e42d608029b7bad22bdd",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.009216306731135604,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.2681099084096586,
+        "label_max_row_fraction_alpha_above_050": 0.15903413821815154,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 2.8916887237148807,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.9492343052139062,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 70982,
+        "effective_peak_gain_from_v1": 1.7119060399204262
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.009216306731135604,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.2681099084096586,
+        "label_max_row_fraction_alpha_above_050": 0.15903413821815154,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 2.8916887237148807,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.9492343052139062,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 70982,
+        "effective_peak_gain_from_v1": 1.7119060399204262
+      }
+    },
+    {
+      "fixture_id": "C-MALT-01",
+      "source_fixture_id": "C-MALT-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-MALT-01.png",
+      "source_sha256": "d94072ceaa20bb53d3bcab4829e235258c2e0cc09f211e1b5959ecb2b1a8a917",
+      "source_label_sha256": "36f92b6f24b80111d5abe6a3aac8ae7538252bc58640893aa369af67fc33a559",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260920,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1097.0,
+          1700.0,
+          2945.563952
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            160
+          ],
+          [
+            215,
+            155
+          ],
+          [
+            540,
+            155
+          ],
+          [
+            680,
+            235
+          ],
+          [
+            800,
+            405
+          ],
+          [
+            980,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          110.0,
+          64.0,
+          26.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-MALT-01.png",
+      "original_fixture_bottle_sha256": "d94072ceaa20bb53d3bcab4829e235258c2e0cc09f211e1b5959ecb2b1a8a917",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/C-MALT-01.png",
+      "original_source_label_sha256": "36f92b6f24b80111d5abe6a3aac8ae7538252bc58640893aa369af67fc33a559",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/C-MALT-01.json",
+      "original_truth_sha256": "fb9473919ea1e500db579ea4592ed7a8f81b82273ddf7e4ee2eaa3ae3a1aa674",
+      "inherited_degradation": "none",
+      "parameters": {
+        "seed": 4094431167,
+        "center_u": 0.2517150218756958,
+        "center_y": 2054.1436688822587,
+        "sigma_y": 412.67222312479896,
+        "angular_width": 0.18887903606908774,
+        "curve": 0.06889994140329804,
+        "strength": 0.8741461212012925,
+        "edge_strength": 0.325,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 2.5,
+        "requested_intensity_gain_from_v1": 2.5,
+        "opacity_cap": 0.65
+      },
+      "previous_parameters": {
+        "seed": 4094431167,
+        "center_u": 0.2517150218756958,
+        "center_y": 2054.1436688822587,
+        "sigma_y": 412.67222312479896,
+        "angular_width": 0.18887903606908774,
+        "curve": 0.06889994140329804,
+        "strength": 0.576936439992853,
+        "edge_strength": 0.2145,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 1.65
+      },
+      "previous_output": "images/C-MALT-01__glare-preview.png",
+      "previous_output_sha256": "45cb1361db173d609ca528b20176e8930c35560380e27387312b39c17e570f14",
+      "previous_source_sha256": "d94072ceaa20bb53d3bcab4829e235258c2e0cc09f211e1b5959ecb2b1a8a917",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/C-MALT-01__glare-preview.png",
+      "output_sha256": "30fa3a1b2f57c07061b6cff159a90de3f1e3db9d0f32f6e5936584d75310700f",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.007467606565697227,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.3996669442131557,
+        "label_max_row_fraction_alpha_above_050": 0.2373022481265612,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 4.950953699378792,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.8741459405080604,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 102565,
+        "effective_peak_gain_from_v1": 1.858957257698746
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.007467606565697227,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.3996669442131557,
+        "label_max_row_fraction_alpha_above_050": 0.2373022481265612,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 4.950953699378792,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.8741459405080604,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 102565,
+        "effective_peak_gain_from_v1": 1.858957257698746
+      }
+    },
+    {
+      "fixture_id": "C-SPIRITS-IMPORT-01",
+      "source_fixture_id": "C-SPIRITS-IMPORT-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-SPIRITS-IMPORT-01.png",
+      "source_sha256": "7557567bdfcfb73dbbf29ca3c1ee615857dd958bd0f44c144788ce0b898206ec",
+      "source_label_sha256": "a1a8009fec8552dbbaa4610274f08b3fffaf841efc092f0de53a1af953d5e24d",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260921,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": -12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1079.0,
+          1700.0,
+          2943.052292
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-SPIRITS-IMPORT-01.png",
+      "original_fixture_bottle_sha256": "7557567bdfcfb73dbbf29ca3c1ee615857dd958bd0f44c144788ce0b898206ec",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/C-SPIRITS-IMPORT-01.png",
+      "original_source_label_sha256": "a1a8009fec8552dbbaa4610274f08b3fffaf841efc092f0de53a1af953d5e24d",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/C-SPIRITS-IMPORT-01.json",
+      "original_truth_sha256": "a5929f251146c3ecce0ec5f411795438343f4cd05f50af61b5e355eb76dd9425",
+      "inherited_degradation": "none",
+      "parameters": {
+        "seed": 2981545445,
+        "center_u": 0.21018744239209972,
+        "center_y": 1996.952885542857,
+        "sigma_y": 375.9530181495455,
+        "angular_width": 0.13776769861577343,
+        "curve": 0.05752320468656401,
+        "strength": 0.7590033489467763,
+        "edge_strength": 0.325,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 2.5,
+        "requested_intensity_gain_from_v1": 2.5,
+        "opacity_cap": 0.65
+      },
+      "previous_parameters": {
+        "seed": 2981545445,
+        "center_u": 0.21018744239209972,
+        "center_y": 1996.952885542857,
+        "sigma_y": 375.9530181495455,
+        "angular_width": 0.13776769861577343,
+        "curve": 0.05752320468656401,
+        "strength": 0.5009422103048724,
+        "edge_strength": 0.2145,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 1.65
+      },
+      "previous_output": "images/C-SPIRITS-IMPORT-01__glare-preview.png",
+      "previous_output_sha256": "c41bfc1dcc2c1e9fc679a14c27881a97ec4b29eccd15794148ff93363f4b8a8f",
+      "previous_source_sha256": "7557567bdfcfb73dbbf29ca3c1ee615857dd958bd0f44c144788ce0b898206ec",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/C-SPIRITS-IMPORT-01__glare-preview.png",
+      "output_sha256": "327cf6d4e41395ab1dd59d7a0091ea2c7e24929a43b6fd0aff589b473fb41b3b",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.007104568475089473,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.2880932556203164,
+        "label_max_row_fraction_alpha_above_050": 0.15986677768526228,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 3.5141799178191615,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.7589971086300594,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 38346,
+        "effective_peak_gain_from_v1": 2.1409830444919282
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.007104568475089473,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.2880932556203164,
+        "label_max_row_fraction_alpha_above_050": 0.15986677768526228,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 3.5141799178191615,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.7589971086300594,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 38346,
+        "effective_peak_gain_from_v1": 2.1409830444919282
+      }
+    },
+    {
+      "fixture_id": "A-WARN-TITLECASE-01",
+      "source_fixture_id": "A-WARN-TITLECASE-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-WARN-TITLECASE-01.png",
+      "source_sha256": "0d4b1d5936b6e9aaed69a0b9ab16c101b3cf7d6834bf17fb69f4992bcada7ed6",
+      "source_label_sha256": "a332b9612bc45547db698b2a7a005895a086d668319925bc8d06d2966f20a75f",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260922,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 0,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1091.0,
+          1700.0,
+          2943.470912
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-WARN-TITLECASE-01.png",
+      "original_fixture_bottle_sha256": "0d4b1d5936b6e9aaed69a0b9ab16c101b3cf7d6834bf17fb69f4992bcada7ed6",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/A-WARN-TITLECASE-01.png",
+      "original_source_label_sha256": "a332b9612bc45547db698b2a7a005895a086d668319925bc8d06d2966f20a75f",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/A-WARN-TITLECASE-01.json",
+      "original_truth_sha256": "9ec3427ce736aee449665839760bc3c489d983a48937115534d3b08af89a2ff6",
+      "inherited_degradation": "none",
+      "parameters": {
+        "seed": 2722096772,
+        "center_u": 0.4239394679816836,
+        "center_y": 1747.8008871391953,
+        "sigma_y": 471.2001548803778,
+        "angular_width": 0.17335346747836605,
+        "curve": -0.01588049510283323,
+        "strength": 0.8063520506791783,
+        "edge_strength": 0.325,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 2.5,
+        "requested_intensity_gain_from_v1": 2.5,
+        "opacity_cap": 0.65
+      },
+      "previous_parameters": {
+        "seed": 2722096772,
+        "center_u": 0.4239394679816836,
+        "center_y": 1747.8008871391953,
+        "sigma_y": 471.2001548803778,
+        "angular_width": 0.17335346747836605,
+        "curve": -0.01588049510283323,
+        "strength": 0.5321923534482577,
+        "edge_strength": 0.2145,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 1.65
+      },
+      "previous_output": "images/A-WARN-TITLECASE-01__glare-preview.png",
+      "previous_output_sha256": "0c7da98d0dcbdfccc500c8f2930ab4fb21f2962aa559402fc6231d94101b406c",
+      "previous_source_sha256": "0d4b1d5936b6e9aaed69a0b9ab16c101b3cf7d6834bf17fb69f4992bcada7ed6",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/A-WARN-TITLECASE-01__glare-preview.png",
+      "output_sha256": "b0e659c743bfbb591f19d222c8086431bcb1f291fddfbed79ed0517cf462c901",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.007911838591125299,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.33638634471273937,
+        "label_max_row_fraction_alpha_above_050": 0.1965029142381349,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 4.306375671583527,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.8063458240158097,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 77248,
+        "effective_peak_gain_from_v1": 2.0152642848727575
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.007911838591125299,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.33638634471273937,
+        "label_max_row_fraction_alpha_above_050": 0.1965029142381349,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 4.306375671583527,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.8063458240158097,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 77248,
+        "effective_peak_gain_from_v1": 2.0152642848727575
+      }
+    },
+    {
+      "fixture_id": "A-WARN-BOLDBODY-01",
+      "source_fixture_id": "A-WARN-BOLDBODY-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-WARN-BOLDBODY-01.png",
+      "source_sha256": "e691c2f4a862cce743f914f46fd073e0b2c10a6426778cffd9fd94c4c7f69938",
+      "source_label_sha256": "07ead341ecdafc55c1cb6b2215ad7eb5fbd2d83793bbe439bbd3458eafb70d1e",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260923,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1097.0,
+          1700.0,
+          2945.563952
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            150
+          ],
+          [
+            230,
+            160
+          ],
+          [
+            620,
+            160
+          ],
+          [
+            710,
+            195
+          ],
+          [
+            800,
+            315
+          ],
+          [
+            900,
+            530
+          ],
+          [
+            1040,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          42.0,
+          67.0,
+          37.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-WARN-BOLDBODY-01.png",
+      "original_fixture_bottle_sha256": "e691c2f4a862cce743f914f46fd073e0b2c10a6426778cffd9fd94c4c7f69938",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/A-WARN-BOLDBODY-01.png",
+      "original_source_label_sha256": "07ead341ecdafc55c1cb6b2215ad7eb5fbd2d83793bbe439bbd3458eafb70d1e",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/A-WARN-BOLDBODY-01.json",
+      "original_truth_sha256": "674d4c55bf1f241f834367f871e5122c0871be529728d1c36743935329567c9e",
+      "inherited_degradation": "none",
+      "parameters": {
+        "seed": 3268537078,
+        "center_u": -0.4051318713138241,
+        "center_y": 2214.54497750209,
+        "sigma_y": 372.39875359710686,
+        "angular_width": 0.1541496017196999,
+        "curve": -0.02850831124110465,
+        "strength": 0.9431050931709744,
+        "edge_strength": 0.325,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 2.5,
+        "requested_intensity_gain_from_v1": 2.5,
+        "opacity_cap": 0.65
+      },
+      "previous_parameters": {
+        "seed": 3268537078,
+        "center_u": -0.4051318713138241,
+        "center_y": 2214.54497750209,
+        "sigma_y": 372.39875359710686,
+        "angular_width": 0.1541496017196999,
+        "curve": -0.02850831124110465,
+        "strength": 0.622449361492843,
+        "edge_strength": 0.2145,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 1.65
+      },
+      "previous_output": "images/A-WARN-BOLDBODY-01__glare-preview.png",
+      "previous_output_sha256": "853049dc4a69b2bbd6db9ed1c4e76975d596fd1f53bf214407337f9adab202bb",
+      "previous_source_sha256": "e691c2f4a862cce743f914f46fd073e0b2c10a6426778cffd9fd94c4c7f69938",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/A-WARN-BOLDBODY-01__glare-preview.png",
+      "output_sha256": "13e12666ae6ef3bb063218f56d447573bd1d28c70cf3c42ffe6f6939f7ba3427",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.00746161249216476,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.33388842631140714,
+        "label_max_row_fraction_alpha_above_050": 0.19983347210657784,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 4.1367658838953085,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.9430968606993645,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 90542,
+        "effective_peak_gain_from_v1": 1.7230467071964566
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.00746161249216476,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.33388842631140714,
+        "label_max_row_fraction_alpha_above_050": 0.19983347210657784,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 4.1367658838953085,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.9430968606993645,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 90542,
+        "effective_peak_gain_from_v1": 1.7230467071964566
+      }
+    },
+    {
+      "fixture_id": "A-BRAND-CASE-01",
+      "source_fixture_id": "A-BRAND-CASE-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-BRAND-CASE-01.png",
+      "source_sha256": "eaa677746bdc68b71b3e07cafaa8a382dfafd69f69406e688c37960ca33a2b90",
+      "source_label_sha256": "6c3e7b4bc076cbfffe5b7d3379c7d167847370a8d24cae052a0850807e7a9329",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260924,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": -12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1079.0,
+          1700.0,
+          2943.052292
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-BRAND-CASE-01.png",
+      "original_fixture_bottle_sha256": "eaa677746bdc68b71b3e07cafaa8a382dfafd69f69406e688c37960ca33a2b90",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/A-BRAND-CASE-01.png",
+      "original_source_label_sha256": "6c3e7b4bc076cbfffe5b7d3379c7d167847370a8d24cae052a0850807e7a9329",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/A-BRAND-CASE-01.json",
+      "original_truth_sha256": "657c7672b54ed3fbe1baad89a9efcada4ac9cf9cd93c580cae064bbc60c91422",
+      "inherited_degradation": "none",
+      "parameters": {
+        "seed": 4248612372,
+        "center_u": 0.4259418016637923,
+        "center_y": 2008.6186033371278,
+        "sigma_y": 473.23925895339903,
+        "angular_width": 0.15948572257438023,
+        "curve": 0.02769311572507889,
+        "strength": 0.7914876497624969,
+        "edge_strength": 0.325,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 2.5,
+        "requested_intensity_gain_from_v1": 2.5,
+        "opacity_cap": 0.65
+      },
+      "previous_parameters": {
+        "seed": 4248612372,
+        "center_u": 0.4259418016637923,
+        "center_y": 2008.6186033371278,
+        "sigma_y": 473.23925895339903,
+        "angular_width": 0.15948572257438023,
+        "curve": 0.02769311572507889,
+        "strength": 0.5223818488432479,
+        "edge_strength": 0.2145,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 1.65
+      },
+      "previous_output": "images/A-BRAND-CASE-01__glare-preview.png",
+      "previous_output_sha256": "b96c477b2742a3914c085c4afb582f649994ae4c4064d11f9edfaef7e120984d",
+      "previous_source_sha256": "eaa677746bdc68b71b3e07cafaa8a382dfafd69f69406e688c37960ca33a2b90",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/A-BRAND-CASE-01__glare-preview.png",
+      "output_sha256": "d99b9f10cdcafbdc54a06578a230ecd41967e88c9485c16fe1558bc8b4bb0a27",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.007104754003788655,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.3089092422980849,
+        "label_max_row_fraction_alpha_above_050": 0.1781848459616986,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 3.948069472368329,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.7914873101750565,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 65278,
+        "effective_peak_gain_from_v1": 2.0530966441343796
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.007104754003788655,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.3089092422980849,
+        "label_max_row_fraction_alpha_above_050": 0.1781848459616986,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 3.948069472368329,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.7914873101750565,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 65278,
+        "effective_peak_gain_from_v1": 2.0530966441343796
+      }
+    },
+    {
+      "fixture_id": "A-ABV-WRONG-01",
+      "source_fixture_id": "A-ABV-WRONG-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-ABV-WRONG-01.png",
+      "source_sha256": "7535698250fa4d7cfd76f9936305f2376dcde95e4bb1ec1bedc66cf77198bebd",
+      "source_label_sha256": "bb19b282fe059b2f429d0f91904639cb82e1fc256b0f026ee7d484e39cfad135",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260925,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 0,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1091.0,
+          1700.0,
+          2943.470912
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            150
+          ],
+          [
+            230,
+            160
+          ],
+          [
+            620,
+            160
+          ],
+          [
+            710,
+            195
+          ],
+          [
+            800,
+            315
+          ],
+          [
+            900,
+            530
+          ],
+          [
+            1040,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          42.0,
+          67.0,
+          37.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-ABV-WRONG-01.png",
+      "original_fixture_bottle_sha256": "7535698250fa4d7cfd76f9936305f2376dcde95e4bb1ec1bedc66cf77198bebd",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/A-ABV-WRONG-01.png",
+      "original_source_label_sha256": "bb19b282fe059b2f429d0f91904639cb82e1fc256b0f026ee7d484e39cfad135",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/A-ABV-WRONG-01.json",
+      "original_truth_sha256": "ed423edb1fc7d0dd5158bb9fc302c702644567ac4dcd1718eb63c601d15a3d1e",
+      "inherited_degradation": "none",
+      "parameters": {
+        "seed": 2841707826,
+        "center_u": -0.22425385523968352,
+        "center_y": 1803.1533443293108,
+        "sigma_y": 402.0782917779715,
+        "angular_width": 0.14453232823594184,
+        "curve": -0.04564562977784159,
+        "strength": 0.8504011322400868,
+        "edge_strength": 0.325,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 2.5,
+        "requested_intensity_gain_from_v1": 2.5,
+        "opacity_cap": 0.65
+      },
+      "previous_parameters": {
+        "seed": 2841707826,
+        "center_u": -0.22425385523968352,
+        "center_y": 1803.1533443293108,
+        "sigma_y": 402.0782917779715,
+        "angular_width": 0.14453232823594184,
+        "curve": -0.04564562977784159,
+        "strength": 0.5612647472784573,
+        "edge_strength": 0.2145,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 1.65
+      },
+      "previous_output": "images/A-ABV-WRONG-01__glare-preview.png",
+      "previous_output_sha256": "eb6ee12a26aa7ffe33de6c60c44fdabd121c6b9cf0a88e8c5bf1e2a33ba08386",
+      "previous_source_sha256": "7535698250fa4d7cfd76f9936305f2376dcde95e4bb1ec1bedc66cf77198bebd",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/A-ABV-WRONG-01__glare-preview.png",
+      "output_sha256": "8e6d1c736cba05d70af4551c3b5df6b96d58f6c7c323317998e8bbcb52f8d996",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.007784120782328444,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.3180682764363031,
+        "label_max_row_fraction_alpha_above_050": 0.18151540383014156,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 4.343477544683856,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.8504001118761614,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 70647,
+        "effective_peak_gain_from_v1": 1.910865153592541
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.007784120782328444,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.3180682764363031,
+        "label_max_row_fraction_alpha_above_050": 0.18151540383014156,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 4.343477544683856,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.8504001118761614,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 70647,
+        "effective_peak_gain_from_v1": 1.910865153592541
+      }
+    },
+    {
+      "fixture_id": "A-FIELD-MISSING-01",
+      "source_fixture_id": "A-FIELD-MISSING-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-FIELD-MISSING-01.png",
+      "source_sha256": "fbe2320836ee47d13e1d3c9438d7575cb1bd0f453c44f8513bb610f960d4a3a5",
+      "source_label_sha256": "bccda011d9dfb0c9b5c14cd422930a5d62c315e7caa0519dfd47f988ae94497a",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260926,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1097.0,
+          1700.0,
+          2945.563952
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            160
+          ],
+          [
+            215,
+            155
+          ],
+          [
+            540,
+            155
+          ],
+          [
+            680,
+            235
+          ],
+          [
+            800,
+            405
+          ],
+          [
+            980,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          110.0,
+          64.0,
+          26.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-FIELD-MISSING-01.png",
+      "original_fixture_bottle_sha256": "fbe2320836ee47d13e1d3c9438d7575cb1bd0f453c44f8513bb610f960d4a3a5",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/A-FIELD-MISSING-01.png",
+      "original_source_label_sha256": "bccda011d9dfb0c9b5c14cd422930a5d62c315e7caa0519dfd47f988ae94497a",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/A-FIELD-MISSING-01.json",
+      "original_truth_sha256": "caf84125de42c1a8df25b6c18dd3f1351c41314a7ef621568ca77d1553f211f4",
+      "inherited_degradation": "none",
+      "parameters": {
+        "seed": 379269401,
+        "center_u": -0.2436065612459813,
+        "center_y": 2095.747886573258,
+        "sigma_y": 475.4354290498875,
+        "angular_width": 0.15459002626384166,
+        "curve": 0.0005112954727967273,
+        "strength": 0.8077005570052833,
+        "edge_strength": 0.325,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 2.5,
+        "requested_intensity_gain_from_v1": 2.5,
+        "opacity_cap": 0.65
+      },
+      "previous_parameters": {
+        "seed": 379269401,
+        "center_u": -0.2436065612459813,
+        "center_y": 2095.747886573258,
+        "sigma_y": 475.4354290498875,
+        "angular_width": 0.15459002626384166,
+        "curve": 0.0005112954727967273,
+        "strength": 0.533082367623487,
+        "edge_strength": 0.2145,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 1.65
+      },
+      "previous_output": "images/A-FIELD-MISSING-01__glare-preview.png",
+      "previous_output_sha256": "5e629989c4d0891883c6e822360fbb85c44bf8d9d5e90a9feb8f8098cec8de66",
+      "previous_source_sha256": "fbe2320836ee47d13e1d3c9438d7575cb1bd0f453c44f8513bb610f960d4a3a5",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/A-FIELD-MISSING-01__glare-preview.png",
+      "output_sha256": "70190361f5c7d0b0d6282a81c3eaa9ff9e949dd6f38b5a13d7c4cafd32415695",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.00746123926878714,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.33139050791007496,
+        "label_max_row_fraction_alpha_above_050": 0.1823480432972523,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 4.258578104515433,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.8076973117365084,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 72102,
+        "effective_peak_gain_from_v1": 2.011892223463871
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.00746123926878714,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.33139050791007496,
+        "label_max_row_fraction_alpha_above_050": 0.1823480432972523,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 4.258578104515433,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.8076973117365084,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 72102,
+        "effective_peak_gain_from_v1": 2.011892223463871
+      }
+    },
+    {
+      "fixture_id": "A-INJECT-PROMPT-01",
+      "source_fixture_id": "A-INJECT-PROMPT-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-INJECT-PROMPT-01.png",
+      "source_sha256": "862b359239fa121158387e419a7aba15fb7316a33af8fa1ed3bd64ce9ecae5f7",
+      "source_label_sha256": "f06963b651dec88f5226032a417a35bfbcce1c0bce7adbee74b304749d65b5eb",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260927,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": -12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1079.0,
+          1700.0,
+          2943.052292
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-INJECT-PROMPT-01.png",
+      "original_fixture_bottle_sha256": "862b359239fa121158387e419a7aba15fb7316a33af8fa1ed3bd64ce9ecae5f7",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/A-INJECT-PROMPT-01.png",
+      "original_source_label_sha256": "f06963b651dec88f5226032a417a35bfbcce1c0bce7adbee74b304749d65b5eb",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/A-INJECT-PROMPT-01.json",
+      "original_truth_sha256": "7928707303d9009f475d9723ddf6d23ea544e10f2066ecf00071ed9344cdf84e",
+      "inherited_degradation": "none",
+      "parameters": {
+        "seed": 3967314766,
+        "center_u": 0.41439391708986945,
+        "center_y": 1979.050565580994,
+        "sigma_y": 448.33259217899774,
+        "angular_width": 0.13420846374484635,
+        "curve": 0.004669764918678931,
+        "strength": 0.8627329358458824,
+        "edge_strength": 0.325,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 2.5,
+        "requested_intensity_gain_from_v1": 2.5,
+        "opacity_cap": 0.65
+      },
+      "previous_parameters": {
+        "seed": 3967314766,
+        "center_u": 0.41439391708986945,
+        "center_y": 1979.050565580994,
+        "sigma_y": 448.33259217899774,
+        "angular_width": 0.13420846374484635,
+        "curve": 0.004669764918678931,
+        "strength": 0.5694037376582823,
+        "edge_strength": 0.2145,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 1.65
+      },
+      "previous_output": "images/A-INJECT-PROMPT-01__glare-preview.png",
+      "previous_output_sha256": "c59605d5935625dcd13bba721ecfac41f4ed80046be8aaeb7d36c94a3f5e0f14",
+      "previous_source_sha256": "862b359239fa121158387e419a7aba15fb7316a33af8fa1ed3bd64ce9ecae5f7",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/A-INJECT-PROMPT-01__glare-preview.png",
+      "output_sha256": "4a8637e07fa6e020424fd9d9628b627737e353f0d58d4dc87ea3f484be80316d",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.007105203810792382,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.2722731057452123,
+        "label_max_row_fraction_alpha_above_050": 0.16402997502081598,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 3.373221502406531,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.8627210355928785,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 74847,
+        "effective_peak_gain_from_v1": 1.8835751921577104
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.007105203810792382,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.2722731057452123,
+        "label_max_row_fraction_alpha_above_050": 0.16402997502081598,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 3.373221502406531,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.8627210355928785,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 74847,
+        "effective_peak_gain_from_v1": 1.8835751921577104
+      }
+    },
+    {
+      "fixture_id": "W-BRAND-WRONG-01",
+      "source_fixture_id": "W-BRAND-WRONG-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-BRAND-WRONG-01.png",
+      "source_sha256": "a1a4443f8838733ba6478df90d170d6d3c3cc925e2d2fe6e6e606a6e11a0639b",
+      "source_label_sha256": "27d358e7cc919454f3388fb73d4868878b59f7b1b6433ee2bce514e0e670ca9d",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260928,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 0,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1091.0,
+          1700.0,
+          2943.470912
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-BRAND-WRONG-01.png",
+      "original_fixture_bottle_sha256": "a1a4443f8838733ba6478df90d170d6d3c3cc925e2d2fe6e6e606a6e11a0639b",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/W-BRAND-WRONG-01.png",
+      "original_source_label_sha256": "27d358e7cc919454f3388fb73d4868878b59f7b1b6433ee2bce514e0e670ca9d",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/W-BRAND-WRONG-01.json",
+      "original_truth_sha256": "b4983b90a789772ec7837b2798132997b60f96bf91f0eb00c911060015f2a425",
+      "inherited_degradation": "none",
+      "parameters": {
+        "seed": 3663301373,
+        "center_u": 0.24308197060256392,
+        "center_y": 1996.4924914496241,
+        "sigma_y": 457.70879242033095,
+        "angular_width": 0.1420895339450851,
+        "curve": -0.05310943804471277,
+        "strength": 0.853765636992375,
+        "edge_strength": 0.325,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 2.5,
+        "requested_intensity_gain_from_v1": 2.5,
+        "opacity_cap": 0.65
+      },
+      "previous_parameters": {
+        "seed": 3663301373,
+        "center_u": 0.24308197060256392,
+        "center_y": 1996.4924914496241,
+        "sigma_y": 457.70879242033095,
+        "angular_width": 0.1420895339450851,
+        "curve": -0.05310943804471277,
+        "strength": 0.5634853204149674,
+        "edge_strength": 0.2145,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 1.65
+      },
+      "previous_output": "images/W-BRAND-WRONG-01__glare-preview.png",
+      "previous_output_sha256": "ebe307b4472e16fee5c00ce0ad598799c6374ec6eb3d8239dce6c407b1303c6f",
+      "previous_source_sha256": "a1a4443f8838733ba6478df90d170d6d3c3cc925e2d2fe6e6e606a6e11a0639b",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/W-BRAND-WRONG-01__glare-preview.png",
+      "output_sha256": "277c4f482c968dec5e95c2634c137ca33355c9b661b26a64e95b3ba15f332b06",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.007104137248715198,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.3080766028309742,
+        "label_max_row_fraction_alpha_above_050": 0.18484596169858453,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 3.9045158844594274,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.8537588260832274,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 83290,
+        "effective_peak_gain_from_v1": 1.9033477496804754
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.007104137248715198,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.3080766028309742,
+        "label_max_row_fraction_alpha_above_050": 0.18484596169858453,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 3.9045158844594274,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.8537588260832274,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 83290,
+        "effective_peak_gain_from_v1": 1.9033477496804754
+      }
+    },
+    {
+      "fixture_id": "W-ABV-4045-01",
+      "source_fixture_id": "W-ABV-4045-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-ABV-4045-01.png",
+      "source_sha256": "d2e674fae1a068ca6fbdbca8af6e337eb197dcc54f75b6f1a8c651646a7daaf4",
+      "source_label_sha256": "2717efcdf4b2ef5e30570b11d8646c49f4bc82d70ee80d0d1a1fe6711f8f7435",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260929,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1097.0,
+          1700.0,
+          2945.563952
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-ABV-4045-01.png",
+      "original_fixture_bottle_sha256": "d2e674fae1a068ca6fbdbca8af6e337eb197dcc54f75b6f1a8c651646a7daaf4",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/W-ABV-4045-01.png",
+      "original_source_label_sha256": "2717efcdf4b2ef5e30570b11d8646c49f4bc82d70ee80d0d1a1fe6711f8f7435",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/W-ABV-4045-01.json",
+      "original_truth_sha256": "16924fefa452e316b4d3d68975410f0bf2700cea2e67795ea0e627ac10d2c239",
+      "inherited_degradation": "none",
+      "parameters": {
+        "seed": 2996614472,
+        "center_u": -0.239637821068942,
+        "center_y": 1804.9917529998474,
+        "sigma_y": 448.3782126147469,
+        "angular_width": 0.1292420977765527,
+        "curve": -0.04235544342840251,
+        "strength": 0.8549294450733602,
+        "edge_strength": 0.325,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 2.5,
+        "requested_intensity_gain_from_v1": 2.5,
+        "opacity_cap": 0.65
+      },
+      "previous_parameters": {
+        "seed": 2996614472,
+        "center_u": -0.239637821068942,
+        "center_y": 1804.9917529998474,
+        "sigma_y": 448.3782126147469,
+        "angular_width": 0.1292420977765527,
+        "curve": -0.04235544342840251,
+        "strength": 0.5642534337484177,
+        "edge_strength": 0.2145,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 1.65
+      },
+      "previous_output": "images/W-ABV-4045-01__glare-preview.png",
+      "previous_output_sha256": "0f5b86e914d3ae724c051b12336a3879be151c3030b3696e1ad3f29076ef538b",
+      "previous_source_sha256": "d2e674fae1a068ca6fbdbca8af6e337eb197dcc54f75b6f1a8c651646a7daaf4",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/W-ABV-4045-01__glare-preview.png",
+      "output_sha256": "9a58731a84da390c022f28358e134309d0d2165464831260b72b38d240e36551",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.007105021941539502,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.28726061615320564,
+        "label_max_row_fraction_alpha_above_050": 0.17069109075770192,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 4.213522606500003,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.8549292571779458,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 75193,
+        "effective_peak_gain_from_v1": 1.9007419932724636
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.007105021941539502,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.28726061615320564,
+        "label_max_row_fraction_alpha_above_050": 0.17069109075770192,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 4.213522606500003,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.8549292571779458,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 75193,
+        "effective_peak_gain_from_v1": 1.9007419932724636
+      }
+    },
+    {
+      "fixture_id": "W-NETCONTENTS-WRONG-01",
+      "source_fixture_id": "W-NETCONTENTS-WRONG-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-NETCONTENTS-WRONG-01.png",
+      "source_sha256": "7abf8c9d973a8c781c2516f1615420d02db5654ea2492b98e9f326074136f128",
+      "source_label_sha256": "8ab0a782eda4738fa245b02721eaff28ecce889f012293ef5685b7f2c8cca8aa",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260930,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": -12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1079.0,
+          1700.0,
+          2943.052292
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-NETCONTENTS-WRONG-01.png",
+      "original_fixture_bottle_sha256": "7abf8c9d973a8c781c2516f1615420d02db5654ea2492b98e9f326074136f128",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/W-NETCONTENTS-WRONG-01.png",
+      "original_source_label_sha256": "8ab0a782eda4738fa245b02721eaff28ecce889f012293ef5685b7f2c8cca8aa",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/W-NETCONTENTS-WRONG-01.json",
+      "original_truth_sha256": "824379bccceb528c95b561ae7e0a2d0ac7e26c1f50eac6d0d122d3cedc0b5ca9",
+      "inherited_degradation": "none",
+      "parameters": {
+        "seed": 896619834,
+        "center_u": 0.3815754603881154,
+        "center_y": 1928.5199914602242,
+        "sigma_y": 364.11712872002295,
+        "angular_width": 0.18168459765540693,
+        "curve": -0.06641154505162743,
+        "strength": 0.7642883909422489,
+        "edge_strength": 0.325,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 2.5,
+        "requested_intensity_gain_from_v1": 2.5,
+        "opacity_cap": 0.65
+      },
+      "previous_parameters": {
+        "seed": 896619834,
+        "center_u": 0.3815754603881154,
+        "center_y": 1928.5199914602242,
+        "sigma_y": 364.11712872002295,
+        "angular_width": 0.18168459765540693,
+        "curve": -0.06641154505162743,
+        "strength": 0.5044303380218842,
+        "edge_strength": 0.2145,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 1.65
+      },
+      "previous_output": "images/W-NETCONTENTS-WRONG-01__glare-preview.png",
+      "previous_output_sha256": "858ffbbe12cf98842ebc769423d95534ed33cea2db4c74aec8ba838350b1b699",
+      "previous_source_sha256": "7abf8c9d973a8c781c2516f1615420d02db5654ea2492b98e9f326074136f128",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/W-NETCONTENTS-WRONG-01__glare-preview.png",
+      "output_sha256": "ec3b01b1075e86d0b2f5e785511a1af9db6e1c333dbcdd560261af39253a2ecc",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.007105427596681008,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.3530391340549542,
+        "label_max_row_fraction_alpha_above_050": 0.1990008326394671,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 3.3832009910440486,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.7642842614413176,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 48216,
+        "effective_peak_gain_from_v1": 2.126172187990455
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.007105427596681008,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.3530391340549542,
+        "label_max_row_fraction_alpha_above_050": 0.1990008326394671,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 3.3832009910440486,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.7642842614413176,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 48216,
+        "effective_peak_gain_from_v1": 2.126172187990455
+      }
+    },
+    {
+      "fixture_id": "W-WARN-REWORD-01",
+      "source_fixture_id": "W-WARN-REWORD-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-WARN-REWORD-01.png",
+      "source_sha256": "4abd681601b86e9147aecf5bd277e15b1ea928e92e5110674b71d1ba6d46e5a8",
+      "source_label_sha256": "ad1ceec2aa92e01537484a4c991602c9397a5f31563c4d494c4bbe88b2c4eedd",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260931,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 0,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1091.0,
+          1700.0,
+          2943.470912
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            160
+          ],
+          [
+            215,
+            155
+          ],
+          [
+            540,
+            155
+          ],
+          [
+            680,
+            235
+          ],
+          [
+            800,
+            405
+          ],
+          [
+            980,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          110.0,
+          64.0,
+          26.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-WARN-REWORD-01.png",
+      "original_fixture_bottle_sha256": "4abd681601b86e9147aecf5bd277e15b1ea928e92e5110674b71d1ba6d46e5a8",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/W-WARN-REWORD-01.png",
+      "original_source_label_sha256": "ad1ceec2aa92e01537484a4c991602c9397a5f31563c4d494c4bbe88b2c4eedd",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/W-WARN-REWORD-01.json",
+      "original_truth_sha256": "f5bc506b14b4e3fb22820264188f25f154e7707756ea8ab84cc20f0a61375d9d",
+      "inherited_degradation": "none",
+      "parameters": {
+        "seed": 2122380161,
+        "center_u": 0.4248540355631327,
+        "center_y": 1570.8118953488704,
+        "sigma_y": 478.2216927416439,
+        "angular_width": 0.15203229327771656,
+        "curve": -0.0717808104179291,
+        "strength": 0.8906284447551017,
+        "edge_strength": 0.325,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 2.5,
+        "requested_intensity_gain_from_v1": 2.5,
+        "opacity_cap": 0.65
+      },
+      "previous_parameters": {
+        "seed": 2122380161,
+        "center_u": 0.4248540355631327,
+        "center_y": 1570.8118953488704,
+        "sigma_y": 478.2216927416439,
+        "angular_width": 0.15203229327771656,
+        "curve": -0.0717808104179291,
+        "strength": 0.5878147735383671,
+        "edge_strength": 0.2145,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 1.65
+      },
+      "previous_output": "images/W-WARN-REWORD-01__glare-preview.png",
+      "previous_output_sha256": "75129c2657754152428450424d3736b64f0bd04c0ee6d764483c82474ab9fc37",
+      "previous_source_sha256": "4abd681601b86e9147aecf5bd277e15b1ea928e92e5110674b71d1ba6d46e5a8",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/W-WARN-REWORD-01__glare-preview.png",
+      "output_sha256": "366d836ee9ee31bad8378a3afb8ccf4580182e59a27dad1b9636c0439a8c39ce",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.009070470929146819,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.3064113238967527,
+        "label_max_row_fraction_alpha_above_050": 0.18151540383014156,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 4.561058648055257,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.8906255081759488,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 94885,
+        "effective_peak_gain_from_v1": 1.8245602955202203
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.009070470929146819,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.3064113238967527,
+        "label_max_row_fraction_alpha_above_050": 0.18151540383014156,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 4.561058648055257,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.8906255081759488,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 94885,
+        "effective_peak_gain_from_v1": 1.8245602955202203
+      }
+    },
+    {
+      "fixture_id": "W-BRAND-SPLITLINE-01",
+      "source_fixture_id": "W-BRAND-SPLITLINE-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-BRAND-SPLITLINE-01.png",
+      "source_sha256": "0d808655c0372f5c6ceb60d280a4773e20f8e35b33c3c599263112be17899b8a",
+      "source_label_sha256": "b83ade16f1e48719f138eadaa2af82ca8154909b4d60113299a0d47c1249f4e2",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260932,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1097.0,
+          1700.0,
+          2945.563952
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-BRAND-SPLITLINE-01.png",
+      "original_fixture_bottle_sha256": "0d808655c0372f5c6ceb60d280a4773e20f8e35b33c3c599263112be17899b8a",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/W-BRAND-SPLITLINE-01.png",
+      "original_source_label_sha256": "b83ade16f1e48719f138eadaa2af82ca8154909b4d60113299a0d47c1249f4e2",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/W-BRAND-SPLITLINE-01.json",
+      "original_truth_sha256": "c281fb488bbacfde99ad8c979ddaa876128f4b902b5cecc37564ddb8c647ff68",
+      "inherited_degradation": "none",
+      "parameters": {
+        "seed": 1476254630,
+        "center_u": 0.3850230426915263,
+        "center_y": 2152.02216799725,
+        "sigma_y": 357.03944497178594,
+        "angular_width": 0.12051258483230244,
+        "curve": -0.03259912726853837,
+        "strength": 0.8392587247923009,
+        "edge_strength": 0.325,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 2.5,
+        "requested_intensity_gain_from_v1": 2.5,
+        "opacity_cap": 0.65
+      },
+      "previous_parameters": {
+        "seed": 1476254630,
+        "center_u": 0.3850230426915263,
+        "center_y": 2152.02216799725,
+        "sigma_y": 357.03944497178594,
+        "angular_width": 0.12051258483230244,
+        "curve": -0.03259912726853837,
+        "strength": 0.5539107583629185,
+        "edge_strength": 0.2145,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 1.65
+      },
+      "previous_output": "images/W-BRAND-SPLITLINE-01__glare-preview.png",
+      "previous_output_sha256": "e1adae0cbef2db58dd1315bb7eda129584446d8d4c8bdc53cc3939581e7726b2",
+      "previous_source_sha256": "0d808655c0372f5c6ceb60d280a4773e20f8e35b33c3c599263112be17899b8a",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/W-BRAND-SPLITLINE-01__glare-preview.png",
+      "output_sha256": "bee1fc1a116b564e4a34875dd5f47067f6024444e1593c2e229f0daa7db74096",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.00710522767202279,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.24646128226477934,
+        "label_max_row_fraction_alpha_above_050": 0.14654454621149043,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 2.5107415004208327,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.8392584569449463,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 49134,
+        "effective_peak_gain_from_v1": 1.9362330244614407
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.00710522767202279,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.24646128226477934,
+        "label_max_row_fraction_alpha_above_050": 0.14654454621149043,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 2.5107415004208327,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.8392584569449463,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 49134,
+        "effective_peak_gain_from_v1": 1.9362330244614407
+      }
+    },
+    {
+      "fixture_id": "D-BLUR-01",
+      "source_fixture_id": "C-SPIRITS-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-SPIRITS-01.png",
+      "source_sha256": "bd601f2d9a3b0fd1b31257fd46e24eb148969519fa4833678ac604df20e037ec",
+      "source_label_sha256": "6db5c6cf43a3a09e324c9e086220594ba35f8611c6e1a4966ccec9a14cce7470",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260918,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": -12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1079.0,
+          1700.0,
+          2943.052292
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/D-BLUR-01.png",
+      "original_fixture_bottle_sha256": "79c8cdb4cc6e0f3be886f66e84dca9a70dd75d8e2e70215abe913a1a5ab8e4d4",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/D-BLUR-01.png",
+      "original_source_label_sha256": "d12ce32310048021081b0406c2bbecba4c29eb8c654d83d4514484d8e0e5dceb",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/D-BLUR-01.json",
+      "original_truth_sha256": "911663bb68073ed4221dd14e3376950bf271e4de193a4c77730522bd071bfa2e",
+      "inherited_degradation": "none",
+      "parameters": {
+        "seed": 3918110758,
+        "center_u": -0.41391725528513645,
+        "center_y": 1820.0077086975796,
+        "sigma_y": 386.0868616566264,
+        "angular_width": 0.13175492705517589,
+        "curve": -0.02761773270277016,
+        "strength": 0.8869155440437406,
+        "edge_strength": 0.325,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 2.5,
+        "requested_intensity_gain_from_v1": 2.5,
+        "opacity_cap": 0.65
+      },
+      "previous_parameters": {
+        "seed": 3918110758,
+        "center_u": -0.41391725528513645,
+        "center_y": 1820.0077086975796,
+        "sigma_y": 386.0868616566264,
+        "angular_width": 0.13175492705517589,
+        "curve": -0.02761773270277016,
+        "strength": 0.5853642590688688,
+        "edge_strength": 0.2145,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 1.65
+      },
+      "previous_output": "images/D-BLUR-01__glare-preview.png",
+      "previous_output_sha256": "97ad11464040d8413309212a5cbe8d9df10e8f5de11c0ff45c488edc16756ad6",
+      "previous_source_sha256": "79c8cdb4cc6e0f3be886f66e84dca9a70dd75d8e2e70215abe913a1a5ab8e4d4",
+      "source_same_as_v1": false,
+      "provenance": "D-BLUR clean parent C-SPIRITS-01, declared in source generate_labels.py lines 710-715; avoids double blur.",
+      "output": "images/D-BLUR-01__glare-preview.png",
+      "output_sha256": "b9c325fb4a8f3a9db5306d482552158f8df8e5730220ddeb988bd0a2ee5f9bab",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.00761724346017334,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.28059950041631976,
+        "label_max_row_fraction_alpha_above_050": 0.16985845129059118,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 3.0142965776035777,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.8869142182310565,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 70233,
+        "effective_peak_gain_from_v1": 1.8321951627254378
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.00761724346017334,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.28059950041631976,
+        "label_max_row_fraction_alpha_above_050": 0.16985845129059118,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 3.0142965776035777,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.8869142182310565,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 70233,
+        "effective_peak_gain_from_v1": 1.8321951627254378
+      }
+    },
+    {
+      "fixture_id": "D-WARP-01",
+      "source_fixture_id": "D-WARP-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/D-WARP-01.png",
+      "source_sha256": "47429b89bd864d13388c38895810746c7355631fda7fd19d02d2a4dc03e8159f",
+      "source_label_sha256": "bc3f95244d8d5141becd870068df8f66bff809c4c8945e787cf02c51b8a72545",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260934,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 0,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1091.0,
+          1700.0,
+          2943.470912
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            150
+          ],
+          [
+            230,
+            160
+          ],
+          [
+            620,
+            160
+          ],
+          [
+            710,
+            195
+          ],
+          [
+            800,
+            315
+          ],
+          [
+            900,
+            530
+          ],
+          [
+            1040,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          42.0,
+          67.0,
+          37.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/D-WARP-01.png",
+      "original_fixture_bottle_sha256": "47429b89bd864d13388c38895810746c7355631fda7fd19d02d2a4dc03e8159f",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/D-WARP-01.png",
+      "original_source_label_sha256": "bc3f95244d8d5141becd870068df8f66bff809c4c8945e787cf02c51b8a72545",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/D-WARP-01.json",
+      "original_truth_sha256": "b1882707a88f9796073660e896244cf6549c193894c3e7d3eb5ecb96db32a67c",
+      "inherited_degradation": "original perspective warp and mild source blur",
+      "parameters": {
+        "seed": 3036809923,
+        "center_u": 0.2790413111219869,
+        "center_y": 1595.245693764877,
+        "sigma_y": 469.6935664894487,
+        "angular_width": 0.1401246629935524,
+        "curve": -0.006258782116766642,
+        "strength": 0.9109461321810532,
+        "edge_strength": 0.325,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 2.5,
+        "requested_intensity_gain_from_v1": 2.5,
+        "opacity_cap": 0.65
+      },
+      "previous_parameters": {
+        "seed": 3036809923,
+        "center_u": 0.2790413111219869,
+        "center_y": 1595.245693764877,
+        "sigma_y": 469.6935664894487,
+        "angular_width": 0.1401246629935524,
+        "curve": -0.006258782116766642,
+        "strength": 0.6012244472394952,
+        "edge_strength": 0.2145,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 1.65
+      },
+      "previous_output": "images/D-WARP-01__glare-preview.png",
+      "previous_output_sha256": "3271ae614378b6e1579769db4ca034ca523864b10c2d217dc946ca134c8efead",
+      "previous_source_sha256": "47429b89bd864d13388c38895810746c7355631fda7fd19d02d2a4dc03e8159f",
+      "source_same_as_v1": true,
+      "provenance": "Exact no-glare source from glare manifest.",
+      "output": "images/D-WARP-01__glare-preview.png",
+      "output_sha256": "89b963c1901f29f34995c27dcebac5d41aa9decd7c366e6d46011c52a40dfa1c",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.012686476111775952,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.3047460449625312,
+        "label_max_row_fraction_alpha_above_050": 0.18151540383014156,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 6.78343521320309,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.9109458365687825,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 97823,
+        "effective_peak_gain_from_v1": 1.7838601101863172
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.012686476111775952,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.3047460449625312,
+        "label_max_row_fraction_alpha_above_050": 0.18151540383014156,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 6.78343521320309,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.9109458365687825,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 97823,
+        "effective_peak_gain_from_v1": 1.7838601101863172
+      }
+    },
+    {
+      "fixture_id": "D-GLARE-01",
+      "source_fixture_id": "C-MALT-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-MALT-01.png",
+      "source_sha256": "d94072ceaa20bb53d3bcab4829e235258c2e0cc09f211e1b5959ecb2b1a8a917",
+      "source_label_sha256": "36f92b6f24b80111d5abe6a3aac8ae7538252bc58640893aa369af67fc33a559",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260920,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1097.0,
+          1700.0,
+          2945.563952
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            160
+          ],
+          [
+            215,
+            155
+          ],
+          [
+            540,
+            155
+          ],
+          [
+            680,
+            235
+          ],
+          [
+            800,
+            405
+          ],
+          [
+            980,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          110.0,
+          64.0,
+          26.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "original_fixture_bottle_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/D-GLARE-01.png",
+      "original_fixture_bottle_sha256": "4bb6cfeccacf118647cfd357c33044ec5453f1f4723947615f071e3f8e74adfa",
+      "original_source_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/D-GLARE-01.png",
+      "original_source_label_sha256": "02a00f894da7459c30bb799d7d59fabdd3c56bfdb9408182e559688cb23af83d",
+      "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/D-GLARE-01.json",
+      "original_truth_sha256": "4231822e0f6d0f6c51b18e3110d1bdc3b7871f03b51ae31c51038e8a897ed5cb",
+      "inherited_degradation": "none",
+      "parameters": {
+        "seed": 75955501,
+        "center_u": -0.27932355090506883,
+        "center_y": 1561.56812374788,
+        "sigma_y": 474.40829317874676,
+        "angular_width": 0.1284730852276826,
+        "curve": 0.034073733203614356,
+        "strength": 0.9071884345280835,
+        "edge_strength": 0.325,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 2.5,
+        "requested_intensity_gain_from_v1": 2.5,
+        "opacity_cap": 0.65
+      },
+      "previous_parameters": {
+        "seed": 75955501,
+        "center_u": -0.27932355090506883,
+        "center_y": 1561.56812374788,
+        "sigma_y": 474.40829317874676,
+        "angular_width": 0.1284730852276826,
+        "curve": 0.034073733203614356,
+        "strength": 0.5987443667885352,
+        "edge_strength": 0.2145,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 1.65
+      },
+      "previous_output": "images/D-GLARE-01__glare-preview.png",
+      "previous_output_sha256": "14e77144d37a3885315d0cf7b9595ecb50f582f26bde35a96819064f7c21623f",
+      "previous_source_sha256": "d94072ceaa20bb53d3bcab4829e235258c2e0cc09f211e1b5959ecb2b1a8a917",
+      "source_same_as_v1": true,
+      "provenance": "D-GLARE clean parent C-MALT-01, exactly inherited from glare manifest.",
+      "output": "images/D-GLARE-01__glare-preview.png",
+      "output_sha256": "98e0288ec030650269e23c21e9162b1b19a866eb863ca2b837e271f0e400adf0",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "effect_checks": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.00926691293718579,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.2880932556203164,
+        "label_max_row_fraction_alpha_above_050": 0.16902581182348042,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 4.175526266503298,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.9071874040527412,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 90331,
+        "effective_peak_gain_from_v1": 1.7912505543351684
+      },
+      "previous_version": 2,
+      "source_same_as_v2": true,
+      "effective_parameters": {
+        "alpha_max": 0.6499999761581421,
+        "source_weight_min": 0.3500000238418579,
+        "max_adjacent_alpha_step": 0.00926691293718579,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.2880932556203164,
+        "label_max_row_fraction_alpha_above_050": 0.16902581182348042,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 4.175526266503298,
+        "requested_intensity_gain_from_v1": 2.5,
+        "uncapped_alpha_max": 0.9071874040527412,
+        "opacity_cap": 0.65,
+        "opacity_clipped_pixels": 90331,
+        "effective_peak_gain_from_v1": 1.7912505543351684
+      }
+    }
+  ],
+  "comparison_artifacts": {
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/glare-preview-v3/selected3-pairs.jpg": {
+      "sha256": "dee3b314574ef064f33bd7345dd0867b87cd2f3432ca029ac65a6a75da6aacfa",
+      "bytes": 541056
+    },
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/blur-preview-v3/C-SPIRITS-01-three-way.jpg": {
+      "sha256": "67e6b2e0916ce391f048d9ecdac750af7c65c73deb53f80362e634ee208b9f8b",
+      "bytes": 267995
+    }
+  }
+}

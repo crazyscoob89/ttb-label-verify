@@ -1,0 +1,65 @@
+test_identity_provider_separation (__main__.Tests.test_identity_provider_separation) ... FAIL
+test_inherited_cap_unknown_and_dedupe (__main__.Tests.test_inherited_cap_unknown_and_dedupe) ... FAIL
+test_ocr_meter_not_free_or_double_counted (__main__.Tests.test_ocr_meter_not_free_or_double_counted) ... FAIL
+test_payload_routes_and_failed_attempt_once (__main__.Tests.test_payload_routes_and_failed_attempt_once) ... FAIL
+test_queue_and_approved_hashes (__main__.Tests.test_queue_and_approved_hashes) ... FAIL
+test_report_failure_denominator (__main__.Tests.test_report_failure_denominator) ... FAIL
+
+======================================================================
+FAIL: test_identity_provider_separation (__main__.Tests.test_identity_provider_separation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/azure-severity-v1/test_offline.py", line 10, in setUp
+    self.assertTrue(self.path.exists(),'Azure scoped continuation implementation is missing')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Azure scoped continuation implementation is missing
+
+======================================================================
+FAIL: test_inherited_cap_unknown_and_dedupe (__main__.Tests.test_inherited_cap_unknown_and_dedupe)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/azure-severity-v1/test_offline.py", line 10, in setUp
+    self.assertTrue(self.path.exists(),'Azure scoped continuation implementation is missing')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Azure scoped continuation implementation is missing
+
+======================================================================
+FAIL: test_ocr_meter_not_free_or_double_counted (__main__.Tests.test_ocr_meter_not_free_or_double_counted)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/azure-severity-v1/test_offline.py", line 10, in setUp
+    self.assertTrue(self.path.exists(),'Azure scoped continuation implementation is missing')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Azure scoped continuation implementation is missing
+
+======================================================================
+FAIL: test_payload_routes_and_failed_attempt_once (__main__.Tests.test_payload_routes_and_failed_attempt_once)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/azure-severity-v1/test_offline.py", line 10, in setUp
+    self.assertTrue(self.path.exists(),'Azure scoped continuation implementation is missing')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Azure scoped continuation implementation is missing
+
+======================================================================
+FAIL: test_queue_and_approved_hashes (__main__.Tests.test_queue_and_approved_hashes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/azure-severity-v1/test_offline.py", line 10, in setUp
+    self.assertTrue(self.path.exists(),'Azure scoped continuation implementation is missing')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Azure scoped continuation implementation is missing
+
+======================================================================
+FAIL: test_report_failure_denominator (__main__.Tests.test_report_failure_denominator)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/azure-severity-v1/test_offline.py", line 10, in setUp
+    self.assertTrue(self.path.exists(),'Azure scoped continuation implementation is missing')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Azure scoped continuation implementation is missing
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.011s
+
+FAILED (failures=6)

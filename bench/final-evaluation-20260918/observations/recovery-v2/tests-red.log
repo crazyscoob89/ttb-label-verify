@@ -1,0 +1,60 @@
+FFFFF
+======================================================================
+FAIL: test_counts_and_no_operator_pooling (__main__.RecoveryTests.test_counts_and_no_operator_pooling)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v2/test_reconcile.py", line 8, in test_counts_and_no_operator_pooling
+    d=self.load();g=d['groups'];self.assertEqual(sum(x['calls'] for x in g if x['operator']=='AVA'),245);self.assertEqual(sum(x['calls'] for x in g if x['operator']=='ARGUS'),108);self.assertEqual(sum(x['calls'] for x in g if x['operator']=='historical'),162)
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v2/test_reconcile.py", line 6, in load
+    p=ROOT/'reconciliation.json';self.assertTrue(p.exists(),'offline reconciliation missing');return json.loads(p.read_text())
+                                 ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : offline reconciliation missing
+
+======================================================================
+FAIL: test_invalid_outputs_not_repaired (__main__.RecoveryTests.test_invalid_outputs_not_repaired)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v2/test_reconcile.py", line 16, in test_invalid_outputs_not_repaired
+    d=self.load();rows=json.loads((ROOT/'rescored-records.json').read_text());self.assertEqual(len(rows),515)
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v2/test_reconcile.py", line 6, in load
+    p=ROOT/'reconciliation.json';self.assertTrue(p.exists(),'offline reconciliation missing');return json.loads(p.read_text())
+                                 ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : offline reconciliation missing
+
+======================================================================
+FAIL: test_metrics_recomputed_and_provenance_preserved (__main__.RecoveryTests.test_metrics_recomputed_and_provenance_preserved)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v2/test_reconcile.py", line 21, in test_metrics_recomputed_and_provenance_preserved
+    d=self.load();rows=json.loads((ROOT/'rescored-records.json').read_text())
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v2/test_reconcile.py", line 6, in load
+    p=ROOT/'reconciliation.json';self.assertTrue(p.exists(),'offline reconciliation missing');return json.loads(p.read_text())
+                                 ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : offline reconciliation missing
+
+======================================================================
+FAIL: test_queue_does_not_rerun_attempts (__main__.RecoveryTests.test_queue_does_not_rerun_attempts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v2/test_reconcile.py", line 14, in test_queue_does_not_rerun_attempts
+    d=self.load();p=json.loads((ROOT/'resume-plan.json').read_text());ids=[x['id'] for x in p['ava_protocol_unattempted']];self.assertEqual(len(ids),len(set(ids)));self.assertFalse(set(ids)&set(d['ledger']['attempted_ids']));self.assertEqual(len(ids),76);self.assertEqual(len(p['minimal_cross_operator_unattempted']),67);self.assertEqual(p['paid_execution_enabled'],False)
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v2/test_reconcile.py", line 6, in load
+    p=ROOT/'reconciliation.json';self.assertTrue(p.exists(),'offline reconciliation missing');return json.loads(p.read_text())
+                                 ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : offline reconciliation missing
+
+======================================================================
+FAIL: test_usage_and_unknowns (__main__.RecoveryTests.test_usage_and_unknowns)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v2/test_reconcile.py", line 11, in test_usage_and_unknowns
+    d=self.load();self.assertAlmostEqual(d['costs']['ava_measured_estimate_usd'],.58834265);self.assertEqual(len(d['ledger']['interrupted']),3);self.assertEqual(d['ledger']['http429_count'],2);self.assertEqual(d['argus_log_only']['completed_logged_calls'],99)
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v2/test_reconcile.py", line 6, in load
+    p=ROOT/'reconciliation.json';self.assertTrue(p.exists(),'offline reconciliation missing');return json.loads(p.read_text())
+                                 ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : offline reconciliation missing
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.008s
+
+FAILED (failures=5)

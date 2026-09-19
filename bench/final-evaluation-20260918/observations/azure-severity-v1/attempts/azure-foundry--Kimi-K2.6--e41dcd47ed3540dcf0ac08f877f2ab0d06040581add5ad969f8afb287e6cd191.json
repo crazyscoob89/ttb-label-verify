@@ -1,0 +1,84 @@
+{
+  "id": "azure-foundry--Kimi-K2.6--e41dcd47ed3540dcf0ac08f877f2ab0d06040581add5ad969f8afb287e6cd191",
+  "provider": "azure-foundry",
+  "operator": "AVA-azure-severity-v1",
+  "model": "Kimi-K2.6",
+  "engine": "Kimi-K2.6",
+  "fixture_id": "D-BLUR-01",
+  "fixture": {
+    "id": "D-BLUR-01__straight",
+    "source_fixture": "D-BLUR-01",
+    "condition": "straight",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/D-BLUR-01__straight.png",
+    "sha256": "79c8cdb4cc6e0f3be886f66e84dca9a70dd75d8e2e70215abe913a1a5ab8e4d4",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/D-BLUR-01__straight.png",
+    "source_sha256": "79c8cdb4cc6e0f3be886f66e84dca9a70dd75d8e2e70215abe913a1a5ab8e4d4",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/D-BLUR-01.png",
+    "original_label_sha256": "d12ce32310048021081b0406c2bbecba4c29eb8c654d83d4514484d8e0e5dceb",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/D-BLUR-01.json",
+    "original_truth_sha256": "911663bb68073ed4221dd14e3376950bf271e4de193a4c77730522bd071bfa2e",
+    "source_fixture_id": "C-SPIRITS-01",
+    "clean_parent_substitution": true,
+    "inherited_degradation": "unchanged accepted control; may include original source degradation",
+    "parameters": {
+      "seed": 20260918,
+      "randomness_used": false,
+      "resolution": [
+        2200,
+        3200
+      ],
+      "source_pixels_only": true,
+      "condition": "straight",
+      "content_bounds": [
+        0,
+        0,
+        2200,
+        3200
+      ]
+    },
+    "measurements": {}
+  },
+  "repeat": 1,
+  "condition": "straight",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.0150837,
+  "request_sha256": "95d27642ca505d77fdf68c0a898bceea1910e4dbd8c18090a863e6dc162bcef2",
+  "prompt_settings_sha256": "cbae9f332d5065a1dd8bf55b66ae42a7a61cc7e144f79bcf3b80e25ada48a0a2",
+  "image_sha256": "79c8cdb4cc6e0f3be886f66e84dca9a70dd75d8e2e70215abe913a1a5ab8e4d4",
+  "transport": "chat",
+  "started_at": "2026-09-18T19:47:07.618792+00:00",
+  "reserved_usd": 1.10896192,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/D-BLUR-01__straight.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "old_request_ids": [
+    "Kimi-K2.6--D-BLUR-01--straight--1"
+  ],
+  "http_status": 200,
+  "request_id": "cdc19cf1-4e98-4887-b2e3-2ad0d37f6198",
+  "latency_s": 27.692369649070315,
+  "response_sha256": "99ab5716ef8ce84c43f18940432614a2e7f6841dfc0e175b9a06bdd4704d959c",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/azure-severity-v1/responses/azure-foundry--Kimi-K2.6--e41dcd47ed3540dcf0ac08f877f2ab0d06040581add5ad969f8afb287e6cd191.json",
+  "tokens_in": 4926,
+  "tokens_out": 2601,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 4926,
+    "completion_tokens": 2601,
+    "total_tokens": 7527,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "image_tokens": 4212
+    }
+  },
+  "returned_model": "Kimi-K2.6"
+}

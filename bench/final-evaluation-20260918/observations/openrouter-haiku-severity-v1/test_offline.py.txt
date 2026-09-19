@@ -1,0 +1,107 @@
+"""All tests run without external calls; temporary ledgers only."""
+import unittest,tempfile,json,io,urllib.error,socket
+from pathlib import Path
+from unittest.mock import patch
+
+class Offline(unittest.TestCase):
+ def setUp(self):
+  self.tmp=tempfile.TemporaryDirectory();self.d=Path(self.tmp.name)
+  self.net=patch('socket.socket.connect',side_effect=AssertionError('NETWORK FORBIDDEN'));self.net.start()
+ def tearDown(self):self.net.stop();self.tmp.cleanup()
+ def api(self):
+  self.assertTrue((Path(__file__).parent/'adapter.py').exists(),'separate adapter implementation missing')
+  import adapter as A
+  return A
+ def test_shared_cap_inheritance_exact_boundary_restart(self):
+  A=self.api();b=A.SharedBudget(self.d/'budget.sqlite',50)
+  self.assertTrue(b.reserve('inherited-incurred-and-unknown',9.0629657,{}))
+  self.assertTrue(b.reserve('unknown',40.9370343,{}));b.settle('unknown',None)
+  self.assertFalse(b.reserve('overflow',.000000001,{}))
+  b=A.SharedBudget(self.d/'budget.sqlite',50)
+  self.assertAlmostEqual(b.total(),50);self.assertFalse(b.reserve('unknown',1,{}))
+  self.assertEqual(b.entries()[0]['id'],'inherited-incurred-and-unknown')
+ def test_identity_provider_and_prompt_separation(self):
+  A=self.api();x=A.identity('image','prompt');self.assertEqual(x,A.identity('image','prompt'))
+  self.assertNotEqual(x,A.identity('image','prompt',provider='azure'))
+  self.assertNotEqual(x,A.identity('image','other'))
+ def test_pricing_cost_separation_unknowns(self):
+  A=self.api();m={'context_length':200000,'pricing':{'prompt':'0.000001','completion':'0.000005','input_cache_write_1h':'0.000002'}}
+  self.assertGreaterEqual(A.reservation(m),.415)
+  obs,est=A.cost({'usage':{'prompt_tokens':1000,'completion_tokens':100,'cost':.002}},m)
+  self.assertEqual(obs,.002);self.assertAlmostEqual(est,.0015)
+  for bad in [None,True,-1,float('nan'),'0.1']:
+   self.assertIsNone(A.cost({'usage':{'cost':bad}},m)[0])
+  self.assertIsNone(A.cost({'usage':{'prompt_tokens':1000,'completion_tokens':100}},m)[0])
+ def test_glare_allowlist(self):
+  A=self.api()
+  for c in ['clean','straight','angle']+[f'blur-{i}' for i in range(1,7)]+[f'glare-{i}' for i in range(1,6)]:self.assertTrue(A.approved(c))
+  for c in ['glare','glare-6','occlusion','flat']:self.assertFalse(A.approved(c))
+ def test_transport_failure_durable_unknown_and_dedupe(self):
+  A=self.api();b=A.SharedBudget(self.d/'budget.sqlite',50);im=self.d/'image.png';im.write_bytes(b'fake')
+  calls=[]
+  def transport(req,timeout):
+   calls.append(req);self.assertTrue(list((self.d/'attempts').glob('*.json')));self.assertGreater(b.total(),0)
+   raise TimeoutError('simulated')
+  meta={'context_length':200000,'pricing':{'prompt':'0.000001','completion':'0.000005'}}
+  row=A.one(im,{'condition':'clean'},'secret-not-real',b,self.d,meta,transport)
+  self.assertFalse(row['ok']);self.assertEqual(len(calls),1);self.assertAlmostEqual(b.total(),A.reservation(meta))
+  self.assertIsNone(A.one(im,{'condition':'clean'},'secret-not-real',b,self.d,meta,transport));self.assertEqual(len(calls),1)
+  self.assertEqual(b.entries()[0]['status'],'unknown-charge')
+ def test_http_retains_raw_reservation_no_retry(self):
+  A=self.api();b=A.SharedBudget(self.d/'budget.sqlite',50);im=self.d/'i.png';im.write_bytes(b'f')
+  def transport(req,timeout):raise urllib.error.HTTPError(req.full_url,503,'fail',{},io.BytesIO(b'{"error":"unavailable"}'))
+  meta={'context_length':200000,'pricing':{'prompt':'0.000001','completion':'0.000005'}}
+  r=A.one(im,{'condition':'clean'},'test',b,self.d,meta,transport)
+  self.assertEqual(r['http_status'],503);self.assertEqual(Path(r['response_file']).read_bytes(),b'{"error":"unavailable"}')
+  self.assertEqual(b.total(),A.reservation(meta))
+ def test_schema_scorer_and_payload_parity(self):
+  A=self.api();raw,gs=A.H.R.load_evidence();g=gs['C-SPIRITS-01']
+  old=next(r for r in raw['results'] if r['ok'] and r['fixture_id']==g['fixture_id'] and 'haiku' in r['engine'])
+  self.assertFalse(A.H.validate_extraction(old['extracted']))
+  scored=A.H.score(dict(old),g);self.assertTrue(all(scored['extraction_correct'].values()))
+  invalid=dict(old,extracted={'brand_name':'forged'},ok=False)
+  self.assertTrue(A.H.validate_extraction(invalid['extracted']))
+  self.assertTrue(all(v=='needs-review' for v in A.H.score(invalid,g)['verdicts'].values()))
+  p=A.payload(b'fixture');self.assertEqual(p['model'],'anthropic/claude-haiku-4.5');self.assertEqual(p['max_tokens'],3000)
+  self.assertEqual(p['messages'][0]['content'],A.H.E.SYSTEM_PROMPT);self.assertEqual(p['messages'][1]['content'][0]['text'],A.H.E.USER_PROMPT)
+  self.assertFalse(p['provider']['allow_fallbacks']);self.assertEqual(p['provider']['only'],['Anthropic'])
+ def test_schema_failure_kept_and_observed_cost_settled(self):
+  A=self.api();b=A.SharedBudget(self.d/'budget.sqlite',50);im=self.d/'i.png';im.write_bytes(b'fixture')
+  class Response:
+   status=200;headers={}
+   def __enter__(self):return self
+   def __exit__(self,*x):pass
+   def read(self):return json.dumps({'id':'gen-test','model':A.MODEL,'provider':'Anthropic','choices':[{'message':{'content':'bad json'},'finish_reason':'stop'}],'usage':{'prompt_tokens':10,'completion_tokens':10,'cost':.001}}).encode()
+  meta={'context_length':200000,'pricing':{'prompt':'0.000001','completion':'0.000005'}}
+  r=A.one(im,{'condition':'clean'},'test',b,self.d,meta,lambda *a,**k:Response())
+  self.assertFalse(r['ok']);self.assertEqual(r['usage_cost_usd'],.001);self.assertEqual(b.total(),.001);self.assertEqual(r['generation_id'],'gen-test')
+
+ def test_stop_flags_archived_exact_only(self):
+  A=self.api();import run
+  old=self.d/'accounting-before'/'STOP';old.parent.mkdir();old.write_text('archived pause')
+  archived=[{'path':str(old),'sha256':A.sha(old)}]
+  self.assertFalse(run.active_stops(self.d,archived))
+  human=self.d/'STOP';human.write_text('Alex stop')
+  self.assertEqual(len(run.active_stops(self.d,archived)),1)
+  old.write_text('changed stop');self.assertEqual(len(run.active_stops(self.d,archived)),2)
+ def test_settlement_overage_stops_preserves_actual(self):
+  A=self.api();b=A.SharedBudget(self.d/'b.sqlite',50);b.reserve('x',.1,{})
+  with self.assertRaises(ValueError):b.settle('x',.2)
+  self.assertEqual(b.total(),.2)
+ def test_concurrent_cap_atomicity(self):
+  A=self.api();import concurrent.futures
+  b=A.SharedBudget(self.d/'b.sqlite',50);b.reserve('inherited',49,{})
+  with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
+   values=list(pool.map(lambda i:b.reserve('x'+str(i),1,{}),range(4)))
+  self.assertEqual(sum(values),1);self.assertEqual(b.total(),50)
+ def test_report_negative_fields_and_processing_failures(self):
+  A=self.api();import report
+  raw,gs=A.H.R.load_evidence();old=next(r for r in raw['results'] if r['ok'] and r['fixture_id']=='C-SPIRITS-01' and 'haiku' in r['engine'])
+  import copy
+  fake=copy.deepcopy(old);fake['extracted']['alcohol_content']=gs['A-ABV-WRONG-01']['application']['alcohol_content']
+  wrong=A.H.score(fake,gs['A-ABV-WRONG-01'])
+  failed=A.H.score(dict(old,ok=False),gs['A-ABV-WRONG-01'])
+  result=report.summarize([wrong,failed]);self.assertEqual(result['calls'],2);self.assertEqual(result['processing_failures'],1)
+  self.assertGreaterEqual(result['false_matches'],1);self.assertEqual(result['failure_referral_fields'],7)
+
+if __name__=='__main__':unittest.main(verbosity=2)

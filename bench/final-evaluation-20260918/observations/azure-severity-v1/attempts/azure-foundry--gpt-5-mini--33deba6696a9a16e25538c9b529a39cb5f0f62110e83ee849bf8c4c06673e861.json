@@ -1,0 +1,75 @@
+{
+  "id": "azure-foundry--gpt-5-mini--33deba6696a9a16e25538c9b529a39cb5f0f62110e83ee849bf8c4c06673e861",
+  "provider": "azure-foundry",
+  "operator": "AVA-azure-severity-v1",
+  "model": "gpt-5-mini",
+  "engine": "gpt-5-mini",
+  "fixture_id": "W-ABV-4045-01",
+  "fixture": {
+    "id": "W-ABV-4045-01__blur-2",
+    "source_fixture": "W-ABV-4045-01",
+    "condition": "blur-2",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/W-ABV-4045-01__blur-2.png",
+    "sha256": "ad72e9f4bfc7b428325cc36b2a0835a51300122f03d6b735055b768b47dff5c5",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-ABV-4045-01.png",
+    "source_sha256": "d2e674fae1a068ca6fbdbca8af6e337eb197dcc54f75b6f1a8c651646a7daaf4",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/W-ABV-4045-01.png",
+    "original_label_sha256": "2717efcdf4b2ef5e30570b11d8646c49f4bc82d70ee80d0d1a1fe6711f8f7435",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/W-ABV-4045-01.json",
+    "original_truth_sha256": "16924fefa452e316b4d3d68975410f0bf2700cea2e67795ea0e627ac10d2c239",
+    "source_fixture_id": "W-ABV-4045-01",
+    "clean_parent_substitution": false,
+    "inherited_degradation": "none",
+    "parameters": {
+      "sigma_native_px": 2,
+      "sigma_div_label_width": 0.0016666666666666668,
+      "sigma_div_label_height": 0.0010729312737542023,
+      "filter": "Pillow GaussianBlur",
+      "randomness_used": false
+    },
+    "measurements": {}
+  },
+  "repeat": 1,
+  "condition": "blur-2",
+  "route": "Azure Foundry responses",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.00354925,
+  "request_sha256": "2ad35d25649584b7f8ed3cbc000a73a15b73177320a7646b10e1d1e53ea952e3",
+  "prompt_settings_sha256": "196f20e64293ebb79fcf992ad999cce80aa5a27a14685453840798f0423d2683",
+  "image_sha256": "ad72e9f4bfc7b428325cc36b2a0835a51300122f03d6b735055b768b47dff5c5",
+  "transport": "responses",
+  "started_at": "2026-09-18T20:21:23.577469+00:00",
+  "reserved_usd": 0.2949584,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/W-ABV-4045-01__blur-2.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "old_request_ids": [],
+  "http_status": 200,
+  "request_id": "c197285f-de22-4329-a266-651d913b0cb1",
+  "latency_s": 12.872090239077806,
+  "response_sha256": "db40426026e371dffd46332db131095d17686759fa4c04ed931a38d6836b0ed4",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/azure-severity-v1/responses/azure-foundry--gpt-5-mini--33deba6696a9a16e25538c9b529a39cb5f0f62110e83ee849bf8c4c06673e861.json",
+  "tokens_in": 1717,
+  "tokens_out": 1560,
+  "pages_processed": null,
+  "usage": {
+    "input_tokens": 1717,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1560,
+    "output_tokens_details": {
+      "reasoning_tokens": 1216
+    },
+    "total_tokens": 3277
+  },
+  "returned_model": "gpt-5-mini"
+}

@@ -1,0 +1,9 @@
+# Preserve captured evidence, including original CRLF, on every checkout OS.
+* -text
+** -text
+# New portable tooling and explanatory docs are authored LF text.
+/verify.py text eol=lf
+/test_verify.py text eol=lf
+/README.md text eol=lf
+/SOURCE-INDEX.md text eol=lf
+/IMAGE-INDEX.md text eol=lf

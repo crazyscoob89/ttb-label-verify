@@ -1,0 +1,96 @@
+{
+  "id": "openrouter--anthropic_claude-haiku-4.5--9fa996ff14dbc49bb438524e5ecd80457c8097073fe4f1ed1a6fd6faa7f9e56c",
+  "provider": "openrouter",
+  "model": "anthropic/claude-haiku-4.5",
+  "engine": "anthropic/claude-haiku-4.5",
+  "route": "https://openrouter.ai/api/v1/chat/completions",
+  "upstream_policy": "Anthropic only; no provider fallback",
+  "fixture": {
+    "id": "A-FIELD-MISSING-01__glare-2",
+    "source_fixture": "A-FIELD-MISSING-01",
+    "condition": "glare-2",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/A-FIELD-MISSING-01__glare-2.png",
+    "sha256": "73bdfed99759711a5caeb7386103b8faf3649a593336cc9e5302a8c26e7a0108",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-FIELD-MISSING-01.png",
+    "source_sha256": "fbe2320836ee47d13e1d3c9438d7575cb1bd0f453c44f8513bb610f960d4a3a5",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/A-FIELD-MISSING-01.png",
+    "original_label_sha256": "bccda011d9dfb0c9b5c14cd422930a5d62c315e7caa0519dfd47f988ae94497a",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/A-FIELD-MISSING-01.json",
+    "original_truth_sha256": "caf84125de42c1a8df25b6c18dd3f1351c41314a7ef621568ca77d1553f211f4",
+    "source_fixture_id": "A-FIELD-MISSING-01",
+    "clean_parent_substitution": false,
+    "inherited_degradation": "none",
+    "parameters": {
+      "seed": 1507575473,
+      "center_u": -0.3235146017386067,
+      "center_y": 2062.5052414739253,
+      "sigma_y": 374.2570430978624,
+      "angular_width": 0.1417351396437033,
+      "curve": -0.032762830797786836,
+      "strength": 0.6093227621574172,
+      "edge_strength": 0.26,
+      "bloom_fraction": 0.12,
+      "alpha_bound": 0.65,
+      "intensity_gain_from_v1": 2,
+      "requested_intensity_gain_from_v1": 2,
+      "opacity_cap": 0.65
+    },
+    "measurements": {
+      "effective_alpha_peak": 0.609321719038274,
+      "uncapped_alpha_peak": 0.609321719038274,
+      "opacity_cap": 0.65,
+      "clipped_pixel_count": 0,
+      "clipped_fraction_full_image": 0.0,
+      "source_weight_min": 0.39067828096172597
+    }
+  },
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/A-FIELD-MISSING-01__glare-2.png",
+  "image_sha256": "73bdfed99759711a5caeb7386103b8faf3649a593336cc9e5302a8c26e7a0108",
+  "prompt_settings_sha256": "ba93d7e53b184d2f74384c66eebdb59f523faf427337a9e3b2e702322f09040d",
+  "request_sha256": "dccfb7475918c6871a87ad5e0f49b5f73664c44f42fcf5c57957818e3098d75e",
+  "started_at": "2026-09-18T19:12:37.114945+00:00",
+  "reserved_usd": 0.4565,
+  "max_output_tokens": 3000,
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "usage_cost_usd": 0.00415701,
+  "retail_estimate_usd": 0.004199,
+  "http_status": 200,
+  "request_id": null,
+  "latency_s": 3.8005559740122408,
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/responses/openrouter--anthropic_claude-haiku-4.5--9fa996ff14dbc49bb438524e5ecd80457c8097073fe4f1ed1a6fd6faa7f9e56c.json",
+  "response_sha256": "011cc8d43552f08ae84e4ca0fa0c4bada95220606e7d111ecdc78133e4a07fce",
+  "usage": {
+    "prompt_tokens": 2354,
+    "completion_tokens": 369,
+    "total_tokens": 2723,
+    "cost": 0.00415701,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.004199,
+      "upstream_inference_prompt_cost": 0.002354,
+      "upstream_inference_completions_cost": 0.001845
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "generation_id": "gen-1789758758-4vaPObdnivSgqebGL8eY",
+  "returned_model": "anthropic/claude-haiku-4.5",
+  "returned_provider": "Anthropic"
+}

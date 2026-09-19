@@ -1,5 +1,13 @@
 # Engineering review register
 
+## Final benchmark publication repair
+
+[Publication record 16](16-final-benchmark-publication.md) and the
+[final benchmark results](../../BENCHMARK-RESULTS.md) now locate the completed
+Azure/Haiku/severity battery, separate from older flat results. AVA's offline
+publication checks are not a fresh ARGUS benchmark verdict; application-phase
+PASS records below have a different review scope.
+
 ## Active application phase
 
 [Phase 1](11-phase1-argus-pass.md) has supplied **ARGUS PASS** at `2b59abcb0cb7e95abc1639ee4e81df50930dfe1a`, no revisions; AVA agrees. ARGUS read source/diff/closure logs, did not rerun tests/build, and reported a matching native Windows clone. [Phase 2 Sprint 1](12-phase2-sprint1-rules.md) and [Sprint 2](13-phase2-provider-spend.md) are locally implemented/tested; the full local candidate is ready for parent verification, with whole-phase independent review pending. Provider runtime is unwired/default-deny; shared-store contracts are not real database enforcement. [Implementation authorization](../IMPLEMENTATION-STATUS.md) records Alex's local continuation approval. No remote writes, paid/live calls, provisioning or deployment in this step. Earlier documentation-only status below is historical.

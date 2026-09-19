@@ -1,0 +1,1188 @@
+{
+  "generated_utc": "2026-09-18T19:06:57.826097+00:00",
+  "state": {
+    "status": "bounded-stop",
+    "pid": 10527,
+    "started_utc": "2026-09-18T18:52:49.515648+00:00",
+    "terminal": true,
+    "unique_planned": 212,
+    "reason": "two-transport-failures",
+    "current_fixture": "W-WARN-REWORD-01__glare-1",
+    "updated_utc": "2026-09-18T19:06:23.115561+00:00",
+    "finished_utc": "2026-09-18T19:06:57.297395+00:00",
+    "saved_unique_rows": 148,
+    "unscored_unique_images": 64,
+    "attempted_unscored": [],
+    "shared_liability_usd": 10.59667986
+  },
+  "unique_requests_with_saved_rows": 148,
+  "unique_requests_reserved": 148,
+  "logical_observations_scored": 180,
+  "logical_images": 252,
+  "unique_images_planned": 212,
+  "conditions": {
+    "clean": {
+      "calls": 16,
+      "schema_valid_calls": 16,
+      "processing_failures": 0,
+      "negative_fields": 8,
+      "false_matches": 0,
+      "negative_calls": 8,
+      "false_match_calls": 0,
+      "valid_referral_calls": 1,
+      "valid_referral_fields": 2,
+      "failure_referral_fields": 0,
+      "field_correct": {
+        "brand_name": 16,
+        "class_type": 16,
+        "alcohol_content": 16,
+        "net_contents": 16,
+        "bottler_info": 15,
+        "country_of_origin": 16,
+        "government_warning": 16
+      },
+      "all_fields_correct": 15,
+      "latency_p50_s": 4.242869229521602,
+      "latency_p95_s": 4.672123731172178
+    },
+    "straight": {
+      "calls": 18,
+      "schema_valid_calls": 18,
+      "processing_failures": 0,
+      "negative_fields": 8,
+      "false_matches": 0,
+      "negative_calls": 8,
+      "false_match_calls": 0,
+      "valid_referral_calls": 1,
+      "valid_referral_fields": 2,
+      "failure_referral_fields": 0,
+      "field_correct": {
+        "brand_name": 18,
+        "class_type": 18,
+        "alcohol_content": 18,
+        "net_contents": 18,
+        "bottler_info": 17,
+        "country_of_origin": 18,
+        "government_warning": 18
+      },
+      "all_fields_correct": 17,
+      "latency_p50_s": 4.250153216067702,
+      "latency_p95_s": 4.663842298265081
+    },
+    "angle": {
+      "calls": 18,
+      "schema_valid_calls": 18,
+      "processing_failures": 0,
+      "negative_fields": 8,
+      "false_matches": 0,
+      "negative_calls": 8,
+      "false_match_calls": 0,
+      "valid_referral_calls": 1,
+      "valid_referral_fields": 2,
+      "failure_referral_fields": 0,
+      "field_correct": {
+        "brand_name": 18,
+        "class_type": 18,
+        "alcohol_content": 18,
+        "net_contents": 18,
+        "bottler_info": 18,
+        "country_of_origin": 18,
+        "government_warning": 18
+      },
+      "all_fields_correct": 18,
+      "latency_p50_s": 4.342615336470772,
+      "latency_p95_s": 4.804438122961437
+    },
+    "blur-1": {
+      "calls": 16,
+      "schema_valid_calls": 16,
+      "processing_failures": 0,
+      "negative_fields": 8,
+      "false_matches": 0,
+      "negative_calls": 8,
+      "false_match_calls": 0,
+      "valid_referral_calls": 1,
+      "valid_referral_fields": 2,
+      "failure_referral_fields": 0,
+      "field_correct": {
+        "brand_name": 16,
+        "class_type": 16,
+        "alcohol_content": 16,
+        "net_contents": 16,
+        "bottler_info": 16,
+        "country_of_origin": 16,
+        "government_warning": 15
+      },
+      "all_fields_correct": 15,
+      "latency_p50_s": 4.295856762502808,
+      "latency_p95_s": 4.775656269281171
+    },
+    "blur-2": {
+      "calls": 16,
+      "schema_valid_calls": 16,
+      "processing_failures": 0,
+      "negative_fields": 8,
+      "false_matches": 0,
+      "negative_calls": 8,
+      "false_match_calls": 0,
+      "valid_referral_calls": 1,
+      "valid_referral_fields": 2,
+      "failure_referral_fields": 0,
+      "field_correct": {
+        "brand_name": 16,
+        "class_type": 16,
+        "alcohol_content": 16,
+        "net_contents": 16,
+        "bottler_info": 16,
+        "country_of_origin": 16,
+        "government_warning": 16
+      },
+      "all_fields_correct": 16,
+      "latency_p50_s": 4.213417199032847,
+      "latency_p95_s": 4.94268932248815
+    },
+    "blur-3": {
+      "calls": 16,
+      "schema_valid_calls": 16,
+      "processing_failures": 0,
+      "negative_fields": 8,
+      "false_matches": 0,
+      "negative_calls": 8,
+      "false_match_calls": 0,
+      "valid_referral_calls": 1,
+      "valid_referral_fields": 2,
+      "failure_referral_fields": 0,
+      "field_correct": {
+        "brand_name": 16,
+        "class_type": 16,
+        "alcohol_content": 16,
+        "net_contents": 16,
+        "bottler_info": 16,
+        "country_of_origin": 16,
+        "government_warning": 14
+      },
+      "all_fields_correct": 14,
+      "latency_p50_s": 4.215609680511989,
+      "latency_p95_s": 5.464750570477918
+    },
+    "blur-4": {
+      "calls": 16,
+      "schema_valid_calls": 16,
+      "processing_failures": 0,
+      "negative_fields": 8,
+      "false_matches": 1,
+      "negative_calls": 8,
+      "false_match_calls": 1,
+      "valid_referral_calls": 1,
+      "valid_referral_fields": 2,
+      "failure_referral_fields": 0,
+      "field_correct": {
+        "brand_name": 16,
+        "class_type": 16,
+        "alcohol_content": 16,
+        "net_contents": 16,
+        "bottler_info": 15,
+        "country_of_origin": 16,
+        "government_warning": 13
+      },
+      "all_fields_correct": 13,
+      "latency_p50_s": 4.810184798960108,
+      "latency_p95_s": 7.248681505734567
+    },
+    "blur-5": {
+      "calls": 16,
+      "schema_valid_calls": 16,
+      "processing_failures": 0,
+      "negative_fields": 8,
+      "false_matches": 0,
+      "negative_calls": 8,
+      "false_match_calls": 0,
+      "valid_referral_calls": 4,
+      "valid_referral_fields": 5,
+      "failure_referral_fields": 0,
+      "field_correct": {
+        "brand_name": 16,
+        "class_type": 16,
+        "alcohol_content": 15,
+        "net_contents": 16,
+        "bottler_info": 14,
+        "country_of_origin": 16,
+        "government_warning": 11
+      },
+      "all_fields_correct": 10,
+      "latency_p50_s": 4.22532373748254,
+      "latency_p95_s": 6.303578260791255
+    },
+    "blur-6": {
+      "calls": 16,
+      "schema_valid_calls": 12,
+      "processing_failures": 4,
+      "negative_fields": 8,
+      "false_matches": 0,
+      "negative_calls": 8,
+      "false_match_calls": 0,
+      "valid_referral_calls": 11,
+      "valid_referral_fields": 12,
+      "failure_referral_fields": 28,
+      "field_correct": {
+        "brand_name": 12,
+        "class_type": 12,
+        "alcohol_content": 7,
+        "net_contents": 11,
+        "bottler_info": 6,
+        "country_of_origin": 12,
+        "government_warning": 2
+      },
+      "all_fields_correct": 1,
+      "latency_p50_s": 4.215534367482178,
+      "latency_p95_s": 11.940043580252677
+    },
+    "glare-1": {
+      "calls": 16,
+      "schema_valid_calls": 15,
+      "processing_failures": 1,
+      "negative_fields": 8,
+      "false_matches": 0,
+      "negative_calls": 8,
+      "false_match_calls": 0,
+      "valid_referral_calls": 1,
+      "valid_referral_fields": 2,
+      "failure_referral_fields": 7,
+      "field_correct": {
+        "brand_name": 15,
+        "class_type": 15,
+        "alcohol_content": 15,
+        "net_contents": 15,
+        "bottler_info": 14,
+        "country_of_origin": 15,
+        "government_warning": 14
+      },
+      "all_fields_correct": 13,
+      "latency_p50_s": 4.188121584011242,
+      "latency_p95_s": 13.714109897759045
+    },
+    "glare-2": {
+      "calls": 0,
+      "schema_valid_calls": 0,
+      "processing_failures": 0,
+      "negative_fields": 0,
+      "false_matches": 0,
+      "negative_calls": 0,
+      "false_match_calls": 0,
+      "valid_referral_calls": 0,
+      "valid_referral_fields": 0,
+      "failure_referral_fields": 0,
+      "field_correct": {
+        "brand_name": 0,
+        "class_type": 0,
+        "alcohol_content": 0,
+        "net_contents": 0,
+        "bottler_info": 0,
+        "country_of_origin": 0,
+        "government_warning": 0
+      },
+      "all_fields_correct": 0,
+      "latency_p50_s": null,
+      "latency_p95_s": null
+    },
+    "glare-3": {
+      "calls": 0,
+      "schema_valid_calls": 0,
+      "processing_failures": 0,
+      "negative_fields": 0,
+      "false_matches": 0,
+      "negative_calls": 0,
+      "false_match_calls": 0,
+      "valid_referral_calls": 0,
+      "valid_referral_fields": 0,
+      "failure_referral_fields": 0,
+      "field_correct": {
+        "brand_name": 0,
+        "class_type": 0,
+        "alcohol_content": 0,
+        "net_contents": 0,
+        "bottler_info": 0,
+        "country_of_origin": 0,
+        "government_warning": 0
+      },
+      "all_fields_correct": 0,
+      "latency_p50_s": null,
+      "latency_p95_s": null
+    },
+    "glare-4": {
+      "calls": 0,
+      "schema_valid_calls": 0,
+      "processing_failures": 0,
+      "negative_fields": 0,
+      "false_matches": 0,
+      "negative_calls": 0,
+      "false_match_calls": 0,
+      "valid_referral_calls": 0,
+      "valid_referral_fields": 0,
+      "failure_referral_fields": 0,
+      "field_correct": {
+        "brand_name": 0,
+        "class_type": 0,
+        "alcohol_content": 0,
+        "net_contents": 0,
+        "bottler_info": 0,
+        "country_of_origin": 0,
+        "government_warning": 0
+      },
+      "all_fields_correct": 0,
+      "latency_p50_s": null,
+      "latency_p95_s": null
+    },
+    "glare-5": {
+      "calls": 0,
+      "schema_valid_calls": 0,
+      "processing_failures": 0,
+      "negative_fields": 0,
+      "false_matches": 0,
+      "negative_calls": 0,
+      "false_match_calls": 0,
+      "valid_referral_calls": 0,
+      "valid_referral_fields": 0,
+      "failure_referral_fields": 0,
+      "field_correct": {
+        "brand_name": 0,
+        "class_type": 0,
+        "alcohol_content": 0,
+        "net_contents": 0,
+        "bottler_info": 0,
+        "country_of_origin": 0,
+        "government_warning": 0
+      },
+      "all_fields_correct": 0,
+      "latency_p50_s": null,
+      "latency_p95_s": null
+    }
+  },
+  "costs": {
+    "usage_cost_usd": 0.62071416,
+    "usage_cost_known_calls": 146,
+    "retail_estimate_usd": 0.626984,
+    "tokens_in": 343684,
+    "tokens_out": 56660,
+    "new_liability_usd": 1.53371416,
+    "new_unknown_or_inflight_liability_usd": 0.913,
+    "inherited_current_batch_liability_usd": 9.0629657,
+    "shared_total_liability_usd": 10.59667986,
+    "cap_usd": 50,
+    "all_preexisting_ledger_entries_exactly_preserved": true,
+    "not_invoice": true
+  },
+  "confidence_bins": {
+    "clean|brand_name|0.9-1.0": {
+      "n": 16,
+      "correct": 16
+    },
+    "clean|class_type|0.9-1.0": {
+      "n": 16,
+      "correct": 16
+    },
+    "clean|alcohol_content|0.9-1.0": {
+      "n": 16,
+      "correct": 16
+    },
+    "clean|net_contents|0.9-1.0": {
+      "n": 15,
+      "correct": 15
+    },
+    "clean|bottler_info|0.9-1.0": {
+      "n": 15,
+      "correct": 14
+    },
+    "clean|country_of_origin|0.9-1.0": {
+      "n": 15,
+      "correct": 15
+    },
+    "clean|government_warning|0.9-1.0": {
+      "n": 12,
+      "correct": 12
+    },
+    "clean|government_warning|0.75-<0.9": {
+      "n": 4,
+      "correct": 4
+    },
+    "clean|net_contents|<0.75": {
+      "n": 1,
+      "correct": 1
+    },
+    "clean|bottler_info|<0.75": {
+      "n": 1,
+      "correct": 1
+    },
+    "clean|country_of_origin|<0.75": {
+      "n": 1,
+      "correct": 1
+    },
+    "blur-1|brand_name|0.9-1.0": {
+      "n": 16,
+      "correct": 16
+    },
+    "blur-1|class_type|0.9-1.0": {
+      "n": 16,
+      "correct": 16
+    },
+    "blur-1|alcohol_content|0.9-1.0": {
+      "n": 16,
+      "correct": 16
+    },
+    "blur-1|net_contents|0.9-1.0": {
+      "n": 15,
+      "correct": 15
+    },
+    "blur-1|bottler_info|0.9-1.0": {
+      "n": 15,
+      "correct": 15
+    },
+    "blur-1|country_of_origin|0.9-1.0": {
+      "n": 15,
+      "correct": 15
+    },
+    "blur-1|government_warning|0.9-1.0": {
+      "n": 11,
+      "correct": 11
+    },
+    "blur-1|government_warning|0.75-<0.9": {
+      "n": 5,
+      "correct": 4
+    },
+    "blur-1|net_contents|<0.75": {
+      "n": 1,
+      "correct": 1
+    },
+    "blur-1|bottler_info|<0.75": {
+      "n": 1,
+      "correct": 1
+    },
+    "blur-1|country_of_origin|<0.75": {
+      "n": 1,
+      "correct": 1
+    },
+    "blur-2|brand_name|0.9-1.0": {
+      "n": 16,
+      "correct": 16
+    },
+    "blur-2|class_type|0.9-1.0": {
+      "n": 16,
+      "correct": 16
+    },
+    "blur-2|alcohol_content|0.9-1.0": {
+      "n": 16,
+      "correct": 16
+    },
+    "blur-2|net_contents|0.9-1.0": {
+      "n": 15,
+      "correct": 15
+    },
+    "blur-2|bottler_info|0.9-1.0": {
+      "n": 15,
+      "correct": 15
+    },
+    "blur-2|country_of_origin|0.9-1.0": {
+      "n": 15,
+      "correct": 15
+    },
+    "blur-2|government_warning|0.9-1.0": {
+      "n": 12,
+      "correct": 12
+    },
+    "blur-2|government_warning|0.75-<0.9": {
+      "n": 4,
+      "correct": 4
+    },
+    "blur-2|net_contents|<0.75": {
+      "n": 1,
+      "correct": 1
+    },
+    "blur-2|bottler_info|<0.75": {
+      "n": 1,
+      "correct": 1
+    },
+    "blur-2|country_of_origin|<0.75": {
+      "n": 1,
+      "correct": 1
+    },
+    "blur-3|brand_name|0.9-1.0": {
+      "n": 16,
+      "correct": 16
+    },
+    "blur-3|class_type|0.9-1.0": {
+      "n": 16,
+      "correct": 16
+    },
+    "blur-3|alcohol_content|0.9-1.0": {
+      "n": 16,
+      "correct": 16
+    },
+    "blur-3|net_contents|0.9-1.0": {
+      "n": 15,
+      "correct": 15
+    },
+    "blur-3|bottler_info|0.9-1.0": {
+      "n": 15,
+      "correct": 15
+    },
+    "blur-3|country_of_origin|0.9-1.0": {
+      "n": 15,
+      "correct": 15
+    },
+    "blur-3|government_warning|0.75-<0.9": {
+      "n": 9,
+      "correct": 7
+    },
+    "blur-3|government_warning|0.9-1.0": {
+      "n": 7,
+      "correct": 7
+    },
+    "blur-3|net_contents|<0.75": {
+      "n": 1,
+      "correct": 1
+    },
+    "blur-3|bottler_info|<0.75": {
+      "n": 1,
+      "correct": 1
+    },
+    "blur-3|country_of_origin|<0.75": {
+      "n": 1,
+      "correct": 1
+    },
+    "blur-4|brand_name|0.9-1.0": {
+      "n": 16,
+      "correct": 16
+    },
+    "blur-4|class_type|0.9-1.0": {
+      "n": 16,
+      "correct": 16
+    },
+    "blur-4|alcohol_content|0.9-1.0": {
+      "n": 16,
+      "correct": 16
+    },
+    "blur-4|net_contents|0.9-1.0": {
+      "n": 15,
+      "correct": 15
+    },
+    "blur-4|bottler_info|0.9-1.0": {
+      "n": 15,
+      "correct": 14
+    },
+    "blur-4|country_of_origin|0.9-1.0": {
+      "n": 15,
+      "correct": 15
+    },
+    "blur-4|government_warning|0.75-<0.9": {
+      "n": 16,
+      "correct": 13
+    },
+    "blur-4|net_contents|<0.75": {
+      "n": 1,
+      "correct": 1
+    },
+    "blur-4|bottler_info|<0.75": {
+      "n": 1,
+      "correct": 1
+    },
+    "blur-4|country_of_origin|<0.75": {
+      "n": 1,
+      "correct": 1
+    },
+    "blur-5|brand_name|0.9-1.0": {
+      "n": 16,
+      "correct": 16
+    },
+    "blur-5|class_type|0.9-1.0": {
+      "n": 16,
+      "correct": 16
+    },
+    "blur-5|alcohol_content|0.9-1.0": {
+      "n": 16,
+      "correct": 15
+    },
+    "blur-5|net_contents|0.9-1.0": {
+      "n": 15,
+      "correct": 15
+    },
+    "blur-5|bottler_info|0.9-1.0": {
+      "n": 10,
+      "correct": 10
+    },
+    "blur-5|country_of_origin|0.9-1.0": {
+      "n": 12,
+      "correct": 12
+    },
+    "blur-5|government_warning|0.75-<0.9": {
+      "n": 12,
+      "correct": 9
+    },
+    "blur-5|bottler_info|0.75-<0.9": {
+      "n": 5,
+      "correct": 3
+    },
+    "blur-5|government_warning|<0.75": {
+      "n": 3,
+      "correct": 1
+    },
+    "blur-5|country_of_origin|<0.75": {
+      "n": 4,
+      "correct": 4
+    },
+    "blur-5|net_contents|<0.75": {
+      "n": 1,
+      "correct": 1
+    },
+    "blur-5|bottler_info|<0.75": {
+      "n": 1,
+      "correct": 1
+    },
+    "blur-5|government_warning|0.9-1.0": {
+      "n": 1,
+      "correct": 1
+    },
+    "blur-6|brand_name|0.9-1.0": {
+      "n": 12,
+      "correct": 12
+    },
+    "blur-6|class_type|0.9-1.0": {
+      "n": 12,
+      "correct": 12
+    },
+    "blur-6|alcohol_content|0.9-1.0": {
+      "n": 12,
+      "correct": 7
+    },
+    "blur-6|net_contents|0.9-1.0": {
+      "n": 11,
+      "correct": 10
+    },
+    "blur-6|bottler_info|0.75-<0.9": {
+      "n": 8,
+      "correct": 3
+    },
+    "blur-6|country_of_origin|0.9-1.0": {
+      "n": 10,
+      "correct": 10
+    },
+    "blur-6|government_warning|<0.75": {
+      "n": 8,
+      "correct": 0
+    },
+    "blur-6|government_warning|0.9-1.0": {
+      "n": 2,
+      "correct": 0
+    },
+    "blur-6|bottler_info|0.9-1.0": {
+      "n": 3,
+      "correct": 2
+    },
+    "blur-6|government_warning|0.75-<0.9": {
+      "n": 2,
+      "correct": 2
+    },
+    "blur-6|net_contents|<0.75": {
+      "n": 1,
+      "correct": 1
+    },
+    "blur-6|bottler_info|<0.75": {
+      "n": 1,
+      "correct": 1
+    },
+    "blur-6|country_of_origin|<0.75": {
+      "n": 2,
+      "correct": 2
+    },
+    "glare-1|brand_name|0.9-1.0": {
+      "n": 15,
+      "correct": 15
+    },
+    "glare-1|class_type|0.9-1.0": {
+      "n": 15,
+      "correct": 15
+    },
+    "glare-1|alcohol_content|0.9-1.0": {
+      "n": 15,
+      "correct": 15
+    },
+    "glare-1|net_contents|0.9-1.0": {
+      "n": 14,
+      "correct": 14
+    },
+    "glare-1|bottler_info|0.9-1.0": {
+      "n": 14,
+      "correct": 13
+    },
+    "glare-1|country_of_origin|0.9-1.0": {
+      "n": 13,
+      "correct": 13
+    },
+    "glare-1|government_warning|0.9-1.0": {
+      "n": 10,
+      "correct": 10
+    },
+    "glare-1|government_warning|0.75-<0.9": {
+      "n": 5,
+      "correct": 4
+    },
+    "glare-1|net_contents|<0.75": {
+      "n": 1,
+      "correct": 1
+    },
+    "glare-1|bottler_info|<0.75": {
+      "n": 1,
+      "correct": 1
+    },
+    "glare-1|country_of_origin|<0.75": {
+      "n": 2,
+      "correct": 2
+    },
+    "straight|brand_name|0.9-1.0": {
+      "n": 18,
+      "correct": 18
+    },
+    "straight|class_type|0.9-1.0": {
+      "n": 18,
+      "correct": 18
+    },
+    "straight|alcohol_content|0.9-1.0": {
+      "n": 18,
+      "correct": 18
+    },
+    "straight|net_contents|0.9-1.0": {
+      "n": 17,
+      "correct": 17
+    },
+    "straight|bottler_info|0.9-1.0": {
+      "n": 17,
+      "correct": 16
+    },
+    "straight|country_of_origin|0.9-1.0": {
+      "n": 17,
+      "correct": 17
+    },
+    "straight|government_warning|0.9-1.0": {
+      "n": 13,
+      "correct": 13
+    },
+    "straight|government_warning|0.75-<0.9": {
+      "n": 5,
+      "correct": 5
+    },
+    "straight|net_contents|<0.75": {
+      "n": 1,
+      "correct": 1
+    },
+    "straight|bottler_info|<0.75": {
+      "n": 1,
+      "correct": 1
+    },
+    "straight|country_of_origin|<0.75": {
+      "n": 1,
+      "correct": 1
+    },
+    "angle|brand_name|0.9-1.0": {
+      "n": 18,
+      "correct": 18
+    },
+    "angle|class_type|0.9-1.0": {
+      "n": 18,
+      "correct": 18
+    },
+    "angle|alcohol_content|0.9-1.0": {
+      "n": 18,
+      "correct": 18
+    },
+    "angle|net_contents|0.9-1.0": {
+      "n": 17,
+      "correct": 17
+    },
+    "angle|bottler_info|0.9-1.0": {
+      "n": 17,
+      "correct": 17
+    },
+    "angle|country_of_origin|0.9-1.0": {
+      "n": 17,
+      "correct": 17
+    },
+    "angle|government_warning|0.9-1.0": {
+      "n": 13,
+      "correct": 13
+    },
+    "angle|government_warning|0.75-<0.9": {
+      "n": 5,
+      "correct": 5
+    },
+    "angle|net_contents|<0.75": {
+      "n": 1,
+      "correct": 1
+    },
+    "angle|bottler_info|<0.75": {
+      "n": 1,
+      "correct": 1
+    },
+    "angle|country_of_origin|<0.75": {
+      "n": 1,
+      "correct": 1
+    }
+  },
+  "historical_flat_context": {
+    "calls": 54,
+    "schema_valid_calls": 54,
+    "processing_failures": 0,
+    "negative_fields": 24,
+    "false_matches": 0,
+    "negative_calls": 24,
+    "false_match_calls": 0,
+    "valid_referral_calls": 3,
+    "valid_referral_fields": 6,
+    "failure_referral_fields": 0,
+    "field_correct": {
+      "brand_name": 54,
+      "class_type": 54,
+      "alcohol_content": 54,
+      "net_contents": 54,
+      "bottler_info": 54,
+      "country_of_origin": 54,
+      "government_warning": 54
+    },
+    "all_fields_correct": 54,
+    "latency_p50_s": 4.00065,
+    "latency_p95_s": 4.342255
+  },
+  "historical_evidence_sha256": "1b7fa04ba503de42ece3bcc382232fe2f5ccc19435f365eaf48ab9ce01efbcc0",
+  "paired_flat_bottle": [
+    {
+      "fixture_id": "C-SPIRITS-01",
+      "condition": "straight",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 4.1328,
+      "new_latency_s": 4.37755728897173
+    },
+    {
+      "fixture_id": "C-WINE-01",
+      "condition": "straight",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 4.0634,
+      "new_latency_s": 3.9278070899890736
+    },
+    {
+      "fixture_id": "C-MALT-01",
+      "condition": "straight",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 3.9154,
+      "new_latency_s": 3.9872493889415637
+    },
+    {
+      "fixture_id": "C-SPIRITS-IMPORT-01",
+      "condition": "straight",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 4.2049,
+      "new_latency_s": 4.734234477975406
+    },
+    {
+      "fixture_id": "A-WARN-TITLECASE-01",
+      "condition": "straight",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 3.9464,
+      "new_latency_s": 4.2937593860551715
+    },
+    {
+      "fixture_id": "A-WARN-BOLDBODY-01",
+      "condition": "straight",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 3.9272,
+      "new_latency_s": 3.9154799089301378
+    },
+    {
+      "fixture_id": "A-BRAND-CASE-01",
+      "condition": "straight",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 4.1346,
+      "new_latency_s": 4.339715727022849
+    },
+    {
+      "fixture_id": "A-ABV-WRONG-01",
+      "condition": "straight",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 6,
+      "fields": 7,
+      "historical_latency_s": 3.8201,
+      "new_latency_s": 4.191979072988033
+    },
+    {
+      "fixture_id": "A-FIELD-MISSING-01",
+      "condition": "straight",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 3.7362,
+      "new_latency_s": 3.6554217310622334
+    },
+    {
+      "fixture_id": "A-INJECT-PROMPT-01",
+      "condition": "straight",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 3.8816,
+      "new_latency_s": 3.837873528013006
+    },
+    {
+      "fixture_id": "W-BRAND-WRONG-01",
+      "condition": "straight",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 3.9267,
+      "new_latency_s": 4.382063990924507
+    },
+    {
+      "fixture_id": "W-ABV-4045-01",
+      "condition": "straight",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 4.2316,
+      "new_latency_s": 4.651420148904435
+    },
+    {
+      "fixture_id": "W-NETCONTENTS-WRONG-01",
+      "condition": "straight",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 3.9545,
+      "new_latency_s": 4.378870056010783
+    },
+    {
+      "fixture_id": "W-WARN-REWORD-01",
+      "condition": "straight",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 3.9104,
+      "new_latency_s": 4.081424414063804
+    },
+    {
+      "fixture_id": "W-BRAND-SPLITLINE-01",
+      "condition": "straight",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 3.9915,
+      "new_latency_s": 3.9581835799617693
+    },
+    {
+      "fixture_id": "D-BLUR-01",
+      "condition": "straight",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 4.2691,
+      "new_latency_s": 4.528548419009894
+    },
+    {
+      "fixture_id": "D-WARP-01",
+      "condition": "straight",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 4.609,
+      "new_latency_s": 4.604806501069106
+    },
+    {
+      "fixture_id": "D-GLARE-01",
+      "condition": "straight",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 4.2165,
+      "new_latency_s": 4.206547046080232
+    },
+    {
+      "fixture_id": "C-SPIRITS-01",
+      "condition": "angle",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 4.1328,
+      "new_latency_s": 4.605849502026103
+    },
+    {
+      "fixture_id": "C-WINE-01",
+      "condition": "angle",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 4.0634,
+      "new_latency_s": 4.110952039016411
+    },
+    {
+      "fixture_id": "C-MALT-01",
+      "condition": "angle",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 3.9154,
+      "new_latency_s": 4.32569279090967
+    },
+    {
+      "fixture_id": "C-SPIRITS-IMPORT-01",
+      "condition": "angle",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 4.2049,
+      "new_latency_s": 5.126859533949755
+    },
+    {
+      "fixture_id": "A-WARN-TITLECASE-01",
+      "condition": "angle",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 3.9464,
+      "new_latency_s": 4.446150169940665
+    },
+    {
+      "fixture_id": "A-WARN-BOLDBODY-01",
+      "condition": "angle",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 3.9272,
+      "new_latency_s": 4.1064801450120285
+    },
+    {
+      "fixture_id": "A-BRAND-CASE-01",
+      "condition": "angle",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 4.1346,
+      "new_latency_s": 4.527401408995502
+    },
+    {
+      "fixture_id": "A-ABV-WRONG-01",
+      "condition": "angle",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 3.8201,
+      "new_latency_s": 4.744246065965854
+    },
+    {
+      "fixture_id": "A-FIELD-MISSING-01",
+      "condition": "angle",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 3.7362,
+      "new_latency_s": 4.057349246926606
+    },
+    {
+      "fixture_id": "A-INJECT-PROMPT-01",
+      "condition": "angle",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 3.8816,
+      "new_latency_s": 4.120538628078066
+    },
+    {
+      "fixture_id": "W-BRAND-WRONG-01",
+      "condition": "angle",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 3.9267,
+      "new_latency_s": 4.049955077003688
+    },
+    {
+      "fixture_id": "W-ABV-4045-01",
+      "condition": "angle",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 4.2316,
+      "new_latency_s": 4.580228967010044
+    },
+    {
+      "fixture_id": "W-NETCONTENTS-WRONG-01",
+      "condition": "angle",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 3.9545,
+      "new_latency_s": 4.280709242913872
+    },
+    {
+      "fixture_id": "W-WARN-REWORD-01",
+      "condition": "angle",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 3.9104,
+      "new_latency_s": 4.273234913009219
+    },
+    {
+      "fixture_id": "W-BRAND-SPLITLINE-01",
+      "condition": "angle",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 3.9915,
+      "new_latency_s": 4.4386975259985775
+    },
+    {
+      "fixture_id": "D-BLUR-01",
+      "condition": "angle",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 4.2691,
+      "new_latency_s": 4.23183899698779
+    },
+    {
+      "fixture_id": "D-WARP-01",
+      "condition": "angle",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 4.609,
+      "new_latency_s": 4.747540226904675
+    },
+    {
+      "fixture_id": "D-GLARE-01",
+      "condition": "angle",
+      "historical_flat_correct": 7,
+      "new_bottle_correct": 7,
+      "fields": 7,
+      "historical_latency_s": 4.2165,
+      "new_latency_s": 4.359537882031873
+    }
+  ],
+  "limitations": [
+    "Synthetic controlled renders, not universal photo accuracy or confidence thresholds.",
+    "No calibrated threshold or held-out evaluation completed; hold out source labels, never sibling transforms.",
+    "Per-condition denominators dedupe identical bytes; the same observation can serve clean and straight with explicit provenance. Do not sum conditions as independent paid calls.",
+    "OpenRouter -> Anthropic only. Results do NOT establish Azure tenant availability, hosting, network compliance or latency.",
+    "Latency is nonstreaming request-to-complete, not TTFT or UI latency.",
+    "Visibility is pre-inference representative native QA plus explicitly labelled unreviewed fields, not exhaustive human character inspection."
+  ]
+}

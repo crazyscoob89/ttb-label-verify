@@ -1,0 +1,17 @@
+test_identity_provider_separation (__main__.Tests.test_identity_provider_separation) ... ok
+test_inherited_cap_unknown_and_dedupe (__main__.Tests.test_inherited_cap_unknown_and_dedupe) ... ok
+test_ocr_meter_not_free_or_double_counted (__main__.Tests.test_ocr_meter_not_free_or_double_counted) ... ok
+test_payload_routes_and_failed_attempt_once (__main__.Tests.test_payload_routes_and_failed_attempt_once) ... {"id": "azure-foundry--gpt-5-mini--4f356154494dd5a3c4a54c1f784eed546b457141777c0924a25fcde81702c96a", "model": "gpt-5-mini", "condition": "clean", "ok": false, "seconds": 0.008048907038755715, "error": "http-502", "cost_usd": null, "shared_liability_usd": 0.2949584}
+{"id": "azure-foundry--gpt-4.1-mini--90a38d8deb0436bd0984e993660ea1927fa3ac9be56b38060abac4b0e605ad40", "model": "gpt-4.1-mini", "condition": "clean", "ok": false, "seconds": 0.007881196914240718, "error": "http-502", "cost_usd": null, "shared_liability_usd": 0.46665344}
+{"id": "azure-foundry--Mistral-Large-3--2783155a158f613e0910e5aa7ce0f9edc64d28bbee3bf86f744ef9feb851d4c8", "model": "Mistral-Large-3", "condition": "clean", "ok": false, "seconds": 0.006559612927958369, "error": "http-502", "cost_usd": null, "shared_liability_usd": 0.5816668}
+{"id": "azure-foundry--grok-4-1-fast-non-reasoning--2846ec20921d821126321ef727542345c154dcccdae1325f9ab9952ff9f96574", "model": "grok-4-1-fast-non-reasoning", "condition": "clean", "ok": false, "seconds": 0.007388164987787604, "error": "http-502", "cost_usd": null, "shared_liability_usd": 0.23233672}
+{"id": "azure-foundry--Kimi-K2.6--c64c8d65ffaf4ea6800197646a9072bed5551236f69e8b4fc06810bcdd2d2a55", "model": "Kimi-K2.6", "condition": "clean", "ok": false, "seconds": 0.007764589041471481, "error": "http-502", "cost_usd": null, "shared_liability_usd": 1.10896192}
+{"id": "azure-foundry--mistral-document-ai-2512--aea37839286e5d9b775032c3344010be0d9a2038d5659580d29fa59d5328ae47", "model": "mistral-document-ai-2512", "condition": "clean", "ok": false, "seconds": 0.007078245049342513, "error": "http-502", "cost_usd": null, "shared_liability_usd": 0.05}
+ok
+test_queue_and_approved_hashes (__main__.Tests.test_queue_and_approved_hashes) ... ok
+test_report_failure_denominator (__main__.Tests.test_report_failure_denominator) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 29.831s
+
+OK

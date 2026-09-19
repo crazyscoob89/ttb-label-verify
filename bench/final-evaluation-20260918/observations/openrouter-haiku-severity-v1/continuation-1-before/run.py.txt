@@ -1,0 +1,87 @@
+"""Bounded paid owner. Never retry an attempted identity, even after a crash."""
+import sys
+sys.dont_write_bytecode=True
+import argparse,collections,fcntl,json,os,signal,sqlite3,subprocess,traceback
+from pathlib import Path
+import adapter as A
+from report import report
+B=A.B;D=A.D
+load=lambda p:json.loads(Path(p).read_text())
+SIGNAL_STOP=False
+def on_signal(*_):
+ global SIGNAL_STOP
+ SIGNAL_STOP=True
+
+def active_stops(root,archived):
+ allow={r['path']:r['sha256'] for r in archived}
+ return [{'path':str(p),'text':p.read_text(errors='replace')} for p in Path(root).rglob('*STOP*') if p.is_file() and allow.get(str(p))!=A.sha(p)]
+
+def main():
+ ap=argparse.ArgumentParser();ap.add_argument('--run',action='store_true');a=ap.parse_args()
+ if not a.run:print('Use --run for authorized bounded inference; report.py is offline progress.');return
+ lock=open(B/'run.lock','a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+ for sig in [signal.SIGTERM,signal.SIGINT]:signal.signal(sig,on_signal)
+ add=load(D/'authorization-addendum.json');assert add['authorized'] and add['model']==A.MODEL
+ auth=load(B/'budget-authorization.json');assert auth['total_cap_usd']==50
+ assert any(x['path']=='openrouter-haiku-severity-v1/authorization-addendum.json' and x['sha256']==A.sha(D/'authorization-addendum.json') for x in auth['execution_addenda'])
+ freeze=load(D/'freeze.json');assert all(A.sha(p)==h for p,h in freeze['hashes'].items()),'Frozen artifact changed'
+ stops=active_stops(B,add['stops_reviewed']);assert not stops,stops
+ qa=load(D/'visibility.json');assert qa['pre_inference'] and qa['representative_native_qa_pass']
+ metadata=load(D/'model-metadata.json');assert metadata['id']==A.MODEL and 'image' in metadata['architecture']['input_modalities']
+ endpoints=load(D/'model-endpoints.raw.json')['data']['endpoints'];ep=next(x for x in endpoints if x['provider_name']=='Anthropic')
+ assert ep['context_length']==metadata['context_length'] and ep['pricing']['prompt']==metadata['pricing']['prompt'] and ep['pricing']['completion']==metadata['pricing']['completion']
+ assert ep['max_completion_tokens']>=A.MAX_OUTPUT and 'response_format' in ep['supported_parameters']
+ metadata=dict(metadata,pricing=ep['pricing'])
+ # Preflight re-runs truly offline tests with network denied inside every test.
+ test=subprocess.run([sys.executable,'-B',str(D/'test_offline.py')],capture_output=True,text=True)
+ (D/'runner-offline-tests.log').write_text(test.stdout+test.stderr);assert test.returncode==0,'Offline tests failed'
+ before=load(D/'ledger-before.json');ledger=B/'recovery-v3/budget.sqlite';assert ledger.is_file()
+ budget=A.SharedBudget(ledger,auth['total_cap_usd']);entries={r['id']:r for r in budget.entries()}
+ for r in before['entries']:
+  assert entries[r['id']]['status']==r['status'] and round(entries[r['id']]['guard_usd']*1e9)==r['nano'],'Prior liability changed'
+ manifest=load(D/'manifest.json');fs=manifest['fixtures']
+ for f in fs:
+  assert A.approved(f['condition']) and A.sha(f['image'])==f['sha256']
+  assert A.sha(f['original_truth_path'])==f['original_truth_sha256']
+ conditions=['clean','straight','angle']+[f'blur-{i}' for i in range(1,7)]+[f'glare-{i}' for i in range(1,6)]
+ queue=[];seen=set();aliases=collections.defaultdict(list)
+ for f in sorted(fs,key=lambda f:(conditions.index(f['condition']),f['source_fixture'])):
+  ident=A.identity(f['sha256'],A.prompt_hash());aliases[ident].append(f['id'])
+  if ident not in seen:queue.append(f);seen.add(ident)
+ assert len(queue)==manifest['unique_image_bytes']
+ plan={'utc':A.now(),'pid':os.getpid(),'unique_calls':len(queue),'logical_images':len(fs),'aliases':dict(aliases),'queue':[f['id'] for f in queue],'prompt_settings_sha256':A.prompt_hash(),'system_prompt_sha256':__import__('hashlib').sha256(A.H.E.SYSTEM_PROMPT.encode()).hexdigest(),'user_prompt_sha256':__import__('hashlib').sha256(A.H.E.USER_PROMPT.encode()).hexdigest(),'route':A.URL,'model':A.MODEL,'provider_policy':A.payload(b'')['provider'],'input_bound_tokens':metadata['context_length'],'output_bound_tokens':A.MAX_OUTPUT,'reservation_usd':A.reservation(metadata),'reservation_basis':'Full documented context charged at highest input/cache-write rate plus full 3000 output tokens, multiplied by 1.10. No caching/tools/search requested. Known usage.cost settles; missing cost never releases reserve.','pricing':metadata['pricing'],'shared_ledger':str(ledger),'lock':str(B/'run.lock'),'starting_liability_usd':budget.total(),'total_cap_usd':auth['total_cap_usd'],'historical_raw_sha256':A.H.R.RAW_SHA256,'processes':subprocess.check_output(['ps','-eo','pid,ppid,args'],text=True),'no_automatic_retries':True}
+ if not (D/'execution-plan.json').exists():A.save(D/'execution-plan.json',plan)
+ else:A.save(D/('resume-preflight-'+str(os.getpid())+'.json'),plan)
+ env=A.H.E.load_env('/opt/data/.env');key=os.environ.get('OPENROUTER_API_KEY') or env.get('OPENROUTER_API_KEY');assert key,'Missing credential'
+ state={'status':'running','pid':os.getpid(),'started_utc':A.now(),'terminal':False,'unique_planned':len(queue),'reason':None}
+ A.save(D/'execution-state.json',state)
+ reason='queue-complete';failures=sum(load(p).get('http_status')!=200 for p in (D/'rows').glob('*.json'))
+ try:
+  for f in queue:
+   if SIGNAL_STOP:reason='signal-stop';break
+   stops=active_stops(B,add['stops_reviewed'])
+   if stops:reason='stop-file';state['stops']=stops;break
+   if any(A.sha(p)!=h for p,h in freeze['hashes'].items() if '/images/' not in p):reason='frozen-config-drift';break
+   if failures>=2:reason='two-transport-failures';break
+   ident=A.identity(f['sha256'],A.prompt_hash())
+   if any(e['id']==ident for e in budget.entries()):continue
+   if (D/'attempts'/(ident+'.json')).exists():continue
+   if budget.total()+A.reservation(metadata)>auth['total_cap_usd']:reason='budget-cap';break
+   assert A.sha(f['image'])==f['sha256']
+   state['current_fixture']=f['id'];state['updated_utc']=A.now();A.save(D/'execution-state.json',state)
+   row=A.one(f['image'],f,key,budget,D,metadata)
+   if row is None:reason='dedupe-or-budget-race';break
+   if row.get('http_status')!=200:failures+=1
+   if row.get('returned_provider') not in (None,'Anthropic') or row.get('returned_model') not in (None,A.MODEL,'anthropic/claude-haiku-4.5-20251001','claude-haiku-4-5-20251001'):
+    reason='unexpected-returned-route-model';break
+   report()
+ except Exception as e:
+  reason='runner-exception';state['error']=str(e).replace(key,'[REDACTED]');state['traceback']=traceback.format_exc().replace(key,'[REDACTED]')
+ finally:
+  existing={e['id'] for e in budget.entries()};saved={p.stem for p in (D/'rows').glob('*.json')}
+  pending=[A.identity(f['sha256'],A.prompt_hash()) for f in queue if A.identity(f['sha256'],A.prompt_hash()) not in saved]
+  state.update(status='complete' if reason=='queue-complete' and not pending else 'bounded-stop',terminal=True,reason=reason,finished_utc=A.now(),saved_unique_rows=len(saved),unscored_unique_images=len(pending),attempted_unscored=[i for i in pending if i in existing],shared_liability_usd=budget.total())
+  A.save(D/'execution-state.json',state);report()
+  A.save(D/'artifact-hashes.json',{str(p.relative_to(D)):A.sha(p) for p in D.rglob('*') if p.is_file() and p.name not in ['artifact-hashes.json','execution.log']})
+  print('RUN TERMINAL '+json.dumps(state),flush=True)
+if __name__=='__main__':main()

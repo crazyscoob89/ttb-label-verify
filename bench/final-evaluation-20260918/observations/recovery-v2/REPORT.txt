@@ -1,0 +1,39 @@
+OFFLINE RECOVERY / NO PAID CALLS / NO NETWORK
+Ownership: AVA execution, ARGUS QA. Human cap $10; paid execution disabled.
+Persisted records rescored: 515 = AVA 245 + ARGUS 108 + historical 162. AVA response bodies: 243.
+ARGUS additional log-only completions: 99; rounded cumulative estimate $0.1853; no extraction/usage bodies recovered.
+AVA estimate $0.58834265; ARGUS saved rows $0.135582; ARGUS observed probe usage $0.00068415.
+Combined Foundry observed estimate incl log-only $0.90990880, PLUS unknown charges. Earlier AVA smoke and historical spend itemized separately in JSON.
+AVA ledger: 248 attempted, 3 interrupted/reserved; 2 HTTP429. Guard $6.4538618 is NOT spend.
+Tentative missing inventory: AVA-only 76; cross-operator known-unattempted 52 (includes log-only exclusions). Human execution approval remains in force; paid dispatch is held pending spend/attempt reconciliation.
+
+SCORING: strict schema gate + frozen 4039ccc deterministic replay; no repairs. FM denominator is negative field outcomes. Clean auto = entire clean call correct with no referrals.
+operator | model | calls/ok | latency median/p95 seconds | extraction correct/fields | false matches/negative | referrals | clean auto/calls
+ARGUS | Mistral-Large-3 | 54/54 | 8.275/20.795 | 370/378 | 3/24 | 6 | 12/12
+ARGUS | grok-4-1-fast-non-reasoning | 54/51 | 5.036/6.067 | 313/378 | 0/24 | 27 | 0/12
+AVA | Kimi-K2.6 | 23/23 | 14.663/27.968 | 161/161 | 0/12 | 2 | 4/4
+AVA | Mistral-Large-3 | 44/44 | 7.402/15.906 | 303/308 | 2/22 | 4 | 9/9
+AVA | gpt-4.1-mini | 54/51 | 5.218/6.436 | 357/378 | 0/24 | 27 | 10/12
+AVA | gpt-5-mini | 35/35 | 10.363/15.849 | 244/245 | 1/16 | 5 | 7/7
+AVA | grok-4-1-fast-non-reasoning | 54/46 | 4.845/7.088 | 276/378 | 0/24 | 62 | 2/12
+AVA | mistral-document-ai-2512 | 35/33 | 3.831/4.680 | 223/245 | 2/16 | 18 | 6/7
+historical | anthropic/claude-haiku-4.5 | 54/54 | 4.001/4.342 | 378/378 | 0/24 | 6 | 12/12
+historical | anthropic/claude-sonnet-4.5 | 54/53 | 5.698/6.459 | 368/378 | 3/24 | 13 | 12/12
+historical | gpt-5-mini | 54/54 | 11.649/15.687 | 376/378 | 2/24 | 7 | 12/12
+
+LOG-ONLY LATENCY (rounded source seconds, no scoring):
+ARGUS gpt-4.1-mini: 54 calls; median 5.250s, p95 6.535s
+ARGUS gpt-5-mini: 45 calls; median 12.300s, p95 13.780s
+
+BLOCKERS / CAVEATS
+99 log-only completions have no saved extraction or exact usage: cannot rescore or verify exact cost.
+ARGUS cancelled/in-flight tail lacks a durable dispatch ledger: additional attempts/charges cannot be bounded; missing queues remain tentative and disabled.
+Provider invoice/account-wide costs unverified; all unknown charges retained.
+No bottle inference evidence in this recovered set; flat-label coverage is not bottle evaluation.
+Historical Claude Haiku/Sonnet: OpenRouter -> Anthropic; historical GPT-5 mini: direct OpenAI Responses API. New calls are Azure Foundry, not interchangeable routes.
+Operator groups remain separate; repetitions/overlaps are not new unique-image coverage.
+Latency is full nonstreaming request duration, not TTFT or UI end-to-end; host, concurrency and transport confound comparisons.
+OCR is a separate adapted-schema track.
+Strict adapter-level revalidation can differ from original saved historical/ARGUS verdict caches; original evidence untouched.
+Existing tests: see tests-existing.json; no full suite rerun. Prior detached hardened-suite and initial bottle environment failures are preserved, alongside passing source suite and asset-venv rerun.
+Generated: reconcile.py, reconciliation.json, rescored-records.json, resume-plan.json, REPORT.txt. Original source/evidence files unchanged.

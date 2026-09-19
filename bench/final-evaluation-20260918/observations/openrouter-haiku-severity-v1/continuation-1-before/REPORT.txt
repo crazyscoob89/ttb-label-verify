@@ -1,0 +1,173 @@
+CLAUDE HAIKU 4.5 — OPENROUTER SYNTHETIC BOTTLE SEVERITY
+State: bounded-stop; saved unique request rows 148/212; scored logical aliases 180/252.
+Generated UTC: 2026-09-18T19:06:57.826097+00:00
+
+Costs (do not add estimates to observed cost):
+{
+  "usage_cost_usd": 0.62071416,
+  "usage_cost_known_calls": 146,
+  "retail_estimate_usd": 0.626984,
+  "tokens_in": 343684,
+  "tokens_out": 56660,
+  "new_liability_usd": 1.53371416,
+  "new_unknown_or_inflight_liability_usd": 0.913,
+  "inherited_current_batch_liability_usd": 9.0629657,
+  "shared_total_liability_usd": 10.59667986,
+  "cap_usd": 50,
+  "all_preexisting_ledger_entries_exactly_preserved": true,
+  "not_invoice": true
+}
+
+Primary per-condition results (byte-unique denominator; every failed row retained):
+condition | calls | correct fields/all | false matches/negative fields | valid referral calls | processing failures | p50/p95 seconds
+clean | 16 | 111/112 | 0/8 | 1 | 0 | 4.242869229521602/4.672123731172178
+straight | 18 | 125/126 | 0/8 | 1 | 0 | 4.250153216067702/4.663842298265081
+angle | 18 | 126/126 | 0/8 | 1 | 0 | 4.342615336470772/4.804438122961437
+blur-1 | 16 | 111/112 | 0/8 | 1 | 0 | 4.295856762502808/4.775656269281171
+blur-2 | 16 | 112/112 | 0/8 | 1 | 0 | 4.213417199032847/4.94268932248815
+blur-3 | 16 | 110/112 | 0/8 | 1 | 0 | 4.215609680511989/5.464750570477918
+blur-4 | 16 | 108/112 | 1/8 | 1 | 0 | 4.810184798960108/7.248681505734567
+blur-5 | 16 | 104/112 | 0/8 | 4 | 0 | 4.22532373748254/6.303578260791255
+blur-6 | 16 | 62/112 | 0/8 | 11 | 4 | 4.215534367482178/11.940043580252677
+glare-1 | 16 | 103/112 | 0/8 | 1 | 1 | 4.188121584011242/13.714109897759045
+glare-2 | 0 | 0/0 | 0/0 | 0 | 0 | None/None
+glare-3 | 0 | 0/0 | 0/0 | 0 | 0 | None/None
+glare-4 | 0 | 0/0 | 0/0 | 0 | 0 | None/None
+glare-5 | 0 | 0/0 | 0/0 | 0 | 0 | None/None
+
+Per-field normalized extraction correctness (including correctly absent nulls; failures incorrect):
+condition | field | correct/all
+clean | brand_name | 16/16
+clean | class_type | 16/16
+clean | alcohol_content | 16/16
+clean | net_contents | 16/16
+clean | bottler_info | 15/16
+clean | country_of_origin | 16/16
+clean | government_warning | 16/16
+straight | brand_name | 18/18
+straight | class_type | 18/18
+straight | alcohol_content | 18/18
+straight | net_contents | 18/18
+straight | bottler_info | 17/18
+straight | country_of_origin | 18/18
+straight | government_warning | 18/18
+angle | brand_name | 18/18
+angle | class_type | 18/18
+angle | alcohol_content | 18/18
+angle | net_contents | 18/18
+angle | bottler_info | 18/18
+angle | country_of_origin | 18/18
+angle | government_warning | 18/18
+blur-1 | brand_name | 16/16
+blur-1 | class_type | 16/16
+blur-1 | alcohol_content | 16/16
+blur-1 | net_contents | 16/16
+blur-1 | bottler_info | 16/16
+blur-1 | country_of_origin | 16/16
+blur-1 | government_warning | 15/16
+blur-2 | brand_name | 16/16
+blur-2 | class_type | 16/16
+blur-2 | alcohol_content | 16/16
+blur-2 | net_contents | 16/16
+blur-2 | bottler_info | 16/16
+blur-2 | country_of_origin | 16/16
+blur-2 | government_warning | 16/16
+blur-3 | brand_name | 16/16
+blur-3 | class_type | 16/16
+blur-3 | alcohol_content | 16/16
+blur-3 | net_contents | 16/16
+blur-3 | bottler_info | 16/16
+blur-3 | country_of_origin | 16/16
+blur-3 | government_warning | 14/16
+blur-4 | brand_name | 16/16
+blur-4 | class_type | 16/16
+blur-4 | alcohol_content | 16/16
+blur-4 | net_contents | 16/16
+blur-4 | bottler_info | 15/16
+blur-4 | country_of_origin | 16/16
+blur-4 | government_warning | 13/16
+blur-5 | brand_name | 16/16
+blur-5 | class_type | 16/16
+blur-5 | alcohol_content | 15/16
+blur-5 | net_contents | 16/16
+blur-5 | bottler_info | 14/16
+blur-5 | country_of_origin | 16/16
+blur-5 | government_warning | 11/16
+blur-6 | brand_name | 12/16
+blur-6 | class_type | 12/16
+blur-6 | alcohol_content | 7/16
+blur-6 | net_contents | 11/16
+blur-6 | bottler_info | 6/16
+blur-6 | country_of_origin | 12/16
+blur-6 | government_warning | 2/16
+glare-1 | brand_name | 15/16
+glare-1 | class_type | 15/16
+glare-1 | alcohol_content | 15/16
+glare-1 | net_contents | 15/16
+glare-1 | bottler_info | 14/16
+glare-1 | country_of_origin | 15/16
+glare-1 | government_warning | 14/16
+glare-2 | brand_name | 0/0
+glare-2 | class_type | 0/0
+glare-2 | alcohol_content | 0/0
+glare-2 | net_contents | 0/0
+glare-2 | bottler_info | 0/0
+glare-2 | country_of_origin | 0/0
+glare-2 | government_warning | 0/0
+glare-3 | brand_name | 0/0
+glare-3 | class_type | 0/0
+glare-3 | alcohol_content | 0/0
+glare-3 | net_contents | 0/0
+glare-3 | bottler_info | 0/0
+glare-3 | country_of_origin | 0/0
+glare-3 | government_warning | 0/0
+glare-4 | brand_name | 0/0
+glare-4 | class_type | 0/0
+glare-4 | alcohol_content | 0/0
+glare-4 | net_contents | 0/0
+glare-4 | bottler_info | 0/0
+glare-4 | country_of_origin | 0/0
+glare-4 | government_warning | 0/0
+glare-5 | brand_name | 0/0
+glare-5 | class_type | 0/0
+glare-5 | alcohol_content | 0/0
+glare-5 | net_contents | 0/0
+glare-5 | bottler_info | 0/0
+glare-5 | country_of_origin | 0/0
+glare-5 | government_warning | 0/0
+
+Historical context (original frozen flat observations; no reruns):
+{
+  "calls": 54,
+  "schema_valid_calls": 54,
+  "processing_failures": 0,
+  "negative_fields": 24,
+  "false_matches": 0,
+  "negative_calls": 24,
+  "false_match_calls": 0,
+  "valid_referral_calls": 3,
+  "valid_referral_fields": 6,
+  "failure_referral_fields": 0,
+  "field_correct": {
+    "brand_name": 54,
+    "class_type": 54,
+    "alcohol_content": 54,
+    "net_contents": 54,
+    "bottler_info": 54,
+    "country_of_origin": 54,
+    "government_warning": 54
+  },
+  "all_fields_correct": 54,
+  "latency_p50_s": 4.00065,
+  "latency_p95_s": 4.342255
+}
+
+Paired repeat1 flat/bottle context is in report.json; old Azure report preserved at /opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v4/REPORT.txt
+
+LIMITATIONS
+Synthetic controlled renders, not universal photo accuracy or confidence thresholds.
+No calibrated threshold or held-out evaluation completed; hold out source labels, never sibling transforms.
+Per-condition denominators dedupe identical bytes; the same observation can serve clean and straight with explicit provenance. Do not sum conditions as independent paid calls.
+OpenRouter -> Anthropic only. Results do NOT establish Azure tenant availability, hosting, network compliance or latency.
+Latency is nonstreaming request-to-complete, not TTFT or UI latency.
+Visibility is pre-inference representative native QA plus explicitly labelled unreviewed fields, not exhaustive human character inspection.

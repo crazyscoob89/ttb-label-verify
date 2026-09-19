@@ -1,0 +1,77 @@
+test_atomic_parallel_budget (test_harness.HarnessTests.test_atomic_parallel_budget) ... FAIL
+test_budget_persists_unknown_charges_and_blocks_duplicate (test_harness.HarnessTests.test_budget_persists_unknown_charges_and_blocks_duplicate) ... FAIL
+test_failed_call_cannot_pass (test_harness.HarnessTests.test_failed_call_cannot_pass) ... FAIL
+test_overspend_reported_not_discarded (test_harness.HarnessTests.test_overspend_reported_not_discarded) ... FAIL
+test_payload_has_no_ground_truth (test_harness.HarnessTests.test_payload_has_no_ground_truth) ... FAIL
+test_response_parsing_variants (test_harness.HarnessTests.test_response_parsing_variants) ... FAIL
+
+======================================================================
+FAIL: test_atomic_parallel_budget (test_harness.HarnessTests.test_atomic_parallel_budget)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/test_harness.py", line 20, in test_atomic_parallel_budget
+    m=self.api()
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/test_harness.py", line 8, in api
+    self.assertTrue(p.exists(),'Missing bounded comparison harness')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Missing bounded comparison harness
+
+======================================================================
+FAIL: test_budget_persists_unknown_charges_and_blocks_duplicate (test_harness.HarnessTests.test_budget_persists_unknown_charges_and_blocks_duplicate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/test_harness.py", line 11, in test_budget_persists_unknown_charges_and_blocks_duplicate
+    m=self.api()
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/test_harness.py", line 8, in api
+    self.assertTrue(p.exists(),'Missing bounded comparison harness')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Missing bounded comparison harness
+
+======================================================================
+FAIL: test_failed_call_cannot_pass (test_harness.HarnessTests.test_failed_call_cannot_pass)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/test_harness.py", line 48, in test_failed_call_cannot_pass
+    m=self.api();g=m.S.load_fixtures(m.REPO/'fixtures')[0]
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/test_harness.py", line 8, in api
+    self.assertTrue(p.exists(),'Missing bounded comparison harness')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Missing bounded comparison harness
+
+======================================================================
+FAIL: test_overspend_reported_not_discarded (test_harness.HarnessTests.test_overspend_reported_not_discarded)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/test_harness.py", line 26, in test_overspend_reported_not_discarded
+    m=self.api()
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/test_harness.py", line 8, in api
+    self.assertTrue(p.exists(),'Missing bounded comparison harness')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Missing bounded comparison harness
+
+======================================================================
+FAIL: test_payload_has_no_ground_truth (test_harness.HarnessTests.test_payload_has_no_ground_truth)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/test_harness.py", line 32, in test_payload_has_no_ground_truth
+    m=self.api();gt=m.S.load_fixtures(m.REPO/'fixtures')[0]
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/test_harness.py", line 8, in api
+    self.assertTrue(p.exists(),'Missing bounded comparison harness')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Missing bounded comparison harness
+
+======================================================================
+FAIL: test_response_parsing_variants (test_harness.HarnessTests.test_response_parsing_variants)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/test_harness.py", line 44, in test_response_parsing_variants
+    m=self.api()
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/test_harness.py", line 8, in api
+    self.assertTrue(p.exists(),'Missing bounded comparison harness')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : Missing bounded comparison harness
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.010s
+
+FAILED (failures=6)

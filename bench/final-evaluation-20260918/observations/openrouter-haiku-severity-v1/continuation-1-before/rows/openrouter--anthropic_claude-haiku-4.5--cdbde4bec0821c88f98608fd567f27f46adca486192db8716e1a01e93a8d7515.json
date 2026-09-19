@@ -1,0 +1,114 @@
+{
+  "id": "openrouter--anthropic_claude-haiku-4.5--cdbde4bec0821c88f98608fd567f27f46adca486192db8716e1a01e93a8d7515",
+  "provider": "openrouter",
+  "model": "anthropic/claude-haiku-4.5",
+  "engine": "anthropic/claude-haiku-4.5",
+  "route": "https://openrouter.ai/api/v1/chat/completions",
+  "upstream_policy": "Anthropic only; no provider fallback",
+  "fixture": {
+    "id": "W-BRAND-SPLITLINE-01__blur-6",
+    "source_fixture": "W-BRAND-SPLITLINE-01",
+    "condition": "blur-6",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/W-BRAND-SPLITLINE-01__blur-6.png",
+    "sha256": "2a0f4398c3a21e423945a3afa3ffad6817ee970301c65d1deae4d5eb5c147fda",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-BRAND-SPLITLINE-01.png",
+    "source_sha256": "0d808655c0372f5c6ceb60d280a4773e20f8e35b33c3c599263112be17899b8a",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/W-BRAND-SPLITLINE-01.png",
+    "original_label_sha256": "b83ade16f1e48719f138eadaa2af82ca8154909b4d60113299a0d47c1249f4e2",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/W-BRAND-SPLITLINE-01.json",
+    "original_truth_sha256": "c281fb488bbacfde99ad8c979ddaa876128f4b902b5cecc37564ddb8c647ff68",
+    "source_fixture_id": "W-BRAND-SPLITLINE-01",
+    "clean_parent_substitution": false,
+    "inherited_degradation": "none",
+    "parameters": {
+      "sigma_native_px": 6,
+      "sigma_div_label_width": 0.005,
+      "sigma_div_label_height": 0.0032187938212626067,
+      "filter": "Pillow GaussianBlur",
+      "randomness_used": false
+    },
+    "measurements": {}
+  },
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/W-BRAND-SPLITLINE-01__blur-6.png",
+  "image_sha256": "2a0f4398c3a21e423945a3afa3ffad6817ee970301c65d1deae4d5eb5c147fda",
+  "prompt_settings_sha256": "ba93d7e53b184d2f74384c66eebdb59f523faf427337a9e3b2e702322f09040d",
+  "request_sha256": "ce3dca3ff96360b7514d763da16c21df13487d30ae93800f6e0c576ae51d5468",
+  "started_at": "2026-09-18T19:04:40.598697+00:00",
+  "reserved_usd": 0.4565,
+  "max_output_tokens": 3000,
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "ok": false,
+  "extracted": {
+    "brand_name": "STONE'S THROW",
+    "class_type": "GIN",
+    "alcohol_content": "44% ALCOHOL (88 PROOF)",
+    "net_contents": "750 mL",
+    "bottler_info": "Distilled and bottled by Stone's Throw Spirits, Austin, Texas",
+    "country_of_origin": null,
+    "government_warning_heading": null,
+    "government_warning_body": "GOVERNMENT WARNING: (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": null,
+    "government_warning_heading_bold": null,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 0.95,
+      "class_type": 0.98,
+      "alcohol_content": 0.85,
+      "net_contents": 0.95,
+      "bottler_info": 0.9,
+      "country_of_origin": 1.0,
+      "government_warning_heading": 0.7,
+      "government_warning_body": 0.65,
+      "government_warning_heading_all_caps": null,
+      "government_warning_heading_bold": null,
+      "government_warning_body_bold": 0.6
+    }
+  },
+  "error_class": "schema-or-incomplete-output",
+  "usage_cost_usd": 0.00423126,
+  "retail_estimate_usd": 0.004274,
+  "http_status": 200,
+  "request_id": null,
+  "latency_s": 4.2178764309501275,
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/responses/openrouter--anthropic_claude-haiku-4.5--cdbde4bec0821c88f98608fd567f27f46adca486192db8716e1a01e93a8d7515.json",
+  "response_sha256": "0a140801e641275d384450aa17d723866271027b9ea762acb64cf636c0c01286",
+  "usage": {
+    "prompt_tokens": 2354,
+    "completion_tokens": 384,
+    "total_tokens": 2738,
+    "cost": 0.00423126,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.004274,
+      "upstream_inference_prompt_cost": 0.002354,
+      "upstream_inference_completions_cost": 0.00192
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "generation_id": "gen-1789758281-LiWsoYtWeV3nkrceDtkK",
+  "returned_model": "anthropic/claude-haiku-4.5",
+  "returned_provider": "Anthropic",
+  "raw_text": "```json\n{\n  \"brand_name\": \"STONE'S THROW\",\n  \"class_type\": \"GIN\",\n  \"alcohol_content\": \"44% ALCOHOL (88 PROOF)\",\n  \"net_contents\": \"750 mL\",\n  \"bottler_info\": \"Distilled and bottled by Stone's Throw Spirits, Austin, Texas\",\n  \"country_of_origin\": null,\n  \"government_warning_heading\": null,\n  \"government_warning_body\": \"GOVERNMENT WARNING: (1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\n  \"government_warning_heading_all_caps\": null,\n  \"government_warning_heading_bold\": null,\n  \"government_warning_body_bold\": false,\n  \"confidence\": {\n    \"brand_name\": 0.95,\n    \"class_type\": 0.98,\n    \"alcohol_content\": 0.85,\n    \"net_contents\": 0.95,\n    \"bottler_info\": 0.90,\n    \"country_of_origin\": 1.0,\n    \"government_warning_heading\": 0.7,\n    \"government_warning_body\": 0.65,\n    \"government_warning_heading_all_caps\": null,\n    \"government_warning_heading_bold\": null,\n    \"government_warning_body_bold\": 0.60\n  }\n}\n```",
+  "finish_reason": "stop",
+  "validation_errors": {
+    "government_warning_heading_all_caps": "missing or invalid component confidence",
+    "government_warning_heading_bold": "missing or invalid component confidence"
+  },
+  "unknown_charge_reserved_usd": 0,
+  "pipeline_seconds": 4.244810265954584
+}

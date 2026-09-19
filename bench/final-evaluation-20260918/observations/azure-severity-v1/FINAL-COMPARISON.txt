@@ -1,0 +1,137 @@
+TTB — AZURE + OPENROUTER COMPARISON
+State: complete; NEW Azure records 1073/1073; remaining 0.
+Updated UTC: 2026-09-18T23:10:13.196736+00:00
+Completed records include processing failures; missing/unattempted are separately recorded.
+All 17 previously budget-blocked Kimi controls are part of this queue; no flat/Haiku replay.
+
+New Azure observed retail estimate: $4.35116825; conservative SHARED total liability: $15.22049510 / $50 total.
+OpenRouter Haiku complete: 212/212 unique; observed usage.cost $0.89336115. Do NOT add this again to shared liability.
+
+provider/model | condition | processed/planned | valid | correct fields/all | false matches/negative fields | valid referral calls | processing failures | p50/p95 seconds
+Azure/gpt-5-mini | clean | 16/16 | 16 | 111/112 | 1/8 | 1 | 0 | 11.012/14.703
+Azure/gpt-5-mini | straight | 18/18 | 18 | 125/126 | 1/8 | 1 | 0 | 11.014/14.320
+Azure/gpt-5-mini | angle | 18/18 | 18 | 125/126 | 1/8 | 2 | 0 | 12.658/14.926
+Azure/gpt-5-mini | blur-1 | 16/16 | 16 | 111/112 | 1/8 | 1 | 0 | 10.858/12.861
+Azure/gpt-5-mini | blur-2 | 16/16 | 16 | 111/112 | 1/8 | 1 | 0 | 12.792/15.109
+Azure/gpt-5-mini | blur-3 | 16/16 | 16 | 111/112 | 1/8 | 1 | 0 | 10.758/12.436
+Azure/gpt-5-mini | blur-4 | 16/16 | 16 | 111/112 | 1/8 | 1 | 0 | 11.367/13.851
+Azure/gpt-5-mini | blur-5 | 16/16 | 15 | 104/112 | 1/8 | 1 | 1 | 10.545/13.655
+Azure/gpt-5-mini | blur-6 | 16/16 | 16 | 111/112 | 1/8 | 2 | 0 | 11.613/13.362
+Azure/gpt-5-mini | glare-1 | 16/16 | 16 | 112/112 | 0/8 | 1 | 0 | 9.701/12.304
+Azure/gpt-5-mini | glare-2 | 16/16 | 16 | 111/112 | 1/8 | 1 | 0 | 10.711/13.666
+Azure/gpt-5-mini | glare-3 | 16/16 | 16 | 109/112 | 1/8 | 1 | 0 | 11.206/14.229
+Azure/gpt-5-mini | glare-4 | 16/16 | 16 | 111/112 | 1/8 | 1 | 0 | 9.695/12.326
+Azure/gpt-5-mini | glare-5 | 16/16 | 16 | 111/112 | 1/8 | 2 | 0 | 9.671/12.904
+Azure/gpt-4.1-mini | clean | 16/16 | 15 | 105/112 | 0/8 | 1 | 1 | 6.425/7.277
+Azure/gpt-4.1-mini | straight | 18/18 | 17 | 119/126 | 0/8 | 1 | 1 | 6.479/7.689
+Azure/gpt-4.1-mini | angle | 18/18 | 18 | 125/126 | 1/8 | 2 | 0 | 6.534/7.940
+Azure/gpt-4.1-mini | blur-1 | 16/16 | 14 | 97/112 | 1/8 | 1 | 2 | 6.199/7.014
+Azure/gpt-4.1-mini | blur-2 | 16/16 | 14 | 98/112 | 0/8 | 1 | 2 | 6.548/7.379
+Azure/gpt-4.1-mini | blur-3 | 16/16 | 13 | 91/112 | 0/8 | 1 | 3 | 6.416/8.262
+Azure/gpt-4.1-mini | blur-4 | 16/16 | 11 | 76/112 | 1/8 | 1 | 5 | 6.498/6.919
+Azure/gpt-4.1-mini | blur-5 | 16/16 | 12 | 83/112 | 0/8 | 3 | 4 | 6.294/7.507
+Azure/gpt-4.1-mini | blur-6 | 16/16 | 10 | 69/112 | 1/8 | 1 | 6 | 6.514/7.676
+Azure/gpt-4.1-mini | glare-1 | 16/16 | 16 | 112/112 | 0/8 | 1 | 0 | 6.055/6.650
+Azure/gpt-4.1-mini | glare-2 | 16/16 | 13 | 91/112 | 0/8 | 1 | 3 | 5.728/6.762
+Azure/gpt-4.1-mini | glare-3 | 16/16 | 15 | 104/112 | 1/8 | 2 | 1 | 6.011/6.552
+Azure/gpt-4.1-mini | glare-4 | 16/16 | 11 | 76/112 | 1/8 | 2 | 5 | 5.532/6.434
+Azure/gpt-4.1-mini | glare-5 | 16/16 | 9 | 63/112 | 0/8 | 0 | 7 | 5.910/6.598
+Azure/Mistral-Large-3 | clean | 16/16 | 16 | 109/112 | 1/8 | 1 | 0 | 7.466/20.107
+Azure/Mistral-Large-3 | straight | 18/18 | 18 | 123/126 | 1/8 | 1 | 0 | 7.466/18.489
+Azure/Mistral-Large-3 | angle | 18/18 | 18 | 123/126 | 1/8 | 1 | 0 | 6.369/38.048
+Azure/Mistral-Large-3 | blur-1 | 16/16 | 16 | 109/112 | 1/8 | 1 | 0 | 6.528/8.361
+Azure/Mistral-Large-3 | blur-2 | 16/16 | 15 | 104/112 | 1/8 | 1 | 1 | 5.887/9.980
+Azure/Mistral-Large-3 | blur-3 | 16/16 | 16 | 107/112 | 1/8 | 1 | 0 | 5.543/8.807
+Azure/Mistral-Large-3 | blur-4 | 16/16 | 16 | 97/112 | 0/8 | 3 | 0 | 5.323/7.173
+Azure/Mistral-Large-3 | blur-5 | 16/16 | 15 | 92/112 | 0/8 | 2 | 1 | 5.766/9.199
+Azure/Mistral-Large-3 | blur-6 | 16/16 | 16 | 87/112 | 1/8 | 2 | 0 | 6.066/14.081
+Azure/Mistral-Large-3 | glare-1 | 16/16 | 16 | 109/112 | 1/8 | 1 | 0 | 6.195/9.115
+Azure/Mistral-Large-3 | glare-2 | 16/16 | 16 | 110/112 | 1/8 | 1 | 0 | 8.569/21.067
+Azure/Mistral-Large-3 | glare-3 | 16/16 | 16 | 110/112 | 1/8 | 1 | 0 | 15.001/19.289
+Azure/Mistral-Large-3 | glare-4 | 16/16 | 16 | 109/112 | 1/8 | 1 | 0 | 10.964/22.767
+Azure/Mistral-Large-3 | glare-5 | 16/16 | 16 | 109/112 | 1/8 | 1 | 0 | 9.040/12.462
+Azure/grok-4-1-fast-non-reasoning | clean | 16/16 | 16 | 102/112 | 0/8 | 2 | 0 | 5.031/5.874
+Azure/grok-4-1-fast-non-reasoning | straight | 18/18 | 18 | 114/126 | 0/8 | 2 | 0 | 5.134/6.880
+Azure/grok-4-1-fast-non-reasoning | angle | 18/18 | 16 | 96/126 | 2/8 | 0 | 2 | 5.867/6.980
+Azure/grok-4-1-fast-non-reasoning | blur-1 | 16/16 | 15 | 94/112 | 1/8 | 0 | 1 | 4.819/6.124
+Azure/grok-4-1-fast-non-reasoning | blur-2 | 16/16 | 15 | 98/112 | 1/8 | 1 | 1 | 5.111/6.993
+Azure/grok-4-1-fast-non-reasoning | blur-3 | 16/16 | 13 | 84/112 | 2/8 | 1 | 3 | 4.712/6.065
+Azure/grok-4-1-fast-non-reasoning | blur-4 | 16/16 | 15 | 97/112 | 1/8 | 2 | 1 | 4.763/6.039
+Azure/grok-4-1-fast-non-reasoning | blur-5 | 16/16 | 16 | 97/112 | 1/8 | 1 | 0 | 4.698/6.028
+Azure/grok-4-1-fast-non-reasoning | blur-6 | 16/16 | 15 | 94/112 | 0/8 | 3 | 1 | 4.722/6.208
+Azure/grok-4-1-fast-non-reasoning | glare-1 | 16/16 | 15 | 98/112 | 1/8 | 2 | 1 | 4.414/5.791
+Azure/grok-4-1-fast-non-reasoning | glare-2 | 16/16 | 16 | 104/112 | 1/8 | 1 | 0 | 4.405/4.951
+Azure/grok-4-1-fast-non-reasoning | glare-3 | 16/16 | 14 | 85/112 | 1/8 | 2 | 2 | 4.134/9.950
+Azure/grok-4-1-fast-non-reasoning | glare-4 | 16/16 | 16 | 101/112 | 1/8 | 1 | 0 | 3.923/4.375
+Azure/grok-4-1-fast-non-reasoning | glare-5 | 16/16 | 15 | 97/112 | 1/8 | 1 | 1 | 3.832/4.401
+Azure/Kimi-K2.6 | clean | 16/16 | 14 | 98/112 | 0/8 | 0 | 2 | 23.090/30.470
+Azure/Kimi-K2.6 | straight | 18/18 | 15 | 105/126 | 0/8 | 0 | 3 | 24.091/33.339
+Azure/Kimi-K2.6 | angle | 18/18 | 17 | 118/126 | 1/8 | 1 | 1 | 18.735/27.758
+Azure/Kimi-K2.6 | blur-1 | 16/16 | 14 | 98/112 | 0/8 | 1 | 2 | 17.221/27.231
+Azure/Kimi-K2.6 | blur-2 | 16/16 | 12 | 84/112 | 0/8 | 1 | 4 | 26.703/36.813
+Azure/Kimi-K2.6 | blur-3 | 16/16 | 10 | 69/112 | 1/8 | 1 | 6 | 23.161/32.310
+Azure/Kimi-K2.6 | blur-4 | 16/16 | 9 | 63/112 | 0/8 | 1 | 7 | 27.658/34.884
+Azure/Kimi-K2.6 | blur-5 | 16/16 | 7 | 49/112 | 0/8 | 1 | 9 | 26.655/36.785
+Azure/Kimi-K2.6 | blur-6 | 16/16 | 4 | 28/112 | 0/8 | 1 | 12 | 33.117/39.977
+Azure/Kimi-K2.6 | glare-1 | 16/16 | 12 | 83/112 | 1/8 | 1 | 4 | 20.419/31.169
+Azure/Kimi-K2.6 | glare-2 | 16/16 | 14 | 97/112 | 0/8 | 1 | 2 | 15.978/29.097
+Azure/Kimi-K2.6 | glare-3 | 16/16 | 15 | 104/112 | 1/8 | 1 | 1 | 18.263/28.833
+Azure/Kimi-K2.6 | glare-4 | 16/16 | 16 | 112/112 | 0/8 | 1 | 0 | 16.705/28.322
+Azure/Kimi-K2.6 | glare-5 | 16/16 | 14 | 97/112 | 0/8 | 0 | 2 | 19.349/31.311
+Azure/mistral-document-ai-2512 [OCR separate] | clean | 16/16 | 16 | 110/112 | 1/8 | 1 | 0 | 4.563/5.069
+Azure/mistral-document-ai-2512 [OCR separate] | straight | 18/18 | 18 | 124/126 | 1/8 | 1 | 0 | 4.550/5.058
+Azure/mistral-document-ai-2512 [OCR separate] | angle | 18/18 | 18 | 124/126 | 1/8 | 1 | 0 | 4.577/4.955
+Azure/mistral-document-ai-2512 [OCR separate] | blur-1 | 16/16 | 16 | 110/112 | 1/8 | 1 | 0 | 4.518/5.703
+Azure/mistral-document-ai-2512 [OCR separate] | blur-2 | 16/16 | 16 | 110/112 | 1/8 | 1 | 0 | 4.370/4.753
+Azure/mistral-document-ai-2512 [OCR separate] | blur-3 | 16/16 | 16 | 110/112 | 1/8 | 1 | 0 | 4.514/5.078
+Azure/mistral-document-ai-2512 [OCR separate] | blur-4 | 16/16 | 16 | 109/112 | 1/8 | 1 | 0 | 4.277/4.762
+Azure/mistral-document-ai-2512 [OCR separate] | blur-5 | 16/16 | 16 | 108/112 | 1/8 | 1 | 0 | 4.387/4.725
+Azure/mistral-document-ai-2512 [OCR separate] | blur-6 | 16/16 | 16 | 107/112 | 1/8 | 1 | 0 | 4.249/5.932
+Azure/mistral-document-ai-2512 [OCR separate] | glare-1 | 16/16 | 16 | 111/112 | 1/8 | 1 | 0 | 4.351/4.870
+Azure/mistral-document-ai-2512 [OCR separate] | glare-2 | 16/16 | 16 | 110/112 | 1/8 | 1 | 0 | 4.436/7.976
+Azure/mistral-document-ai-2512 [OCR separate] | glare-3 | 16/16 | 16 | 110/112 | 1/8 | 1 | 0 | 3.806/4.543
+Azure/mistral-document-ai-2512 [OCR separate] | glare-4 | 16/16 | 16 | 110/112 | 1/8 | 1 | 0 | 3.893/4.436
+Azure/mistral-document-ai-2512 [OCR separate] | glare-5 | 16/16 | 16 | 111/112 | 1/8 | 1 | 0 | 3.710/4.125
+OpenRouter/Haiku-4.5 | clean | 16/16 | 16 | 111/112 | 0/8 | 1 | 0 | 4.243/4.672
+OpenRouter/Haiku-4.5 | straight | 18/18 | 18 | 125/126 | 0/8 | 1 | 0 | 4.250/4.664
+OpenRouter/Haiku-4.5 | angle | 18/18 | 18 | 126/126 | 0/8 | 1 | 0 | 4.343/4.804
+OpenRouter/Haiku-4.5 | blur-1 | 16/16 | 16 | 111/112 | 0/8 | 1 | 0 | 4.296/4.776
+OpenRouter/Haiku-4.5 | blur-2 | 16/16 | 16 | 112/112 | 0/8 | 1 | 0 | 4.213/4.943
+OpenRouter/Haiku-4.5 | blur-3 | 16/16 | 16 | 110/112 | 0/8 | 1 | 0 | 4.216/5.465
+OpenRouter/Haiku-4.5 | blur-4 | 16/16 | 16 | 108/112 | 1/8 | 1 | 0 | 4.810/7.249
+OpenRouter/Haiku-4.5 | blur-5 | 16/16 | 16 | 104/112 | 0/8 | 4 | 0 | 4.225/6.304
+OpenRouter/Haiku-4.5 | blur-6 | 16/16 | 12 | 62/112 | 0/8 | 11 | 4 | 4.216/11.940
+OpenRouter/Haiku-4.5 | glare-1 | 16/16 | 15 | 103/112 | 0/8 | 1 | 1 | 4.188/13.714
+OpenRouter/Haiku-4.5 | glare-2 | 16/16 | 16 | 110/112 | 0/8 | 1 | 0 | 4.185/4.726
+OpenRouter/Haiku-4.5 | glare-3 | 16/16 | 16 | 111/112 | 0/8 | 1 | 0 | 4.239/5.078
+OpenRouter/Haiku-4.5 | glare-4 | 16/16 | 15 | 102/112 | 0/8 | 1 | 1 | 4.210/4.668
+OpenRouter/Haiku-4.5 | glare-5 | 16/16 | 16 | 110/112 | 0/8 | 1 | 0 | 4.158/4.301
+
+HISTORICAL FLAT — separate provider/operator/settings; no replay
+AVA/Kimi-K2.6 [Azure Foundry chat] | flat | 23/23 | 23 | 161/161 | 0/12 | 1 | 0 | 14.663/27.968
+AVA/Mistral-Large-3 [Azure Foundry chat] | flat | 44/44 | 44 | 303/308 | 2/22 | 2 | 0 | 7.402/15.906
+AVA/gpt-4.1-mini [Azure Foundry chat] | flat | 54/54 | 51 | 357/378 | 0/24 | 3 | 3 | 5.218/6.436
+AVA/gpt-5-mini [Azure Foundry responses] | flat | 35/35 | 35 | 244/245 | 1/16 | 3 | 0 | 10.363/15.849
+AVA/grok-4-1-fast-non-reasoning [Azure Foundry chat] | flat | 54/54 | 46 | 276/378 | 0/24 | 3 | 8 | 4.845/7.088
+AVA/mistral-document-ai-2512 [Azure Foundry ocr] | flat | 35/35 | 33 | 223/245 | 2/16 | 2 | 2 | 3.831/4.680
+ARGUS/grok-4-1-fast-non-reasoning [Azure AI Foundry -> grok-4-1-fast-non-reasoning] | flat | 54/54 | 51 | 313/378 | 0/24 | 3 | 3 | 5.036/6.067
+ARGUS/Mistral-Large-3 [Azure AI Foundry -> Mistral-Large-3] | flat | 54/54 | 54 | 370/378 | 3/24 | 3 | 0 | 8.275/20.795
+historical/gpt-5-mini [OpenAI Responses API (direct)] | flat | 54/54 | 54 | 376/378 | 2/24 | 4 | 0 | 11.649/15.687
+historical/anthropic/claude-haiku-4.5 [OpenRouter -> Anthropic] | flat | 54/54 | 54 | 378/378 | 0/24 | 3 | 0 | 4.001/4.342
+historical/anthropic/claude-sonnet-4.5 [OpenRouter -> Anthropic] | flat | 54/54 | 53 | 368/378 | 3/24 | 3 | 1 | 5.698/6.459
+AVA-v3/Kimi-K2.6 [Azure Foundry chat] | flat | 30/30 | 28 | 196/210 | 0/11 | 2 | 2 | 17.130/25.676
+AVA-v3/mistral-document-ai-2512 [Azure Foundry ocr] | flat | 19/19 | 19 | 130/133 | 1/8 | 1 | 0 | 3.928/4.375
+
+Per-field correct counts, exact missing IDs, failures, aliases and provenance: comparison.json / coverage.json / scored-rows.json.
+Historical bottle/occlusion evidence and accounting: /opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v4/REPORT.txt
+
+LIMITATIONS
+Controlled synthetic images, not real-camera validation. Native visual QA/visibility was representative, NOT exhaustive readability annotation.
+Nominal blur sigma/glare levels are not calibrated confidence. Held-out source-label calibration and real-camera validation deferred.
+Azure Claude excluded pending support; OpenRouter Haiku is a distinct provider observation, not Azure availability/hosting/latency proof.
+OCR uses the original separate annotation endpoint/schema. Do not rank schema failures or abstention as superior perception.
+False matches rule out unattended-safe claims. No winner is inferred from zero false matches combined with high referral/failure rates.
+Each condition deduplicates identical image bytes within a model; aliases and reused controls remain explicit. Conditions cannot be summed as independent paid calls.
+Latency is nonstreaming request-to-complete, not TTFT/UI time; historical operator/concurrency/settings differences remain separate.
+Original broad white glare is REJECTED historical occlusion; prior data and cost preserved, excluded from approved severity comparisons.
+Costs are documented retail/usage estimates and conservative liability, not invoice verification. Failures remain in accuracy denominators.
