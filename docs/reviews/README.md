@@ -2,6 +2,12 @@
 
 ## Active application phase
 
+**Current: Phase 3 local candidate `6ca12cf761fc512031de03b0ef0ae388d085e364`**, preceded by Sprint 1 `a39e17d`; [single-review handoff](16-phase3-single-review.md). Builder reproduced 293/293 unit tests, typecheck, production build, 18/18 opted-in offline E2E cases and 4/4 production manual-input/denial smoke cases. Parent verification and consolidated independent review are pending; this is **not ARGUS PASS**. Exact-image fixture UX and UNSAVED human outcomes are implemented; real provider/auth/persistence/history remain unavailable. No remote writes, paid calls, provisioning or deployment by this worker.
+
+Parent already merged accepted Phase 1 PR #4 (`d1f07db9083b2a244d21f2d132f4105c951f475f`) and Phase 2 PR #5 (`38406c12ac575c06ed55370148f907e45782ad33`). Alex's **“lets go”** authorized the bounded Phase 3 continuation. The [attributed Phase 2 PASS](15-phase2-argus-pass.md) supersedes the old pending wording below.
+
+### Historical Phase 2 candidate status
+
 [Phase 1](11-phase1-argus-pass.md) has supplied **ARGUS PASS** at `2b59abcb0cb7e95abc1639ee4e81df50930dfe1a`, no revisions; AVA agrees. ARGUS read source/diff/closure logs, did not rerun tests/build, and reported a matching native Windows clone. [Phase 2 Sprint 1](12-phase2-sprint1-rules.md) and [Sprint 2](13-phase2-provider-spend.md) are locally implemented/tested; the full local candidate is ready for parent verification, with whole-phase independent review pending. Provider runtime is unwired/default-deny; shared-store contracts are not real database enforcement. [Implementation authorization](../IMPLEMENTATION-STATUS.md) records Alex's local continuation approval. No remote writes, paid/live calls, provisioning or deployment in this step. Earlier documentation-only status below is historical.
 
 ## Current documentation candidate

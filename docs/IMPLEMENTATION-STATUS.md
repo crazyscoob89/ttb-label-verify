@@ -2,6 +2,12 @@
 
 ## Current authority
 
+Alex relayed the accepted Phase 2 PASS and said **“lets go”**; AVA agreed. Parent merged Phase 1 PR #4 at `d1f07db9083b2a244d21f2d132f4105c951f475f` and Phase 2 PR #5 at `38406c12ac575c06ed55370148f907e45782ad33`. Phase 3 is now implemented in two local sequential commits (`a39e17d`, `6ca12cf`) on `ava/app-phase-3`, based on that merged master. Builder gates: 293 unit tests, typecheck, production build, 18 explicit-offline desktop/mobile E2E cases, plus 4 production denial/manual-input smoke cases. **Parent verification and one consolidated independent Phase 3 review remain pending.** No ARGUS Phase 3 PASS or live acceptance is asserted. [Exact candidate, evidence and limitations](reviews/16-phase3-single-review.md).
+
+Runtime inference remains unconfigured/default-deny: the comparison API rejects before body parsing, the browser demonstration is development-only opt-in and exact synthetic-image-bound, and Submit review creates only an **UNSAVED page-memory draft**. No Phase 4/5 implementation, paid calls, cloud, migrations, deployment or worker remote writes occurred. Parent owns eventual publication and independent-review coordination.
+
+### Historical Phase 2 starting authority
+
 Alex's current local continuation approval is **“go as long as you are in agreement”**. AVA agrees with the supplied ARGUS Phase 1 PASS and is recording it before continuing Phase 2 on `ava/app-phase-2`, based on `2b59abcb0cb7e95abc1639ee4e81df50930dfe1a`. This step permits local implementation/tests/commits; source/review publication remains parent-controlled under the earlier GitHub instruction below. Workers cannot perform remote writes. Live/paid calls, provisioning, migrations and deployment remain blocked. AVA remains builder; ARGUS is read-only reviewer after the entire Phase 2. [Original review and limitations](reviews/11-phase1-argus-pass.md): source/diff/log review, matching Windows clone; tests/build were not independently rerun.
 
 Earlier implementation authorization: “is this documented in our github? If so go ahead and build it out if not document put in github properly and organized and then build and implement”. This authorizes the agreed phased application implementation, not merely another plan. It supersedes earlier documentation-only headers for the approved work; those paragraphs remain historical records of the proposal stage.
@@ -24,7 +30,7 @@ Alex relayed ARGUS's consolidated PASS for `d28d6f4` and instructed **“lets go
 | --- | --- | --- |
 | 1 | Test/build harness; safe label/application intake | ARGUS PASS at `2b59abcb0cb7e95abc1639ee4e81df50930dfe1a`; AVA agrees; no revisions |
 | 2 | Comparison rules; provider/spend interfaces | ARGUS PASS at `d28d6f451f810b9c8568eed32fba4c9fb98e60f5`; 262 tests/typecheck/build independently reproduced per supplied report; clean-copy gap non-blocking |
-| 3 | Single-label workflow and explicit outcomes | Authorized local next phase after accepted Phase 2 promotion; no paid/live work |
+| 3 | Single-label workflow and explicit outcomes | Both local sprints implemented at `6ca12cf`; builder gates green; parent verification/consolidated independent review pending; fixture-only UI and UNSAVED outcomes, no paid/live work |
 | 4 | Managed identity, actual database/storage, persistent history | Code authorized; external provisioning/integration gated |
 | 5 | Batch pairing, quick switching and recovery | Authorized, pending dependencies |
 | 6 | Live acceptance and deployment | Local release work authorized; paid/live actions gated |

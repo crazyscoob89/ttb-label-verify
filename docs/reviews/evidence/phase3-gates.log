@@ -1,0 +1,155 @@
+Phase 3 builder-local selected gate evidence; NOT independent review or live acceptance.
+Base: 38406c12ac575c06ed55370148f907e45782ad33
+Source candidate: 6ca12cf761fc512031de03b0ef0ae388d085e364
+Full original logs: /opt/data/ttb-phase3-evidence/
+Node PATH: /opt/data/tools/node24-phase0/node-v24.21.0-linux-x64/bin
+NEXT_TELEMETRY_DISABLED=1; explicit localhost server; offline demo only in opted-in development.
+Full E2E: desktop+mobile offline fixture. Production: separate 4-case smoke and 403 boundary probes.
+The fixture API remains denied; successful UI findings are browser-local known-image comparisons.
+
+=== final-unit.log; original SHA-256 1e02cb13140f88d2b209b2f84909b966d872fb68776429902dc702e2fd784105 ===
+> ttb-label-review-foundation@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.1 /tmp/ttb-phase3-worktree/web
+
+ ✓ tests/spend.test.ts (25 tests) 33ms
+ ✓ tests/review-policy.test.ts (14 tests) 88ms
+ ✓ tests/smoke.test.ts (1 test) 19ms
+ ✓ tests/pair-input.test.ts (2 tests) 25ms
+ ✓ tests/rules.test.ts (117 tests) 118ms
+ ✓ tests/extraction.test.ts (46 tests) 134ms
+ ✓ tests/offline-demo.test.ts (5 tests) 97ms
+ ✓ tests/compare-service.test.ts (12 tests) 119ms
+ ✓ tests/intake.test.ts (71 tests) 253ms
+
+ Test Files  9 passed (9)
+      Tests  293 passed (293)
+   Start at  13:18:58
+   Duration  695ms (import 43%, transform 31%, tests 24%, worker 1%)
+
+=== final-typecheck.log; original SHA-256 2dfd7b44f723f2f876e0d5fb0e026973a047ae2d1ea67dea3b550ac3757c221e ===
+> ttb-label-review-foundation@0.1.0 typecheck
+> tsc --noEmit
+
+=== final-build.log; original SHA-256 2553c16e591ebf4f4d007f23f87583e3bc6cd7524d8bad16382bbacdb610ae09 ===
+> ttb-label-review-foundation@0.1.0 build
+> next build
+
+▲ Next.js 16.3.5 (Turbopack)
+✓ Running next.config.ts took 41ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 3.2s
+  Running TypeScript ...
+  Finished TypeScript in 3.1s ...
+  Collecting page data using 6 workers ...
+  Generating static pages using 6 workers (0/5) ...
+  Generating static pages using 6 workers (1/5)
+  Generating static pages using 6 workers (2/5)
+  Generating static pages using 6 workers (3/5)
+✓ Generating static pages using 6 workers (5/5) in 541ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api/comparisons
+└ ○ /review
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+=== final-verified-e2e.log; original SHA-256 58c423b4b1853ddc4d37948b83756995833a95a53f597a8b88ee62854bf792f8 ===
+> ttb-label-review-foundation@0.1.0 test:e2e
+> playwright test
+
+
+Running 18 tests using 1 worker
+
+  ✓   1 [desktop] › tests/e2e/review-outcomes.spec.ts:9:1 › Pass requires physical assessment and co-located confirmation, remains an unsaved draft (1.7s)
+  ✓   2 [desktop] › tests/e2e/review-outcomes.spec.ts:27:1 › blocked mismatch, correction notes and machine-preserving human resolution (1.3s)
+  ✓   3 [desktop] › tests/e2e/review-outcomes.spec.ts:51:1 › second review and every pairing switch reset outcome confirmation (939ms)
+  ✓   4 [desktop] › tests/e2e/single.spec.ts:8:1 › explicit known sample comparison, image pairing, enlargement and stale reset (1.1s)
+  ✓   5 [desktop] › tests/e2e/single.spec.ts:30:1 › uncertainty and failure remain distinct; switching aborts pending evidence (823ms)
+  ✓   6 [desktop] › tests/e2e/single.spec.ts:44:1 › corrupt known asset and timeout fail closed, never reuse a prior result (6.1s)
+  ✓   7 [desktop] › tests/e2e/single.spec.ts:58:1 › A to B to A switching rejects late result and releases exact preview URL (1.2s)
+  ✓   8 [desktop] › tests/e2e/smoke.spec.ts:4:1 › application checks are local, reject gaps, clear stale feedback and never enable comparison (996ms)
+  ✓   9 [desktop] › tests/e2e/smoke.spec.ts:31:1 › local-only foundation renders without external requests or mobile overflow (764ms)
+  ✓  10 [mobile] › tests/e2e/review-outcomes.spec.ts:9:1 › Pass requires physical assessment and co-located confirmation, remains an unsaved draft (2.6s)
+  ✓  11 [mobile] › tests/e2e/review-outcomes.spec.ts:27:1 › blocked mismatch, correction notes and machine-preserving human resolution (2.1s)
+  ✓  12 [mobile] › tests/e2e/review-outcomes.spec.ts:51:1 › second review and every pairing switch reset outcome confirmation (909ms)
+  ✓  13 [mobile] › tests/e2e/single.spec.ts:8:1 › explicit known sample comparison, image pairing, enlargement and stale reset (1.7s)
+  ✓  14 [mobile] › tests/e2e/single.spec.ts:30:1 › uncertainty and failure remain distinct; switching aborts pending evidence (771ms)
+  ✓  15 [mobile] › tests/e2e/single.spec.ts:44:1 › corrupt known asset and timeout fail closed, never reuse a prior result (6.0s)
+  ✓  16 [mobile] › tests/e2e/single.spec.ts:58:1 › A to B to A switching rejects late result and releases exact preview URL (1.1s)
+  ✓  17 [mobile] › tests/e2e/smoke.spec.ts:4:1 › application checks are local, reject gaps, clear stale feedback and never enable comparison (922ms)
+  ✓  18 [mobile] › tests/e2e/smoke.spec.ts:31:1 › local-only foundation renders without external requests or mobile overflow (996ms)
+
+  18 passed (35.5s)
+
+=== production-smoke-e2e.log; original SHA-256 3ebaf168daf5d12b3f560ce57c16e533c8fe942bad86edc7903b64534a35c8de ===
+> ttb-label-review-foundation@0.1.0 test:e2e
+> playwright test tests/e2e/smoke.spec.ts
+
+
+Running 4 tests using 1 worker
+
+  ✓  1 [desktop] › tests/e2e/smoke.spec.ts:4:1 › application checks are local, reject gaps, clear stale feedback and never enable comparison (973ms)
+  ✓  2 [desktop] › tests/e2e/smoke.spec.ts:31:1 › local-only foundation renders without external requests or mobile overflow (504ms)
+  ✓  3 [mobile] › tests/e2e/smoke.spec.ts:4:1 › application checks are local, reject gaps, clear stale feedback and never enable comparison (970ms)
+  ✓  4 [mobile] › tests/e2e/smoke.spec.ts:31:1 › local-only foundation renders without external requests or mobile overflow (669ms)
+
+  4 passed (6.0s)
+
+=== production-boundary.log; original SHA-256 bc614af97a72900eafb33a28e13b1df5f00208c304984e9e4fc7e9a8ab8c5845 ===
+Production opt-in override remains disabled; malformed/forged POSTs both 403. No inference path.
+
+=== frozen-integrity.log; original SHA-256 0bee46cc707b7df0b47364bb7eccbf60cb3df61604a5ba8409ad1518be87e529 ===
+bench files=1871 all raw Git blob hashes equal base inventory_sha256=4173c66539737ab195dd5251b38012d5f8eda44e6b2a23762a22cc4342492748
+fixtures files=38 all raw Git blob hashes equal base inventory_sha256=13d7d2b420f4fcc91cc237431f93a4c916976d7b7f9a4bcecbc950cf04628cb5
+docs/ui/v3 files=17 all raw Git blob hashes equal base inventory_sha256=86911c3c7e448164d7ea3d5b5bb38cf68f1f91bdc671bc62e17c9fed3804beb8
+Frozen tracked bytes verified against 38406c12ac575c06ed55370148f907e45782ad33
+Phase 1 Application/intake and Phase 2 rules byte-identical
+HEAD 6ca12cf761fc512031de03b0ef0ae388d085e364
+
+=== Preserved RED: sprint1-red.log; original SHA-256 6034c5563353c71b727f1273e64aa1bc375d13218d8f05b9e28eef4ba5ea54ff ===
+Error: Cannot find module '../lib/compare-service' imported from /tmp/ttb-phase3-worktree/web/tests/compare-service.test.ts
+Test Files  1 failed (1)
+Tests  no tests
+
+=== Preserved RED: sprint1-e2e-red.log; original SHA-256 2ff5b65f1ccf04386c300c49d9792ca019561492f8cc38780070cfaf7c05ab63 ===
+Error: expect(locator).toBeVisible() failed
+Expected: visible
+Error: element(s) not found
+Error Context: test-results/single-explicit-known-samp-2d97a-enlargement-and-stale-reset-desktop/error-context.md
+
+=== Preserved RED: sprint2-policy-assertion-red.log; original SHA-256 ee6cc999d381c15b589f0fe5ad77d77d93d695a85317046810fb1f77bc6ed78e ===
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+AssertionError: expected 'Not implemented' to match /physical/i
+- Expected:
++ Received:
+AssertionError: expected 'Not implemented' to match /abv.*mismatch/i
+- Expected:
++ Received:
+AssertionError: expected 'Not implemented' to match /abv.*needs-review/i
+- Expected:
++ Received:
+
+=== Preserved RED: sprint2-e2e-red.log; original SHA-256 6d76a38bcc3766a1efb3b08b9a58ca9ba3f9a1982ac7656f22dde53a4c7f7048 ===
+Error: expect(locator).toBeDisabled() failed
+Expected: disabled
+Error: element(s) not found
+Error Context: ../../../opt/data/ttb-phase3-evidence/sprint1-browser-green/review-outcomes-Pass-requi-7095d-on-remains-an-unsaved-draft-desktop/error-context.md
+
+=== Preserved RED: preview-csp-red.log; original SHA-256 30b255bb30c3ee1ad09c2b5900a2b5d0d41675cdad6b057a088883bcf81c2731 ===
+Error: expect(received).toBe(expected) // Object.is equality
+Expected: 840
+Received: 0
+Error Context: ../../../opt/data/ttb-phase3-evidence/final-browser/single-explicit-known-samp-2d97a-enlargement-and-stale-reset-desktop/error-context.md
+
+Interpretation: Sprint1 library RED was missing-module; browser RED was assertion-level. Sprint2 deny-scaffold policy RED was 5 failures/9 passes; final all 14 pass. Preview RED was decoded width 0 vs 840; img-src blob-only correction is verified by final inline+dialog pixel tests.
+No package/lockfile or Phase1 intake/Application or Phase2 rule/provider/spend source changes.
+Both tracked local servers stopped; final HTTP connection probe 000.
