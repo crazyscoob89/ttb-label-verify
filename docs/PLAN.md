@@ -1,5 +1,7 @@
 # PLAN.md — TTB Label Verification Prototype
 
+> **Current planning amendment (documentation only):** [GOVERNANCE-AND-AUDIT-DESIGN.md](GOVERNANCE-AND-AUDIT-DESIGN.md) and [BUILD-PLAN.md](BUILD-PLAN.md) propose individual identity and persistent, version-bound review history. The no-account/no-retention architecture below is preserved as the earlier baseline, not the proposed target. Alex has authorized the new design package only; implementation, persistence activation and deployment remain held pending scope approval. Existing upload, inference and spending safeguards still apply.
+
 ## Frozen Scope
 
 This document defines the frozen scope for the prototype. Changes to scope after

@@ -1,5 +1,9 @@
 # Engineering review register
 
+## Current documentation candidate
+
+[Round 09](09-governance-design-package.md) publishes the frozen v3 mock, proposed governance amendment and phased build plan. **ARGUS review pending; Alex application-scope approval pending.** AVA owns publication; ARGUS remains read-only. Prior visual/mock PASS reports are attributed in that record and do not certify this new spec, persistent identity/history, or deployment. The older consolidation/planning status below is retained as historical provenance; the new build plan is the controlling proposed next sequence.
+
 ## Report to Alex Martinez
 
 **Decision owner:** Alex. **Current implementation and record owner:** AVA.
@@ -34,6 +38,7 @@ This is not approval to merge, deploy, spend again, or start the application.
 | 06 Portability repair | `e162de5373ce3ecdfd67b0e96085327df67abf31` | Builder Linux checks passed; subsequent native Windows REVISE reported | [Validation](06-portability-validation.md) |
 | 07 Windows path repair | `05312d0c2a61d061de903cfcba3dc0970a28dfe8` (includes repair `3e8d52b`) | PASS: ARGUS native Windows verification, relayed by Alex | [Path repair and final verdict](07-windows-path-repair.md) |
 | 08 Consolidation | `30beea903cb6c9fbe14aff8d259698ef3df90a4d` | Final ARGUS PASS supersedes preliminary REVISE; checkout documentation follow-up applied | [Consolidation review](08-consolidation-review.md) |
+| 09 Governance/design package | Branch `ava/governance-plan-v3`; candidate supplied in review handoff | Pending independent review; docs-only authorization | [Spec, plan and v3 provenance](09-governance-design-package.md) |
 
 These are the source-backed rounds recovered for this register, not a claim
 that every historical message or review job has been recovered. Planning

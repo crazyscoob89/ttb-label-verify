@@ -4,3 +4,6 @@
 /fixtures/manifest.json -text
 /fixtures/ground_truth/*.json -text
 /fixtures/images/*.png binary
+
+# Frozen mock/evidence bytes are hashed independently of checkout OS.
+/docs/ui/v3/** -text

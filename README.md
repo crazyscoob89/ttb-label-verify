@@ -13,6 +13,14 @@ fixtures × 3 engines × N=3 repeats = 162 recorded calls**. That is bounded
 engine evidence, not a deployed Next.js application or verified security
 controls. No new provider run is authorized by this documentation audit.
 
+## Frozen UI and proposed governance build
+
+Open the [v3 design entry point](docs/ui/v3/README.md) for the downloadable offline HTML and desktop/mobile screenshots, then read the [governance specification](docs/GOVERNANCE-AND-AUDIT-DESIGN.md) and [phased build plan](docs/BUILD-PLAN.md). **Current authorization is documentation only.** ARGUS reviews the package; Alex approves application scope before implementation. Nothing here deploys authentication, storage or a live app.
+
+**Explicit scope amendment:** earlier sections/docs describe stateless processing without accounts or retained content. The proposed next design adds individual reviewer identity and private, version-bound persistent review history, subject to approval of destinations, retention and access. The legacy no-retention statements below are preserved baseline requirements, not claims that persistence is implemented or a newly approved target remains stateless. Upload/inference/spend safety gates still apply. See [review provenance and open decisions](docs/reviews/09-governance-design-package.md).
+
+The benchmark counts below describe the root archived evidence set, not a claim to summarize every later experiment. This documentation package neither republishes nor changes later benchmark results.
+
 ## Documentation and evidence
 
 - [docs/CONSOLIDATION.md](docs/CONSOLIDATION.md) — consolidated benchmark candidate: canonical scorer, frozen historical archives, current severity-run exclusion and review status

@@ -1,5 +1,7 @@
 # ACCEPTANCE_CHECKLIST.md — TTB Label Verification Prototype
 
+> **Scope amendment pending:** the original stateless/no-retention checklist below remains historical. The proposed [governance design](GOVERNANCE-AND-AUDIT-DESIGN.md) and [build plan](BUILD-PLAN.md) add identity, deliberate private evidence retention and append-only review history, with new database/security gates. No checkbox here or in the new plan implies those controls exist. Alex approved documentation only.
+
 This checklist maps prototype deliverables to the six Treasury evaluation
 criteria, plus a final delivery gate. Stage 2 supplies a benchmark harness,
 offline scorer/tests, and saved synthetic engine evidence, not the planned
