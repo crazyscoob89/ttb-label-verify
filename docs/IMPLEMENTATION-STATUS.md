@@ -16,13 +16,15 @@ PR #3 was verified published at `a9c4b4c68b9aff422ab7d17acc482b608fd59ab7` and i
 
 | Phase | Scope | State |
 | --- | --- | --- |
-| 1 | Test/build harness; safe label/application intake | In progress |
+| 1 | Test/build harness; safe label/application intake | Implementation candidate; ARGUS review pending |
 | 2 | Comparison rules; provider/spend interfaces | Authorized, pending Phase 1 review |
 | 3 | Single-label workflow and explicit outcomes | Authorized, pending dependencies |
 | 4 | Managed identity, actual database/storage, persistent history | Code authorized; external provisioning/integration gated |
 | 5 | Batch pairing, quick switching and recovery | Authorized, pending dependencies |
 | 6 | Live acceptance and deployment | Local release work authorized; paid/live actions gated |
 
-Start branch: `ava/app-phase-1`. Starting implementation base: `656d4d1cb41492ff6cc1b5862373a08032e33f1b`.
+Start branch: `ava/app-phase-1`. Documentation merge base: `656d4d1cb41492ff6cc1b5862373a08032e33f1b`; actual implementation start after the authorization record: `07fdca636495c9d01db4d7a0aa378d51fa9fee43`.
+
+Phase 1 candidate: Sprint 1 local shell/harness committed at `308cab4a078c8e0069c063551d71f977294dbd11`; Sprint 2 adds strict application/manifest contracts, buffer-only image sanitation and manual application entry. Browser validation is limited to fields/file declarations; Node image decoding is exercised locally, not connected to HTTP. No extra API route was added. [Phase handoff and gate evidence](reviews/10-phase1-foundation.md) and [local run instructions](../web/README.md) distinguish code/test evidence from independent review. No external services, paid calls, migrations, publishing or deployment were performed by the implementation worker.
 
 See [BUILD-PLAN.md](BUILD-PLAN.md) for task contracts and [GOVERNANCE-AND-AUDIT-DESIGN.md](GOVERNANCE-AND-AUDIT-DESIGN.md) for identity/data semantics. Frozen `docs/ui/v3/`, `bench/` and `fixtures/` remain unchanged. Completion records must separate local code/tests, independent review, database/provider acceptance and live deployment.
