@@ -1,0 +1,38 @@
+{
+  "application": {
+    "applicationId": "RULES-SYNTH-001",
+    "applicationVersion": "1",
+    "brand": "Old Harbor",
+    "classType": "Vodka",
+    "abv": 40,
+    "netContents": "750 mL",
+    "producerName": "Harbor Distillery",
+    "producerAddress": "12 Wharf Road, Paris",
+    "commodity": "distilled-spirits",
+    "imported": true,
+    "origin": { "kind": "imported", "country": "France" }
+  },
+  "evidence": {
+    "schemaVersion": 1,
+    "brand": { "status": "readable", "text": "Old Harbor", "reason": "Synthetic legible brand" },
+    "classType": { "status": "readable", "text": "Vodka", "reason": "Synthetic legible class" },
+    "abv": { "status": "readable", "text": "40%", "reason": "Synthetic legible ABV" },
+    "netContents": { "status": "readable", "text": "750 mL", "reason": "Synthetic legible volume" },
+    "producer": {
+      "name": { "status": "readable", "text": "Harbor Distillery", "reason": "Synthetic legible name" },
+      "address": { "status": "readable", "text": "12 Wharf Road, Paris", "reason": "Synthetic legible address" }
+    },
+    "origin": { "status": "readable", "text": "France", "reason": "Synthetic legible country" },
+    "warning": {
+      "heading": { "status": "readable", "text": "GOVERNMENT WARNING:", "reason": "Synthetic legible heading" },
+      "body": { "status": "readable", "text": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.", "reason": "Synthetic legible body" },
+      "headingBold": true,
+      "bodyBold": false
+    }
+  },
+  "pairs": [
+    { "id": "exact-import", "applicationPatch": {}, "evidencePatch": {}, "expected": ["match", "match", "match", "match", "match", "match", "match"] },
+    { "id": "readable-seven-discrepancies", "applicationPatch": { "applicationId": "RULES-SYNTH-002", "brand": "Different Brand", "classType": "Gin", "abv": 45, "netContents": "700 mL", "producerName": "Other Distillery", "origin": { "kind": "imported", "country": "Italy" } }, "evidencePatch": { "warning": { "heading": { "status": "readable", "text": "Government Warning:", "reason": "Synthetic wrong case" }, "body": { "status": "readable", "text": "Drink safely.", "reason": "Synthetic changed wording" }, "headingBold": false, "bodyBold": true } }, "expected": ["mismatch", "mismatch", "mismatch", "mismatch", "mismatch", "mismatch", "mismatch"] },
+    { "id": "domestic-wine", "applicationPatch": { "applicationId": "RULES-SYNTH-003", "commodity": "wine", "imported": false, "origin": { "kind": "domestic", "country": "United States" } }, "evidencePatch": { "origin": { "status": "missing", "text": null, "reason": "Synthetic absent country" } }, "expected": ["match", "match", "match", "match", "match", "not-applicable", "match"] }
+  ]
+}

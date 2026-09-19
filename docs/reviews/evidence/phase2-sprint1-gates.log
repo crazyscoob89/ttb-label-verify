@@ -1,0 +1,112 @@
+Builder evidence only. No ARGUS rerun or Phase 2 verdict.
+ANSI removed and trailing whitespace stripped. RED excerpts are explicitly selected; full originals remain in /opt/data/ttb-phase2-evidence.
+
+=== rules-red.log | original SHA-256 4187e4625346325baa83bb0437430e172382cc4c172de9d1feef1dfdbf6ac551 ===
+[Excerpt: startup and counts]
+
+> ttb-label-review-foundation@0.1.0 test
+> vitest run tests/rules.test.ts
+
+
+ RUN  v5.0.1 /opt/data/ttb-governance-docs/web
+
+ ❯ tests/rules.test.ts (115 tests | 115 failed) 150ms
+   ❯ seven-field per-pair source-backed comparison (22)
+[Excerpt: first assertion]
+ FAIL  tests/rules.test.ts > seven-field per-pair source-backed comparison > domestic-wine has all seven independent outcomes
+AssertionError: expected 'failed' to be 'complete' // Object.is equality
+
+Expected: "complete"
+Received: "failed"
+
+ ❯ complete tests/rules.test.ts:13:29
+     11| function complete(application: unknown = app(), extracted: unknown = e…
+     12|   const result = compareApplication(application, extracted);
+     13|   expect(result.processing).toBe('complete');
+       |                             ^
+     14|   if (result.processing !== 'complete') throw new Error('Expected comp…
+     15|   expect(Object.keys(result.fields)).toEqual([...keys]);
+[Excerpt: summary]
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[29/115]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  115 failed (115)
+   Start at  10:54:08
+   Duration  7.38s (import 63%, tests 18%, transform 16%, worker 3%)
+
+
+=== abv-discrepancy-red.log | original SHA-256 87e7723759ba9c7dce18df20222f46e83ea43c19fb702b232e8a030010c23f6c ===
+[Excerpt: startup and counts]
+
+> ttb-label-review-foundation@0.1.0 test
+> vitest run tests/rules.test.ts
+
+
+ RUN  v5.0.1 /opt/data/ttb-governance-docs/web
+
+ ❯ tests/rules.test.ts (117 tests | 1 failed) 105ms
+   ✓ seven-field per-pair source-backed comparison (22)
+[Excerpt: first assertion]
+ FAIL  tests/rules.test.ts > decimal ABV consistency, never tolerance > readable unequal 101% mismatches without rounding
+AssertionError: expected 'needs-review' to be 'mismatch' // Object.is equality
+
+Expected: "mismatch"
+Received: "needs-review"
+
+ ❯ tests/rules.test.ts:83:70
+     81|   });
+     82|   test.each(['45%', '40.1%', '39.999%', '40.000000000000000001%', '101…
+     83|     expect(status('abv', { ...evidence(), abv: observation(text) })).t…
+       |                                                                      ^
+     84|   });
+     85|   test.each(['80 proof', '40/45%', '4e1', '0x28', '-1%', '+40%', '40,0…
+[Excerpt: summary]
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 116 passed (117)
+   Start at  10:59:41
+   Duration  1.43s (import 64%, transform 20%, tests 13%, worker 3%)
+
+
+=== rules-node24-green.log | original SHA-256 f945c05d6ac565dfe203504d8029242d6367f5720157d39e086ef9633d54f377 ===
+
+> ttb-label-review-foundation@0.1.0 test
+> vitest run tests/rules.test.ts
+
+
+ RUN  v5.0.1 /opt/data/ttb-governance-docs/web
+
+ ✓ tests/rules.test.ts (117 tests) 70ms
+
+ Test Files  1 passed (1)
+      Tests  117 passed (117)
+   Start at  11:02:19
+   Duration  1.69s (import 78%, transform 14%, tests 6%, worker 2%)
+
+
+=== regression-node24-green.log | original SHA-256 1e73fb2f7f976ad21bed7c75a825c61a094cb8f6c3ebea260023f4ffc5148df0 ===
+
+> ttb-label-review-foundation@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.1 /opt/data/ttb-governance-docs/web
+
+ ✓ tests/pair-input.test.ts (2 tests) 14ms
+ ✓ tests/smoke.test.ts (1 test) 17ms
+ ✓ tests/rules.test.ts (117 tests) 77ms
+ ✓ tests/intake.test.ts (71 tests) 204ms
+
+ Test Files  4 passed (4)
+      Tests  191 passed (191)
+   Start at  11:02:24
+   Duration  2.60s (import 76%, transform 15%, tests 6%, worker 3%)
+
+
+=== typecheck-node24-green.log | original SHA-256 2dfd7b44f723f2f876e0d5fb0e026973a047ae2d1ea67dea3b550ac3757c221e ===
+
+> ttb-label-review-foundation@0.1.0 typecheck
+> tsc --noEmit
