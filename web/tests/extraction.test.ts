@@ -22,7 +22,7 @@ test('default provider denies without network', async () => {
   try { expect(await createOpenRouterProvider().extract(request())).toEqual({ processing: 'failed', code: 'unconfigured' }); expect(network).not.toHaveBeenCalled(); }
   finally { vi.unstubAllGlobals(); }
 });
-test.each([undefined, false, 'true'])('authorization %s cannot dispatch via adapter directly', async authorized => {
+test.each([undefined, false, 'true'])('authorization %s cannot dispatch via adapter directly', async (authorized: undefined | boolean | string) => {
   const transport = vi.fn(); const store = new OfflineSpendStore();
   const p = createOpenRouterProvider({ authorized: authorized as boolean, apiKey: 'offline', maxCostMicrousd: 100, store, transport });
   expect((await p.extract(request())).processing).toBe('failed'); expect(transport).not.toHaveBeenCalled(); expect(store.rows.size).toBe(0);
@@ -67,16 +67,16 @@ test.each([
   { id: 'missing schema', content: '{}' },
   { id: 'provider verdict', content: JSON.stringify({ ...fixtures.evidence, verdict: 'match' }) },
   { id: 'wrong version', content: JSON.stringify({ ...fixtures.evidence, schemaVersion: 2 }) },
-])('invalid evidence never yields comparison or raw error: $id', async ({ content }) => {
+])('invalid evidence never yields comparison or raw error: $id', async ({ content }: { id: string; content: string }) => {
   const { provider, store } = setup(vi.fn(async () => response(envelope(content))));
   const result = await provider.extract(request()); expect(result).toEqual({ processing: 'failed', code: 'provider-failed' });
   expect(result).not.toHaveProperty('evidence'); expect(compareApplication(fixtures.application, result).processing).toBe('failed'); expect(store.unresolved).toBe(100);
 });
-test.each([301, 401, 429, 500])('HTTP %s fails without retries or raw response', async status => {
+test.each([301, 401, 429, 500])('HTTP %s fails without retries or raw response', async (status: number) => {
   const { provider, transport, store } = setup(vi.fn(async () => new Response('private response', { status })));
   expect(await provider.extract(request())).toEqual({ processing: 'failed', code: 'provider-failed' }); expect(transport).toHaveBeenCalledTimes(1); expect(store.unresolved).toBe(100);
 });
-test.each(['length', 'tools', 'multi', 'role', 'null', 'refusal', 'model', 'error', 'unknown'])('invalid envelope %s cannot yield evidence', async fault => {
+test.each(['length', 'tools', 'multi', 'role', 'null', 'refusal', 'model', 'error', 'unknown'])('invalid envelope %s cannot yield evidence', async (fault: string) => {
   const value: any = envelope();
   if (fault === 'length') value.choices[0].finish_reason = 'length';
   if (fault === 'tools') value.choices[0].message.tool_calls = [{ function: { name: 'attack' } }];
@@ -91,7 +91,7 @@ test.each(['length', 'tools', 'multi', 'role', 'null', 'refusal', 'model', 'erro
   expect(await provider.extract(request())).toEqual({ processing: 'failed', code: 'provider-failed' });
   expect(transport).toHaveBeenCalledTimes(1); expect(store.unresolved).toBe(100);
 });
-test.each(['empty', 'oversized', 'mime', 'extra', 'identity'])('invalid request %s denied before reservation/network', async fault => {
+test.each(['empty', 'oversized', 'mime', 'extra', 'identity'])('invalid request %s denied before reservation/network', async (fault: string) => {
   const req: any = request();
   if (fault === 'empty') req.image = Buffer.alloc(0);
   if (fault === 'oversized') req.image = Buffer.alloc(EXTRACTION_LIMITS.inputBytes + 1);
@@ -109,7 +109,7 @@ test('response limit enforced on streamed chunks before complete JSON parsing', 
 test('extraction timeout matches the planned 20-second limit', () => {
   expect(EXTRACTION_LIMITS.timeoutMs).toBe(20000);
 });
-test.each(['headers', 'stream'])('timeout includes %s and leaves liability, no same-key retry', async stage => {
+test.each(['headers', 'stream'])('timeout includes %s and leaves liability, no same-key retry', async (stage: string) => {
   vi.useFakeTimers(); const cancel = vi.fn();
   const transport = vi.fn(async (_url: string, _init: RequestInit): Promise<Response> => stage === 'headers' ? new Promise(() => {}) : new Response(new ReadableStream({ start(c) { c.enqueue(new TextEncoder().encode('{')); }, cancel })));
   const { provider, store } = setup(transport); const req = request(); const result = provider.extract(req);
@@ -135,7 +135,7 @@ test('racing provider calls dispatch once; explicit new attempt consumes another
   expect(results.filter(r => r.processing === 'complete')).toHaveLength(1); expect(transport).toHaveBeenCalledTimes(1);
   expect((await provider.extract(request())).processing).toBe('complete'); expect(transport).toHaveBeenCalledTimes(2); expect(store.unresolved).toBe(200);
 });
-test.each(['key', 'store', 'amount'] as const)('missing dependency %s blocks even explicit authorization', async missing => {
+test.each(['key', 'store', 'amount'] as const)('missing dependency %s blocks even explicit authorization', async (missing: 'key' | 'store' | 'amount') => {
   const transport = vi.fn(); const store = new OfflineSpendStore();
   const deps = { authorized: true, apiKey: 'offline', store, maxCostMicrousd: 100, transport };
   delete (deps as Partial<typeof deps>)[{ key: 'apiKey', store: 'store', amount: 'maxCostMicrousd' }[missing] as keyof typeof deps];
@@ -154,7 +154,7 @@ test('shared image memory is rejected before dispatch', async () => {
   const { provider, transport } = setup(); const req = request(); req.image = new Uint8Array(new SharedArrayBuffer(20));
   expect((await provider.extract(req)).processing).toBe('failed'); expect(transport).not.toHaveBeenCalled();
 });
-test.each(['declared size', 'invalid utf8', 'malformed JSON', 'redirected'])('response %s fails with held liability', async fault => {
+test.each(['declared size', 'invalid utf8', 'malformed JSON', 'redirected'])('response %s fails with held liability', async (fault: string) => {
   const r = fault === 'declared size' ? new Response('{}', { headers: { 'Content-Length': String(EXTRACTION_LIMITS.responseBytes + 1) } }) :
     fault === 'invalid utf8' ? new Response(new Uint8Array([0xff])) : fault === 'malformed JSON' ? new Response('{') : response();
   if (fault === 'redirected') Object.defineProperty(r, 'redirected', { value: true });
