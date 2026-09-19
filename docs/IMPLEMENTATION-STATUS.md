@@ -2,6 +2,8 @@
 
 ## Current authority
 
+Alex's current local continuation approval is **“go as long as you are in agreement”**. AVA agrees with the supplied ARGUS Phase 1 PASS and is recording it before continuing Phase 2 on `ava/app-phase-2`, based on `2b59abcb0cb7e95abc1639ee4e81df50930dfe1a`. This step permits local implementation/tests/commits only: no remote writes, live/paid calls, provisioning, migrations or deployment. AVA remains builder; ARGUS is read-only reviewer after the entire Phase 2. [Original review and limitations](reviews/11-phase1-argus-pass.md): source/diff/log review, matching Windows clone; tests/build were not independently rerun.
+
 Alex's latest direct instruction: “is this documented in our github? If so go ahead and build it out if not document put in github properly and organized and then build and implement”. This authorizes the agreed phased application implementation, not merely another plan. It supersedes earlier documentation-only headers for the approved work; those paragraphs remain historical records of the proposal stage.
 
 PR #3 was verified published at `a9c4b4c68b9aff422ab7d17acc482b608fd59ab7` and is now merged into `master` as `656d4d1cb41492ff6cc1b5862373a08032e33f1b`. The merge tree matches the published documentation candidate. The current coordination reports the specification reviewed; the full original separate ARGUS spec-review transcript has not been imported into this repository, and no additional browser/database review is inferred from that report.
@@ -16,8 +18,8 @@ PR #3 was verified published at `a9c4b4c68b9aff422ab7d17acc482b608fd59ab7` and i
 
 | Phase | Scope | State |
 | --- | --- | --- |
-| 1 | Test/build harness; safe label/application intake | Implementation candidate; ARGUS review pending |
-| 2 | Comparison rules; provider/spend interfaces | Authorized, pending Phase 1 review |
+| 1 | Test/build harness; safe label/application intake | ARGUS PASS at `2b59abcb0cb7e95abc1639ee4e81df50930dfe1a`; AVA agrees; no revisions |
+| 2 | Comparison rules; provider/spend interfaces | In progress locally; independent review after full Phase 2 |
 | 3 | Single-label workflow and explicit outcomes | Authorized, pending dependencies |
 | 4 | Managed identity, actual database/storage, persistent history | Code authorized; external provisioning/integration gated |
 | 5 | Batch pairing, quick switching and recovery | Authorized, pending dependencies |
