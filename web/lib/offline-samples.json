@@ -1,0 +1,306 @@
+{
+  "match": {
+    "title": "Matching sample",
+    "imagePath": "/offline-samples/match.png",
+    "imageSha256": "46912750a0d1708a9883e83ce8161f3e1eb811ab5060b6037473437ffc0095e3",
+    "application": {
+      "applicationId": "OFFLINE-match",
+      "applicationVersion": "1",
+      "brand": "Old Harbor",
+      "classType": "Vodka",
+      "abv": 40,
+      "netContents": "750 mL",
+      "producerName": "Harbor Distillery",
+      "producerAddress": "12 Wharf Road, Paris",
+      "commodity": "distilled-spirits",
+      "imported": true,
+      "origin": {
+        "kind": "imported",
+        "country": "France"
+      }
+    },
+    "evidence": {
+      "schemaVersion": 1,
+      "brand": {
+        "status": "readable",
+        "text": "Old Harbor",
+        "reason": "Synthetic legible brand"
+      },
+      "classType": {
+        "status": "readable",
+        "text": "Vodka",
+        "reason": "Synthetic legible class"
+      },
+      "abv": {
+        "status": "readable",
+        "text": "40%",
+        "reason": "Synthetic legible ABV"
+      },
+      "netContents": {
+        "status": "readable",
+        "text": "750 mL",
+        "reason": "Synthetic legible volume"
+      },
+      "producer": {
+        "name": {
+          "status": "readable",
+          "text": "Harbor Distillery",
+          "reason": "Synthetic legible name"
+        },
+        "address": {
+          "status": "readable",
+          "text": "12 Wharf Road, Paris",
+          "reason": "Synthetic legible address"
+        }
+      },
+      "origin": {
+        "status": "readable",
+        "text": "France",
+        "reason": "Synthetic legible country"
+      },
+      "warning": {
+        "heading": {
+          "status": "readable",
+          "text": "GOVERNMENT WARNING:",
+          "reason": "Synthetic legible heading"
+        },
+        "body": {
+          "status": "readable",
+          "text": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+          "reason": "Synthetic legible body"
+        },
+        "headingBold": true,
+        "bodyBold": false
+      }
+    },
+    "failure": false
+  },
+  "discrepancy": {
+    "title": "Readable discrepancy",
+    "imagePath": "/offline-samples/discrepancy.png",
+    "imageSha256": "3f726b34a74502131164b34f75d29e6521505bd3fd6471598fa0c05724bcfd48",
+    "application": {
+      "applicationId": "OFFLINE-discrepancy",
+      "applicationVersion": "1",
+      "brand": "Old Harbor",
+      "classType": "Vodka",
+      "abv": 40,
+      "netContents": "750 mL",
+      "producerName": "Harbor Distillery",
+      "producerAddress": "12 Wharf Road, Paris",
+      "commodity": "distilled-spirits",
+      "imported": true,
+      "origin": {
+        "kind": "imported",
+        "country": "France"
+      }
+    },
+    "evidence": {
+      "schemaVersion": 1,
+      "brand": {
+        "status": "readable",
+        "text": "Old Harbor",
+        "reason": "Synthetic legible brand"
+      },
+      "classType": {
+        "status": "readable",
+        "text": "Vodka",
+        "reason": "Synthetic legible class"
+      },
+      "abv": {
+        "status": "readable",
+        "text": "45%",
+        "reason": "Synthetic legible ABV"
+      },
+      "netContents": {
+        "status": "readable",
+        "text": "750 mL",
+        "reason": "Synthetic legible volume"
+      },
+      "producer": {
+        "name": {
+          "status": "readable",
+          "text": "Harbor Distillery",
+          "reason": "Synthetic legible name"
+        },
+        "address": {
+          "status": "readable",
+          "text": "12 Wharf Road, Paris",
+          "reason": "Synthetic legible address"
+        }
+      },
+      "origin": {
+        "status": "readable",
+        "text": "France",
+        "reason": "Synthetic legible country"
+      },
+      "warning": {
+        "heading": {
+          "status": "readable",
+          "text": "GOVERNMENT WARNING:",
+          "reason": "Synthetic legible heading"
+        },
+        "body": {
+          "status": "readable",
+          "text": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+          "reason": "Synthetic legible body"
+        },
+        "headingBold": true,
+        "bodyBold": false
+      }
+    },
+    "failure": false
+  },
+  "uncertainty": {
+    "title": "Unreadable ABV",
+    "imagePath": "/offline-samples/uncertainty.png",
+    "imageSha256": "af4d61cf2577b2e848c9d171ccca8d6f9107df7fab6e2dcaafa6536cf811593e",
+    "application": {
+      "applicationId": "OFFLINE-uncertainty",
+      "applicationVersion": "1",
+      "brand": "Old Harbor",
+      "classType": "Vodka",
+      "abv": 40,
+      "netContents": "750 mL",
+      "producerName": "Harbor Distillery",
+      "producerAddress": "12 Wharf Road, Paris",
+      "commodity": "distilled-spirits",
+      "imported": true,
+      "origin": {
+        "kind": "imported",
+        "country": "France"
+      }
+    },
+    "evidence": {
+      "schemaVersion": 1,
+      "brand": {
+        "status": "readable",
+        "text": "Old Harbor",
+        "reason": "Synthetic legible brand"
+      },
+      "classType": {
+        "status": "readable",
+        "text": "Vodka",
+        "reason": "Synthetic legible class"
+      },
+      "abv": {
+        "status": "unreadable",
+        "text": null,
+        "reason": "ABV is obscured in this synthetic artwork; no numeric observation."
+      },
+      "netContents": {
+        "status": "readable",
+        "text": "750 mL",
+        "reason": "Synthetic legible volume"
+      },
+      "producer": {
+        "name": {
+          "status": "readable",
+          "text": "Harbor Distillery",
+          "reason": "Synthetic legible name"
+        },
+        "address": {
+          "status": "readable",
+          "text": "12 Wharf Road, Paris",
+          "reason": "Synthetic legible address"
+        }
+      },
+      "origin": {
+        "status": "readable",
+        "text": "France",
+        "reason": "Synthetic legible country"
+      },
+      "warning": {
+        "heading": {
+          "status": "readable",
+          "text": "GOVERNMENT WARNING:",
+          "reason": "Synthetic legible heading"
+        },
+        "body": {
+          "status": "readable",
+          "text": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+          "reason": "Synthetic legible body"
+        },
+        "headingBold": true,
+        "bodyBold": false
+      }
+    },
+    "failure": false
+  },
+  "failure": {
+    "title": "Processing failure",
+    "imagePath": "/offline-samples/failure.png",
+    "imageSha256": "04b8e1f8ae6dfd3a5bc278c64a9a73de9fbe0c8e42e759b433888e777c152930",
+    "application": {
+      "applicationId": "OFFLINE-failure",
+      "applicationVersion": "1",
+      "brand": "Old Harbor",
+      "classType": "Vodka",
+      "abv": 40,
+      "netContents": "750 mL",
+      "producerName": "Harbor Distillery",
+      "producerAddress": "12 Wharf Road, Paris",
+      "commodity": "distilled-spirits",
+      "imported": true,
+      "origin": {
+        "kind": "imported",
+        "country": "France"
+      }
+    },
+    "evidence": {
+      "schemaVersion": 1,
+      "brand": {
+        "status": "readable",
+        "text": "Old Harbor",
+        "reason": "Synthetic legible brand"
+      },
+      "classType": {
+        "status": "readable",
+        "text": "Vodka",
+        "reason": "Synthetic legible class"
+      },
+      "abv": {
+        "status": "readable",
+        "text": "40%",
+        "reason": "Synthetic legible ABV"
+      },
+      "netContents": {
+        "status": "readable",
+        "text": "750 mL",
+        "reason": "Synthetic legible volume"
+      },
+      "producer": {
+        "name": {
+          "status": "readable",
+          "text": "Harbor Distillery",
+          "reason": "Synthetic legible name"
+        },
+        "address": {
+          "status": "readable",
+          "text": "12 Wharf Road, Paris",
+          "reason": "Synthetic legible address"
+        }
+      },
+      "origin": {
+        "status": "readable",
+        "text": "France",
+        "reason": "Synthetic legible country"
+      },
+      "warning": {
+        "heading": {
+          "status": "readable",
+          "text": "GOVERNMENT WARNING:",
+          "reason": "Synthetic legible heading"
+        },
+        "body": {
+          "status": "readable",
+          "text": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+          "reason": "Synthetic legible body"
+        },
+        "headingBold": true,
+        "bodyBold": false
+      }
+    },
+    "failure": true
+  }
+}
