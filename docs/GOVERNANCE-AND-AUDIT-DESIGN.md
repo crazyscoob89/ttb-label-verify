@@ -1,5 +1,7 @@
 # Governance and audit design
 
+> **Execution update:** Alex has authorized phased implementation. [IMPLEMENTATION-STATUS.md](IMPLEMENTATION-STATUS.md) supersedes the historical documentation-only gates below for local source work. Paid calls, cloud provisioning and deployment remain gated; design text is not evidence of implemented controls.
+
 **Status: design candidate for review; not implemented or approved for deployment.**
 Alex authorized this specification, the build plan and publication of frozen v3 assets only. AVA owns implementation; ARGUS reviews read-only; Alex approves scope before an application build. The September 24 evaluation-share target is owner-provided, not a guarantee of delivery or acceptance.
 

@@ -5,7 +5,8 @@ applicant-declared application record across seven field categories, with
 statutory government-warning checks (27 CFR Parts 4, 5, 7, and 16). This is
 a verification aid, not COLA approval or legal certification.
 
-**Status: Stage 2 benchmark implemented; application/deployment pending.**
+**Status: Stage 2 benchmark preserved; Phase 1 local application implementation candidate, ARGUS review pending; no deployment.**
+See [local app commands and runtime boundaries](web/README.md) and [Phase 1 evidence](docs/reviews/10-phase1-foundation.md). Browser application-field checks and tested buffer-only intake helpers exist; image processing is not connected to the UI. No auth, inference, database or persistent history is implemented.
 Stage 1 was planning-only. The repository now includes generated synthetic
 fixtures, a provider-adapter benchmark harness, deterministic scoring and
 offline tests, and saved engine results. The existing run contains **18
@@ -13,9 +14,13 @@ fixtures × 3 engines × N=3 repeats = 162 recorded calls**. That is bounded
 engine evidence, not a deployed Next.js application or verified security
 controls. No new provider run is authorized by this documentation audit.
 
+## Implementation authorization
+
+Alex has approved the phased local application build. The documentation candidate in PR #3 is merged; [current execution status and external-action boundaries](docs/IMPLEMENTATION-STATUS.md) supersede historical documentation-only wording below. No working/deployed application is claimed by that approval.
+
 ## Frozen UI and proposed governance build
 
-Open the [v3 design entry point](docs/ui/v3/README.md) for the downloadable offline HTML and desktop/mobile screenshots, then read the [governance specification](docs/GOVERNANCE-AND-AUDIT-DESIGN.md) and [phased build plan](docs/BUILD-PLAN.md). **Current authorization is documentation only.** ARGUS reviews the package; Alex approves application scope before implementation. Nothing here deploys authentication, storage or a live app.
+Open the [v3 design entry point](docs/ui/v3/README.md) for the downloadable offline HTML and desktop/mobile screenshots, then read the [governance specification](docs/GOVERNANCE-AND-AUDIT-DESIGN.md) and [phased build plan](docs/BUILD-PLAN.md). **Historical proposal-stage authorization was documentation only; the approved local phased implementation is now governed by [IMPLEMENTATION-STATUS.md](docs/IMPLEMENTATION-STATUS.md).** ARGUS independently reviews each frozen implementation phase. Nothing here deploys authentication, storage or a live app.
 
 **Explicit scope amendment:** earlier sections/docs describe stateless processing without accounts or retained content. The proposed next design adds individual reviewer identity and private, version-bound persistent review history, subject to approval of destinations, retention and access. The legacy no-retention statements below are preserved baseline requirements, not claims that persistence is implemented or a newly approved target remains stateless. Upload/inference/spend safety gates still apply. See [review provenance and open decisions](docs/reviews/09-governance-design-package.md).
 
@@ -87,8 +92,7 @@ Paid harness execution and the standalone engine probe are **disabled**
 before credentials or dispatch. Only offline review is enabled. Before a future
 paid run, obtain authorization and implement/prove a spending bound accounting
 for failures, concurrent callers and previous spend; no manual boolean flag
-pretends to verify a provider cap. Application install/build/deploy instructions
-remain pending because the Next.js application has not been built.
+pretends to verify a provider cap. Application install/build instructions now exist in [web/README.md](web/README.md) for the bounded local Phase 1 candidate; deployment remains unapproved.
 
 ## Cross-platform evidence integrity
 

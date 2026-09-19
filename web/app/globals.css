@@ -1,0 +1,14 @@
+:root{--ink:#162230;--muted:#52616d;--line:#d8e0e6;--navy:#173a5e;--teal:#0e625a;--focus:#bd6300}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,#f8faf7,#eef4f2);color:var(--ink);font:16px/1.5 Arial,Helvetica,sans-serif}
+.page{max-width:1080px;margin:auto;padding:28px 24px}
+.banner{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px;background:#eaf4f2;border:1px solid #bfd9d3;border-radius:16px;margin-bottom:20px}
+h1{font-size:28px;line-height:1.2;margin:0}h2{font-size:20px;margin:0 0 12px}p{margin:0 0 14px}p:last-child{margin-bottom:0}
+.eyebrow{color:var(--teal);text-transform:uppercase;letter-spacing:.08em;font-weight:700;font-size:13px;margin-bottom:8px}
+.pill{border:1px solid var(--line);border-radius:20px;background:white;padding:6px 12px;font-size:14px;flex-shrink:0}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;margin-bottom:20px;box-shadow:0 12px 32px #16223008}
+label{display:block;font-weight:700;margin-bottom:6px}input,select,button{font:inherit;min-height:44px;border:1px solid #aebdc5;border-radius:8px;padding:10px;color:var(--ink);max-width:100%}input,select{width:100%;background:white}button{font-weight:700;background:var(--navy);color:white;cursor:pointer}button:disabled{color:#59636c;background:#edf0f2;cursor:not-allowed}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px}.notice{background:#f4f8f6;border-left:4px solid var(--teal);padding:16px;margin:20px 0}.notice p{margin:6px 0 0}
+aside p{color:var(--muted)}aside h2:not(:first-child){margin-top:24px}footer{color:var(--muted);font-size:14px}
+fieldset{border:0;padding:0;margin:24px 0;min-width:0}legend{font-size:18px;font-weight:700;margin-bottom:12px}.field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.help{font-size:14px;color:var(--muted);margin-top:10px}.actions{display:flex;gap:12px;flex-wrap:wrap}.error{border-color:#8a2018;background:#fff1ee;color:#8a2018}.notice ul{padding-left:20px;margin:8px 0}.notice li+li{margin-top:5px}
+@media(max-width:650px){.field-grid{grid-template-columns:1fr}.page{padding:14px}.banner{display:block;padding:18px}.pill{display:inline-block;margin-top:16px}h1{font-size:25px}.card{padding:18px}}

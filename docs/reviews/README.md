@@ -1,5 +1,9 @@
 # Engineering review register
 
+## Active application phase
+
+[Phase 1 foundation/intake candidate](10-phase1-foundation.md) is built locally and awaiting ARGUS's one consolidated read-only review. [Implementation authorization](../IMPLEMENTATION-STATUS.md) records Alex's go-ahead for phased code work; paid calls, provisioning and deployment remain gated. Earlier documentation-only status below is historical.
+
 ## Current documentation candidate
 
 [Round 09](09-governance-design-package.md) publishes the frozen v3 mock, proposed governance amendment and phased build plan. **ARGUS review pending; Alex application-scope approval pending.** AVA owns publication; ARGUS remains read-only. Prior visual/mock PASS reports are attributed in that record and do not certify this new spec, persistent identity/history, or deployment. The older consolidation/planning status below is retained as historical provenance; the new build plan is the controlling proposed next sequence.
