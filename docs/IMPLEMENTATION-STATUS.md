@@ -2,9 +2,11 @@
 
 ## Current authority
 
-Alex relayed the accepted Phase 2 PASS and said **“lets go”**; AVA agreed. Parent merged Phase 1 PR #4 at `d1f07db9083b2a244d21f2d132f4105c951f475f` and Phase 2 PR #5 at `38406c12ac575c06ed55370148f907e45782ad33`. Phase 3 is now implemented in two local sequential commits (`a39e17d`, `6ca12cf`) on `ava/app-phase-3`, based on that merged master. Builder gates: 293 unit tests, typecheck, production build, 18 explicit-offline desktop/mobile E2E cases, plus 4 production denial/manual-input smoke cases. **Parent verification and one consolidated independent Phase 3 review remain pending.** No ARGUS Phase 3 PASS or live acceptance is asserted. [Exact candidate, evidence and limitations](reviews/16-phase3-single-review.md).
+**Phase 3: ARGUS PASS** at frozen `d799821ab549ce2c7dbb6bce8811e2a9a461b204`, base `38406c12ac575c06ed55370148f907e45782ad33`. ARGUS independently reproduced 293 unit tests, typecheck/build, 18 explicit-offline desktop/mobile E2E cases, 4 production smoke cases, forged/malformed-request 403 denials and archive identity on native Windows / Node 22.22.2. No critical/high blockers. [Attributed acceptance, original verdict and raw logs](reviews/17-phase3-argus-pass.md). This supersedes the historical builder handoff's pending independent review and Windows-reproduction limitation, not its runtime limitations.
 
-Runtime inference remains unconfigured/default-deny: the comparison API rejects before body parsing, the browser demonstration is development-only opt-in and exact synthetic-image-bound, and Submit review creates only an **UNSAVED page-memory draft**. No Phase 4/5 implementation, paid calls, cloud, migrations, deployment or worker remote writes occurred. Parent owns eventual publication and independent-review coordination.
+Alex's phased continuation and GitHub publication approval authorize this bounded reviewed-source closeout; no repeated human checkpoint is required for it. Phase 1 PR #4 merged at `d1f07db9083b2a244d21f2d132f4105c951f475f`; Phase 2 PR #5 at `38406c12ac575c06ed55370148f907e45782ad33`. The isolated Phase 3 publication branch preserves the actual reviewed ancestry and integrates master `909c1933a71c5912cd3495ad35a4a50d27159de4`, including the latest benchmark front-door report, without changing the reviewed web tree. Promotion remains conditional on exact-head/base readback and applicable GitHub checks; the PR and live master ref establish merge status, not this document alone.
+
+Runtime inference remains unconfigured/default-deny: the comparison API rejects before body parsing, the browser demonstration is development-only opt-in and exact synthetic-image-bound, and Submit review creates only an **UNSAVED page-memory draft**. Phase 4/5 code is neither included nor accepted by this publication. No paid calls, cloud provisioning, migrations or deployment are authorized by this PASS. AVA owns the isolated publication; ARGUS remains the read-only independent reviewer.
 
 ### Historical Phase 2 starting authority
 
@@ -30,7 +32,7 @@ Alex relayed ARGUS's consolidated PASS for `d28d6f4` and instructed **“lets go
 | --- | --- | --- |
 | 1 | Test/build harness; safe label/application intake | ARGUS PASS at `2b59abcb0cb7e95abc1639ee4e81df50930dfe1a`; AVA agrees; no revisions |
 | 2 | Comparison rules; provider/spend interfaces | ARGUS PASS at `d28d6f451f810b9c8568eed32fba4c9fb98e60f5`; 262 tests/typecheck/build independently reproduced per supplied report; clean-copy gap non-blocking |
-| 3 | Single-label workflow and explicit outcomes | Both local sprints implemented at `6ca12cf`; builder gates green; parent verification/consolidated independent review pending; fixture-only UI and UNSAVED outcomes, no paid/live work |
+| 3 | Single-label workflow and explicit outcomes | ARGUS PASS at `d799821ab549ce2c7dbb6bce8811e2a9a461b204`; native Windows 293 unit/typecheck/build, 18 offline + 4 production E2E, 403 denials and archive identity independently reproduced; fixture-only UI and UNSAVED outcomes, no live acceptance |
 | 4 | Managed identity, actual database/storage, persistent history | Code authorized; external provisioning/integration gated |
 | 5 | Batch pairing, quick switching and recovery | Authorized, pending dependencies |
 | 6 | Live acceptance and deployment | Local release work authorized; paid/live actions gated |

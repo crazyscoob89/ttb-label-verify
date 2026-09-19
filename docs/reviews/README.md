@@ -10,7 +10,7 @@ PASS records below have a different review scope.
 
 ## Active application phase
 
-**Current: Phase 3 local candidate `6ca12cf761fc512031de03b0ef0ae388d085e364`**, preceded by Sprint 1 `a39e17d`; [single-review handoff](16-phase3-single-review.md). Builder reproduced 293/293 unit tests, typecheck, production build, 18/18 opted-in offline E2E cases and 4/4 production manual-input/denial smoke cases. Parent verification and consolidated independent review are pending; this is **not ARGUS PASS**. Exact-image fixture UX and UNSAVED human outcomes are implemented; real provider/auth/persistence/history remain unavailable. No remote writes, paid calls, provisioning or deployment by this worker.
+**Current: Phase 3 ARGUS PASS** on frozen `d799821ab549ce2c7dbb6bce8811e2a9a461b204` (base `38406c12ac575c06ed55370148f907e45782ad33`). [Attributed acceptance and publication closeout](17-phase3-argus-pass.md) preserves the verbatim verdict and supplied native Windows logs. ARGUS independently reproduced 293/293 unit tests, typecheck, production build, 18/18 explicit-offline E2E cases, 4/4 production smoke cases, forged/malformed-request 403 denials and archive identity. No critical/high blockers. The [original builder handoff](16-phase3-single-review.md) remains historical; its pending review/Windows-reproduction status is superseded by this PASS. Publication preserves the reviewed web tree and the latest master benchmark results. Phase 4/5 code is not included or accepted by this closeout. Real inference/auth/storage/history and deployment remain unavailable; outcomes remain UNSAVED page-memory drafts.
 
 Parent already merged accepted Phase 1 PR #4 (`d1f07db9083b2a244d21f2d132f4105c951f475f`) and Phase 2 PR #5 (`38406c12ac575c06ed55370148f907e45782ad33`). Alex's **“lets go”** authorized the bounded Phase 3 continuation. The [attributed Phase 2 PASS](15-phase2-argus-pass.md) supersedes the old pending wording below.
 
@@ -77,8 +77,10 @@ the preserved historical documentation from `62978a1`.
 | Windows path separators rejected the complete manifest | Blocking required gate; severity assigned by record owner | Two `.as_posix()` corrections and three regressions in `3e8d52b` | AVA fixed; ARGUS native Windows PASS on `05312d0`, relayed by Alex |
 | Review decisions remained outside Git | Process gap: incomplete management audit trail | This register preserves available reports and test logs | AVA owns publication; missing independent report remains explicit |
 
-Evidence log copies preserve test output; trailing whitespace is normalized for
-Git whitespace checks. They are not represented as byte-identical log archives.
+Earlier selected evidence log copies preserve test output with trailing whitespace
+normalized for Git whitespace checks; those are not byte-identical log archives.
+The supplied [Phase 3 ARGUS originals](evidence/phase3-argus/README.md) are a distinct
+archive: exact bytes, BOMs, encodings and line endings are retained and hash-listed.
 
 ## Reporting standard
 
