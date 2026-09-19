@@ -1,0 +1,143 @@
+ARGUS REVIEW — Phase 4 source audit part 3: 001_identity_evidence.sql + DB-gate scripts + secrets sweep
+Date: Sat 2026-09-19 ~13:20 EDT
+Worktree: C:\Users\alexm\Projects\argus-phase4-review @ f5007074a33e56214d4da865bd05121665cca1e7
+SOURCE-LEVEL ONLY. No live DB, no migration applied, no psql invoked against any target.
+SQL was READ IN FULL (341 lines); line refs below are to web/db/migrations/001_identity_evidence.sql.
+
+C4a. GRANTS / ROLE HYGIENE — CONFIRMED (source level)
+  :8-9    ttb_owner and ttb_purge both NOLOGIN NOSUPERUSER NOBYPASSRLS.
+  :10     GRANT ttb_owner TO CURRENT_USER — temporary migration-principal membership...
+  :339-340 ...RESET ROLE; REVOKE ttb_owner FROM CURRENT_USER at transaction end ✅
+           (claim "temporary owner membership removed at transaction end" verified).
+  :13     REVOKE ALL ON SCHEMA ttb_private, ttb_api FROM PUBLIC, anon, authenticated,
+          service_role.
+  :21-22  ALTER DEFAULT PRIVILEGES ... REVOKE EXECUTE ON FUNCTIONS FROM PUBLIC in
+          BOTH schemas (future-function hygiene).
+  :332-334 blanket REVOKE ALL on all ttb_private tables + ttb_private/ttb_api functions
+          from PUBLIC/anon/authenticated/service_role, THEN:
+  :335-338 authenticated receives ONLY: USAGE on ttb_api + EXECUTE on EXACTLY the seven
+          RPCs (session_context, membership_context, evidence_insert, evidence_read,
+          spend_reserve, spend_claim, spend_complete) ✅ matches adapter's RPC table.
+  :14-17  auth-schema grants to ttb_owner only: usage, auth.uid()/auth.jwt() execute,
+          SELECT(id,banned_until,deleted_at)+UPDATE(id) on auth.users,
+          SELECT(id,user_id,not_after)+UPDATE(id) on auth.sessions.
+          UPDATE(id) is the documented PostgreSQL FOR SHARE prerequisite (:18-19);
+          I verified NO function performs UPDATE/INSERT/DELETE on auth.* (grep: the only
+          auth.* statements are SELECT ... FOR SHARE at :198,:201). Narrow and honest.
+          Managed-target inherited-ACL verification remains an external runtime gate.
+
+C4b. SEARCH_PATH — CONFIRMED
+  Every function (12 helpers/RPCs, both SQL and plpgsql, incl. all SECURITY DEFINERs)
+  carries SET search_path = pg_catalog: exact_keys :38, valid_text :43, valid_units :49,
+  valid_application :55, valid_image :77, immutable_source :160, session_context :168,
+  authorize :212, assert_actor :224, membership_context :243, evidence_insert :250,
+  evidence_read :291, valid_binding :307, spend_operation :320, spend_reserve/claim/
+  complete :364/:369/:374. No unpinned definer exists. ✅
+
+C4c. RLS — CONFIRMED
+  :148-155 DO loop over ALL EIGHT private tables: ENABLE + FORCE ROW LEVEL SECURITY and
+  a single owner_only policy TO ttb_owner. FORCE means even the owner (policy target)
+  goes through policy; runtime roles have no table grants at all (:332) and no policies,
+  so direct access is doubly closed. ✅
+
+C4d. LOCK ORDERING — CONFIRMED (source level)
+  Documented order user -> session -> membership -> source/access (:196-197):
+    session_context: auth.users FOR SHARE (:198) then auth.sessions FOR SHARE (:201);
+    authorize: session_context THEN memberships FOR SHARE (:216); wall-clock re-check
+    AFTER membership lock wait via second session_context() call (:219-220) using
+    clock_timestamp() (not transaction-stable now()) — claim verified.
+    evidence_insert: assert_actor first (:253), then applications FOR SHARE (:270),
+    objects FOR SHARE (:274), re-assert (:280) before INSERT, and post-insert re-assert
+    + expiry recheck (:286-287) — "recheck after all conflict/row-lock waits" verified.
+    evidence_read: assert -> FOR SHARE OF evidence_access (:295-297) -> re-assert ->
+    clock re-check (:299-301).
+    spend_operation: singleton spend_ledger FOR UPDATE taken BEFORE authorize (:324-326)
+    "locked before authority and reservation work, across all workspaces/users" —
+    matches doc claim; consistent single order for ALL spend writers (reserve/claim/
+    complete all route through spend_operation), so no writer-order inversion within
+    the spend lane. Cross-lane: spend takes ledger -> auth locks, evidence takes
+    auth -> table locks; the two lanes share only the auth.users/sessions/memberships
+    FOR SHARE locks, which are acquired in the same relative order in both lanes
+    (always via session_context/authorize). No ABBA pattern found at source level.
+    Runtime deadlock behavior remains unverified (out of scope).
+
+C5. SPEND ATOMICITY / UNKNOWN-LIABILITY ACCOUNTING — CONFIRMED (source level)
+  Ledger table :123-131: CHECK incurred + unresolved <= ceiling; reservation_microusd
+    >= 1; seeded :132 as (true, false=DISABLED, ceiling 0, incurred 0, unresolved 0,
+    hold 1) — "initial ledger disabled with zero ceiling" verified. Applying this
+    migration could NOT enable paid execution (enabled=false AND ceiling=0).
+  Reservations :133-143: reservation_id PK, attempt_id UNIQUE, claim_id UNIQUE,
+    state CHECK in (reserved,claimed,unresolved), CHECK (state='reserved') = (claim_id
+    IS NULL). Permanent uniqueness of reservation/attempt/claim IDs ✅.
+  spend_operation logic (:320-362):
+    - binding strict-validated (:322) incl. pinned schemaVersion=1, rulesVersion,
+      promptVersion, model, positive maxCostMicrousd; UUID regexes.
+    - existing reservation must match EXACT binding+workspace+user+session else
+      'idempotency collision' (:331-334) — exact replay idempotent, mismatch collides ✅.
+    - reserve on existing row requires state still 'reserved' (:336) — replay-safe.
+    - claim: requires ledger.enabled, cost == owner-configured reservation_microusd
+      (caller cannot supply/reduce hold), state 'reserved', claim_id present (:338);
+      single UPDATE reserved->claimed sets unique claim_id — single-winner via the
+      singleton FOR UPDATE serialization + claim_id UNIQUE constraint ✅.
+    - complete: only claimed/unresolved with EXACT matching claim_id -> 'unresolved'
+      (:341-343); idempotent for same claim; does NOT touch ledger totals — "marks
+      unresolved without releasing any hold" ✅.
+    - new reserve: requires enabled, exact hold amount, incurred+unresolved+cost <=
+      ceiling (:346-347); attempt_id duplicate check (:348); INSERT + ledger
+      unresolved += cost in same transaction (:349-352) — atomic under the
+      singleton row lock.
+    - NO release/reclaim/refund/reset/settlement path exists anywhere (:355-357
+      comment matches code: grep for DELETE/decrement on spend tables = none).
+      Timeout/crash preserves holds ✅.
+    - post-op re-authorize (:358) before returning; response exposes only binding/
+      state/claimId/ledger totals (:359-361) — decoded downstream solely by existing
+      executeReserved (frozen web/lib/spend.ts).
+
+IMMUTABILITY / IDENTITY (supports C3 at SQL level)
+  :156-165 BEFORE UPDATE OR DELETE triggers raise 'immutable source' (ERRCODE 55000)
+  on evidence, applications, objects — trigger-denied mutation ✅.
+  applications PK (workspace, application_id, application_version) + CHECK snapshot
+  keys match columns (:96-103); evidence_insert ON CONFLICT DO NOTHING then FOR SHARE
+  re-read + IS DISTINCT FROM comparison -> 'application binding collision' (:268-272):
+  permanent one-snapshot binding ✅. evidence_id PK, object_version_id UNIQUE (:117-118);
+  evidence FKs to applications and (workspace,object_version) (:120-122).
+  Objects are attestations: no runtime INSERT grant exists for objects (only the seven
+  RPCs are executable and none writes objects) — matches "no runtime object-attestation
+  writer" ✅. evidence_insert verifies pre-existing object row with exact creator and
+  descriptor (:274-277).
+  session_context requires gateway-verified auth.jwt()/auth.uid(); checks issuer from
+  settings (unseeded — so even a migrated DB denies until owner seeds issuer), aud/role
+  'authenticated', exp, session_id shape, live session row, ban/deletion, not_after
+  clamp, wall-clock deadline (:172-206). Returns revoked:false only on full success.
+  assert_actor compares caller p_actor to derived authority; caller JSON is never
+  authority (:224-241) ✅.
+
+DB-GATE SCRIPTS — CONFIRMED fail-closed
+  scripts/db-gate-config.ts:2,:9-14 — requires TTB_DB_GATE_AUTHORIZATION=
+  'isolated-phase4-db-tests-only' + URL/host/database cross-checks, loopback-only,
+  database name ^ttb_phase4_test_[a-z0-9_]+$, no query/fragment; else throws blocked.
+  scripts/db-gate.ts:11 rejects any CLI args (no narrowed suites); :13-18 psql with
+  --no-psqlrc --no-password, ON_ERROR_STOP, default_transaction_read_only=on,
+  statement_timeout=5000, lock_timeout=1000; :21-22 EVEN SUCCESS ends nonzero with
+  'actual catalog only; concurrency/RLS behavior/durability suite UNIMPLEMENTED and
+  UNRUN'; :25 withholds details. My reproduction (argus-06) confirmed the refusal
+  path exits 1 without contacting any DB. Gate CANNOT pass by design ✅.
+
+SECRETS SWEEP — CLEAN
+  Pattern sweep (JWT prefixes, sk-/sbp_ keys, service_role, postgres:// URLs,
+  console.log, env key names) across all 8 new source files: single hit is
+  db-gate-config.ts:15 decodeURIComponent(url.password) — parsing EXPLICIT operator-
+  supplied test config, not an embedded secret. No hard-coded credentials, no logging
+  of tokens/URLs/bodies anywhere. ✅
+
+FINDINGS: NO critical/high source defects in SQL, gate scripts, or adapters.
+All handoff-required checks C1-C8 verified at source level with citations
+(argus-07, argus-08, argus-09). Absent items (concrete PrivateObjectStore, managed
+verifier, durable history, DB behavioral harness, reconciliation) are explicitly
+documented future adapters/gates — NOT defects per handoff instruction.
+OUT OF SCOPE / UNVERIFIED (must not be claimed): actual DB behavior, RLS/grant
+enforcement on a real target, managed JWT verification/revocation, concurrency races,
+migration applicability/replay, private-object runtime behavior, durable history.
+
+NEXT: run next build as extra verification (tranche-2 build unclaimed by builder),
+then write ARGUS-PHASE4-VERDICT.md.

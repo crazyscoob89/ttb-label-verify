@@ -1,0 +1,27 @@
+ARGUS REVIEW — Step 1: Isolated worktree setup (read-only)
+Date: Sat 2026-09-19 ~13:00 EDT
+
+Bundle verify (git bundle verify): both bundles "okay".
+  PHASE5-OFFLINE-CANDIDATE.bundle contains refs/heads/ava/phase5-batch-core = 6fca75bc52d7c7de97787b610ba0c9d2a1d5392e, requires base d799821 (present).
+  PHASE4-SOURCE-CANDIDATE.bundle contains refs/heads/ava/phase4-foundation = f5007074a33e56214d4da865bd05121665cca1e7, requires base d799821 (present).
+
+Fetched into isolated ref namespace (no local branches created, frozen AVA branches untouched):
+  refs/argus-review/phase5-batch-core -> 6fca75bc52d7c7de97787b610ba0c9d2a1d5392e  (verified via rev-parse)
+  refs/argus-review/phase4-foundation -> f5007074a33e56214d4da865bd05121665cca1e7  (verified via rev-parse)
+
+Detached worktrees created (no branch checkout, read-only review copies):
+  C:\Users\alexm\Projects\argus-phase5-review  HEAD = 6fca75bc52d7c7de97787b610ba0c9d2a1d5392e ✅ matches target
+    "HEAD is now at 6fca75b feat(batch): add exact-byte offline fixture review workspace"
+  C:\Users\alexm\Projects\argus-phase4-review  HEAD = f5007074a33e56214d4da865bd05121665cca1e7 ✅ matches target
+    "HEAD is now at f500707 Add Phase 4 durable persistence source and fail-closed DB gate"
+
+Ancestry check:
+  merge-base(phase5 HEAD, d799821) = d799821 ✅ candidate descends from common base
+  merge-base(phase4 HEAD, d799821) = d799821 ✅ candidate descends from common base
+  Commits on top of base: phase5 = 2, phase4 = 2.
+
+Main repo untouched: master still at d74bd6a, `git status --short` clean.
+Existing phase3 worktree (ttb-phase3-review @ d799821) untouched.
+
+Next: begin Phase 5 review — read docs/reviews/18-batch-foundation.md,
+docs/reviews/20-phase5-batch-ui.md, ui/candidate-manifest.json in the phase5 worktree.

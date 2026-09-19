@@ -1,0 +1,65 @@
+ARGUS REVIEW — Step 2: Phase 5 claims map (docs + candidate manifest read)
+Date: Sat 2026-09-19 ~13:02 EDT
+Sources (in worktree C:\Users\alexm\Projects\argus-phase5-review @ 6fca75b):
+  docs/reviews/18-batch-foundation.md  (batch core foundation handoff)
+  docs/reviews/20-phase5-batch-ui.md   (offline batch UI handoff)
+Source (evidence dir, NOT in repo):
+  C:\Users\alexm\.hermes\ttb-phase5-evidence\ui\candidate-manifest.json
+  NOTE: handoff said "ui/candidate-manifest.json" — this file exists only in the
+  evidence directory, not the repo tree ("ui/" at repo root has no such file;
+  repo root contains bench/docs/fixtures/web). Not a defect; recording location.
+
+CANDIDATE CHAIN
+  d799821 (frozen Phase 3 base)
+    -> c1ef52a "batch core" commit (per 20-phase5-batch-ui.md base ref) [to verify in git log]
+    -> 6fca75b "feat(batch): add exact-byte offline fixture review workspace" (candidate)
+  candidate-manifest.json: base c1ef52a, candidate 6fca75b, worktreeClean true. MATCHES handoff.
+
+BUILDER-CLAIMED GATES TO REPRODUCE INDEPENDENTLY (in my environment, Windows):
+  G1. Full unit regression: 326 passed / 11 files, no skips (vitest)
+  G2. Typecheck: tsc --noEmit exit 0
+  G3. Production build: next build with TTB_OFFLINE_DEMO=1, exit 0
+  G4. Dev browser suite (desktop+mobile): 38 passed = 20 batch + 18 single, no skips
+      -- THE NEW SUITE NOT YET INDEPENDENTLY REPRODUCED (priority)
+  G5. Production browser suite: 4 passed (fixture controls absent + API 403 default deny)
+  G6. Frozen-integrity: 41 base git blobs unchanged (web/lib incl. batch core, review
+      policy, offline adapter, runtime access, schemas; API route; package/lockfile;
+      CSP config; synthetic image bytes; docs/ui/v3) — reproduce via git diff d799821..6fca75b
+
+BEHAVIORAL SCOPE CHECKLIST (verify in source + via E2E):
+  S1. Explicit manifest pairing: JSON array of {filename, application}; exact case-sensitive
+      filename join; no list-order pairing; duplicates block affected rows; blocked entries
+      have visible diagnostics
+  S2. Limits: 300 files / 300 mappings / 300 logical entries; 301 rejected; concurrency
+      default AND max = 2
+  S3. Exact-image offline fixture comparisons: SHA-256 vs committed synthetic catalog;
+      renamed known bytes follow bytes; unknown/corrupt uploads blocked ("not an arbitrary-
+      image sanitizer"); compareOfflineSample rechecks exact bytes
+  S4. Horizontal card rail (v3), previous/next, full-width active review, no thumbnails in
+      rail, Blob preview only for active successful pair, URL revocation
+  S5. Isolated per-pair drafts; navigation preserves drafts/results, resets confirmation;
+      reset/replace requires explicit confirm; failed/blocked pairs cannot review
+  S6. Stale A->B->A / version fencing: replacement increments revision even A->B->A;
+      old in-flight attempt keeps slot till terminal settlement; delayed completion cannot
+      populate replacement; save receipts selection-epoch fenced
+  S7. No auto-retries; "Retry selected fixture" only, fresh identities, failed-pair-only
+  S8. Unknown uploads unavailable; production fixture controls absent; /api/comparisons
+      returns exactly 403 {processing:'failed',code:'access-denied'} before body interp
+  S9. NOT implemented BY DESIGN (confirm absent, do not count as gap): arbitrary live
+      extraction; saved history; save receipts (saved counts stay zero, no validator wired)
+  S10. NO newly enabled production inference; NO client auth authority; no new deps;
+      no package/lockfile change
+
+EVIDENCE DIR OBSERVATIONS (builder logs, pre-existing):
+  - typecheck-final.log is 0 bytes; its sha256 in candidate-manifest.json is
+    e3b0c44298fc1c... = SHA256(empty). Empty output is consistent with a passing
+    `tsc --noEmit` but does not itself prove exit code — my independent typecheck (G2)
+    supersedes this as evidence.
+  - full-unit.log, green-browser.log, production-browser.log, build.log present;
+    will cross-check counts when reproducing.
+  - Builder env was Linux (node24 at /opt/data/...; port 3105). I will reproduce on
+    Windows native tooling; BASE_URL/port parametrization claimed supported.
+
+NEXT: enumerate candidate diff (d799821..6fca75b, name-status) to confirm changed-file
+set matches candidate-manifest.json changedFileSha256 (17 files) and verify frozen-blob
+claim; verify c1ef52a is the intermediate commit.

@@ -1,0 +1,23 @@
+ARGUS REVIEW — Step 0: Bundle integrity verification
+Date: Sat 2026-09-19 ~12:58 EDT
+Reviewer: ARGUS build runner (read-only consolidated review, Phase 4/5 handoff)
+Mode: READ-ONLY. No edits/commits/pushes/merges to frozen candidates. Isolated worktrees only.
+
+PHASE5 OFFLINE BATCH CANDIDATE
+  Bundle: C:\Users\alexm\.hermes\ttb-phase5-evidence\PHASE5-OFFLINE-CANDIDATE.bundle
+  Expected SHA256: 02859dd57bcac608974996fedeb8ec5ff7c506d099e81d63e98acf7fe381ea00
+  Actual   SHA256: 02859DD57BCAC608974996FEDEB8EC5FF7C506D099E81D63E98ACF7FE381EA00
+  RESULT: MATCH ✅
+  Target commit: 6fca75bc52d7c7de97787b610ba0c9d2a1d5392e (branch ava/phase5-batch-core)
+
+PHASE4 SOURCE FOUNDATION CANDIDATE
+  Bundle: C:\Users\alexm\.hermes\ttb-phase4-evidence\PHASE4-SOURCE-CANDIDATE.bundle
+  Expected SHA256: 29497c73fa3509ee30216f56789c9869ac38a726019fbde9ae2501a59d93a24f
+  Actual   SHA256: 29497C73FA3509EE30216F56789C9869AC38A726019FBDE9AE2501A59D93A24F
+  RESULT: MATCH ✅
+  Target commit: f5007074a33e56214d4da865bd05121665cca1e7 (branch ava/phase4-foundation)
+
+Common base: d799821ab549ce2c7dbb6bce8811e2a9a461b204
+
+Next: fetch bundles into isolated refs, create read-only worktrees at target SHAs,
+confirm worktree HEADs match targets, then begin Phase 5 review (docs + manifest first).

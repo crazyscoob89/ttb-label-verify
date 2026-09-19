@@ -1,0 +1,41 @@
+{
+  "node": "v24.21.0",
+  "environment": "credential-free allowlist; copied frozen Phase5 dependencies; local Linux",
+  "results": [
+    {
+      "gate": "unit",
+      "command": [
+        "npm",
+        "test"
+      ],
+      "exit": 0
+    },
+    {
+      "gate": "typecheck",
+      "command": [
+        "npm",
+        "run",
+        "typecheck"
+      ],
+      "exit": 0
+    },
+    {
+      "gate": "build",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exit": 0
+    },
+    {
+      "gate": "db-refusal",
+      "command": [
+        "npm",
+        "run",
+        "test:db"
+      ],
+      "exit": 1
+    }
+  ]
+}

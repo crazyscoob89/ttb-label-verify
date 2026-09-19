@@ -17,8 +17,8 @@ applicant-declared application record across seven field categories, with
 statutory government-warning checks (27 CFR Parts 4, 5, 7, and 16). This is
 a verification aid, not COLA approval or legal certification.
 
-**Status: Stage 2 benchmark preserved; Phase 1 local application implementation candidate, ARGUS review pending; no deployment.**
-See [local app commands and runtime boundaries](web/README.md) and [Phase 1 evidence](docs/reviews/10-phase1-foundation.md). Browser application-field checks and tested buffer-only intake helpers exist; image processing is not connected to the UI. No auth, inference, database or persistent history is implemented.
+**Status: Phases 1–3 reviewed; ARGUS PASS for Phase 4 source foundation ONLY and Phase 5 offline batch ONLY; no deployment.**
+See [exact reviewed targets, original verdicts and limitations](docs/reviews/21-phase45-argus-pass.md), [current implementation status](docs/IMPLEMENTATION-STATUS.md), and [local app commands](web/README.md). Development-only exact-fixture single/batch review exists; outcomes and versions remain UNSAVED page-memory drafts. Dormant identity/storage/persistence libraries and SQL source are reviewed, not connected or database-accepted. Live inference, managed auth/session, concrete private-object storage and durable history remain unverified/unavailable; acceptance budget remains zero.
 Stage 1 was planning-only. The repository now includes generated synthetic
 fixtures, a provider-adapter benchmark harness, deterministic scoring and
 offline tests, and saved engine results. The existing run contains **18
@@ -104,7 +104,7 @@ Paid harness execution and the standalone engine probe are **disabled**
 before credentials or dispatch. Only offline review is enabled. Before a future
 paid run, obtain authorization and implement/prove a spending bound accounting
 for failures, concurrent callers and previous spend; no manual boolean flag
-pretends to verify a provider cap. Application install/build instructions now exist in [web/README.md](web/README.md) for the bounded local Phase 1 candidate; deployment remains unapproved.
+pretends to verify a provider cap. Application install/build instructions now exist in [web/README.md](web/README.md) for the reviewed local fixture workflow; deployment remains unapproved.
 
 ## Cross-platform evidence integrity
 

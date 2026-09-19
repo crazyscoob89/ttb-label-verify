@@ -1,0 +1,68 @@
+ARGUS REVIEW — Phase 4 Step 1: claims map + diff surface verification (SOURCE-ONLY review)
+Date: Sat 2026-09-19 ~13:13 EDT
+Worktree: C:\Users\alexm\Projects\argus-phase4-review @ f5007074a33e56214d4da865bd05121665cca1e7 (detached, isolated)
+Docs read: docs/reviews/17-phase4-foundation.md, docs/reviews/19-phase4-persistence-source.md
+
+COMMIT CHAIN (git log d799821..HEAD): ✅ matches docs
+  9bc1d01f65bf6a4d3fcaf451abc5b38ed3121eab  feat: add dormant identity and private evidence source foundation
+     (17-phase4-foundation.md: frozen parent d799821; 19-...md: base 9bc1d01)
+  f5007074a33e56214d4da865bd05121665cca1e7  Add Phase 4 durable persistence source and fail-closed DB gate
+
+DIFF SURFACE base..HEAD (18 paths) — matches "six new modules/tests + docs" (tranche 1)
+plus persistence slice (tranche 2); ONLY existing-file modification is web/package.json:
+  A docs/reviews/17-phase4-foundation.md      A docs/reviews/19-phase4-persistence-source.md
+  A web/db/migrations/001_identity_evidence.sql
+  A web/lib/auth.ts                           A web/lib/persistence/supabase.ts
+  A web/lib/repository.ts                     A web/lib/storage.ts
+  M web/package.json  <- verified diff = ONLY adds "test:db": "tsx scripts/db-gate.ts" ✅
+  A web/scripts/db-gate-config.ts             A web/scripts/db-gate.ts
+  A web/tests/auth.test.ts                    A web/tests/db/catalog.sql
+  A web/tests/db/gate-config.test.ts          A web/tests/db/gate-refusal.test.ts
+  A web/tests/db/sql-contract.test.ts         A web/tests/persistence.test.ts
+  A web/tests/repository.test.ts              A web/tests/storage.test.ts
+  => No route/UI/lockfile/benchmark/BUILD-PLAN/IMPLEMENTATION-STATUS changes ✅ (claim)
+  => No dependencies added (lockfile untouched; test:db uses tsx — VERIFY tsx present in
+     existing devDependencies, else script fails — check during reproduction)
+
+BUILDER-CLAIMED GATES TO REPRODUCE (offline/source only, NO live DB):
+  P1. Full unit regression: 419 passed / 16 files, exit 0        (12-full-unit.log)
+  P2. Typecheck: exit 0                                           (10-typecheck.log)
+  P3. Focused offline contracts: 56 passed / 4 files              (09-focused-green.log)
+  P4. Foundation focused: 70 passed / 3 files (auth/storage/repo) (09-final-focused.log)
+  P5. test:db WITHOUT config: exit 1 with "DB gate blocked: explicit isolated target
+      configuration required", no DB contact — EXPECTED failure, NOT a defect
+  P6. Build: next build exit 0 (claimed in tranche 1 as 09-final-build.log; tranche 2
+      notes build/browser E2E "not rerun in this bounded persistence lane" — current
+      persistence build unclaimed per handoff; I will run build as extra verification)
+
+SOURCE-REVIEW CHECKLIST (required by handoff):
+  C1. Forged/cross-workspace/expired/revoked-token denial paths (auth.ts, supabase.ts, SQL)
+  C2. Scoped server authority: workspace as untrusted selector; no client-supplied
+      identity/actor/clock; per-request adapter construction; browser-runtime refusal
+  C3. Immutable bindings: (workspace, applicationId, applicationVersion) -> snapshot;
+      evidence/object uniqueness; UPDATE/DELETE trigger-denied; no upsert/rebind
+  C4. SQL source-level: grants (owner NOLOGIN/NOSUPERUSER/NOBYPASSRLS; authenticated =
+      schema usage + 7 RPC EXECUTEs only; nothing to PUBLIC/anon/service_role),
+      search_path pinned pg_catalog on SECURITY DEFINER, forced RLS owner-only,
+      lock ordering user -> session -> membership (-> spend singleton first for spend),
+      wall-clock recheck after waits
+  C5. Atomic reservations/claims/unknown-liability: singleton lock before authority;
+      ceiling includes unresolved liability; unique reservation/attempt/claim IDs;
+      exact replay idempotent; single-winner claim; complete marks unresolved without
+      releasing hold; no reclaim/refund/purge; initial ledger disabled ceiling zero
+  C6. Response validation: strict decode of session/membership/evidence envelopes;
+      exact committed row echo required; ambiguous != receipt; read may return null
+  C7. No retry-without-idempotency: no generic HTTP retries; failed/ambiguous insert
+      not safe-to-retry; no auto-retry in wrappers
+  C8. No secrets in source/logs: errors reduced to 'Persistence unavailable' /
+      access-denied / storage-unavailable; no token/URL logging; no .env loading
+  NOT-A-DEFECT list (explicit absent future adapters): concrete PrivateObjectStore,
+      managed Supabase verifier acceptance, durable history/list, reconciliation,
+      redemption gateway, DB behavioral harness (incomplete BY DESIGN).
+
+EXPLICITLY NOT ACCEPTED by this review (must not claim passing): actual DB behavior,
+managed auth/session, concrete private-object adapter, durable review history.
+NO migrations will be run; NO live/real DB touched; test:db exit 1 is EXPECTED.
+
+NEXT: reproduce offline gates (npm ci in isolated worktree, full unit 419/16,
+typecheck, focused suites, test:db expected refusal).
