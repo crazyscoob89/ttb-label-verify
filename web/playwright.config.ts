@@ -7,7 +7,7 @@ export default defineConfig({
   reporter: 'list',
   outputDir: process.env.PLAYWRIGHT_OUTPUT_DIR || 'test-results',
   use: {
-    baseURL: 'http://127.0.0.1:3100',
+    baseURL: process.env.BASE_URL || 'http://127.0.0.1:3100',
     launchOptions: { executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH || undefined },
     trace: 'off',
   },
