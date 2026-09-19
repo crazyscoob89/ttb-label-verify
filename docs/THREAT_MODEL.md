@@ -1,5 +1,7 @@
 # THREAT_MODEL.md — TTB Label Verification Prototype (Skeleton)
 
+> **Current planning amendment (documentation only):** [GOVERNANCE-AND-AUDIT-DESIGN.md](GOVERNANCE-AND-AUDIT-DESIGN.md) and [BUILD-PLAN.md](BUILD-PLAN.md) propose individual identity and persistent, version-bound review history. The no-account/no-retention architecture below is preserved as the earlier baseline, not the proposed target. Alex has authorized the new design package only; implementation, persistence activation and deployment remain held pending scope approval. Existing upload, inference and spending safeguards still apply.
+
 This threat model defines requirements, not verified application controls.
 Stage 2 has implemented an offline benchmark harness and recorded synthetic
 engine evidence; the planned application and deployment controls remain
