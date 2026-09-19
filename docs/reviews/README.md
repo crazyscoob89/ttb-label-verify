@@ -10,6 +10,12 @@ PASS records below have a different review scope.
 
 ## Active application phase
 
+**Current: Phase 3 ARGUS PASS** on frozen `d799821ab549ce2c7dbb6bce8811e2a9a461b204` (base `38406c12ac575c06ed55370148f907e45782ad33`). [Attributed acceptance and publication closeout](17-phase3-argus-pass.md) preserves the verbatim verdict and supplied native Windows logs. ARGUS independently reproduced 293/293 unit tests, typecheck, production build, 18/18 explicit-offline E2E cases, 4/4 production smoke cases, forged/malformed-request 403 denials and archive identity. No critical/high blockers. The [original builder handoff](16-phase3-single-review.md) remains historical; its pending review/Windows-reproduction status is superseded by this PASS. Publication preserves the reviewed web tree and the latest master benchmark results. Phase 4/5 code is not included or accepted by this closeout. Real inference/auth/storage/history and deployment remain unavailable; outcomes remain UNSAVED page-memory drafts.
+
+Parent already merged accepted Phase 1 PR #4 (`d1f07db9083b2a244d21f2d132f4105c951f475f`) and Phase 2 PR #5 (`38406c12ac575c06ed55370148f907e45782ad33`). Alex's **“lets go”** authorized the bounded Phase 3 continuation. The [attributed Phase 2 PASS](15-phase2-argus-pass.md) supersedes the old pending wording below.
+
+### Historical Phase 2 candidate status
+
 [Phase 1](11-phase1-argus-pass.md) has supplied **ARGUS PASS** at `2b59abcb0cb7e95abc1639ee4e81df50930dfe1a`, no revisions; AVA agrees. ARGUS read source/diff/closure logs, did not rerun tests/build, and reported a matching native Windows clone. [Phase 2 Sprint 1](12-phase2-sprint1-rules.md) and [Sprint 2](13-phase2-provider-spend.md) are locally implemented/tested; the full local candidate is ready for parent verification, with whole-phase independent review pending. Provider runtime is unwired/default-deny; shared-store contracts are not real database enforcement. [Implementation authorization](../IMPLEMENTATION-STATUS.md) records Alex's local continuation approval. No remote writes, paid/live calls, provisioning or deployment in this step. Earlier documentation-only status below is historical.
 
 ## Current documentation candidate
@@ -71,8 +77,10 @@ the preserved historical documentation from `62978a1`.
 | Windows path separators rejected the complete manifest | Blocking required gate; severity assigned by record owner | Two `.as_posix()` corrections and three regressions in `3e8d52b` | AVA fixed; ARGUS native Windows PASS on `05312d0`, relayed by Alex |
 | Review decisions remained outside Git | Process gap: incomplete management audit trail | This register preserves available reports and test logs | AVA owns publication; missing independent report remains explicit |
 
-Evidence log copies preserve test output; trailing whitespace is normalized for
-Git whitespace checks. They are not represented as byte-identical log archives.
+Earlier selected evidence log copies preserve test output with trailing whitespace
+normalized for Git whitespace checks; those are not byte-identical log archives.
+The supplied [Phase 3 ARGUS originals](evidence/phase3-argus/README.md) are a distinct
+archive: exact bytes, BOMs, encodings and line endings are retained and hash-listed.
 
 ## Reporting standard
 

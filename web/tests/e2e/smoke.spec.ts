@@ -3,8 +3,9 @@ import { image } from '../fixtures/synthetic';
 
 test('application checks are local, reject gaps, clear stale feedback and never enable comparison', async ({ page }) => {
   await page.goto('/review');
+  await page.getByLabel('Input source').selectOption('manual');
   const requests: string[] = [];
-  page.on('request', req => requests.push(req.url()));
+  page.on('request', req => { if (new URL(req.url()).origin !== 'http://127.0.0.1:3100' || req.method() !== 'GET' || new URL(req.url()).pathname.startsWith('/api/')) requests.push(req.url()); });
   await page.getByRole('button', { name: 'Check application fields' }).click();
   await expect(page.locator('form').getByRole('alert')).toContainText('Choose a label image');
   await page.getByLabel('Label image (JPEG or PNG)', { exact: true }).setInputFiles({ name: 'label.png', mimeType: 'image/png', buffer: await image() });
@@ -40,8 +41,9 @@ test('local-only foundation renders without external requests or mobile overflow
   });
   await page.goto('/');
   await expect(page).toHaveURL(/\/review$/);
-  await expect(page.getByRole('heading', { name: 'Pair a label with its application' })).toBeVisible();
-  await expect(page.getByText('Foundation / preflight only', { exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Single label review' })).toBeVisible();
+  await expect(page.getByRole('tab', { name: /Batch/ })).toBeDisabled();
+  await page.getByLabel('Input source').selectOption('manual');
   await expect(page.getByRole('button', { name: 'Submit for comparison' })).toBeDisabled();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   await page.screenshot({ path: testInfo.outputPath('foundation.png'), fullPage: true });

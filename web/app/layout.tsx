@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import './review.css';
 
 export const metadata: Metadata = {
   title: 'Label Review · Foundation',

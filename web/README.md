@@ -1,6 +1,6 @@
-# Local label-review foundation
+# Local label-review workflow
 
-Phase 1 implementation candidate; ARGUS review pending. Synthetic local use only.
+Phase 3 local implementation candidate; parent verification and consolidated independent review pending. Synthetic local use only. Phase 1/2 acceptance is recorded separately; it is not Phase 3 approval.
 
 ## Run and verify
 
@@ -12,7 +12,8 @@ npm --prefix web ci
 npm --prefix web run test
 npm --prefix web run typecheck
 NEXT_TELEMETRY_DISABLED=1 npm --prefix web run build
-NEXT_TELEMETRY_DISABLED=1 npm --prefix web run start -- --port 3100
+# Explicit OFFLINE fixture demo for the full browser suite (development only):
+TTB_OFFLINE_DEMO=1 NEXT_TELEMETRY_DISABLED=1 npm --prefix web run dev -- --port 3100
 ```
 
 Open http://127.0.0.1:3100/review. In a separate terminal after HTTP readiness:
@@ -25,15 +26,19 @@ npm --prefix web run test:e2e
 
 Playwright defaults to its installed Chromium. Optional `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` points to an existing executable; `PLAYWRIGHT_OUTPUT_DIR` relocates screenshots and reports outside source. Stop the localhost server afterward. Tests do not launch/reuse an arbitrary server automatically.
 
-On the recorded shared Linux host, an unrestricted Turbopack run failed with an allocation error. The unchanged build command passed under `taskset -c 0,1` (discover allowed CPUs before using this Linux-only workaround). This is not needed on all systems. The final unrestricted gate was also attempted; see the phase report for its actual result.
+The Phase 3 gate uses a native `/tmp` worktree and copied native dependencies, not cross-worktree symlinks. Production build passed without affinity workarounds. Historical shared-filesystem Phase 1/2 failures remain in their reports.
+
+Production intentionally cannot enable the demo, even with `TTB_OFFLINE_DEMO=1`. Stop the development server before testing `NEXT_TELEMETRY_DISABLED=1 npm --prefix web run start -- --port 3100`; against production run only `npm --prefix web run test:e2e -- tests/e2e/smoke.spec.ts`. The full suite explicitly expects fixture mode. `/api/comparisons` always returns 403 before body parsing; neither demo selection nor submitted authorization flags can grant access.
 
 ## What runs, and what does not
 
 - `/` redirects to `/review`. The rendered app loads no remote fonts/assets and makes no provider requests.
 - `PairInput` checks required application fields and advisory file declarations locally. It does **not read image bytes**, upload, decode, show comparisons, or submit a review. Positive feedback explicitly says image content remains unvalidated. Editing clears stale feedback.
-- Node-only `lib/intake.ts` implements `sanitizeImage`, `bindPairs` and composed single-pair `preparePair`. These are exercised with in-memory synthetic buffers. They are **not connected to HTTP or the browser** in Phase 1.
-- No `/api/intake` was added. `/api/comparisons`, review/history/evidence routes, sign-in, database, inference, global spending controls and batch processing remain absent. CSP and input validation are not authentication or production approval.
-- No local storage, application-content logs, evidence files, provider credentials or database writes. Browser-managed form restoration, OS swap and platform retention are not controlled/certified by this foundation. Use synthetic data only.
+- Node-only `lib/compare-service.ts` composes unchanged `preparePair`/`sanitizeImage`, an explicitly injected offline extraction provider, strict extraction-envelope/image-hash checks and Phase 2 rules. Access defaults deny; tests inject trusted access directly. No live provider is wired.
+- The labelled browser fixture path fetches only four committed synthetic PNGs, verifies their exact normalized hashes and uses immutable, independently fixed observations. It does not decode/analyze arbitrary uploads or proxy inference. Applicant edits never generate observed values. Result/preview/confirmation are reset on pairing changes; stale responses are fenced and object URLs revoked.
+- Outcome cards and `review-policy.ts` require explicit human confirmation, relevant correction/escalation notes and an independent physical-size assessment before Pass. Documented human resolutions preserve original machine findings. Submit review prepares an **UNSAVED page-memory draft**, not a durable receipt or authenticated approval.
+- No `/api/intake`, review/history/evidence route, sign-in, database, global spending implementation or batch queue was added. Batch is visibly unavailable until Phase 5. CSP and input validation are not authentication or production approval.
+- No local storage, application-content logs, provider credentials or database writes. Only synthetic sample artwork is committed under `web/public/offline-samples`; no user evidence is stored. Browser-managed form restoration, OS swap and platform retention are not controlled/certified by this foundation.
 
 ## Intake contract
 
@@ -49,4 +54,4 @@ PNG/JPEG signatures, declared MIME, extension and Sharp decoder format must agre
 
 Synthetic fixtures are generated in memory by `tests/fixtures/synthetic.ts`; the 20MP rejection specimen is deliberately larger than the normal tiny images. Tests do not modify root `fixtures/`, `bench/` or frozen `docs/ui/v3/`.
 
-See [phase review and exact evidence](../docs/reviews/10-phase1-foundation.md).
+See [Phase 3 handoff and exact evidence](../docs/reviews/16-phase3-single-review.md) and the historical [Phase 1 intake report](../docs/reviews/10-phase1-foundation.md).

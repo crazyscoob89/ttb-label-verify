@@ -1,0 +1,5 @@
+﻿PROBE1 forged-auth JSON: HTTP 403 body='{"processing":"failed","code":"access-denied"}'
+PROBE2 malformed binary: HTTP 403 body='{"processing":"failed","code":"access-denied"}'
+PROBE3 offline-samples.json: HTTP 404
+PROBE4 prod demo refusal: home=refused review=refused
+Server stopped; final port check open=False
