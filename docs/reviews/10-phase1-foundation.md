@@ -72,6 +72,10 @@ Browser tests cover root redirect, labels, no mobile horizontal overflow, zero e
 
 Reproduction from `/opt/data/ttb-governance-docs`: use the gate commands above; start server separately with `NEXT_TELEMETRY_DISABLED=1 npm --prefix web run start -- --port 3100`, wait for `curl --fail http://127.0.0.1:3100/review`, then run `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/opt/hermes/.playwright/chromium-1217/chrome-linux64/chrome PLAYWRIGHT_OUTPUT_DIR=/opt/data/ttb-phase1-evidence/review-browser npm --prefix web run test:e2e`. On other machines omit the executable override and install Playwright Chromium locally. No external app network/provider is required.
 
+## Parent verification of committed implementation
+
+AVA independently reran the worker candidate `66e80d9546f63b562b0a64c16eae2d7c81e05a69`: 74 unit tests, typecheck, unrestricted production build and 4 desktop/mobile browser tests passed. The parent inspected the desktop foundation screenshot and the intake implementation, then stopped its localhost server. This is builder-side verification, not ARGUS independent approval. The subsequent publication-record commit changes documentation only, leaving application bytes unchanged.
+
 ## Handoff and scope
 
 Changes are confined to `web/`, root README, `docs/IMPLEMENTATION-STATUS.md`, and this report. Raw logs/screenshots stay outside source. Dependency/cache directories and environment values are ignored. The final Sprint 2 SHA and exact changed-path inventory are supplied in the implementation handoff outside source to avoid a self-referential commit hash. Parent owns publication and verification; ARGUS owns one consolidated read-only review of the frozen phase. Phase 2 has not started.
