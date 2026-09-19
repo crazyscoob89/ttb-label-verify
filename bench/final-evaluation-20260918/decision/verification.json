@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "checks": [
+    "Seven models, 212 byte-unique observations each",
+    "Per-field totals reconcile to saved comparison.json",
+    "Failures, false matches and referral totals reconcile",
+    "104 negative-field opportunities per model",
+    "All-seven-field-correct totals reconcile",
+    "Median and linear p95 recomputed from per-request latencies",
+    "Input evidence hash-stable; no paid execution"
+  ],
+  "not_performed": "Full raw-response frozen-scorer replay; app, network and real-camera testing",
+  "source_url": "https://raw.githubusercontent.com/treasurytakehome-rgb/instructions/62bd63cd2f6b5af088b1d3c3b039c48cfcb012ef/README.md",
+  "source_sha256": "9f989643f0bf4db1249d83139d4266be035af9b598aea77766f7b45325646c7b",
+  "input_sha256": {
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/azure-severity-v1/comparison.json": "cf10839ce7c395f84353ccfda4b6578641c560e869e72600413add043d8bf992",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/azure-severity-v1/scored-rows.json": "eb5142811334c68f343eabab1b9ed24137a42ba02929551d952e9784fca4921c",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/scored-rows.json": "6f382a81e441a49f2ba358994361976769bfc5c8d96a7c314366c2443c65bc4e",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/azure-severity-v1/execution-state.json": "cd2461556918f69e8079308477933d8dc8030309d5146a149995e0d09152f451",
+    "/opt/data/benchmarks/ttb-foundry-20260918-v1/azure-severity-v1/integrity.json": "2ae7c1dce7e687d95ab4eeebb9a77de988c43b3cc1b73f93f21b9f445168df1d"
+  },
+  "report_sha256": "386ff29e946c1e8373e4e612fcccf36b5fabafaa19e25d64b885d3da85c9b349"
+}

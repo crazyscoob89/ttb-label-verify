@@ -1,0 +1,73 @@
+{
+  "id": "azure-foundry--Kimi-K2.6--a65a50cdd9cc98669d72c7bf83b8c6fa835e9c8d5c7229ee7c348ebd85a5355c",
+  "provider": "azure-foundry",
+  "operator": "AVA-azure-severity-v1",
+  "model": "Kimi-K2.6",
+  "engine": "Kimi-K2.6",
+  "fixture_id": "W-BRAND-WRONG-01",
+  "fixture": {
+    "id": "W-BRAND-WRONG-01__blur-5",
+    "source_fixture": "W-BRAND-WRONG-01",
+    "condition": "blur-5",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/W-BRAND-WRONG-01__blur-5.png",
+    "sha256": "1ad5378f41b637401bdb97675a16da92b93d12b0fbe2cab2b8926c3c114351bd",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-BRAND-WRONG-01.png",
+    "source_sha256": "a1a4443f8838733ba6478df90d170d6d3c3cc925e2d2fe6e6e606a6e11a0639b",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/W-BRAND-WRONG-01.png",
+    "original_label_sha256": "27d358e7cc919454f3388fb73d4868878b59f7b1b6433ee2bce514e0e670ca9d",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/W-BRAND-WRONG-01.json",
+    "original_truth_sha256": "b4983b90a789772ec7837b2798132997b60f96bf91f0eb00c911060015f2a425",
+    "source_fixture_id": "W-BRAND-WRONG-01",
+    "clean_parent_substitution": false,
+    "inherited_degradation": "none",
+    "parameters": {
+      "sigma_native_px": 5,
+      "sigma_div_label_width": 0.004166666666666667,
+      "sigma_div_label_height": 0.0026823281843855054,
+      "filter": "Pillow GaussianBlur",
+      "randomness_used": false
+    },
+    "measurements": {}
+  },
+  "repeat": 1,
+  "condition": "blur-5",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.0141677,
+  "request_sha256": "fab58e51470dd59c8e429353760dd3f0d57c444c199c448b3de992233d627e6e",
+  "prompt_settings_sha256": "cbae9f332d5065a1dd8bf55b66ae42a7a61cc7e144f79bcf3b80e25ada48a0a2",
+  "image_sha256": "1ad5378f41b637401bdb97675a16da92b93d12b0fbe2cab2b8926c3c114351bd",
+  "transport": "chat",
+  "started_at": "2026-09-18T21:17:32.351024+00:00",
+  "reserved_usd": 1.10896192,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/W-BRAND-WRONG-01__blur-5.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "old_request_ids": [],
+  "http_status": 200,
+  "request_id": "052d92b7-3cd4-47d0-9780-6d90a6ed31ea",
+  "latency_s": 18.918353735934943,
+  "response_sha256": "a1d7069417a295630861c3de35f59507bfc596d33f3c24c0447189b2b83a37bf",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/azure-severity-v1/responses/azure-foundry--Kimi-K2.6--a65a50cdd9cc98669d72c7bf83b8c6fa835e9c8d5c7229ee7c348ebd85a5355c.json",
+  "tokens_in": 4926,
+  "tokens_out": 2372,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 4926,
+    "completion_tokens": 2372,
+    "total_tokens": 7298,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 704,
+      "image_tokens": 4212
+    }
+  },
+  "returned_model": "Kimi-K2.6"
+}

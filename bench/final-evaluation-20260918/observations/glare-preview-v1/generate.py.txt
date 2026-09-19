@@ -1,0 +1,111 @@
+"""PREVIEW ONLY. Offline pixel lighting; no inference, OCR, APIs or runner imports."""
+import argparse, hashlib, io, json, platform, zipfile
+from pathlib import Path
+import numpy as np
+from PIL import Image, ImageDraw, ImageFont, __version__ as pillow_version
+ROOT=Path(__file__).resolve().parent
+BASE=ROOT.parent
+SEED=20260918
+CROP=(470,1060,1730,2970)
+def sha(p): return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+def dump(p,x): Path(p).write_text(json.dumps(x,indent=2)+'\n')
+def encoded(im):
+    b=io.BytesIO(); im.save(b,format='PNG',compress_level=6); return b.getvalue()
+def parameters(ident):
+    seed=SEED ^ int(hashlib.sha256(ident.encode()).hexdigest()[:8],16)
+    r=np.random.default_rng(seed)
+    return dict(seed=seed,center_u=float(r.choice([-1,1])*r.uniform(.19,.44)),center_y=float(r.uniform(1550,2290)),sigma_y=float(r.uniform(350,480)),angular_width=float(r.uniform(.12,.19)),curve=float(r.uniform(-.075,.075)),strength=float(r.uniform(.30,.38)),edge_strength=.13,bloom_fraction=.12,alpha_bound=.48)
+def render(src,transform,p):
+    # Operate at native resolution in float32 linear-light RGB; never resample ink.
+    im=Image.open(src).convert('RGB'); a=np.asarray(im,dtype=np.float32)/255
+    h,w=a.shape[:2]; yy=np.arange(h,dtype=np.float32)[:,None]; xx=np.arange(w,dtype=np.float32)[None,:]
+    profile=transform['bottle_profile_y_radius']; rad=np.interp(yy[:,0],[v[0] for v in profile],[v[1] for v in profile]).astype(np.float32)[:,None]
+    u=(xx-1100)/rad; angle=np.arcsin(np.clip(u,-1,1))
+    dy=(yy-p['center_y'])/p['sigma_y']; envelope=np.exp(-.5*dy**2)
+    # Moving surface normal + tapered, asymmetric finite softbox reflection.
+    center=np.arcsin(p['center_u'])+p['curve']*np.tanh(dy)+.022*dy**2
+    width=p['angular_width']*(.60+.40*envelope)
+    delta=angle-center
+    asym=1+.20*np.tanh(delta/(width+.00001))
+    lobe=np.exp(-.5*(delta/(width*asym))**2)*envelope
+    halo=np.exp(-.5*(delta/(width*2.2))**2)*np.exp(-.5*(dy/1.24)**2)
+    edge_center=-.88 if p['center_u']>0 else .88
+    edge=np.exp(-.5*((u-edge_center)/.038)**2)*np.exp(-.5*((yy-(p['center_y']+100))/650)**2)
+    # Feather at glass silhouette and cap/base; no rectangular label mask.
+    silhouette=np.clip((1-np.abs(u))/.035,0,1)*np.clip((yy-310)/170,0,1)*np.clip((3020-yy)/100,0,1)
+    alpha=(p['strength']*((1-p['bloom_fraction'])*lobe+p['bloom_fraction']*halo)+p['edge_strength']*edge)*silhouette
+    assert float(alpha.max())<p['alpha_bound']
+    linear=np.where(a<=.04045,a/12.92,((a+.055)/1.055)**2.4)
+    # Slightly warm light, bounded convex blend preserves nonzero source contribution.
+    lit=linear*(1-alpha[...,None])+np.array([1.,.985,.955],np.float32)*alpha[...,None]
+    out=np.where(lit<=.0031308,12.92*lit,1.055*np.maximum(lit,0)**(1/2.4)-.055)
+    out=np.rint(np.clip(out,0,1)*255).astype(np.uint8)
+    original=np.asarray(im); out[alpha<1e-7]=original[alpha<1e-7]
+    labelalpha=alpha[1100:2945,500:1701]; labelout=out[1100:2945,500:1701]
+    saturated=np.all(labelout>=254,axis=2)
+    dark=np.max(original[1100:2945,500:1701],axis=2)<100
+    changed=np.max(np.abs(out.astype(np.int16)-original.astype(np.int16)),axis=2)
+    stats=dict(alpha_max=float(alpha.max()),source_weight_min=float(1-alpha.max()),label_alpha_max=float(labelalpha.max()),label_fraction_alpha_above_020=float((labelalpha>.20).mean()),label_max_row_fraction_alpha_above_020=float((labelalpha>.20).mean(axis=1).max()),solid_saturated_full_label_columns=int(np.all(saturated,axis=0).sum()),new_saturated_dark_ink_pixels=int((saturated&dark).sum()),label_mean_absolute_rgb_change=float(changed[1100:2945,500:1701].mean()),outside_bottle_changed_pixels=int(((silhouette==0)&(changed>0)).sum()))
+    assert stats['solid_saturated_full_label_columns']==0 and stats['new_saturated_dark_ink_pixels']==0
+    assert stats['outside_bottle_changed_pixels']==0
+    assert stats['label_max_row_fraction_alpha_above_020']<.40
+    assert stats['label_mean_absolute_rgb_change']>1
+    return Image.fromarray(out),stats
+
+def boards(rows):
+    fontpath='/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'
+    def font(n):return ImageFont.truetype(fontpath,n)
+    selected=['C-SPIRITS-01','C-WINE-01','D-GLARE-01']
+    board=Image.new('RGB',(1460,3560),(239,237,231));d=ImageDraw.Draw(board)
+    d.text((24,12),'SYNTHETIC GLARE - HUMAN PREVIEW ONLY',font=font(38),fill='#252525')
+    d.text((24,66),'NOT approved / NOT model-tested / native PNGs in bundle',font=font(25),fill='#555555')
+    d.text((24,105),'NO-GLARE SOURCE',font=font(28),fill='black');d.text((750,105),'CORRECTED REFLECTION',font=font(28),fill='black')
+    for i,ident in enumerate(selected):
+        row=next(r for r in rows if r['fixture_id']==ident);y=160+i*1125
+        d.text((24,y),ident+(' (clean C-MALT parent)' if ident=='D-GLARE-01' else ''),font=font(28),fill='black')
+        for j,path in enumerate([row['source_path'],str(ROOT/row['output'])]):
+            crop=Image.open(path).crop(CROP);crop.thumbnail((690,1060),Image.Resampling.LANCZOS);board.paste(crop,(24+j*726,y+46))
+    board.save(ROOT/'selected3-pairs.jpg',quality=94,subsampling=0)
+    sheet=Image.new('RGB',(2040,2490),(239,237,231));d=ImageDraw.Draw(sheet)
+    d.text((20,12),'ALL 18 - SYNTHETIC PREVIEW / NOT APPROVED / NOT MODEL-TESTED',font=font(30),fill='black')
+    for i,row in enumerate(rows):
+        x=(i%6)*340;y=70+(i//6)*800
+        d.text((x+6,y),row['fixture_id'],font=font(17),fill='black')
+        bottle=Image.open(ROOT/row['output']);bottle.thumbnail((328,470),Image.Resampling.LANCZOS);sheet.paste(bottle,(x+(340-bottle.width)//2,y+28))
+        detail=Image.open(ROOT/row['output']).crop((500,1250,1701,1900));detail.thumbnail((328,260),Image.Resampling.LANCZOS);sheet.paste(detail,(x+6,y+510))
+    sheet.save(ROOT/'full18-contact-sheet.jpg',quality=93,subsampling=0)
+    row=next(r for r in rows if r['fixture_id']=='C-SPIRITS-01')
+    Image.open(ROOT/row['output']).crop(CROP).save(ROOT/'C-SPIRITS-01-native-label.png',compress_level=6)
+
+def main():
+    ap=argparse.ArgumentParser();ap.add_argument('--verify',action='store_true');args=ap.parse_args()
+    if args.verify:
+        m=json.loads((ROOT/'manifest.json').read_text()); checks=[]
+        for row in m['fixtures']:
+            im,stats=render(row['source_path'],row['source_geometry'],row['parameters']); data=encoded(im)
+            assert hashlib.sha256(data).hexdigest()==row['output_sha256']==sha(ROOT/row['output'])
+            assert sha(row['source_path'])==row['source_sha256']
+            checks.append(dict(fixture_id=row['fixture_id'],deterministic_png_sha256_match=True,dimensions=list(im.size),checks=stats))
+        assert len(checks)==18 and len(list((ROOT/'images').glob('*.png')))==18
+        inventory=json.loads((ROOT/'inventory.json').read_text())
+        assert all(sha(p)==v for p,v in inventory['immutable_hashes'].items())
+        dump(ROOT/'tests.json',dict(status='PASS',scope='Artifact integrity and deterministic rendering only; NOT model/OCR or human acceptance testing',all_source_hashes_preserved=True,all18_png_hash_regeneration=True,count=18,fixtures=checks))
+        print('PASS: all18 native dimensions, source hashes, deterministic PNG hashes and bounded lighting',flush=True);return
+    assert not (ROOT/'manifest.json').exists(),'Use --verify, or choose another new preview directory'
+    source_manifest=BASE/'bottles/manifest.json';sm=json.loads(source_manifest.read_text());byid={f['fixture_id']:f for f in sm['fixtures']};assert len(byid)==18
+    files=[source_manifest,BASE/'bottles/render.py',BASE/'recovery-v3/v3.py',Path(sm['source_root'])/'generate_labels.py']
+    for f in sm['fixtures']:
+        files += [BASE/'bottles'/f['image'], BASE/'recovery-v3/bottles/images'/(f['fixture_id']+'__straight.png')]
+    hashes={str(p):sha(p) for p in files}
+    inventory=dict(original_bottles=18,straight_bottles=18,rejected_glare_images_used=0,previous_preview_directories=[],selected_directory=str(ROOT),immutable_hashes=hashes,exception='D-GLARE-01 original includes pre-existing glare; use untouched C-MALT-01 clean parent pixels, as declared by fixtures/generate_labels.py. No text restoration or redraw.')
+    dump(ROOT/'inventory.json',inventory);(ROOT/'images').mkdir(exist_ok=True);rows=[]
+    for f in sm['fixtures']:
+        ident=f['fixture_id'];source=byid['C-MALT-01'] if ident=='D-GLARE-01' else f
+        path=BASE/'bottles'/source['image'];assert sha(path)==source['derived_sha256']
+        p=parameters(ident);im,stats=render(path,source['transform'],p);dest=ROOT/'images'/(ident+'__glare-preview.png');dest.write_bytes(encoded(im))
+        rows.append(dict(fixture_id=ident,source_fixture_id=source['fixture_id'],source_path=str(path),source_sha256=sha(path),original_fixture_bottle_sha256=f['derived_sha256'],source_label_sha256=source['source_sha256'],source_geometry=source['transform'],parameters=p,output=str(dest.relative_to(ROOT)),output_sha256=sha(dest),dimensions=list(im.size),lighting_checks=stats,visibility='PENDING HUMAN APPROVAL',inherited_degradation=('original blur' if ident=='D-BLUR-01' else 'original warp' if ident=='D-WARP-01' else 'none')))
+        print('GENERATED',ident,flush=True)
+    assert all(sha(p)==v for p,v in hashes.items())
+    boards(rows)
+    dump(ROOT/'manifest.json',dict(status='SYNTHETIC PREVIEW - NOT APPROVED - NOT MODEL-TESTED',visibility_annotations='pending human approval; no visibility classes assigned',seed=SEED,algorithm='bounded linear-light asymmetric tapered cylindrical-normal softbox lobe + broad halo + opposite edge reflection',source_resolution_retained=True,text_retyped=False,source_pixels_resampled=False,generator_sha256=sha(__file__),environment=dict(python=platform.python_version(),numpy=np.__version__,pillow=pillow_version),fixtures=rows))
+if __name__=='__main__':main()

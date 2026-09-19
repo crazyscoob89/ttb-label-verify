@@ -1,0 +1,28 @@
+"""One-time scope addendum, preserving old authorization and ledger; no inference."""
+import sys
+sys.dont_write_bytecode=True
+import fcntl,json,sqlite3,subprocess,shutil
+from pathlib import Path
+from adapter import B,D,save,sha,now
+QUOTE='We will need to wait on claude for support so for now run claude haiku on one router for testing and we will verify it after when supoort gets back to us'
+
+def main():
+ lock=open(B/'run.lock','a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+ assert not (D/'authorization-addendum.json').exists()
+ before=(B/'budget-authorization.json').read_bytes();auth=json.loads(before);assert auth['total_cap_usd']==50
+ (D/'budget-authorization.before.json').write_bytes(before)
+ c=sqlite3.connect('file:'+str(B/'recovery-v3/budget.sqlite')+'?mode=ro',uri=True)
+ entries=[dict(id=i,nano=n,status=s) for i,n,s in c.execute('select id,nano,status from ledger order by id')]
+ backup=sqlite3.connect(D/'budget-before.snapshot.sqlite');c.backup(backup);backup.close();c.close()
+ save(D/'ledger-before.json',{'entries':entries,'liability_usd':sum(r['nano'] for r in entries)/1e9})
+ stops=[{'path':str(p),'sha256':sha(p),'text':p.read_text()} for p in B.rglob('*STOP*') if p.is_file()]
+ expected=B/'recovery-v3/accounting-before/STOP'
+ assert all(Path(s['path'])==expected for s in stops),'Unexpected stop requires human/context review'
+ addendum={'id':'openrouter-haiku-severity-v1','recorded_utc':now(),'approval_author':'Alex','approval_quote':QUOTE,'delegation_request':'Build and EXECUTE bounded Claude Haiku 4.5 OpenRouter bottle severity benchmark, preserving evidence and shared $50 total budget. Use tools now; do not return a plan only. Do not create cron.','authorized':True,'model':'anthropic/claude-haiku-4.5','provider':'OpenRouter','scope':'Accepted existing18-source straight/angle plus approved clean baseline and separate blur sigma1..6/glare1..5; one request per unique approved image+prompt; no flat reruns, no other models.','total_cap_usd':50,'total_includes':'ALL retained canonical ledger liabilities including inherited-incurred-and-unknown; prior separate historical experiment remains separate as previously recorded','canonical_ledger':str(B/'recovery-v3/budget.sqlite'),'shared_lock':str(B/'run.lock'),'paid_owner':'AVA delegated subagent only','forbidden':['cron','Git commit','publication','deployment','support contact','ARGUS invocation','other-model paid calls','ledger reset','unknown reserve release'],'supersession':'Earlier cap-only action restrictions remain historical. This later explicit run request authorizes only this OpenRouter batch under the same total50 ceiling. It does not restart Azure runs.','prior_authorization_sha256':sha(D/'budget-authorization.before.json'),'stops_reviewed':stops,'archived_stop_disposition':'Only accounting-before/STOP exists: preserved historical accounting-repair snapshot, not an active human stop. Recovery-v4 REPORT lines20-21 record repaired accounting and resumed completion. No STOP deleted or cleared. Any new/changed stop blocks execution.'}
+ save(D/'authorization-addendum.json',addendum)
+ auth.setdefault('execution_addenda',[]).append({'path':'openrouter-haiku-severity-v1/authorization-addendum.json','sha256':sha(D/'authorization-addendum.json'),'authorized':True})
+ auth['current_execution_scope']='Prior Foundry liabilities plus explicitly authorized OpenRouter Haiku severity-v1 batch; total-inclusive $50; earlier cap-only action fields are historical, see execution_addenda.'
+ save(B/'budget-authorization.json',auth)
+ save(D/'authorization-preflight.json',{'utc':now(),'root_lock_available_and_exclusively_held':True,'processes':subprocess.check_output(['ps','-eo','pid,ppid,args'],text=True),'ledger_unchanged':True,'liability_usd':sum(r['nano'] for r in entries)/1e9,'budget_cap_usd':50})
+ print('Authorization addendum saved; inherited liability preserved',sum(r['nano'] for r in entries)/1e9)
+if __name__=='__main__':main()

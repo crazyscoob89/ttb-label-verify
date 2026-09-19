@@ -1,0 +1,2795 @@
+{
+  "utc": "2026-09-18T19:09:41.842167+00:00",
+  "hashes": {
+    "adapter.py": "ba8f4fae49863a04fec671cfa87986a759caa2dedb093fd1d6bd507c6db7c63f",
+    "artifact-hashes.json": "f360ed3cd84dde19028d6d50e32d4a754966c4ec1a0e48fe20d228f1d7891190",
+    "authorization-addendum.json": "36c7bff8bde548647cae2d16272bd3878ae5e897291c382153278c212623332b",
+    "authorization-preflight.json": "cce605fe472d33cb461f16e58d02c71c76e9c807e79a60b5ea68c96d01afc734",
+    "authorize.py": "2bdf699e81701e211e8726dea5551cbe95c367faf4cf0bde7f276da458ef9b4e",
+    "budget-authorization.before.json": "7ebe065fddaf149f8031d8069328a1569daf16f81a4f7f8469b1df0583d1733d",
+    "budget-before.snapshot.sqlite": "d8b9102f822785e88319cee922e6ab14ca3869047f98eea379159c9578cb3113",
+    "build_corpus.py": "e4fba7a8da65174c9e497dace07e1b75c09fcfcdb345ef44140cf2aed57d242b",
+    "corpus-build.log": "7332d899f03889b05311ea55a2e2c1e008707ec75ebe877338fb8e9f860cdf7e",
+    "corpus-tests.json": "65cc955604caceb53e7dc2f2b62a51c14bc15a7c6f63548f9190cc28698fa61e",
+    "coverage.json": "496954f6f9fcea95682e0e41bb94b35f03a379ff8a3e71b78990c9e8c38f826d",
+    "execution-plan.json": "0c56025e3126b6a660f2f192eac6b57a9b020d3bd3d87c8c2f17b6b3da5109fb",
+    "execution-state.json": "b206c54d79e05c00d68e3ab10efd7317603c2a347f6accb314deab2d9b3a02fd",
+    "execution.log": "84f6a8bdad316d18cb54bc82de6b8cde0ec578df504655667766f97cfdc32dbb",
+    "freeze.json": "b9d0bc7a4c3bc7b2c8e24ae2b55963c873258dc7b8dfb38d634335a7582e1591",
+    "freeze.py": "b807ab73b9867be6bddb0a0ebdfe102baaa4355739298a7d8263daecbd2f2a90",
+    "handoff-status.json": "249cc80c9446c0656ccf2965af6a5adec7d2eeac398b4bd37d78b5fe6e65e26e",
+    "immutable-inputs.json": "6596cf61971c51f2bdbe0ae80b0955a631128b92566aa7fd186534ad1414ffc8",
+    "integrity-tests.json": "4e4e408548fa81b217df4cf2bd3a0057fa3c127b498bb0194fb262bfb32127ae",
+    "ledger-before.json": "dea2a20da490705b30934cad1412e298a9c6d986bd54cd263d4b52884fcce645",
+    "manifest.json": "147d9dc80215bb67747e2501087563d83529b02868745b634b017c5ecbf1d31f",
+    "metadata-provenance.json": "d099ed3b37570fa6ec6d13b1e956dd36fe8a631503cc02333f61122f96231e4c",
+    "model-endpoints.raw.json": "a0d05988b1d108bc5b62cde11a22455bdc1badff75cdb91defb15f407f571771",
+    "model-metadata.json": "78f712ea098309c607c179b96e70d70c34cedd08cd84ff61dc2ad241d3030968",
+    "openrouter-models.raw.json": "6b516b67ea92743aa7a229824c13c3dee7043f3a81b3d475820f14cdf3677797",
+    "report.json": "37b95b2dbe03f3bf9fb55557c33384006de060c70a9191f93258c5485b52571e",
+    "report.py": "fcec602f1b0ec7b492d434101d2f76608488216b729cbd2f8fa4f123cfa9853d",
+    "REPORT.txt": "668d19f46644d47734953cb5e438f8f277d7c87e2349e9d751fd1f16ab64eddb",
+    "REVIEWER-HANDOFF.md": "dd27a5a5a24dde41f3f8a13a32c05e04e54c07a6b8c716f0109b08d4578ab6a9",
+    "run.py": "f89a2d8a4103fcb6e28cc86a029ba7857882bc8fa9c83660a6354708736960ab",
+    "runner-offline-tests.log": "e08d26e96b9a723c95882f11b390b6b6709e360a331abd9546bebe27b2154eb6",
+    "scored-rows.json": "5d5bc831bd951bd69333cbfdd2a254322aa5788772fc48fd90e7195b9b072505",
+    "tests-final.log": "6f1ccc1f9a60ccfd802727e85f363a7018ce19506948d5754e6c6c166262ed0f",
+    "tests-green-expanded.log": "500f2dded31f70efacdf24042ac587988e7a5a7b4a3cfaace0b5755e7006ce97",
+    "tests-green.log": "4afcc4e2bd223782c88c4d2c732715e2bc2976b492687a14b445c0e6f502fc7a",
+    "tests-red.log": "588631c3c21a06ea2b9cb4c79522a120279e787b130ec04d844d74f9fcf3a593",
+    "test_offline.py": "9cedb62ae234416eb971e3334c60771ebee65db10ed6866ea8b979da42f9cda0",
+    "verify.py": "bc07706abee5968eb6152c01b46ecb042a46d771af3df8cdc1e1b14388d8cef3",
+    "visibility.json": "bfde51baa3fe3c3299a8028f295b14c2f9f30132c2fa59b862ffb30dac6bc85c",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--057c32f45fddb790f4d45084ee34ee12a8dde6823b8f928e817b2ae4150c8286.json": "cd035ea8af1199e45847e7af5e8e4ba4658bd37aaf0a25badeb58be49b1c0778",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--0dc23bd241734f3d9b8643fadab1dcbe369df6011af621986140aa02c2d05532.json": "8aa88810e71964734635799c8eb41d35e87b826c456a22ac2408e0be49889a0c",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--0dfb8e734a83dd80c683585ea0740cd863162d2e75ab2afa263a5394b22d5187.json": "41817224431f4d9ae7afe776a79d3889b252c3046311ab8f1cd56386a6cc3fb9",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--0e7a1714c1e6ca3354807c0237d84bc8f69ebde41a9e168dad7c8f50897ad349.json": "863b2e55ba2ae8e353e98b44cf62a2f20f368f7109e2f62e5019a1da115d66a0",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--10dd9265d15f2ede5fa9c3329b877e4730dabe04cbfcc03e9bd99c24e135f6b9.json": "a920829b280c7bb4ddb3754d01d7f67fe5eee5f8f438a13a9baad16b5ab965ac",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--1451e8eccaacd1f4e24f7cbb7e48f1f37b59457a593fb96e852df9bedf4360b4.json": "10debc8c91250cfb7f93a13014d02ae8bb1f9dd73f0527803219602bad7a30f4",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--14d6ce36e6a5b3d55de47b1a2f19c01c37b647854bb52be0bce239c9e7c222e2.json": "f5e6808a15a8b63ce26d38049aab76139521930a20b9a5d1a8eba46705059c29",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--150411349fad2a1870572a6f7bf85943d9e523d600e239aedf9434d789a4ddd6.json": "8f12f8c29411c1f168d65cea3bcf76279c62d889bbbac59ab367e5f9bb4bb6c9",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--190ab9a7e7399dda07ba9d14152fb73f4fe12f2bf6f763b7fa18669d289d95c2.json": "e4729d3920392ed49517290723822441c0560cc9eb6bc7486640740f1d6fb940",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--19e295a86dfb535c6d8ff621d8f0387cdecea3f36b298c3161223a1f81f547a4.json": "484e3d313f63a95f2c1be7d1b51d066cef4946dfb8a21c7dbc55d43696ae9c5e",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--1bc113975edd787dd1619a5baeb8ad79df420e4fb755f641105f63f37b71b395.json": "f49d77efc3b5d29205352fbc6fdff23c6bb5680eb6faa6ac0037471362d501f0",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--1d25aae5419b7bf683d12cb89420292c7d79f4566dc95801a9163c79e85bf454.json": "84cb5aebc8808b7ea7b0460929ea6d453fcf7ffb860aac139bd1ecbad822e7d2",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--2203eacecffe7c71e2fb1dcbb0e58a9c2640294093be5ecfb2a4f0367281ef8b.json": "ef1a4a34dfb18fbd85ec718b7810d03734f0380acf45e371c5a9dadb41c068ca",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--22a1b4d9ce66b15474f0dc94004f7ce9bb14a003049a1565f59517af3325f71a.json": "e7b8f2db7fcd0cf0d08dc67fab086399ffdf1bff6da6172ed23e9c4fde84aabd",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--23aefc38b8cfb5792ab640944fda187ca103a9463a89a952569fcb5c671e275d.json": "a134a90982a23c071be583d2d939205ae0195be8ffc5f9559e2e7ba65461254c",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--2f7cd659f446353e1f2d14c672249e2d6290e8b23865d7657f92935ff1418972.json": "d3db0d13b00f5870319209460195f72b532b956fa7a65ad3952f4828e3f1349e",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--3054ef566e0418a61a596d10fcf446265c87e37149d77802cd388eb65c5adde1.json": "3b26e2f239a99936f5798542a7bec8b641cff528da6953816d65c4f3acd24f0d",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--308761e86a704167653ebd3161eda7a41cc94c7b524c2c563619872959861511.json": "aefbf1cbb9d58fb944f32ed3111d287acbd90d39875c72091ff0469241c20e0b",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--30d2b93782c0712b842b6ef83f5e92250479aa8d5627faf23942616cc2975dfe.json": "1303d94e333ea1676384a63a3cef51ac989aca84e396a6e618a12762cf6b0e87",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--325c6b85fc8834f30ad325a5194197b8d123b6754793dd6a91eb5c7fa76f0302.json": "0f2b87472f76af5df4302252188af2776d96b987f90b3eb5e11cdebc85415a74",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--339bebf6cd75bc33bac9882d01894c909101da4c7de5fed8ebc85929fd98319e.json": "9fcb1075a0b603b6b7ed28945eb0763104401a8874cfbd31a1ab6ab9e6ec655d",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--3903db912dee60ea5d5f40a02c909f4abcbfdbb932616610c6f94e655029bb21.json": "506709c9137f9931685d85ac1aa3ef0565bcc6ea053d9e03e3cc0bf00fe3f988",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--3a1e18a7cf5a905712d66e40a6ff18e7dd35b4d6a0ed9f1da3c02484734e0a39.json": "8ebe74b57454b39e609aee689f7e3e87040ade178d729278affeb84f39e97e4f",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--3d1a072ed6bdc7d4df4979e0d20e8dae6f609eeeaf1e81485f0239a57de41efa.json": "a6b6c2631d782c40d97ca9532066d3fb25a8f5fe3a4360142a62131efdfee2ae",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--407417ac9a1a0ed20b9586ab163abed5eb25ee6866a55eb6727a9156993af381.json": "3248df271fcfdb7d3b9e593088a22281936268c97fa72a3d62715bde98e18628",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--4167d4269e871952e70b0f22036fd906b083d97e4261979348bdc2e31eee32a1.json": "16387b6328e61a66785b042d0e570a6bdee8c2cc12490f7dd6a711b4c68730b7",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--42f07b5ceff79f19ccd3b104bf0e7fbf8034f91ea976bb0bf26a09a41cd4dc29.json": "4299948fc6cda975991e5bb76d6214f45326c52f2cb71226926213b726b73032",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--43bb82f6bdc4e08d5db9b0d8aa892c93d2ed3d46b418bf8e0929434c94543409.json": "2f947be9eb3b046800a1eba18a6221f62749a2d2dd697054dddcf0d589531324",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--45d7e0308b13adf0343288df3f7d59f594b980817d15a25d3e9bf5c7cc9cf06d.json": "c2068a163e3dd66ccfb4be0a10ef537e33a5711c3d54da0260700d49dce67c7e",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--473836bd9f10b13a4e45137de8a66489e48ef9331f5b56560f61d78a6c468faf.json": "68b76816af812a0489f71b5150cd0085bbf3f52374f464e7580d190f93d92429",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--491320410e89d1c3319b9cefa2828baa78ddbfb0282f2e28f91a0303dc61ae9f.json": "94ac29e2ae24fda640f586adeb492f6ca2212ad044dbacef301f9da2163db689",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--49ab9d3cd42cfa667b187750cd7c83c515096de1bf962dee6fd6f645252ef4d8.json": "942ce4f70c2d9aa3131147fd3757a9385599fb33ebefeee793d083239c2b4dae",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--4b3ed7d0e7343fcf4c77f4b6dbe81e9d5ee277770bb5d523d9852b1e808fd5ba.json": "e1ec6b9bb44274acb0090d26cf7f76686b9577dcbc4e185c78dc7e4686025c68",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--4e0a74b38f25e10f6c358967aa7ce0e4fe48a2862d71f288a29a67546c67de7f.json": "830f13ea9699f41fa0dd7ce4959fd20e0bc4995cfb2be4901309b823f3262471",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--4f0de90bb79de331bf2030ce30607189d0dffb929498c621f2ccd4d378614e74.json": "ff5ba9c89d3f7aff1d8700ccfe7d8395aba12467208a5dac3256995a4e9b0f7b",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--4f32d5e4d5e82ea02572bd11438bf732f4ac8819f1ce86fe7bc2d6ec595eae0d.json": "18a42f25c8d9a6f7555aed538e2f3df79c4ab696d816052c7a9aebfd1afa0398",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--4ff50bee97599a6d35604f747e3116ff3af5c90761c3cce1079b3decf7878b20.json": "6ccfc4c784684f044f37fa1e7e9b6307903a9a81c1eff69ece8f81b16f747d01",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--4ff597e46929941fb42c71b49fc619df8d708a4c177a831d92a19cf2a2929731.json": "0b1cbfabb9bda2ee188f9117a7cadb87e1775015ab2c5ad92198bf7686c059ef",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--536b4485302babeba6f58b7c720af7827a450c747d1b2622dae4c8cdae9a37e9.json": "418e000fa7adccbf640e716b86a676b1b8c51581fcf53cec7228e1cab64f5873",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--561505ba7ac76c17e105d1a8387caadc0b2e045a2bdcd5536b8d7ecfc14af763.json": "50115f6478637666af23aef4cee08ae9f10e50478a2ed943a2a0998b645689ff",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--5a07bc61dba1b065f4104927df30de8620cc7bb619ec8b4211167470a47e1497.json": "79f827515ea5ac8c0795ea9a380bd5b58922f6485a0764e256b6fbe55cfa4296",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--5c95d5786210dff69f912a701dd3049bbf5a9ff0f7fdac7630d6621022377dc7.json": "d13b81b2d123ee7aa0a0674f79187e00939898f90d1e4071f0852c89659a9bc3",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--5d82ce42c378750ab16a3e5a06408556013daf040a0f6032cccd5564a1d44851.json": "86359f241ecc37bd8afdc3586b8f237433c3334bad98b4dd88470f1e2902e24a",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--5f0fc45d00b8b374f10d882a35257746ac7b2d34c19c53dc061bad5e0fcfed03.json": "9d07f4c777f9097a0cf119e12c0415066a2326127567e848ceee48b24f87cd12",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--60a379fd05a554aa5db356940cc7aa105de2c5aa83acdd477692de97b3f46678.json": "86b1cbc12187fd74ebe91944dd6349edeb18d09462b98c29f3dad318977b2160",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--61f2cb20edf72f722cb7ca5b0ba0cd3592d06ab425a80badb164a212b8947f96.json": "52eeb936579ee50f2f13fe0fa659b076fc6c80481e604463abab7ec7ca423d4d",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--64205b6437676ab1cadd346546f23bbfde5fd0b89004fe16a797c30f4769bab8.json": "f4fdbb4a989148dc26e952d5f5a609903373e8029cf721eab317ca0d1cd9cf94",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--65639a5d77d1adcbe75f0bd1da55720e848777bce703d401c36e801ebb153fa5.json": "628f2aed5d341517f6ea30b7bacbce8f218482d3e33e71d3f0c7c0345e32cc5c",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--665bec96547302b6d9eead805961bf82dcf2dc8dcd595bb856f1986d61a1acea.json": "f4f19e77c74f083d958a9f9d3871d949c7f2d409ee90676450ff3da95540b718",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--6b3d16bea4843c9a9f4d6eb33e1d72b4d1ed168c8ea16caa0878cf5470d40075.json": "d9d4b65dfdb14b64c6b88e4ad64ba9c3cce747df8a19b0e873b57aa4961e44d0",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--6d3b48bbaafc5f46a1378d273b53cc0bf3750b2f2fdcbe743497d1b44316f98d.json": "730b29c6f78e92eb3a342ae32fc687d7a0dcf3ba8e2e788251e62d1ea77e5309",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--6f526fe920c4adb43ea64d108a9fc59a3dc12550cf302836656ae3111803477d.json": "34edb0506739c0f4cbc5df779d2fb16ab13a4fc31d974133345309fab56cbf0f",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--73415f86ab5fee8933de73994da3afd114472824c753707ff14a18d2b5109d71.json": "ca8af52cda80043466bc1bbfacdec82c60650d9d444f294386e80d3b01db4af9",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--76520ded9b52a4f3c025f92fc40006c0f28ae4902434309d9598eaefb5611838.json": "58fbfaa8ee18bc976895fcceef1377437dcde80cb954b8d188a1652b87fd5185",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--771b047c8507e4bb0ea6cca023d36babbdad613a8a36d2ea0097e1f9187f57e9.json": "d1e899163e7f2fdac84230c2a17dbb3dd0458dadf3df6783f419224ae57c252d",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--77dbb7023e0ad6714944af8abab8248f4866ea4e450d421df6f7067c6f5c4988.json": "78007efcd30f2bbd9dfefc895358b636b25245507c03f4fb90de55b7cf722f21",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--79bf50001c18584403bb47c41075bb370b2ff12572106f46e4aedf1cf4f25542.json": "d6a34acff0acd580f823bc0bd83795b76a3469d73d7064c223c11da074d90b6a",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--79c57bd7e51aafcb07f739af589e8da640d38d2e242b281fd407a2e6f6a86caf.json": "ec65ff75e855affffc21a5fbcae31257f664c780b16502259fa8ef0d0b6d80e6",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--7a8e3d8362b64d38dbb2f5c8d69f534d09ba8366525c6af1d28ac36f0ccb721d.json": "dd493f89687cdd156ebde65e1fc8067434d7a133e6f2e18f311d81156415e249",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--7a97f4d3daa740af8a8d15945737496f6570052d569b0e59f8254c198fcd8722.json": "3da78c232ff24272e8f525f26614e7f71d95e1e23c7887c147bb208c0ef6a95d",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--7b115e7719c78a45716db7ea92d65ceb4ffc860b849a7497c38e6d75d866d462.json": "cc4eb6d4e25f081832a35524fc077131bed1df805875406d6b402ff038fc0b0a",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--7ffe7cd002f1709bb0bab70a003690406ed3f14d2f6a0e6da159d0506daaac16.json": "a10b1706fc6b3df864ccd0b2756553431738401ae6a7e6963b3f71ae7283eb27",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--8026b8713c9e991eb63020c75927fa48993eee89acb6b9434b290075f4dd06cb.json": "675ab3752b318bf2489b233ca4cda8d420181c45d8e8683769e7018d0dde39d9",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--80d6882380fd4f99244150fb7b5aa8c61627c6135658c2f8c8b3bd557b19ee3c.json": "b121ffcd223101c228fa8bee128a41d3a86169e7a9b8021aceeb4a90ec7fce37",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--81ff8ec77faebeb4cc047fa59125c86187726ffaa5334ff975628fa0fd847a26.json": "8a3c78a2e91bef3401f88a0aeb8646f4c4f7f8c859cbf1754112173791820ee4",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--85a3322eeb95b6b34b828ea8f6ec0cb0a1e7327793af17e2d45b30e029341e5b.json": "a01cd64db0ae07f36cc9d9ba69fafa31bce0e24028ca1e1155d270d38ed847cb",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--85ec4464b2cc38c9b0e781f845e3fce9a75b99f3b9f1fe339d4deb6ae7b71d44.json": "dea70e1f16629846d062fe4422a378c83d94dfe2071a20359a018637cfd1b852",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--863139f2fb868ff3f2193fd1b0b1c8a86892d8bb7f95061d9a2ba88491191cb8.json": "bb4d1480cf2af1b7ea9f542c0a6536fac5a5528bc14e6cc8cb2ee6447bfd3c1c",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--8822da4ab7e5210970849dc6b973e1729d356a68373ca0461c65b039bc2b15d4.json": "45f523560ff8f8e4948bc54af7be5a24add5300d7dcd4835ce59c7b536588f6b",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--8c37bc908e35f288e1ebc90f1a65e85fb1cd4daf41f2be0c173a52bd1bd05805.json": "0d948fd0900b755ba43afcd9cbe46a98526fea151a6c77f9d0ee7d34185eab5f",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--8cb72ea63b42d824919b2ce4e12b15ba0057a134071f5b873edea12fe522b859.json": "a8d5a91f180c14a4e5d25a559829b9534d0f9f576ff73a833bde428116133511",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--8df718700225ae051d09b7ac11e0c89a552856c964bb2db55797b1ce4277f7bf.json": "f59b057763d57084296b749330a9afd8a58d5bbfe71bf7cfd744837f51fb9dce",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--8ee6a5d7cc85c687ffd44e1f6b788ed77c635e87a68f5ad22b0c31659efd57a9.json": "c4d3fb51aa2ef504426a84ec0a72c0774a2ba40d72df49b1c99361b98be1e634",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--8ef62f812a67543f38d58c475692707cc042fd37e785dd3aabcc2e84af741bf5.json": "93e0a49446450dd3215f8c0edad7034b615fb31402b1667768bdc676220e5b00",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--907f43b8b72582285d8e204d161e30777f3128d3e23883250db58091f7f0b5b0.json": "9f95e5715b65445ef04c99eda3f9d923dec0fa92fea3c73db3ed8ca450155fcb",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--96bc74af65d53369082c5ce90bedcb5ecd4d0c68b75614cf32f71766d4916daa.json": "f888f9addf56bc66e3514cc9e0335872034c4b8e0525f23f096a9a5f1dafa129",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--9751b87ede8f443d8c1e9f4b50fe15f43985d96fa187bc04d519740e25c7ff81.json": "ebf724d5039be24c0d8e82a3e04a0a377cd2dc7474e839d76d0dad8e8b564774",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--9c92fd5777227d7d05277e4a936e1b63945279d44db9f6f7008cd7a1e60d4ef2.json": "c037e43cf986cdf36f0c546bbbfc1fcc309379f62f8c5eb2d32a95a29942ef67",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--9d2b0940b8bd50bd1b45764c6089f14783924fa3cb5d82b872f388d8dba1c1a2.json": "90cf87f0c3da028334edcd8a1ef24ab3038839ef98fb7c278014ae90678e234d",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--a28f08cd88be6f5d052bd7c1336995f33fb2b7b5f86c4cddc2ee83d0b3db08d7.json": "3f77d304798257314aceb512f3035b6297961d9a7a7377d9e818031f54233834",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--a846ef08df856a82b31eb2a49e26abf8541a75e319a6dd57121c5300919afef9.json": "a1f23f01464ac5aef118c8510ba8320129fb0379a8f474d36254f164e95c2d9e",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--a98b9d76a7c5e5338ca2d03599857e21fe9ce8aaf0bb1f9b432182340b850123.json": "38835a181c73aa39cb2db962b1d5921a787b981ce653d904f8da2cf4afba1d9a",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--aa24f5a8e0a60e18efc284bdae9e7c2d5b395f61143671ee0ba1d0b748083f46.json": "0608350ebf52932492f63fcada093e759bcbc510b8e8efc777be65b789ff627a",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--ab2384db0beb6852aa728ebf3e54c1cc6a51b623a9220b2260617605e7ea228c.json": "d9471b0aaebe814fc97c983c2bfe36fbd0d345830a9fd1dca3b028bc84ce3d7e",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--ae359089f560d664b79ca5363741a5d822c1dc1261adcc6a8ff5e01bde3185a0.json": "587f99cb62e7750c8192654baf6bfc8d7b47d6c7d2780f524cabe5d293fcba1b",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--ae55187d23e1ca0d91cb9752cc2f42094190563fb736f7bc10aac3407cd14f8a.json": "d95bb529750d68bf1961d0bf545679821515e6c70360fb93f8f6c6f85098bc0e",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--af3f934bbb9e208e6e6c4db3d3b2761926192600d3a44d8e19f75eecf073210d.json": "9df09d7d3dc26e3a0c14a8e7d552eaeff892de2472b17037e1e718b6785f142d",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--b3302c4b5eaacd999c3641f10e22d33a842c7dc74294f9c2889db555bddd862e.json": "2ef24661729d3a16f1dc44bd1c4240dc51296da007db0ddd34db22e6ba959960",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--b5ce391419afa25ded601233ed7eb1c3a834a3586cc779935967bbc3499f63aa.json": "6f96e30ece68668225d90339614d72727c342aa27268a5501230bb2900b4c243",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--b613969a624bfe4d1d99a788483b9f3c51ec3740632530b8e19fef175b413be2.json": "267a2a19d27527dd4709933a9623834e9abe7e425522ce9444bf98a2b62fa3d7",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--b7304659ec1a68c4e5533b64fb6b33bc77d9254ed8ecc848fa1089a0c67b56ba.json": "982cd35728352f47b7849bd718a5ad60f08e8eefb67a408e8d6d72bb236515f8",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--b8ce086de93c09c9c0a9ac53c4ee8469c1887ea7152a5d8f905beee6b573758c.json": "0bfea815c8f4b1d403a53d61316308ef79ee89e6f197d51316f9aadbfc6bce21",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--b8db07ef25a70194f07fbc50bd1014bacf2ee8be17fe0e3c064c0ecade565b8d.json": "660eb0ba0052566135ce8ea0498b59b297b93e077099a86ff0e4ee0c0c069067",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--b8fce0c8a4c50a3aca3884a8b578e60b9b1ded32f58a56502d8afe1852534d57.json": "565dcd3308af22e4b5b99628f7688e980bdd4fb3a11ed85843d216fdd03bb9f1",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--b988698d19588717a9a1de059cb159feff503ae3f966249b665efe1417017440.json": "6c78b48a2fb9b3ed8fb3c4036528ee63a9404e401b8591e8d62f81fbde53a6c9",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--b9e321f41d7f903ad133fe68ad01743b1d80f98a4c5896bfc2fa168dcd0cc7b0.json": "6f02e22905fd2a6b7144889f8c4cc86aa3405609c89844133ac1d4011c25becf",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--bb9f2cdd25536a532b3363fd5d1411e3cbffe43637fe8067d1a5620fa2321367.json": "e669d5eb7d0b49a607e64387956b6e01be6bb2ce923461219b28dae939ab464f",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--bc89d003f9b2e3be24bf4144d0c3656cbbabcbf2768beda41194857d7d499c48.json": "3783cdba14e4110076e161884c6461bb0d99477a89b5b39a8c847385e6426d46",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--bcff16e35ec3654b116321130e58df6e42fd8a1518825b380d2cc009fd664b01.json": "1e2aa5f631c412753e015e8151d1aa65d0933124ec03024e841fabf7f9513314",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--bd18ee57fe40f1533101cc892767d22a7528f916b8499a5efb49d4e04330f112.json": "64ec33c3555c12a780288d424e76c352f6f941b2a0db203f78fcab9046d06472",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--bd73ec32e448943b551158c7660705ce1750a0d9b5675ac72172ad72026ee851.json": "35010111cba58708f960ef0bfe48bf38d534e5458c905f0ad926c61dc4cc2b43",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--bf206e3180e399a7e8b9dedf41cf7e16fc90f245dfe1ed636f0c5c97995b5d73.json": "917278ddceac919f80c5dad737e98badfd5e254983d1e8f2838e75abad8da730",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--bf38292e4ce0835b04943c875b11b60b145397f2f78a3234eaedbe9c7d4af593.json": "773edbe8da59a608f72a667f14f1745458fe383b2a93870cac8fa71135aebb18",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--bf48b1ba69387767e014786876245d2ba668bbf21823102cca1444b22e34f7ca.json": "d0bbbe7cd784c08450f7c69ce644daffb4293e99810d4e91b257b55ae379750d",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--c03e011d636a51f935fb857235c0675d679efcddb6c3754e356fc12daad74190.json": "14caaa39e87ed7ccfab2e9911cafc78297c000c6311011aafb32e8c996a9d131",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--c0fe712d5bde6565a4922e15bda4f34189954e796f2d148c735ef71f19ce2ab3.json": "2875c546acf1ad96fd94f114906d9365f431765a3f1b3bcd8627cca5bf6d708b",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--c2846eeaa5bd63368f0f8ae581381704ef18b8add2d6aa009e1287adc2ccfedd.json": "3762a72ed1c2587ba7236622197c889f288258ed636093f5f080579a16f49360",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--c3b2a0fae8173148327f07acb693c8f41dc765240f11165a2d5d0da306d32b43.json": "05234b44e13f176d69dfa91e7543381225c4d90d0a657602c23ebbcc2a93b0c6",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--c3b770d3ff8b23ad2dbbbdc07f0d274ccbe146b75892816d97693757d563bc14.json": "d4a860c0330e868bb5b7d5ff4747892a96c34b7c5c47c205643107e3f8aa3a3d",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--c5cc8940d7ece16cfd384d89fb078b773dde9e85f9a2b4b8a3799609ef9b91e1.json": "64357712c08dfe5357052d346dfdd6f47021b6473f151379b3c5943dbb1a2796",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--c62db0fb4045b0c65ac85063d3b9fae7b945b27053cff78656f397ba7bb3386c.json": "2d91665e1f8048082464232590f177b450aa7817310219c33005f1ac4ebaa47e",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--c7d962786c160fef605f2f9c61f2408522bb080610282cae04d97c80cb579b04.json": "ec343e746a48b18c9e19c82a7cd6f61429f2392537a34eca5d20234c4ecf77ce",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--c840140b951991f0deceef35238d54da618280807e67b11d9426b067367792ed.json": "5d7074fd322628524daabcf5d29694d43409f265301c26f63142a3714d481525",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--c8ca245e12011d3c18caad12a91e430e588102ebd08f005054eabc9702836b03.json": "f207e03cc72e24a326f429889121451fc5d6445b4201b0d557b38e748c986a1f",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--c99b9e81f8d387366dcd2d76d3894449f5c06360d5ce6725a7e50864598a8c22.json": "4e0e58477d70d586b6e09e8c44e4a22aa4996a715cda5eff3b87d6bc4df5061f",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--cb3e7c6752a12db3e089faa719503433639e7b6c7404222abe269718555b9477.json": "eb42c06dd6fc0385f94e3c1ac6c36e2c558cea54fcf9887c9a106052ae86cd70",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--cd95382f6269502e40ccdced8b1525ff81dd78b75ba8795a156350b461a8d888.json": "6cf84a434cc1c41c075eecab83bb03c10f9bbd30a66aa3db9edaddc869f56c46",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--cdbde4bec0821c88f98608fd567f27f46adca486192db8716e1a01e93a8d7515.json": "2af4be30b4604f019783a6d39579d9550e70ea707ed5332dff1f84a99f5fd324",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--ce160ebaa235d62ed3cd77328ab3e763e7376950027ff8a52459ffa6cbd485b6.json": "b325ad756b917d4782a8885ac2b80d15a3bacd4f6b11c698e8a2068863d595df",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--cf75a34b12dc7b3cfd8636e383af8ee702ad76248d53a8a66a5724637a08e25a.json": "2640dc8ac0efafdecd59a82d4122b5256939c4cc2bbe95f840207c6d4b0becc5",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--d0b6fd794f547d2bba8522e6849f8eff7e94554f1455128812c480cbb6ae9ab5.json": "7ff1ffd302173c0d84d4c8ddd5de18e69f6e1fdfd49cdc138ac644bed2c6ef0f",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--d1931d2b72f92a1227d8f66f0071e4c0e4ee59b2fd38889ada6d471e3946d70e.json": "b40ce69438ba23743c5ba4e3ac35294e4efde07c18992cd63cd025a1740dcd9d",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--d1e3edfb2246ce37ea52b1362cd92e1cb2e10fa6cab93cbbd3579a6773579599.json": "c3b5afbbf2b353a5f248ed3d765240e21ffebee4944ebdcb055358e081110349",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--d20f6fb652843d5f884eb77695bf607760dd43e82dfb211109859fa124bcf0f5.json": "afacb9415d3d7d2c2823a4031f6bd69a0428ba6a5b911d0cc4a7fc6496cf6a09",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--d2e88f6c63efadcac6133218c007d2d410ed287527648ebe9aaf1303bc585458.json": "98c9e9a7cad35b8d3a6af26ed62c533e451fa7324a377f6e616a2e70882936d0",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--d4f4b0f2c38386effa100b002f174d237eb68828c8184c2df90ef92fcb0d57e3.json": "c18adc1f1a3862c6424bc90417a918fada9bfe55efe47e270747b35df6a5672c",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--d9132e640a3ec3bfee9ee8ab7669fa87bd6c5140fe2348b486c687a106d0f43a.json": "f14c88a87a716ed3155b844fdd383b9f9e13c2f5a60ec7b911ed0978576eb5a5",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--d98a8d06b2722edb9e81985c2ea4a5c485ec65661b93cbfbfeeefd7e257dd303.json": "5a462620e5075cb83ef164376326b3c4af770e5a9207fc0ecf02d23f4054fcd1",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--dc6bd79c68edd405df031f5113b8862b5da2d2e9938561a0174ea8f57aacd93b.json": "ad99f33541915c22b1cf96b53a6f8abf93ea8d83374cd757547a725977f28c79",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--dd6804b395bed6712a09d3013c3857500378e8b4e62591848510df69443747d9.json": "9f8efb43fec15e6dbc224a6c69b794dfaa8ccea1d91c80ecf73d641051b24bee",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--e18d14616a7a742fbe38fa0490b018dbd0085dcac69bf274f53d5e69a78287ee.json": "609743a0957df6708781621299c1b035131f5e3de6da79353109538cc1fb6a95",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--e1ff5ec30c5d5c84c09ecaace01a1b16e8da8d4ae5c0d26ddbba15df99bdbf74.json": "31a1e409929e21faeae4a04ce58e7022a771f4b44677b8882c4db6094d2088a4",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--e2baafbafbceb185461adca5a22aed5d89c2ba3134151683cee30533680e1a9b.json": "4194548b883c975513fea65c670d2932b81818015e41ecc383835c6933d09883",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--e51303ab55637b859f98dac282609b51e6ac13c75c721a429aca6d1f77d4d782.json": "f6eae7baf46db71ccc68f9325ffc4669c354774f3f2ec313408c14c227206bcb",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--e57388456977b3a8b48f0843e3c512c439121cdb64efd43c16978e3c7c73cdeb.json": "820b9b0e4596e41908122a28ae08a06b03c84e4efc53e51e6a617f9a49a466c2",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--e6c505928616ddccca14ebc48e3ac81951a4e9f7bea994c6c7638a459337edbe.json": "81910d66ff7cc1d2ddf671ac16d441f72abc2c46e95a452e8a119142290fe7df",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--e88aaba60f8d6a40e17afbae95b4062de8426a2a505eeddab06c2cfbf40673cd.json": "5ef03ffacb885227d0a1d976ad62df48a86b773047007c0f8945f25905b3669f",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--e9ba3e4d9b49b17531e7500e360538b9f983e9017dc9c711ab3fc6d3353c630b.json": "d792f29bb9bb098d2e11dccd7a318f0462297e77f06809bd50d12591f80ae1a3",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--eba9a28c4eb64f25cfa6921d1e99ceede1ebfa0a5feff01ee75d5993b852ce41.json": "1cf8d7544fb650bae1e95bc3934db676adc31c3f272f1293bc80f2f2c2ed96e0",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--ed0a41dec8f7c19067c27aae7bede405b005d98f7ff9ebc289a1baabb7258316.json": "a459eb35775daf348cf488829a3d93fa618567128b51e1a3771308b7bd04325b",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--f07508793729d262ad3f3b2f244880a65dcb40b4e4431b70d88a5da60ad774c0.json": "23a94d0c3eb961f9d537d4316d67a52a292921ae3a41595ff540a3649a25e75b",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--f53712266e4ff0bf4556a019ea51a9995a8e251b8b3a08deebe16b3c4d683b41.json": "9d43ef833d8e3d4c0b8e13b1f5573290b158bc2be1ef162e3cb6036b1cbb637b",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--f8912ffc10b1cc44a3ff1413d1b44224281df6e4d38997695b3a8276467dd386.json": "143dcb3198418b8517da869b6df91d1500ff250600da49b14f28e6c11301e90e",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--f9e32b13a2db40d401632bd12e4c249dceadd41bb59c57cde0bfc4812e05bbf0.json": "94b8651d1cc3e0a9222fa64177243f08f9d555d3f09a7350fe7849131d430eec",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--fcffdad7eabd371d52d116aa1dd6e00524b522eb02e375ffc829622a9a67e4ca.json": "06a5a0e37518370b7caf7926824cde6307d116366ab1a6674e3d7890ceb08f4b",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--fe838d89d37b3cb6251b491f2df9c270379fd6843dcc469fe3f7b3c5b3616941.json": "8be371d28dd26ef3c5d0d20426255825b00deaf84662d86aca694fc9f1e64400",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--ff0ae2e94915cf4b42c4ed6fd230847e41b640dedd3bd34dcdf51c9669c32fd5.json": "c909c14922c8eb0fb01ad9bfe22d3e9cf6cad72d4c0552d59439515dadf86da6",
+    "attempts/openrouter--anthropic_claude-haiku-4.5--ff8765ebe31c09d9ec23f84ccb978ae02f9d498b674626707fce18a0e1d0a81f.json": "b2c7d9dac7f7a6da682795dbddf400e7940fd4bc1b9e739f305e079890cfd896",
+    "qa/A-FIELD-MISSING-01__blur-6__native.png": "27b5270484a207f12a02cb25ef747429fab70da4933b9b9562b524fd534513f0",
+    "qa/A-FIELD-MISSING-01__clean__native.png": "67661f59884c028c8b071ca13f5ad86b55e8a27cab4218e66d2df5867f9c72a1",
+    "qa/A-FIELD-MISSING-01__glare-5__native.png": "0d299ff28742a998cdd01a3797a0cc4a03ed7e17e154d9372b6bcaf1a75fa8bf",
+    "qa/A-FIELD-MISSING-01__overview.jpg": "b4fa8df9ce9845b104cae0a8cb2d68e5aa799df6522f67573d3fe63bd6869658",
+    "qa/A-WARN-BOLDBODY-01__blur-6__native.png": "3ebc7023f466c4c905dc2da614bc670a154f51c46e38bf1fe2d1a3e841cbfea9",
+    "qa/A-WARN-BOLDBODY-01__clean__native.png": "0033fc23b2573bfd4f37e88de0e559c2fdad1202facb00749770ddfdd8cf9bb3",
+    "qa/A-WARN-BOLDBODY-01__glare-5__native.png": "834d79ad09a03bd869e64d8a63db463cf37ca800c620a2ba51c37682360741de",
+    "qa/A-WARN-BOLDBODY-01__overview.jpg": "db919dbf5578e321bd4874967c17cb30f98e5767b20ccc96fd643f17de1b04c7",
+    "qa/C-MALT-01__blur-6__native.png": "875cfa7981724c5b2469bbc1756a85c9e847831ac8402f7d7176e643016f4d7f",
+    "qa/C-MALT-01__clean__native.png": "1ec3c226f85fcbefb16362d1b4bac9939c069a0f3e5141279e2726c0981c2e2c",
+    "qa/C-MALT-01__glare-5__native.png": "b2f8fea31ecaa29d9031c0da39735501e31e429a80fb1737c4968f88ec98af1c",
+    "qa/C-MALT-01__overview.jpg": "8ca32e4e31db5d2caa2fbf71da981fb1e45c7beb9bd9a231aabc792ef4c2d559",
+    "qa/C-SPIRITS-01__blur-6__native.png": "d7871b487c8e4ce131b9c4dab37175d82a2d73cec4c52e41b5b571599a686c60",
+    "qa/C-SPIRITS-01__clean__native.png": "5410998a656cde4467e92f566bce313700de47abb206f462316f305bc2d77169",
+    "qa/C-SPIRITS-01__glare-5__native.png": "0cc995a72650093f1fb7170f4deae4f9957c0930ec805203a923b4843f5cc24f",
+    "qa/C-SPIRITS-01__overview.jpg": "4caea8b75589621fd313bbc94218215ac5054ba5b0769b6655b1f78cdfbd99cd",
+    "qa/C-WINE-01__blur-6__native.png": "9a62dd97c693e8af511116f1ff4583cb96629b1ff9eb2e149b1a56453b8b0ad6",
+    "qa/C-WINE-01__clean__native.png": "16249bf65eff8b1d27d0c9ad1ea6c23008c2113bd45b6efee294a6e95330af01",
+    "qa/C-WINE-01__glare-5__native.png": "921f836c82667c51d2fdad7676b99e42f85b64f5c507659417a73e7514d61750",
+    "qa/C-WINE-01__overview.jpg": "d5ef985dbd8f1c7550dd84db18ab03684df8a2e596275deb947fe169cb287f9e",
+    "qa/W-WARN-REWORD-01__blur-6__native.png": "fa8dc42d8efc21c790309e10e4141408c86e64b3f8a96c9d331a8b938fe9aa71",
+    "qa/W-WARN-REWORD-01__clean__native.png": "4282edc18ec7cc1ed3d84b8218544778e461b716655567ea579c5f7d5f5224ec",
+    "qa/W-WARN-REWORD-01__glare-5__native.png": "ec083a2e33da30bcbb68b5d78a585c9cfef3cc04616958843733d0d4ea5eb259",
+    "qa/W-WARN-REWORD-01__overview.jpg": "ba0470c97c0b796b40ac31c0a917efad59f4b08da4bdad561c6d47136db62541",
+    "responses/openrouter--anthropic_claude-haiku-4.5--057c32f45fddb790f4d45084ee34ee12a8dde6823b8f928e817b2ae4150c8286.json": "160e7c40f0591586067be9fc75d977b181df257b204f98daaa094e806edf0700",
+    "responses/openrouter--anthropic_claude-haiku-4.5--0dc23bd241734f3d9b8643fadab1dcbe369df6011af621986140aa02c2d05532.json": "dbbd46b9c8e4bdfe9c7c38d46893af5bf776e19d5745e5c0d517c87cb7e5f099",
+    "responses/openrouter--anthropic_claude-haiku-4.5--0dfb8e734a83dd80c683585ea0740cd863162d2e75ab2afa263a5394b22d5187.json": "79b7c4283c0dc7de36ce148afe937b3454721ebbcbcfbda12436c23fbb281198",
+    "responses/openrouter--anthropic_claude-haiku-4.5--0e7a1714c1e6ca3354807c0237d84bc8f69ebde41a9e168dad7c8f50897ad349.json": "537910104fccf49975442e0a54616344d833deee6afd017fa3ff6c4f3d6970b7",
+    "responses/openrouter--anthropic_claude-haiku-4.5--10dd9265d15f2ede5fa9c3329b877e4730dabe04cbfcc03e9bd99c24e135f6b9.json": "8eda51b9097efcd78f85bd65494fdd30dfaff59cf2894b0f88b9fafad0ef1fdd",
+    "responses/openrouter--anthropic_claude-haiku-4.5--1451e8eccaacd1f4e24f7cbb7e48f1f37b59457a593fb96e852df9bedf4360b4.json": "7cbe10f49f65b03f31f8a8513ad091319074e41be40258084ab1a82e918780b1",
+    "responses/openrouter--anthropic_claude-haiku-4.5--14d6ce36e6a5b3d55de47b1a2f19c01c37b647854bb52be0bce239c9e7c222e2.json": "5c3f64f64a1d5aa746e1bc182f16a914ae1a9d72d8c77341ade570301bd74977",
+    "responses/openrouter--anthropic_claude-haiku-4.5--150411349fad2a1870572a6f7bf85943d9e523d600e239aedf9434d789a4ddd6.json": "65f82d262e8ba2db122758908374d301cdc971cefbdc0895ad1d8128aae869f9",
+    "responses/openrouter--anthropic_claude-haiku-4.5--190ab9a7e7399dda07ba9d14152fb73f4fe12f2bf6f763b7fa18669d289d95c2.json": "daf5f40da09ff0fc4220cfff2cc342bff338fe103c0badf576b8e439a5d5b2cd",
+    "responses/openrouter--anthropic_claude-haiku-4.5--19e295a86dfb535c6d8ff621d8f0387cdecea3f36b298c3161223a1f81f547a4.json": "6912b03364b961dedde7e43fa2a32443968a76ac5ff14b8bbe93780b0978f040",
+    "responses/openrouter--anthropic_claude-haiku-4.5--1bc113975edd787dd1619a5baeb8ad79df420e4fb755f641105f63f37b71b395.json": "df5885b8e3e87c07f4983afed62d7d75f576011023e7ce2a70013c8df1b83062",
+    "responses/openrouter--anthropic_claude-haiku-4.5--1d25aae5419b7bf683d12cb89420292c7d79f4566dc95801a9163c79e85bf454.http-error.txt": "bb2fb7b51f18478e3ccde6376dc39285b20472f0394e7034fd2e0bdf6a5716e2",
+    "responses/openrouter--anthropic_claude-haiku-4.5--2203eacecffe7c71e2fb1dcbb0e58a9c2640294093be5ecfb2a4f0367281ef8b.json": "4b4065f84a79d052aaffc3b7b49490b79e724061a13f9dc6ada36ce64218c9aa",
+    "responses/openrouter--anthropic_claude-haiku-4.5--22a1b4d9ce66b15474f0dc94004f7ce9bb14a003049a1565f59517af3325f71a.json": "66e2150d8bcb31809ed8b88222e7c005748d425229e8a1ebe866c5f8e4bc9d61",
+    "responses/openrouter--anthropic_claude-haiku-4.5--23aefc38b8cfb5792ab640944fda187ca103a9463a89a952569fcb5c671e275d.json": "d94389d7e591193cc3188e6304a2f7578f34f4fbae3628d507016007bbedb052",
+    "responses/openrouter--anthropic_claude-haiku-4.5--2f7cd659f446353e1f2d14c672249e2d6290e8b23865d7657f92935ff1418972.json": "8c6d6244b0520cc12d2a95a230a9d3ebff2cecb825cc2ab8eaac8c1869c21a80",
+    "responses/openrouter--anthropic_claude-haiku-4.5--3054ef566e0418a61a596d10fcf446265c87e37149d77802cd388eb65c5adde1.json": "511594de3c7dee7a5c373b0507c57029628f2d38f86e5f37152bf8c2003b2f6d",
+    "responses/openrouter--anthropic_claude-haiku-4.5--308761e86a704167653ebd3161eda7a41cc94c7b524c2c563619872959861511.json": "5aacd7e3cc9a8ff133f1ddeb70cb83d966391d5764e4c6bbc1f9d13149c7d15c",
+    "responses/openrouter--anthropic_claude-haiku-4.5--30d2b93782c0712b842b6ef83f5e92250479aa8d5627faf23942616cc2975dfe.json": "6cac3c491f60cf6f1aa7e13d292a6951b08832ab8de730b4c0fa5a1cfcd0326b",
+    "responses/openrouter--anthropic_claude-haiku-4.5--325c6b85fc8834f30ad325a5194197b8d123b6754793dd6a91eb5c7fa76f0302.json": "e4a0042ed763c8b10f3d59b509b4f8b7605def0d7318ad5ae65680e11899fa02",
+    "responses/openrouter--anthropic_claude-haiku-4.5--339bebf6cd75bc33bac9882d01894c909101da4c7de5fed8ebc85929fd98319e.json": "89e38e8875b635bf19d20a2c0210ad244b425532cb3df9be004a7c461edc58e6",
+    "responses/openrouter--anthropic_claude-haiku-4.5--3903db912dee60ea5d5f40a02c909f4abcbfdbb932616610c6f94e655029bb21.json": "03227c65e699a7f5ba8bd7e6822989328e0e47d9c10dd999d736cf4ae3d5eef9",
+    "responses/openrouter--anthropic_claude-haiku-4.5--3a1e18a7cf5a905712d66e40a6ff18e7dd35b4d6a0ed9f1da3c02484734e0a39.json": "f0789eb1309b6312178d99e7029106112ec9985a6c79cc6deab5b3040da0f19d",
+    "responses/openrouter--anthropic_claude-haiku-4.5--3d1a072ed6bdc7d4df4979e0d20e8dae6f609eeeaf1e81485f0239a57de41efa.json": "fda34159211adb305ff8d94c5341cc23758df29eb42f6bab5b0be6b5691253df",
+    "responses/openrouter--anthropic_claude-haiku-4.5--407417ac9a1a0ed20b9586ab163abed5eb25ee6866a55eb6727a9156993af381.json": "b8a9a560ecf9852625ea3ed26ed1e800228ef12071e06a2399455e3a64ad4bcb",
+    "responses/openrouter--anthropic_claude-haiku-4.5--4167d4269e871952e70b0f22036fd906b083d97e4261979348bdc2e31eee32a1.json": "a288538a3326733aed5f93b5e4cf88eac7190cb83d0d26895959e34a28ed48f5",
+    "responses/openrouter--anthropic_claude-haiku-4.5--42f07b5ceff79f19ccd3b104bf0e7fbf8034f91ea976bb0bf26a09a41cd4dc29.json": "4104b9dfd708c1cb389f9753b51ce3259f01abba1786d7a2f9e3495966788279",
+    "responses/openrouter--anthropic_claude-haiku-4.5--43bb82f6bdc4e08d5db9b0d8aa892c93d2ed3d46b418bf8e0929434c94543409.json": "2b858a4950074ebe24f5f536054c1205631a8cdc8fa722f9daf88c202ebc015f",
+    "responses/openrouter--anthropic_claude-haiku-4.5--45d7e0308b13adf0343288df3f7d59f594b980817d15a25d3e9bf5c7cc9cf06d.json": "196196ef2ab842eb881fb4562c19289d777c6f75ad626d1134626474bcf1a589",
+    "responses/openrouter--anthropic_claude-haiku-4.5--473836bd9f10b13a4e45137de8a66489e48ef9331f5b56560f61d78a6c468faf.json": "af9227fdab045c640635c1d8d03a60acb7a25cb25774fb9fd318a750e80e3326",
+    "responses/openrouter--anthropic_claude-haiku-4.5--491320410e89d1c3319b9cefa2828baa78ddbfb0282f2e28f91a0303dc61ae9f.json": "ff3e70ca4db129cc94dd54f551e8d3186b09a1b5f22071e9c57abb0c452edd4d",
+    "responses/openrouter--anthropic_claude-haiku-4.5--49ab9d3cd42cfa667b187750cd7c83c515096de1bf962dee6fd6f645252ef4d8.json": "8e0b279e6148d0111f46d73b8d36c6a99eda7004f1c9abd512295dddde5e266c",
+    "responses/openrouter--anthropic_claude-haiku-4.5--4b3ed7d0e7343fcf4c77f4b6dbe81e9d5ee277770bb5d523d9852b1e808fd5ba.json": "1b405f7c229fab995c90b42a8c8a019d0b5ac18b4538a86451128d8c68fe6294",
+    "responses/openrouter--anthropic_claude-haiku-4.5--4e0a74b38f25e10f6c358967aa7ce0e4fe48a2862d71f288a29a67546c67de7f.json": "933f84729d5104619d842a51b84724de73c1ffd37f0961e8827b3725c37ec373",
+    "responses/openrouter--anthropic_claude-haiku-4.5--4f0de90bb79de331bf2030ce30607189d0dffb929498c621f2ccd4d378614e74.json": "95fe3ccb6c0d270ae256cf8643c4ab6beddaf4f0fea67ddc3d9f7191886d2c94",
+    "responses/openrouter--anthropic_claude-haiku-4.5--4f32d5e4d5e82ea02572bd11438bf732f4ac8819f1ce86fe7bc2d6ec595eae0d.json": "41831740f4128b63027985b740faa09c97adc186bfbba0076e8260d5b9b0b11a",
+    "responses/openrouter--anthropic_claude-haiku-4.5--4ff50bee97599a6d35604f747e3116ff3af5c90761c3cce1079b3decf7878b20.json": "9297b4ba657a85023cc42d8e27fa0c90fc3958480de84f7f0ae26167de3913c3",
+    "responses/openrouter--anthropic_claude-haiku-4.5--4ff597e46929941fb42c71b49fc619df8d708a4c177a831d92a19cf2a2929731.json": "dc575c5f8f773f2fc6451a485da1f511a82aed7efa6931c6c9728d32b65fa5bb",
+    "responses/openrouter--anthropic_claude-haiku-4.5--536b4485302babeba6f58b7c720af7827a450c747d1b2622dae4c8cdae9a37e9.json": "fa5a31097711fb996f47c82d623f2afff71ed8910aed7b0c40508a4301de626a",
+    "responses/openrouter--anthropic_claude-haiku-4.5--561505ba7ac76c17e105d1a8387caadc0b2e045a2bdcd5536b8d7ecfc14af763.json": "f5814690917be8e405ff4c5e7350e94e02505e88de6a2d8b4a6729c996658301",
+    "responses/openrouter--anthropic_claude-haiku-4.5--5a07bc61dba1b065f4104927df30de8620cc7bb619ec8b4211167470a47e1497.json": "5f35d67f8219b74f5aa97bc2166d6fc752d43cbc128f5649580d9059d412d5e0",
+    "responses/openrouter--anthropic_claude-haiku-4.5--5c95d5786210dff69f912a701dd3049bbf5a9ff0f7fdac7630d6621022377dc7.json": "cebea2833f83594736ad7ab992f1f87cc805d4d75ae58f38c5d4ec2e0577df92",
+    "responses/openrouter--anthropic_claude-haiku-4.5--5d82ce42c378750ab16a3e5a06408556013daf040a0f6032cccd5564a1d44851.json": "cb0201f78967325123f20c90e5eeee32d2eda53da7a3b7f32b6e5b3ccdeaf67e",
+    "responses/openrouter--anthropic_claude-haiku-4.5--5f0fc45d00b8b374f10d882a35257746ac7b2d34c19c53dc061bad5e0fcfed03.json": "362ed31e952bb9f6cfc6d4018eff013fc23de917a057d4dd56acb12149eb9455",
+    "responses/openrouter--anthropic_claude-haiku-4.5--60a379fd05a554aa5db356940cc7aa105de2c5aa83acdd477692de97b3f46678.json": "218e2b191bd6db6e2370f16fae7ed74e36fa1c28ef4d2817643d59a30b2af158",
+    "responses/openrouter--anthropic_claude-haiku-4.5--61f2cb20edf72f722cb7ca5b0ba0cd3592d06ab425a80badb164a212b8947f96.json": "b2f23b22bd372e8c522508410d5e829e06e91d978919f109026788c331a3d1d3",
+    "responses/openrouter--anthropic_claude-haiku-4.5--64205b6437676ab1cadd346546f23bbfde5fd0b89004fe16a797c30f4769bab8.json": "93d93649937fdd94b3791233d4a37c2cd6c00e3cc8c70830f3ab8374024a7dee",
+    "responses/openrouter--anthropic_claude-haiku-4.5--65639a5d77d1adcbe75f0bd1da55720e848777bce703d401c36e801ebb153fa5.json": "0c70ab14c56b4a8336c41c7622f58114cc1d3cdf41ef6f1c8ab41c324c42299f",
+    "responses/openrouter--anthropic_claude-haiku-4.5--665bec96547302b6d9eead805961bf82dcf2dc8dcd595bb856f1986d61a1acea.json": "0317ba05e0df640daa022d8e7ad2861fe675389e29c6c86a6f29aa69cba4c37d",
+    "responses/openrouter--anthropic_claude-haiku-4.5--6b3d16bea4843c9a9f4d6eb33e1d72b4d1ed168c8ea16caa0878cf5470d40075.json": "9f646e2f508da607ceedac3d356fd696f9daee444d6d29757fa2c9f3201a5650",
+    "responses/openrouter--anthropic_claude-haiku-4.5--6d3b48bbaafc5f46a1378d273b53cc0bf3750b2f2fdcbe743497d1b44316f98d.json": "b0c064644785b72021b5cdaf59b93a70ed3230d286b65d0e44b24024643276d7",
+    "responses/openrouter--anthropic_claude-haiku-4.5--6f526fe920c4adb43ea64d108a9fc59a3dc12550cf302836656ae3111803477d.json": "f1d0c3370fdb2c53dd66462a294325eae07cf9008bad0d9033968f4e8c77b019",
+    "responses/openrouter--anthropic_claude-haiku-4.5--73415f86ab5fee8933de73994da3afd114472824c753707ff14a18d2b5109d71.json": "ddb21a48a470e34494f1ad97ead278f2cbc04ed701a2ce72b0575f4f7033324f",
+    "responses/openrouter--anthropic_claude-haiku-4.5--76520ded9b52a4f3c025f92fc40006c0f28ae4902434309d9598eaefb5611838.json": "972c9993e715ff24e8478a991d9c1a31ccf8d908c78ba3520da010f5764a1fe8",
+    "responses/openrouter--anthropic_claude-haiku-4.5--771b047c8507e4bb0ea6cca023d36babbdad613a8a36d2ea0097e1f9187f57e9.json": "b73707b5844f97e2850c11bcbb7b4ee4cf56e8d11aa77741acefa1f6d4ab83e4",
+    "responses/openrouter--anthropic_claude-haiku-4.5--77dbb7023e0ad6714944af8abab8248f4866ea4e450d421df6f7067c6f5c4988.json": "a55cef8ae005f70bfa913abec88b91662a44938a9f5741ad173e276f5475f0b7",
+    "responses/openrouter--anthropic_claude-haiku-4.5--79bf50001c18584403bb47c41075bb370b2ff12572106f46e4aedf1cf4f25542.json": "35c9d7eb42fcf265ec307051ad06cf51dee881dec8abd72ef925157951c553e1",
+    "responses/openrouter--anthropic_claude-haiku-4.5--79c57bd7e51aafcb07f739af589e8da640d38d2e242b281fd407a2e6f6a86caf.json": "59e7d118957bd93ef14c83fbb16fdc1e0a02592de20533d94951983f1dab2eb5",
+    "responses/openrouter--anthropic_claude-haiku-4.5--7a8e3d8362b64d38dbb2f5c8d69f534d09ba8366525c6af1d28ac36f0ccb721d.json": "488f7bea1f0d679aa9ca6584c0fb8ce085623687f77f4cd0184363161caad466",
+    "responses/openrouter--anthropic_claude-haiku-4.5--7a97f4d3daa740af8a8d15945737496f6570052d569b0e59f8254c198fcd8722.json": "5cee6cfc4e684da17250484b93b1cd524176b96cabf1395ec5de6ea9574f4d7b",
+    "responses/openrouter--anthropic_claude-haiku-4.5--7b115e7719c78a45716db7ea92d65ceb4ffc860b849a7497c38e6d75d866d462.json": "154b97d112cac4a8d387063694409ea7ea2771fca6fa81db9cb0ed175a69964e",
+    "responses/openrouter--anthropic_claude-haiku-4.5--7ffe7cd002f1709bb0bab70a003690406ed3f14d2f6a0e6da159d0506daaac16.json": "1c9de4c43eb4140f593dff6c9425e76c6969229d773ce49330f5c57198b0fa2c",
+    "responses/openrouter--anthropic_claude-haiku-4.5--8026b8713c9e991eb63020c75927fa48993eee89acb6b9434b290075f4dd06cb.json": "65262fd16151b7079e2fb11d854af6670bd585423e14a6ea71f583547742b3c2",
+    "responses/openrouter--anthropic_claude-haiku-4.5--80d6882380fd4f99244150fb7b5aa8c61627c6135658c2f8c8b3bd557b19ee3c.json": "17ac0c43476ae88971519f19705738bd9594183a1c774bc1f1256e726f35ef2f",
+    "responses/openrouter--anthropic_claude-haiku-4.5--81ff8ec77faebeb4cc047fa59125c86187726ffaa5334ff975628fa0fd847a26.json": "c7778de384ad4639dba02748e5df0dbd1b2713cdbe58dfad458a56fe1197f622",
+    "responses/openrouter--anthropic_claude-haiku-4.5--85a3322eeb95b6b34b828ea8f6ec0cb0a1e7327793af17e2d45b30e029341e5b.json": "93d801a74c31c95926e703bbb8e27a901be0efcb06e07c63638b3e91686100da",
+    "responses/openrouter--anthropic_claude-haiku-4.5--85ec4464b2cc38c9b0e781f845e3fce9a75b99f3b9f1fe339d4deb6ae7b71d44.json": "767cc100ba9c77dfdb9f7134e84edb13f41eaaea6c1d1533f6df8a8367aa77ef",
+    "responses/openrouter--anthropic_claude-haiku-4.5--863139f2fb868ff3f2193fd1b0b1c8a86892d8bb7f95061d9a2ba88491191cb8.json": "2ff37d6b0d020dab3eb5428e0b2b4b318de901885294fbbcf8d1b9b5dca43efc",
+    "responses/openrouter--anthropic_claude-haiku-4.5--8822da4ab7e5210970849dc6b973e1729d356a68373ca0461c65b039bc2b15d4.json": "8391ffbddf169bb54c2c5a81362e9fdd99526b2199759349b16c8c257b8674a2",
+    "responses/openrouter--anthropic_claude-haiku-4.5--8c37bc908e35f288e1ebc90f1a65e85fb1cd4daf41f2be0c173a52bd1bd05805.json": "12a28f05e3a1e18e93cb997921300cdd8ceceae7f91af65dd40029ab9f7aa9da",
+    "responses/openrouter--anthropic_claude-haiku-4.5--8cb72ea63b42d824919b2ce4e12b15ba0057a134071f5b873edea12fe522b859.json": "26cabee3c84adf0892f8787a8c846b50324508f70e0ca20c8f88675c73d51ff5",
+    "responses/openrouter--anthropic_claude-haiku-4.5--8df718700225ae051d09b7ac11e0c89a552856c964bb2db55797b1ce4277f7bf.json": "881d64e426bc6fa4d10961e140e658bcd8594e062f6dedea57dffb82638400b0",
+    "responses/openrouter--anthropic_claude-haiku-4.5--8ee6a5d7cc85c687ffd44e1f6b788ed77c635e87a68f5ad22b0c31659efd57a9.json": "05e6d441ab4ec61266cfa64e58b9c31bfb5907c51a8d0a8c38e9d1f2d936d74b",
+    "responses/openrouter--anthropic_claude-haiku-4.5--8ef62f812a67543f38d58c475692707cc042fd37e785dd3aabcc2e84af741bf5.json": "d5622a7908cd1f0d61d47719e18af492d5bc842a23759bdb2e3331c164779ead",
+    "responses/openrouter--anthropic_claude-haiku-4.5--907f43b8b72582285d8e204d161e30777f3128d3e23883250db58091f7f0b5b0.json": "66ddb1ed614c8666649c62ae5d7ab6b65ec62ff355f06fe7045b38d836b5b493",
+    "responses/openrouter--anthropic_claude-haiku-4.5--96bc74af65d53369082c5ce90bedcb5ecd4d0c68b75614cf32f71766d4916daa.json": "1d0843e67039e8e383e6bf5d7c3e684af3c31d0b548b3e73333948663f1cba89",
+    "responses/openrouter--anthropic_claude-haiku-4.5--9751b87ede8f443d8c1e9f4b50fe15f43985d96fa187bc04d519740e25c7ff81.json": "af67d89d22e7339710fc07210a65af92a554b5bed7a83356861de6c4e850713b",
+    "responses/openrouter--anthropic_claude-haiku-4.5--9c92fd5777227d7d05277e4a936e1b63945279d44db9f6f7008cd7a1e60d4ef2.json": "2966dfb7be2b5c210c7004d432618f3e05af00c4592cf16373b757e509db7d5e",
+    "responses/openrouter--anthropic_claude-haiku-4.5--9d2b0940b8bd50bd1b45764c6089f14783924fa3cb5d82b872f388d8dba1c1a2.json": "15b9da5c441877b5ca1b14dab56c486fbaef91aff84e56d4f405bd9d73cd6bcf",
+    "responses/openrouter--anthropic_claude-haiku-4.5--a28f08cd88be6f5d052bd7c1336995f33fb2b7b5f86c4cddc2ee83d0b3db08d7.json": "6c49a10df4331038056a33305304fdb035a0a2f29b65b499c2e187e7bb49b550",
+    "responses/openrouter--anthropic_claude-haiku-4.5--a846ef08df856a82b31eb2a49e26abf8541a75e319a6dd57121c5300919afef9.json": "8a50e8dc69f3998841f69abed8e1d050ef0e03eb42fb23c18dbf211f34ac5572",
+    "responses/openrouter--anthropic_claude-haiku-4.5--a98b9d76a7c5e5338ca2d03599857e21fe9ce8aaf0bb1f9b432182340b850123.json": "cb9435aaa6fb440319d45f7a6df6a40a41e1ba0e0a4ffbce8953f6b678e55f4d",
+    "responses/openrouter--anthropic_claude-haiku-4.5--aa24f5a8e0a60e18efc284bdae9e7c2d5b395f61143671ee0ba1d0b748083f46.json": "0aec40cdd35972961e5dd7a29476c17a1c382ff16190043f200417fba1e476fe",
+    "responses/openrouter--anthropic_claude-haiku-4.5--ab2384db0beb6852aa728ebf3e54c1cc6a51b623a9220b2260617605e7ea228c.json": "633bcc201aa909913ca746514983fa640c72ff8ef853aeb7124d86ea3ece4cde",
+    "responses/openrouter--anthropic_claude-haiku-4.5--ae359089f560d664b79ca5363741a5d822c1dc1261adcc6a8ff5e01bde3185a0.json": "f0909f772e30cb2c31ac5c39de4190fe96bba77aeab58a7763506259577b87af",
+    "responses/openrouter--anthropic_claude-haiku-4.5--ae55187d23e1ca0d91cb9752cc2f42094190563fb736f7bc10aac3407cd14f8a.json": "b80d3907d5906010aac8ec7ceb621c8424319cd47ee86212a513ffb3df3b6264",
+    "responses/openrouter--anthropic_claude-haiku-4.5--af3f934bbb9e208e6e6c4db3d3b2761926192600d3a44d8e19f75eecf073210d.json": "84dae0082c30b09fdd5229c1b296b8c0a114da9e6f6236a51a838c30619fb9ae",
+    "responses/openrouter--anthropic_claude-haiku-4.5--b3302c4b5eaacd999c3641f10e22d33a842c7dc74294f9c2889db555bddd862e.json": "264d5895674d75e551f10b516c8fc9bb222ede4f59698ef380e6b60afa6d8451",
+    "responses/openrouter--anthropic_claude-haiku-4.5--b5ce391419afa25ded601233ed7eb1c3a834a3586cc779935967bbc3499f63aa.json": "8bfc4620e943323690eae43d33513bc840f2b911c647814f655c60a8e7df4b06",
+    "responses/openrouter--anthropic_claude-haiku-4.5--b613969a624bfe4d1d99a788483b9f3c51ec3740632530b8e19fef175b413be2.json": "639b8e8421621c1db3072f2d9ab3f6714a83c4ee1a519c64f135a63f34e2188b",
+    "responses/openrouter--anthropic_claude-haiku-4.5--b7304659ec1a68c4e5533b64fb6b33bc77d9254ed8ecc848fa1089a0c67b56ba.json": "e98b8d29333e481f9d7b8c72e154eefe9725c39bd5f2856f32b0396b5f33b336",
+    "responses/openrouter--anthropic_claude-haiku-4.5--b8ce086de93c09c9c0a9ac53c4ee8469c1887ea7152a5d8f905beee6b573758c.json": "844123ef3899281bc796e4865141843a0ec6e829482ea9ca21cda839fb358218",
+    "responses/openrouter--anthropic_claude-haiku-4.5--b8db07ef25a70194f07fbc50bd1014bacf2ee8be17fe0e3c064c0ecade565b8d.json": "ff19d89fd1ef106997c33b860cb88e26e0da7106ef487d609bdead42ea616da7",
+    "responses/openrouter--anthropic_claude-haiku-4.5--b8fce0c8a4c50a3aca3884a8b578e60b9b1ded32f58a56502d8afe1852534d57.json": "20174ddb3b71b1ecbb5393af52c605b462b9675c998aa8ac1a7deee4f37dba1b",
+    "responses/openrouter--anthropic_claude-haiku-4.5--b988698d19588717a9a1de059cb159feff503ae3f966249b665efe1417017440.json": "ffd93a5e33fc09bf3cf0368ac0ca43a31c1c05a788c4d3a841749b055d536e7f",
+    "responses/openrouter--anthropic_claude-haiku-4.5--b9e321f41d7f903ad133fe68ad01743b1d80f98a4c5896bfc2fa168dcd0cc7b0.json": "16ca5dd7a7774974b8fadeb1642b9113e27cceb6b621e4177abb64643260a3c6",
+    "responses/openrouter--anthropic_claude-haiku-4.5--bb9f2cdd25536a532b3363fd5d1411e3cbffe43637fe8067d1a5620fa2321367.json": "79d4d4f1285c0dbae4e3610da377bd46caa221c8cf07b42b9c788d831791c8d9",
+    "responses/openrouter--anthropic_claude-haiku-4.5--bc89d003f9b2e3be24bf4144d0c3656cbbabcbf2768beda41194857d7d499c48.json": "ca3bae2385d3ffaadf314f952262411f0275309183637fe52c27d664d721b6fe",
+    "responses/openrouter--anthropic_claude-haiku-4.5--bcff16e35ec3654b116321130e58df6e42fd8a1518825b380d2cc009fd664b01.json": "c33861e35354f776db271c7d421aef8a3e26581ff454ae241dc52523aa771ad7",
+    "responses/openrouter--anthropic_claude-haiku-4.5--bd18ee57fe40f1533101cc892767d22a7528f916b8499a5efb49d4e04330f112.json": "e4c89155dc5f522af39bb25a6660e61014fa78d69503c6e514b70ce2457014a1",
+    "responses/openrouter--anthropic_claude-haiku-4.5--bd73ec32e448943b551158c7660705ce1750a0d9b5675ac72172ad72026ee851.json": "6a47147f60925e191a9303abf6ba64bddbb81582d5b6ec843413084cc79c554f",
+    "responses/openrouter--anthropic_claude-haiku-4.5--bf206e3180e399a7e8b9dedf41cf7e16fc90f245dfe1ed636f0c5c97995b5d73.json": "a2815cd6f2277d59ceb8f5ad77fa26bba2d14e0eccc29d07f53256d7de4c703a",
+    "responses/openrouter--anthropic_claude-haiku-4.5--bf38292e4ce0835b04943c875b11b60b145397f2f78a3234eaedbe9c7d4af593.json": "c942eae610e369b97e70bdb308e5def9b2cf5fc13d80231a32d450dd45bda0d0",
+    "responses/openrouter--anthropic_claude-haiku-4.5--bf48b1ba69387767e014786876245d2ba668bbf21823102cca1444b22e34f7ca.json": "a08ae0d74d641c1586417396afe4f6f90de69d796da1b344885b959242256521",
+    "responses/openrouter--anthropic_claude-haiku-4.5--c03e011d636a51f935fb857235c0675d679efcddb6c3754e356fc12daad74190.json": "7bc26aae9a9c220c50a1491a6e842fa8441c147f4f16422d8eb4d0b2a40004f4",
+    "responses/openrouter--anthropic_claude-haiku-4.5--c0fe712d5bde6565a4922e15bda4f34189954e796f2d148c735ef71f19ce2ab3.json": "9009bc2d51e86eadad67464f3dd114ff4faa0dbd7632cc7c711ecac3ad2a4b7e",
+    "responses/openrouter--anthropic_claude-haiku-4.5--c2846eeaa5bd63368f0f8ae581381704ef18b8add2d6aa009e1287adc2ccfedd.json": "cd6b7ed9f85f1cee569d3723d526983639669e73e5bf17ce74793427d92e7fce",
+    "responses/openrouter--anthropic_claude-haiku-4.5--c3b2a0fae8173148327f07acb693c8f41dc765240f11165a2d5d0da306d32b43.json": "44db93be00bafc5c63a0a87dcfb2e3f51f085576b92cefd793eab10153108d08",
+    "responses/openrouter--anthropic_claude-haiku-4.5--c3b770d3ff8b23ad2dbbbdc07f0d274ccbe146b75892816d97693757d563bc14.json": "18de4d8008e3e260b2d6f3e43e7e1d9e142d2ad51c90f99fe5b8c33d4ec56e2d",
+    "responses/openrouter--anthropic_claude-haiku-4.5--c5cc8940d7ece16cfd384d89fb078b773dde9e85f9a2b4b8a3799609ef9b91e1.json": "e7cea5045e648cbc6970625c24e3cafec08c8fe5a5222ce964d8333378f29193",
+    "responses/openrouter--anthropic_claude-haiku-4.5--c62db0fb4045b0c65ac85063d3b9fae7b945b27053cff78656f397ba7bb3386c.json": "ee8d41bb420ff06be1de6b86209c5072d3b8c705103888611c739dd3448d7f6d",
+    "responses/openrouter--anthropic_claude-haiku-4.5--c7d962786c160fef605f2f9c61f2408522bb080610282cae04d97c80cb579b04.json": "c52973b94c552ff3aa6d6c530283d00c9a9c27200145c2d5c5b154f5887da894",
+    "responses/openrouter--anthropic_claude-haiku-4.5--c840140b951991f0deceef35238d54da618280807e67b11d9426b067367792ed.json": "29dcd563165c21000b83ef1eba3c7ac3edced82982d9408774dde7b3731bb2aa",
+    "responses/openrouter--anthropic_claude-haiku-4.5--c8ca245e12011d3c18caad12a91e430e588102ebd08f005054eabc9702836b03.json": "1326df27d0ebc86a3fc646150b6999486fc60134630c034642447a1db54b9fec",
+    "responses/openrouter--anthropic_claude-haiku-4.5--c99b9e81f8d387366dcd2d76d3894449f5c06360d5ce6725a7e50864598a8c22.json": "fdc7b3416d5e552e0720ab3d872cfaccd04ef5d2d6e369bed8ff162f924b9a9b",
+    "responses/openrouter--anthropic_claude-haiku-4.5--cb3e7c6752a12db3e089faa719503433639e7b6c7404222abe269718555b9477.json": "6e72044bb9cd61dcb5b7ad5adc3f6e64d2324512b8a5a0548ef07b78ef5b14a2",
+    "responses/openrouter--anthropic_claude-haiku-4.5--cd95382f6269502e40ccdced8b1525ff81dd78b75ba8795a156350b461a8d888.json": "38f0a1e92d52ddf7b809b29da3df822a8a8c23a1cccccc154049290954d08b2f",
+    "responses/openrouter--anthropic_claude-haiku-4.5--cdbde4bec0821c88f98608fd567f27f46adca486192db8716e1a01e93a8d7515.json": "0a140801e641275d384450aa17d723866271027b9ea762acb64cf636c0c01286",
+    "responses/openrouter--anthropic_claude-haiku-4.5--ce160ebaa235d62ed3cd77328ab3e763e7376950027ff8a52459ffa6cbd485b6.json": "944df8a63bdaa2cb72e5e8fb735ff6dea7e5a49eb56578624cc708f9f1a0986f",
+    "responses/openrouter--anthropic_claude-haiku-4.5--cf75a34b12dc7b3cfd8636e383af8ee702ad76248d53a8a66a5724637a08e25a.json": "826a18b4fa7691cb94012b9d28bcb2b4cb9d7d997d0feaf1fe893178c8717a24",
+    "responses/openrouter--anthropic_claude-haiku-4.5--d0b6fd794f547d2bba8522e6849f8eff7e94554f1455128812c480cbb6ae9ab5.http-error.txt": "bb2fb7b51f18478e3ccde6376dc39285b20472f0394e7034fd2e0bdf6a5716e2",
+    "responses/openrouter--anthropic_claude-haiku-4.5--d1931d2b72f92a1227d8f66f0071e4c0e4ee59b2fd38889ada6d471e3946d70e.json": "2253ac93b5d850d3bcdf041a9d07fa10228602f4d5480788a178ddab7a1ed6a3",
+    "responses/openrouter--anthropic_claude-haiku-4.5--d1e3edfb2246ce37ea52b1362cd92e1cb2e10fa6cab93cbbd3579a6773579599.json": "73902ddfdd4c4a25c91c915692b75c29a9e379e9074216d24341228fa22a07d8",
+    "responses/openrouter--anthropic_claude-haiku-4.5--d20f6fb652843d5f884eb77695bf607760dd43e82dfb211109859fa124bcf0f5.json": "d1ea645ab4cbe48beadc256cac08e26f793561815fd939c18acabf8b01ecdf98",
+    "responses/openrouter--anthropic_claude-haiku-4.5--d2e88f6c63efadcac6133218c007d2d410ed287527648ebe9aaf1303bc585458.json": "e0f09f7e079ac52d8b85f2f3effc90f1148c58f3fe9fe91f8298bb17227810d3",
+    "responses/openrouter--anthropic_claude-haiku-4.5--d4f4b0f2c38386effa100b002f174d237eb68828c8184c2df90ef92fcb0d57e3.json": "8b4dfc7400c319fb98e01583e0d784dbf5fa5d6d83526d9985f4be9797675ff6",
+    "responses/openrouter--anthropic_claude-haiku-4.5--d9132e640a3ec3bfee9ee8ab7669fa87bd6c5140fe2348b486c687a106d0f43a.json": "64ca608d37f3e9996ad825cec210e37b1bf7b5e572fcdbc0e7e38176fb4d4c5f",
+    "responses/openrouter--anthropic_claude-haiku-4.5--d98a8d06b2722edb9e81985c2ea4a5c485ec65661b93cbfbfeeefd7e257dd303.json": "67b9d6e240227d761dc48968fbdc6111ebc448841d2e29bd786d9a6fe71a86c9",
+    "responses/openrouter--anthropic_claude-haiku-4.5--dc6bd79c68edd405df031f5113b8862b5da2d2e9938561a0174ea8f57aacd93b.json": "a0cecd8860d859dcf39d379912ee40c91cabd779658e74f4497828e50315f8bd",
+    "responses/openrouter--anthropic_claude-haiku-4.5--dd6804b395bed6712a09d3013c3857500378e8b4e62591848510df69443747d9.json": "f78e02feca602e66fbac13ab95b4e5fd2c102dcb6805d8bb9a634e278db51460",
+    "responses/openrouter--anthropic_claude-haiku-4.5--e18d14616a7a742fbe38fa0490b018dbd0085dcac69bf274f53d5e69a78287ee.json": "b33d9f05b2d8b5b299378385fada9e6d33e0c033a6439f500c6ac7720b517f11",
+    "responses/openrouter--anthropic_claude-haiku-4.5--e1ff5ec30c5d5c84c09ecaace01a1b16e8da8d4ae5c0d26ddbba15df99bdbf74.json": "622d5fb6305538144049e0c43c5326ba0cee9fff57da229c808e24d5cd4652f8",
+    "responses/openrouter--anthropic_claude-haiku-4.5--e2baafbafbceb185461adca5a22aed5d89c2ba3134151683cee30533680e1a9b.json": "7f798dde9aa48b069c0a95ef93b32966719bf9c5a9dbe8f8b87b4d184f4376ca",
+    "responses/openrouter--anthropic_claude-haiku-4.5--e51303ab55637b859f98dac282609b51e6ac13c75c721a429aca6d1f77d4d782.json": "0d0d23aa7e986004c1489e8ed9068031464c8e955cbadef1a3faac5104e1e5a7",
+    "responses/openrouter--anthropic_claude-haiku-4.5--e57388456977b3a8b48f0843e3c512c439121cdb64efd43c16978e3c7c73cdeb.json": "1d8180d727e99f50fbf16a56bcab16fb6857edb4d8c64508cdac263662cd8e6b",
+    "responses/openrouter--anthropic_claude-haiku-4.5--e6c505928616ddccca14ebc48e3ac81951a4e9f7bea994c6c7638a459337edbe.json": "cd256479cd0c70e6887b7fde26d81bf7440e58eb447ecc1b59776599947cb031",
+    "responses/openrouter--anthropic_claude-haiku-4.5--e88aaba60f8d6a40e17afbae95b4062de8426a2a505eeddab06c2cfbf40673cd.json": "85c73917c7d9ef7184caba74e2677f5354289cf4953b5af17855d3fce792e71f",
+    "responses/openrouter--anthropic_claude-haiku-4.5--e9ba3e4d9b49b17531e7500e360538b9f983e9017dc9c711ab3fc6d3353c630b.json": "102a86bd667b33413b8df64dba6b25f41ad4b3ac90a6fc238cca24d9afd1db51",
+    "responses/openrouter--anthropic_claude-haiku-4.5--eba9a28c4eb64f25cfa6921d1e99ceede1ebfa0a5feff01ee75d5993b852ce41.json": "e208b4cfc9bec117508fe4302ef1ee1d5656e9a6516641d6153ff901133fcd0e",
+    "responses/openrouter--anthropic_claude-haiku-4.5--ed0a41dec8f7c19067c27aae7bede405b005d98f7ff9ebc289a1baabb7258316.json": "53bc75f75fe85bb81d4e7456d1d983abd9b710150414a351439e2b104d610847",
+    "responses/openrouter--anthropic_claude-haiku-4.5--f07508793729d262ad3f3b2f244880a65dcb40b4e4431b70d88a5da60ad774c0.json": "9c0852dcd060082705921368ff195a42574dea5b5ff5b4d4d34faeae401095a6",
+    "responses/openrouter--anthropic_claude-haiku-4.5--f53712266e4ff0bf4556a019ea51a9995a8e251b8b3a08deebe16b3c4d683b41.json": "e2a45e8dbecc5bd883c5d573cb42b482a5fee953fc0f5462bdf2fa117aff4644",
+    "responses/openrouter--anthropic_claude-haiku-4.5--f8912ffc10b1cc44a3ff1413d1b44224281df6e4d38997695b3a8276467dd386.json": "16e138962654f57f71385125cd9c061eb163d57e55e3925451ccd2c984fc838f",
+    "responses/openrouter--anthropic_claude-haiku-4.5--f9e32b13a2db40d401632bd12e4c249dceadd41bb59c57cde0bfc4812e05bbf0.json": "0d52ffdc91adeaa1ab0402987866854538c4923ea210c1575cb03d121e3ba854",
+    "responses/openrouter--anthropic_claude-haiku-4.5--fcffdad7eabd371d52d116aa1dd6e00524b522eb02e375ffc829622a9a67e4ca.json": "2af890726f20ab4174204191ccfbf01815f76943ef14975ba2b869d7d5b7b1ee",
+    "responses/openrouter--anthropic_claude-haiku-4.5--fe838d89d37b3cb6251b491f2df9c270379fd6843dcc469fe3f7b3c5b3616941.json": "00d6269aaf75105aa36f84c2170f52e244f563954a1734854d6560695c27629f",
+    "responses/openrouter--anthropic_claude-haiku-4.5--ff0ae2e94915cf4b42c4ed6fd230847e41b640dedd3bd34dcdf51c9669c32fd5.json": "f02fa67084c945efa8734f1a44f8cf16bfa1a9288a2f8f657e73a396ea9a01bb",
+    "responses/openrouter--anthropic_claude-haiku-4.5--ff8765ebe31c09d9ec23f84ccb978ae02f9d498b674626707fce18a0e1d0a81f.json": "d88b390af1270cefda0baab7a2395461080ad16c76b246cdf3cacfaa34f888bd",
+    "rows/openrouter--anthropic_claude-haiku-4.5--057c32f45fddb790f4d45084ee34ee12a8dde6823b8f928e817b2ae4150c8286.json": "dbf5f22bae178ff30bbf45bed01ed51e7e29dd920756e8522df89204c082f5ca",
+    "rows/openrouter--anthropic_claude-haiku-4.5--0dc23bd241734f3d9b8643fadab1dcbe369df6011af621986140aa02c2d05532.json": "6eaab4ff976b494231125d66c8732387617bcb27cb5aa2eebf9a510e57e53494",
+    "rows/openrouter--anthropic_claude-haiku-4.5--0dfb8e734a83dd80c683585ea0740cd863162d2e75ab2afa263a5394b22d5187.json": "ded27686aa80040eb6ab79c520d6f0d37e46953d891d6a3f9daa60fc6a4af8d2",
+    "rows/openrouter--anthropic_claude-haiku-4.5--0e7a1714c1e6ca3354807c0237d84bc8f69ebde41a9e168dad7c8f50897ad349.json": "dac8ee59f159fbffb87f81f76b31d7d3c86718467b4af99b0416b780d9ae1bdf",
+    "rows/openrouter--anthropic_claude-haiku-4.5--10dd9265d15f2ede5fa9c3329b877e4730dabe04cbfcc03e9bd99c24e135f6b9.json": "eed24e62be382c933582311a0dd275f361bcdd0152a98513aa5144ec1625923f",
+    "rows/openrouter--anthropic_claude-haiku-4.5--1451e8eccaacd1f4e24f7cbb7e48f1f37b59457a593fb96e852df9bedf4360b4.json": "5128d556c0df9635f9aa703d08da25e161844a0a25bdf16a42aefdc4412fb0e7",
+    "rows/openrouter--anthropic_claude-haiku-4.5--14d6ce36e6a5b3d55de47b1a2f19c01c37b647854bb52be0bce239c9e7c222e2.json": "0dd51d612efc574fee77f4ca9bdcc785e4ad71e7c6539c4fd6d149d275a79790",
+    "rows/openrouter--anthropic_claude-haiku-4.5--150411349fad2a1870572a6f7bf85943d9e523d600e239aedf9434d789a4ddd6.json": "00db1e5475128bd0c6e2f84fdeccbcd671aba097658b4389a3a0dc6f1a220559",
+    "rows/openrouter--anthropic_claude-haiku-4.5--190ab9a7e7399dda07ba9d14152fb73f4fe12f2bf6f763b7fa18669d289d95c2.json": "67e578f9a1275b9f14d58e0fb1c645e4547c8b825bcac7cc9ae80e84b2edc629",
+    "rows/openrouter--anthropic_claude-haiku-4.5--19e295a86dfb535c6d8ff621d8f0387cdecea3f36b298c3161223a1f81f547a4.json": "bae1c6966980ed5d9b56f2e227eacd11dc8a42bad44ff6294d1f481093034339",
+    "rows/openrouter--anthropic_claude-haiku-4.5--1bc113975edd787dd1619a5baeb8ad79df420e4fb755f641105f63f37b71b395.json": "b4f3b76f0ef25bd50b1a0219652a5723f2fbee8128f97357c5e665209fe50edd",
+    "rows/openrouter--anthropic_claude-haiku-4.5--1d25aae5419b7bf683d12cb89420292c7d79f4566dc95801a9163c79e85bf454.json": "50174228563c76a8d0cb1a1f97bdc72ec26e5eb1b89e5628e48113af4764602a",
+    "rows/openrouter--anthropic_claude-haiku-4.5--2203eacecffe7c71e2fb1dcbb0e58a9c2640294093be5ecfb2a4f0367281ef8b.json": "4d0d9d4628cc2856126b0e07f7638c96cac40dbc6a487575265f93d90ffb12c3",
+    "rows/openrouter--anthropic_claude-haiku-4.5--22a1b4d9ce66b15474f0dc94004f7ce9bb14a003049a1565f59517af3325f71a.json": "b70453be65c66619038261c42ec82fb852d30babf50a685dc0784ec7516f54bd",
+    "rows/openrouter--anthropic_claude-haiku-4.5--23aefc38b8cfb5792ab640944fda187ca103a9463a89a952569fcb5c671e275d.json": "1b08f6d22d69a9fca85b8a2b47d90eaec9e897f0e14b93e0645614e5649cb971",
+    "rows/openrouter--anthropic_claude-haiku-4.5--2f7cd659f446353e1f2d14c672249e2d6290e8b23865d7657f92935ff1418972.json": "0835bd57cebc8cccdce3937c16e473d0e600099b737efc2a1d129c809d6cf1ba",
+    "rows/openrouter--anthropic_claude-haiku-4.5--3054ef566e0418a61a596d10fcf446265c87e37149d77802cd388eb65c5adde1.json": "2da1165419467379aa49fe84479b3facd9953371e0c07f8c8663c669a32d58b9",
+    "rows/openrouter--anthropic_claude-haiku-4.5--308761e86a704167653ebd3161eda7a41cc94c7b524c2c563619872959861511.json": "2a6d97c3094bca4023956303bf19db847e2d188bc25337f8c85cbd31099ab078",
+    "rows/openrouter--anthropic_claude-haiku-4.5--30d2b93782c0712b842b6ef83f5e92250479aa8d5627faf23942616cc2975dfe.json": "5d34efefff2445df5521e8e74636905280fe099e7ba51b24cf35be97a701fe29",
+    "rows/openrouter--anthropic_claude-haiku-4.5--325c6b85fc8834f30ad325a5194197b8d123b6754793dd6a91eb5c7fa76f0302.json": "818515256c8d113edf54676ad342bd1b115b0fbf349f0d8fe5c2fcf0cdfb8422",
+    "rows/openrouter--anthropic_claude-haiku-4.5--339bebf6cd75bc33bac9882d01894c909101da4c7de5fed8ebc85929fd98319e.json": "ae9997cfe19e33fe2aa80cbaee2be3af709d269a55394e90901516763b738822",
+    "rows/openrouter--anthropic_claude-haiku-4.5--3903db912dee60ea5d5f40a02c909f4abcbfdbb932616610c6f94e655029bb21.json": "8c0d7eecfc647929fc8ffaf22356aeaea6bbefc457c5646a5fccb6a3ec6df5c1",
+    "rows/openrouter--anthropic_claude-haiku-4.5--3a1e18a7cf5a905712d66e40a6ff18e7dd35b4d6a0ed9f1da3c02484734e0a39.json": "342e07a569b4cbf726de383eada8905bf2d590bcf9969dcb62f9dceba0b32365",
+    "rows/openrouter--anthropic_claude-haiku-4.5--3d1a072ed6bdc7d4df4979e0d20e8dae6f609eeeaf1e81485f0239a57de41efa.json": "85f381720d45ddfccb55f0541f6c06e064991180429af8076c8752f9135858ec",
+    "rows/openrouter--anthropic_claude-haiku-4.5--407417ac9a1a0ed20b9586ab163abed5eb25ee6866a55eb6727a9156993af381.json": "17078036180931ed170104b81fffdd8cb1814b49f6e1600bbe072a4050755db0",
+    "rows/openrouter--anthropic_claude-haiku-4.5--4167d4269e871952e70b0f22036fd906b083d97e4261979348bdc2e31eee32a1.json": "c78c4ff12e3b5e3fbc51a0e49efb9957f670774b41beb7bed49538803e4650bb",
+    "rows/openrouter--anthropic_claude-haiku-4.5--42f07b5ceff79f19ccd3b104bf0e7fbf8034f91ea976bb0bf26a09a41cd4dc29.json": "8990ff1d55ad4cf7a04f84d532ab0e33669f2d54532017d968fb53b73162eb36",
+    "rows/openrouter--anthropic_claude-haiku-4.5--43bb82f6bdc4e08d5db9b0d8aa892c93d2ed3d46b418bf8e0929434c94543409.json": "895a9ed8eb9c0233f51e7f2712e8bac7bd99c52d529d9b6dcd982315406b33a4",
+    "rows/openrouter--anthropic_claude-haiku-4.5--45d7e0308b13adf0343288df3f7d59f594b980817d15a25d3e9bf5c7cc9cf06d.json": "d0a61f4f4f7d016fe7a90adfcda8ea816ba9c08409135267e106aec7fef772a4",
+    "rows/openrouter--anthropic_claude-haiku-4.5--473836bd9f10b13a4e45137de8a66489e48ef9331f5b56560f61d78a6c468faf.json": "4d434cd03830d0c494cb77fb1f025edb7ccbc76249f3e0df5bce597dd1c64f0e",
+    "rows/openrouter--anthropic_claude-haiku-4.5--491320410e89d1c3319b9cefa2828baa78ddbfb0282f2e28f91a0303dc61ae9f.json": "37ca5603747f4427cd8b28a6502c675f4b56e7df2e34106b2d7612a86d068515",
+    "rows/openrouter--anthropic_claude-haiku-4.5--49ab9d3cd42cfa667b187750cd7c83c515096de1bf962dee6fd6f645252ef4d8.json": "cdd55a4b386c3d17794087cc6c673ca95a87de46f7893ab68d2f9beec5a2adf7",
+    "rows/openrouter--anthropic_claude-haiku-4.5--4b3ed7d0e7343fcf4c77f4b6dbe81e9d5ee277770bb5d523d9852b1e808fd5ba.json": "c00b273b0f9554200723345054d8f9b76f510972372193f90a218649ade49ff2",
+    "rows/openrouter--anthropic_claude-haiku-4.5--4e0a74b38f25e10f6c358967aa7ce0e4fe48a2862d71f288a29a67546c67de7f.json": "b12b7960a5c3ae84d8d5c91d1eac502316aa00b240eddcfa2b974509a384fd0c",
+    "rows/openrouter--anthropic_claude-haiku-4.5--4f0de90bb79de331bf2030ce30607189d0dffb929498c621f2ccd4d378614e74.json": "ce87bfcf9bec4479b9316d2966e4440c5cf7d86a75e1c633d868957981b614d8",
+    "rows/openrouter--anthropic_claude-haiku-4.5--4f32d5e4d5e82ea02572bd11438bf732f4ac8819f1ce86fe7bc2d6ec595eae0d.json": "d6602dcef353afb83a887b3392e58633a04d14ed1c131f97515bdcd447d97140",
+    "rows/openrouter--anthropic_claude-haiku-4.5--4ff50bee97599a6d35604f747e3116ff3af5c90761c3cce1079b3decf7878b20.json": "43fdbcaae8a22cd35c66d927106b54dc4c57fd9e7241b03b8127175d90ba084e",
+    "rows/openrouter--anthropic_claude-haiku-4.5--4ff597e46929941fb42c71b49fc619df8d708a4c177a831d92a19cf2a2929731.json": "96f3d8af3f437340162e519874c521e1381a32708afb52026966f21afedb44f6",
+    "rows/openrouter--anthropic_claude-haiku-4.5--536b4485302babeba6f58b7c720af7827a450c747d1b2622dae4c8cdae9a37e9.json": "761eef6043a7a80f087a448d45cc13d90ac38fccf68ef0e2aacd7b8f73965001",
+    "rows/openrouter--anthropic_claude-haiku-4.5--561505ba7ac76c17e105d1a8387caadc0b2e045a2bdcd5536b8d7ecfc14af763.json": "50699ba006515849fad59f92f06ec9eafe283f3be74eddff0185835de6d1ffc7",
+    "rows/openrouter--anthropic_claude-haiku-4.5--5a07bc61dba1b065f4104927df30de8620cc7bb619ec8b4211167470a47e1497.json": "c123c883761172af0de451aadf17978fb5cff144dcf090a6ca8e1db4bf8bd703",
+    "rows/openrouter--anthropic_claude-haiku-4.5--5c95d5786210dff69f912a701dd3049bbf5a9ff0f7fdac7630d6621022377dc7.json": "178aea55dd2fe5a37a2fe6bdada4c3a658640afc000f75c4422fb81b061c20af",
+    "rows/openrouter--anthropic_claude-haiku-4.5--5d82ce42c378750ab16a3e5a06408556013daf040a0f6032cccd5564a1d44851.json": "44248fae8e43afb76e6843c12c1ce3d3a1e44b0a48ad253cc8869d6e4fa356d2",
+    "rows/openrouter--anthropic_claude-haiku-4.5--5f0fc45d00b8b374f10d882a35257746ac7b2d34c19c53dc061bad5e0fcfed03.json": "6d00e73c8137a7f36442a91b5c8cbb3cd5a656f0e7c786238edb92bc824309aa",
+    "rows/openrouter--anthropic_claude-haiku-4.5--60a379fd05a554aa5db356940cc7aa105de2c5aa83acdd477692de97b3f46678.json": "c7621435246f087990d8f418a6bb421c67000805f8936e0e87fd167c00e94298",
+    "rows/openrouter--anthropic_claude-haiku-4.5--61f2cb20edf72f722cb7ca5b0ba0cd3592d06ab425a80badb164a212b8947f96.json": "1b34fbe431499c6875c2169e30b502ca14fcad9c601c7f6876f4847ac49f86f4",
+    "rows/openrouter--anthropic_claude-haiku-4.5--64205b6437676ab1cadd346546f23bbfde5fd0b89004fe16a797c30f4769bab8.json": "c5653e82c996a99bb65b6a8f08073fb509a50529954ffd0269e3952cf3671999",
+    "rows/openrouter--anthropic_claude-haiku-4.5--65639a5d77d1adcbe75f0bd1da55720e848777bce703d401c36e801ebb153fa5.json": "399e7601267a726f650dc10961848f68a0bde78f6bffe8d7f15324b783ba96ea",
+    "rows/openrouter--anthropic_claude-haiku-4.5--665bec96547302b6d9eead805961bf82dcf2dc8dcd595bb856f1986d61a1acea.json": "2748d608670abd7c2bc30baaf64c3b9caa1852604452d7d1fe46820e57c6ff7a",
+    "rows/openrouter--anthropic_claude-haiku-4.5--6b3d16bea4843c9a9f4d6eb33e1d72b4d1ed168c8ea16caa0878cf5470d40075.json": "08239003aca4a6cbdc8a71b749f31bc754657ef05a45e219923dbff29cf840af",
+    "rows/openrouter--anthropic_claude-haiku-4.5--6d3b48bbaafc5f46a1378d273b53cc0bf3750b2f2fdcbe743497d1b44316f98d.json": "cb08a779e7b50212c2a255882a58e1124edfee7f8aa33b24f1e86f60605dc781",
+    "rows/openrouter--anthropic_claude-haiku-4.5--6f526fe920c4adb43ea64d108a9fc59a3dc12550cf302836656ae3111803477d.json": "067ca66215867004fe839bac9dec04d3f0b8ba2e4332a39078a3aa272be60818",
+    "rows/openrouter--anthropic_claude-haiku-4.5--73415f86ab5fee8933de73994da3afd114472824c753707ff14a18d2b5109d71.json": "49e6e687cb6be66ddc504174fd8639107b237a3be0f9c36b31664725d5f83681",
+    "rows/openrouter--anthropic_claude-haiku-4.5--76520ded9b52a4f3c025f92fc40006c0f28ae4902434309d9598eaefb5611838.json": "28663d440216e854360d7113ebc47201f2b0fdc2418cddd6655e7b8020bd5ff3",
+    "rows/openrouter--anthropic_claude-haiku-4.5--771b047c8507e4bb0ea6cca023d36babbdad613a8a36d2ea0097e1f9187f57e9.json": "72a2d3b7cff38001ff9a44e3e4ab57cdd5bbbdf1aeb9aa5a0ab87d0c9e8ce548",
+    "rows/openrouter--anthropic_claude-haiku-4.5--77dbb7023e0ad6714944af8abab8248f4866ea4e450d421df6f7067c6f5c4988.json": "648cd2230a6f5df6f3b09fd26d3f05bc375e14bbcec8dd529a61e850f072fdb0",
+    "rows/openrouter--anthropic_claude-haiku-4.5--79bf50001c18584403bb47c41075bb370b2ff12572106f46e4aedf1cf4f25542.json": "9d8bd335470c77331ba9d08a2e571f7099b95707237f6c158b22b41a3a5389ff",
+    "rows/openrouter--anthropic_claude-haiku-4.5--79c57bd7e51aafcb07f739af589e8da640d38d2e242b281fd407a2e6f6a86caf.json": "baaf20db772fab66bd9479e19ad5ff026123c5792b0b3ed13caca35897485c6a",
+    "rows/openrouter--anthropic_claude-haiku-4.5--7a8e3d8362b64d38dbb2f5c8d69f534d09ba8366525c6af1d28ac36f0ccb721d.json": "f4fed027216b725a49aba24e90a3546576280bec40a9d7db6a40d9849acf2ad2",
+    "rows/openrouter--anthropic_claude-haiku-4.5--7a97f4d3daa740af8a8d15945737496f6570052d569b0e59f8254c198fcd8722.json": "6ffef64464e6d6a6e12c03256d6d0ffef08fb9fc85c05912f27a4fad3ddcb109",
+    "rows/openrouter--anthropic_claude-haiku-4.5--7b115e7719c78a45716db7ea92d65ceb4ffc860b849a7497c38e6d75d866d462.json": "86556e049c850cf6e8e5c9caaf1b2fb45d2c144d088bd925e73439a6046a91f1",
+    "rows/openrouter--anthropic_claude-haiku-4.5--7ffe7cd002f1709bb0bab70a003690406ed3f14d2f6a0e6da159d0506daaac16.json": "5fbcb299c392106b3aa12f03515e8e5918d568083c2b2163ded13e5274259258",
+    "rows/openrouter--anthropic_claude-haiku-4.5--8026b8713c9e991eb63020c75927fa48993eee89acb6b9434b290075f4dd06cb.json": "bdbaa082d329a2dc01e54c2ca162fe0e2c5dec937bd7485a7c15d422423c4fc9",
+    "rows/openrouter--anthropic_claude-haiku-4.5--80d6882380fd4f99244150fb7b5aa8c61627c6135658c2f8c8b3bd557b19ee3c.json": "b1e3efc7b2070028c63ebadb8eb11b22820bc3924de113634c86f565dc39a51d",
+    "rows/openrouter--anthropic_claude-haiku-4.5--81ff8ec77faebeb4cc047fa59125c86187726ffaa5334ff975628fa0fd847a26.json": "6a6f8fbd8a650b826c39efb16e6cc46e40177eef5a8be5258bb0a30caa090912",
+    "rows/openrouter--anthropic_claude-haiku-4.5--85a3322eeb95b6b34b828ea8f6ec0cb0a1e7327793af17e2d45b30e029341e5b.json": "60b67f5ee966895009fe82c65c088f0c7cc8303c4d820077801e236d39daa787",
+    "rows/openrouter--anthropic_claude-haiku-4.5--85ec4464b2cc38c9b0e781f845e3fce9a75b99f3b9f1fe339d4deb6ae7b71d44.json": "39ef03d983cdabe40b08e20040193c904d87186c6165782cbb7ed28d2ad25ab0",
+    "rows/openrouter--anthropic_claude-haiku-4.5--863139f2fb868ff3f2193fd1b0b1c8a86892d8bb7f95061d9a2ba88491191cb8.json": "46d433193a9e53ed974d404f13b877196513e4bc4a8d96eba7da5edacfbef84d",
+    "rows/openrouter--anthropic_claude-haiku-4.5--8822da4ab7e5210970849dc6b973e1729d356a68373ca0461c65b039bc2b15d4.json": "c9e78a86448e4481b15b7a41a555db92952b5e46e7f74658abf1e054e2bd9a78",
+    "rows/openrouter--anthropic_claude-haiku-4.5--8c37bc908e35f288e1ebc90f1a65e85fb1cd4daf41f2be0c173a52bd1bd05805.json": "058cc92103acf14e36a7705f5b0eabd7398ebce46d7e7f5c76b5c711cd8a9935",
+    "rows/openrouter--anthropic_claude-haiku-4.5--8cb72ea63b42d824919b2ce4e12b15ba0057a134071f5b873edea12fe522b859.json": "2c5ad9b7ca59262d5f827c8120a9f2643c124016ab5db894af0dadba628995ba",
+    "rows/openrouter--anthropic_claude-haiku-4.5--8df718700225ae051d09b7ac11e0c89a552856c964bb2db55797b1ce4277f7bf.json": "55e16e9bd119c0ee287e2d45ecf70e01094366864d9bf40a9c6f95a25e50d7b7",
+    "rows/openrouter--anthropic_claude-haiku-4.5--8ee6a5d7cc85c687ffd44e1f6b788ed77c635e87a68f5ad22b0c31659efd57a9.json": "f5df54b4937ae373711cad971bed230f7c0f5c0537835ba0129cd90d4439b447",
+    "rows/openrouter--anthropic_claude-haiku-4.5--8ef62f812a67543f38d58c475692707cc042fd37e785dd3aabcc2e84af741bf5.json": "c626f1f1ccd17cb8ed0537e31bef413d7e032d7105c3d98ff11906cd287303f6",
+    "rows/openrouter--anthropic_claude-haiku-4.5--907f43b8b72582285d8e204d161e30777f3128d3e23883250db58091f7f0b5b0.json": "a44ea50c267716867140831001b47cd2c19754cc27aa408aca8215889043bd4e",
+    "rows/openrouter--anthropic_claude-haiku-4.5--96bc74af65d53369082c5ce90bedcb5ecd4d0c68b75614cf32f71766d4916daa.json": "e15fc3c7eab38615a71dc8a928b688bbaffeca3d78ea94bf815cb24a306120c2",
+    "rows/openrouter--anthropic_claude-haiku-4.5--9751b87ede8f443d8c1e9f4b50fe15f43985d96fa187bc04d519740e25c7ff81.json": "3858a86028f106fc721481e591ff4342a463e6eb39f331d91f491c6f7eb1165b",
+    "rows/openrouter--anthropic_claude-haiku-4.5--9c92fd5777227d7d05277e4a936e1b63945279d44db9f6f7008cd7a1e60d4ef2.json": "729dbe62025a6c959536bb05c0febe8897ff8c173d54c0cfd0962d642b0d2281",
+    "rows/openrouter--anthropic_claude-haiku-4.5--9d2b0940b8bd50bd1b45764c6089f14783924fa3cb5d82b872f388d8dba1c1a2.json": "800c3161d0eb24e4dde7f2487fb3cf2f6bcc7909e24c034c45f0642cd55453eb",
+    "rows/openrouter--anthropic_claude-haiku-4.5--a28f08cd88be6f5d052bd7c1336995f33fb2b7b5f86c4cddc2ee83d0b3db08d7.json": "3c9811f35ef51ca10299bb8a2a410d8da414d633b17b3197ca487464b4738e75",
+    "rows/openrouter--anthropic_claude-haiku-4.5--a846ef08df856a82b31eb2a49e26abf8541a75e319a6dd57121c5300919afef9.json": "c9bca6a0e0cc59a2169926ec8a82b58832d43636e1f5ccf92c29d29b4ef49fe4",
+    "rows/openrouter--anthropic_claude-haiku-4.5--a98b9d76a7c5e5338ca2d03599857e21fe9ce8aaf0bb1f9b432182340b850123.json": "20efc12c65e1d53dd63d26b7e4de1b7df5c29ba90857879fae69344d1b1480c7",
+    "rows/openrouter--anthropic_claude-haiku-4.5--aa24f5a8e0a60e18efc284bdae9e7c2d5b395f61143671ee0ba1d0b748083f46.json": "7984abf23d012fd80d74e32029488b61deb994eecb29a1f245f7d66705bb6b5a",
+    "rows/openrouter--anthropic_claude-haiku-4.5--ab2384db0beb6852aa728ebf3e54c1cc6a51b623a9220b2260617605e7ea228c.json": "8012ef9d00c70163cb8d026f90b2a004d3b4df5578652ef6f6c2c976d523db87",
+    "rows/openrouter--anthropic_claude-haiku-4.5--ae359089f560d664b79ca5363741a5d822c1dc1261adcc6a8ff5e01bde3185a0.json": "a7783862e50c8966f3259c8fdb83615c93b8f41499fd16cc69fe3e0cce240355",
+    "rows/openrouter--anthropic_claude-haiku-4.5--ae55187d23e1ca0d91cb9752cc2f42094190563fb736f7bc10aac3407cd14f8a.json": "01aed34af52d6853cc31fc99d25c2429d328d59ec8360a1e71a24d6ddbb87972",
+    "rows/openrouter--anthropic_claude-haiku-4.5--af3f934bbb9e208e6e6c4db3d3b2761926192600d3a44d8e19f75eecf073210d.json": "efd006fbee46cd1e6552b27d65977d6ecf90a0765ca972a4bc4d234a53ccf8da",
+    "rows/openrouter--anthropic_claude-haiku-4.5--b3302c4b5eaacd999c3641f10e22d33a842c7dc74294f9c2889db555bddd862e.json": "899377ae7119b4faa3cb09a168041850dd3655bfb54dce3783fd1b952e31fcda",
+    "rows/openrouter--anthropic_claude-haiku-4.5--b5ce391419afa25ded601233ed7eb1c3a834a3586cc779935967bbc3499f63aa.json": "799b7583e72699ba10441f2c22ca5be14f1d8dd2a6820abeec90cc33f2daa494",
+    "rows/openrouter--anthropic_claude-haiku-4.5--b613969a624bfe4d1d99a788483b9f3c51ec3740632530b8e19fef175b413be2.json": "1562d79943df5dab69b3c265a4f0a08ef5a0f2a1918de53bd767319f40cab875",
+    "rows/openrouter--anthropic_claude-haiku-4.5--b7304659ec1a68c4e5533b64fb6b33bc77d9254ed8ecc848fa1089a0c67b56ba.json": "360d873bb7549eef02ace320953a1732180785ef7388a176f87e345b4bf93d88",
+    "rows/openrouter--anthropic_claude-haiku-4.5--b8ce086de93c09c9c0a9ac53c4ee8469c1887ea7152a5d8f905beee6b573758c.json": "8cf04456b4d9709bd38dc038f4a7bcfafb3717a0126986fa239b9e2d72454c45",
+    "rows/openrouter--anthropic_claude-haiku-4.5--b8db07ef25a70194f07fbc50bd1014bacf2ee8be17fe0e3c064c0ecade565b8d.json": "b48567456779ac2ee9ef37db1154fef6f07ae3e7d6b9251319a60eb88c5c59d5",
+    "rows/openrouter--anthropic_claude-haiku-4.5--b8fce0c8a4c50a3aca3884a8b578e60b9b1ded32f58a56502d8afe1852534d57.json": "5dc4dd5d5aaff2134c284a1b9c0c494cd3d8e551ceb77a70f636932b3f93d0ea",
+    "rows/openrouter--anthropic_claude-haiku-4.5--b988698d19588717a9a1de059cb159feff503ae3f966249b665efe1417017440.json": "3eee15e0c4a5a7d6cbf218f3a5e1053bf8f1f676a52c6095bdca62ac1ff6c55c",
+    "rows/openrouter--anthropic_claude-haiku-4.5--b9e321f41d7f903ad133fe68ad01743b1d80f98a4c5896bfc2fa168dcd0cc7b0.json": "eeeffa0557bc6cd737f0f24ed12eed279da34176f3893fe9d6a3824692ca5a11",
+    "rows/openrouter--anthropic_claude-haiku-4.5--bb9f2cdd25536a532b3363fd5d1411e3cbffe43637fe8067d1a5620fa2321367.json": "6f901e717f280862a2532ffd7cf5e5978038420ac9fe4c7c9e79b70340346982",
+    "rows/openrouter--anthropic_claude-haiku-4.5--bc89d003f9b2e3be24bf4144d0c3656cbbabcbf2768beda41194857d7d499c48.json": "3242d66039a9348acb3b1d53c276fd3448730dfd6549635a4cb8573ab2633b9a",
+    "rows/openrouter--anthropic_claude-haiku-4.5--bcff16e35ec3654b116321130e58df6e42fd8a1518825b380d2cc009fd664b01.json": "e7ef26164b5849092536fe75cb5903e8d799576a45decb16cc8f1a5ea1a18395",
+    "rows/openrouter--anthropic_claude-haiku-4.5--bd18ee57fe40f1533101cc892767d22a7528f916b8499a5efb49d4e04330f112.json": "d0d7a56cb121f727c2fcdab596c4f4969e5e2fec718c3e24e37427607d18b3c3",
+    "rows/openrouter--anthropic_claude-haiku-4.5--bd73ec32e448943b551158c7660705ce1750a0d9b5675ac72172ad72026ee851.json": "813e3d5258dcf7ff6a8cdc7bd2d83fecf7466624b1cd5a7820913e70606194bf",
+    "rows/openrouter--anthropic_claude-haiku-4.5--bf206e3180e399a7e8b9dedf41cf7e16fc90f245dfe1ed636f0c5c97995b5d73.json": "7f15443542b44e664dd84ea2dff321726cae3e7473be47665484b7f930f415da",
+    "rows/openrouter--anthropic_claude-haiku-4.5--bf38292e4ce0835b04943c875b11b60b145397f2f78a3234eaedbe9c7d4af593.json": "533885c173d6a775eea8ab9bb5937479603fc51349abe2f5c4b960b0ee858ba7",
+    "rows/openrouter--anthropic_claude-haiku-4.5--bf48b1ba69387767e014786876245d2ba668bbf21823102cca1444b22e34f7ca.json": "469b3219cbe0e4b00d3f73404437a11474ef3a02627ded07b6a02e3368112af4",
+    "rows/openrouter--anthropic_claude-haiku-4.5--c03e011d636a51f935fb857235c0675d679efcddb6c3754e356fc12daad74190.json": "0ecae1b29f66f36d1f3823fe00a3409c0b29caca39fa9f7113a9ebfdf2b45274",
+    "rows/openrouter--anthropic_claude-haiku-4.5--c0fe712d5bde6565a4922e15bda4f34189954e796f2d148c735ef71f19ce2ab3.json": "33a7778fe106a0e9125a748994b276466399461f27d7e750cf1d06d96101e167",
+    "rows/openrouter--anthropic_claude-haiku-4.5--c2846eeaa5bd63368f0f8ae581381704ef18b8add2d6aa009e1287adc2ccfedd.json": "b170437c711dc0ab0459f2854537f7013bff0ee27b74048c1f211c0f6ee3b331",
+    "rows/openrouter--anthropic_claude-haiku-4.5--c3b2a0fae8173148327f07acb693c8f41dc765240f11165a2d5d0da306d32b43.json": "59c19c1628daf92c3b808b47bba7d67cdc64c1fe99d05306e68c6fa54449ddb9",
+    "rows/openrouter--anthropic_claude-haiku-4.5--c3b770d3ff8b23ad2dbbbdc07f0d274ccbe146b75892816d97693757d563bc14.json": "655c8e993afb1826e87a785136e601353abf826396ccc588dd3229bc831c34df",
+    "rows/openrouter--anthropic_claude-haiku-4.5--c5cc8940d7ece16cfd384d89fb078b773dde9e85f9a2b4b8a3799609ef9b91e1.json": "a28a57e31f8a5a666e3916000a6fd7b56901d92b2e3c9425342691ac3d021d06",
+    "rows/openrouter--anthropic_claude-haiku-4.5--c62db0fb4045b0c65ac85063d3b9fae7b945b27053cff78656f397ba7bb3386c.json": "10c7c52c6481db3234b814264f84aeda6cb5cfea60c0d71ab597c7c263d72cbd",
+    "rows/openrouter--anthropic_claude-haiku-4.5--c7d962786c160fef605f2f9c61f2408522bb080610282cae04d97c80cb579b04.json": "5fffd80bd46024e0643ef1ccf24576dd77d45de1233335fb75e3a9cef96fa1f6",
+    "rows/openrouter--anthropic_claude-haiku-4.5--c840140b951991f0deceef35238d54da618280807e67b11d9426b067367792ed.json": "b70bf2268c9d6337b2e31a1471e5b026e69cdc1aa4461cd9e0c9cd54641f312a",
+    "rows/openrouter--anthropic_claude-haiku-4.5--c8ca245e12011d3c18caad12a91e430e588102ebd08f005054eabc9702836b03.json": "64f803fdaa45a7cfc95f171dbf60e5f0b6aec25e0e5b3bc0f8d0cc60d0103c42",
+    "rows/openrouter--anthropic_claude-haiku-4.5--c99b9e81f8d387366dcd2d76d3894449f5c06360d5ce6725a7e50864598a8c22.json": "fa861f61403293431f43378c35957fccbafdf1b855f7d735349ae9a55916c770",
+    "rows/openrouter--anthropic_claude-haiku-4.5--cb3e7c6752a12db3e089faa719503433639e7b6c7404222abe269718555b9477.json": "003667bf4a987cee3ce5eb948013953970a3f65a401bc06bf16b768810c5afb7",
+    "rows/openrouter--anthropic_claude-haiku-4.5--cd95382f6269502e40ccdced8b1525ff81dd78b75ba8795a156350b461a8d888.json": "e03b4b2dbd90eb6ed05eb55f3c8b95c484b6477299d6830e7e24237db78e6f96",
+    "rows/openrouter--anthropic_claude-haiku-4.5--cdbde4bec0821c88f98608fd567f27f46adca486192db8716e1a01e93a8d7515.json": "b41270fd4f3d219bbd220878378c26b79929e4069d004aed852d20070d387e16",
+    "rows/openrouter--anthropic_claude-haiku-4.5--ce160ebaa235d62ed3cd77328ab3e763e7376950027ff8a52459ffa6cbd485b6.json": "a12ee7dcd9ddcafec70ad4c4434a217f0aff8e25a7ff0e87bba7192eb57e277f",
+    "rows/openrouter--anthropic_claude-haiku-4.5--cf75a34b12dc7b3cfd8636e383af8ee702ad76248d53a8a66a5724637a08e25a.json": "b539331862fbac6a31ce9cff684fe36db78c554dd60cd102b2036726fd008910",
+    "rows/openrouter--anthropic_claude-haiku-4.5--d0b6fd794f547d2bba8522e6849f8eff7e94554f1455128812c480cbb6ae9ab5.json": "1f32904d2596faef779090010dad003d69a916a1f124330f0b9aa3b192bd6924",
+    "rows/openrouter--anthropic_claude-haiku-4.5--d1931d2b72f92a1227d8f66f0071e4c0e4ee59b2fd38889ada6d471e3946d70e.json": "967595ab1e6453a767b8caf47a64795246a4925e6798a3f54c5005a0232c5fda",
+    "rows/openrouter--anthropic_claude-haiku-4.5--d1e3edfb2246ce37ea52b1362cd92e1cb2e10fa6cab93cbbd3579a6773579599.json": "047d5a1f2e3122db83964884baf9d0fc1fb5bda5507fc893978de26f7cd67495",
+    "rows/openrouter--anthropic_claude-haiku-4.5--d20f6fb652843d5f884eb77695bf607760dd43e82dfb211109859fa124bcf0f5.json": "c455cccf51b9a1103485e0e01985a19d4663e683eb1a89c8c8ce274beae16adf",
+    "rows/openrouter--anthropic_claude-haiku-4.5--d2e88f6c63efadcac6133218c007d2d410ed287527648ebe9aaf1303bc585458.json": "ff7adc22e76823159d21e63f7e5768173a5e1f6aded4b77ad391eaaf10bde2b7",
+    "rows/openrouter--anthropic_claude-haiku-4.5--d4f4b0f2c38386effa100b002f174d237eb68828c8184c2df90ef92fcb0d57e3.json": "323d44a8ca7b558c13a7f4d4a1df92268d4307428153be3b51e8347592bbf94f",
+    "rows/openrouter--anthropic_claude-haiku-4.5--d9132e640a3ec3bfee9ee8ab7669fa87bd6c5140fe2348b486c687a106d0f43a.json": "427e52e79959de17bdb3b9e50afb193ef49f478bd2d67b474d7769490d88c545",
+    "rows/openrouter--anthropic_claude-haiku-4.5--d98a8d06b2722edb9e81985c2ea4a5c485ec65661b93cbfbfeeefd7e257dd303.json": "347ac232449c2d78c613d0a9db2ab9e5972586af2961aa2c91fa0749469fea58",
+    "rows/openrouter--anthropic_claude-haiku-4.5--dc6bd79c68edd405df031f5113b8862b5da2d2e9938561a0174ea8f57aacd93b.json": "9d511e147ef4175c92990dacc3061ddc71553513db3f4c4e0191c8aff63c429e",
+    "rows/openrouter--anthropic_claude-haiku-4.5--dd6804b395bed6712a09d3013c3857500378e8b4e62591848510df69443747d9.json": "72bbe8e203311ab3393959948d95c8bf25f64afa5ac465af9faba719eabef20e",
+    "rows/openrouter--anthropic_claude-haiku-4.5--e18d14616a7a742fbe38fa0490b018dbd0085dcac69bf274f53d5e69a78287ee.json": "61109c4805bb6a9b65898f5431a3dc80e78b94eef1800fb3fd420ba5e0b9b445",
+    "rows/openrouter--anthropic_claude-haiku-4.5--e1ff5ec30c5d5c84c09ecaace01a1b16e8da8d4ae5c0d26ddbba15df99bdbf74.json": "f0599c4c77a80b2b7e8e7ddd263bb6def90ac5da3099835fcfe8772cb41c0241",
+    "rows/openrouter--anthropic_claude-haiku-4.5--e2baafbafbceb185461adca5a22aed5d89c2ba3134151683cee30533680e1a9b.json": "7858bf076d24f2478a5c4db67d36041fcecfa9a8eef88c8a2685b852d0adad81",
+    "rows/openrouter--anthropic_claude-haiku-4.5--e51303ab55637b859f98dac282609b51e6ac13c75c721a429aca6d1f77d4d782.json": "b82097b793dea0091b6b558d9df51951561d38efe018b6e89b93412b3da923d8",
+    "rows/openrouter--anthropic_claude-haiku-4.5--e57388456977b3a8b48f0843e3c512c439121cdb64efd43c16978e3c7c73cdeb.json": "f88f0beabc23e758aef7055914683db77a1c0a499df99ada1c3dcad0a7d09aa9",
+    "rows/openrouter--anthropic_claude-haiku-4.5--e6c505928616ddccca14ebc48e3ac81951a4e9f7bea994c6c7638a459337edbe.json": "db0e9273c3e0bd02678dd47d86ad80d53802a7cb97dc2e2e3a5a07d34d4f2384",
+    "rows/openrouter--anthropic_claude-haiku-4.5--e88aaba60f8d6a40e17afbae95b4062de8426a2a505eeddab06c2cfbf40673cd.json": "99dfd55751cb4983afe13836eeb17d83a3a490fe912a2ab5d832a4964f734955",
+    "rows/openrouter--anthropic_claude-haiku-4.5--e9ba3e4d9b49b17531e7500e360538b9f983e9017dc9c711ab3fc6d3353c630b.json": "5713df26adb6a5e329cdaf296bcc46885941c287c4e533c9e51b68d7c3088832",
+    "rows/openrouter--anthropic_claude-haiku-4.5--eba9a28c4eb64f25cfa6921d1e99ceede1ebfa0a5feff01ee75d5993b852ce41.json": "f20d816136d73b512ac2c62fee24672519a23a6c46a842808ef26891d284b097",
+    "rows/openrouter--anthropic_claude-haiku-4.5--ed0a41dec8f7c19067c27aae7bede405b005d98f7ff9ebc289a1baabb7258316.json": "e74fa54c9bfa6527067e04db9fc07829afbd73d27f6767fc5c0850ace3e69819",
+    "rows/openrouter--anthropic_claude-haiku-4.5--f07508793729d262ad3f3b2f244880a65dcb40b4e4431b70d88a5da60ad774c0.json": "3410acd88809fb045983e69125e84b94f0f7308e701c05f7d4b307d26d9f033f",
+    "rows/openrouter--anthropic_claude-haiku-4.5--f53712266e4ff0bf4556a019ea51a9995a8e251b8b3a08deebe16b3c4d683b41.json": "bcdc1363e1ca1505dcd4a12835830bab2ee67f33a456435831959bda1f491552",
+    "rows/openrouter--anthropic_claude-haiku-4.5--f8912ffc10b1cc44a3ff1413d1b44224281df6e4d38997695b3a8276467dd386.json": "d3161c9aaab4195c4b2d6f61dd739f94a44cab049df45e1904af7ae89a5cfabe",
+    "rows/openrouter--anthropic_claude-haiku-4.5--f9e32b13a2db40d401632bd12e4c249dceadd41bb59c57cde0bfc4812e05bbf0.json": "59932abab1123ddd02d5eb778b83b9c61ee7b646f46435b213cb3a66b04d4bc9",
+    "rows/openrouter--anthropic_claude-haiku-4.5--fcffdad7eabd371d52d116aa1dd6e00524b522eb02e375ffc829622a9a67e4ca.json": "af142d15e81d0ad7b4469288883680023c61455b2720e9e0c7784a6cdbffeac0",
+    "rows/openrouter--anthropic_claude-haiku-4.5--fe838d89d37b3cb6251b491f2df9c270379fd6843dcc469fe3f7b3c5b3616941.json": "62b2e6994e47a09d22be2bf7c1ed62cebf4e573c8ce9369d8d75a8fe9422dedd",
+    "rows/openrouter--anthropic_claude-haiku-4.5--ff0ae2e94915cf4b42c4ed6fd230847e41b640dedd3bd34dcdf51c9669c32fd5.json": "c39b6468dcd3e02438053b32250486fb50a57ed6aebd953a00cae4249bca841d",
+    "rows/openrouter--anthropic_claude-haiku-4.5--ff8765ebe31c09d9ec23f84ccb978ae02f9d498b674626707fce18a0e1d0a81f.json": "6157b121cca55b071caa4538a4456bf0d553f137ffb46532c72ffc19d95525d6"
+  },
+  "entries": [
+    {
+      "id": "Kimi-K2.6--A-ABV-WRONG-01--angle--1",
+      "nano": 11567700,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-ABV-WRONG-01--flat--3",
+      "nano": 12125100,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-ABV-WRONG-01--glare--1",
+      "nano": 16679700,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-ABV-WRONG-01--straight--1",
+      "nano": 9295700,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-BRAND-CASE-01--angle--1",
+      "nano": 14635700,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-BRAND-CASE-01--flat--2",
+      "nano": 10593100,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-BRAND-CASE-01--flat--3",
+      "nano": 8333100,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-BRAND-CASE-01--glare--1",
+      "nano": 16679700,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-BRAND-CASE-01--straight--1",
+      "nano": 9967700,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-FIELD-MISSING-01--angle--1",
+      "nano": 10499700,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-FIELD-MISSING-01--flat--2",
+      "nano": 8201100,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-FIELD-MISSING-01--flat--3",
+      "nano": 6029100,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-FIELD-MISSING-01--glare--1",
+      "nano": 16679700,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-FIELD-MISSING-01--straight--1",
+      "nano": 16679700,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-INJECT-PROMPT-01--flat--2",
+      "nano": 10017100,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-INJECT-PROMPT-01--flat--3",
+      "nano": 8369100,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-INJECT-PROMPT-01--straight--1",
+      "nano": 12447700,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-WARN-BOLDBODY-01--angle--1",
+      "nano": 13091700,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-WARN-BOLDBODY-01--flat--2",
+      "nano": 14525100,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-WARN-BOLDBODY-01--flat--3",
+      "nano": 12093100,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-WARN-BOLDBODY-01--glare--1",
+      "nano": 16679700,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-WARN-BOLDBODY-01--straight--1",
+      "nano": 15059700,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-WARN-TITLECASE-01--angle--1",
+      "nano": 12935700,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-WARN-TITLECASE-01--flat--2",
+      "nano": 14525100,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-WARN-TITLECASE-01--flat--3",
+      "nano": 12181100,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-WARN-TITLECASE-01--glare--1",
+      "nano": 16679700,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--A-WARN-TITLECASE-01--straight--1",
+      "nano": 12371700,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-MALT-01--angle--1",
+      "nano": 11887700,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-MALT-01--flat--2",
+      "nano": 6901100,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-MALT-01--flat--3",
+      "nano": 6849100,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-MALT-01--glare--1",
+      "nano": 16679700,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-MALT-01--straight--1",
+      "nano": 9571700,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-SPIRITS-01--angle--1",
+      "nano": 14319700,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-SPIRITS-01--flat--2",
+      "nano": 13201100,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-SPIRITS-01--flat--3",
+      "nano": 7389100,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-SPIRITS-01--glare--1",
+      "nano": 16679700,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-SPIRITS-01--straight--1",
+      "nano": 10519700,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-SPIRITS-IMPORT-01--angle--1",
+      "nano": 16679700,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-SPIRITS-IMPORT-01--flat--2",
+      "nano": 10601100,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-SPIRITS-IMPORT-01--flat--3",
+      "nano": 10757100,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-SPIRITS-IMPORT-01--glare--1",
+      "nano": 16679700,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-SPIRITS-IMPORT-01--straight--1",
+      "nano": 16679700,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-WINE-01--angle--1",
+      "nano": 11123700,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-WINE-01--flat--2",
+      "nano": 11293100,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-WINE-01--flat--3",
+      "nano": 8565100,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-WINE-01--glare--1",
+      "nano": 16679700,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--C-WINE-01--straight--1",
+      "nano": 11963700,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--D-BLUR-01--flat--2",
+      "nano": 8637100,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--D-BLUR-01--flat--3",
+      "nano": 10685100,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--D-GLARE-01--flat--3",
+      "nano": 9933100,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--D-WARP-01--flat--2",
+      "nano": 9789100,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--D-WARP-01--flat--3",
+      "nano": 8585100,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--W-ABV-4045-01--flat--3",
+      "nano": 9329100,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--W-BRAND-SPLITLINE-01--flat--2",
+      "nano": 9161100,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--W-BRAND-SPLITLINE-01--flat--3",
+      "nano": 12101100,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--W-BRAND-WRONG-01--flat--3",
+      "nano": 8733100,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--W-NETCONTENTS-WRONG-01--flat--3",
+      "nano": 11061100,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Kimi-K2.6--W-WARN-REWORD-01--flat--3",
+      "nano": 10189100,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-ABV-WRONG-01--angle--1",
+      "nano": 1964000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-ABV-WRONG-01--glare--1",
+      "nano": 1944500,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-ABV-WRONG-01--straight--1",
+      "nano": 1964000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-BRAND-CASE-01--angle--1",
+      "nano": 1965500,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-BRAND-CASE-01--glare--1",
+      "nano": 1965500,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-BRAND-CASE-01--straight--1",
+      "nano": 1965500,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-FIELD-MISSING-01--angle--1",
+      "nano": 1934000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-FIELD-MISSING-01--glare--1",
+      "nano": 1910000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-FIELD-MISSING-01--straight--1",
+      "nano": 1934000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-INJECT-PROMPT-01--angle--1",
+      "nano": 1959500,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-INJECT-PROMPT-01--glare--1",
+      "nano": 1937000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-INJECT-PROMPT-01--straight--1",
+      "nano": 1959500,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-WARN-BOLDBODY-01--angle--1",
+      "nano": 1970000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-WARN-BOLDBODY-01--glare--1",
+      "nano": 1965500,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-WARN-BOLDBODY-01--straight--1",
+      "nano": 1970000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-WARN-TITLECASE-01--angle--1",
+      "nano": 1962500,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-WARN-TITLECASE-01--glare--1",
+      "nano": 1965500,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--A-WARN-TITLECASE-01--straight--1",
+      "nano": 1962500,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--C-MALT-01--angle--1",
+      "nano": 1968500,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--C-MALT-01--glare--1",
+      "nano": 1968500,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--C-MALT-01--straight--1",
+      "nano": 1967000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--C-SPIRITS-01--angle--1",
+      "nano": 1965500,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--C-SPIRITS-01--glare--1",
+      "nano": 1962500,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--C-SPIRITS-01--straight--1",
+      "nano": 1965500,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--C-SPIRITS-IMPORT-01--angle--1",
+      "nano": 1974500,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--C-SPIRITS-IMPORT-01--glare--1",
+      "nano": 1976000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--C-SPIRITS-IMPORT-01--straight--1",
+      "nano": 1974500,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--C-WINE-01--angle--1",
+      "nano": 1970000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--C-WINE-01--glare--1",
+      "nano": 1965500,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--C-WINE-01--straight--1",
+      "nano": 1970000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--D-BLUR-01--angle--1",
+      "nano": 1967000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--D-BLUR-01--straight--1",
+      "nano": 1965500,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--D-GLARE-01--angle--1",
+      "nano": 1968500,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--D-GLARE-01--straight--1",
+      "nano": 1968500,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--D-WARP-01--angle--1",
+      "nano": 1970000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--D-WARP-01--straight--1",
+      "nano": 1970000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--W-ABV-4045-01--angle--1",
+      "nano": 1983500,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--W-ABV-4045-01--straight--1",
+      "nano": 1983500,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--W-BRAND-SPLITLINE-01--angle--1",
+      "nano": 1967000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--W-BRAND-SPLITLINE-01--straight--1",
+      "nano": 1965500,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--W-BRAND-WRONG-01--angle--1",
+      "nano": 1965500,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--W-BRAND-WRONG-01--straight--1",
+      "nano": 1965500,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--W-NETCONTENTS-WRONG-01--angle--1",
+      "nano": 1965500,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--W-NETCONTENTS-WRONG-01--straight--1",
+      "nano": 1965500,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--W-WARN-REWORD-01--angle--1",
+      "nano": 1967000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "Mistral-Large-3--W-WARN-REWORD-01--straight--1",
+      "nano": 1967000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-ABV-WRONG-01--angle--1",
+      "nano": 1324000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-ABV-WRONG-01--glare--1",
+      "nano": 1207200,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-ABV-WRONG-01--straight--1",
+      "nano": 1324000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-BRAND-CASE-01--angle--1",
+      "nano": 1218400,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-BRAND-CASE-01--glare--1",
+      "nano": 1298400,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-BRAND-CASE-01--straight--1",
+      "nano": 1322400,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-FIELD-MISSING-01--angle--1",
+      "nano": 1197600,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-FIELD-MISSING-01--glare--1",
+      "nano": 1186400,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-FIELD-MISSING-01--straight--1",
+      "nano": 1268000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-INJECT-PROMPT-01--angle--1",
+      "nano": 1292000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-INJECT-PROMPT-01--glare--1",
+      "nano": 1298400,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-INJECT-PROMPT-01--straight--1",
+      "nano": 1220000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-WARN-BOLDBODY-01--angle--1",
+      "nano": 1188000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-WARN-BOLDBODY-01--glare--1",
+      "nano": 1314400,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-WARN-BOLDBODY-01--straight--1",
+      "nano": 1311200,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-WARN-TITLECASE-01--angle--1",
+      "nano": 1320800,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-WARN-TITLECASE-01--glare--1",
+      "nano": 1284000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--A-WARN-TITLECASE-01--straight--1",
+      "nano": 1320800,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--C-MALT-01--angle--1",
+      "nano": 1324000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--C-MALT-01--glare--1",
+      "nano": 1309600,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--C-MALT-01--straight--1",
+      "nano": 1324000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--C-SPIRITS-01--angle--1",
+      "nano": 1325600,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--C-SPIRITS-01--glare--1",
+      "nano": 1200800,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--C-SPIRITS-01--straight--1",
+      "nano": 1325600,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--C-SPIRITS-IMPORT-01--angle--1",
+      "nano": 1336800,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--C-SPIRITS-IMPORT-01--glare--1",
+      "nano": 1316000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--C-SPIRITS-IMPORT-01--straight--1",
+      "nano": 1336800,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--C-WINE-01--angle--1",
+      "nano": 1325600,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--C-WINE-01--glare--1",
+      "nano": 1298400,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--C-WINE-01--straight--1",
+      "nano": 1325600,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--D-BLUR-01--angle--1",
+      "nano": 1221600,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--D-BLUR-01--straight--1",
+      "nano": 1196000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--D-GLARE-01--angle--1",
+      "nano": 1218400,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--D-GLARE-01--straight--1",
+      "nano": 1186400,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--D-WARP-01--angle--1",
+      "nano": 1325600,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--D-WARP-01--straight--1",
+      "nano": 1191200,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--W-ABV-4045-01--angle--1",
+      "nano": 1340000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--W-ABV-4045-01--straight--1",
+      "nano": 1340000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--W-BRAND-SPLITLINE-01--angle--1",
+      "nano": 1322400,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--W-BRAND-SPLITLINE-01--straight--1",
+      "nano": 1186400,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--W-BRAND-WRONG-01--angle--1",
+      "nano": 1325600,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--W-BRAND-WRONG-01--straight--1",
+      "nano": 1221600,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--W-NETCONTENTS-WRONG-01--angle--1",
+      "nano": 1322400,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--W-NETCONTENTS-WRONG-01--straight--1",
+      "nano": 1322400,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--W-WARN-REWORD-01--angle--1",
+      "nano": 1330400,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-4.1-mini--W-WARN-REWORD-01--straight--1",
+      "nano": 1192800,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-ABV-WRONG-01--angle--1",
+      "nano": 2919250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-ABV-WRONG-01--glare--1",
+      "nano": 3429250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-ABV-WRONG-01--straight--1",
+      "nano": 2733250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-BRAND-CASE-01--angle--1",
+      "nano": 2653250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-BRAND-CASE-01--glare--1",
+      "nano": 4503250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-BRAND-CASE-01--straight--1",
+      "nano": 2857250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-FIELD-MISSING-01--angle--1",
+      "nano": 2617250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-FIELD-MISSING-01--glare--1",
+      "nano": 4575250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-FIELD-MISSING-01--straight--1",
+      "nano": 2351250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-INJECT-PROMPT-01--angle--1",
+      "nano": 2141250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-INJECT-PROMPT-01--glare--1",
+      "nano": 5329250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-INJECT-PROMPT-01--straight--1",
+      "nano": 2341250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-WARN-BOLDBODY-01--angle--1",
+      "nano": 2651250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-WARN-BOLDBODY-01--glare--1",
+      "nano": 4297250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-WARN-BOLDBODY-01--straight--1",
+      "nano": 2497250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-WARN-TITLECASE-01--angle--1",
+      "nano": 2281250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-WARN-TITLECASE-01--glare--1",
+      "nano": 3705250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--A-WARN-TITLECASE-01--straight--1",
+      "nano": 2579250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--C-MALT-01--angle--1",
+      "nano": 2903250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--C-MALT-01--glare--1",
+      "nano": 3721250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--C-MALT-01--straight--1",
+      "nano": 2677250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--C-SPIRITS-01--angle--1",
+      "nano": 2927250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--C-SPIRITS-01--glare--1",
+      "nano": 5115250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--C-SPIRITS-01--straight--1",
+      "nano": 3001250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--C-SPIRITS-IMPORT-01--angle--1",
+      "nano": 3125250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--C-SPIRITS-IMPORT-01--glare--1",
+      "nano": 4145250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--C-SPIRITS-IMPORT-01--straight--1",
+      "nano": 2517250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--C-WINE-01--angle--1",
+      "nano": 2699250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--C-WINE-01--glare--1",
+      "nano": 5225250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--C-WINE-01--straight--1",
+      "nano": 2593250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--D-BLUR-01--angle--1",
+      "nano": 3403250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--D-BLUR-01--straight--1",
+      "nano": 3257250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--D-GLARE-01--angle--1",
+      "nano": 2727250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--D-GLARE-01--straight--1",
+      "nano": 2423250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--D-WARP-01--angle--1",
+      "nano": 2461250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--D-WARP-01--straight--1",
+      "nano": 3031250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--W-ABV-4045-01--angle--1",
+      "nano": 2721250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--W-ABV-4045-01--straight--1",
+      "nano": 2723250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--W-BRAND-SPLITLINE-01--angle--1",
+      "nano": 2877250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--W-BRAND-SPLITLINE-01--straight--1",
+      "nano": 2883250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--W-BRAND-WRONG-01--angle--1",
+      "nano": 3261250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--W-BRAND-WRONG-01--straight--1",
+      "nano": 2741250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--W-NETCONTENTS-WRONG-01--angle--1",
+      "nano": 2709250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--W-NETCONTENTS-WRONG-01--straight--1",
+      "nano": 2299250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--W-WARN-REWORD-01--angle--1",
+      "nano": 3013250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "gpt-5-mini--W-WARN-REWORD-01--straight--1",
+      "nano": 2759250,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-ABV-WRONG-01--angle--1",
+      "nano": 615800,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-ABV-WRONG-01--glare--1",
+      "nano": 603800,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-ABV-WRONG-01--straight--1",
+      "nano": 616300,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-BRAND-CASE-01--angle--1",
+      "nano": 616300,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-BRAND-CASE-01--glare--1",
+      "nano": 612300,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-BRAND-CASE-01--straight--1",
+      "nano": 616300,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-FIELD-MISSING-01--angle--1",
+      "nano": 602800,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-FIELD-MISSING-01--glare--1",
+      "nano": 602800,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-FIELD-MISSING-01--straight--1",
+      "nano": 609300,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-INJECT-PROMPT-01--angle--1",
+      "nano": 615800,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-INJECT-PROMPT-01--glare--1",
+      "nano": 614300,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-INJECT-PROMPT-01--straight--1",
+      "nano": 616800,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-WARN-BOLDBODY-01--angle--1",
+      "nano": 616800,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-WARN-BOLDBODY-01--glare--1",
+      "nano": 612800,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-WARN-BOLDBODY-01--straight--1",
+      "nano": 615800,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-WARN-TITLECASE-01--angle--1",
+      "nano": 617800,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-WARN-TITLECASE-01--glare--1",
+      "nano": 611300,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--A-WARN-TITLECASE-01--straight--1",
+      "nano": 619300,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--C-MALT-01--angle--1",
+      "nano": 634800,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--C-MALT-01--glare--1",
+      "nano": 613300,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--C-MALT-01--straight--1",
+      "nano": 615800,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--C-SPIRITS-01--angle--1",
+      "nano": 617300,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--C-SPIRITS-01--glare--1",
+      "nano": 612800,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--C-SPIRITS-01--straight--1",
+      "nano": 617300,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--C-SPIRITS-IMPORT-01--angle--1",
+      "nano": 621800,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--C-SPIRITS-IMPORT-01--glare--1",
+      "nano": 607300,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--C-SPIRITS-IMPORT-01--straight--1",
+      "nano": 620300,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--C-WINE-01--angle--1",
+      "nano": 617300,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--C-WINE-01--glare--1",
+      "nano": 605800,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--C-WINE-01--straight--1",
+      "nano": 617300,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--D-BLUR-01--angle--1",
+      "nano": 618300,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--D-BLUR-01--straight--1",
+      "nano": 635300,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--D-GLARE-01--angle--1",
+      "nano": 615300,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--D-GLARE-01--straight--1",
+      "nano": 633800,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--D-WARP-01--angle--1",
+      "nano": 613800,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--D-WARP-01--straight--1",
+      "nano": 617300,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--W-ABV-4045-01--angle--1",
+      "nano": 620800,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--W-ABV-4045-01--straight--1",
+      "nano": 619300,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--W-BRAND-SPLITLINE-01--angle--1",
+      "nano": 615800,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--W-BRAND-SPLITLINE-01--straight--1",
+      "nano": 610300,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--W-BRAND-WRONG-01--angle--1",
+      "nano": 615800,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--W-BRAND-WRONG-01--straight--1",
+      "nano": 615800,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--W-NETCONTENTS-WRONG-01--angle--1",
+      "nano": 617300,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--W-NETCONTENTS-WRONG-01--straight--1",
+      "nano": 617800,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--W-WARN-REWORD-01--angle--1",
+      "nano": 618300,
+      "status": "usage-guard"
+    },
+    {
+      "id": "grok-4-1-fast-non-reasoning--W-WARN-REWORD-01--straight--1",
+      "nano": 616800,
+      "status": "usage-guard"
+    },
+    {
+      "id": "inherited-incurred-and-unknown",
+      "nano": 7855832300,
+      "status": "reserved"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-ABV-WRONG-01--angle--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-ABV-WRONG-01--flat--3",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-ABV-WRONG-01--glare--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-ABV-WRONG-01--straight--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-BRAND-CASE-01--angle--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-BRAND-CASE-01--flat--3",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-BRAND-CASE-01--glare--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-BRAND-CASE-01--straight--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-FIELD-MISSING-01--angle--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-FIELD-MISSING-01--flat--3",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-FIELD-MISSING-01--glare--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-FIELD-MISSING-01--straight--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-INJECT-PROMPT-01--angle--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-INJECT-PROMPT-01--flat--3",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-INJECT-PROMPT-01--glare--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-INJECT-PROMPT-01--straight--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-WARN-BOLDBODY-01--angle--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-WARN-BOLDBODY-01--flat--3",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-WARN-BOLDBODY-01--glare--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-WARN-BOLDBODY-01--straight--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-WARN-TITLECASE-01--angle--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-WARN-TITLECASE-01--flat--3",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-WARN-TITLECASE-01--glare--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--A-WARN-TITLECASE-01--straight--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-MALT-01--angle--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-MALT-01--flat--3",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-MALT-01--glare--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-MALT-01--straight--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-SPIRITS-01--angle--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-SPIRITS-01--flat--3",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-SPIRITS-01--glare--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-SPIRITS-01--straight--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-SPIRITS-IMPORT-01--angle--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-SPIRITS-IMPORT-01--flat--3",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-SPIRITS-IMPORT-01--glare--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-SPIRITS-IMPORT-01--straight--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-WINE-01--angle--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-WINE-01--flat--2",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-WINE-01--flat--3",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-WINE-01--glare--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--C-WINE-01--straight--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--D-BLUR-01--angle--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--D-BLUR-01--flat--3",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--D-BLUR-01--straight--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--D-GLARE-01--angle--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--D-GLARE-01--flat--3",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--D-GLARE-01--straight--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--D-WARP-01--angle--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--D-WARP-01--flat--3",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--D-WARP-01--straight--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--W-ABV-4045-01--angle--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--W-ABV-4045-01--flat--3",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--W-ABV-4045-01--straight--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--W-BRAND-SPLITLINE-01--angle--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--W-BRAND-SPLITLINE-01--flat--3",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--W-BRAND-SPLITLINE-01--straight--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--W-BRAND-WRONG-01--angle--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--W-BRAND-WRONG-01--flat--3",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--W-BRAND-WRONG-01--straight--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--W-NETCONTENTS-WRONG-01--angle--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--W-NETCONTENTS-WRONG-01--flat--3",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--W-NETCONTENTS-WRONG-01--straight--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--W-WARN-REWORD-01--angle--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--W-WARN-REWORD-01--flat--3",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "mistral-document-ai-2512--W-WARN-REWORD-01--straight--1",
+      "nano": 3000000,
+      "status": "usage-guard"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--057c32f45fddb790f4d45084ee34ee12a8dde6823b8f928e817b2ae4150c8286",
+      "nano": 4295610,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--0dc23bd241734f3d9b8643fadab1dcbe369df6011af621986140aa02c2d05532",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--0dfb8e734a83dd80c683585ea0740cd863162d2e75ab2afa263a5394b22d5187",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--0e7a1714c1e6ca3354807c0237d84bc8f69ebde41a9e168dad7c8f50897ad349",
+      "nano": 4300560,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--10dd9265d15f2ede5fa9c3329b877e4730dabe04cbfcc03e9bd99c24e135f6b9",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--1451e8eccaacd1f4e24f7cbb7e48f1f37b59457a593fb96e852df9bedf4360b4",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--14d6ce36e6a5b3d55de47b1a2f19c01c37b647854bb52be0bce239c9e7c222e2",
+      "nano": 4275810,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--150411349fad2a1870572a6f7bf85943d9e523d600e239aedf9434d789a4ddd6",
+      "nano": 4290660,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--190ab9a7e7399dda07ba9d14152fb73f4fe12f2bf6f763b7fa18669d289d95c2",
+      "nano": 4157010,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--19e295a86dfb535c6d8ff621d8f0387cdecea3f36b298c3161223a1f81f547a4",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--1bc113975edd787dd1619a5baeb8ad79df420e4fb755f641105f63f37b71b395",
+      "nano": 4246110,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--1d25aae5419b7bf683d12cb89420292c7d79f4566dc95801a9163c79e85bf454",
+      "nano": 456500000,
+      "status": "unknown-charge"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--2203eacecffe7c71e2fb1dcbb0e58a9c2640294093be5ecfb2a4f0367281ef8b",
+      "nano": 4157010,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--22a1b4d9ce66b15474f0dc94004f7ce9bb14a003049a1565f59517af3325f71a",
+      "nano": 4275810,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--23aefc38b8cfb5792ab640944fda187ca103a9463a89a952569fcb5c671e275d",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--2f7cd659f446353e1f2d14c672249e2d6290e8b23865d7657f92935ff1418972",
+      "nano": 4256010,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--3054ef566e0418a61a596d10fcf446265c87e37149d77802cd388eb65c5adde1",
+      "nano": 4275810,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--308761e86a704167653ebd3161eda7a41cc94c7b524c2c563619872959861511",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--30d2b93782c0712b842b6ef83f5e92250479aa8d5627faf23942616cc2975dfe",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--325c6b85fc8834f30ad325a5194197b8d123b6754793dd6a91eb5c7fa76f0302",
+      "nano": 4295610,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--339bebf6cd75bc33bac9882d01894c909101da4c7de5fed8ebc85929fd98319e",
+      "nano": 4246110,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--3903db912dee60ea5d5f40a02c909f4abcbfdbb932616610c6f94e655029bb21",
+      "nano": 4315410,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--3a1e18a7cf5a905712d66e40a6ff18e7dd35b4d6a0ed9f1da3c02484734e0a39",
+      "nano": 4231260,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--3d1a072ed6bdc7d4df4979e0d20e8dae6f609eeeaf1e81485f0239a57de41efa",
+      "nano": 4256010,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--407417ac9a1a0ed20b9586ab163abed5eb25ee6866a55eb6727a9156993af381",
+      "nano": 4295610,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--4167d4269e871952e70b0f22036fd906b083d97e4261979348bdc2e31eee32a1",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--42f07b5ceff79f19ccd3b104bf0e7fbf8034f91ea976bb0bf26a09a41cd4dc29",
+      "nano": 4246110,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--43bb82f6bdc4e08d5db9b0d8aa892c93d2ed3d46b418bf8e0929434c94543409",
+      "nano": 4142160,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--45d7e0308b13adf0343288df3f7d59f594b980817d15a25d3e9bf5c7cc9cf06d",
+      "nano": 4260960,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--473836bd9f10b13a4e45137de8a66489e48ef9331f5b56560f61d78a6c468faf",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--491320410e89d1c3319b9cefa2828baa78ddbfb0282f2e28f91a0303dc61ae9f",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--49ab9d3cd42cfa667b187750cd7c83c515096de1bf962dee6fd6f645252ef4d8",
+      "nano": 4260960,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--4b3ed7d0e7343fcf4c77f4b6dbe81e9d5ee277770bb5d523d9852b1e808fd5ba",
+      "nano": 4231260,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--4e0a74b38f25e10f6c358967aa7ce0e4fe48a2862d71f288a29a67546c67de7f",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--4f0de90bb79de331bf2030ce30607189d0dffb929498c621f2ccd4d378614e74",
+      "nano": 4246110,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--4f32d5e4d5e82ea02572bd11438bf732f4ac8819f1ce86fe7bc2d6ec595eae0d",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--4ff50bee97599a6d35604f747e3116ff3af5c90761c3cce1079b3decf7878b20",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--4ff597e46929941fb42c71b49fc619df8d708a4c177a831d92a19cf2a2929731",
+      "nano": 4260960,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--536b4485302babeba6f58b7c720af7827a450c747d1b2622dae4c8cdae9a37e9",
+      "nano": 4260960,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--561505ba7ac76c17e105d1a8387caadc0b2e045a2bdcd5536b8d7ecfc14af763",
+      "nano": 4256010,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--5a07bc61dba1b065f4104927df30de8620cc7bb619ec8b4211167470a47e1497",
+      "nano": 4231260,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--5c95d5786210dff69f912a701dd3049bbf5a9ff0f7fdac7630d6621022377dc7",
+      "nano": 4246110,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--5d82ce42c378750ab16a3e5a06408556013daf040a0f6032cccd5564a1d44851",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--5f0fc45d00b8b374f10d882a35257746ac7b2d34c19c53dc061bad5e0fcfed03",
+      "nano": 4246110,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--60a379fd05a554aa5db356940cc7aa105de2c5aa83acdd477692de97b3f46678",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--61f2cb20edf72f722cb7ca5b0ba0cd3592d06ab425a80badb164a212b8947f96",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--64205b6437676ab1cadd346546f23bbfde5fd0b89004fe16a797c30f4769bab8",
+      "nano": 4241160,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--65639a5d77d1adcbe75f0bd1da55720e848777bce703d401c36e801ebb153fa5",
+      "nano": 4157010,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--665bec96547302b6d9eead805961bf82dcf2dc8dcd595bb856f1986d61a1acea",
+      "nano": 4260960,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--6b3d16bea4843c9a9f4d6eb33e1d72b4d1ed168c8ea16caa0878cf5470d40075",
+      "nano": 4295610,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--6d3b48bbaafc5f46a1378d273b53cc0bf3750b2f2fdcbe743497d1b44316f98d",
+      "nano": 4320360,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--6f526fe920c4adb43ea64d108a9fc59a3dc12550cf302836656ae3111803477d",
+      "nano": 4251060,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--73415f86ab5fee8933de73994da3afd114472824c753707ff14a18d2b5109d71",
+      "nano": 4246110,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--76520ded9b52a4f3c025f92fc40006c0f28ae4902434309d9598eaefb5611838",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--771b047c8507e4bb0ea6cca023d36babbdad613a8a36d2ea0097e1f9187f57e9",
+      "nano": 4157010,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--77dbb7023e0ad6714944af8abab8248f4866ea4e450d421df6f7067c6f5c4988",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--79bf50001c18584403bb47c41075bb370b2ff12572106f46e4aedf1cf4f25542",
+      "nano": 4305510,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--79c57bd7e51aafcb07f739af589e8da640d38d2e242b281fd407a2e6f6a86caf",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--7a8e3d8362b64d38dbb2f5c8d69f534d09ba8366525c6af1d28ac36f0ccb721d",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--7a97f4d3daa740af8a8d15945737496f6570052d569b0e59f8254c198fcd8722",
+      "nano": 4280760,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--7b115e7719c78a45716db7ea92d65ceb4ffc860b849a7497c38e6d75d866d462",
+      "nano": 4256010,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--7ffe7cd002f1709bb0bab70a003690406ed3f14d2f6a0e6da159d0506daaac16",
+      "nano": 3934260,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--8026b8713c9e991eb63020c75927fa48993eee89acb6b9434b290075f4dd06cb",
+      "nano": 4231260,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--80d6882380fd4f99244150fb7b5aa8c61627c6135658c2f8c8b3bd557b19ee3c",
+      "nano": 4260960,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--81ff8ec77faebeb4cc047fa59125c86187726ffaa5334ff975628fa0fd847a26",
+      "nano": 4256010,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--85a3322eeb95b6b34b828ea8f6ec0cb0a1e7327793af17e2d45b30e029341e5b",
+      "nano": 4251060,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--85ec4464b2cc38c9b0e781f845e3fce9a75b99f3b9f1fe339d4deb6ae7b71d44",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--863139f2fb868ff3f2193fd1b0b1c8a86892d8bb7f95061d9a2ba88491191cb8",
+      "nano": 4231260,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--8822da4ab7e5210970849dc6b973e1729d356a68373ca0461c65b039bc2b15d4",
+      "nano": 4295610,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--8c37bc908e35f288e1ebc90f1a65e85fb1cd4daf41f2be0c173a52bd1bd05805",
+      "nano": 4315410,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--8cb72ea63b42d824919b2ce4e12b15ba0057a134071f5b873edea12fe522b859",
+      "nano": 3909510,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--8df718700225ae051d09b7ac11e0c89a552856c964bb2db55797b1ce4277f7bf",
+      "nano": 4251060,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--8ee6a5d7cc85c687ffd44e1f6b788ed77c635e87a68f5ad22b0c31659efd57a9",
+      "nano": 4256010,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--8ef62f812a67543f38d58c475692707cc042fd37e785dd3aabcc2e84af741bf5",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--907f43b8b72582285d8e204d161e30777f3128d3e23883250db58091f7f0b5b0",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--96bc74af65d53369082c5ce90bedcb5ecd4d0c68b75614cf32f71766d4916daa",
+      "nano": 4300560,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--9751b87ede8f443d8c1e9f4b50fe15f43985d96fa187bc04d519740e25c7ff81",
+      "nano": 4256010,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--9c92fd5777227d7d05277e4a936e1b63945279d44db9f6f7008cd7a1e60d4ef2",
+      "nano": 4251060,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--9d2b0940b8bd50bd1b45764c6089f14783924fa3cb5d82b872f388d8dba1c1a2",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--a28f08cd88be6f5d052bd7c1336995f33fb2b7b5f86c4cddc2ee83d0b3db08d7",
+      "nano": 4315410,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--a846ef08df856a82b31eb2a49e26abf8541a75e319a6dd57121c5300919afef9",
+      "nano": 4251060,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--a98b9d76a7c5e5338ca2d03599857e21fe9ce8aaf0bb1f9b432182340b850123",
+      "nano": 4231260,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--aa24f5a8e0a60e18efc284bdae9e7c2d5b395f61143671ee0ba1d0b748083f46",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--ab2384db0beb6852aa728ebf3e54c1cc6a51b623a9220b2260617605e7ea228c",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--ae359089f560d664b79ca5363741a5d822c1dc1261adcc6a8ff5e01bde3185a0",
+      "nano": 4157010,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--ae55187d23e1ca0d91cb9752cc2f42094190563fb736f7bc10aac3407cd14f8a",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--af3f934bbb9e208e6e6c4db3d3b2761926192600d3a44d8e19f75eecf073210d",
+      "nano": 4241160,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--b3302c4b5eaacd999c3641f10e22d33a842c7dc74294f9c2889db555bddd862e",
+      "nano": 4260960,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--b5ce391419afa25ded601233ed7eb1c3a834a3586cc779935967bbc3499f63aa",
+      "nano": 4251060,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--b613969a624bfe4d1d99a788483b9f3c51ec3740632530b8e19fef175b413be2",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--b7304659ec1a68c4e5533b64fb6b33bc77d9254ed8ecc848fa1089a0c67b56ba",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--b8ce086de93c09c9c0a9ac53c4ee8469c1887ea7152a5d8f905beee6b573758c",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--b8db07ef25a70194f07fbc50bd1014bacf2ee8be17fe0e3c064c0ecade565b8d",
+      "nano": 4260960,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--b8fce0c8a4c50a3aca3884a8b578e60b9b1ded32f58a56502d8afe1852534d57",
+      "nano": 4231260,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--b988698d19588717a9a1de059cb159feff503ae3f966249b665efe1417017440",
+      "nano": 4251060,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--b9e321f41d7f903ad133fe68ad01743b1d80f98a4c5896bfc2fa168dcd0cc7b0",
+      "nano": 3959010,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--bb9f2cdd25536a532b3363fd5d1411e3cbffe43637fe8067d1a5620fa2321367",
+      "nano": 4260960,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--bc89d003f9b2e3be24bf4144d0c3656cbbabcbf2768beda41194857d7d499c48",
+      "nano": 4251060,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--bcff16e35ec3654b116321130e58df6e42fd8a1518825b380d2cc009fd664b01",
+      "nano": 4315410,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--bd18ee57fe40f1533101cc892767d22a7528f916b8499a5efb49d4e04330f112",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--bd73ec32e448943b551158c7660705ce1750a0d9b5675ac72172ad72026ee851",
+      "nano": 4251060,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--bf206e3180e399a7e8b9dedf41cf7e16fc90f245dfe1ed636f0c5c97995b5d73",
+      "nano": 4157010,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--bf38292e4ce0835b04943c875b11b60b145397f2f78a3234eaedbe9c7d4af593",
+      "nano": 4305510,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--bf48b1ba69387767e014786876245d2ba668bbf21823102cca1444b22e34f7ca",
+      "nano": 4275810,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--c03e011d636a51f935fb857235c0675d679efcddb6c3754e356fc12daad74190",
+      "nano": 4315410,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--c0fe712d5bde6565a4922e15bda4f34189954e796f2d148c735ef71f19ce2ab3",
+      "nano": 4186710,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--c2846eeaa5bd63368f0f8ae581381704ef18b8add2d6aa009e1287adc2ccfedd",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--c3b2a0fae8173148327f07acb693c8f41dc765240f11165a2d5d0da306d32b43",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--c3b770d3ff8b23ad2dbbbdc07f0d274ccbe146b75892816d97693757d563bc14",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--c5cc8940d7ece16cfd384d89fb078b773dde9e85f9a2b4b8a3799609ef9b91e1",
+      "nano": 4295610,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--c62db0fb4045b0c65ac85063d3b9fae7b945b27053cff78656f397ba7bb3386c",
+      "nano": 4157010,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--c7d962786c160fef605f2f9c61f2408522bb080610282cae04d97c80cb579b04",
+      "nano": 4260960,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--c840140b951991f0deceef35238d54da618280807e67b11d9426b067367792ed",
+      "nano": 4251060,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--c8ca245e12011d3c18caad12a91e430e588102ebd08f005054eabc9702836b03",
+      "nano": 4260960,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--c99b9e81f8d387366dcd2d76d3894449f5c06360d5ce6725a7e50864598a8c22",
+      "nano": 4295610,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--cb3e7c6752a12db3e089faa719503433639e7b6c7404222abe269718555b9477",
+      "nano": 4246110,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--cd95382f6269502e40ccdced8b1525ff81dd78b75ba8795a156350b461a8d888",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--cdbde4bec0821c88f98608fd567f27f46adca486192db8716e1a01e93a8d7515",
+      "nano": 4231260,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--ce160ebaa235d62ed3cd77328ab3e763e7376950027ff8a52459ffa6cbd485b6",
+      "nano": 4260960,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--cf75a34b12dc7b3cfd8636e383af8ee702ad76248d53a8a66a5724637a08e25a",
+      "nano": 4305510,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--d0b6fd794f547d2bba8522e6849f8eff7e94554f1455128812c480cbb6ae9ab5",
+      "nano": 456500000,
+      "status": "unknown-charge"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--d1931d2b72f92a1227d8f66f0071e4c0e4ee59b2fd38889ada6d471e3946d70e",
+      "nano": 4300560,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--d1e3edfb2246ce37ea52b1362cd92e1cb2e10fa6cab93cbbd3579a6773579599",
+      "nano": 4008510,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--d20f6fb652843d5f884eb77695bf607760dd43e82dfb211109859fa124bcf0f5",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--d2e88f6c63efadcac6133218c007d2d410ed287527648ebe9aaf1303bc585458",
+      "nano": 4157010,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--d4f4b0f2c38386effa100b002f174d237eb68828c8184c2df90ef92fcb0d57e3",
+      "nano": 4275810,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--d9132e640a3ec3bfee9ee8ab7669fa87bd6c5140fe2348b486c687a106d0f43a",
+      "nano": 4275810,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--d98a8d06b2722edb9e81985c2ea4a5c485ec65661b93cbfbfeeefd7e257dd303",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--dc6bd79c68edd405df031f5113b8862b5da2d2e9938561a0174ea8f57aacd93b",
+      "nano": 4260960,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--dd6804b395bed6712a09d3013c3857500378e8b4e62591848510df69443747d9",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--e18d14616a7a742fbe38fa0490b018dbd0085dcac69bf274f53d5e69a78287ee",
+      "nano": 4260960,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--e1ff5ec30c5d5c84c09ecaace01a1b16e8da8d4ae5c0d26ddbba15df99bdbf74",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--e2baafbafbceb185461adca5a22aed5d89c2ba3134151683cee30533680e1a9b",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--e51303ab55637b859f98dac282609b51e6ac13c75c721a429aca6d1f77d4d782",
+      "nano": 4315410,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--e57388456977b3a8b48f0843e3c512c439121cdb64efd43c16978e3c7c73cdeb",
+      "nano": 4256010,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--e6c505928616ddccca14ebc48e3ac81951a4e9f7bea994c6c7638a459337edbe",
+      "nano": 4295610,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--e88aaba60f8d6a40e17afbae95b4062de8426a2a505eeddab06c2cfbf40673cd",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--e9ba3e4d9b49b17531e7500e360538b9f983e9017dc9c711ab3fc6d3353c630b",
+      "nano": 4260960,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--eba9a28c4eb64f25cfa6921d1e99ceede1ebfa0a5feff01ee75d5993b852ce41",
+      "nano": 4305510,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--ed0a41dec8f7c19067c27aae7bede405b005d98f7ff9ebc289a1baabb7258316",
+      "nano": 4231260,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--f07508793729d262ad3f3b2f244880a65dcb40b4e4431b70d88a5da60ad774c0",
+      "nano": 4275810,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--f53712266e4ff0bf4556a019ea51a9995a8e251b8b3a08deebe16b3c4d683b41",
+      "nano": 4275810,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--f8912ffc10b1cc44a3ff1413d1b44224281df6e4d38997695b3a8276467dd386",
+      "nano": 4256010,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--f9e32b13a2db40d401632bd12e4c249dceadd41bb59c57cde0bfc4812e05bbf0",
+      "nano": 4315410,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--fcffdad7eabd371d52d116aa1dd6e00524b522eb02e375ffc829622a9a67e4ca",
+      "nano": 4315410,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--fe838d89d37b3cb6251b491f2df9c270379fd6843dcc469fe3f7b3c5b3616941",
+      "nano": 4260960,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--ff0ae2e94915cf4b42c4ed6fd230847e41b640dedd3bd34dcdf51c9669c32fd5",
+      "nano": 4251060,
+      "status": "openrouter-usage-cost"
+    },
+    {
+      "id": "openrouter--anthropic_claude-haiku-4.5--ff8765ebe31c09d9ec23f84ccb978ae02f9d498b674626707fce18a0e1d0a81f",
+      "nano": 4265910,
+      "status": "openrouter-usage-cost"
+    }
+  ],
+  "reason": "One user-authorized continuation after two plain HTTP502s; two NEW failures stop; no prior identity retried"
+}

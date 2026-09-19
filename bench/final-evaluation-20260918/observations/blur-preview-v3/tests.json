@@ -1,0 +1,280 @@
+{
+  "status": "PASS",
+  "scope": "Offline deterministic/integrity/numerical tests only; NOT model/OCR/readability testing",
+  "count": 18,
+  "all18_deterministic_png_hashes": true,
+  "all_v1_v2_files_and_sources_preserved": true,
+  "visual_review": "Pending parent native vision and Alex approval",
+  "fixtures": [
+    {
+      "fixture_id": "C-SPIRITS-01",
+      "deterministic_full_png_sha256": true,
+      "source_and_original_label_truth_preserved": true,
+      "v2_source_geometry_and_mapping_matched": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "C-WINE-01",
+      "deterministic_full_png_sha256": true,
+      "source_and_original_label_truth_preserved": true,
+      "v2_source_geometry_and_mapping_matched": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "C-MALT-01",
+      "deterministic_full_png_sha256": true,
+      "source_and_original_label_truth_preserved": true,
+      "v2_source_geometry_and_mapping_matched": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "C-SPIRITS-IMPORT-01",
+      "deterministic_full_png_sha256": true,
+      "source_and_original_label_truth_preserved": true,
+      "v2_source_geometry_and_mapping_matched": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "A-WARN-TITLECASE-01",
+      "deterministic_full_png_sha256": true,
+      "source_and_original_label_truth_preserved": true,
+      "v2_source_geometry_and_mapping_matched": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "A-WARN-BOLDBODY-01",
+      "deterministic_full_png_sha256": true,
+      "source_and_original_label_truth_preserved": true,
+      "v2_source_geometry_and_mapping_matched": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "A-BRAND-CASE-01",
+      "deterministic_full_png_sha256": true,
+      "source_and_original_label_truth_preserved": true,
+      "v2_source_geometry_and_mapping_matched": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "A-ABV-WRONG-01",
+      "deterministic_full_png_sha256": true,
+      "source_and_original_label_truth_preserved": true,
+      "v2_source_geometry_and_mapping_matched": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "A-FIELD-MISSING-01",
+      "deterministic_full_png_sha256": true,
+      "source_and_original_label_truth_preserved": true,
+      "v2_source_geometry_and_mapping_matched": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "A-INJECT-PROMPT-01",
+      "deterministic_full_png_sha256": true,
+      "source_and_original_label_truth_preserved": true,
+      "v2_source_geometry_and_mapping_matched": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "W-BRAND-WRONG-01",
+      "deterministic_full_png_sha256": true,
+      "source_and_original_label_truth_preserved": true,
+      "v2_source_geometry_and_mapping_matched": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "W-ABV-4045-01",
+      "deterministic_full_png_sha256": true,
+      "source_and_original_label_truth_preserved": true,
+      "v2_source_geometry_and_mapping_matched": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "W-NETCONTENTS-WRONG-01",
+      "deterministic_full_png_sha256": true,
+      "source_and_original_label_truth_preserved": true,
+      "v2_source_geometry_and_mapping_matched": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "W-WARN-REWORD-01",
+      "deterministic_full_png_sha256": true,
+      "source_and_original_label_truth_preserved": true,
+      "v2_source_geometry_and_mapping_matched": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "W-BRAND-SPLITLINE-01",
+      "deterministic_full_png_sha256": true,
+      "source_and_original_label_truth_preserved": true,
+      "v2_source_geometry_and_mapping_matched": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "D-BLUR-01",
+      "deterministic_full_png_sha256": true,
+      "source_and_original_label_truth_preserved": true,
+      "v2_source_geometry_and_mapping_matched": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "D-WARP-01",
+      "deterministic_full_png_sha256": true,
+      "source_and_original_label_truth_preserved": true,
+      "v2_source_geometry_and_mapping_matched": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    },
+    {
+      "fixture_id": "D-GLARE-01",
+      "deterministic_full_png_sha256": true,
+      "source_and_original_label_truth_preserved": true,
+      "v2_source_geometry_and_mapping_matched": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "filter": "GaussianBlur",
+        "sigma_native_px": 5.5,
+        "falloff": "Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable"
+      }
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+"""Supplemental offline V1/V2 severity, source and erasure checks; no OCR/inference."""
+import json, hashlib
+from pathlib import Path
+import numpy as np
+from PIL import Image
+B=Path(__file__).resolve().parent.parent
+def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+def arr(p):return np.asarray(Image.open(p).convert('RGB').crop((500,1100,1701,2945)),dtype=np.int16)
+def energy(a):
+    a=a.astype(np.float32).mean(axis=2)
+    return float((np.diff(a,axis=0)**2).mean()+(np.diff(a,axis=1)**2).mean())
+for effect in ['glare','blur']:
+    d=B/(effect+'-preview-v2'); m=json.loads((d/'manifest.json').read_text()); checks=[]
+    old=json.loads((B/(effect+'-preview-v1')/'manifest.json').read_text());old={r['fixture_id']:r for r in old['fixtures']}
+    for row in m['fixtures']:
+        a=arr(d/row['output']); prior=arr(B/(effect+'-preview-v1')/row['previous_output']);source=arr(row['source_path'])
+        changed=float(np.abs(a-prior).mean());assert changed>0.05
+        dark=np.max(source,axis=2)<100;sat=np.all(a>=254,axis=2)
+        erased=int((dark&sat).sum());assert erased==0 and not sat.all(axis=0).any() and not sat.all(axis=1).any()
+        for key,hashkey in [('original_fixture_bottle_path','original_fixture_bottle_sha256'),('original_source_label_path','original_source_label_sha256'),('original_truth_path','original_truth_sha256')]: assert sha(row[key])==row[hashkey]
+        c=dict(fixture_id=row['fixture_id'],mean_rgb_change_from_v1=changed,new_saturated_dark_source_pixels=erased,no_full_white_label_rows_or_columns=True,original_bottle_label_truth_hashes_verified=True)
+        if effect=='blur':
+            ratio=energy(a)/energy(prior);assert .20<ratio<1.0
+            c.update(label_gradient_energy_ratio_v2_over_v1=ratio,blur_stronger_not_flat=True)
+        else:
+            op=old[row['fixture_id']]['parameters'];p=row['parameters']
+            for k in ['seed','center_u','center_y','sigma_y','angular_width','curve','bloom_fraction']:assert p[k]==op[k]
+            ratio=row['effect_checks']['alpha_max']/old[row['fixture_id']]['lighting_checks']['alpha_max'];assert abs(ratio-1.65)<.00001
+            c.update(peak_alpha_gain_from_v1=ratio,seed_location_shape_unchanged=True)
+        checks.append(c)
+    out=dict(status='PASS',scope='Numerical severity and provenance only; not character recognition/readability acceptance',fixtures=checks)
+    (d/'comparison-tests.json').write_text(json.dumps(out,indent=2)+'\n')
+    t=json.loads((d/'tests.json').read_text());t['supplemental_v1_v2_checks']='comparison-tests.json';t['supplemental_status']='PASS';(d/'tests.json').write_text(json.dumps(t,indent=2)+'\n')
+    artifacts={str(p.relative_to(d)):dict(sha256=sha(p),bytes=p.stat().st_size) for p in d.glob('*.jpg')}
+    m['comparison_artifacts']=artifacts;m['supplemental_test_script']=str(B/'blur-preview-v2/compare_checks.py');m['supplemental_test_script_sha256']=sha(B/'blur-preview-v2/compare_checks.py');(d/'manifest.json').write_text(json.dumps(m,indent=2)+'\n')
+    print('COMPARISON PASS',effect,'count',len(checks),'V1->V2 RGB change range',min(c['mean_rgb_change_from_v1'] for c in checks),max(c['mean_rgb_change_from_v1'] for c in checks),flush=True)

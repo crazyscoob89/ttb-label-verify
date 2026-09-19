@@ -1,0 +1,161 @@
+{
+  "id": "azure-foundry--gpt-5-mini--d21e890f0f42f27860b0b61b68ff4a50d50cca52340bcc382db3c456128651b3",
+  "provider": "azure-foundry",
+  "operator": "AVA-azure-severity-v1",
+  "model": "gpt-5-mini",
+  "engine": "gpt-5-mini",
+  "fixture_id": "W-ABV-4045-01",
+  "fixture": {
+    "id": "W-ABV-4045-01__blur-4",
+    "source_fixture": "W-ABV-4045-01",
+    "condition": "blur-4",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/W-ABV-4045-01__blur-4.png",
+    "sha256": "0b273f16d3f145204e122897a21f82985f9a87402dc574d6d8e976f2c949c660",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-ABV-4045-01.png",
+    "source_sha256": "d2e674fae1a068ca6fbdbca8af6e337eb197dcc54f75b6f1a8c651646a7daaf4",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/W-ABV-4045-01.png",
+    "original_label_sha256": "2717efcdf4b2ef5e30570b11d8646c49f4bc82d70ee80d0d1a1fe6711f8f7435",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/W-ABV-4045-01.json",
+    "original_truth_sha256": "16924fefa452e316b4d3d68975410f0bf2700cea2e67795ea0e627ac10d2c239",
+    "source_fixture_id": "W-ABV-4045-01",
+    "clean_parent_substitution": false,
+    "inherited_degradation": "none",
+    "parameters": {
+      "sigma_native_px": 4,
+      "sigma_div_label_width": 0.0033333333333333335,
+      "sigma_div_label_height": 0.0021458625475084046,
+      "filter": "Pillow GaussianBlur",
+      "randomness_used": false
+    },
+    "measurements": {}
+  },
+  "repeat": 1,
+  "condition": "blur-4",
+  "route": "Azure Foundry responses",
+  "tier": "vision",
+  "ok": true,
+  "extracted": {
+    "brand_name": "Copper Trestle",
+    "class_type": "STRAIGHT BOURBON WHISKEY",
+    "alcohol_content": "40% ALC/VOL (80 PROOF)",
+    "net_contents": "750 mL",
+    "bottler_info": "Distilled and bottled by Copper Trestle Distillery, Bardstown, Kentucky",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 0.98,
+      "class_type": 0.98,
+      "alcohol_content": 0.98,
+      "net_contents": 0.95,
+      "bottler_info": 0.88,
+      "country_of_origin": 0.9,
+      "government_warning_heading": 0.95,
+      "government_warning_body": 0.9,
+      "government_warning_heading_all_caps": 0.98,
+      "government_warning_heading_bold": 0.9,
+      "government_warning_body_bold": 0.9
+    }
+  },
+  "error_class": null,
+  "cost_usd": 0.00249725,
+  "request_sha256": "2c309115e8e0dc3babe47d6b22c51fa333de0fe56d33888e8c1857aead0bc4ef",
+  "prompt_settings_sha256": "196f20e64293ebb79fcf992ad999cce80aa5a27a14685453840798f0423d2683",
+  "image_sha256": "0b273f16d3f145204e122897a21f82985f9a87402dc574d6d8e976f2c949c660",
+  "transport": "responses",
+  "started_at": "2026-09-18T20:56:14.817879+00:00",
+  "reserved_usd": 0.2949584,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/W-ABV-4045-01__blur-4.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "old_request_ids": [],
+  "http_status": 200,
+  "request_id": "6bceddd6-6604-4da1-828c-2243274e3a52",
+  "latency_s": 10.614974096068181,
+  "response_sha256": "3e0b117f5b08bae4d6cd81010be6754b532b0d910a54f500f5a1c22496540925",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/azure-severity-v1/responses/azure-foundry--gpt-5-mini--d21e890f0f42f27860b0b61b68ff4a50d50cca52340bcc382db3c456128651b3.json",
+  "tokens_in": 1717,
+  "tokens_out": 1034,
+  "pages_processed": null,
+  "usage": {
+    "input_tokens": 1717,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1034,
+    "output_tokens_details": {
+      "reasoning_tokens": 768
+    },
+    "total_tokens": 2751
+  },
+  "returned_model": "gpt-5-mini",
+  "raw_text": "{\"brand_name\":\"Copper Trestle\",\"class_type\":\"STRAIGHT BOURBON WHISKEY\",\"alcohol_content\":\"40% ALC/VOL (80 PROOF)\",\"net_contents\":\"750 mL\",\"bottler_info\":\"Distilled and bottled by Copper Trestle Distillery, Bardstown, Kentucky\",\"country_of_origin\":null,\"government_warning_heading\":\"GOVERNMENT WARNING:\",\"government_warning_body\":\"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\"government_warning_heading_all_caps\":true,\"government_warning_heading_bold\":true,\"government_warning_body_bold\":false,\"confidence\":{\"brand_name\":0.98,\"class_type\":0.98,\"alcohol_content\":0.98,\"net_contents\":0.95,\"bottler_info\":0.88,\"country_of_origin\":0.90,\"government_warning_heading\":0.95,\"government_warning_body\":0.90,\"government_warning_heading_all_caps\":0.98,\"government_warning_heading_bold\":0.90,\"government_warning_body_bold\":0.90}}",
+  "finish_reason": "completed",
+  "validation_errors": {},
+  "category": "wrong-answer",
+  "commodity": "spirits",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "mismatch",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "mismatch",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "mismatch",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "classes": {
+    "brand_name": "correct",
+    "class_type": "correct",
+    "alcohol_content": "correct",
+    "net_contents": "correct",
+    "bottler_info": "correct",
+    "country_of_origin": "correct",
+    "government_warning": "correct"
+  },
+  "reasons": {
+    "brand_name": "normalized equivalence",
+    "class_type": "normalized equivalence",
+    "alcohol_content": "label 40.0 vs declared 45.0",
+    "net_contents": "750.00mL ~= 750.00mL",
+    "bottler_info": "full normalized bottler identity and address",
+    "country_of_origin": "domestic product",
+    "government_warning": "exact statutory wording and formatting"
+  },
+  "extraction_correct": {
+    "brand_name": true,
+    "class_type": true,
+    "alcohol_content": true,
+    "net_contents": true,
+    "bottler_info": true,
+    "country_of_origin": true,
+    "government_warning": true
+  },
+  "pipeline_seconds": 10.638291203067638,
+  "unknown_charge_reserved_usd": 0
+}

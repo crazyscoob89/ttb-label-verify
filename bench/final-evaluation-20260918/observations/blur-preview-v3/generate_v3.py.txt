@@ -1,0 +1,67 @@
+"""V3 offline generator/independent PNG rerender verification. No model testing."""
+import json, hashlib, copy, sys
+from pathlib import Path
+import generate as g
+B=g.BASE
+D={'glare':g.GLARE,'blur':g.BLUR}
+load=lambda p:json.loads(Path(p).read_text())
+
+def main():
+    prior={e:load(B/(e+'-preview-v2')/'manifest.json') for e in D}
+    baseline={r['fixture_id']:r for r in load(B/'glare-preview-v1/manifest.json')['fixtures']}
+    verify='--verify' in sys.argv
+    immutable={str(p):g.sha(p) for e in D for v in [1,2] for p in (B/(e+'-preview-v'+str(v))).rglob('*') if p.is_file()} if not verify else load(g.GLARE/'inventory.json')['immutable_hashes']
+    allrows={}
+    for effect,d in D.items():
+        if not verify: assert not (d/'manifest.json').exists()
+        (d/'images').mkdir(exist_ok=True)
+        rows=[]; tests=[]
+        inputs=load(d/'manifest.json')['fixtures'] if verify else prior[effect]['fixtures']
+        for old in inputs:
+            r=copy.deepcopy(old); ident=r['fixture_id']
+            assert g.sha(r['source_path'])==r['source_sha256']
+            immutable[r['source_path']]=r['source_sha256']
+            for pk,hk in [('original_fixture_bottle_path','original_fixture_bottle_sha256'),('original_source_label_path','original_source_label_sha256'),('original_truth_path','original_truth_sha256')]:
+                assert g.sha(r[pk])==r[hk]; immutable[r[pk]]=r[hk]
+            v2=next(x for x in prior[effect]['fixtures'] if x['fixture_id']==ident)
+            assert r['source_path']==v2['source_path'] and r['source_sha256']==v2['source_sha256'] and r['source_geometry']==v2['source_geometry']
+            if not verify:
+                r['previous_parameters']=copy.deepcopy(v2['parameters']);r['previous_output_sha256']=v2['output_sha256'];r['previous_version']=2
+                r['source_same_as_v2']=True
+                if effect=='glare':
+                    p=r['parameters']; base=baseline[ident]['parameters']
+                    p.update(strength=base['strength']*2.5,edge_strength=base['edge_strength']*2.5,alpha_bound=.65,intensity_gain_from_v1=2.5,requested_intensity_gain_from_v1=2.5,opacity_cap=.65)
+                else:r['parameters']=dict(sigma_native_px=5.5,requested_sigma_native_px=5.5,previous_sigma_native_px=5.2,randomness_used=False)
+            if effect=='glare':
+                for key in ['seed','center_u','center_y','sigma_y','angular_width','curve','bloom_fraction']:assert r['parameters'][key]==v2['parameters'][key]
+                for key in ['strength','edge_strength']:assert r['parameters'][key]==baseline[ident]['parameters'][key]*2.5
+            else:assert r['parameters']['sigma_native_px']==5.5
+            im,stats=g.render(effect,r);assert im.size==(2200,3200)
+            data=g.encode(im); h=hashlib.sha256(data).hexdigest()
+            if verify:assert h==r['output_sha256']==g.sha(d/r['output'])
+            else:
+                (d/r['output']).write_bytes(data);r.update(output_sha256=h,dimensions=list(im.size),effect_checks=stats)
+                r['effective_parameters']=stats
+            rows.append(r);tests.append(dict(fixture_id=ident,deterministic_full_png_sha256=True,source_and_original_label_truth_preserved=True,v2_source_geometry_and_mapping_matched=True,dimensions=list(im.size),checks=stats))
+            print('VERIFIED' if verify else 'GENERATED',effect,ident,flush=True)
+        assert len(rows)==len(list((d/'images').glob('*.png')))==18
+        allrows[effect]=rows
+        if verify:
+            assert all(g.sha(p)==h for p,h in immutable.items())
+            g.dump(d/'tests.json',dict(status='PASS',scope='Offline deterministic/integrity/numerical tests only; NOT model/OCR/readability testing',count=18,all18_deterministic_png_hashes=True,all_v1_v2_files_and_sources_preserved=True,visual_review='Pending parent native vision and Alex approval',fixtures=tests))
+        else:
+            m={k:copy.deepcopy(v) for k,v in prior[effect].items() if k not in ['fixtures','comparison_artifacts','supplemental_test_script','supplemental_test_script_sha256','generator_sha256']}
+            m.update(status=g.STATUS,version=3,algorithm='V2 curved linear-light glare, coefficients 2.5 times ORIGINAL V1, pointwise opacity cap 0.65 (not unbounded 2.5 effective)' if effect=='glare' else 'Pillow GaussianBlur sigma 5.5 native pixels, direct unchanged V2 clean/original source',requested_parameters=dict(intensity_gain_from_original_v1=2.5,opacity_cap=.65) if effect=='glare' else dict(gaussian_sigma_native_px=5.5),source_manifests={str(B/(e+'-preview-v'+str(v))/'manifest.json'):g.sha(B/(e+'-preview-v'+str(v))/'manifest.json') for e in D for v in [1,2]},generator_sha256=g.sha(__file__),render_engine_sha256=g.sha(g.__file__),fixtures=rows)
+            g.dump(d/'manifest.json',m)
+            (d/'README.md').write_text('''# V3 — PREVIEW ONLY / NOT APPROVED / NOT MODEL-TESTED
+18 native 2200x3200 PNGs. Glare coefficients requested at 2.5x ORIGINAL V1, NOT 2.5x V2; opacity capped at 0.65, retaining at least 35% source in linear light. Per-fixture requested/uncapped/effective peak and clipped pixel counts are recorded. Blur Gaussian sigma 5.5 native pixels. Unchanged V2 seed/location/curvature/geometry and source mapping. No recursive effect application, retyping, inpainting or generative lettering.
+D-BLUR uses clean C-SPIRITS parent; D-GLARE uses clean C-MALT parent. D-WARP retains its inherited mild blur/warp. Existing V1/V2 source caveats remain in manifest. Source bytes and original label/truth bytes are preserved; lighting/convolution necessarily changes output RGB, not wording by retyping. Numerical tests do not prove readability. Parent native vision review pending.
+Run asset-venv Python generate_v3.py --verify to independently rerender/hash all 36 PNGs. inventory.json snapshots all V1/V2 files and sources. Review sibling blur-preview-v3/C-SPIRITS-01-three-way.jpg, labels Original / Glare ×2.5 / Blur sigma5.5; native PNGs authoritative. No network, inference, ZIP or publication.
+''')
+    if not verify:
+        g.boards(allrows['glare'],allrows['blur'])
+        for e,d in D.items():
+            g.dump(d/'inventory.json',dict(immutable_hashes=immutable))
+            m=load(d/'manifest.json');m['comparison_artifacts']={str(p):dict(sha256=g.sha(p),bytes=p.stat().st_size) for dd in D.values() for p in dd.glob('*.jpg')};g.dump(d/'manifest.json',m)
+    assert all(g.sha(p)==h for p,h in immutable.items())
+if __name__=='__main__':main()

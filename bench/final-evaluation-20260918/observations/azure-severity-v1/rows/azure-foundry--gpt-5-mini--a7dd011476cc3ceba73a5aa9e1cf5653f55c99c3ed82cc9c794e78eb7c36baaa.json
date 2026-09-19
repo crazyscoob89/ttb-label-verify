@@ -1,0 +1,161 @@
+{
+  "id": "azure-foundry--gpt-5-mini--a7dd011476cc3ceba73a5aa9e1cf5653f55c99c3ed82cc9c794e78eb7c36baaa",
+  "provider": "azure-foundry",
+  "operator": "AVA-azure-severity-v1",
+  "model": "gpt-5-mini",
+  "engine": "gpt-5-mini",
+  "fixture_id": "W-WARN-REWORD-01",
+  "fixture": {
+    "id": "W-WARN-REWORD-01__blur-1",
+    "source_fixture": "W-WARN-REWORD-01",
+    "condition": "blur-1",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/W-WARN-REWORD-01__blur-1.png",
+    "sha256": "99323907a30e714e0d31780c0b1c104375b7c7b9503df7e6fb9df7a007320894",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-WARN-REWORD-01.png",
+    "source_sha256": "4abd681601b86e9147aecf5bd277e15b1ea928e92e5110674b71d1ba6d46e5a8",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/W-WARN-REWORD-01.png",
+    "original_label_sha256": "ad1ceec2aa92e01537484a4c991602c9397a5f31563c4d494c4bbe88b2c4eedd",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/W-WARN-REWORD-01.json",
+    "original_truth_sha256": "f5bc506b14b4e3fb22820264188f25f154e7707756ea8ab84cc20f0a61375d9d",
+    "source_fixture_id": "W-WARN-REWORD-01",
+    "clean_parent_substitution": false,
+    "inherited_degradation": "none",
+    "parameters": {
+      "sigma_native_px": 1,
+      "sigma_div_label_width": 0.0008333333333333334,
+      "sigma_div_label_height": 0.0005364656368771012,
+      "filter": "Pillow GaussianBlur",
+      "randomness_used": false
+    },
+    "measurements": {}
+  },
+  "repeat": 1,
+  "condition": "blur-1",
+  "route": "Azure Foundry responses",
+  "tier": "vision",
+  "ok": true,
+  "extracted": {
+    "brand_name": "Fenwick & Doyle",
+    "class_type": "INDIA PALE ALE",
+    "alcohol_content": "6.8% ALC/VOL",
+    "net_contents": "12 FL OZ",
+    "bottler_info": "Brewed and bottled by Fenwick & Doyle Brewing,\nBurlington, Vermont",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "(1) According to the Surgeon General, women should not consume alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages may impair your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 0.99,
+      "class_type": 0.99,
+      "alcohol_content": 0.98,
+      "net_contents": 0.99,
+      "bottler_info": 0.95,
+      "country_of_origin": 0.9,
+      "government_warning_heading": 0.98,
+      "government_warning_body": 0.95,
+      "government_warning_heading_all_caps": 0.99,
+      "government_warning_heading_bold": 0.95,
+      "government_warning_body_bold": 0.9
+    }
+  },
+  "error_class": null,
+  "cost_usd": 0.00280325,
+  "request_sha256": "0ea0c0f58818752d051fcc1fb763e8f5935427d9baf9a8734fa485616f81b06b",
+  "prompt_settings_sha256": "196f20e64293ebb79fcf992ad999cce80aa5a27a14685453840798f0423d2683",
+  "image_sha256": "99323907a30e714e0d31780c0b1c104375b7c7b9503df7e6fb9df7a007320894",
+  "transport": "responses",
+  "started_at": "2026-09-18T20:07:59.215943+00:00",
+  "reserved_usd": 0.2949584,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/W-WARN-REWORD-01__blur-1.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "old_request_ids": [],
+  "http_status": 200,
+  "request_id": "65c952cb-dd92-46af-9267-24e3edad96da",
+  "latency_s": 12.298209371045232,
+  "response_sha256": "c91f40447fc6aa18e9622c24da7d0e8ef00c270a18abcbdf4d4c17322d9d4ad5",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/azure-severity-v1/responses/azure-foundry--gpt-5-mini--a7dd011476cc3ceba73a5aa9e1cf5653f55c99c3ed82cc9c794e78eb7c36baaa.json",
+  "tokens_in": 1717,
+  "tokens_out": 1187,
+  "pages_processed": null,
+  "usage": {
+    "input_tokens": 1717,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1187,
+    "output_tokens_details": {
+      "reasoning_tokens": 832
+    },
+    "total_tokens": 2904
+  },
+  "returned_model": "gpt-5-mini",
+  "raw_text": "{\n  \"brand_name\": \"Fenwick & Doyle\",\n  \"class_type\": \"INDIA PALE ALE\",\n  \"alcohol_content\": \"6.8% ALC/VOL\",\n  \"net_contents\": \"12 FL OZ\",\n  \"bottler_info\": \"Brewed and bottled by Fenwick & Doyle Brewing,\\nBurlington, Vermont\",\n  \"country_of_origin\": null,\n  \"government_warning_heading\": \"GOVERNMENT WARNING:\",\n  \"government_warning_body\": \"(1) According to the Surgeon General, women should not consume alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages may impair your ability to drive a car or operate machinery, and may cause health problems.\",\n  \"government_warning_heading_all_caps\": true,\n  \"government_warning_heading_bold\": true,\n  \"government_warning_body_bold\": false,\n  \"confidence\": {\n    \"brand_name\": 0.99,\n    \"class_type\": 0.99,\n    \"alcohol_content\": 0.98,\n    \"net_contents\": 0.99,\n    \"bottler_info\": 0.95,\n    \"country_of_origin\": 0.90,\n    \"government_warning_heading\": 0.98,\n    \"government_warning_body\": 0.95,\n    \"government_warning_heading_all_caps\": 0.99,\n    \"government_warning_heading_bold\": 0.95,\n    \"government_warning_body_bold\": 0.90\n  }\n}",
+  "finish_reason": "completed",
+  "validation_errors": {},
+  "category": "wrong-answer",
+  "commodity": "malt",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "mismatch"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "mismatch"
+  },
+  "verdicts": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "mismatch"
+  },
+  "classes": {
+    "brand_name": "correct",
+    "class_type": "correct",
+    "alcohol_content": "correct",
+    "net_contents": "correct",
+    "bottler_info": "correct",
+    "country_of_origin": "correct",
+    "government_warning": "correct"
+  },
+  "reasons": {
+    "brand_name": "normalized equivalence",
+    "class_type": "normalized equivalence",
+    "alcohol_content": "6.8 == 6.8",
+    "net_contents": "354.88mL ~= 354.88mL",
+    "bottler_info": "full normalized bottler identity and address",
+    "country_of_origin": "domestic product",
+    "government_warning": "statutory wording deviation in warning body"
+  },
+  "extraction_correct": {
+    "brand_name": true,
+    "class_type": true,
+    "alcohol_content": true,
+    "net_contents": true,
+    "bottler_info": true,
+    "country_of_origin": true,
+    "government_warning": true
+  },
+  "pipeline_seconds": 12.324286623043008,
+  "unknown_charge_reserved_usd": 0
+}

@@ -1,0 +1,96 @@
+{
+  "id": "openrouter--anthropic_claude-haiku-4.5--c4c5120533f1485fb7ab75c8e9faf1cfbd2148feaa949df1812cd17b6dd14240",
+  "provider": "openrouter",
+  "model": "anthropic/claude-haiku-4.5",
+  "engine": "anthropic/claude-haiku-4.5",
+  "route": "https://openrouter.ai/api/v1/chat/completions",
+  "upstream_policy": "Anthropic only; no provider fallback",
+  "fixture": {
+    "id": "W-NETCONTENTS-WRONG-01__glare-4",
+    "source_fixture": "W-NETCONTENTS-WRONG-01",
+    "condition": "glare-4",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/W-NETCONTENTS-WRONG-01__glare-4.png",
+    "sha256": "6ffdda01f364967d8ec99c063f2bfb518ec2fccf99471e4db3fd780d7c57217e",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-NETCONTENTS-WRONG-01.png",
+    "source_sha256": "7abf8c9d973a8c781c2516f1615420d02db5654ea2492b98e9f326074136f128",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/W-NETCONTENTS-WRONG-01.png",
+    "original_label_sha256": "8ab0a782eda4738fa245b02721eaff28ecce889f012293ef5685b7f2c8cca8aa",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/W-NETCONTENTS-WRONG-01.json",
+    "original_truth_sha256": "824379bccceb528c95b561ae7e0a2d0ac7e26c1f50eac6d0d122d3cedc0b5ca9",
+    "source_fixture_id": "W-NETCONTENTS-WRONG-01",
+    "clean_parent_substitution": false,
+    "inherited_degradation": "none",
+    "parameters": {
+      "seed": 1507575473,
+      "center_u": -0.3235146017386067,
+      "center_y": 2062.5052414739253,
+      "sigma_y": 374.2570430978624,
+      "angular_width": 0.1417351396437033,
+      "curve": -0.032762830797786836,
+      "strength": 1.2186455243148344,
+      "edge_strength": 0.52,
+      "bloom_fraction": 0.12,
+      "alpha_bound": 0.65,
+      "intensity_gain_from_v1": 4,
+      "requested_intensity_gain_from_v1": 4,
+      "opacity_cap": 0.65
+    },
+    "measurements": {
+      "effective_alpha_peak": 0.6499999761581421,
+      "uncapped_alpha_peak": 1.218643438076548,
+      "opacity_cap": 0.65,
+      "clipped_pixel_count": 151284,
+      "clipped_fraction_full_image": 0.021489204545454544,
+      "source_weight_min": 0.3500000238418579
+    }
+  },
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/W-NETCONTENTS-WRONG-01__glare-4.png",
+  "image_sha256": "6ffdda01f364967d8ec99c063f2bfb518ec2fccf99471e4db3fd780d7c57217e",
+  "prompt_settings_sha256": "ba93d7e53b184d2f74384c66eebdb59f523faf427337a9e3b2e702322f09040d",
+  "request_sha256": "0be65eec02154822f6a1e74c2577956d9257c7039977d9a4aec3dbdfcf22dc77",
+  "started_at": "2026-09-18T19:16:38.012555+00:00",
+  "reserved_usd": 0.4565,
+  "max_output_tokens": 3000,
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "usage_cost_usd": 0.00426096,
+  "retail_estimate_usd": 0.004304,
+  "http_status": 200,
+  "request_id": null,
+  "latency_s": 3.9615935659967363,
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/responses/openrouter--anthropic_claude-haiku-4.5--c4c5120533f1485fb7ab75c8e9faf1cfbd2148feaa949df1812cd17b6dd14240.json",
+  "response_sha256": "514d26aab338dcbc67c48f0e9621be4a5cfb5a2e4577e6819bf2f280c84f0fb1",
+  "usage": {
+    "prompt_tokens": 2354,
+    "completion_tokens": 390,
+    "total_tokens": 2744,
+    "cost": 0.00426096,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.004304,
+      "upstream_inference_prompt_cost": 0.002354,
+      "upstream_inference_completions_cost": 0.00195
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "generation_id": "gen-1789758999-KHd2zS0RQRClfFpvC58i",
+  "returned_model": "anthropic/claude-haiku-4.5",
+  "returned_provider": "Anthropic"
+}

@@ -1,0 +1,55 @@
+"""Freeze pre-inference visual observations independently of benchmark outputs."""
+import sys
+sys.dont_write_bytecode=True
+import json,hashlib,importlib.util
+from pathlib import Path
+from PIL import Image,ImageFilter
+import adapter as A
+D=A.D;B=A.B
+load=lambda p:json.loads(Path(p).read_text())
+
+def main():
+ assert not list((D/'rows').glob('*.json')),'Annotations must precede paid responses'
+ assert not (D/'freeze.json').exists()
+ manifest=load(D/'manifest.json');_,truth=A.H.R.load_evidence()
+ inspected={
+ 'C-SPIRITS-01__glare-5':'Native full image: smoothly feathered left-center highlight, no broad erased white strip. Major fields and warning remain readable at native scale but central text is low-contrast. No label clipping.',
+ 'C-SPIRITS-01__blur-6':'Native full image: clearly stronger optical defocus. Brand/class remain discernible; bottler and fine warning exact lettering/format are uncertain and require referral rather than guessing.',
+ 'C-WINE-01__clean':'Native full image: crisp Cedar Bluff label, numeric fields, bottler/address and complete warning visibly retained, no crop.',
+ 'A-FIELD-MISSING-01__glare-5':'Native 1:1 lower-label crop: intentionally blank fields remain blank; warning remains discernible with smooth low-contrast center-left wash, not opaque deletion.',
+ 'W-WARN-REWORD-01__blur-6':'Native 1:1 lower-label crop: bottler and warning are substantially blurred; exact warning words and typography are uncertain. Do not substitute remembered statutory wording.'}
+ board=D/'qa/W-WARN-REWORD-01__overview.jpg'
+ annotations={}
+ for r in manifest['fixtures']:
+  gt=truth[r['source_fixture']];fields={}
+  for f in A.H.S.FIELDS:
+   absent=f!='government_warning' and gt['label_actual'].get('brand_as_rendered' if f=='brand_name' else f) is None
+   vis='absent-in-constructed-source' if absent else 'not-individually-reviewed'
+   basis='Original independent source truth (not model output)' if absent else 'No exhaustive human field read claimed; use semantic score, exclude from verified-visible denominator.'
+   if r['id']=='C-WINE-01__clean' and not absent:vis='visible';basis=inspected[r['id']]
+   if r['id']=='C-SPIRITS-01__glare-5' and not absent:vis='readable-low-contrast';basis=inspected[r['id']]
+   if r['id']=='C-SPIRITS-01__blur-6' and not absent:
+    vis='discernible-large-type' if f in ['brand_name','class_type'] else 'uncertain';basis=inspected[r['id']]
+   if r['id']=='A-FIELD-MISSING-01__glare-5' and f=='government_warning':vis='readable-low-contrast';basis=inspected[r['id']]
+   if r['id']=='W-WARN-REWORD-01__blur-6' and f in ['government_warning','bottler_info','net_contents']:vis='uncertain';basis=inspected[r['id']]
+   fields[f]={'visibility':vis,'basis':basis,'annotator':'AVA subagent native vision before inference','referral_appropriate':vis in ['uncertain','absent-in-constructed-source']}
+  annotations[r['id']]=fields
+ images=[D/'images'/f'{i}.png' for i in ['C-SPIRITS-01__glare-5','C-SPIRITS-01__blur-6','C-WINE-01__clean']]+[board,D/'qa/A-FIELD-MISSING-01__glare-5__native.png',D/'qa/W-WARN-REWORD-01__blur-6__native.png']
+ A.save(D/'visibility.json',{'recorded_utc':A.now(),'pre_inference':True,'representative_native_qa_pass':True,'reviewer':'AVA execution subagent; not independent external-reviewer PASS','method':'Native vision_analyze tools used on representative full PNGs and unresized 1:1 detail crops, plus eight-condition full-label overview. No Haiku or other benchmark predictions existed.','inspected_images':{str(p):A.sha(p) for p in images},'observations':inspected,'contact_sheet_observation':'W-WARN-REWORD overview shows full label across clean, angle, blur1/3/6 and glare1/3/5; blur/glare separate, no cropped first/last letters or warning lines; stronger blur visibly degrades small warning.','limits':'Representative QA only. Uninspected fields explicitly not-individually-reviewed; no universal visibility or safe threshold inferred.','annotations':annotations})
+ # All immutable originals and all generated image hashes; independent spot rerender.
+ assert all(A.sha(p)==h for p,h in load(D/'immutable-inputs.json').items())
+ assert all(A.sha(r['image'])==r['sha256'] for r in manifest['fixtures'])
+ import build_corpus as C
+ P=C.module();checked=[]
+ for fid,condition in [('C-WINE-01','glare-5'),('W-WARN-REWORD-01','blur-6'),('A-FIELD-MISSING-01','glare-3')]:
+  r=next(r for r in manifest['fixtures'] if r['id']==fid+'__'+condition)
+  if condition.startswith('blur'):
+   data=P.encode(Image.open(r['source_path']).convert('RGB').filter(ImageFilter.GaussianBlur(int(condition[-1]))))
+  else:data=P.encode(P.optical(r['source_path'],P.GEO,r['parameters'])[0])
+  assert hashlib.sha256(data).hexdigest()==r['sha256'];checked.append(r['id'])
+ A.save(D/'integrity-tests.json',{'status':'PASS','original_files_unchanged':True,'all_generated_hashes_verified':True,'all12_approved_reference_matches':'Verified during corpus build','independent_extra_rerenders':checked,'logical_images':len(manifest['fixtures']),'unique_image_bytes':manifest['unique_image_bytes'],'utc':A.now()})
+ files=[B/'budget-authorization.json',D/'authorization-addendum.json',D/'manifest.json',D/'visibility.json',D/'model-metadata.json',D/'model-endpoints.raw.json',B/'harness.py',B/'recovery-v3/v3.py',B/'recovery-v3/runner.py',B/'recovery-v4/REPORT.txt',D/'adapter.py',D/'run.py',D/'report.py',D/'test_offline.py',D/'build_corpus.py']
+ files += [Path(A.H.REPO)/'bench'/n for n in ['engines.py','scoring.py','replay.py','extraction_validation.py','raw_results.json']]
+ A.save(D/'freeze.json',{'frozen_utc':A.now(),'hashes':{str(p):A.sha(p) for p in files},'manifest_covers_every_image':True,'prompt_settings_sha256':A.prompt_hash()})
+ print('VISIBILITY AND INTEGRITY FROZEN',len(annotations),manifest['unique_image_bytes'])
+if __name__=='__main__':main()

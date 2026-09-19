@@ -1,0 +1,30 @@
+{
+  "verified_utc": "2026-09-18T18:57:17.677050+00:00",
+  "integrity": "PASS",
+  "state": {
+    "status": "running",
+    "pid": 10527,
+    "started_utc": "2026-09-18T18:52:49.515648+00:00",
+    "terminal": false,
+    "unique_planned": 212,
+    "reason": null,
+    "current_fixture": "A-ABV-WRONG-01__blur-2",
+    "updated_utc": "2026-09-18T18:57:16.620834+00:00"
+  },
+  "runner_alive": true,
+  "runner_command": "/opt/data/asset-venv/bin/python -B /opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/run.py --run ",
+  "shared_lock_held": true,
+  "saved_unique_rows": 52,
+  "valid_extraction_rows": 52,
+  "processing_failures": 0,
+  "unique_images_planned": 212,
+  "logical_records": 252,
+  "unique_ledger_attempts": 53,
+  "observed_usage_cost_usd": 0.22158972000000002,
+  "retail_estimate_usd": 0.223828,
+  "unknown_or_inflight_reserves_usd": 0.4565,
+  "shared_total_liability_usd": 9.74105542,
+  "inherited_current_liability_usd": 9.0629657,
+  "all_preexisting_entries_exactly_preserved": true,
+  "note": "Read-only live snapshot; a current in-flight attempt can make ledger count exceed saved rows. report.json may lag one checkpoint."
+}

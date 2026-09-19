@@ -1,0 +1,36 @@
+test_auth_billing_rate_limit_denied (__main__.Continuation.test_auth_billing_rate_limit_denied) ... FAIL
+test_authorized_once_preserves_rows_and_rejects_second_start (__main__.Continuation.test_authorized_once_preserves_rows_and_rejects_second_start) ... FAIL
+test_baseline_drift_denied (__main__.Continuation.test_baseline_drift_denied) ... FAIL
+test_queue_guard_still_stops_after_two_new_failures (__main__.Continuation.test_queue_guard_still_stops_after_two_new_failures) ... ok
+
+======================================================================
+FAIL: test_auth_billing_rate_limit_denied (__main__.Continuation.test_auth_billing_rate_limit_denied)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/test_continuation.py", line 32, in test_auth_billing_rate_limit_denied
+    self.assertTrue(hasattr(run,'initial_failures'))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_authorized_once_preserves_rows_and_rejects_second_start (__main__.Continuation.test_authorized_once_preserves_rows_and_rejects_second_start)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/test_continuation.py", line 21, in test_authorized_once_preserves_rows_and_rejects_second_start
+    self.assertTrue(hasattr(run,'initial_failures'),'one-use continuation is unsupported')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : one-use continuation is unsupported
+
+======================================================================
+FAIL: test_baseline_drift_denied (__main__.Continuation.test_baseline_drift_denied)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/test_continuation.py", line 28, in test_baseline_drift_denied
+    self.assertTrue(hasattr(run,'initial_failures'))
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.097s
+
+FAILED (failures=3)

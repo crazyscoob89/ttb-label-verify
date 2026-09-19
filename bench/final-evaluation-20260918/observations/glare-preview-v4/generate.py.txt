@@ -1,0 +1,103 @@
+"""Glare-only V4. Offline; imports immutable V3 renderer without writing bytecode.
+Run with asset-venv Python; --verify independently rerenders all 18 without writes.
+"""
+import sys
+sys.dont_write_bytecode = True
+import copy, hashlib, importlib.util, json, platform
+from pathlib import Path
+import numpy as np
+from PIL import Image, ImageDraw, ImageFont, __version__ as PIL_VERSION
+ROOT = Path(__file__).resolve().parent
+BASE = ROOT.parent
+STATUS = 'PREVIEW ONLY / NOT APPROVED / NOT MODEL-TESTED'
+APPROVAL = dict(glare='NOT APPROVED; parent vision and Alex review pending', blur='Strength visually approved by Alex: Gaussian sigma 5.5; existing blur-preview-v3 frozen byte-for-byte', publication='Neither glare V4 nor blur V3 corpus cleared for publishing or model calls')
+def sha(p): return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+def dump(p, v): Path(p).write_text(json.dumps(v, indent=2)+'\n')
+def load(p): return json.loads(Path(p).read_text())
+spec = importlib.util.spec_from_file_location('immutable_v3_engine', BASE/'glare-preview-v3/generate.py')
+engine = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(engine)
+engine.GAIN = 3.0
+
+def render(row):
+    im, stats = engine.glare(row['source_path'], row['source_geometry'], row['parameters'])
+    old = np.asarray(Image.open(row['source_path']).convert('RGB'))
+    out = np.asarray(im)
+    newly_white = np.all(out >= 254, axis=2) & ~np.all(old >= 254, axis=2)
+    stats['added_fullheight_white_columns'] = int(newly_white.all(axis=0).sum())
+    assert stats['added_fullheight_white_columns'] == 0
+    assert im.size == (2200, 3200)
+    return engine.encode(im), stats
+
+def check_immutable(inv):
+    actual = {str(p) for name in inv['prior_directories'] for p in (BASE/name).rglob('*') if p.is_file()}
+    assert actual == set(inv['prior_files']), 'Prior directory file set changed'
+    assert all(sha(p) == h for p,h in inv['immutable_hashes'].items()), 'Immutable bytes changed'
+
+def verify(m, inv):
+    checks=[]
+    assert len(m['fixtures']) == len(list((ROOT/'images').glob('*.png'))) == 18
+    for row in m['fixtures']:
+        assert sha(row['source_path']) == row['source_sha256']
+        data, stats = render(row)
+        assert hashlib.sha256(data).hexdigest() == sha(ROOT/row['output']) == row['output_sha256']
+        assert stats == row['effect_checks']
+        checks.append(dict(fixture_id=row['fixture_id'],source_sha256_verified=True,deterministic_full_png_sha256=True,dimensions=[2200,3200],checks=stats))
+    check_immutable(inv)
+    return dict(status='PASS',preview_status=STATUS,approval=APPROVAL,count=18,all18_deterministic_png_hashes=True,all_source_hashes_verified=True,prior_versions_byte_for_byte_unchanged=True,blur_v3_all_files_byte_for_byte_unchanged=True,source_mapping_seed_geometry_verified_against_v3=True,intensity_coefficients_verified_against_original_v1=True,scope='Offline integrity and numerical checks only; not OCR or proof of character readability. Parent vision review pending; no network or inference.',fixtures=checks)
+
+def board(m,bm):
+    row=next(r for r in m['fixtures'] if r['fixture_id']=='C-SPIRITS-01')
+    br=next(r for r in bm['fixtures'] if r['fixture_id']=='C-SPIRITS-01')
+    panels=[('Original',Path(row['source_path'])),('Glare x3 | NOT APPROVED',ROOT/row['output']),('APPROVED blur | sigma 5.5',BASE/'blur-preview-v3'/br['output'])]
+    font=lambda n: ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',n)
+    canvas=Image.new('RGB',(1796,1000),'#f5f2ec'); d=ImageDraw.Draw(canvas)
+    d.text((16,12),'C-SPIRITS-01 | Original / requested glare x3 / approved blur strength',font=font(27),fill='black')
+    d.text((16,52),'Glare opacity capped at 0.65; peak is NOT 3x. Neither corpus cleared for publishing/model calls.',font=font(21),fill='#555555')
+    for j,(title,path) in enumerate(panels):
+        x=16+j*596
+        d.text((x,100),title,font=font(25),fill='black')
+        canvas.paste(Image.open(path).convert('RGB').crop((470,1060,1730,2970)).resize((580,879),Image.Resampling.LANCZOS),(x,140))
+    # Include the entire matched crop without clipping the bottom.
+    full=Image.new('RGB',(1796,1035),'#f5f2ec'); full.paste(canvas,(0,0))
+    for j,(_,path) in enumerate(panels):
+        full.paste(Image.open(path).convert('RGB').crop((470,1060,1730,2970)).resize((580,879),Image.Resampling.LANCZOS),(16+j*596,140))
+    full.save(ROOT/'C-SPIRITS-01-three-way.jpg',quality=95,subsampling=0)
+
+def main():
+    if '--verify' in sys.argv:
+        verify(load(ROOT/'manifest.json'),load(ROOT/'inventory.json')); print('PASS: all18 independent rerenders; all prior files including blur V3 invariant'); return
+    assert not (ROOT/'manifest.json').exists(), 'Refusing overwrite'
+    prior=[p.name for p in BASE.glob('*preview-v*') if p.is_dir() and p != ROOT]
+    hashes={str(p):sha(p) for name in prior for p in (BASE/name).rglob('*') if p.is_file()}
+    inv=dict(prior_directories=prior,prior_files=list(hashes),immutable_hashes=hashes)
+    gm=load(BASE/'glare-preview-v3/manifest.json'); bm=load(BASE/'blur-preview-v3/manifest.json')
+    v1={r['fixture_id']:r for r in load(BASE/'glare-preview-v1/manifest.json')['fixtures']}
+    brows={r['fixture_id']:r for r in bm['fixtures']}
+    evidence=gm['clean_parent_evidence']; assert sha(evidence['path'])==evidence['sha256']; hashes[evidence['path']]=evidence['sha256']
+    (ROOT/'images').mkdir(exist_ok=False)
+    rows=[]
+    for previous in gm['fixtures']:
+        row=copy.deepcopy(previous); ident=row['fixture_id']; original=v1[ident]['parameters']
+        assert row['source_path']==brows[ident]['source_path'] and row['source_sha256']==brows[ident]['source_sha256']
+        for pk,hk in [('source_path','source_sha256'),('original_fixture_bottle_path','original_fixture_bottle_sha256'),('original_source_label_path','original_source_label_sha256'),('original_truth_path','original_truth_sha256')]:
+            assert sha(row[pk])==row[hk]; hashes[row[pk]]=row[hk]
+        p=copy.deepcopy(original)
+        p.update(strength=original['strength']*3.0,edge_strength=original['edge_strength']*3.0,alpha_bound=.65,intensity_gain_from_v1=3.0,requested_intensity_gain_from_v1=3.0,opacity_cap=.65)
+        for k in original:
+            if k not in ['strength','edge_strength','alpha_bound','intensity_gain_from_v1','requested_intensity_gain_from_v1','opacity_cap']:
+                assert p[k]==previous['parameters'][k]
+        row.update(parameters=p,previous_parameters=previous['parameters'],previous_output=str(BASE/'glare-preview-v3'/previous['output']),previous_output_sha256=previous['output_sha256'],previous_source_sha256=previous['source_sha256'],source_same_as_v3=True)
+        data,stats=render(row); (ROOT/row['output']).write_bytes(data)
+        row.update(output_sha256=sha(ROOT/row['output']),dimensions=[2200,3200],effect_checks=stats); rows.append(row)
+        print('GENERATED',ident,flush=True)
+    peaks=[r['effect_checks']['effective_peak_gain_from_v1'] for r in rows]
+    summary=dict(requested_coefficient_gain_from_original_v1=3.0,opacity_cap=.65,effective_peak_gain_from_original_v1_range=[min(peaks),max(peaks)],uncapped_alpha_max_range=[min(r['effect_checks']['uncapped_alpha_max'] for r in rows),max(r['effect_checks']['uncapped_alpha_max'] for r in rows)],opacity_clipped_pixels_total=sum(r['effect_checks']['opacity_clipped_pixels'] for r in rows),limitation='Coefficients are 3x original V1, not 3x V3. Cap plateaus peaks at 0.65; shoulders increase. At least 35% linear source contribution retained. Numerical checks do not guarantee readability.')
+    m=dict(status=STATUS,approval=APPROVAL,effect='glare',version=4,algorithm='Unchanged V3 curved linear-light renderer; strength and edge_strength exactly 3x ORIGINAL V1; alpha cap 0.65',requested_parameters=summary,source_policy=gm['source_policy'],comparison_exception=gm['comparison_exception'],clean_parent_evidence=evidence,source_manifests={str(BASE/n/'manifest.json'):sha(BASE/n/'manifest.json') for n in ['glare-preview-v1','glare-preview-v3','blur-preview-v3']},generator_sha256=sha(__file__),render_engine_path=str(BASE/'glare-preview-v3/generate.py'),render_engine_sha256=sha(BASE/'glare-preview-v3/generate.py'),environment=dict(python=platform.python_version(),numpy=np.__version__,pillow=PIL_VERSION),fixtures=rows)
+    dump(ROOT/'manifest.json',m); dump(ROOT/'inventory.json',inv)
+    board(m,bm)
+    (ROOT/'README.md').write_text('# Glare V4 — '+STATUS+'\n\n18 native 2200 x 3200 PNGs. Glare NOT APPROVED; parent vision and Alex review pending. Blur sigma 5.5 strength visually approved by Alex; blur-preview-v3 is frozen byte-for-byte, not regenerated or relabeled. Neither glare V4 nor blur V3 corpus cleared for publishing or model calls.\n\nStrength and edge_strength are exactly 3.0 times ORIGINAL V1, not V3. Same seeds, geometry, curvature, widths, bloom fraction and clean-parent source mapping as V3. D-BLUR uses C-SPIRITS-01; D-GLARE uses C-MALT-01. D-WARP retains original warp/mild blur. No prior glare output is used as source.\n\n'+json.dumps(summary,indent=2)+'\n\nBoard: C-SPIRITS-01-three-way.jpg, matched full-label crops of original, new glare, and EXISTING approved-strength blur V3. Native PNGs are authoritative. No RGB pixel-identity or character-readability claim; numerical checks rule out added fullheight white bars, saturated full-label rows/columns and newly saturated dark ink, but parent vision review is still required.\n\nReproduce verification without writes: `/opt/data/asset-venv/bin/python generate.py --verify`. Imports the immutable V3 renderer by recorded path/hash with bytecode writing disabled; does NOT execute its main or blur generation. tests.json contains independent full PNG rerender/hash comparisons for all18 and prior-version/blur invariance checks. No network, inference, ZIP, publishing, runner, ledger or unrelated-document changes.\n')
+    tests=verify(m,inv); dump(ROOT/'tests.json',tests)
+    print('PASS',json.dumps(summary),flush=True)
+    print('BOARD',ROOT/'C-SPIRITS-01-three-way.jpg',flush=True)
+if __name__=='__main__': main()

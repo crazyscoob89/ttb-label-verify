@@ -1,0 +1,75 @@
+{
+  "verified_at_utc": "2026-09-18T18:21:28Z",
+  "root": "/opt/data/benchmarks/ttb-foundry-20260918-v1",
+  "result": "PASS: cap/config change and offline tests only",
+  "authorization_quote": "increade the cap to $50",
+  "total_cap_usd": 50,
+  "canonical_runner": "recovery-v3/runner.py",
+  "historical_reporting_directory": "recovery-v4",
+  "test_workdir": "/opt/data",
+  "test_command": "PYTHONPATH=/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3 /opt/data/asset-venv/bin/python -B -m unittest test_budget_authorization test_glare_exclusion test_runner -v",
+  "red": {
+    "command_suffix": "-m unittest test_budget_authorization -v",
+    "tests": 4,
+    "expected_assertion_failures": 3,
+    "passing_existing_invariant": "inherited-envelope mismatch still rejected",
+    "failures": ["root current authorization missing", "canonical guard was 10000000000 rather than 50000000000 nanodollars", "old $10 queue blocked the $41 reservation after $9 inherited/current liability"],
+    "exit_code": 1
+  },
+  "green": {
+    "tests": 13,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "elapsed_seconds": 1.289,
+    "unittest_result": "OK",
+    "scope": "4 new focused tests plus existing glare exclusion and runner regressions",
+    "test_ledgers": "temporary directories only",
+    "provider_calls": 0,
+    "credentials_loaded": false,
+    "runner_main_invoked": false,
+    "proof": ["actual runner budget initialization and queue AST", "50 USD guard", "9 USD existing liability plus 41 USD new reservation reaches 50 TOTAL", "next 0.01 USD blocked both by queue and direct ledger guard", "over_cap_usd equals 0.01", "inherited, known and unknown entries preserved", "restart and duplicate prevention preserved", "inherited-envelope mismatch fails closed"]
+  },
+  "live_runner_observations": {
+    "before_edits_utc": "2026-09-18T18:16:42Z",
+    "before_edits": "No matching benchmark runner processes in ps scan",
+    "after_edits_utc": "2026-09-18T18:20:41.959433+00:00",
+    "after_edits": "No matching runner/harness/run_bench processes in procfs argument and working-directory scan",
+    "processes_started_stopped_or_restarted": false
+  },
+  "preservation": {
+    "preexisting_files_hashed": 2041,
+    "unchanged_preexisting_files": 2039,
+    "modified_preexisting_files": ["recovery-v3/runner.py", "recovery-v3/test_glare_exclusion.py"],
+    "historical_reports_fixtures_approvals_and_ledgers_unchanged": true,
+    "before_manifest_handle": "/tmp/foundry-cap-before-i2s0nth7.json",
+    "before_manifest_sha256": "b1a132689e3b41d4a9e39019a70ae43da02dcef1a552674a65237bc37d7d6bf8",
+    "canonical_liability_usd_read_only": 9.0629657,
+    "inherited_liability_usd_read_only": 7.8558323,
+    "inherited_entry_status": "reserved",
+    "liability_is_not_invoice_verified_spend": true,
+    "ledger_read_mode": "sqlite URI mode=ro; tests never use real ledger"
+  },
+  "modified_or_created_files": [
+    "budget-authorization.json",
+    "BUDGET-AUTHORIZATION.md",
+    "budget-cap-validation.json",
+    "recovery-v3/runner.py",
+    "recovery-v3/test_budget_authorization.py",
+    "recovery-v3/test_glare_exclusion.py"
+  ],
+  "sha256": {
+    "budget-authorization.json": "7ebe065fddaf149f8031d8069328a1569daf16f81a4f7f8469b1df0583d1733d",
+    "BUDGET-AUTHORIZATION.md": "956d5c885e36d62033fa226ca2f1932020bc2dd2acada6163f1b1149c4767b35",
+    "recovery-v3/runner.py": "98b0868b07b7d1fa13cb7c4c31ebb46230a7e538d1e3fe7d7121229499e3e046",
+    "recovery-v3/test_budget_authorization.py": "8daec6fa2142d36fbf825e6af6d6cd22f559066b893d65cdb49e378fafbf776a",
+    "recovery-v3/test_glare_exclusion.py": "b811471e9a7545b20c3690232a36a1d41b9d1ea399e560ac80740f593cfb4293",
+    "budget.sqlite": "cc9c1b0ac97169f88ff3936ab32111dfb2570fc2b36e0eca5fa9f6d68d54cb63",
+    "recovery-v3/budget.sqlite": "e804209e72bae5cf079fe94de869605d18bd555c86d84d73b365eabe0f099680",
+    "recovery-v3/accounting-before/budget.sqlite": "9e21e5bf2869dfed75d3934104fe212bcdfe9240d542d6b24ae3a9af8e09890c",
+    "severity-ladder-preview-v1/SCALE-APPROVAL.md": "81d1ab0a244f81b131060a9d44121d4ed302b4b6e945ca5c1d7295c89e6f35cd"
+  },
+  "forbidden_actions_performed": [],
+  "issues": ["The initial process command used unavailable python; rerun successfully with python3 before any edits.", "Historical acceptance tests opening the real ledger were deliberately not run; only the named offline modules were executed."],
+  "limitations": ["No paid/live benchmark acceptance attempted or authorized by this change.", "No provider-wide billing cap claimed.", "Scale fixture execution remains unchanged; this change does not enqueue new cases."]
+}

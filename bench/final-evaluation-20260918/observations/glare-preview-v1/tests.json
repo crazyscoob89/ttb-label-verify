@@ -1,0 +1,351 @@
+{
+  "status": "PASS",
+  "scope": "Artifact integrity and deterministic rendering only; NOT model/OCR or human acceptance testing",
+  "all_source_hashes_preserved": true,
+  "all18_png_hash_regeneration": true,
+  "count": 18,
+  "fixtures": [
+    {
+      "fixture_id": "C-SPIRITS-01",
+      "deterministic_png_sha256_match": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.304660859519137,
+        "source_weight_min": 0.695339140480863,
+        "label_alpha_max": 0.304660859519137,
+        "label_fraction_alpha_above_020": 0.04620991089178169,
+        "label_max_row_fraction_alpha_above_020": 0.16153205661948378,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 1.423044030606834,
+        "outside_bottle_changed_pixels": 0
+      }
+    },
+    {
+      "fixture_id": "C-WINE-01",
+      "deterministic_png_sha256_match": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.37969372208556246,
+        "source_weight_min": 0.6203062779144375,
+        "label_alpha_max": 0.37969372208556246,
+        "label_fraction_alpha_above_020": 0.05356286202329134,
+        "label_max_row_fraction_alpha_above_020": 0.15903413821815154,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 1.3747229612179552,
+        "outside_bottle_changed_pixels": 0
+      }
+    },
+    {
+      "fixture_id": "C-MALT-01",
+      "deterministic_png_sha256_match": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.3496583762032242,
+        "source_weight_min": 0.6503416237967758,
+        "label_alpha_max": 0.3496583762032242,
+        "label_fraction_alpha_above_020": 0.08543693263743628,
+        "label_max_row_fraction_alpha_above_020": 0.2373022481265612,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 2.3553281028230764,
+        "outside_bottle_changed_pixels": 0
+      }
+    },
+    {
+      "fixture_id": "C-SPIRITS-IMPORT-01",
+      "deterministic_png_sha256_match": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.3035988434520238,
+        "source_weight_min": 0.6964011565479762,
+        "label_alpha_max": 0.3035988434520238,
+        "label_fraction_alpha_above_020": 0.04574417434432462,
+        "label_max_row_fraction_alpha_above_020": 0.15986677768526228,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 1.7087801718983051,
+        "outside_bottle_changed_pixels": 0
+      }
+    },
+    {
+      "fixture_id": "A-WARN-TITLECASE-01",
+      "deterministic_png_sha256_match": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.3225383296063239,
+        "source_weight_min": 0.6774616703936761,
+        "label_alpha_max": 0.3225383296063239,
+        "label_fraction_alpha_above_020": 0.07549806055929002,
+        "label_max_row_fraction_alpha_above_020": 0.1965029142381349,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 1.94909030189386,
+        "outside_bottle_changed_pixels": 0
+      }
+    },
+    {
+      "fixture_id": "A-WARN-BOLDBODY-01",
+      "deterministic_png_sha256_match": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.3772387442797458,
+        "source_weight_min": 0.6227612557202542,
+        "label_alpha_max": 0.3772387442797458,
+        "label_fraction_alpha_above_020": 0.06879993862386584,
+        "label_max_row_fraction_alpha_above_020": 0.19983347210657784,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 2.0661174405249465,
+        "outside_bottle_changed_pixels": 0
+      }
+    },
+    {
+      "fixture_id": "A-BRAND-CASE-01",
+      "deterministic_png_sha256_match": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.3165949240700226,
+        "source_weight_min": 0.6834050759299775,
+        "label_alpha_max": 0.3165949240700226,
+        "label_fraction_alpha_above_020": 0.06716444516651661,
+        "label_max_row_fraction_alpha_above_020": 0.1781848459616986,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 1.7643192551825602,
+        "outside_bottle_changed_pixels": 0
+      }
+    },
+    {
+      "fixture_id": "A-ABV-WRONG-01",
+      "deterministic_png_sha256_match": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.3401600447504646,
+        "source_weight_min": 0.6598399552495354,
+        "label_alpha_max": 0.3401600447504646,
+        "label_fraction_alpha_above_020": 0.06210723222969115,
+        "label_max_row_fraction_alpha_above_020": 0.18151540383014156,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 2.1885235655021,
+        "outside_bottle_changed_pixels": 0
+      }
+    },
+    {
+      "fixture_id": "A-FIELD-MISSING-01",
+      "deterministic_png_sha256_match": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.32307892469460336,
+        "source_weight_min": 0.6769210753053967,
+        "label_alpha_max": 0.32307892469460336,
+        "label_fraction_alpha_above_020": 0.07081993550992963,
+        "label_max_row_fraction_alpha_above_020": 0.1823480432972523,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 2.0515600143511845,
+        "outside_bottle_changed_pixels": 0
+      }
+    },
+    {
+      "fixture_id": "A-INJECT-PROMPT-01",
+      "deterministic_png_sha256_match": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.3450884142371514,
+        "source_weight_min": 0.6549115857628486,
+        "label_alpha_max": 0.3450884142371514,
+        "label_fraction_alpha_above_020": 0.06370571948850214,
+        "label_max_row_fraction_alpha_above_020": 0.16402997502081598,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 1.5229160884448145,
+        "outside_bottle_changed_pixels": 0
+      }
+    },
+    {
+      "fixture_id": "W-BRAND-WRONG-01",
+      "deterministic_png_sha256_match": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.3415035304332909,
+        "source_weight_min": 0.658496469566709,
+        "label_alpha_max": 0.3415035304332909,
+        "label_fraction_alpha_above_020": 0.0723358357646857,
+        "label_max_row_fraction_alpha_above_020": 0.18484596169858453,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 1.8414649941670107,
+        "outside_bottle_changed_pixels": 0
+      }
+    },
+    {
+      "fixture_id": "W-ABV-4045-01",
+      "deterministic_png_sha256_match": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.3419717028711783,
+        "source_weight_min": 0.6580282971288217,
+        "label_alpha_max": 0.3419717028711783,
+        "label_fraction_alpha_above_020": 0.06546892946031875,
+        "label_max_row_fraction_alpha_above_020": 0.17069109075770192,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 2.1362929266261856,
+        "outside_bottle_changed_pixels": 0
+      }
+    },
+    {
+      "fixture_id": "W-NETCONTENTS-WRONG-01",
+      "deterministic_png_sha256_match": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.305713704576527,
+        "source_weight_min": 0.694286295423473,
+        "label_alpha_max": 0.305713704576527,
+        "label_fraction_alpha_above_020": 0.05567988735674201,
+        "label_max_row_fraction_alpha_above_020": 0.1990008326394671,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 1.5015779533315732,
+        "outside_bottle_changed_pixels": 0
+      }
+    },
+    {
+      "fixture_id": "W-WARN-REWORD-01",
+      "deterministic_png_sha256_match": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.3562502032703795,
+        "source_weight_min": 0.6437497967296205,
+        "label_alpha_max": 0.3562502032703795,
+        "label_fraction_alpha_above_020": 0.07544435644189915,
+        "label_max_row_fraction_alpha_above_020": 0.18151540383014156,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 2.229573368173315,
+        "outside_bottle_changed_pixels": 0
+      }
+    },
+    {
+      "fixture_id": "W-BRAND-SPLITLINE-01",
+      "deterministic_png_sha256_match": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.3357033827779785,
+        "source_weight_min": 0.6642966172220215,
+        "label_alpha_max": 0.3357033827779785,
+        "label_fraction_alpha_above_020": 0.044053171589168015,
+        "label_max_row_fraction_alpha_above_020": 0.14654454621149043,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 1.1390219081208297,
+        "outside_bottle_changed_pixels": 0
+      }
+    },
+    {
+      "fixture_id": "D-BLUR-01",
+      "deterministic_png_sha256_match": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.35476568729242264,
+        "source_weight_min": 0.6452343127075774,
+        "label_alpha_max": 0.35476568729242264,
+        "label_fraction_alpha_above_020": 0.0577594551965503,
+        "label_max_row_fraction_alpha_above_020": 0.16985845129059118,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 1.1017990879325945,
+        "outside_bottle_changed_pixels": 0
+      }
+    },
+    {
+      "fixture_id": "D-WARP-01",
+      "deterministic_png_sha256_match": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.364378334627513,
+        "source_weight_min": 0.635621665372487,
+        "label_alpha_max": 0.364378334627513,
+        "label_fraction_alpha_above_020": 0.07637221917598026,
+        "label_max_row_fraction_alpha_above_020": 0.18151540383014156,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 3.417435786347872,
+        "outside_bottle_changed_pixels": 0
+      }
+    },
+    {
+      "fixture_id": "D-GLARE-01",
+      "deterministic_png_sha256_match": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.3628749616210965,
+        "source_weight_min": 0.6371250383789036,
+        "label_alpha_max": 0.3628749616210965,
+        "label_fraction_alpha_above_020": 0.07016510631384415,
+        "label_max_row_fraction_alpha_above_020": 0.16902581182348042,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 2.1534958447003287,
+        "outside_bottle_changed_pixels": 0
+      }
+    }
+  ]
+}

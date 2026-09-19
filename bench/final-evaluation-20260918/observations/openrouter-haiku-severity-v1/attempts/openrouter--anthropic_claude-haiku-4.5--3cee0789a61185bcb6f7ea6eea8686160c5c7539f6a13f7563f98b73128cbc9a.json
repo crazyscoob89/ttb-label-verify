@@ -1,0 +1,96 @@
+{
+  "id": "openrouter--anthropic_claude-haiku-4.5--3cee0789a61185bcb6f7ea6eea8686160c5c7539f6a13f7563f98b73128cbc9a",
+  "provider": "openrouter",
+  "model": "anthropic/claude-haiku-4.5",
+  "engine": "anthropic/claude-haiku-4.5",
+  "route": "https://openrouter.ai/api/v1/chat/completions",
+  "upstream_policy": "Anthropic only; no provider fallback",
+  "fixture": {
+    "id": "C-SPIRITS-IMPORT-01__glare-2",
+    "source_fixture": "C-SPIRITS-IMPORT-01",
+    "condition": "glare-2",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/C-SPIRITS-IMPORT-01__glare-2.png",
+    "sha256": "d21ed586b281ec594ebb0b9524f5a5b91156f8b126ccf924b0786dcd4ab53afe",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-SPIRITS-IMPORT-01.png",
+    "source_sha256": "7557567bdfcfb73dbbf29ca3c1ee615857dd958bd0f44c144788ce0b898206ec",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/C-SPIRITS-IMPORT-01.png",
+    "original_label_sha256": "a1a8009fec8552dbbaa4610274f08b3fffaf841efc092f0de53a1af953d5e24d",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/C-SPIRITS-IMPORT-01.json",
+    "original_truth_sha256": "a5929f251146c3ecce0ec5f411795438343f4cd05f50af61b5e355eb76dd9425",
+    "source_fixture_id": "C-SPIRITS-IMPORT-01",
+    "clean_parent_substitution": false,
+    "inherited_degradation": "none",
+    "parameters": {
+      "seed": 1507575473,
+      "center_u": -0.3235146017386067,
+      "center_y": 2062.5052414739253,
+      "sigma_y": 374.2570430978624,
+      "angular_width": 0.1417351396437033,
+      "curve": -0.032762830797786836,
+      "strength": 0.6093227621574172,
+      "edge_strength": 0.26,
+      "bloom_fraction": 0.12,
+      "alpha_bound": 0.65,
+      "intensity_gain_from_v1": 2,
+      "requested_intensity_gain_from_v1": 2,
+      "opacity_cap": 0.65
+    },
+    "measurements": {
+      "effective_alpha_peak": 0.609321719038274,
+      "uncapped_alpha_peak": 0.609321719038274,
+      "opacity_cap": 0.65,
+      "clipped_pixel_count": 0,
+      "clipped_fraction_full_image": 0.0,
+      "source_weight_min": 0.39067828096172597
+    }
+  },
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/C-SPIRITS-IMPORT-01__glare-2.png",
+  "image_sha256": "d21ed586b281ec594ebb0b9524f5a5b91156f8b126ccf924b0786dcd4ab53afe",
+  "prompt_settings_sha256": "ba93d7e53b184d2f74384c66eebdb59f523faf427337a9e3b2e702322f09040d",
+  "request_sha256": "85c1e081c9c2927641d0138a06bb7db74762dc387b3c1c6bff415c9df779d803",
+  "started_at": "2026-09-18T19:13:08.289342+00:00",
+  "reserved_usd": 0.4565,
+  "max_output_tokens": 3000,
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "usage_cost_usd": 0.00429066,
+  "retail_estimate_usd": 0.004334,
+  "http_status": 200,
+  "request_id": null,
+  "latency_s": 4.299173602019437,
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/responses/openrouter--anthropic_claude-haiku-4.5--3cee0789a61185bcb6f7ea6eea8686160c5c7539f6a13f7563f98b73128cbc9a.json",
+  "response_sha256": "69c145606410c3f99ff65e19601a7818fa14899c2d3013070026509460c93c03",
+  "usage": {
+    "prompt_tokens": 2354,
+    "completion_tokens": 396,
+    "total_tokens": 2750,
+    "cost": 0.00429066,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.004334,
+      "upstream_inference_prompt_cost": 0.002354,
+      "upstream_inference_completions_cost": 0.00198
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "generation_id": "gen-1789758789-kLtfRvLYFhDLqIve28lg",
+  "returned_model": "anthropic/claude-haiku-4.5",
+  "returned_provider": "Anthropic"
+}

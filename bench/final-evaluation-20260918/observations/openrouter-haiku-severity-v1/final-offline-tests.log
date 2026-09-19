@@ -1,0 +1,20 @@
+test_concurrent_cap_atomicity (__main__.Offline.test_concurrent_cap_atomicity) ... ok
+test_glare_allowlist (__main__.Offline.test_glare_allowlist) ... ok
+test_http_retains_raw_reservation_no_retry (__main__.Offline.test_http_retains_raw_reservation_no_retry) ... {"id": "openrouter--anthropic_claude-haiku-4.5--de81987f90321749857ede6b109e3219c1c4f5a45f7e0af6178679281d506593", "condition": "clean", "source": null, "ok": false, "error": "http-503", "seconds": 0.00026721495669335127, "usage_cost": null, "liability": 0.2365}
+ok
+test_identity_provider_and_prompt_separation (__main__.Offline.test_identity_provider_and_prompt_separation) ... ok
+test_pricing_cost_separation_unknowns (__main__.Offline.test_pricing_cost_separation_unknowns) ... ok
+test_report_negative_fields_and_processing_failures (__main__.Offline.test_report_negative_fields_and_processing_failures) ... ok
+test_schema_failure_kept_and_observed_cost_settled (__main__.Offline.test_schema_failure_kept_and_observed_cost_settled) ... {"id": "openrouter--anthropic_claude-haiku-4.5--2b99569b73029699f7bc1ef923cf7444595cdb0932fb10ff9daf59fa3088fb90", "condition": "clean", "source": null, "ok": false, "error": "JSONDecodeError", "seconds": 0.00010470603592693806, "usage_cost": 0.001, "liability": 0.001}
+ok
+test_schema_scorer_and_payload_parity (__main__.Offline.test_schema_scorer_and_payload_parity) ... ok
+test_settlement_overage_stops_preserves_actual (__main__.Offline.test_settlement_overage_stops_preserves_actual) ... ok
+test_shared_cap_inheritance_exact_boundary_restart (__main__.Offline.test_shared_cap_inheritance_exact_boundary_restart) ... ok
+test_stop_flags_archived_exact_only (__main__.Offline.test_stop_flags_archived_exact_only) ... ok
+test_transport_failure_durable_unknown_and_dedupe (__main__.Offline.test_transport_failure_durable_unknown_and_dedupe) ... {"id": "openrouter--anthropic_claude-haiku-4.5--53ea8b5fcf26914f51224a036b025e209598c670e41781e648884e244e9684d3", "condition": "clean", "source": null, "ok": false, "error": "TimeoutError", "seconds": 0.0003570200642570853, "usage_cost": null, "liability": 0.2365}
+ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.726s
+
+OK

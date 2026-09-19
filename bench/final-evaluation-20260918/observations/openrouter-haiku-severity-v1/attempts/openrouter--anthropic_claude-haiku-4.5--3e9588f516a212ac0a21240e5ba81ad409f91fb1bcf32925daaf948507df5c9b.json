@@ -1,0 +1,96 @@
+{
+  "id": "openrouter--anthropic_claude-haiku-4.5--3e9588f516a212ac0a21240e5ba81ad409f91fb1bcf32925daaf948507df5c9b",
+  "provider": "openrouter",
+  "model": "anthropic/claude-haiku-4.5",
+  "engine": "anthropic/claude-haiku-4.5",
+  "route": "https://openrouter.ai/api/v1/chat/completions",
+  "upstream_policy": "Anthropic only; no provider fallback",
+  "fixture": {
+    "id": "C-WINE-01__glare-2",
+    "source_fixture": "C-WINE-01",
+    "condition": "glare-2",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/C-WINE-01__glare-2.png",
+    "sha256": "ca0acc540a12914de1ba728ed1377bacdb7aba0ba4080774c73c2dab6699f380",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-WINE-01.png",
+    "source_sha256": "3e2506cb620c53fb1a267cd3bf12f38397c02bfdab849bd4aa87a2b528537eb3",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/C-WINE-01.png",
+    "original_label_sha256": "c718da519884fd0f496e166a97250a40decd98bf90a8511c7af335cab5bea771",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/C-WINE-01.json",
+    "original_truth_sha256": "35ff0e303cd93337c5a88893ab8c495e1280c5d245be318f389ec1afa7b3fc9b",
+    "source_fixture_id": "C-WINE-01",
+    "clean_parent_substitution": false,
+    "inherited_degradation": "none",
+    "parameters": {
+      "seed": 1507575473,
+      "center_u": -0.3235146017386067,
+      "center_y": 2062.5052414739253,
+      "sigma_y": 374.2570430978624,
+      "angular_width": 0.1417351396437033,
+      "curve": -0.032762830797786836,
+      "strength": 0.6093227621574172,
+      "edge_strength": 0.26,
+      "bloom_fraction": 0.12,
+      "alpha_bound": 0.65,
+      "intensity_gain_from_v1": 2,
+      "requested_intensity_gain_from_v1": 2,
+      "opacity_cap": 0.65
+    },
+    "measurements": {
+      "effective_alpha_peak": 0.609321719038274,
+      "uncapped_alpha_peak": 0.609321719038274,
+      "opacity_cap": 0.65,
+      "clipped_pixel_count": 0,
+      "clipped_fraction_full_image": 0.0,
+      "source_weight_min": 0.39067828096172597
+    }
+  },
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/C-WINE-01__glare-2.png",
+  "image_sha256": "ca0acc540a12914de1ba728ed1377bacdb7aba0ba4080774c73c2dab6699f380",
+  "prompt_settings_sha256": "ba93d7e53b184d2f74384c66eebdb59f523faf427337a9e3b2e702322f09040d",
+  "request_sha256": "6f22d081d3ba2701ca673f3e1b87f0cdaf8aa96e929477f7c5eb64ecab967845",
+  "started_at": "2026-09-18T19:13:13.702313+00:00",
+  "reserved_usd": 0.4565,
+  "max_output_tokens": 3000,
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "usage_cost_usd": 0.00426591,
+  "retail_estimate_usd": 0.004309,
+  "http_status": 200,
+  "request_id": null,
+  "latency_s": 4.2358927599852905,
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/responses/openrouter--anthropic_claude-haiku-4.5--3e9588f516a212ac0a21240e5ba81ad409f91fb1bcf32925daaf948507df5c9b.json",
+  "response_sha256": "7b16ce1925c2a562168f9451b529a2a869dc70dcca85946d7a3d2e9f72e98ec8",
+  "usage": {
+    "prompt_tokens": 2354,
+    "completion_tokens": 391,
+    "total_tokens": 2745,
+    "cost": 0.00426591,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.004309,
+      "upstream_inference_prompt_cost": 0.002354,
+      "upstream_inference_completions_cost": 0.001955
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "generation_id": "gen-1789758794-MzJCYtg18ze0FjQX7QF6",
+  "returned_model": "anthropic/claude-haiku-4.5",
+  "returned_provider": "Anthropic"
+}

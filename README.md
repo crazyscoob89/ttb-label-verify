@@ -1,5 +1,17 @@
 # TTB Label Verify
 
+## Latest completed benchmark — start here
+
+**[Final Azure + Haiku + severity results, timing, costs and model decision](BENCHMARK-RESULTS.md)**
+
+The completed September 18 battery is now archived with raw responses, failed
+attempts, images, scoring, cost ledger and a portable offline verifier. See the
+[benchmark landing page](bench/README.md) and
+[publication record](docs/reviews/16-final-benchmark-publication.md).
+Older root benchmark counts below describe the historical flat-label run only;
+they are not the latest seven-engine comparison. Publication is not deployment
+or new independent benchmark approval.
+
 Prototype for comparing each alcohol beverage label image with its own
 applicant-declared application record across seven field categories, with
 statutory government-warning checks (27 CFR Parts 4, 5, 7, and 16). This is
@@ -24,7 +36,7 @@ Open the [v3 design entry point](docs/ui/v3/README.md) for the downloadable offl
 
 **Explicit scope amendment:** earlier sections/docs describe stateless processing without accounts or retained content. The proposed next design adds individual reviewer identity and private, version-bound persistent review history, subject to approval of destinations, retention and access. The legacy no-retention statements below are preserved baseline requirements, not claims that persistence is implemented or a newly approved target remains stateless. Upload/inference/spend safety gates still apply. See [review provenance and open decisions](docs/reviews/09-governance-design-package.md).
 
-The benchmark counts below describe the root archived evidence set, not a claim to summarize every later experiment. This documentation package neither republishes nor changes later benchmark results.
+The benchmark counts below describe the root archived evidence set, not every later experiment. The additive [final benchmark publication](BENCHMARK-RESULTS.md) now supplies those later results without changing the historical archive.
 
 ## Documentation and evidence
 

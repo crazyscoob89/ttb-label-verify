@@ -1,0 +1,84 @@
+{
+  "id": "azure-foundry--Kimi-K2.6--85b21787533a3a47e75acbe4029109c61af7dcf58a5db69e7868df629c00d47d",
+  "provider": "azure-foundry",
+  "operator": "AVA-azure-severity-v1",
+  "model": "Kimi-K2.6",
+  "engine": "Kimi-K2.6",
+  "fixture_id": "W-BRAND-SPLITLINE-01",
+  "fixture": {
+    "id": "W-BRAND-SPLITLINE-01__straight",
+    "source_fixture": "W-BRAND-SPLITLINE-01",
+    "condition": "straight",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/W-BRAND-SPLITLINE-01__straight.png",
+    "sha256": "0d808655c0372f5c6ceb60d280a4773e20f8e35b33c3c599263112be17899b8a",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/W-BRAND-SPLITLINE-01__straight.png",
+    "source_sha256": "0d808655c0372f5c6ceb60d280a4773e20f8e35b33c3c599263112be17899b8a",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/W-BRAND-SPLITLINE-01.png",
+    "original_label_sha256": "b83ade16f1e48719f138eadaa2af82ca8154909b4d60113299a0d47c1249f4e2",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/W-BRAND-SPLITLINE-01.json",
+    "original_truth_sha256": "c281fb488bbacfde99ad8c979ddaa876128f4b902b5cecc37564ddb8c647ff68",
+    "source_fixture_id": "W-BRAND-SPLITLINE-01",
+    "clean_parent_substitution": false,
+    "inherited_degradation": "unchanged accepted control; may include original source degradation",
+    "parameters": {
+      "seed": 20260918,
+      "randomness_used": false,
+      "resolution": [
+        2200,
+        3200
+      ],
+      "source_pixels_only": true,
+      "condition": "straight",
+      "content_bounds": [
+        0,
+        0,
+        2200,
+        3200
+      ]
+    },
+    "measurements": {}
+  },
+  "repeat": 1,
+  "condition": "straight",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.015687700000000002,
+  "request_sha256": "6219b85cbac76dc436cc69ffbb905fa6a375d4f7aa88fcdcefa037d1f87ce4d6",
+  "prompt_settings_sha256": "cbae9f332d5065a1dd8bf55b66ae42a7a61cc7e144f79bcf3b80e25ada48a0a2",
+  "image_sha256": "0d808655c0372f5c6ceb60d280a4773e20f8e35b33c3c599263112be17899b8a",
+  "transport": "chat",
+  "started_at": "2026-09-18T19:49:03.416403+00:00",
+  "reserved_usd": 1.10896192,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/W-BRAND-SPLITLINE-01__straight.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "old_request_ids": [
+    "Kimi-K2.6--W-BRAND-SPLITLINE-01--straight--1"
+  ],
+  "http_status": 200,
+  "request_id": "926c56d4-8293-4129-a3fc-6a601507cf25",
+  "latency_s": 33.81504169292748,
+  "response_sha256": "77b653985c0f84c97c8bd45d95553c6df5120061f4df2800f32cf3a0b4194c31",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/azure-severity-v1/responses/azure-foundry--Kimi-K2.6--85b21787533a3a47e75acbe4029109c61af7dcf58a5db69e7868df629c00d47d.json",
+  "tokens_in": 4926,
+  "tokens_out": 2752,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 4926,
+    "completion_tokens": 2752,
+    "total_tokens": 7678,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 704,
+      "image_tokens": 4212
+    }
+  },
+  "returned_model": "Kimi-K2.6"
+}

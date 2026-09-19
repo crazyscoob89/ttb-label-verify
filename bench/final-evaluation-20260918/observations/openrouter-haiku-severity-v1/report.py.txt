@@ -1,0 +1,66 @@
+"""Offline reports only; no provider requests. May run safely to inspect partial progress."""
+import sys
+sys.dont_write_bytecode=True
+import json,math,statistics,sqlite3,collections,copy,os
+from pathlib import Path
+import adapter as A
+D=A.D;B=A.B
+load=lambda p:json.loads(Path(p).read_text())
+def pct(xs,p):
+ if not xs:return None
+ s=sorted(xs);i=(len(s)-1)*p;lo=math.floor(i);hi=math.ceil(i);return s[lo]+(s[hi]-s[lo])*(i-lo)
+def summarize(rows):
+ n=len(rows);valid=[r for r in rows if r['ok']];neg=[(r,f) for r in rows for f in A.H.S.FIELDS if r['truth'][f]=='mismatch']
+ return {'calls':n,'schema_valid_calls':len(valid),'processing_failures':n-len(valid),'negative_fields':len(neg),'false_matches':sum(r['verdicts'][f]=='match' for r,f in neg),'negative_calls':sum(any(t=='mismatch' for t in r['truth'].values()) for r in rows),'false_match_calls':sum(any(r['truth'][f]=='mismatch' and r['verdicts'][f]=='match' for f in A.H.S.FIELDS) for r in rows),'valid_referral_calls':sum(any(v=='needs-review' for v in r['verdicts'].values()) for r in valid),'valid_referral_fields':sum(v=='needs-review' for r in valid for v in r['verdicts'].values()),'failure_referral_fields':sum(v=='needs-review' for r in rows if not r['ok'] for v in r['verdicts'].values()),'field_correct':{f:sum(r['extraction_correct'][f] for r in rows) for f in A.H.S.FIELDS},'all_fields_correct':sum(all(r['extraction_correct'].values()) for r in rows),'latency_p50_s':pct([r['latency_s'] for r in rows if r.get('latency_s') is not None],.5),'latency_p95_s':pct([r['latency_s'] for r in rows if r.get('latency_s') is not None],.95)}
+
+def report():
+ m=load(D/'manifest.json');raw,gt=A.H.R.load_evidence();responses={r['id']:r for p in (D/'rows').glob('*.json') for r in [load(p)]}
+ visibility=load(D/'visibility.json') if (D/'visibility.json').exists() else {'annotations':{}}
+ scored=[];coverage=[]
+ for f in m['fixtures']:
+  ident=A.identity(f['sha256'],A.prompt_hash());r=responses.get(ident)
+  coverage.append({'fixture':f['id'],'attempt_id':ident,'image_sha256':f['sha256'],'row_saved':r is not None})
+  if r is None:continue
+  row=A.H.score(dict(r),gt[f['source_fixture']]);row.update(condition=f['condition'],logical_fixture_id=f['id'],source_fixture=f['source_fixture'],visibility=visibility['annotations'].get(f['id']),reused_observation=r['fixture'].get('id')!=f['id'])
+  scored.append(row)
+ # Primary per-condition denominators dedupe byte-identical labels, rather than
+ # counting clean-parent aliases as independent images. All aliases remain in rows.
+ by=collections.defaultdict(dict)
+ for r in scored:by[r['condition']].setdefault(r['image_sha256'],r)
+ conditions=['clean','straight','angle']+[f'blur-{i}' for i in range(1,7)]+[f'glare-{i}' for i in range(1,6)]
+ metrics={c:summarize(list(by[c].values())) for c in conditions}
+ c=sqlite3.connect('file:'+str(B/'recovery-v3/budget.sqlite')+'?mode=ro',uri=True)
+ entries=[dict(id=i,nano=n,status=s) for i,n,s in c.execute('select id,nano,status from ledger order by id')];c.close()
+ before=load(D/'ledger-before.json');current={r['id']:r for r in entries};preserved=all(current.get(r['id'])==r for r in before['entries'])
+ new=[r for r in entries if r['id'].startswith('openrouter--anthropic_claude-haiku-4.5--')]
+ costs={'usage_cost_usd':sum(r['usage_cost_usd'] for r in responses.values() if r.get('usage_cost_usd') is not None),'usage_cost_known_calls':sum(r.get('usage_cost_usd') is not None for r in responses.values()),'retail_estimate_usd':sum(r['retail_estimate_usd'] for r in responses.values() if r.get('retail_estimate_usd') is not None),'tokens_in':sum((r.get('usage') or {}).get('prompt_tokens') or 0 for r in responses.values()),'tokens_out':sum((r.get('usage') or {}).get('completion_tokens') or 0 for r in responses.values()),'new_liability_usd':sum(r['nano'] for r in new)/1e9,'new_unknown_or_inflight_liability_usd':sum(r['nano'] for r in new if r['status']!='openrouter-usage-cost')/1e9,'inherited_current_batch_liability_usd':before['liability_usd'],'shared_total_liability_usd':sum(r['nano'] for r in entries)/1e9,'cap_usd':load(B/'budget-authorization.json')['total_cap_usd'],'all_preexisting_ledger_entries_exactly_preserved':preserved,'not_invoice':True}
+ historical=[A.H.score(dict(r),gt[r['fixture_id']]) for r in raw['results'] if 'haiku' in r['engine']]
+ # Exact fixed repeat1 same source IDs, with no fresh flat call.
+ paired=[]
+ for condition in ['straight','angle']:
+  hs={r['fixture_id']:r for r in historical if r['repeat']==1};newrows={r['source_fixture']:r for r in scored if r['condition']==condition}
+  for fid,r in newrows.items():
+   old=hs[fid];paired.append({'fixture_id':fid,'condition':condition,'historical_flat_correct':sum(old['extraction_correct'].values()),'new_bottle_correct':sum(r['extraction_correct'].values()),'fields':len(A.H.S.FIELDS),'historical_latency_s':old['latency_s'],'new_latency_s':r['latency_s']})
+ confidence=collections.defaultdict(lambda:{'n':0,'correct':0})
+ for rows in by.values():
+  for r in rows.values():
+   if not r['ok']:continue
+   for f in A.H.S.FIELDS:
+    v=A.H.S.field_confidence(r['extracted'],f)
+    if v is None:continue
+    bucket='<0.75' if v<.75 else ('0.75-<0.9' if v<.9 else '0.9-1.0')
+    k=r['condition']+'|'+f+'|'+bucket;confidence[k]['n']+=1;confidence[k]['correct']+=r['extraction_correct'][f]
+ state=load(D/'execution-state.json') if (D/'execution-state.json').exists() else {'status':'not-dispatched'}
+ result={'generated_utc':A.now(),'state':state,'unique_requests_with_saved_rows':len(responses),'unique_requests_reserved':len(new),'logical_observations_scored':len(scored),'logical_images':len(m['fixtures']),'unique_images_planned':m['unique_image_bytes'],'conditions':metrics,'costs':costs,'confidence_bins':dict(confidence),'historical_flat_context':summarize(historical),'historical_evidence_sha256':A.H.R.RAW_SHA256,'paired_flat_bottle':paired,'limitations':['Synthetic controlled renders, not universal photo accuracy or confidence thresholds.','No calibrated threshold or held-out evaluation completed; hold out source labels, never sibling transforms.','Per-condition denominators dedupe identical bytes; the same observation can serve clean and straight with explicit provenance. Do not sum conditions as independent paid calls.','OpenRouter -> Anthropic only. Results do NOT establish Azure tenant availability, hosting, network compliance or latency.','Latency is nonstreaming request-to-complete, not TTFT or UI latency.','Visibility is pre-inference representative native QA plus explicitly labelled unreviewed fields, not exhaustive human character inspection.']}
+ A.save(D/'report.json',result);A.save(D/'scored-rows.json',scored);A.save(D/'coverage.json',coverage)
+ lines=['CLAUDE HAIKU 4.5 — OPENROUTER SYNTHETIC BOTTLE SEVERITY',f"State: {state['status']}; saved unique request rows {len(responses)}/{m['unique_image_bytes']}; scored logical aliases {len(scored)}/{len(m['fixtures'])}.",f"Generated UTC: {result['generated_utc']}",'','Costs (do not add estimates to observed cost):',json.dumps(costs,indent=2),'','Primary per-condition results (byte-unique denominator; every failed row retained):','condition | calls | correct fields/all | false matches/negative fields | valid referral calls | processing failures | p50/p95 seconds']
+ for name,x in metrics.items():
+  lines.append(f"{name} | {x['calls']} | {sum(x['field_correct'].values())}/{7*x['calls']} | {x['false_matches']}/{x['negative_fields']} | {x['valid_referral_calls']} | {x['processing_failures']} | {x['latency_p50_s']}/{x['latency_p95_s']}")
+ lines+=['','Per-field normalized extraction correctness (including correctly absent nulls; failures incorrect):','condition | field | correct/all']
+ for name,x in metrics.items():
+  for f,n in x['field_correct'].items():lines.append(f"{name} | {f} | {n}/{x['calls']}")
+ lines+=['','Historical context (original frozen flat observations; no reruns):',json.dumps(result['historical_flat_context'],indent=2),'','Paired repeat1 flat/bottle context is in report.json; old Azure report preserved at '+str(B/'recovery-v4/REPORT.txt'),'','LIMITATIONS']+result['limitations']
+ tmp=D/'REPORT.txt.tmp';tmp.write_text('\n'.join(lines)+'\n');os.replace(tmp,D/'REPORT.txt')
+ return result
+if __name__=='__main__':
+ r=report();print(json.dumps({k:r[k] for k in ['state','unique_requests_with_saved_rows','unique_images_planned','costs']},indent=2))

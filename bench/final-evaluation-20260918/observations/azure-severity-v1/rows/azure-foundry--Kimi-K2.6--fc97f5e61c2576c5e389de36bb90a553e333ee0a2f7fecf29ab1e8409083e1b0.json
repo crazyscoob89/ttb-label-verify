@@ -1,0 +1,175 @@
+{
+  "id": "azure-foundry--Kimi-K2.6--fc97f5e61c2576c5e389de36bb90a553e333ee0a2f7fecf29ab1e8409083e1b0",
+  "provider": "azure-foundry",
+  "operator": "AVA-azure-severity-v1",
+  "model": "Kimi-K2.6",
+  "engine": "Kimi-K2.6",
+  "fixture_id": "W-WARN-REWORD-01",
+  "fixture": {
+    "id": "W-WARN-REWORD-01__angle",
+    "source_fixture": "W-WARN-REWORD-01",
+    "condition": "angle",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/W-WARN-REWORD-01__angle.png",
+    "sha256": "900d60046eee73f45479df5d9b4d0337c3f6277da790dac2988a6280dc9a9d74",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/W-WARN-REWORD-01__angle.png",
+    "source_sha256": "900d60046eee73f45479df5d9b4d0337c3f6277da790dac2988a6280dc9a9d74",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/W-WARN-REWORD-01.png",
+    "original_label_sha256": "ad1ceec2aa92e01537484a4c991602c9397a5f31563c4d494c4bbe88b2c4eedd",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/W-WARN-REWORD-01.json",
+    "original_truth_sha256": "f5bc506b14b4e3fb22820264188f25f154e7707756ea8ab84cc20f0a61375d9d",
+    "source_fixture_id": "W-WARN-REWORD-01",
+    "clean_parent_substitution": false,
+    "inherited_degradation": "unchanged accepted control; may include original source degradation",
+    "parameters": {
+      "seed": 20260918,
+      "randomness_used": false,
+      "resolution": [
+        2200,
+        3200
+      ],
+      "source_pixels_only": true,
+      "condition": "angle",
+      "content_bounds": [
+        372.5764552373597,
+        135,
+        1824.4985447626402,
+        3020
+      ],
+      "angle_degrees": 30,
+      "horizontal_scale": 0.8660254037844387,
+      "shear": 0.065,
+      "interpolation": "bicubic",
+      "physical_rotation": false
+    },
+    "measurements": {}
+  },
+  "repeat": 1,
+  "condition": "angle",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": true,
+  "extracted": {
+    "brand_name": "Fenwick & Doyle",
+    "class_type": "INDIA PALE ALE",
+    "alcohol_content": "6.8% ALC/VOL",
+    "net_contents": "12 FL OZ",
+    "bottler_info": "Brewed and bottled by Fenwick & Doyle Brewing, Burlington, Vermont",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "(1) According to the Surgeon General, women should not consume alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages may impair your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 1.0,
+      "class_type": 1.0,
+      "alcohol_content": 1.0,
+      "net_contents": 1.0,
+      "bottler_info": 1.0,
+      "country_of_origin": 1.0,
+      "government_warning_heading": 1.0,
+      "government_warning_body": 1.0,
+      "government_warning_heading_all_caps": 1.0,
+      "government_warning_heading_bold": 1.0,
+      "government_warning_body_bold": 1.0
+    }
+  },
+  "error_class": null,
+  "cost_usd": 0.0121197,
+  "request_sha256": "1e04ba79e82cdd6192e469c9789666dfc85b528ecd38745bf74708a8d22f2ae8",
+  "prompt_settings_sha256": "cbae9f332d5065a1dd8bf55b66ae42a7a61cc7e144f79bcf3b80e25ada48a0a2",
+  "image_sha256": "900d60046eee73f45479df5d9b4d0337c3f6277da790dac2988a6280dc9a9d74",
+  "transport": "chat",
+  "started_at": "2026-09-18T19:53:42.510916+00:00",
+  "reserved_usd": 1.10896192,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/W-WARN-REWORD-01__angle.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "old_request_ids": [
+    "Kimi-K2.6--W-WARN-REWORD-01--angle--1"
+  ],
+  "http_status": 200,
+  "request_id": "e79db453-8809-4b98-8be2-adabe931bfbc",
+  "latency_s": 14.874665030976757,
+  "response_sha256": "22d0a4185633b2208eb76bd1da1040a4f6a91d1698300e54847fcc6ccca87b02",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/azure-severity-v1/responses/azure-foundry--Kimi-K2.6--fc97f5e61c2576c5e389de36bb90a553e333ee0a2f7fecf29ab1e8409083e1b0.json",
+  "tokens_in": 4926,
+  "tokens_out": 1860,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 4926,
+    "completion_tokens": 1860,
+    "total_tokens": 6786,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 704,
+      "image_tokens": 4212
+    }
+  },
+  "returned_model": "Kimi-K2.6",
+  "raw_text": "{\"brand_name\":\"Fenwick & Doyle\",\"class_type\":\"INDIA PALE ALE\",\"alcohol_content\":\"6.8% ALC/VOL\",\"net_contents\":\"12 FL OZ\",\"bottler_info\":\"Brewed and bottled by Fenwick & Doyle Brewing, Burlington, Vermont\",\"country_of_origin\":null,\"government_warning_heading\":\"GOVERNMENT WARNING:\",\"government_warning_body\":\"(1) According to the Surgeon General, women should not consume alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages may impair your ability to drive a car or operate machinery, and may cause health problems.\",\"government_warning_heading_all_caps\":true,\"government_warning_heading_bold\":true,\"government_warning_body_bold\":false,\"confidence\":{\"brand_name\":1.0,\"class_type\":1.0,\"alcohol_content\":1.0,\"net_contents\":1.0,\"bottler_info\":1.0,\"country_of_origin\":1.0,\"government_warning_heading\":1.0,\"government_warning_body\":1.0,\"government_warning_heading_all_caps\":1.0,\"government_warning_heading_bold\":1.0,\"government_warning_body_bold\":1.0}}",
+  "finish_reason": "stop",
+  "validation_errors": {},
+  "category": "wrong-answer",
+  "commodity": "malt",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "mismatch"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "mismatch"
+  },
+  "verdicts": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "mismatch"
+  },
+  "classes": {
+    "brand_name": "correct",
+    "class_type": "correct",
+    "alcohol_content": "correct",
+    "net_contents": "correct",
+    "bottler_info": "correct",
+    "country_of_origin": "correct",
+    "government_warning": "correct"
+  },
+  "reasons": {
+    "brand_name": "normalized equivalence",
+    "class_type": "normalized equivalence",
+    "alcohol_content": "6.8 == 6.8",
+    "net_contents": "354.88mL ~= 354.88mL",
+    "bottler_info": "full normalized bottler identity and address",
+    "country_of_origin": "domestic product",
+    "government_warning": "statutory wording deviation in warning body"
+  },
+  "extraction_correct": {
+    "brand_name": true,
+    "class_type": true,
+    "alcohol_content": true,
+    "net_contents": true,
+    "bottler_info": true,
+    "country_of_origin": true,
+    "government_warning": true
+  },
+  "pipeline_seconds": 14.90042147890199,
+  "unknown_charge_reserved_usd": 0
+}

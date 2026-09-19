@@ -1,0 +1,96 @@
+{
+  "id": "openrouter--anthropic_claude-haiku-4.5--36457d0f834595062a761c96c7d51e9d06debd434605bc1f72f1ff45ca70cc15",
+  "provider": "openrouter",
+  "model": "anthropic/claude-haiku-4.5",
+  "engine": "anthropic/claude-haiku-4.5",
+  "route": "https://openrouter.ai/api/v1/chat/completions",
+  "upstream_policy": "Anthropic only; no provider fallback",
+  "fixture": {
+    "id": "A-ABV-WRONG-01__glare-4",
+    "source_fixture": "A-ABV-WRONG-01",
+    "condition": "glare-4",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/A-ABV-WRONG-01__glare-4.png",
+    "sha256": "0263829ac1c7b3ba5b3ac308ee09cb0368fa8d067e91189b1f0c4c462a3e09b2",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-ABV-WRONG-01.png",
+    "source_sha256": "7535698250fa4d7cfd76f9936305f2376dcde95e4bb1ec1bedc66cf77198bebd",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/A-ABV-WRONG-01.png",
+    "original_label_sha256": "bb19b282fe059b2f429d0f91904639cb82e1fc256b0f026ee7d484e39cfad135",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/A-ABV-WRONG-01.json",
+    "original_truth_sha256": "ed423edb1fc7d0dd5158bb9fc302c702644567ac4dcd1718eb63c601d15a3d1e",
+    "source_fixture_id": "A-ABV-WRONG-01",
+    "clean_parent_substitution": false,
+    "inherited_degradation": "none",
+    "parameters": {
+      "seed": 1507575473,
+      "center_u": -0.3235146017386067,
+      "center_y": 2062.5052414739253,
+      "sigma_y": 374.2570430978624,
+      "angular_width": 0.1417351396437033,
+      "curve": -0.032762830797786836,
+      "strength": 1.2186455243148344,
+      "edge_strength": 0.52,
+      "bloom_fraction": 0.12,
+      "alpha_bound": 0.65,
+      "intensity_gain_from_v1": 4,
+      "requested_intensity_gain_from_v1": 4,
+      "opacity_cap": 0.65
+    },
+    "measurements": {
+      "effective_alpha_peak": 0.6499999761581421,
+      "uncapped_alpha_peak": 1.218643438076548,
+      "opacity_cap": 0.65,
+      "clipped_pixel_count": 151284,
+      "clipped_fraction_full_image": 0.021489204545454544,
+      "source_weight_min": 0.3500000238418579
+    }
+  },
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/A-ABV-WRONG-01__glare-4.png",
+  "image_sha256": "0263829ac1c7b3ba5b3ac308ee09cb0368fa8d067e91189b1f0c4c462a3e09b2",
+  "prompt_settings_sha256": "ba93d7e53b184d2f74384c66eebdb59f523faf427337a9e3b2e702322f09040d",
+  "request_sha256": "0a82c63fffaff30092468282234ad7b234cbfbcde342a1518684b2adceb287d0",
+  "started_at": "2026-09-18T19:15:21.187977+00:00",
+  "reserved_usd": 0.4565,
+  "max_output_tokens": 3000,
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "usage_cost_usd": 0.00427581,
+  "retail_estimate_usd": 0.004319,
+  "http_status": 200,
+  "request_id": null,
+  "latency_s": 5.068679478019476,
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/responses/openrouter--anthropic_claude-haiku-4.5--36457d0f834595062a761c96c7d51e9d06debd434605bc1f72f1ff45ca70cc15.json",
+  "response_sha256": "7d728fb6d19020c1eef11500a7e74cf7ff7b600189fe1ab461ee2eef4db97fad",
+  "usage": {
+    "prompt_tokens": 2354,
+    "completion_tokens": 393,
+    "total_tokens": 2747,
+    "cost": 0.00427581,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.004319,
+      "upstream_inference_prompt_cost": 0.002354,
+      "upstream_inference_completions_cost": 0.001965
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "generation_id": "gen-1789758922-S3wSGv4Qv1vKPtoZfBIt",
+  "returned_model": "anthropic/claude-haiku-4.5",
+  "returned_provider": "Anthropic"
+}

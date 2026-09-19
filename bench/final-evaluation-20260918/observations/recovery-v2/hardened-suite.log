@@ -1,0 +1,20 @@
+...E............................
+======================================================================
+ERROR: test_windows_style_checkout_preserves_evidence_and_passes_gate (test_checkout_portability.CheckoutPortabilityTests.test_windows_style_checkout_preserves_evidence_and_passes_gate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v2/scorer-4039ccc/bench/test_checkout_portability.py", line 30, in test_windows_style_checkout_preserves_evidence_and_passes_gate
+    names = set(git('ls-files', cwd=ROOT).splitlines())
+                ~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v2/scorer-4039ccc/bench/test_checkout_portability.py", line 21, in git
+    return subprocess.run(['git', *args], cwd=cwd, check=True, capture_output=True, text=True).stdout
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['git', 'ls-files']' returned non-zero exit status 128.
+
+----------------------------------------------------------------------
+Ran 32 tests in 5.159s
+
+FAILED (errors=1)

@@ -1,0 +1,707 @@
+{
+  "status": "PREVIEW ONLY / NOT MODEL-TESTED",
+  "source_id": "C-SPIRITS-01",
+  "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-SPIRITS-01.png",
+  "source_sha256": "bd601f2d9a3b0fd1b31257fd46e24eb148969519fa4833678ac604df20e037ec",
+  "source_geometry": {
+    "source_box": [
+      0,
+      0,
+      1000,
+      1500
+    ],
+    "cropped": false,
+    "seed": 20260918,
+    "randomness_used": false,
+    "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+    "cx": 1100,
+    "half": 600,
+    "theta_radians": 0.56,
+    "top": 1100,
+    "height": 1800,
+    "sag": 43,
+    "tilt": -12,
+    "perspective": 18,
+    "label_bounds": [
+      500.0,
+      1079.0,
+      1700.0,
+      2943.052292
+    ],
+    "minimum_horizontal_scale": 1.072929534298373,
+    "interpolation": "bilinear, endpoint-inclusive",
+    "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+    "bottle_profile_y_radius": [
+      [
+        170,
+        180
+      ],
+      [
+        210,
+        192
+      ],
+      [
+        540,
+        192
+      ],
+      [
+        625,
+        255
+      ],
+      [
+        740,
+        540
+      ],
+      [
+        850,
+        730
+      ],
+      [
+        2920,
+        730
+      ],
+      [
+        2990,
+        650
+      ],
+      [
+        3020,
+        520
+      ]
+    ],
+    "bottle_base_rgb": [
+      112.0,
+      126.0,
+      113.0
+    ],
+    "resolution": [
+      2200,
+      3200
+    ]
+  },
+  "original_v1_parameters": {
+    "seed": 1507575473,
+    "center_u": -0.3235146017386067,
+    "center_y": 2062.5052414739253,
+    "sigma_y": 374.2570430978624,
+    "angular_width": 0.1417351396437033,
+    "curve": -0.032762830797786836,
+    "strength": 0.3046613810787086,
+    "edge_strength": 0.13,
+    "bloom_fraction": 0.12,
+    "alpha_bound": 0.48
+  },
+  "approved_v4_parameters": {
+    "seed": 1507575473,
+    "center_u": -0.3235146017386067,
+    "center_y": 2062.5052414739253,
+    "sigma_y": 374.2570430978624,
+    "angular_width": 0.1417351396437033,
+    "curve": -0.032762830797786836,
+    "strength": 0.9139841432361258,
+    "edge_strength": 0.39,
+    "bloom_fraction": 0.12,
+    "alpha_bound": 0.65,
+    "intensity_gain_from_v1": 3.0,
+    "requested_intensity_gain_from_v1": 3.0,
+    "opacity_cap": 0.65
+  },
+  "render_engine_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/glare-preview-v3/generate.py",
+  "render_engine_sha256": "393da8c9aac346a6a43bfc1ef79be0e9f9d9792d8fb3f7239c9ae9ff5d766442",
+  "generator_sha256": "3439b019ab7ff290693a0b2f0178185a19a80ec587198cfe6427a36eb4985eec",
+  "environment": {
+    "python": "3.13.5",
+    "pillow": "12.3.0",
+    "numpy": "2.5.3"
+  },
+  "board_crop": [
+    650,
+    1720,
+    1550,
+    2580
+  ],
+  "measurement_label_crop": [
+    500,
+    1079,
+    1701,
+    2944
+  ],
+  "known_dark_text_mask": {
+    "file": "known-warning-dark-text-mask.png",
+    "pixels": 26205,
+    "source_roi": [
+      100,
+      1010,
+      900,
+      1280
+    ],
+    "selection": "clean native maxRGB <100 within inverse-mapped known warning text region",
+    "clean_contrast": 0.828612744808197
+  },
+  "groundtruth_field_visibility": {
+    "brand_name": "PENDING HUMAN REVIEW",
+    "class_type": "PENDING HUMAN REVIEW",
+    "alcohol_content": "PENDING HUMAN REVIEW",
+    "net_contents": "PENDING HUMAN REVIEW",
+    "bottler_info": "PENDING HUMAN REVIEW",
+    "country_of_origin": "PENDING HUMAN REVIEW",
+    "government_warning": "PENDING HUMAN REVIEW"
+  },
+  "images": [
+    {
+      "effect": "baseline",
+      "level": 0,
+      "output": "images/C-SPIRITS-01__baseline-0.png",
+      "sha256": "bd601f2d9a3b0fd1b31257fd46e24eb148969519fa4833678ac604df20e037ec",
+      "source_sha256": "bd601f2d9a3b0fd1b31257fd46e24eb148969519fa4833678ac604df20e037ec",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "parameters": {
+        "operation": "byte-identical source copy"
+      },
+      "measurements": {
+        "label_luminance_std": 42.881752014160156,
+        "label_rms_contrast": 0.19297002255916595,
+        "label_gradient_rms": 14.984407424926758,
+        "dark_text_local_weber_contrast": 0.828612744808197,
+        "dark_text_mean_luminance": 41.03546905517578,
+        "changed_pixel_count": 0,
+        "changed_pixel_fraction": 0.0,
+        "mean_absolute_rgb_change": 0.0,
+        "max_rgb_change": 0,
+        "label_changed_pixel_fraction": 0.0,
+        "dark_text_mean_absolute_rgb_change": 0.0,
+        "dark_text_contrast_loss_percent": 0.0,
+        "label_std_contrast_loss_percent": 0.0
+      },
+      "groundtruth_field_visibility": "PENDING HUMAN REVIEW"
+    },
+    {
+      "effect": "blur",
+      "level": 1,
+      "output": "images/C-SPIRITS-01__blur-1.png",
+      "sha256": "ce0785b6cb6a6f5aa00772ca52b44ce4d7e472392e25bf5c807ff4f1a77716a2",
+      "source_sha256": "bd601f2d9a3b0fd1b31257fd46e24eb148969519fa4833678ac604df20e037ec",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "parameters": {
+        "sigma_native_px": 1,
+        "sigma_div_label_width": 0.0008333333333333334,
+        "sigma_div_label_height": 0.0005364656368771012,
+        "filter": "Pillow GaussianBlur",
+        "randomness_used": false
+      },
+      "measurements": {
+        "label_luminance_std": 39.4591178894043,
+        "label_rms_contrast": 0.17766155302524567,
+        "label_gradient_rms": 9.40887451171875,
+        "dark_text_local_weber_contrast": 0.6707363724708557,
+        "dark_text_mean_luminance": 78.82548522949219,
+        "changed_pixel_count": 396686,
+        "changed_pixel_fraction": 0.05634744318181818,
+        "mean_absolute_rgb_change": 0.9407899621212121,
+        "max_rgb_change": 128,
+        "label_changed_pixel_fraction": 0.13835923147153958,
+        "dark_text_mean_absolute_rgb_change": 37.58724162055587,
+        "dark_text_contrast_loss_percent": 19.053094865670417,
+        "label_std_contrast_loss_percent": 7.981563168467687
+      },
+      "groundtruth_field_visibility": "PENDING HUMAN REVIEW"
+    },
+    {
+      "effect": "blur",
+      "level": 2,
+      "output": "images/C-SPIRITS-01__blur-2.png",
+      "sha256": "436bccc6910d3951280f238d8860e8ef67487369c1b77bc46fb6446d21b99ec9",
+      "source_sha256": "bd601f2d9a3b0fd1b31257fd46e24eb148969519fa4833678ac604df20e037ec",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "parameters": {
+        "sigma_native_px": 2,
+        "sigma_div_label_width": 0.0016666666666666668,
+        "sigma_div_label_height": 0.0010729312737542023,
+        "filter": "Pillow GaussianBlur",
+        "randomness_used": false
+      },
+      "measurements": {
+        "label_luminance_std": 35.41747283935547,
+        "label_rms_contrast": 0.15949761867523193,
+        "label_gradient_rms": 5.186143398284912,
+        "dark_text_local_weber_contrast": 0.4754457175731659,
+        "dark_text_mean_luminance": 125.57794952392578,
+        "changed_pixel_count": 618812,
+        "changed_pixel_fraction": 0.08789943181818181,
+        "mean_absolute_rgb_change": 2.1331553503787877,
+        "max_rgb_change": 173,
+        "label_changed_pixel_fraction": 0.19579349648304697,
+        "dark_text_mean_absolute_rgb_change": 83.8737136678751,
+        "dark_text_contrast_loss_percent": 42.62148143965374,
+        "label_std_contrast_loss_percent": 17.406656268008536
+      },
+      "groundtruth_field_visibility": "PENDING HUMAN REVIEW"
+    },
+    {
+      "effect": "blur",
+      "level": 3,
+      "output": "images/C-SPIRITS-01__blur-3.png",
+      "sha256": "2c1a3bb961a12305afad96db44d6740f60e62fc25d4a6d39931d2926eb900f10",
+      "source_sha256": "bd601f2d9a3b0fd1b31257fd46e24eb148969519fa4833678ac604df20e037ec",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "parameters": {
+        "sigma_native_px": 3,
+        "sigma_div_label_width": 0.0025,
+        "sigma_div_label_height": 0.0016093969106313034,
+        "filter": "Pillow GaussianBlur",
+        "randomness_used": false
+      },
+      "measurements": {
+        "label_luminance_std": 32.93777847290039,
+        "label_rms_contrast": 0.14839094877243042,
+        "label_gradient_rms": 3.3070125579833984,
+        "dark_text_local_weber_contrast": 0.3724484443664551,
+        "dark_text_mean_luminance": 150.1641845703125,
+        "changed_pixel_count": 849215,
+        "changed_pixel_fraction": 0.12062713068181818,
+        "mean_absolute_rgb_change": 3.0339856534090908,
+        "max_rgb_change": 190,
+        "label_changed_pixel_fraction": 0.24405890533581265,
+        "dark_text_mean_absolute_rgb_change": 108.20216243719392,
+        "dark_text_contrast_loss_percent": 55.05156700761735,
+        "label_std_contrast_loss_percent": 23.189289322824603
+      },
+      "groundtruth_field_visibility": "PENDING HUMAN REVIEW"
+    },
+    {
+      "effect": "blur",
+      "level": 4,
+      "output": "images/C-SPIRITS-01__blur-4.png",
+      "sha256": "9aa437e23e7acd11015fca231a0906fc77c80edbfe966b905fc08c06e8197916",
+      "source_sha256": "bd601f2d9a3b0fd1b31257fd46e24eb148969519fa4833678ac604df20e037ec",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "parameters": {
+        "sigma_native_px": 4,
+        "sigma_div_label_width": 0.0033333333333333335,
+        "sigma_div_label_height": 0.0021458625475084046,
+        "filter": "Pillow GaussianBlur",
+        "randomness_used": false
+      },
+      "measurements": {
+        "label_luminance_std": 31.285192489624023,
+        "label_rms_contrast": 0.14100533723831177,
+        "label_gradient_rms": 2.416759729385376,
+        "dark_text_local_weber_contrast": 0.32084882259368896,
+        "dark_text_mean_luminance": 162.05975341796875,
+        "changed_pixel_count": 1058931,
+        "changed_pixel_fraction": 0.15041633522727274,
+        "mean_absolute_rgb_change": 3.706408759469697,
+        "max_rgb_change": 202,
+        "label_changed_pixel_fraction": 0.28719588010884584,
+        "dark_text_mean_absolute_rgb_change": 119.9727660115754,
+        "dark_text_contrast_loss_percent": 61.27879704916228,
+        "label_std_contrast_loss_percent": 27.043110367101576
+      },
+      "groundtruth_field_visibility": "PENDING HUMAN REVIEW"
+    },
+    {
+      "effect": "blur",
+      "level": 5,
+      "output": "images/C-SPIRITS-01__blur-5.png",
+      "sha256": "0568daab049e4e5d06fc55f6d1166d7e4b998e2c34e244bcfd541a0340c9f82b",
+      "source_sha256": "bd601f2d9a3b0fd1b31257fd46e24eb148969519fa4833678ac604df20e037ec",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "parameters": {
+        "sigma_native_px": 5,
+        "sigma_div_label_width": 0.004166666666666667,
+        "sigma_div_label_height": 0.0026823281843855054,
+        "filter": "Pillow GaussianBlur",
+        "randomness_used": false
+      },
+      "measurements": {
+        "label_luminance_std": 30.040882110595703,
+        "label_rms_contrast": 0.13545003533363342,
+        "label_gradient_rms": 1.9080499410629272,
+        "dark_text_local_weber_contrast": 0.28707265853881836,
+        "dark_text_mean_luminance": 168.99288940429688,
+        "changed_pixel_count": 1242185,
+        "changed_pixel_fraction": 0.17644673295454547,
+        "mean_absolute_rgb_change": 4.245098863636364,
+        "max_rgb_change": 205,
+        "label_changed_pixel_fraction": 0.3247539472244979,
+        "dark_text_mean_absolute_rgb_change": 126.84792978439229,
+        "dark_text_contrast_loss_percent": 65.35502738311509,
+        "label_std_contrast_loss_percent": 29.944835041544515
+      },
+      "groundtruth_field_visibility": "PENDING HUMAN REVIEW"
+    },
+    {
+      "effect": "blur",
+      "level": 6,
+      "output": "images/C-SPIRITS-01__blur-6.png",
+      "sha256": "1db41c08584a94ccea17e137a16d73bb3f04c8f0f4567a7de5a4c89955c38c6b",
+      "source_sha256": "bd601f2d9a3b0fd1b31257fd46e24eb148969519fa4833678ac604df20e037ec",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "parameters": {
+        "sigma_native_px": 6,
+        "sigma_div_label_width": 0.005,
+        "sigma_div_label_height": 0.0032187938212626067,
+        "filter": "Pillow GaussianBlur",
+        "randomness_used": false
+      },
+      "measurements": {
+        "label_luminance_std": 29.071712493896484,
+        "label_rms_contrast": 0.1311430186033249,
+        "label_gradient_rms": 1.5833371877670288,
+        "dark_text_local_weber_contrast": 0.25655341148376465,
+        "dark_text_mean_luminance": 174.1712646484375,
+        "changed_pixel_count": 1415787,
+        "changed_pixel_fraction": 0.20110610795454545,
+        "mean_absolute_rgb_change": 4.706351609848485,
+        "max_rgb_change": 207,
+        "label_changed_pixel_fraction": 0.35578929980155055,
+        "dark_text_mean_absolute_rgb_change": 131.98280226419894,
+        "dark_text_contrast_loss_percent": 69.03820112697514,
+        "label_std_contrast_loss_percent": 32.20493303469365
+      },
+      "groundtruth_field_visibility": "PENDING HUMAN REVIEW"
+    },
+    {
+      "effect": "glare",
+      "level": 1,
+      "output": "images/C-SPIRITS-01__glare-1.png",
+      "sha256": "043243280efd19c3840368d3e8ee25b3c524c71771912a42706d6ab0e6cd1140",
+      "source_sha256": "bd601f2d9a3b0fd1b31257fd46e24eb148969519fa4833678ac604df20e037ec",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "parameters": {
+        "seed": 1507575473,
+        "center_u": -0.3235146017386067,
+        "center_y": 2062.5052414739253,
+        "sigma_y": 374.2570430978624,
+        "angular_width": 0.1417351396437033,
+        "curve": -0.032762830797786836,
+        "strength": 0.3046613810787086,
+        "edge_strength": 0.13,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 1,
+        "requested_intensity_gain_from_v1": 1,
+        "opacity_cap": 0.65
+      },
+      "measurements": {
+        "requested_multiplier": 1,
+        "effective_alpha_peak": 0.304660859519137,
+        "uncapped_alpha_peak": 0.304660859519137,
+        "effective_peak_gain_from_v1": 1.0,
+        "opacity_cap": 0.65,
+        "clipped_pixel_count": 0,
+        "clipped_fraction_full_image": 0.0,
+        "clipped_fraction_bottle": 0.0,
+        "clipped_fraction_label": 0.0,
+        "mean_alpha_label": 0.0329774348253267,
+        "source_weight_min": 0.695339140480863,
+        "label_luminance_std": 39.62883377075195,
+        "label_rms_contrast": 0.1773129552602768,
+        "label_gradient_rms": 13.33863353729248,
+        "dark_text_local_weber_contrast": 0.7030419707298279,
+        "dark_text_mean_luminance": 71.6445083618164,
+        "changed_pixel_count": 1084632,
+        "changed_pixel_fraction": 0.15406704545454544,
+        "mean_absolute_rgb_change": 1.1088288825757575,
+        "max_rgb_change": 121,
+        "label_changed_pixel_fraction": 0.2980697497393816,
+        "dark_text_mean_absolute_rgb_change": 30.33966800228964,
+        "dark_text_contrast_loss_percent": 15.154337760932657,
+        "label_std_contrast_loss_percent": 7.585786705575936
+      },
+      "groundtruth_field_visibility": "PENDING HUMAN REVIEW"
+    },
+    {
+      "effect": "glare",
+      "level": 2,
+      "output": "images/C-SPIRITS-01__glare-2.png",
+      "sha256": "f8e337a8b948cabb6edcee21dbc9bf76ffe5984fea9ae385c3ee0a583c40e114",
+      "source_sha256": "bd601f2d9a3b0fd1b31257fd46e24eb148969519fa4833678ac604df20e037ec",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "parameters": {
+        "seed": 1507575473,
+        "center_u": -0.3235146017386067,
+        "center_y": 2062.5052414739253,
+        "sigma_y": 374.2570430978624,
+        "angular_width": 0.1417351396437033,
+        "curve": -0.032762830797786836,
+        "strength": 0.6093227621574172,
+        "edge_strength": 0.26,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 2,
+        "requested_intensity_gain_from_v1": 2,
+        "opacity_cap": 0.65
+      },
+      "measurements": {
+        "requested_multiplier": 2,
+        "effective_alpha_peak": 0.609321719038274,
+        "uncapped_alpha_peak": 0.609321719038274,
+        "effective_peak_gain_from_v1": 2.0,
+        "opacity_cap": 0.65,
+        "clipped_pixel_count": 0,
+        "clipped_fraction_full_image": 0.0,
+        "clipped_fraction_bottle": 0.0,
+        "clipped_fraction_label": 0.0,
+        "mean_alpha_label": 0.0659548696506534,
+        "source_weight_min": 0.39067828096172597,
+        "label_luminance_std": 38.19942855834961,
+        "label_rms_contrast": 0.1701829880475998,
+        "label_gradient_rms": 12.572047233581543,
+        "dark_text_local_weber_contrast": 0.6362941265106201,
+        "dark_text_mean_luminance": 88.24760437011719,
+        "changed_pixel_count": 1404546,
+        "changed_pixel_fraction": 0.199509375,
+        "mean_absolute_rgb_change": 1.9639212121212122,
+        "max_rgb_change": 171,
+        "label_changed_pixel_fraction": 0.40332832559105125,
+        "dark_text_mean_absolute_rgb_change": 46.86061184252369,
+        "dark_text_contrast_loss_percent": 23.20971038673727,
+        "label_std_contrast_loss_percent": 10.919151470920262
+      },
+      "groundtruth_field_visibility": "PENDING HUMAN REVIEW"
+    },
+    {
+      "effect": "glare",
+      "level": 3,
+      "output": "images/C-SPIRITS-01__glare-3.png",
+      "sha256": "070c9dc40714f7022b0259170b24fd2a9ec8f149b8942625467f4cfd071ddd32",
+      "source_sha256": "bd601f2d9a3b0fd1b31257fd46e24eb148969519fa4833678ac604df20e037ec",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "parameters": {
+        "seed": 1507575473,
+        "center_u": -0.3235146017386067,
+        "center_y": 2062.5052414739253,
+        "sigma_y": 374.2570430978624,
+        "angular_width": 0.1417351396437033,
+        "curve": -0.032762830797786836,
+        "strength": 0.9139841432361258,
+        "edge_strength": 0.39,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 3,
+        "requested_intensity_gain_from_v1": 3,
+        "opacity_cap": 0.65
+      },
+      "measurements": {
+        "requested_multiplier": 3,
+        "effective_alpha_peak": 0.6499999761581421,
+        "uncapped_alpha_peak": 0.9139825785574109,
+        "effective_peak_gain_from_v1": 2.1335198002922753,
+        "opacity_cap": 0.65,
+        "clipped_pixel_count": 83249,
+        "clipped_fraction_full_image": 0.011825142045454545,
+        "clipped_fraction_bottle": 0.023729203917688745,
+        "clipped_fraction_label": 0.0371669721166231,
+        "mean_alpha_label": 0.09427935719499925,
+        "source_weight_min": 0.3500000238418579,
+        "label_luminance_std": 37.252464294433594,
+        "label_rms_contrast": 0.16538505256175995,
+        "label_gradient_rms": 12.04573917388916,
+        "dark_text_local_weber_contrast": 0.5855525135993958,
+        "dark_text_mean_luminance": 101.08855438232422,
+        "changed_pixel_count": 1582203,
+        "changed_pixel_fraction": 0.2247447443181818,
+        "mean_absolute_rgb_change": 2.679885369318182,
+        "max_rgb_change": 194,
+        "label_changed_pixel_fraction": 0.460981353786947,
+        "dark_text_mean_absolute_rgb_change": 59.64457164663232,
+        "dark_text_contrast_loss_percent": 29.333392797990765,
+        "label_std_contrast_loss_percent": 13.127466708607649
+      },
+      "groundtruth_field_visibility": "PENDING HUMAN REVIEW"
+    },
+    {
+      "effect": "glare",
+      "level": 4,
+      "output": "images/C-SPIRITS-01__glare-4.png",
+      "sha256": "5f87464193fafd2516014699dd8a83775d1a271184b68aa6b855aacb24dce5cd",
+      "source_sha256": "bd601f2d9a3b0fd1b31257fd46e24eb148969519fa4833678ac604df20e037ec",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "parameters": {
+        "seed": 1507575473,
+        "center_u": -0.3235146017386067,
+        "center_y": 2062.5052414739253,
+        "sigma_y": 374.2570430978624,
+        "angular_width": 0.1417351396437033,
+        "curve": -0.032762830797786836,
+        "strength": 1.2186455243148344,
+        "edge_strength": 0.52,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 4,
+        "requested_intensity_gain_from_v1": 4,
+        "opacity_cap": 0.65
+      },
+      "measurements": {
+        "requested_multiplier": 4,
+        "effective_alpha_peak": 0.6499999761581421,
+        "uncapped_alpha_peak": 1.218643438076548,
+        "effective_peak_gain_from_v1": 2.1335198002922753,
+        "opacity_cap": 0.65,
+        "clipped_pixel_count": 151284,
+        "clipped_fraction_full_image": 0.021489204545454544,
+        "clipped_fraction_bottle": 0.04312182591362808,
+        "clipped_fraction_label": 0.06754157058572727,
+        "mean_alpha_label": 0.1145038212596381,
+        "source_weight_min": 0.3500000238418579,
+        "label_luminance_std": 36.53829574584961,
+        "label_rms_contrast": 0.161782905459404,
+        "label_gradient_rms": 11.655877113342285,
+        "dark_text_local_weber_contrast": 0.5482854247093201,
+        "dark_text_mean_luminance": 110.54930114746094,
+        "changed_pixel_count": 1702832,
+        "changed_pixel_fraction": 0.24187954545454546,
+        "mean_absolute_rgb_change": 3.2815861268939392,
+        "max_rgb_change": 194,
+        "label_changed_pixel_fraction": 0.5000654057275773,
+        "dark_text_mean_absolute_rgb_change": 69.06075176493036,
+        "dark_text_contrast_loss_percent": 33.8309206387799,
+        "label_std_contrast_loss_percent": 14.792903671976488
+      },
+      "groundtruth_field_visibility": "PENDING HUMAN REVIEW"
+    },
+    {
+      "effect": "glare",
+      "level": 5,
+      "output": "images/C-SPIRITS-01__glare-5.png",
+      "sha256": "c15f7c99fb3f969720095a79fa6e9a0d8c3367e1e6188152b37e035772d79fe4",
+      "source_sha256": "bd601f2d9a3b0fd1b31257fd46e24eb148969519fa4833678ac604df20e037ec",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "parameters": {
+        "seed": 1507575473,
+        "center_u": -0.3235146017386067,
+        "center_y": 2062.5052414739253,
+        "sigma_y": 374.2570430978624,
+        "angular_width": 0.1417351396437033,
+        "curve": -0.032762830797786836,
+        "strength": 1.523306905393543,
+        "edge_strength": 0.65,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.65,
+        "intensity_gain_from_v1": 5,
+        "requested_intensity_gain_from_v1": 5,
+        "opacity_cap": 0.65
+      },
+      "measurements": {
+        "requested_multiplier": 5,
+        "effective_alpha_peak": 0.6499999761581421,
+        "uncapped_alpha_peak": 1.523304297595685,
+        "effective_peak_gain_from_v1": 2.1335198002922753,
+        "opacity_cap": 0.65,
+        "clipped_pixel_count": 202852,
+        "clipped_fraction_full_image": 0.028814204545454546,
+        "clipped_fraction_bottle": 0.05782071223811694,
+        "clipped_fraction_label": 0.09056438669294802,
+        "mean_alpha_label": 0.1303479624997896,
+        "source_weight_min": 0.3500000238418579,
+        "label_luminance_std": 35.96843338012695,
+        "label_rms_contrast": 0.15892870724201202,
+        "label_gradient_rms": 11.358050346374512,
+        "dark_text_local_weber_contrast": 0.5225102305412292,
+        "dark_text_mean_luminance": 117.07206726074219,
+        "changed_pixel_count": 1792249,
+        "changed_pixel_fraction": 0.25458082386363634,
+        "mean_absolute_rgb_change": 3.8033378314393937,
+        "max_rgb_change": 194,
+        "label_changed_pixel_fraction": 0.529054206391903,
+        "dark_text_mean_absolute_rgb_change": 75.55077275329135,
+        "dark_text_contrast_loss_percent": 36.94156482444918,
+        "label_std_contrast_loss_percent": 16.12181944373525
+      },
+      "groundtruth_field_visibility": "PENDING HUMAN REVIEW"
+    }
+  ],
+  "adjacent_glare_comparisons": [
+    {
+      "levels": [
+        1,
+        2
+      ],
+      "exact_image_plateau": false,
+      "identical_pixel_fraction": 0.8074149147727273,
+      "mean_absolute_rgb_difference": 0.8550923295454546,
+      "maximum_rgb_difference": 50
+    },
+    {
+      "levels": [
+        2,
+        3
+      ],
+      "exact_image_plateau": false,
+      "identical_pixel_fraction": 0.8024816761363637,
+      "mean_absolute_rgb_difference": 0.7159641571969697,
+      "maximum_rgb_difference": 35
+    },
+    {
+      "levels": [
+        3,
+        4
+      ],
+      "exact_image_plateau": false,
+      "identical_pixel_fraction": 0.8084761363636364,
+      "mean_absolute_rgb_difference": 0.6017007575757576,
+      "maximum_rgb_difference": 26
+    },
+    {
+      "levels": [
+        4,
+        5
+      ],
+      "exact_image_plateau": false,
+      "identical_pixel_fraction": 0.8143346590909091,
+      "mean_absolute_rgb_difference": 0.5217517045454545,
+      "maximum_rgb_difference": 20
+    }
+  ],
+  "plateau_warnings": [
+    "Requested x1..x5 multiply ORIGINAL V1 coefficients, not brightness. Opacity cap remains 0.65.",
+    "Peak alpha plateaus at 0.65 for x3/x4/x5; shoulders and affected area can still grow. No entire-image plateau unless pair measurements say so.",
+    "High identical-pixel fractions include unaffected image regions; do not interpret as globally identical severity. No perceptual equivalence threshold used."
+  ],
+  "artifact_sha256": {
+    "blur-ladder.jpg": "761a692f9740b876ee2ade7e57359815b7d328d08f615920887553bcdd46c691",
+    "generate.py": "3439b019ab7ff290693a0b2f0178185a19a80ec587198cfe6427a36eb4985eec",
+    "glare-ladder.jpg": "d633acfa4ee10e23e7517cc2be1d65191b618525ce18d5bf0f40c9fcb1c333eb",
+    "inventory.json": "f8da9ed95473bb8a7dc80e70e2d5a012ce8bb952eeec6fc9a7b1ac7883ab46ee",
+    "known-warning-dark-text-mask.png": "0842e265d4164ec76a7af48cfd98bd7012bcc6b9a1697bd10ed256cd2ad97f11",
+    "measurements.md": "9e9b4213f26f4c2a34cb4baa8032c2c411caad58cd35f77a2ac31c5e79b35c45",
+    "README.md": "566bfe4a6544fdfd062f11c9a42fa5b22dec1eab287b5345ce8ca5c9c3d30699"
+  }
+}

@@ -1,0 +1,930 @@
+{
+  "utc": "2026-09-18T18:52:49.493875+00:00",
+  "pid": 10527,
+  "unique_calls": 212,
+  "logical_images": 252,
+  "aliases": {
+    "openrouter--anthropic_claude-haiku-4.5--f53712266e4ff0bf4556a019ea51a9995a8e251b8b3a08deebe16b3c4d683b41": [
+      "A-ABV-WRONG-01__clean",
+      "A-ABV-WRONG-01__straight"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--3d1a072ed6bdc7d4df4979e0d20e8dae6f609eeeaf1e81485f0239a57de41efa": [
+      "A-BRAND-CASE-01__clean",
+      "A-BRAND-CASE-01__straight"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--bf206e3180e399a7e8b9dedf41cf7e16fc90f245dfe1ed636f0c5c97995b5d73": [
+      "A-FIELD-MISSING-01__clean",
+      "A-FIELD-MISSING-01__straight"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--a98b9d76a7c5e5338ca2d03599857e21fe9ce8aaf0bb1f9b432182340b850123": [
+      "A-INJECT-PROMPT-01__clean",
+      "A-INJECT-PROMPT-01__straight"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--0dc23bd241734f3d9b8643fadab1dcbe369df6011af621986140aa02c2d05532": [
+      "A-WARN-BOLDBODY-01__clean",
+      "A-WARN-BOLDBODY-01__straight"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--339bebf6cd75bc33bac9882d01894c909101da4c7de5fed8ebc85929fd98319e": [
+      "A-WARN-TITLECASE-01__clean",
+      "A-WARN-TITLECASE-01__straight"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--7a8e3d8362b64d38dbb2f5c8d69f534d09ba8366525c6af1d28ac36f0ccb721d": [
+      "C-MALT-01__clean",
+      "D-GLARE-01__clean",
+      "C-MALT-01__straight"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--b5ce391419afa25ded601233ed7eb1c3a834a3586cc779935967bbc3499f63aa": [
+      "C-SPIRITS-01__clean",
+      "D-BLUR-01__clean",
+      "C-SPIRITS-01__straight"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--cf75a34b12dc7b3cfd8636e383af8ee702ad76248d53a8a66a5724637a08e25a": [
+      "C-SPIRITS-IMPORT-01__clean",
+      "C-SPIRITS-IMPORT-01__straight"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--4e0a74b38f25e10f6c358967aa7ce0e4fe48a2862d71f288a29a67546c67de7f": [
+      "C-WINE-01__clean",
+      "C-WINE-01__straight"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--5d82ce42c378750ab16a3e5a06408556013daf040a0f6032cccd5564a1d44851": [
+      "D-WARP-01__clean",
+      "D-WARP-01__straight"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--c03e011d636a51f935fb857235c0675d679efcddb6c3754e356fc12daad74190": [
+      "W-ABV-4045-01__clean",
+      "W-ABV-4045-01__straight"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--b7304659ec1a68c4e5533b64fb6b33bc77d9254ed8ecc848fa1089a0c67b56ba": [
+      "W-BRAND-SPLITLINE-01__clean",
+      "W-BRAND-SPLITLINE-01__straight"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--e9ba3e4d9b49b17531e7500e360538b9f983e9017dc9c711ab3fc6d3353c630b": [
+      "W-BRAND-WRONG-01__clean",
+      "W-BRAND-WRONG-01__straight"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--c7d962786c160fef605f2f9c61f2408522bb080610282cae04d97c80cb579b04": [
+      "W-NETCONTENTS-WRONG-01__clean",
+      "W-NETCONTENTS-WRONG-01__straight"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--96bc74af65d53369082c5ce90bedcb5ecd4d0c68b75614cf32f71766d4916daa": [
+      "W-WARN-REWORD-01__clean",
+      "W-WARN-REWORD-01__straight"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--bd73ec32e448943b551158c7660705ce1750a0d9b5675ac72172ad72026ee851": [
+      "D-BLUR-01__straight"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--d98a8d06b2722edb9e81985c2ea4a5c485ec65661b93cbfbfeeefd7e257dd303": [
+      "D-GLARE-01__straight"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--22a1b4d9ce66b15474f0dc94004f7ce9bb14a003049a1565f59517af3325f71a": [
+      "A-ABV-WRONG-01__angle"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--7b115e7719c78a45716db7ea92d65ceb4ffc860b849a7497c38e6d75d866d462": [
+      "A-BRAND-CASE-01__angle"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--771b047c8507e4bb0ea6cca023d36babbdad613a8a36d2ea0097e1f9187f57e9": [
+      "A-FIELD-MISSING-01__angle"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--4b3ed7d0e7343fcf4c77f4b6dbe81e9d5ee277770bb5d523d9852b1e808fd5ba": [
+      "A-INJECT-PROMPT-01__angle"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--e2baafbafbceb185461adca5a22aed5d89c2ba3134151683cee30533680e1a9b": [
+      "A-WARN-BOLDBODY-01__angle"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--5f0fc45d00b8b374f10d882a35257746ac7b2d34c19c53dc061bad5e0fcfed03": [
+      "A-WARN-TITLECASE-01__angle"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--e1ff5ec30c5d5c84c09ecaace01a1b16e8da8d4ae5c0d26ddbba15df99bdbf74": [
+      "C-MALT-01__angle"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--6f526fe920c4adb43ea64d108a9fc59a3dc12550cf302836656ae3111803477d": [
+      "C-SPIRITS-01__angle"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--8822da4ab7e5210970849dc6b973e1729d356a68373ca0461c65b039bc2b15d4": [
+      "C-SPIRITS-IMPORT-01__angle"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--8ef62f812a67543f38d58c475692707cc042fd37e785dd3aabcc2e84af741bf5": [
+      "C-WINE-01__angle"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--ff0ae2e94915cf4b42c4ed6fd230847e41b640dedd3bd34dcdf51c9669c32fd5": [
+      "D-BLUR-01__angle"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--61f2cb20edf72f722cb7ca5b0ba0cd3592d06ab425a80badb164a212b8947f96": [
+      "D-GLARE-01__angle"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--491320410e89d1c3319b9cefa2828baa78ddbfb0282f2e28f91a0303dc61ae9f": [
+      "D-WARP-01__angle"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--f9e32b13a2db40d401632bd12e4c249dceadd41bb59c57cde0bfc4812e05bbf0": [
+      "W-ABV-4045-01__angle"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--c2846eeaa5bd63368f0f8ae581381704ef18b8add2d6aa009e1287adc2ccfedd": [
+      "W-BRAND-SPLITLINE-01__angle"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--ce160ebaa235d62ed3cd77328ab3e763e7376950027ff8a52459ffa6cbd485b6": [
+      "W-BRAND-WRONG-01__angle"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--45d7e0308b13adf0343288df3f7d59f594b980817d15a25d3e9bf5c7cc9cf06d": [
+      "W-NETCONTENTS-WRONG-01__angle"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--057c32f45fddb790f4d45084ee34ee12a8dde6823b8f928e817b2ae4150c8286": [
+      "W-WARN-REWORD-01__angle"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--f07508793729d262ad3f3b2f244880a65dcb40b4e4431b70d88a5da60ad774c0": [
+      "A-ABV-WRONG-01__blur-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--8ee6a5d7cc85c687ffd44e1f6b788ed77c635e87a68f5ad22b0c31659efd57a9": [
+      "A-BRAND-CASE-01__blur-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--2203eacecffe7c71e2fb1dcbb0e58a9c2640294093be5ecfb2a4f0367281ef8b": [
+      "A-FIELD-MISSING-01__blur-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--863139f2fb868ff3f2193fd1b0b1c8a86892d8bb7f95061d9a2ba88491191cb8": [
+      "A-INJECT-PROMPT-01__blur-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--b8ce086de93c09c9c0a9ac53c4ee8469c1887ea7152a5d8f905beee6b573758c": [
+      "A-WARN-BOLDBODY-01__blur-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--4f0de90bb79de331bf2030ce30607189d0dffb929498c621f2ccd4d378614e74": [
+      "A-WARN-TITLECASE-01__blur-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--aa24f5a8e0a60e18efc284bdae9e7c2d5b395f61143671ee0ba1d0b748083f46": [
+      "C-MALT-01__blur-1",
+      "D-GLARE-01__blur-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--85a3322eeb95b6b34b828ea8f6ec0cb0a1e7327793af17e2d45b30e029341e5b": [
+      "C-SPIRITS-01__blur-1",
+      "D-BLUR-01__blur-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--eba9a28c4eb64f25cfa6921d1e99ceede1ebfa0a5feff01ee75d5993b852ce41": [
+      "C-SPIRITS-IMPORT-01__blur-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--907f43b8b72582285d8e204d161e30777f3128d3e23883250db58091f7f0b5b0": [
+      "C-WINE-01__blur-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--4f32d5e4d5e82ea02572bd11438bf732f4ac8819f1ce86fe7bc2d6ec595eae0d": [
+      "D-WARP-01__blur-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--8c37bc908e35f288e1ebc90f1a65e85fb1cd4daf41f2be0c173a52bd1bd05805": [
+      "W-ABV-4045-01__blur-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--bd18ee57fe40f1533101cc892767d22a7528f916b8499a5efb49d4e04330f112": [
+      "W-BRAND-SPLITLINE-01__blur-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--fe838d89d37b3cb6251b491f2df9c270379fd6843dcc469fe3f7b3c5b3616941": [
+      "W-BRAND-WRONG-01__blur-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--e18d14616a7a742fbe38fa0490b018dbd0085dcac69bf274f53d5e69a78287ee": [
+      "W-NETCONTENTS-WRONG-01__blur-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--d1931d2b72f92a1227d8f66f0071e4c0e4ee59b2fd38889ada6d471e3946d70e": [
+      "W-WARN-REWORD-01__blur-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--d4f4b0f2c38386effa100b002f174d237eb68828c8184c2df90ef92fcb0d57e3": [
+      "A-ABV-WRONG-01__blur-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--e57388456977b3a8b48f0843e3c512c439121cdb64efd43c16978e3c7c73cdeb": [
+      "A-BRAND-CASE-01__blur-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--d2e88f6c63efadcac6133218c007d2d410ed287527648ebe9aaf1303bc585458": [
+      "A-FIELD-MISSING-01__blur-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--ed0a41dec8f7c19067c27aae7bede405b005d98f7ff9ebc289a1baabb7258316": [
+      "A-INJECT-PROMPT-01__blur-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--77dbb7023e0ad6714944af8abab8248f4866ea4e450d421df6f7067c6f5c4988": [
+      "A-WARN-BOLDBODY-01__blur-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--73415f86ab5fee8933de73994da3afd114472824c753707ff14a18d2b5109d71": [
+      "A-WARN-TITLECASE-01__blur-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--23aefc38b8cfb5792ab640944fda187ca103a9463a89a952569fcb5c671e275d": [
+      "C-MALT-01__blur-2",
+      "D-GLARE-01__blur-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--b988698d19588717a9a1de059cb159feff503ae3f966249b665efe1417017440": [
+      "C-SPIRITS-01__blur-2",
+      "D-BLUR-01__blur-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--bf38292e4ce0835b04943c875b11b60b145397f2f78a3234eaedbe9c7d4af593": [
+      "C-SPIRITS-IMPORT-01__blur-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--1451e8eccaacd1f4e24f7cbb7e48f1f37b59457a593fb96e852df9bedf4360b4": [
+      "C-WINE-01__blur-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--c3b770d3ff8b23ad2dbbbdc07f0d274ccbe146b75892816d97693757d563bc14": [
+      "D-WARP-01__blur-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--3903db912dee60ea5d5f40a02c909f4abcbfdbb932616610c6f94e655029bb21": [
+      "W-ABV-4045-01__blur-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--85ec4464b2cc38c9b0e781f845e3fce9a75b99f3b9f1fe339d4deb6ae7b71d44": [
+      "W-BRAND-SPLITLINE-01__blur-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--80d6882380fd4f99244150fb7b5aa8c61627c6135658c2f8c8b3bd557b19ee3c": [
+      "W-BRAND-WRONG-01__blur-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--b8db07ef25a70194f07fbc50bd1014bacf2ee8be17fe0e3c064c0ecade565b8d": [
+      "W-NETCONTENTS-WRONG-01__blur-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--e6c505928616ddccca14ebc48e3ac81951a4e9f7bea994c6c7638a459337edbe": [
+      "W-WARN-REWORD-01__blur-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--14d6ce36e6a5b3d55de47b1a2f19c01c37b647854bb52be0bce239c9e7c222e2": [
+      "A-ABV-WRONG-01__blur-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--f8912ffc10b1cc44a3ff1413d1b44224281df6e4d38997695b3a8276467dd386": [
+      "A-BRAND-CASE-01__blur-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--c62db0fb4045b0c65ac85063d3b9fae7b945b27053cff78656f397ba7bb3386c": [
+      "A-FIELD-MISSING-01__blur-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--5a07bc61dba1b065f4104927df30de8620cc7bb619ec8b4211167470a47e1497": [
+      "A-INJECT-PROMPT-01__blur-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--19e295a86dfb535c6d8ff621d8f0387cdecea3f36b298c3161223a1f81f547a4": [
+      "A-WARN-BOLDBODY-01__blur-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--5c95d5786210dff69f912a701dd3049bbf5a9ff0f7fdac7630d6621022377dc7": [
+      "A-WARN-TITLECASE-01__blur-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--10dd9265d15f2ede5fa9c3329b877e4730dabe04cbfcc03e9bd99c24e135f6b9": [
+      "C-MALT-01__blur-3",
+      "D-GLARE-01__blur-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--c840140b951991f0deceef35238d54da618280807e67b11d9426b067367792ed": [
+      "C-SPIRITS-01__blur-3",
+      "D-BLUR-01__blur-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--325c6b85fc8834f30ad325a5194197b8d123b6754793dd6a91eb5c7fa76f0302": [
+      "C-SPIRITS-IMPORT-01__blur-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--ae55187d23e1ca0d91cb9752cc2f42094190563fb736f7bc10aac3407cd14f8a": [
+      "C-WINE-01__blur-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--60a379fd05a554aa5db356940cc7aa105de2c5aa83acdd477692de97b3f46678": [
+      "D-WARP-01__blur-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--fcffdad7eabd371d52d116aa1dd6e00524b522eb02e375ffc829622a9a67e4ca": [
+      "W-ABV-4045-01__blur-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--0dfb8e734a83dd80c683585ea0740cd863162d2e75ab2afa263a5394b22d5187": [
+      "W-BRAND-SPLITLINE-01__blur-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--4ff597e46929941fb42c71b49fc619df8d708a4c177a831d92a19cf2a2929731": [
+      "W-BRAND-WRONG-01__blur-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--536b4485302babeba6f58b7c720af7827a450c747d1b2622dae4c8cdae9a37e9": [
+      "W-NETCONTENTS-WRONG-01__blur-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--c5cc8940d7ece16cfd384d89fb078b773dde9e85f9a2b4b8a3799609ef9b91e1": [
+      "W-WARN-REWORD-01__blur-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--bf48b1ba69387767e014786876245d2ba668bbf21823102cca1444b22e34f7ca": [
+      "A-ABV-WRONG-01__blur-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--9751b87ede8f443d8c1e9f4b50fe15f43985d96fa187bc04d519740e25c7ff81": [
+      "A-BRAND-CASE-01__blur-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--65639a5d77d1adcbe75f0bd1da55720e848777bce703d401c36e801ebb153fa5": [
+      "A-FIELD-MISSING-01__blur-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--3a1e18a7cf5a905712d66e40a6ff18e7dd35b4d6a0ed9f1da3c02484734e0a39": [
+      "A-INJECT-PROMPT-01__blur-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--ab2384db0beb6852aa728ebf3e54c1cc6a51b623a9220b2260617605e7ea228c": [
+      "A-WARN-BOLDBODY-01__blur-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--af3f934bbb9e208e6e6c4db3d3b2761926192600d3a44d8e19f75eecf073210d": [
+      "A-WARN-TITLECASE-01__blur-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--cd95382f6269502e40ccdced8b1525ff81dd78b75ba8795a156350b461a8d888": [
+      "C-MALT-01__blur-4",
+      "D-GLARE-01__blur-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--8df718700225ae051d09b7ac11e0c89a552856c964bb2db55797b1ce4277f7bf": [
+      "C-SPIRITS-01__blur-4",
+      "D-BLUR-01__blur-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--407417ac9a1a0ed20b9586ab163abed5eb25ee6866a55eb6727a9156993af381": [
+      "C-SPIRITS-IMPORT-01__blur-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--b613969a624bfe4d1d99a788483b9f3c51ec3740632530b8e19fef175b413be2": [
+      "C-WINE-01__blur-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--473836bd9f10b13a4e45137de8a66489e48ef9331f5b56560f61d78a6c468faf": [
+      "D-WARP-01__blur-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--bcff16e35ec3654b116321130e58df6e42fd8a1518825b380d2cc009fd664b01": [
+      "W-ABV-4045-01__blur-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--c3b2a0fae8173148327f07acb693c8f41dc765240f11165a2d5d0da306d32b43": [
+      "W-BRAND-SPLITLINE-01__blur-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--9d2b0940b8bd50bd1b45764c6089f14783924fa3cb5d82b872f388d8dba1c1a2": [
+      "W-BRAND-WRONG-01__blur-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--dc6bd79c68edd405df031f5113b8862b5da2d2e9938561a0174ea8f57aacd93b": [
+      "W-NETCONTENTS-WRONG-01__blur-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--c99b9e81f8d387366dcd2d76d3894449f5c06360d5ce6725a7e50864598a8c22": [
+      "W-WARN-REWORD-01__blur-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--7a97f4d3daa740af8a8d15945737496f6570052d569b0e59f8254c198fcd8722": [
+      "A-ABV-WRONG-01__blur-5"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--dd6804b395bed6712a09d3013c3857500378e8b4e62591848510df69443747d9": [
+      "A-BRAND-CASE-01__blur-5"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--ae359089f560d664b79ca5363741a5d822c1dc1261adcc6a8ff5e01bde3185a0": [
+      "A-FIELD-MISSING-01__blur-5"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--b8fce0c8a4c50a3aca3884a8b578e60b9b1ded32f58a56502d8afe1852534d57": [
+      "A-INJECT-PROMPT-01__blur-5"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--49ab9d3cd42cfa667b187750cd7c83c515096de1bf962dee6fd6f645252ef4d8": [
+      "A-WARN-BOLDBODY-01__blur-5"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--cb3e7c6752a12db3e089faa719503433639e7b6c7404222abe269718555b9477": [
+      "A-WARN-TITLECASE-01__blur-5"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--79c57bd7e51aafcb07f739af589e8da640d38d2e242b281fd407a2e6f6a86caf": [
+      "C-MALT-01__blur-5",
+      "D-GLARE-01__blur-5"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--a846ef08df856a82b31eb2a49e26abf8541a75e319a6dd57121c5300919afef9": [
+      "C-SPIRITS-01__blur-5",
+      "D-BLUR-01__blur-5"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--6b3d16bea4843c9a9f4d6eb33e1d72b4d1ed168c8ea16caa0878cf5470d40075": [
+      "C-SPIRITS-IMPORT-01__blur-5"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--30d2b93782c0712b842b6ef83f5e92250479aa8d5627faf23942616cc2975dfe": [
+      "C-WINE-01__blur-5"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--b3302c4b5eaacd999c3641f10e22d33a842c7dc74294f9c2889db555bddd862e": [
+      "D-WARP-01__blur-5"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--a28f08cd88be6f5d052bd7c1336995f33fb2b7b5f86c4cddc2ee83d0b3db08d7": [
+      "W-ABV-4045-01__blur-5"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--64205b6437676ab1cadd346546f23bbfde5fd0b89004fe16a797c30f4769bab8": [
+      "W-BRAND-SPLITLINE-01__blur-5"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--308761e86a704167653ebd3161eda7a41cc94c7b524c2c563619872959861511": [
+      "W-BRAND-WRONG-01__blur-5"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--c8ca245e12011d3c18caad12a91e430e588102ebd08f005054eabc9702836b03": [
+      "W-NETCONTENTS-WRONG-01__blur-5"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--150411349fad2a1870572a6f7bf85943d9e523d600e239aedf9434d789a4ddd6": [
+      "W-WARN-REWORD-01__blur-5"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--76520ded9b52a4f3c025f92fc40006c0f28ae4902434309d9598eaefb5611838": [
+      "A-ABV-WRONG-01__blur-6"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--8cb72ea63b42d824919b2ce4e12b15ba0057a134071f5b873edea12fe522b859": [
+      "A-BRAND-CASE-01__blur-6"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--43bb82f6bdc4e08d5db9b0d8aa892c93d2ed3d46b418bf8e0929434c94543409": [
+      "A-FIELD-MISSING-01__blur-6"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--1d25aae5419b7bf683d12cb89420292c7d79f4566dc95801a9163c79e85bf454": [
+      "A-INJECT-PROMPT-01__blur-6"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--d9132e640a3ec3bfee9ee8ab7669fa87bd6c5140fe2348b486c687a106d0f43a": [
+      "A-WARN-BOLDBODY-01__blur-6"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--1bc113975edd787dd1619a5baeb8ad79df420e4fb755f641105f63f37b71b395": [
+      "A-WARN-TITLECASE-01__blur-6"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--7ffe7cd002f1709bb0bab70a003690406ed3f14d2f6a0e6da159d0506daaac16": [
+      "C-MALT-01__blur-6",
+      "D-GLARE-01__blur-6"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--2f7cd659f446353e1f2d14c672249e2d6290e8b23865d7657f92935ff1418972": [
+      "C-SPIRITS-01__blur-6",
+      "D-BLUR-01__blur-6"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--d1e3edfb2246ce37ea52b1362cd92e1cb2e10fa6cab93cbbd3579a6773579599": [
+      "C-SPIRITS-IMPORT-01__blur-6"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--4ff50bee97599a6d35604f747e3116ff3af5c90761c3cce1079b3decf7878b20": [
+      "C-WINE-01__blur-6"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--b9e321f41d7f903ad133fe68ad01743b1d80f98a4c5896bfc2fa168dcd0cc7b0": [
+      "D-WARP-01__blur-6"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--6d3b48bbaafc5f46a1378d273b53cc0bf3750b2f2fdcbe743497d1b44316f98d": [
+      "W-ABV-4045-01__blur-6"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--cdbde4bec0821c88f98608fd567f27f46adca486192db8716e1a01e93a8d7515": [
+      "W-BRAND-SPLITLINE-01__blur-6"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--c0fe712d5bde6565a4922e15bda4f34189954e796f2d148c735ef71f19ce2ab3": [
+      "W-BRAND-WRONG-01__blur-6"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--9c92fd5777227d7d05277e4a936e1b63945279d44db9f6f7008cd7a1e60d4ef2": [
+      "W-NETCONTENTS-WRONG-01__blur-6"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--0e7a1714c1e6ca3354807c0237d84bc8f69ebde41a9e168dad7c8f50897ad349": [
+      "W-WARN-REWORD-01__blur-6"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--3054ef566e0418a61a596d10fcf446265c87e37149d77802cd388eb65c5adde1": [
+      "A-ABV-WRONG-01__glare-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--561505ba7ac76c17e105d1a8387caadc0b2e045a2bdcd5536b8d7ecfc14af763": [
+      "A-BRAND-CASE-01__glare-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--190ab9a7e7399dda07ba9d14152fb73f4fe12f2bf6f763b7fa18669d289d95c2": [
+      "A-FIELD-MISSING-01__glare-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--8026b8713c9e991eb63020c75927fa48993eee89acb6b9434b290075f4dd06cb": [
+      "A-INJECT-PROMPT-01__glare-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--e88aaba60f8d6a40e17afbae95b4062de8426a2a505eeddab06c2cfbf40673cd": [
+      "A-WARN-BOLDBODY-01__glare-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--42f07b5ceff79f19ccd3b104bf0e7fbf8034f91ea976bb0bf26a09a41cd4dc29": [
+      "A-WARN-TITLECASE-01__glare-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--4167d4269e871952e70b0f22036fd906b083d97e4261979348bdc2e31eee32a1": [
+      "C-MALT-01__glare-1",
+      "D-GLARE-01__glare-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--bc89d003f9b2e3be24bf4144d0c3656cbbabcbf2768beda41194857d7d499c48": [
+      "C-SPIRITS-01__glare-1",
+      "D-BLUR-01__glare-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--79bf50001c18584403bb47c41075bb370b2ff12572106f46e4aedf1cf4f25542": [
+      "C-SPIRITS-IMPORT-01__glare-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--d20f6fb652843d5f884eb77695bf607760dd43e82dfb211109859fa124bcf0f5": [
+      "C-WINE-01__glare-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--ff8765ebe31c09d9ec23f84ccb978ae02f9d498b674626707fce18a0e1d0a81f": [
+      "D-WARP-01__glare-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--e51303ab55637b859f98dac282609b51e6ac13c75c721a429aca6d1f77d4d782": [
+      "W-ABV-4045-01__glare-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--81ff8ec77faebeb4cc047fa59125c86187726ffaa5334ff975628fa0fd847a26": [
+      "W-BRAND-SPLITLINE-01__glare-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--bb9f2cdd25536a532b3363fd5d1411e3cbffe43637fe8067d1a5620fa2321367": [
+      "W-BRAND-WRONG-01__glare-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--665bec96547302b6d9eead805961bf82dcf2dc8dcd595bb856f1986d61a1acea": [
+      "W-NETCONTENTS-WRONG-01__glare-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--d0b6fd794f547d2bba8522e6849f8eff7e94554f1455128812c480cbb6ae9ab5": [
+      "W-WARN-REWORD-01__glare-1"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--846a0027fa46300355765a45dd2992f9b8365b419d89a2855bc56279d05a1a55": [
+      "A-ABV-WRONG-01__glare-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--47e1080190a38b46a12acd6b06e74ed45f4347d9846e85dcd1712de772ebccaa": [
+      "A-BRAND-CASE-01__glare-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--9fa996ff14dbc49bb438524e5ecd80457c8097073fe4f1ed1a6fd6faa7f9e56c": [
+      "A-FIELD-MISSING-01__glare-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--50b3e5f1315a2d7d849961b3be365361bfaad26984f2775cd088dde5824df183": [
+      "A-INJECT-PROMPT-01__glare-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--302c54fa2eca241f04bed5ea23ae56692395241d460c237e85cd0a6a0fed12c9": [
+      "A-WARN-BOLDBODY-01__glare-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--1cbae138f9995381ad38529be9f871241d43e4ec1a5f8453bafba78c81f2cbe3": [
+      "A-WARN-TITLECASE-01__glare-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--8f8ddae2c54ca6bfe551f4beb7bfdcbd344f8a1a847275fef8c5e779c5c37daa": [
+      "C-MALT-01__glare-2",
+      "D-GLARE-01__glare-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--868627241b06ea46965c6933c12b52eaca12315dd9db6f95b0fa6d3bd7421cbd": [
+      "C-SPIRITS-01__glare-2",
+      "D-BLUR-01__glare-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--3cee0789a61185bcb6f7ea6eea8686160c5c7539f6a13f7563f98b73128cbc9a": [
+      "C-SPIRITS-IMPORT-01__glare-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--3e9588f516a212ac0a21240e5ba81ad409f91fb1bcf32925daaf948507df5c9b": [
+      "C-WINE-01__glare-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--e50a18fde122adf46d545625663e2c78198c8f35fad85051a1a8b3c2178d4007": [
+      "D-WARP-01__glare-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--9ed1c95adbb842fd10e7d2ce638029e53cfa744ac96a5071cec95101906aec89": [
+      "W-ABV-4045-01__glare-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--9264b367e7702f888908665ab71b04bcefe2cbcedef8cd573691c905e5fa477c": [
+      "W-BRAND-SPLITLINE-01__glare-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--6187b063454ac2d3419d9345d07adcdbd9cfbd8d83c72786f7ab9fd2033a2978": [
+      "W-BRAND-WRONG-01__glare-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--4a5156fb77fc10a2441c5bde63101786d6461faf1439ca43ebd640a578632cf3": [
+      "W-NETCONTENTS-WRONG-01__glare-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--2b7491ecc34a503dce5d82494c7377ed12992dd00ee5e742b4a4bf025d904cc2": [
+      "W-WARN-REWORD-01__glare-2"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--cd2c6729440542f414671123ca2986a028d5ad8425aebaf0777f7affa3f6390d": [
+      "A-ABV-WRONG-01__glare-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--f9185bf7ca92516534368cf4910a75f038e34dc45d659bf7cc35bf32b8901cef": [
+      "A-BRAND-CASE-01__glare-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--3c98acd9f90741e0d35dd8a8185f0af0fbd6b353b0e3c20e5dec5f5c47e1dbdc": [
+      "A-FIELD-MISSING-01__glare-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--b2b6c1d3102649e6ddf254aaf7ac1b744c389323bdf193149ddb030ec642c9ca": [
+      "A-INJECT-PROMPT-01__glare-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--d76e56513201556ce1f8bdc57f011d3efffdefe0064f68107e6c2edbdd4cfac1": [
+      "A-WARN-BOLDBODY-01__glare-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--39169ed63d17863ceb3242f08a354f61cebd4f16ec938d57cd361f4d9e21caf0": [
+      "A-WARN-TITLECASE-01__glare-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--592174d4e9913bfb2fd24459afea633b271136e4dc58cd3fb1af880b8e41db2f": [
+      "C-MALT-01__glare-3",
+      "D-GLARE-01__glare-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--001c20eaec020f7538cc5c9be444d9da59d22201d71eb8c6d5b3505e69cddd45": [
+      "C-SPIRITS-01__glare-3",
+      "D-BLUR-01__glare-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--1e242fdf52754e1b342c1fae2e92051633b53aa0ef15f232bb12d12feb52ece0": [
+      "C-SPIRITS-IMPORT-01__glare-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--13072a457b2b4eeb5f91e454c2d5316d2ece0d528a7b0150e6d07754613cf69a": [
+      "C-WINE-01__glare-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--dd44ccb2ac916fb4ed40e91ed57848f9ab6cb95c4294c4dc5225e57e43790881": [
+      "D-WARP-01__glare-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--a72140d366dd856e33003cf0824455745a89cefbff881f9a4b61ea2b66dc031a": [
+      "W-ABV-4045-01__glare-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--db310a40e106b8a1255aea81cb2ba095f1336f18ea843585209c0f4cc42ac6c0": [
+      "W-BRAND-SPLITLINE-01__glare-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--199e816c51f64e0f0a88cc57e616f84df30b869b7c91a6ab51ef53a125da30ec": [
+      "W-BRAND-WRONG-01__glare-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--b66da855f14f2298dff70bcf3cf345aefcb2f5783279b00f9addbc5a4e177134": [
+      "W-NETCONTENTS-WRONG-01__glare-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--1736818b05e4e553fbafa1bc63b51849b31095da73f2985cc9a5c28628b20955": [
+      "W-WARN-REWORD-01__glare-3"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--36457d0f834595062a761c96c7d51e9d06debd434605bc1f72f1ff45ca70cc15": [
+      "A-ABV-WRONG-01__glare-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--148814afee41b9d092d258f0e2f85eeb5c58082e523040207efd796bd3a44dd1": [
+      "A-BRAND-CASE-01__glare-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--fbc3c0693c4a66f487f1b3b05c5b7d428bb54d26673b2669051f76f327bc8099": [
+      "A-FIELD-MISSING-01__glare-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--2beeaa7fd8686cb726b6ea363f8780667da9de43c7ca65e721f9ff85b7387c6a": [
+      "A-INJECT-PROMPT-01__glare-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--02cfa05e6a40cfae2bd1fdbb2df3d925fc68b6352c81ba9c0c446f5ea969d0fa": [
+      "A-WARN-BOLDBODY-01__glare-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--c6790f17327df614c093fb2af049f8fc8bd31ea828cb8862f8720d97be379229": [
+      "A-WARN-TITLECASE-01__glare-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--33dd7f77c2e83012297d88d42674c3bf352f03887a9999db3438ca249a4ea201": [
+      "C-MALT-01__glare-4",
+      "D-GLARE-01__glare-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--ac09c86ac70f52ac82e8212660a5989138880f087cec297a0fefe96d150feefb": [
+      "C-SPIRITS-01__glare-4",
+      "D-BLUR-01__glare-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--5650ebdeb69fbfc37f6c4b5145b790372e515b69ca5ed103a4887b6b0481c487": [
+      "C-SPIRITS-IMPORT-01__glare-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--a61df88e2c216ff2cc7d3fe7655bd69f1582a418b2dc12b5f095ffd94073bddb": [
+      "C-WINE-01__glare-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--8b817cf7a34b50a33948e8626d237f214812d558aea34789aebb7efa560f94ad": [
+      "D-WARP-01__glare-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--13da97737f42e7bf39e7bd1902b84dd5eb295528552f65e9516b6b5483c32a2d": [
+      "W-ABV-4045-01__glare-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--7281a06b479504d7cbf7802edd6c411f324a8b07d15a527cccec08276ed6a477": [
+      "W-BRAND-SPLITLINE-01__glare-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--d8b88c1616f808a837dfbc0619a225a3e807e02323ebaaeaad9710139850c2fb": [
+      "W-BRAND-WRONG-01__glare-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--c4c5120533f1485fb7ab75c8e9faf1cfbd2148feaa949df1812cd17b6dd14240": [
+      "W-NETCONTENTS-WRONG-01__glare-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--63151981ed9570c20569d18b20e86956f2f7ba3bea3d507a7c3f79c971112c09": [
+      "W-WARN-REWORD-01__glare-4"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--b0a5320f4c786ec6aa066fb73c96a2a01efb62101a48d0cb0c466cf351fbff09": [
+      "A-ABV-WRONG-01__glare-5"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--d93f566e14c2ac41492aed5ce440cbe7ce03d2cade04a29b8c1847434e3b98b6": [
+      "A-BRAND-CASE-01__glare-5"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--8b6eea4be78b9dfbf3f7cccc271da117d3539f497eabbbd06a66659c154899d5": [
+      "A-FIELD-MISSING-01__glare-5"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--5ff3956920222fa5fe178bb2c7c43c95fb4ad562bed40ced357fc9a3b7612bb4": [
+      "A-INJECT-PROMPT-01__glare-5"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--33e655ff16e638bff5dd52dac0cf097483e25978f4f239fa9212cd0a1f622e0c": [
+      "A-WARN-BOLDBODY-01__glare-5"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--75e5d8b4ed2d52e12911c3b1a57ee3542d4ed655ec61948b4fda4035e51c0603": [
+      "A-WARN-TITLECASE-01__glare-5"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--ecd194d42a3aaeebc5b5f5bb4b3d26796f4955145d7cef8e0bbd9e7f918d4002": [
+      "C-MALT-01__glare-5",
+      "D-GLARE-01__glare-5"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--7a177fcb5303d186ba7c149a297a2e730f077efe4fa6b3e256328207f4c79db6": [
+      "C-SPIRITS-01__glare-5",
+      "D-BLUR-01__glare-5"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--2237f3536ddc99365afc36a43d79b7ae8cadcf80ef5f9bec26bb863533812e1c": [
+      "C-SPIRITS-IMPORT-01__glare-5"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--69efc595011cde278cf036dfe9b03b0c13b1b3d77648f47f7be670aba7704a00": [
+      "C-WINE-01__glare-5"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--9066e3c42a0f9ac29f124aa16c602e6c6bdbb41660eeb4f27d0b9425ec5ddefb": [
+      "D-WARP-01__glare-5"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--b073adc8c77eafce5d5bbff16df042f138a83a83210dde646a1b95b6169fb653": [
+      "W-ABV-4045-01__glare-5"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--bf2ec6c3e87f103a69f709d42cec456b96a59b6f57a61695d30218c71a2d01d1": [
+      "W-BRAND-SPLITLINE-01__glare-5"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--f56089bc056d260039f1ea33abe50b770b9d994dfdec08c2fae1bb7e64e4db78": [
+      "W-BRAND-WRONG-01__glare-5"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--47b4c9f32cfa270c50b101448dab219d8e2b08698221af1777e5f00e07e1148d": [
+      "W-NETCONTENTS-WRONG-01__glare-5"
+    ],
+    "openrouter--anthropic_claude-haiku-4.5--3d0a27963d71b38263a8b724146717691f451306b106b59b9943b0908b0e834a": [
+      "W-WARN-REWORD-01__glare-5"
+    ]
+  },
+  "queue": [
+    "A-ABV-WRONG-01__clean",
+    "A-BRAND-CASE-01__clean",
+    "A-FIELD-MISSING-01__clean",
+    "A-INJECT-PROMPT-01__clean",
+    "A-WARN-BOLDBODY-01__clean",
+    "A-WARN-TITLECASE-01__clean",
+    "C-MALT-01__clean",
+    "C-SPIRITS-01__clean",
+    "C-SPIRITS-IMPORT-01__clean",
+    "C-WINE-01__clean",
+    "D-WARP-01__clean",
+    "W-ABV-4045-01__clean",
+    "W-BRAND-SPLITLINE-01__clean",
+    "W-BRAND-WRONG-01__clean",
+    "W-NETCONTENTS-WRONG-01__clean",
+    "W-WARN-REWORD-01__clean",
+    "D-BLUR-01__straight",
+    "D-GLARE-01__straight",
+    "A-ABV-WRONG-01__angle",
+    "A-BRAND-CASE-01__angle",
+    "A-FIELD-MISSING-01__angle",
+    "A-INJECT-PROMPT-01__angle",
+    "A-WARN-BOLDBODY-01__angle",
+    "A-WARN-TITLECASE-01__angle",
+    "C-MALT-01__angle",
+    "C-SPIRITS-01__angle",
+    "C-SPIRITS-IMPORT-01__angle",
+    "C-WINE-01__angle",
+    "D-BLUR-01__angle",
+    "D-GLARE-01__angle",
+    "D-WARP-01__angle",
+    "W-ABV-4045-01__angle",
+    "W-BRAND-SPLITLINE-01__angle",
+    "W-BRAND-WRONG-01__angle",
+    "W-NETCONTENTS-WRONG-01__angle",
+    "W-WARN-REWORD-01__angle",
+    "A-ABV-WRONG-01__blur-1",
+    "A-BRAND-CASE-01__blur-1",
+    "A-FIELD-MISSING-01__blur-1",
+    "A-INJECT-PROMPT-01__blur-1",
+    "A-WARN-BOLDBODY-01__blur-1",
+    "A-WARN-TITLECASE-01__blur-1",
+    "C-MALT-01__blur-1",
+    "C-SPIRITS-01__blur-1",
+    "C-SPIRITS-IMPORT-01__blur-1",
+    "C-WINE-01__blur-1",
+    "D-WARP-01__blur-1",
+    "W-ABV-4045-01__blur-1",
+    "W-BRAND-SPLITLINE-01__blur-1",
+    "W-BRAND-WRONG-01__blur-1",
+    "W-NETCONTENTS-WRONG-01__blur-1",
+    "W-WARN-REWORD-01__blur-1",
+    "A-ABV-WRONG-01__blur-2",
+    "A-BRAND-CASE-01__blur-2",
+    "A-FIELD-MISSING-01__blur-2",
+    "A-INJECT-PROMPT-01__blur-2",
+    "A-WARN-BOLDBODY-01__blur-2",
+    "A-WARN-TITLECASE-01__blur-2",
+    "C-MALT-01__blur-2",
+    "C-SPIRITS-01__blur-2",
+    "C-SPIRITS-IMPORT-01__blur-2",
+    "C-WINE-01__blur-2",
+    "D-WARP-01__blur-2",
+    "W-ABV-4045-01__blur-2",
+    "W-BRAND-SPLITLINE-01__blur-2",
+    "W-BRAND-WRONG-01__blur-2",
+    "W-NETCONTENTS-WRONG-01__blur-2",
+    "W-WARN-REWORD-01__blur-2",
+    "A-ABV-WRONG-01__blur-3",
+    "A-BRAND-CASE-01__blur-3",
+    "A-FIELD-MISSING-01__blur-3",
+    "A-INJECT-PROMPT-01__blur-3",
+    "A-WARN-BOLDBODY-01__blur-3",
+    "A-WARN-TITLECASE-01__blur-3",
+    "C-MALT-01__blur-3",
+    "C-SPIRITS-01__blur-3",
+    "C-SPIRITS-IMPORT-01__blur-3",
+    "C-WINE-01__blur-3",
+    "D-WARP-01__blur-3",
+    "W-ABV-4045-01__blur-3",
+    "W-BRAND-SPLITLINE-01__blur-3",
+    "W-BRAND-WRONG-01__blur-3",
+    "W-NETCONTENTS-WRONG-01__blur-3",
+    "W-WARN-REWORD-01__blur-3",
+    "A-ABV-WRONG-01__blur-4",
+    "A-BRAND-CASE-01__blur-4",
+    "A-FIELD-MISSING-01__blur-4",
+    "A-INJECT-PROMPT-01__blur-4",
+    "A-WARN-BOLDBODY-01__blur-4",
+    "A-WARN-TITLECASE-01__blur-4",
+    "C-MALT-01__blur-4",
+    "C-SPIRITS-01__blur-4",
+    "C-SPIRITS-IMPORT-01__blur-4",
+    "C-WINE-01__blur-4",
+    "D-WARP-01__blur-4",
+    "W-ABV-4045-01__blur-4",
+    "W-BRAND-SPLITLINE-01__blur-4",
+    "W-BRAND-WRONG-01__blur-4",
+    "W-NETCONTENTS-WRONG-01__blur-4",
+    "W-WARN-REWORD-01__blur-4",
+    "A-ABV-WRONG-01__blur-5",
+    "A-BRAND-CASE-01__blur-5",
+    "A-FIELD-MISSING-01__blur-5",
+    "A-INJECT-PROMPT-01__blur-5",
+    "A-WARN-BOLDBODY-01__blur-5",
+    "A-WARN-TITLECASE-01__blur-5",
+    "C-MALT-01__blur-5",
+    "C-SPIRITS-01__blur-5",
+    "C-SPIRITS-IMPORT-01__blur-5",
+    "C-WINE-01__blur-5",
+    "D-WARP-01__blur-5",
+    "W-ABV-4045-01__blur-5",
+    "W-BRAND-SPLITLINE-01__blur-5",
+    "W-BRAND-WRONG-01__blur-5",
+    "W-NETCONTENTS-WRONG-01__blur-5",
+    "W-WARN-REWORD-01__blur-5",
+    "A-ABV-WRONG-01__blur-6",
+    "A-BRAND-CASE-01__blur-6",
+    "A-FIELD-MISSING-01__blur-6",
+    "A-INJECT-PROMPT-01__blur-6",
+    "A-WARN-BOLDBODY-01__blur-6",
+    "A-WARN-TITLECASE-01__blur-6",
+    "C-MALT-01__blur-6",
+    "C-SPIRITS-01__blur-6",
+    "C-SPIRITS-IMPORT-01__blur-6",
+    "C-WINE-01__blur-6",
+    "D-WARP-01__blur-6",
+    "W-ABV-4045-01__blur-6",
+    "W-BRAND-SPLITLINE-01__blur-6",
+    "W-BRAND-WRONG-01__blur-6",
+    "W-NETCONTENTS-WRONG-01__blur-6",
+    "W-WARN-REWORD-01__blur-6",
+    "A-ABV-WRONG-01__glare-1",
+    "A-BRAND-CASE-01__glare-1",
+    "A-FIELD-MISSING-01__glare-1",
+    "A-INJECT-PROMPT-01__glare-1",
+    "A-WARN-BOLDBODY-01__glare-1",
+    "A-WARN-TITLECASE-01__glare-1",
+    "C-MALT-01__glare-1",
+    "C-SPIRITS-01__glare-1",
+    "C-SPIRITS-IMPORT-01__glare-1",
+    "C-WINE-01__glare-1",
+    "D-WARP-01__glare-1",
+    "W-ABV-4045-01__glare-1",
+    "W-BRAND-SPLITLINE-01__glare-1",
+    "W-BRAND-WRONG-01__glare-1",
+    "W-NETCONTENTS-WRONG-01__glare-1",
+    "W-WARN-REWORD-01__glare-1",
+    "A-ABV-WRONG-01__glare-2",
+    "A-BRAND-CASE-01__glare-2",
+    "A-FIELD-MISSING-01__glare-2",
+    "A-INJECT-PROMPT-01__glare-2",
+    "A-WARN-BOLDBODY-01__glare-2",
+    "A-WARN-TITLECASE-01__glare-2",
+    "C-MALT-01__glare-2",
+    "C-SPIRITS-01__glare-2",
+    "C-SPIRITS-IMPORT-01__glare-2",
+    "C-WINE-01__glare-2",
+    "D-WARP-01__glare-2",
+    "W-ABV-4045-01__glare-2",
+    "W-BRAND-SPLITLINE-01__glare-2",
+    "W-BRAND-WRONG-01__glare-2",
+    "W-NETCONTENTS-WRONG-01__glare-2",
+    "W-WARN-REWORD-01__glare-2",
+    "A-ABV-WRONG-01__glare-3",
+    "A-BRAND-CASE-01__glare-3",
+    "A-FIELD-MISSING-01__glare-3",
+    "A-INJECT-PROMPT-01__glare-3",
+    "A-WARN-BOLDBODY-01__glare-3",
+    "A-WARN-TITLECASE-01__glare-3",
+    "C-MALT-01__glare-3",
+    "C-SPIRITS-01__glare-3",
+    "C-SPIRITS-IMPORT-01__glare-3",
+    "C-WINE-01__glare-3",
+    "D-WARP-01__glare-3",
+    "W-ABV-4045-01__glare-3",
+    "W-BRAND-SPLITLINE-01__glare-3",
+    "W-BRAND-WRONG-01__glare-3",
+    "W-NETCONTENTS-WRONG-01__glare-3",
+    "W-WARN-REWORD-01__glare-3",
+    "A-ABV-WRONG-01__glare-4",
+    "A-BRAND-CASE-01__glare-4",
+    "A-FIELD-MISSING-01__glare-4",
+    "A-INJECT-PROMPT-01__glare-4",
+    "A-WARN-BOLDBODY-01__glare-4",
+    "A-WARN-TITLECASE-01__glare-4",
+    "C-MALT-01__glare-4",
+    "C-SPIRITS-01__glare-4",
+    "C-SPIRITS-IMPORT-01__glare-4",
+    "C-WINE-01__glare-4",
+    "D-WARP-01__glare-4",
+    "W-ABV-4045-01__glare-4",
+    "W-BRAND-SPLITLINE-01__glare-4",
+    "W-BRAND-WRONG-01__glare-4",
+    "W-NETCONTENTS-WRONG-01__glare-4",
+    "W-WARN-REWORD-01__glare-4",
+    "A-ABV-WRONG-01__glare-5",
+    "A-BRAND-CASE-01__glare-5",
+    "A-FIELD-MISSING-01__glare-5",
+    "A-INJECT-PROMPT-01__glare-5",
+    "A-WARN-BOLDBODY-01__glare-5",
+    "A-WARN-TITLECASE-01__glare-5",
+    "C-MALT-01__glare-5",
+    "C-SPIRITS-01__glare-5",
+    "C-SPIRITS-IMPORT-01__glare-5",
+    "C-WINE-01__glare-5",
+    "D-WARP-01__glare-5",
+    "W-ABV-4045-01__glare-5",
+    "W-BRAND-SPLITLINE-01__glare-5",
+    "W-BRAND-WRONG-01__glare-5",
+    "W-NETCONTENTS-WRONG-01__glare-5",
+    "W-WARN-REWORD-01__glare-5"
+  ],
+  "prompt_settings_sha256": "ba93d7e53b184d2f74384c66eebdb59f523faf427337a9e3b2e702322f09040d",
+  "system_prompt_sha256": "7eee75227b6f2923fb14f3460ce2a599da98967d4dbc830d6d11ef22a8eedb0e",
+  "user_prompt_sha256": "a7ccb5470defaba9927da6a73740859ce748216653023e46409d77a5293e5393",
+  "route": "https://openrouter.ai/api/v1/chat/completions",
+  "model": "anthropic/claude-haiku-4.5",
+  "provider_policy": {
+    "only": [
+      "Anthropic"
+    ],
+    "allow_fallbacks": false,
+    "require_parameters": true
+  },
+  "input_bound_tokens": 200000,
+  "output_bound_tokens": 3000,
+  "reservation_usd": 0.4565,
+  "reservation_basis": "Full documented context charged at highest input/cache-write rate plus full 3000 output tokens, multiplied by 1.10. No caching/tools/search requested. Known usage.cost settles; missing cost never releases reserve.",
+  "pricing": {
+    "prompt": "0.000001",
+    "completion": "0.000005",
+    "web_search": "0.01",
+    "input_cache_read": "0.0000001",
+    "input_cache_write": "0.00000125",
+    "input_cache_write_1h": "0.000002",
+    "discount": 0
+  },
+  "shared_ledger": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/budget.sqlite",
+  "lock": "/opt/data/benchmarks/ttb-foundry-20260918-v1/run.lock",
+  "starting_liability_usd": 9.0629657,
+  "total_cap_usd": 50,
+  "historical_raw_sha256": "1b7fa04ba503de42ece3bcc382232fe2f5ccc19435f365eaf48ab9ce01efbcc0",
+  "processes": "[OMITTED: unrelated host process command lines; not benchmark data]",
+  "no_automatic_retries": true
+}

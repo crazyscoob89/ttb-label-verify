@@ -1,0 +1,444 @@
+{
+  "status": "PASS",
+  "scope": "Offline integrity / numerical effect checks only; NOT OCR, model, human or full-character acceptance",
+  "count": 18,
+  "all18_deterministic_png_hashes": true,
+  "all_prior_v1_files_and_sources_unchanged": true,
+  "visual_review": "Pending parent native vision / Alex; no inference or network used",
+  "fixtures": [
+    {
+      "fixture_id": "C-SPIRITS-01",
+      "source_identity": true,
+      "deterministic_full_png_sha256": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.502690418206576,
+        "source_weight_min": 0.497309581793424,
+        "max_adjacent_alpha_step": 0.004689289995969126,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.2414654454621149,
+        "label_max_row_fraction_alpha_above_050": 0.018318068276436304,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 2.15278595750154
+      }
+    },
+    {
+      "fixture_id": "C-WINE-01",
+      "source_identity": true,
+      "deterministic_full_png_sha256": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.626494641441178,
+        "source_weight_min": 0.37350535855882205,
+        "max_adjacent_alpha_step": 0.006082762442549516,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.21482098251457118,
+        "label_max_row_fraction_alpha_above_050": 0.093255620316403,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 2.107100902815856
+      }
+    },
+    {
+      "fixture_id": "C-MALT-01",
+      "source_identity": true,
+      "deterministic_full_png_sha256": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.5769363207353199,
+        "source_weight_min": 0.42306367926468014,
+        "max_adjacent_alpha_step": 0.004928616662479318,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.3263946711074105,
+        "label_max_row_fraction_alpha_above_050": 0.11990008326394672,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 3.582523597092757
+      }
+    },
+    {
+      "fixture_id": "C-SPIRITS-IMPORT-01",
+      "source_identity": true,
+      "deterministic_full_png_sha256": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.5009380916958392,
+        "source_weight_min": 0.49906190830416075,
+        "max_adjacent_alpha_step": 0.004689023566955608,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.2373022481265612,
+        "label_max_row_fraction_alpha_above_050": 0.010824313072439634,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 2.546100020533927
+      }
+    },
+    {
+      "fixture_id": "A-WARN-TITLECASE-01",
+      "source_identity": true,
+      "deterministic_full_png_sha256": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.5321882438504344,
+        "source_weight_min": 0.4678117561495656,
+        "max_adjacent_alpha_step": 0.005221813917177534,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.28143213988343047,
+        "label_max_row_fraction_alpha_above_050": 0.07160699417152373,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 3.0355570899589095
+      }
+    },
+    {
+      "fixture_id": "A-WARN-BOLDBODY-01",
+      "source_identity": true,
+      "deterministic_full_png_sha256": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.6224439280615806,
+        "source_weight_min": 0.37755607193841945,
+        "max_adjacent_alpha_step": 0.004924671099362871,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.2706078268109908,
+        "label_max_row_fraction_alpha_above_050": 0.115736885928393,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 3.076244502661513
+      }
+    },
+    {
+      "fixture_id": "A-BRAND-CASE-01",
+      "source_identity": true,
+      "deterministic_full_png_sha256": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.5223816247155372,
+        "source_weight_min": 0.4776183752844628,
+        "max_adjacent_alpha_step": 0.00468913144689706,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.25645295587010825,
+        "label_max_row_fraction_alpha_above_050": 0.054954204829308906,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 2.7609390548526633
+      }
+    },
+    {
+      "fixture_id": "A-ABV-WRONG-01",
+      "source_identity": true,
+      "deterministic_full_png_sha256": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.5612640738382666,
+        "source_weight_min": 0.4387359261617334,
+        "max_adjacent_alpha_step": 0.005137518077209038,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.2547876769358868,
+        "label_max_row_fraction_alpha_above_050": 0.08326394671107411,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 3.2184173531993436
+      }
+    },
+    {
+      "fixture_id": "A-FIELD-MISSING-01",
+      "source_identity": true,
+      "deterministic_full_png_sha256": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.5330802257460956,
+        "source_weight_min": 0.4669197742539044,
+        "max_adjacent_alpha_step": 0.004924424771933694,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.2639467110741049,
+        "label_max_row_fraction_alpha_above_050": 0.06577851790174855,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 3.0776543485667998
+      }
+    },
+    {
+      "fixture_id": "A-INJECT-PROMPT-01",
+      "source_identity": true,
+      "deterministic_full_png_sha256": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.5693958834912998,
+        "source_weight_min": 0.43060411650870023,
+        "max_adjacent_alpha_step": 0.004689436899308758,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.22814321398834306,
+        "label_max_row_fraction_alpha_above_050": 0.07993338884263114,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 2.387134930466707
+      }
+    },
+    {
+      "fixture_id": "W-BRAND-WRONG-01",
+      "source_identity": true,
+      "deterministic_full_png_sha256": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.5634808252149299,
+        "source_weight_min": 0.4365191747850701,
+        "max_adjacent_alpha_step": 0.004688729700994626,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.2581182348043297,
+        "label_max_row_fraction_alpha_above_050": 0.08742714404662781,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 2.8105896396182946
+      }
+    },
+    {
+      "fixture_id": "W-ABV-4045-01",
+      "source_identity": true,
+      "deterministic_full_png_sha256": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.5642533097374443,
+        "source_weight_min": 0.43574669026255575,
+        "max_adjacent_alpha_step": 0.004689316865601895,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.23980016652789343,
+        "label_max_row_fraction_alpha_above_050": 0.07993338884263114,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 3.1326961046463087
+      }
+    },
+    {
+      "fixture_id": "W-NETCONTENTS-WRONG-01",
+      "source_identity": true,
+      "deterministic_full_png_sha256": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.5044276125512696,
+        "source_weight_min": 0.49557238744873044,
+        "max_adjacent_alpha_step": 0.004689584044079376,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.2922564529558701,
+        "label_max_row_fraction_alpha_above_050": 0.029142381348875937,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 2.3555235136031625
+      }
+    },
+    {
+      "fixture_id": "W-WARN-REWORD-01",
+      "source_identity": true,
+      "deterministic_full_png_sha256": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.587812835396126,
+        "source_weight_min": 0.41218716460387395,
+        "max_adjacent_alpha_step": 0.005986511707306574,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.24812656119900084,
+        "label_max_row_fraction_alpha_above_050": 0.09658617818484597,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 3.348336187774867
+      }
+    },
+    {
+      "fixture_id": "W-BRAND-SPLITLINE-01",
+      "source_identity": true,
+      "deterministic_full_png_sha256": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.5539105815836645,
+        "source_weight_min": 0.44608941841633554,
+        "max_adjacent_alpha_step": 0.004689452647720832,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.20649458784346378,
+        "label_max_row_fraction_alpha_above_050": 0.0649458784346378,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 1.7758051668776471
+      }
+    },
+    {
+      "fixture_id": "D-BLUR-01",
+      "source_identity": true,
+      "deterministic_full_png_sha256": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.5853633840324973,
+        "source_weight_min": 0.4146366159675027,
+        "max_adjacent_alpha_step": 0.005027380683714444,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.23480432972522897,
+        "label_max_row_fraction_alpha_above_050": 0.08742714404662781,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 2.196954660637364
+      }
+    },
+    {
+      "fixture_id": "D-WARP-01",
+      "source_identity": true,
+      "deterministic_full_png_sha256": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.6012242521353965,
+        "source_weight_min": 0.39877574786460346,
+        "max_adjacent_alpha_step": 0.008373074233772128,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.24646128226477934,
+        "label_max_row_fraction_alpha_above_050": 0.09991673605328892,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 5.060918069630322
+      }
+    },
+    {
+      "fixture_id": "D-GLARE-01",
+      "source_identity": true,
+      "deterministic_full_png_sha256": true,
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "checks": {
+        "alpha_max": 0.5987436866748093,
+        "source_weight_min": 0.40125631332519074,
+        "max_adjacent_alpha_step": 0.006116162985577454,
+        "cap_alpha_max": 0.0,
+        "base_alpha_max": 0.0,
+        "outside_bottle_changed_pixels": 0,
+        "label_max_row_fraction_alpha_above_020": 0.231473771856786,
+        "label_max_row_fraction_alpha_above_050": 0.09159034138218151,
+        "solid_saturated_full_label_columns": 0,
+        "solid_saturated_full_label_rows": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "max_row_new_saturated_fraction": 0.0,
+        "label_mean_absolute_rgb_change": 3.1432857442646034
+      }
+    }
+  ],
+  "supplemental_v1_v2_checks": "comparison-tests.json",
+  "supplemental_status": "PASS"
+}

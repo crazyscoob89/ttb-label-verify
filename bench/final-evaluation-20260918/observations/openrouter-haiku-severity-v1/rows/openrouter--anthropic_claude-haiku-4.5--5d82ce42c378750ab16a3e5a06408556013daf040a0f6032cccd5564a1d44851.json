@@ -1,0 +1,107 @@
+{
+  "id": "openrouter--anthropic_claude-haiku-4.5--5d82ce42c378750ab16a3e5a06408556013daf040a0f6032cccd5564a1d44851",
+  "provider": "openrouter",
+  "model": "anthropic/claude-haiku-4.5",
+  "engine": "anthropic/claude-haiku-4.5",
+  "route": "https://openrouter.ai/api/v1/chat/completions",
+  "upstream_policy": "Anthropic only; no provider fallback",
+  "fixture": {
+    "id": "D-WARP-01__clean",
+    "source_fixture": "D-WARP-01",
+    "condition": "clean",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/D-WARP-01__clean.png",
+    "sha256": "47429b89bd864d13388c38895810746c7355631fda7fd19d02d2a4dc03e8159f",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/D-WARP-01.png",
+    "source_sha256": "47429b89bd864d13388c38895810746c7355631fda7fd19d02d2a4dc03e8159f",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/D-WARP-01.png",
+    "original_label_sha256": "bc3f95244d8d5141becd870068df8f66bff809c4c8945e787cf02c51b8a72545",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/D-WARP-01.json",
+    "original_truth_sha256": "b1882707a88f9796073660e896244cf6549c193894c3e7d3eb5ecb96db32a67c",
+    "source_fixture_id": "D-WARP-01",
+    "clean_parent_substitution": false,
+    "inherited_degradation": "original perspective warp and mild source blur",
+    "parameters": {
+      "operation": "byte-identical approved clean-parent copy"
+    },
+    "measurements": {}
+  },
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/D-WARP-01__clean.png",
+  "image_sha256": "47429b89bd864d13388c38895810746c7355631fda7fd19d02d2a4dc03e8159f",
+  "prompt_settings_sha256": "ba93d7e53b184d2f74384c66eebdb59f523faf427337a9e3b2e702322f09040d",
+  "request_sha256": "aff7e774b4b8b1592913e2607f989100217cdddf618af63ac33d484fc580072a",
+  "started_at": "2026-09-18T18:53:37.840761+00:00",
+  "reserved_usd": 0.4565,
+  "max_output_tokens": 3000,
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "ok": true,
+  "extracted": {
+    "brand_name": "Cedar Bluff",
+    "class_type": "RED TABLE WINE",
+    "alcohol_content": "13.5% ALC/VOL",
+    "net_contents": "750 mL",
+    "bottler_info": "Produced and bottled by Cedar Bluff Cellars, Healdsburg, California",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 0.99,
+      "class_type": 0.99,
+      "alcohol_content": 0.99,
+      "net_contents": 0.99,
+      "bottler_info": 0.99,
+      "country_of_origin": 0.99,
+      "government_warning_heading": 0.99,
+      "government_warning_body": 0.98,
+      "government_warning_heading_all_caps": 0.99,
+      "government_warning_heading_bold": 0.95,
+      "government_warning_body_bold": 0.92
+    }
+  },
+  "error_class": null,
+  "usage_cost_usd": 0.00426591,
+  "retail_estimate_usd": 0.004309,
+  "http_status": 200,
+  "request_id": null,
+  "latency_s": 4.604806501069106,
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/responses/openrouter--anthropic_claude-haiku-4.5--5d82ce42c378750ab16a3e5a06408556013daf040a0f6032cccd5564a1d44851.json",
+  "response_sha256": "cb0201f78967325123f20c90e5eeee32d2eda53da7a3b7f32b6e5b3ccdeaf67e",
+  "usage": {
+    "prompt_tokens": 2354,
+    "completion_tokens": 391,
+    "total_tokens": 2745,
+    "cost": 0.00426591,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.004309,
+      "upstream_inference_prompt_cost": 0.002354,
+      "upstream_inference_completions_cost": 0.001955
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "generation_id": "gen-1789757618-bEbZmVxnHosFycCScT8E",
+  "returned_model": "anthropic/claude-haiku-4.5",
+  "returned_provider": "Anthropic",
+  "raw_text": "```json\n{\n  \"brand_name\": \"Cedar Bluff\",\n  \"class_type\": \"RED TABLE WINE\",\n  \"alcohol_content\": \"13.5% ALC/VOL\",\n  \"net_contents\": \"750 mL\",\n  \"bottler_info\": \"Produced and bottled by Cedar Bluff Cellars, Healdsburg, California\",\n  \"country_of_origin\": null,\n  \"government_warning_heading\": \"GOVERNMENT WARNING:\",\n  \"government_warning_body\": \"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\n  \"government_warning_heading_all_caps\": true,\n  \"government_warning_heading_bold\": true,\n  \"government_warning_body_bold\": false,\n  \"confidence\": {\n    \"brand_name\": 0.99,\n    \"class_type\": 0.99,\n    \"alcohol_content\": 0.99,\n    \"net_contents\": 0.99,\n    \"bottler_info\": 0.99,\n    \"country_of_origin\": 0.99,\n    \"government_warning_heading\": 0.99,\n    \"government_warning_body\": 0.98,\n    \"government_warning_heading_all_caps\": 0.99,\n    \"government_warning_heading_bold\": 0.95,\n    \"government_warning_body_bold\": 0.92\n  }\n}\n```",
+  "finish_reason": "stop",
+  "validation_errors": {},
+  "unknown_charge_reserved_usd": 0,
+  "pipeline_seconds": 4.633059196057729
+}

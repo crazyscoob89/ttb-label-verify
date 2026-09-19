@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "approval_author": "Alex",
+  "approval_quote": "increade the cap to $50",
+  "currency": "USD",
+  "total_cap_usd": 50,
+  "semantics": "total-inclusive-not-additional",
+  "scope": "Current Foundry benchmark comparison; includes already incurred costs, inherited incurred-and-unknown liability, and all retained reservations in the existing canonical ledger. Not a fresh allowance or an account-wide billing cap.",
+  "canonical_runner": "recovery-v3/runner.py",
+  "canonical_ledger": "recovery-v3/budget.sqlite",
+  "inherited_basis": "recovery-v3/budget-basis.json",
+  "inherited_entry": "inherited-incurred-and-unknown",
+  "preserve_existing_ledger_and_duplicate_prevention": true,
+  "supersedes_budget_only": "Prior $10 execution ceiling, including the then-current allowance mentioned in severity-ladder-preview-v1/SCALE-APPROVAL.md. Historical $10 reports and evidence retain their original meaning.",
+  "run_authorized_by_this_change": false,
+  "allowed_actions_this_change": ["budget/config change", "offline temporary-ledger validation", "approval record"],
+  "forbidden_actions_this_change": ["paid tests", "restart benchmark", "publication", "commit", "fixture rebuild", "ledger reset"],
+  "authorization_record": "BUDGET-AUTHORIZATION.md"
+}

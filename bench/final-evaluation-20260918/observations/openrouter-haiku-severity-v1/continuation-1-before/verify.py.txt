@@ -1,0 +1,47 @@
+"""Independent read-only progress/integrity verification. No tests, writes or API calls."""
+import sys
+sys.dont_write_bytecode=True
+import json,sqlite3,fcntl,os,hashlib
+from decimal import Decimal,ROUND_CEILING
+from pathlib import Path
+import adapter as A
+D=A.D;B=A.B
+load=lambda p:json.loads(Path(p).read_text())
+def main():
+ freeze=load(D/'freeze.json');assert all(A.sha(p)==h for p,h in freeze['hashes'].items())
+ m=load(D/'manifest.json');assert len(m['fixtures'])==252 and len({r['sha256'] for r in m['fixtures']})==212
+ assert all(A.sha(r['image'])==r['sha256'] and A.approved(r['condition']) for r in m['fixtures'])
+ assert all(A.sha(p)==h for p,h in load(D/'immutable-inputs.json').items())
+ rows=[load(p) for p in (D/'rows').glob('*.json')]
+ assert len({r['id'] for r in rows})==len(rows)
+ for r in rows:
+  assert r['provider']=='openrouter' and r['model']==A.MODEL and r['route']==A.URL
+  assert r['id']==A.identity(r['image_sha256'],r['prompt_settings_sha256'])
+  assert (D/'attempts'/(r['id']+'.json')).exists()
+  assert r['request_sha256']==hashlib.sha256(json.dumps(A.payload(Path(r['source_image']).read_bytes())).encode()).hexdigest()
+  if r.get('response_file'):
+   assert A.sha(r['response_file'])==r['response_sha256']
+   if r.get('http_status')==200:
+    raw=load(r['response_file']);assert raw.get('id')==r.get('generation_id')
+    assert A.cost(raw,load(D/'model-metadata.json'))[0]==r.get('usage_cost_usd')
+  if r['ok']:assert not A.H.validate_extraction(r['extracted'])
+ c=sqlite3.connect('file:'+str(B/'recovery-v3/budget.sqlite')+'?mode=ro',uri=True)
+ c.execute('BEGIN');entries={i:dict(id=i,nano=n,status=s) for i,n,s in c.execute('select id,nano,status from ledger')};c.close()
+ before=load(D/'ledger-before.json');assert all(entries[r['id']]==r for r in before['entries'])
+ for r in rows:
+  e=entries[r['id']]
+  if r.get('usage_cost_usd') is None:
+   assert e['status']=='unknown-charge' and e['nano']==int((Decimal(str(r['reserved_usd']))*10**9).to_integral_value(rounding=ROUND_CEILING))
+  else:assert e['nano']==int((Decimal(str(r['usage_cost_usd']))*10**9).to_integral_value(rounding=ROUND_CEILING)) and e['status']=='openrouter-usage-cost'
+ total=sum(e['nano'] for e in entries.values())/1e9;assert total<=load(B/'budget-authorization.json')['total_cap_usd']
+ new=[e for i,e in entries.items() if i.startswith('openrouter--')]
+ state=load(D/'execution-state.json');pid=state.get('pid');live=False;cmd=None
+ if pid:
+  try:cmd=Path(f'/proc/{pid}/cmdline').read_bytes().replace(b'\0',b' ').decode();live=str(D/'run.py') in cmd
+  except FileNotFoundError:pass
+ lock=open(B/'run.lock','r');held=False
+ try:fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB);fcntl.flock(lock,fcntl.LOCK_UN)
+ except BlockingIOError:held=True
+ if state['status']=='complete':assert len(rows)==212 and state['terminal']
+ print(json.dumps({'verified_utc':A.now(),'integrity':'PASS','state':state,'runner_alive':live,'runner_command':cmd,'shared_lock_held':held,'saved_unique_rows':len(rows),'valid_extraction_rows':sum(r['ok'] for r in rows),'processing_failures':sum(not r['ok'] for r in rows),'unique_images_planned':212,'logical_records':252,'unique_ledger_attempts':len(new),'observed_usage_cost_usd':sum(r['usage_cost_usd'] for r in rows if r.get('usage_cost_usd') is not None),'retail_estimate_usd':sum(r['retail_estimate_usd'] for r in rows if r.get('retail_estimate_usd') is not None),'unknown_or_inflight_reserves_usd':sum(e['nano'] for e in new if e['status']!='openrouter-usage-cost')/1e9,'shared_total_liability_usd':total,'inherited_current_liability_usd':before['liability_usd'],'all_preexisting_entries_exactly_preserved':True,'note':'Read-only live snapshot; a current in-flight attempt can make ledger count exceed saved rows. report.json may lag one checkpoint.'},indent=2))
+if __name__=='__main__':main()

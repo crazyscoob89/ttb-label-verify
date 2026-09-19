@@ -1,0 +1,2103 @@
+{
+  "status": "SYNTHETIC PREVIEW - NOT APPROVED - NOT MODEL-TESTED",
+  "visibility_annotations": "pending human approval; no visibility classes assigned",
+  "seed": 20260918,
+  "algorithm": "bounded linear-light asymmetric tapered cylindrical-normal softbox lobe + broad halo + opposite edge reflection",
+  "source_resolution_retained": true,
+  "text_retyped": false,
+  "source_pixels_resampled": false,
+  "generator_sha256": "14d2c0c6040e6f49a22c1e944c10c2db5da48fa0e1d1b268cd8643e170d0842d",
+  "environment": {
+    "python": "3.13.5",
+    "numpy": "2.5.3",
+    "pillow": "12.3.0"
+  },
+  "fixtures": [
+    {
+      "fixture_id": "C-SPIRITS-01",
+      "source_fixture_id": "C-SPIRITS-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-SPIRITS-01.png",
+      "source_sha256": "bd601f2d9a3b0fd1b31257fd46e24eb148969519fa4833678ac604df20e037ec",
+      "original_fixture_bottle_sha256": "bd601f2d9a3b0fd1b31257fd46e24eb148969519fa4833678ac604df20e037ec",
+      "source_label_sha256": "6db5c6cf43a3a09e324c9e086220594ba35f8611c6e1a4966ccec9a14cce7470",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260918,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": -12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1079.0,
+          1700.0,
+          2943.052292
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "parameters": {
+        "seed": 1507575473,
+        "center_u": -0.3235146017386067,
+        "center_y": 2062.5052414739253,
+        "sigma_y": 374.2570430978624,
+        "angular_width": 0.1417351396437033,
+        "curve": -0.032762830797786836,
+        "strength": 0.3046613810787086,
+        "edge_strength": 0.13,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.48
+      },
+      "output": "images/C-SPIRITS-01__glare-preview.png",
+      "output_sha256": "043243280efd19c3840368d3e8ee25b3c524c71771912a42706d6ab0e6cd1140",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "lighting_checks": {
+        "alpha_max": 0.304660859519137,
+        "source_weight_min": 0.695339140480863,
+        "label_alpha_max": 0.304660859519137,
+        "label_fraction_alpha_above_020": 0.04620991089178169,
+        "label_max_row_fraction_alpha_above_020": 0.16153205661948378,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 1.423044030606834,
+        "outside_bottle_changed_pixels": 0
+      },
+      "visibility": "PENDING HUMAN APPROVAL",
+      "inherited_degradation": "none"
+    },
+    {
+      "fixture_id": "C-WINE-01",
+      "source_fixture_id": "C-WINE-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-WINE-01.png",
+      "source_sha256": "3e2506cb620c53fb1a267cd3bf12f38397c02bfdab849bd4aa87a2b528537eb3",
+      "original_fixture_bottle_sha256": "3e2506cb620c53fb1a267cd3bf12f38397c02bfdab849bd4aa87a2b528537eb3",
+      "source_label_sha256": "c718da519884fd0f496e166a97250a40decd98bf90a8511c7af335cab5bea771",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260919,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 0,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1091.0,
+          1700.0,
+          2943.470912
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            150
+          ],
+          [
+            230,
+            160
+          ],
+          [
+            620,
+            160
+          ],
+          [
+            710,
+            195
+          ],
+          [
+            800,
+            315
+          ],
+          [
+            900,
+            530
+          ],
+          [
+            1040,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          42.0,
+          67.0,
+          37.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "parameters": {
+        "seed": 30439589,
+        "center_u": -0.43687420195460236,
+        "center_y": 1828.122213977313,
+        "sigma_y": 362.8954158510267,
+        "angular_width": 0.1239079205742504,
+        "curve": 0.056413566178865296,
+        "strength": 0.3796974478993575,
+        "edge_strength": 0.13,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.48
+      },
+      "output": "images/C-WINE-01__glare-preview.png",
+      "output_sha256": "5c354152d7084b3836637379765947edec5019af9f16ad4dccfeeee337b86beb",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "lighting_checks": {
+        "alpha_max": 0.37969372208556246,
+        "source_weight_min": 0.6203062779144375,
+        "label_alpha_max": 0.37969372208556246,
+        "label_fraction_alpha_above_020": 0.05356286202329134,
+        "label_max_row_fraction_alpha_above_020": 0.15903413821815154,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 1.3747229612179552,
+        "outside_bottle_changed_pixels": 0
+      },
+      "visibility": "PENDING HUMAN APPROVAL",
+      "inherited_degradation": "none"
+    },
+    {
+      "fixture_id": "C-MALT-01",
+      "source_fixture_id": "C-MALT-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-MALT-01.png",
+      "source_sha256": "d94072ceaa20bb53d3bcab4829e235258c2e0cc09f211e1b5959ecb2b1a8a917",
+      "original_fixture_bottle_sha256": "d94072ceaa20bb53d3bcab4829e235258c2e0cc09f211e1b5959ecb2b1a8a917",
+      "source_label_sha256": "36f92b6f24b80111d5abe6a3aac8ae7538252bc58640893aa369af67fc33a559",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260920,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1097.0,
+          1700.0,
+          2945.563952
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            160
+          ],
+          [
+            215,
+            155
+          ],
+          [
+            540,
+            155
+          ],
+          [
+            680,
+            235
+          ],
+          [
+            800,
+            405
+          ],
+          [
+            980,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          110.0,
+          64.0,
+          26.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "parameters": {
+        "seed": 4094431167,
+        "center_u": 0.2517150218756958,
+        "center_y": 2054.1436688822587,
+        "sigma_y": 412.67222312479896,
+        "angular_width": 0.18887903606908774,
+        "curve": 0.06889994140329804,
+        "strength": 0.349658448480517,
+        "edge_strength": 0.13,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.48
+      },
+      "output": "images/C-MALT-01__glare-preview.png",
+      "output_sha256": "94b9abf52f990edb39c8e5fb5782ef9f2aadef62c121c249eb76a2e61e228241",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "lighting_checks": {
+        "alpha_max": 0.3496583762032242,
+        "source_weight_min": 0.6503416237967758,
+        "label_alpha_max": 0.3496583762032242,
+        "label_fraction_alpha_above_020": 0.08543693263743628,
+        "label_max_row_fraction_alpha_above_020": 0.2373022481265612,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 2.3553281028230764,
+        "outside_bottle_changed_pixels": 0
+      },
+      "visibility": "PENDING HUMAN APPROVAL",
+      "inherited_degradation": "none"
+    },
+    {
+      "fixture_id": "C-SPIRITS-IMPORT-01",
+      "source_fixture_id": "C-SPIRITS-IMPORT-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-SPIRITS-IMPORT-01.png",
+      "source_sha256": "7557567bdfcfb73dbbf29ca3c1ee615857dd958bd0f44c144788ce0b898206ec",
+      "original_fixture_bottle_sha256": "7557567bdfcfb73dbbf29ca3c1ee615857dd958bd0f44c144788ce0b898206ec",
+      "source_label_sha256": "a1a8009fec8552dbbaa4610274f08b3fffaf841efc092f0de53a1af953d5e24d",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260921,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": -12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1079.0,
+          1700.0,
+          2943.052292
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "parameters": {
+        "seed": 2981545445,
+        "center_u": 0.21018744239209972,
+        "center_y": 1996.952885542857,
+        "sigma_y": 375.9530181495455,
+        "angular_width": 0.13776769861577343,
+        "curve": 0.05752320468656401,
+        "strength": 0.30360133957871055,
+        "edge_strength": 0.13,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.48
+      },
+      "output": "images/C-SPIRITS-IMPORT-01__glare-preview.png",
+      "output_sha256": "2d934955bf9ca713ac721b536d2b7322c82e47bf6082180cd6e2818ffb7ca66c",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "lighting_checks": {
+        "alpha_max": 0.3035988434520238,
+        "source_weight_min": 0.6964011565479762,
+        "label_alpha_max": 0.3035988434520238,
+        "label_fraction_alpha_above_020": 0.04574417434432462,
+        "label_max_row_fraction_alpha_above_020": 0.15986677768526228,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 1.7087801718983051,
+        "outside_bottle_changed_pixels": 0
+      },
+      "visibility": "PENDING HUMAN APPROVAL",
+      "inherited_degradation": "none"
+    },
+    {
+      "fixture_id": "A-WARN-TITLECASE-01",
+      "source_fixture_id": "A-WARN-TITLECASE-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-WARN-TITLECASE-01.png",
+      "source_sha256": "0d4b1d5936b6e9aaed69a0b9ab16c101b3cf7d6834bf17fb69f4992bcada7ed6",
+      "original_fixture_bottle_sha256": "0d4b1d5936b6e9aaed69a0b9ab16c101b3cf7d6834bf17fb69f4992bcada7ed6",
+      "source_label_sha256": "a332b9612bc45547db698b2a7a005895a086d668319925bc8d06d2966f20a75f",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260922,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 0,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1091.0,
+          1700.0,
+          2943.470912
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "parameters": {
+        "seed": 2722096772,
+        "center_u": 0.4239394679816836,
+        "center_y": 1747.8008871391953,
+        "sigma_y": 471.2001548803778,
+        "angular_width": 0.17335346747836605,
+        "curve": -0.01588049510283323,
+        "strength": 0.3225408202716713,
+        "edge_strength": 0.13,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.48
+      },
+      "output": "images/A-WARN-TITLECASE-01__glare-preview.png",
+      "output_sha256": "6173b0d992c802888320b63af2681c647454fb210dce2b098a5ec08fce38483d",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "lighting_checks": {
+        "alpha_max": 0.3225383296063239,
+        "source_weight_min": 0.6774616703936761,
+        "label_alpha_max": 0.3225383296063239,
+        "label_fraction_alpha_above_020": 0.07549806055929002,
+        "label_max_row_fraction_alpha_above_020": 0.1965029142381349,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 1.94909030189386,
+        "outside_bottle_changed_pixels": 0
+      },
+      "visibility": "PENDING HUMAN APPROVAL",
+      "inherited_degradation": "none"
+    },
+    {
+      "fixture_id": "A-WARN-BOLDBODY-01",
+      "source_fixture_id": "A-WARN-BOLDBODY-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-WARN-BOLDBODY-01.png",
+      "source_sha256": "e691c2f4a862cce743f914f46fd073e0b2c10a6426778cffd9fd94c4c7f69938",
+      "original_fixture_bottle_sha256": "e691c2f4a862cce743f914f46fd073e0b2c10a6426778cffd9fd94c4c7f69938",
+      "source_label_sha256": "07ead341ecdafc55c1cb6b2215ad7eb5fbd2d83793bbe439bbd3458eafb70d1e",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260923,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1097.0,
+          1700.0,
+          2945.563952
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            150
+          ],
+          [
+            230,
+            160
+          ],
+          [
+            620,
+            160
+          ],
+          [
+            710,
+            195
+          ],
+          [
+            800,
+            315
+          ],
+          [
+            900,
+            530
+          ],
+          [
+            1040,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          42.0,
+          67.0,
+          37.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "parameters": {
+        "seed": 3268537078,
+        "center_u": -0.4051318713138241,
+        "center_y": 2214.54497750209,
+        "sigma_y": 372.39875359710686,
+        "angular_width": 0.1541496017196999,
+        "curve": -0.02850831124110465,
+        "strength": 0.37724203726838973,
+        "edge_strength": 0.13,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.48
+      },
+      "output": "images/A-WARN-BOLDBODY-01__glare-preview.png",
+      "output_sha256": "baeccbd303b1b65caba6c1e883e8dbb4906b7e9f145436c5a8d55185b71d82d2",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "lighting_checks": {
+        "alpha_max": 0.3772387442797458,
+        "source_weight_min": 0.6227612557202542,
+        "label_alpha_max": 0.3772387442797458,
+        "label_fraction_alpha_above_020": 0.06879993862386584,
+        "label_max_row_fraction_alpha_above_020": 0.19983347210657784,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 2.0661174405249465,
+        "outside_bottle_changed_pixels": 0
+      },
+      "visibility": "PENDING HUMAN APPROVAL",
+      "inherited_degradation": "none"
+    },
+    {
+      "fixture_id": "A-BRAND-CASE-01",
+      "source_fixture_id": "A-BRAND-CASE-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-BRAND-CASE-01.png",
+      "source_sha256": "eaa677746bdc68b71b3e07cafaa8a382dfafd69f69406e688c37960ca33a2b90",
+      "original_fixture_bottle_sha256": "eaa677746bdc68b71b3e07cafaa8a382dfafd69f69406e688c37960ca33a2b90",
+      "source_label_sha256": "6c3e7b4bc076cbfffe5b7d3379c7d167847370a8d24cae052a0850807e7a9329",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260924,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": -12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1079.0,
+          1700.0,
+          2943.052292
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "parameters": {
+        "seed": 4248612372,
+        "center_u": 0.4259418016637923,
+        "center_y": 2008.6186033371278,
+        "sigma_y": 473.23925895339903,
+        "angular_width": 0.15948572257438023,
+        "curve": 0.02769311572507889,
+        "strength": 0.31659505990499875,
+        "edge_strength": 0.13,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.48
+      },
+      "output": "images/A-BRAND-CASE-01__glare-preview.png",
+      "output_sha256": "6fdf8ea0574c7a80b29ebc32dfb755035420a5a8b8742b32209e20b3a5084d51",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "lighting_checks": {
+        "alpha_max": 0.3165949240700226,
+        "source_weight_min": 0.6834050759299775,
+        "label_alpha_max": 0.3165949240700226,
+        "label_fraction_alpha_above_020": 0.06716444516651661,
+        "label_max_row_fraction_alpha_above_020": 0.1781848459616986,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 1.7643192551825602,
+        "outside_bottle_changed_pixels": 0
+      },
+      "visibility": "PENDING HUMAN APPROVAL",
+      "inherited_degradation": "none"
+    },
+    {
+      "fixture_id": "A-ABV-WRONG-01",
+      "source_fixture_id": "A-ABV-WRONG-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-ABV-WRONG-01.png",
+      "source_sha256": "7535698250fa4d7cfd76f9936305f2376dcde95e4bb1ec1bedc66cf77198bebd",
+      "original_fixture_bottle_sha256": "7535698250fa4d7cfd76f9936305f2376dcde95e4bb1ec1bedc66cf77198bebd",
+      "source_label_sha256": "bb19b282fe059b2f429d0f91904639cb82e1fc256b0f026ee7d484e39cfad135",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260925,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 0,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1091.0,
+          1700.0,
+          2943.470912
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            150
+          ],
+          [
+            230,
+            160
+          ],
+          [
+            620,
+            160
+          ],
+          [
+            710,
+            195
+          ],
+          [
+            800,
+            315
+          ],
+          [
+            900,
+            530
+          ],
+          [
+            1040,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          42.0,
+          67.0,
+          37.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "parameters": {
+        "seed": 2841707826,
+        "center_u": -0.22425385523968352,
+        "center_y": 1803.1533443293108,
+        "sigma_y": 402.0782917779715,
+        "angular_width": 0.14453232823594184,
+        "curve": -0.04564562977784159,
+        "strength": 0.34016045289603475,
+        "edge_strength": 0.13,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.48
+      },
+      "output": "images/A-ABV-WRONG-01__glare-preview.png",
+      "output_sha256": "89fe814f008b7d49e904852b1bc2df328f287a2be028dbe970e9e3ab8abc1aa6",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "lighting_checks": {
+        "alpha_max": 0.3401600447504646,
+        "source_weight_min": 0.6598399552495354,
+        "label_alpha_max": 0.3401600447504646,
+        "label_fraction_alpha_above_020": 0.06210723222969115,
+        "label_max_row_fraction_alpha_above_020": 0.18151540383014156,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 2.1885235655021,
+        "outside_bottle_changed_pixels": 0
+      },
+      "visibility": "PENDING HUMAN APPROVAL",
+      "inherited_degradation": "none"
+    },
+    {
+      "fixture_id": "A-FIELD-MISSING-01",
+      "source_fixture_id": "A-FIELD-MISSING-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-FIELD-MISSING-01.png",
+      "source_sha256": "fbe2320836ee47d13e1d3c9438d7575cb1bd0f453c44f8513bb610f960d4a3a5",
+      "original_fixture_bottle_sha256": "fbe2320836ee47d13e1d3c9438d7575cb1bd0f453c44f8513bb610f960d4a3a5",
+      "source_label_sha256": "bccda011d9dfb0c9b5c14cd422930a5d62c315e7caa0519dfd47f988ae94497a",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260926,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1097.0,
+          1700.0,
+          2945.563952
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            160
+          ],
+          [
+            215,
+            155
+          ],
+          [
+            540,
+            155
+          ],
+          [
+            680,
+            235
+          ],
+          [
+            800,
+            405
+          ],
+          [
+            980,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          110.0,
+          64.0,
+          26.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "parameters": {
+        "seed": 379269401,
+        "center_u": -0.2436065612459813,
+        "center_y": 2095.747886573258,
+        "sigma_y": 475.4354290498875,
+        "angular_width": 0.15459002626384166,
+        "curve": 0.0005112954727967273,
+        "strength": 0.32308022280211335,
+        "edge_strength": 0.13,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.48
+      },
+      "output": "images/A-FIELD-MISSING-01__glare-preview.png",
+      "output_sha256": "ad5be1890cd687d6c4b14614e18bd304a71e9e1f59f3aedf9dca585e9ec7ee61",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "lighting_checks": {
+        "alpha_max": 0.32307892469460336,
+        "source_weight_min": 0.6769210753053967,
+        "label_alpha_max": 0.32307892469460336,
+        "label_fraction_alpha_above_020": 0.07081993550992963,
+        "label_max_row_fraction_alpha_above_020": 0.1823480432972523,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 2.0515600143511845,
+        "outside_bottle_changed_pixels": 0
+      },
+      "visibility": "PENDING HUMAN APPROVAL",
+      "inherited_degradation": "none"
+    },
+    {
+      "fixture_id": "A-INJECT-PROMPT-01",
+      "source_fixture_id": "A-INJECT-PROMPT-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-INJECT-PROMPT-01.png",
+      "source_sha256": "862b359239fa121158387e419a7aba15fb7316a33af8fa1ed3bd64ce9ecae5f7",
+      "original_fixture_bottle_sha256": "862b359239fa121158387e419a7aba15fb7316a33af8fa1ed3bd64ce9ecae5f7",
+      "source_label_sha256": "f06963b651dec88f5226032a417a35bfbcce1c0bce7adbee74b304749d65b5eb",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260927,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": -12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1079.0,
+          1700.0,
+          2943.052292
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "parameters": {
+        "seed": 3967314766,
+        "center_u": 0.41439391708986945,
+        "center_y": 1979.050565580994,
+        "sigma_y": 448.33259217899774,
+        "angular_width": 0.13420846374484635,
+        "curve": 0.004669764918678931,
+        "strength": 0.34509317433835296,
+        "edge_strength": 0.13,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.48
+      },
+      "output": "images/A-INJECT-PROMPT-01__glare-preview.png",
+      "output_sha256": "f99a8ce5b3f024680c591ebf6812fc87c57bd222e6c5031664f460137e6295f8",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "lighting_checks": {
+        "alpha_max": 0.3450884142371514,
+        "source_weight_min": 0.6549115857628486,
+        "label_alpha_max": 0.3450884142371514,
+        "label_fraction_alpha_above_020": 0.06370571948850214,
+        "label_max_row_fraction_alpha_above_020": 0.16402997502081598,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 1.5229160884448145,
+        "outside_bottle_changed_pixels": 0
+      },
+      "visibility": "PENDING HUMAN APPROVAL",
+      "inherited_degradation": "none"
+    },
+    {
+      "fixture_id": "W-BRAND-WRONG-01",
+      "source_fixture_id": "W-BRAND-WRONG-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-BRAND-WRONG-01.png",
+      "source_sha256": "a1a4443f8838733ba6478df90d170d6d3c3cc925e2d2fe6e6e606a6e11a0639b",
+      "original_fixture_bottle_sha256": "a1a4443f8838733ba6478df90d170d6d3c3cc925e2d2fe6e6e606a6e11a0639b",
+      "source_label_sha256": "27d358e7cc919454f3388fb73d4868878b59f7b1b6433ee2bce514e0e670ca9d",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260928,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 0,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1091.0,
+          1700.0,
+          2943.470912
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "parameters": {
+        "seed": 3663301373,
+        "center_u": 0.24308197060256392,
+        "center_y": 1996.4924914496241,
+        "sigma_y": 457.70879242033095,
+        "angular_width": 0.1420895339450851,
+        "curve": -0.05310943804471277,
+        "strength": 0.34150625479694996,
+        "edge_strength": 0.13,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.48
+      },
+      "output": "images/W-BRAND-WRONG-01__glare-preview.png",
+      "output_sha256": "8bc8d0d6e3800aa9e2bb8349c4567f086f70cb1902517561ea070f8ca871590b",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "lighting_checks": {
+        "alpha_max": 0.3415035304332909,
+        "source_weight_min": 0.658496469566709,
+        "label_alpha_max": 0.3415035304332909,
+        "label_fraction_alpha_above_020": 0.0723358357646857,
+        "label_max_row_fraction_alpha_above_020": 0.18484596169858453,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 1.8414649941670107,
+        "outside_bottle_changed_pixels": 0
+      },
+      "visibility": "PENDING HUMAN APPROVAL",
+      "inherited_degradation": "none"
+    },
+    {
+      "fixture_id": "W-ABV-4045-01",
+      "source_fixture_id": "W-ABV-4045-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-ABV-4045-01.png",
+      "source_sha256": "d2e674fae1a068ca6fbdbca8af6e337eb197dcc54f75b6f1a8c651646a7daaf4",
+      "original_fixture_bottle_sha256": "d2e674fae1a068ca6fbdbca8af6e337eb197dcc54f75b6f1a8c651646a7daaf4",
+      "source_label_sha256": "2717efcdf4b2ef5e30570b11d8646c49f4bc82d70ee80d0d1a1fe6711f8f7435",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260929,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1097.0,
+          1700.0,
+          2945.563952
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "parameters": {
+        "seed": 2996614472,
+        "center_u": -0.239637821068942,
+        "center_y": 1804.9917529998474,
+        "sigma_y": 448.3782126147469,
+        "angular_width": 0.1292420977765527,
+        "curve": -0.04235544342840251,
+        "strength": 0.3419717780293441,
+        "edge_strength": 0.13,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.48
+      },
+      "output": "images/W-ABV-4045-01__glare-preview.png",
+      "output_sha256": "a847f9930a6862ec5a1a013aefba9bf4f69477cea213829e94ce0b1f787be467",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "lighting_checks": {
+        "alpha_max": 0.3419717028711783,
+        "source_weight_min": 0.6580282971288217,
+        "label_alpha_max": 0.3419717028711783,
+        "label_fraction_alpha_above_020": 0.06546892946031875,
+        "label_max_row_fraction_alpha_above_020": 0.17069109075770192,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 2.1362929266261856,
+        "outside_bottle_changed_pixels": 0
+      },
+      "visibility": "PENDING HUMAN APPROVAL",
+      "inherited_degradation": "none"
+    },
+    {
+      "fixture_id": "W-NETCONTENTS-WRONG-01",
+      "source_fixture_id": "W-NETCONTENTS-WRONG-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-NETCONTENTS-WRONG-01.png",
+      "source_sha256": "7abf8c9d973a8c781c2516f1615420d02db5654ea2492b98e9f326074136f128",
+      "original_fixture_bottle_sha256": "7abf8c9d973a8c781c2516f1615420d02db5654ea2492b98e9f326074136f128",
+      "source_label_sha256": "8ab0a782eda4738fa245b02721eaff28ecce889f012293ef5685b7f2c8cca8aa",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260930,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": -12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1079.0,
+          1700.0,
+          2943.052292
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "parameters": {
+        "seed": 896619834,
+        "center_u": 0.3815754603881154,
+        "center_y": 1928.5199914602242,
+        "sigma_y": 364.11712872002295,
+        "angular_width": 0.18168459765540693,
+        "curve": -0.06641154505162743,
+        "strength": 0.30571535637689956,
+        "edge_strength": 0.13,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.48
+      },
+      "output": "images/W-NETCONTENTS-WRONG-01__glare-preview.png",
+      "output_sha256": "a26151a1cf1c1d559e8c0829463291bdb0f072152fde75de346a94ee88de0053",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "lighting_checks": {
+        "alpha_max": 0.305713704576527,
+        "source_weight_min": 0.694286295423473,
+        "label_alpha_max": 0.305713704576527,
+        "label_fraction_alpha_above_020": 0.05567988735674201,
+        "label_max_row_fraction_alpha_above_020": 0.1990008326394671,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 1.5015779533315732,
+        "outside_bottle_changed_pixels": 0
+      },
+      "visibility": "PENDING HUMAN APPROVAL",
+      "inherited_degradation": "none"
+    },
+    {
+      "fixture_id": "W-WARN-REWORD-01",
+      "source_fixture_id": "W-WARN-REWORD-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-WARN-REWORD-01.png",
+      "source_sha256": "4abd681601b86e9147aecf5bd277e15b1ea928e92e5110674b71d1ba6d46e5a8",
+      "original_fixture_bottle_sha256": "4abd681601b86e9147aecf5bd277e15b1ea928e92e5110674b71d1ba6d46e5a8",
+      "source_label_sha256": "ad1ceec2aa92e01537484a4c991602c9397a5f31563c4d494c4bbe88b2c4eedd",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260931,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 0,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1091.0,
+          1700.0,
+          2943.470912
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            160
+          ],
+          [
+            215,
+            155
+          ],
+          [
+            540,
+            155
+          ],
+          [
+            680,
+            235
+          ],
+          [
+            800,
+            405
+          ],
+          [
+            980,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          110.0,
+          64.0,
+          26.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "parameters": {
+        "seed": 2122380161,
+        "center_u": 0.4248540355631327,
+        "center_y": 1570.8118953488704,
+        "sigma_y": 478.2216927416439,
+        "angular_width": 0.15203229327771656,
+        "curve": -0.0717808104179291,
+        "strength": 0.3562513779020407,
+        "edge_strength": 0.13,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.48
+      },
+      "output": "images/W-WARN-REWORD-01__glare-preview.png",
+      "output_sha256": "3dc88111c918d7051c1de49e07b890fb173b925aa206853deabf0463b0e7eb0f",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "lighting_checks": {
+        "alpha_max": 0.3562502032703795,
+        "source_weight_min": 0.6437497967296205,
+        "label_alpha_max": 0.3562502032703795,
+        "label_fraction_alpha_above_020": 0.07544435644189915,
+        "label_max_row_fraction_alpha_above_020": 0.18151540383014156,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 2.229573368173315,
+        "outside_bottle_changed_pixels": 0
+      },
+      "visibility": "PENDING HUMAN APPROVAL",
+      "inherited_degradation": "none"
+    },
+    {
+      "fixture_id": "W-BRAND-SPLITLINE-01",
+      "source_fixture_id": "W-BRAND-SPLITLINE-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-BRAND-SPLITLINE-01.png",
+      "source_sha256": "0d808655c0372f5c6ceb60d280a4773e20f8e35b33c3c599263112be17899b8a",
+      "original_fixture_bottle_sha256": "0d808655c0372f5c6ceb60d280a4773e20f8e35b33c3c599263112be17899b8a",
+      "source_label_sha256": "b83ade16f1e48719f138eadaa2af82ca8154909b4d60113299a0d47c1249f4e2",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260932,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1097.0,
+          1700.0,
+          2945.563952
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "parameters": {
+        "seed": 1476254630,
+        "center_u": 0.3850230426915263,
+        "center_y": 2152.02216799725,
+        "sigma_y": 357.03944497178594,
+        "angular_width": 0.12051258483230244,
+        "curve": -0.03259912726853837,
+        "strength": 0.33570348991692034,
+        "edge_strength": 0.13,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.48
+      },
+      "output": "images/W-BRAND-SPLITLINE-01__glare-preview.png",
+      "output_sha256": "31c70a65c748aca65b99a1cad4ef75dbd0cb5912b7c6865b9dd7e9b11ef3c543",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "lighting_checks": {
+        "alpha_max": 0.3357033827779785,
+        "source_weight_min": 0.6642966172220215,
+        "label_alpha_max": 0.3357033827779785,
+        "label_fraction_alpha_above_020": 0.044053171589168015,
+        "label_max_row_fraction_alpha_above_020": 0.14654454621149043,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 1.1390219081208297,
+        "outside_bottle_changed_pixels": 0
+      },
+      "visibility": "PENDING HUMAN APPROVAL",
+      "inherited_degradation": "none"
+    },
+    {
+      "fixture_id": "D-BLUR-01",
+      "source_fixture_id": "D-BLUR-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/D-BLUR-01.png",
+      "source_sha256": "79c8cdb4cc6e0f3be886f66e84dca9a70dd75d8e2e70215abe913a1a5ab8e4d4",
+      "original_fixture_bottle_sha256": "79c8cdb4cc6e0f3be886f66e84dca9a70dd75d8e2e70215abe913a1a5ab8e4d4",
+      "source_label_sha256": "d12ce32310048021081b0406c2bbecba4c29eb8c654d83d4514484d8e0e5dceb",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260933,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": -12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1079.0,
+          1700.0,
+          2943.052292
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            180
+          ],
+          [
+            210,
+            192
+          ],
+          [
+            540,
+            192
+          ],
+          [
+            625,
+            255
+          ],
+          [
+            740,
+            540
+          ],
+          [
+            850,
+            730
+          ],
+          [
+            2920,
+            730
+          ],
+          [
+            2990,
+            650
+          ],
+          [
+            3020,
+            520
+          ]
+        ],
+        "bottle_base_rgb": [
+          112.0,
+          126.0,
+          113.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "parameters": {
+        "seed": 3918110758,
+        "center_u": -0.41391725528513645,
+        "center_y": 1820.0077086975796,
+        "sigma_y": 386.0868616566264,
+        "angular_width": 0.13175492705517589,
+        "curve": -0.02761773270277016,
+        "strength": 0.35476621761749627,
+        "edge_strength": 0.13,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.48
+      },
+      "output": "images/D-BLUR-01__glare-preview.png",
+      "output_sha256": "a3cae496f2441ce6b78eface11da4cb4dc5ada26a534b5fbcf873c97a89558e7",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "lighting_checks": {
+        "alpha_max": 0.35476568729242264,
+        "source_weight_min": 0.6452343127075774,
+        "label_alpha_max": 0.35476568729242264,
+        "label_fraction_alpha_above_020": 0.0577594551965503,
+        "label_max_row_fraction_alpha_above_020": 0.16985845129059118,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 1.1017990879325945,
+        "outside_bottle_changed_pixels": 0
+      },
+      "visibility": "PENDING HUMAN APPROVAL",
+      "inherited_degradation": "original blur"
+    },
+    {
+      "fixture_id": "D-WARP-01",
+      "source_fixture_id": "D-WARP-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/D-WARP-01.png",
+      "source_sha256": "47429b89bd864d13388c38895810746c7355631fda7fd19d02d2a4dc03e8159f",
+      "original_fixture_bottle_sha256": "47429b89bd864d13388c38895810746c7355631fda7fd19d02d2a4dc03e8159f",
+      "source_label_sha256": "bc3f95244d8d5141becd870068df8f66bff809c4c8945e787cf02c51b8a72545",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260934,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 0,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1091.0,
+          1700.0,
+          2943.470912
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            150
+          ],
+          [
+            230,
+            160
+          ],
+          [
+            620,
+            160
+          ],
+          [
+            710,
+            195
+          ],
+          [
+            800,
+            315
+          ],
+          [
+            900,
+            530
+          ],
+          [
+            1040,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          42.0,
+          67.0,
+          37.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "parameters": {
+        "seed": 3036809923,
+        "center_u": 0.2790413111219869,
+        "center_y": 1595.245693764877,
+        "sigma_y": 469.6935664894487,
+        "angular_width": 0.1401246629935524,
+        "curve": -0.006258782116766642,
+        "strength": 0.3643784528724213,
+        "edge_strength": 0.13,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.48
+      },
+      "output": "images/D-WARP-01__glare-preview.png",
+      "output_sha256": "9865875e51c22851f980db419e92744d7b92eb11e1f8a394988b3f436189f8b2",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "lighting_checks": {
+        "alpha_max": 0.364378334627513,
+        "source_weight_min": 0.635621665372487,
+        "label_alpha_max": 0.364378334627513,
+        "label_fraction_alpha_above_020": 0.07637221917598026,
+        "label_max_row_fraction_alpha_above_020": 0.18151540383014156,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 3.417435786347872,
+        "outside_bottle_changed_pixels": 0
+      },
+      "visibility": "PENDING HUMAN APPROVAL",
+      "inherited_degradation": "original warp"
+    },
+    {
+      "fixture_id": "D-GLARE-01",
+      "source_fixture_id": "C-MALT-01",
+      "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-MALT-01.png",
+      "source_sha256": "d94072ceaa20bb53d3bcab4829e235258c2e0cc09f211e1b5959ecb2b1a8a917",
+      "original_fixture_bottle_sha256": "4bb6cfeccacf118647cfd357c33044ec5453f1f4723947615f071e3f8e74adfa",
+      "source_label_sha256": "36f92b6f24b80111d5abe6a3aac8ae7538252bc58640893aa369af67fc33a559",
+      "source_geometry": {
+        "source_box": [
+          0,
+          0,
+          1000,
+          1500
+        ],
+        "cropped": false,
+        "seed": 20260920,
+        "randomness_used": false,
+        "mapping": "u=2*sx/999-1; v=sy/1499; x=cx+half*sin(theta*u)/sin(theta); y=top+height*v+sag*(1-u*u)+tilt*u+perspective*u*(v-0.5)",
+        "cx": 1100,
+        "half": 600,
+        "theta_radians": 0.56,
+        "top": 1100,
+        "height": 1800,
+        "sag": 43,
+        "tilt": 12,
+        "perspective": 18,
+        "label_bounds": [
+          500.0,
+          1097.0,
+          1700.0,
+          2945.563952
+        ],
+        "minimum_horizontal_scale": 1.072929534298373,
+        "interpolation": "bilinear, endpoint-inclusive",
+        "label_light": "RGB multiplied by 0.985-0.095*u*u-0.022*u",
+        "bottle_profile_y_radius": [
+          [
+            170,
+            160
+          ],
+          [
+            215,
+            155
+          ],
+          [
+            540,
+            155
+          ],
+          [
+            680,
+            235
+          ],
+          [
+            800,
+            405
+          ],
+          [
+            980,
+            695
+          ],
+          [
+            2920,
+            695
+          ],
+          [
+            2990,
+            620
+          ],
+          [
+            3020,
+            500
+          ]
+        ],
+        "bottle_base_rgb": [
+          110.0,
+          64.0,
+          26.0
+        ],
+        "resolution": [
+          2200,
+          3200
+        ]
+      },
+      "parameters": {
+        "seed": 75955501,
+        "center_u": -0.27932355090506883,
+        "center_y": 1561.56812374788,
+        "sigma_y": 474.40829317874676,
+        "angular_width": 0.1284730852276826,
+        "curve": 0.034073733203614356,
+        "strength": 0.3628753738112334,
+        "edge_strength": 0.13,
+        "bloom_fraction": 0.12,
+        "alpha_bound": 0.48
+      },
+      "output": "images/D-GLARE-01__glare-preview.png",
+      "output_sha256": "1450d7ba74bc3f8029fc0787949d230a56a93f8e435b49e2dc8b38d3a2e6c131",
+      "dimensions": [
+        2200,
+        3200
+      ],
+      "lighting_checks": {
+        "alpha_max": 0.3628749616210965,
+        "source_weight_min": 0.6371250383789036,
+        "label_alpha_max": 0.3628749616210965,
+        "label_fraction_alpha_above_020": 0.07016510631384415,
+        "label_max_row_fraction_alpha_above_020": 0.16902581182348042,
+        "solid_saturated_full_label_columns": 0,
+        "new_saturated_dark_ink_pixels": 0,
+        "label_mean_absolute_rgb_change": 2.1534958447003287,
+        "outside_bottle_changed_pixels": 0
+      },
+      "visibility": "PENDING HUMAN APPROVAL",
+      "inherited_degradation": "none"
+    }
+  ]
+}

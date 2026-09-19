@@ -1,0 +1,35 @@
+{
+  "status": "pass",
+  "checks": [
+    "record counts",
+    "group metrics recomputed from rescore records",
+    "negative-outcome denominators",
+    "known dispatched IDs excluded",
+    "paid execution disabled",
+    "human cap $10",
+    "AVA cost reproduced"
+  ],
+  "proposed_test_disagreement": "Prior worker expected 67 cross-operator missing calls; actual inventory is 52 after excluding 99 log-only ARGUS completions as well. No counts forced.",
+  "artifacts": {
+    "reconcile.py": {
+      "bytes": 16119,
+      "sha256": "4656b0e984360726266740076f8efcff846d081a2869f0204d2919eb30b7faea"
+    },
+    "reconciliation.json": {
+      "bytes": 98261,
+      "sha256": "7f021a376d862130dc94d1edc48416d24bedd7a461030e7348fcca3c0491d1a3"
+    },
+    "rescored-records.json": {
+      "bytes": 2471269,
+      "sha256": "c6e6e0d42f99d9189fcfe6900bd6e688cec8aa5f060926283a74db0987bc5a00"
+    },
+    "resume-plan.json": {
+      "bytes": 20613,
+      "sha256": "5cfb5c62792aad358f5a9dd9e178d37dcf501f6bb9be260a494f1a87bcccd643"
+    },
+    "REPORT.txt": {
+      "bytes": 3516,
+      "sha256": "07fd40d8b088397b560e529be93aec1b24b823d720682bb12c9b559838228d86"
+    }
+  }
+}
