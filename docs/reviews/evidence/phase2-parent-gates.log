@@ -1,0 +1,314 @@
+Phase 2 parent/worker evidence selection
+Display normalization only: ANSI escapes removed, CRLF converted, trailing spaces trimmed. Original SHA-256 per file. Failures retained, no independent PASS inferred.
+
+=== parent-phase2-final-gates.log ===
+Original SHA-256: 64805ad62ec935e8d275125d47575236a682557cdb258e151d7c153e56cc438b
+v24.21.0
+11.19.0
+3bb58cd2369111e6c68f11b72a541115c1fe0805
+
+> ttb-label-review-foundation@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.1 /opt/data/ttb-governance-docs/web
+
+ ✓ tests/spend.test.ts (25 tests) 45ms
+ ✓ tests/rules.test.ts (117 tests) 141ms
+ ✓ tests/smoke.test.ts (1 test) 22ms
+ ✓ tests/pair-input.test.ts (2 tests) 30ms
+ ✓ tests/extraction.test.ts (46 tests) 165ms
+ ✓ tests/intake.test.ts (71 tests) 215ms
+
+ Test Files  6 passed (6)
+      Tests  262 passed (262)
+   Start at  11:41:50
+   Duration  3.34s (import 75%, transform 16%, tests 7%, worker 2%)
+
+
+> ttb-label-review-foundation@0.1.0 typecheck
+> tsc --noEmit
+
+
+> ttb-label-review-foundation@0.1.0 build
+> next build
+
+▲ Next.js 16.3.5 (Turbopack)
+✓ Running next.config.ts took 417ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 10.5s
+  Running TypeScript ...
+tests/extraction.test.ts(25,102): error TS7006: Parameter 'authorized' implicitly has an 'any' type.
+tests/extraction.test.ts(70,75): error TS7031: Binding element 'content' implicitly has an 'any' type.
+tests/extraction.test.ts(75,88): error TS7006: Parameter 'status' implicitly has an 'any' type.
+tests/extraction.test.ts(79,148): error TS7006: Parameter 'fault' implicitly has an 'any' type.
+tests/extraction.test.ts(94,126): error TS7006: Parameter 'fault' implicitly has an 'any' type.
+tests/extraction.test.ts(112,103): error TS7006: Parameter 'stage' implicitly has an 'any' type.
+tests/extraction.test.ts(138,114): error TS7006: Parameter 'missing' implicitly has an 'any' type.
+tests/extraction.test.ts(141,41): error TS7053: Element implicitly has an 'any' type because expression of type 'any' can't be used to index type '{ key: string; store: string; amount: string; }'.
+tests/extraction.test.ts(157,125): error TS7006: Parameter 'fault' implicitly has an 'any' type.
+Failed to type check.
+
+
+=== parent-build-repair-final-gates.log ===
+Original SHA-256: b6f245955a087f3b8e9748e0b56abe62f6f5edfde8f7af1486ce65a7377e1d35
+v24.21.0
+Allowed CPUs: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+
+== Full tests ==
+
+> ttb-label-review-foundation@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.1 /opt/data/ttb-governance-docs/web
+
+ ✓ tests/spend.test.ts (25 tests) 25ms
+ ✓ tests/smoke.test.ts (1 test) 14ms
+ ✓ tests/pair-input.test.ts (2 tests) 16ms
+ ✓ tests/rules.test.ts (117 tests) 82ms
+ ✓ tests/extraction.test.ts (46 tests) 95ms
+ ✓ tests/intake.test.ts (71 tests) 200ms
+
+ Test Files  6 passed (6)
+      Tests  262 passed (262)
+   Start at  11:47:15
+   Duration  2.51s (import 74%, transform 17%, tests 7%, worker 2%)
+
+TEST_EXIT_CODE=0
+
+== Typecheck ==
+
+> ttb-label-review-foundation@0.1.0 typecheck
+> tsc --noEmit
+
+TYPECHECK_EXIT_CODE=0
+
+== Production build (CPU 0) ==
+
+> ttb-label-review-foundation@0.1.0 build
+> next build
+
+▲ Next.js 16.3.5 (Turbopack)
+✓ Running next.config.ts took 367ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 9.6s
+  Running TypeScript ...
+  Finished TypeScript in 8.6s ...
+  Collecting page data using 5 workers ...
+  Generating static pages using 5 workers (0/4) ...
+  Generating static pages using 5 workers (1/4)
+  Generating static pages using 5 workers (2/4)
+  Generating static pages using 5 workers (3/4)
+✓ Generating static pages using 5 workers (4/4) in 5.4s
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+└ ○ /review
+
+
+○  (Static)  prerendered as static content
+
+BUILD_EXIT_CODE=0
+
+=== parent-build-repair-runtime-parity.log ===
+Original SHA-256: e7adac45f96e2d6362f714be5283392e3b7cba87d4c266b61efec324dc98ec47
+PASS: emitted JavaScript identical before/after; only erased callback type annotations changed.
+
+=== parent-phase2-closure-gates.log ===
+Original SHA-256: de6ea4e388e4620a15370b1ae84a68ebed3b02d35028e6be0127a9b9e9c1662d
+v24.21.0
+11.19.0
+4643831e882da465dccb0934c11509c6051a423a
+
+> ttb-label-review-foundation@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.1 /opt/data/ttb-governance-docs/web
+
+ ❯ tests/extraction.test.ts (0 test)
+ ✓ tests/spend.test.ts (25 tests) 29ms
+ ✓ tests/rules.test.ts (117 tests) 106ms
+ ✓ tests/smoke.test.ts (1 test) 12ms
+ ✓ tests/pair-input.test.ts (2 tests) 15ms
+ ✓ tests/intake.test.ts (71 tests) 363ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/extraction.test.ts [ tests/extraction.test.ts ]
+Error: ENOMEM: not enough memory, read
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 5 passed (6)
+      Tests  216 passed (216)
+   Start at  11:50:25
+   Duration  3.26s (import 76%, transform 15%, tests 7%, worker 2%)
+
+
+=== parent-native-gates.log ===
+Original SHA-256: 88941c82810d4b5c35585753ae325fff8f99cdcd9190915df34705dafb84f36b
+4643831e882da465dccb0934c11509c6051a423a
+v24.21.0
+
+> ttb-label-review-foundation@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.1 /tmp/ttb-phase2-gate-xweJry/web
+
+ ✓ tests/spend.test.ts (25 tests) 39ms
+ ✓ tests/smoke.test.ts (1 test) 22ms
+ ✓ tests/pair-input.test.ts (2 tests) 25ms
+ ❯ tests/rules.test.ts (117 tests | 1 failed) 128ms
+   ❯ seven-field per-pair source-backed comparison (22)
+     ✓ exact-import has all seven independent outcomes 13ms
+     ✓ readable-seven-discrepancies has all seven independent outcomes 2ms
+     ✓ domestic-wine has all seven independent outcomes 1ms
+     × fixed warning matches archived source, not applicant or provider substitution 12ms
+     ✓ preserves original text and extraction reasons without mutating inputs 4ms
+     ✓ brand case/whitespace equivalence: "old harbor" 2ms
+     ✓ brand case/whitespace equivalence: " OLD   HARBOR " 2ms
+     ✓ brand case/whitespace equivalence: "Old\nHarbor" 1ms
+     ✓ brand case/whitespace equivalence: "Old\tHarbor" 2ms
+     ✓ does not erase meaningful brand distinctions: "Old-Harbor" 2ms
+     ✓ does not erase meaningful brand distinctions: "OldHarbor" 1ms
+     ✓ does not erase meaningful brand distinctions: "Old Harbor 2" 1ms
+     ✓ does not erase meaningful brand distinctions: "Óld Harbor" 1ms
+     ✓ does not erase meaningful brand distinctions: "Old Harbor!" 1ms
+     ✓ does not erase meaningful brand distinctions: "Old​ Harbor" 1ms
+     ✓ brand cannot silently pass uncertain/unreadable/missing text 2ms
+     ✓ classType cannot silently pass uncertain/unreadable/missing text 4ms
+     ✓ abv cannot silently pass uncertain/unreadable/missing text 1ms
+     ✓ netContents cannot silently pass uncertain/unreadable/missing text 1ms
+     ✓ origin cannot silently pass uncertain/unreadable/missing text 1ms
+     ✓ producer requires both independent name and address evidence 1ms
+     ✓ class and origin do not fuzzy-match differing designations or country aliases 1ms
+   ✓ decimal ABV consistency, never tolerance (20)
+     ✓ supported numeric notation 40 matches 1ms
+     ✓ supported numeric notation 40% matches 1ms
+     ✓ supported numeric notation 40.0 % matches 1ms
+     ✓ supported numeric notation 40.000% ABV matches 1ms
+     ✓ supported numeric notation 40% alc/vol matches 1ms
+     ✓ supported numeric notation 40% alcohol by volume matches 1ms
+     ✓ readable unequal 45% mismatches without rounding 1ms
+     ✓ readable unequal 40.1% mismatches without rounding 1ms
+     ✓ readable unequal 39.999% mismatches without rounding 1ms
+     ✓ readable unequal 40.000000000000000001% mismatches without rounding 1ms
+     ✓ readable unequal 101% mismatches without rounding 1ms
+     ✓ unsupported or ambiguous 80 proof requires review 1ms
+     ✓ unsupported or ambiguous 40/45% requires review 1ms
+     ✓ unsupported or ambiguous 4e1 requires review 0ms
+     ✓ unsupported or ambiguous 0x28 requires review 0ms
+     ✓ unsupported or ambiguous -1% requires review 0ms
+     ✓ unsupported or ambiguous +40% requires review 1ms
+     ✓ unsupported or ambiguous 40,0% requires review 1ms
+     ✓ unsupported or ambiguous 40 percent requires review 1ms
+     ✓ explicit zero can match but null/missing never becomes zero 3ms
+   ✓ decimal precision boundaries (2)
+     ✓ tiny finite application numbers retain their declared decimal value 3ms
+     ✓ precision outside bounded decimal grammar is review, not rounded equality 1ms
+   ✓ exact metric net contents, conservative exclusions (15)
+     ✓ equivalent 0.75 L matches 1ms
+     ✓ equivalent 0.7500 l matches 1ms
+     ✓ equivalent 750 ml matches 1ms
+     ✓ equivalent 750.000 mL matches 1ms
+     ✓ unequal 700 mL mismatches 1ms
+     ✓ unequal 0.750000000000000001 L mismatches 0ms
+     ✓ unsupported 25.36 fl oz requires review, even if declared identically 1ms
+     ✓ unsupported 750 requires review, even if declared identically 1ms
+     ✓ unsupported 75 cL requires review, even if declared identically 0ms
+     ✓ unsupported 750 mL / 25.4 fl oz requires review, even if declared identically 0ms
+     ✓ unsupported 0,75 L requires review, even if declared identically 0ms
+     ✓ unsupported 7.5e2 mL requires review, even if declared identically 0ms
+     ✓ unsupported 0 mL requires review, even if declared identically 0ms
+     ✓ unsupported -750 mL requires review, even if declared identically 0ms
+     ✓ unsupported applicant notation also cannot silently match 1ms
+   ✓ explicit applicability in every supported commodity (7)
+     ✓ wine import requires origin; domestic alone is N/A 1ms
+     ✓ distilled-spirits import requires origin; domestic alone is N/A 1ms
+     ✓ malt-beverage import requires origin; domestic alone is N/A 1ms
+     ✓ invalid applicability fails processing {} 0ms
+     ✓ invalid applicability fails processing {"commodity":"cider"} 0ms
+     ✓ invalid applicability fails processing {} 0ms
+     ✓ invalid applicability fails processing {"imported":false} 1ms
+   ✓ warning wording and independently observed formatting (13)
+     ✓ heading defect Government Warning: mismatches 1ms
+     ✓ heading defect GOVERNMENT WARNING mismatches 0ms
+     ✓ heading defect GOVERNMENT  WARNING! mismatches 0ms
+     ✓ removing warning wording may mismatches 1ms
+     ✓ removing warning wording not mismatches 1ms
+     ✓ removing warning wording birth defects. mismatches 1ms
+     ✓ removing warning wording (2) mismatches 0ms
+     ✓ line wrapping is allowed but body punctuation/case is not erased 1ms
+     ✓ headingBold defect mismatches; unknown requires review 1ms
+     ✓ bodyBold defect mismatches; unknown requires review 1ms
+     ✓ uncertain/missing/unreadable heading needs review 2ms
+     ✓ uncertain/missing/unreadable body needs review 2ms
+     ✓ known warning defects dominate independent uncertainty 1ms
+   ✓ strict untrusted extraction boundary (38)
+     ✓ schema/parser accept valid evidence and preserve observations 1ms
+     ✓ malformed envelope null is processing failure, not fields 2ms
+     ✓ malformed envelope undefined is processing failure, not fields 1ms
+     ✓ malformed envelope {} is processing failure, not fields 1ms
+     ✓ malformed envelope undefined is processing failure, not fields 0ms
+     ✓ malformed envelope "not JSON" is processing failure, not fields 0ms
+     ✓ malformed envelope "{\"match\":true}" is processing failure, not fields 0ms
+     ✓ malformed envelope 42 is processing failure, not fields 0ms
+     ✓ omitted schemaVersion rejects the entire extraction 1ms
+     ✓ omitted brand rejects the entire extraction 0ms
+     ✓ omitted classType rejects the entire extraction 0ms
+     ✓ omitted abv rejects the entire extraction 0ms
+     ✓ omitted netContents rejects the entire extraction 0ms
+     ✓ omitted producer rejects the entire extraction 0ms
+     ✓ omitted origin rejects the entire extraction 0ms
+     ✓ omitted warning rejects the entire extraction 0ms
+     ✓ rejects extra/coerced/unbounded evidence {"match":true} 0ms
+     ✓ rejects extra/coerced/unbounded evidence {"verdict":"match"} 0ms
+     ✓ rejects extra/coerced/unbounded evidence {"schemaVersion":2} 0ms
+     ✓ rejects extra/coerced/unbounded evidence {"brand":{"status":"readable","text":"Old Harbor","reason":"Synthetic observation; not a provider verdict","match":true}} 1ms
+     ✓ rejects extra/coerced/unbounded evidence {"producer":{"name":{"status":"readable","text":"Harbor Distillery","reason":"Synthetic legible name"},"address":{"status":"readable","text":"12 Wharf Road, Paris","reason":"Synthetic legible address"},"verdict":"match"}} 1ms
+     ✓ rejects extra/coerced/unbounded evidence {"warning":{"heading":{"status":"readable","text":"GOVERNMENT WARNING:","reason":"Synthetic legible heading"},"body":{"status":"readable","text":"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.","reason":"Synthetic legible body"},"headingBold":true,"bodyBold":false,"allCaps":true}} 1ms
+     ✓ rejects extra/coerced/unbounded evidence {"warning":{"heading":{"status":"readable","text":"GOVERNMENT WARNING:","reason":"Synthetic legible heading"},"body":{"status":"readable","text":"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.","reason":"Synthetic legible body"},"headingBold":"true","bodyBold":false}} 1ms
+     ✓ rejects extra/coerced/unbounded evidence {"warning":{"heading":{"status":"readable","text":"GOVERNMENT WARNING:","reason":"Synthetic legible heading"},"body":{"status":"readable","text":"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.","reason":"Synthetic legible body"},"headingBold":true,"bodyBold":0}} 0ms
+     ✓ rejects extra/coerced/unbounded evidence {"brand":{"status":"match","text":"Old Harbor","reason":"Synthetic observation; not a provider verdict"}} 1ms
+     ✓ rejects extra/coerced/unbounded evidence {"brand":{"status":"readable","text":null,"reason":"Synthetic observation; not a provider verdict"}} 1ms
+     ✓ rejects extra/coerced/unbounded evidence {"brand":{"status":"readable","text":"","reason":"Synthetic observation; not a provider verdict"}} 0ms
+     ✓ rejects extra/coerced/unbounded evidence {"brand":{"status":"readable","text":" \n ","reason":"Synthetic observation; not a provider verdict"}} 0ms
+     ✓ rejects extra/coerced/unbounded evidence {"brand":{"status":"missing","text":"Old Harbor","reason":"Synthetic observation; not a provider verdict"}} 0ms
+     ✓ rejects extra/coerced/unbounded evidence {"brand":{"status":"readable","text":"Old Harbor"}} 1ms
+     ✓ rejects extra/coerced/unbounded evidence {"brand":{"status":"readable","text":"Old Harbor","reason":""}} 0ms
+     ✓ rejects extra/coerced/unbounded evidence {"brand":{"status":"readable","text":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx","reason":"Synthetic observation; not a provider verdict"}} 1ms
+     ✓ rejects extra/coerced/unbounded evidence {"brand":{"status":"readable","text":"Old Harbor","reason":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"}} 1ms
+     ✓ rejects extra/coerced/unbounded evidence {"brand":{"status":"readable","text":"Old\u0000Harbor","reason":"Synthetic observation; not a provider verdict"}} 1ms
+     ✓ rejects extra/coerced/unbounded evidence {"abv":{"status":"readable","text":null,"reason":"Synthetic observation; not a provider verdict"}} 1ms
+     ✓ rejects extra/coerced/unbounded evidence {"abv":{"status":"readable","text":null,"reason":"Synthetic observation; not a provider verdict"}} 1ms
+     ✓ rejects extra/coerced/unbounded evidence {"abv":{"status":"readable","text":40,"reason":"Synthetic observation; not a provider verdict"}} 1ms
+     ✓ maximum bounded text/reasons accepted, instructions remain inert text 1ms
+ ✓ tests/extraction.test.ts (46 tests) 147ms
+ ✓ tests/intake.test.ts (71 tests) 253ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/rules.test.ts > seven-field per-pair source-backed comparison > fixed warning matches archived source, not applicant or provider substitution
+Error: ENOENT: no such file or directory, open '/tmp/ttb-phase2-gate-xweJry/fixtures/manifest.json'
+ ❯ tests/rules.test.ts:37:33
+     35|   });
+     36|   test('fixed warning matches archived source, not applicant or provid…
+     37|     const archived = JSON.parse(readFileSync(new URL('../../fixtures/m…
+       |                                 ^
+     38|     expect(WARNING_REFERENCE).toEqual({ heading: archived.statutory_wa…
+     39|     expect(compareApplication({ ...app(), governmentWarning: 'substitu…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 5 passed (6)
+      Tests  1 failed | 261 passed (262)
+   Start at  11:54:15
+   Duration  766ms (import 42%, transform 30%, tests 26%, worker 2%)

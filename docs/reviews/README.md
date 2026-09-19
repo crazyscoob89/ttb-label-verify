@@ -2,7 +2,7 @@
 
 ## Active application phase
 
-[Phase 1 foundation/intake candidate](10-phase1-foundation.md) is built locally and awaiting ARGUS's one consolidated read-only review. [Implementation authorization](../IMPLEMENTATION-STATUS.md) records Alex's go-ahead for phased code work; paid calls, provisioning and deployment remain gated. Earlier documentation-only status below is historical.
+[Phase 1](11-phase1-argus-pass.md) has supplied **ARGUS PASS** at `2b59abcb0cb7e95abc1639ee4e81df50930dfe1a`, no revisions; AVA agrees. ARGUS read source/diff/closure logs, did not rerun tests/build, and reported a matching native Windows clone. [Phase 2 Sprint 1](12-phase2-sprint1-rules.md) and [Sprint 2](13-phase2-provider-spend.md) are locally implemented/tested; the full local candidate is ready for parent verification, with whole-phase independent review pending. Provider runtime is unwired/default-deny; shared-store contracts are not real database enforcement. [Implementation authorization](../IMPLEMENTATION-STATUS.md) records Alex's local continuation approval. No remote writes, paid/live calls, provisioning or deployment in this step. Earlier documentation-only status below is historical.
 
 ## Current documentation candidate
 
@@ -96,3 +96,11 @@ information and real customer content out of the repository.
 Supporting records: [revision details](../STAGE2_REVISION.md),
 [benchmark report](../../bench/RESULTS.md),
 [acceptance checklist](../ACCEPTANCE_CHECKLIST.md).
+
+## Phase 2 consolidated candidate
+
+[Parent closure and exact review scope](14-phase2-parent-closure.md): both sprints implemented, builder 262-test/typecheck/build gates passed; additional parent clean-copy verification incomplete and documented. Independent ARGUS review pending. This does not close live provider, database, browser or deployment acceptance.
+
+## Phase 2 accepted independent review
+
+[ARGUS Phase 2 PASS](15-phase2-argus-pass.md), supplied by Alex for exact candidate `d28d6f451f810b9c8568eed32fba4c9fb98e60f5`: independently reproduced 262 tests/typecheck/build, clean secret scan, supplemental parent clean-copy gap non-blocking. AVA agrees. This acceptance supersedes the pending-review disposition above; original failed runs stay preserved. Raw reviewer logs were not supplied.

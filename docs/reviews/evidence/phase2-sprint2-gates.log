@@ -1,0 +1,100 @@
+Phase 2 Sprint 2: selected local builder gate evidence (not independent review)
+Base: 0aeb7a40914c2e22847d275f14faf3872097d95f; branch ava/app-phase-2
+Runtime: Node v24.21.0; PATH=/opt/data/tools/node24-phase0/node-v24.21.0-linux-x64/bin:$PATH
+Raw logs: /opt/data/ttb-phase2-evidence/; existing Sprint 1 evidence not overwritten.
+All extraction transports/stores in tests are synthetic/offline; no live calls.
+Build: NEXT_TELEMETRY_DISABLED=1. Initial build ENOMEM on WSL 9p dependency directory read.
+Unchanged canonical build succeeds with taskset -c 0 (allowed CPUs observed 0-11).
+RED scaffolds default-denied: positive/control assertions failed; negative guards already passed.
+The stricter envelope RED specifically demonstrated two unwanted complete results.
+Excerpts below omit synthetic payloads/UUIDs/error-link bodies; full originals retained.
+
+[sprint2-red.log] exit=1 sha256=26583405de2d5d6c8f0d28364db1ba9a76aabd40ec98a6854e8694eac46f1211
+> ttb-label-review-foundation@0.1.0 test
+> vitest run tests/extraction.test.ts tests/spend.test.ts
+AssertionError: expected 'failed' to be 'complete' // Object.is equality
+AssertionError: expected 'failed' to be 'complete' // Object.is equality
+AssertionError: expected { processing: 'failed', …(1) } to deeply equal { processing: 'failed', …(1) }
+AssertionError: expected { processing: 'failed', …(1) } to deeply equal { processing: 'failed', …(1) }
+AssertionError: expected "vi.fn()" to be called at least once
+AssertionError: expected { processing: 'failed', …(1) } to deeply equal { processing: 'failed', …(1) }
+AssertionError: expected { processing: 'failed', …(1) } to deeply equal { processing: 'failed', …(1) }
+AssertionError: expected { processing: 'failed', …(1) } to deeply equal { processing: 'failed', …(1) }
+AssertionError: expected 'failed' to be 'complete' // Object.is equality
+AssertionError: expected { Object (ok, code) } to deeply equal { ok: true, value: 'evidence' }
+AssertionError: expected +0 to be 100 // Object.is equality
+AssertionError: expected "vi.fn()" to be called 1 times, but got 0 times
+AssertionError: expected [] to have a length of 1 but got +0
+AssertionError: expected [] to have a length of 1 but got +0
+AssertionError: expected false to be true // Object.is equality
+AssertionError: expected { Object (ok, code) } to deeply equal { ok: false, code: 'execution-failed' }
+AssertionError: expected +0 to be 100 // Object.is equality
+AssertionError: expected "vi.fn()" to be called 1 times, but got 0 times
+ Test Files  2 failed (2)
+      Tests  26 failed | 32 passed (58)
+   Duration  1.68s (import 72%, transform 21%, tests 4%, worker 2%)
+
+[sprint2-green-initial.log] exit=0 sha256=95f3c25492454edf732e23cc21d2bb0dfcd7a3e6436e46a4b04bd691a0285a05
+> ttb-label-review-foundation@0.1.0 test
+> vitest run tests/extraction.test.ts tests/spend.test.ts
+ Test Files  2 passed (2)
+      Tests  58 passed (58)
+   Duration  1.32s (import 76%, transform 17%, tests 5%, worker 2%)
+
+[sprint2-typecheck-initial.log] exit=2 sha256=72f124796d38d04c30325750b2deb0b032478c3fb12b8cfc8a82e929ec4a3ba8
+> ttb-label-review-foundation@0.1.0 typecheck
+> tsc --noEmit
+TS2322/TS2345: metadata/binding literal type widening; fixed with const metadata and typed SpendBinding.
+
+[sprint2-envelope-red.log] exit=1 sha256=e8b8e0913f399a7487475bd6e762732b31e4076b0b62dcee8776f55c8378ebd6
+> ttb-label-review-foundation@0.1.0 test
+> vitest run tests/extraction.test.ts tests/spend.test.ts
+AssertionError: expected { processing: 'complete', …(2) } to deeply equal { processing: 'failed', …(1) }
+AssertionError: expected { processing: 'complete', …(2) } to deeply equal { processing: 'failed', …(1) }
+ Test Files  1 failed | 1 passed (2)
+      Tests  2 failed | 58 passed (60)
+   Duration  1.29s (import 74%, transform 18%, tests 6%, worker 2%)
+
+[sprint2-focused-green.log] exit=0 sha256=02a0985620acc87cf12ab6c4378a0ed2b17f123ed79213b873b1ee2f1c43ed7f
+> ttb-label-review-foundation@0.1.0 test
+> vitest run tests/extraction.test.ts tests/spend.test.ts
+ Test Files  2 passed (2)
+      Tests  70 passed (70)
+   Duration  1.45s (import 74%, transform 17%, tests 6%, worker 2%)
+
+[sprint2-full-green.log] exit=0 sha256=29b44517e55e5341136c04b264ac062597c31b000b229c4d383b3487f2bd6598
+> ttb-label-review-foundation@0.1.0 test
+> vitest run
+ Test Files  6 passed (6)
+      Tests  261 passed (261)
+   Duration  2.72s (import 76%, transform 17%, tests 6%, worker 2%)
+
+[sprint2-typecheck-green.log] exit=0 sha256=2dfd7b44f723f2f876e0d5fb0e026973a047ae2d1ea67dea3b550ac3757c221e
+> ttb-label-review-foundation@0.1.0 typecheck
+> tsc --noEmit
+tsc --noEmit: no diagnostics.
+
+[sprint2-build.log] exit=1 sha256=6edc313b06fce8c6dc6754be9a4f283ee382f5a134a73415d7e541ab97c41968
+> ttb-label-review-foundation@0.1.0 build
+> next build
+> Build error occurred
+- Cannot allocate memory (os error 12)
+- Cannot allocate memory (os error 12)
+
+[sprint2-build-affinity.log] exit=0 sha256=65f019d36d8126f12de563562cef00265844ffd483953e94117a1ed75f55ddc4
+> ttb-label-review-foundation@0.1.0 build
+> next build
+✓ Compiled successfully in 10.4s
+  Finished TypeScript in 9.0s ...
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+└ ○ /review
+
+[sprint2-integrity.log] exit=0 sha256=e32ad8d2b5676ffd2f05c60a31265ba7aa7b5d615afb741d2c7b9a45ec2f96ce
+Frozen tracked files: 1926; raw bytes all match 0aeb7a40914c2e22847d275f14faf3872097d95f
+040000 tree 2749b90811f2d5cb792440309a20afe3f30ef1f3	bench
+040000 tree 4508c1369c5343a7772433dea84f509ca9107423	docs/ui/v3
+040000 tree e4a1dee3f045fc122b370741293ce901dc980346	fixtures
+All previously tracked web files: unchanged from Sprint 1 (new Sprint 2 files excluded)
+PASS
