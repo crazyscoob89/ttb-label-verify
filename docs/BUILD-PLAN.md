@@ -1,5 +1,7 @@
 # Label review application implementation plan
 
+> **Execution update:** Alex has authorized phased implementation. [IMPLEMENTATION-STATUS.md](IMPLEMENTATION-STATUS.md) supersedes the historical documentation-only gates below for local source work. Paid calls, cloud provisioning and deployment remain gated; design text is not evidence of implemented controls.
+
 > **For Hermes:** Use the subagent-driven-development skill for approved bounded implementation tasks, while preserving AVA as the sole build owner and ARGUS as read-only phase reviewer. This planning package does not authorize dispatching application builders.
 
 **Goal:** Deliver the frozen two-tab review experience as a working, testable standalone application with reliable comparison, explicit human decisions and attributable history.

@@ -13,6 +13,10 @@ fixtures × 3 engines × N=3 repeats = 162 recorded calls**. That is bounded
 engine evidence, not a deployed Next.js application or verified security
 controls. No new provider run is authorized by this documentation audit.
 
+## Implementation authorization
+
+Alex has approved the phased local application build. The documentation candidate in PR #3 is merged; [current execution status and external-action boundaries](docs/IMPLEMENTATION-STATUS.md) supersede historical documentation-only wording below. No working/deployed application is claimed by that approval.
+
 ## Frozen UI and proposed governance build
 
 Open the [v3 design entry point](docs/ui/v3/README.md) for the downloadable offline HTML and desktop/mobile screenshots, then read the [governance specification](docs/GOVERNANCE-AND-AUDIT-DESIGN.md) and [phased build plan](docs/BUILD-PLAN.md). **Current authorization is documentation only.** ARGUS reviews the package; Alex approves application scope before implementation. Nothing here deploys authentication, storage or a live app.
