@@ -106,6 +106,9 @@ test('response limit enforced on streamed chunks before complete JSON parsing', 
   const { provider, store } = setup(vi.fn(async () => new Response(stream)));
   expect((await provider.extract(request())).processing).toBe('failed'); expect(cancel).toHaveBeenCalled(); expect(pulled).toBeLessThan(4); expect(store.unresolved).toBe(100);
 });
+test('extraction timeout matches the planned 20-second limit', () => {
+  expect(EXTRACTION_LIMITS.timeoutMs).toBe(20000);
+});
 test.each(['headers', 'stream'])('timeout includes %s and leaves liability, no same-key retry', async stage => {
   vi.useFakeTimers(); const cancel = vi.fn();
   const transport = vi.fn(async (_url: string, _init: RequestInit): Promise<Response> => stage === 'headers' ? new Promise(() => {}) : new Response(new ReadableStream({ start(c) { c.enqueue(new TextEncoder().encode('{')); }, cancel })));

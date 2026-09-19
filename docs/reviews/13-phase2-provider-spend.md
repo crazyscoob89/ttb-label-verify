@@ -39,6 +39,18 @@ The build failure was investigated before retry: `/opt/data` is a WSL 9p mount; 
 
 No Playwright/browser rerun, real PostgreSQL concurrency, provider-network timing, live OpenRouter response/parameter acceptance, actual extraction accuracy or billing reconciliation is claimed. Build success does not make the unwired provider a deployed feature.
 
+## Bounded plan-alignment repair
+
+Parent inspection of base `6f5f8455eba84347c754ca8b36441ae223b09657` found the adapter's 30,000 ms deadline differed from the approved local plan's 20-second input contract in [BUILD-PLAN.md](../BUILD-PLAN.md). This repair changes only `EXTRACTION_LIMITS.timeoutMs` to **20,000 ms**, adds an explicit constant regression in the existing extraction test file, and aligns the provider-boundary documentation. Timeout cancellation, full unresolved liability and no same-key retry behavior remain unchanged.
+
+Executed from the repository root with explicit `PATH=/opt/data/tools/node24-phase0/node-v24.21.0-linux-x64/bin:$PATH` (Node v24.21.0 / npm 11.19.0):
+
+- **RED:** `npm --prefix web run test -- tests/extraction.test.ts tests/spend.test.ts` exited 1: **1 failed, 70 passed, 71 total**. The new regression failed with `expected 30000 to be 20000`; all existing tests passed.
+- **GREEN:** the same focused command after the constant repair exited 0: **71/71 passed**, comprising 46 extraction and 25 spend tests. Existing header/body timeout tests still assert retained liability and no same-key retry.
+- **Typecheck:** `npm --prefix web run typecheck` exited 0 with no diagnostics.
+
+These are additional focused results, not replacements for the original gate records/logs above. No original logs were rewritten, and no broad test/build or independent review was rerun; canonical parent verification remains pending. Generic patch-tool TypeScript lint was skipped because its standalone `npx` checker was unusable; the explicit repository typecheck above passed. No frozen paths, dependencies, provider/spend behavior beyond the deadline, external services or remote Git state were changed.
+
 ## Preserved frozen trees
 
 Working-file raw bytes were checked against Git blob hashes from the Sprint 1 base, not merely against `git status`:
