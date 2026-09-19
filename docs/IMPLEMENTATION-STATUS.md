@@ -14,13 +14,17 @@ PR #3 was verified published at `a9c4b4c68b9aff422ab7d17acc482b608fd59ab7` and i
 
 **Ownership:** AVA implements, commits and publishes one build branch; ARGUS performs one consolidated read-only review per frozen phase. Alex controls release scope and external-action gates. No competing writers, no repeated human approval requests for routine approved code slices.
 
+## Phase 2 acceptance update
+
+Alex relayed ARGUS's consolidated PASS for `d28d6f4` and instructed **“lets go”**. AVA agrees; [the attributed original review record](reviews/15-phase2-argus-pass.md) supersedes the pending-review disposition below. ARGUS reports 262/262 tests, typecheck and build independently reproduced, secret scan clean, and the extra parent clean-copy gap non-blocking. Earlier failures remain preserved, not relabelled successful. Proceed with verified Phase 1/2 promotion and Phase 3 local implementation; D5/D6 restrictions remain unchanged.
+
 ## Progress
 
 | Phase | Scope | State |
 | --- | --- | --- |
 | 1 | Test/build harness; safe label/application intake | ARGUS PASS at `2b59abcb0cb7e95abc1639ee4e81df50930dfe1a`; AVA agrees; no revisions |
-| 2 | Comparison rules; provider/spend interfaces | Candidate implemented; builder gates passed; parent supplementary clean-copy gate incomplete; independent review pending |
-| 3 | Single-label workflow and explicit outcomes | Authorized, pending dependencies |
+| 2 | Comparison rules; provider/spend interfaces | ARGUS PASS at `d28d6f451f810b9c8568eed32fba4c9fb98e60f5`; 262 tests/typecheck/build independently reproduced per supplied report; clean-copy gap non-blocking |
+| 3 | Single-label workflow and explicit outcomes | Authorized local next phase after accepted Phase 2 promotion; no paid/live work |
 | 4 | Managed identity, actual database/storage, persistent history | Code authorized; external provisioning/integration gated |
 | 5 | Batch pairing, quick switching and recovery | Authorized, pending dependencies |
 | 6 | Live acceptance and deployment | Local release work authorized; paid/live actions gated |
