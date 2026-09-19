@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import PairInput from './PairInput';
 import ProcessingState from './ProcessingState';
+import ReviewConfirmation from './ReviewConfirmation';
 import { samples, compareOfflineSample, type Scenario } from '../lib/offline-demo';
 import { MAX_IMAGE_BYTES } from '../lib/contracts';
 import { FIELD_KEYS } from '../lib/rules';
@@ -82,6 +83,7 @@ export default function ComparisonWorkspace({ offlineEnabled }: { offlineEnabled
             </div>
           </>}
         </div>
+        <ReviewConfirmation key={`${generation.current}:${result?.processing??'empty'}`} record={result} />
         <dialog ref={zoom} aria-labelledby="zoom-title"><h2 id="zoom-title">Larger synthetic label</h2><button onClick={()=>zoom.current?.close()}>Close preview</button>{preview && <img className="label-preview" src={preview} alt="Enlarged exact synthetic label" />}</dialog>
       </>}
     </section>
