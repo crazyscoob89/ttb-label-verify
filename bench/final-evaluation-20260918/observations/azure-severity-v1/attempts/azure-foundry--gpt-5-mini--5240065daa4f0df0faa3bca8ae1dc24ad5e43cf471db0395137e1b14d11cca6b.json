@@ -1,0 +1,75 @@
+{
+  "id": "azure-foundry--gpt-5-mini--5240065daa4f0df0faa3bca8ae1dc24ad5e43cf471db0395137e1b14d11cca6b",
+  "provider": "azure-foundry",
+  "operator": "AVA-azure-severity-v1",
+  "model": "gpt-5-mini",
+  "engine": "gpt-5-mini",
+  "fixture_id": "C-SPIRITS-IMPORT-01",
+  "fixture": {
+    "id": "C-SPIRITS-IMPORT-01__blur-3",
+    "source_fixture": "C-SPIRITS-IMPORT-01",
+    "condition": "blur-3",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/C-SPIRITS-IMPORT-01__blur-3.png",
+    "sha256": "74696dcea42bd26f1274cc7379f43024dcca210ba9941e00100ed441f616eb19",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-SPIRITS-IMPORT-01.png",
+    "source_sha256": "7557567bdfcfb73dbbf29ca3c1ee615857dd958bd0f44c144788ce0b898206ec",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/C-SPIRITS-IMPORT-01.png",
+    "original_label_sha256": "a1a8009fec8552dbbaa4610274f08b3fffaf841efc092f0de53a1af953d5e24d",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/C-SPIRITS-IMPORT-01.json",
+    "original_truth_sha256": "a5929f251146c3ecce0ec5f411795438343f4cd05f50af61b5e355eb76dd9425",
+    "source_fixture_id": "C-SPIRITS-IMPORT-01",
+    "clean_parent_substitution": false,
+    "inherited_degradation": "none",
+    "parameters": {
+      "sigma_native_px": 3,
+      "sigma_div_label_width": 0.0025,
+      "sigma_div_label_height": 0.0016093969106313034,
+      "filter": "Pillow GaussianBlur",
+      "randomness_used": false
+    },
+    "measurements": {}
+  },
+  "repeat": 1,
+  "condition": "blur-3",
+  "route": "Azure Foundry responses",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.00255525,
+  "request_sha256": "c16c63c7b5d0e20974c3cf75913acf398e85082be431503d9ae6d583ac495900",
+  "prompt_settings_sha256": "196f20e64293ebb79fcf992ad999cce80aa5a27a14685453840798f0423d2683",
+  "image_sha256": "74696dcea42bd26f1274cc7379f43024dcca210ba9941e00100ed441f616eb19",
+  "transport": "responses",
+  "started_at": "2026-09-18T20:35:06.193697+00:00",
+  "reserved_usd": 0.2949584,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/C-SPIRITS-IMPORT-01__blur-3.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "old_request_ids": [],
+  "http_status": 200,
+  "request_id": "8b2b7782-8a1a-4c48-ac8b-bf5732a0cab2",
+  "latency_s": 10.743101889966056,
+  "response_sha256": "e70527187496e053530ba7a92155a503e8edb156ccf4abe97ac395309178ed18",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/azure-severity-v1/responses/azure-foundry--gpt-5-mini--5240065daa4f0df0faa3bca8ae1dc24ad5e43cf471db0395137e1b14d11cca6b.json",
+  "tokens_in": 1717,
+  "tokens_out": 1063,
+  "pages_processed": null,
+  "usage": {
+    "input_tokens": 1717,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1063,
+    "output_tokens_details": {
+      "reasoning_tokens": 704
+    },
+    "total_tokens": 2780
+  },
+  "returned_model": "gpt-5-mini"
+}

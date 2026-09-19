@@ -1,0 +1,73 @@
+{
+  "id": "azure-foundry--Kimi-K2.6--851ebd1c6589327c408818a7c5be1b696015360c17143030865f0caf1c040022",
+  "provider": "azure-foundry",
+  "operator": "AVA-azure-severity-v1",
+  "model": "Kimi-K2.6",
+  "engine": "Kimi-K2.6",
+  "fixture_id": "A-BRAND-CASE-01",
+  "fixture": {
+    "id": "A-BRAND-CASE-01__blur-3",
+    "source_fixture": "A-BRAND-CASE-01",
+    "condition": "blur-3",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/A-BRAND-CASE-01__blur-3.png",
+    "sha256": "254f612ed6603b9a75c14cf4bf38e36fc5cef31507aef3d938527288e449291f",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-BRAND-CASE-01.png",
+    "source_sha256": "eaa677746bdc68b71b3e07cafaa8a382dfafd69f69406e688c37960ca33a2b90",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/A-BRAND-CASE-01.png",
+    "original_label_sha256": "6c3e7b4bc076cbfffe5b7d3379c7d167847370a8d24cae052a0850807e7a9329",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/A-BRAND-CASE-01.json",
+    "original_truth_sha256": "657c7672b54ed3fbe1baad89a9efcada4ac9cf9cd93c580cae064bbc60c91422",
+    "source_fixture_id": "A-BRAND-CASE-01",
+    "clean_parent_substitution": false,
+    "inherited_degradation": "none",
+    "parameters": {
+      "sigma_native_px": 3,
+      "sigma_div_label_width": 0.0025,
+      "sigma_div_label_height": 0.0016093969106313034,
+      "filter": "Pillow GaussianBlur",
+      "randomness_used": false
+    },
+    "measurements": {}
+  },
+  "repeat": 1,
+  "condition": "blur-3",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.0108757,
+  "request_sha256": "7d47d2d25a49460a3f92791d51746407f5c037878322e2c727327f2a0d2e0853",
+  "prompt_settings_sha256": "cbae9f332d5065a1dd8bf55b66ae42a7a61cc7e144f79bcf3b80e25ada48a0a2",
+  "image_sha256": "254f612ed6603b9a75c14cf4bf38e36fc5cef31507aef3d938527288e449291f",
+  "transport": "chat",
+  "started_at": "2026-09-18T20:28:26.691700+00:00",
+  "reserved_usd": 1.10896192,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/A-BRAND-CASE-01__blur-3.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "old_request_ids": [],
+  "http_status": 200,
+  "request_id": "3a6292a6-b767-4e34-a7d4-3de381be3908",
+  "latency_s": 13.875489013968036,
+  "response_sha256": "e8c3b74a97fde646239591d1e15cae3aae22633e0e9e5aba6a9b0ff5482d1d14",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/azure-severity-v1/responses/azure-foundry--Kimi-K2.6--851ebd1c6589327c408818a7c5be1b696015360c17143030865f0caf1c040022.json",
+  "tokens_in": 4926,
+  "tokens_out": 1549,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 4926,
+    "completion_tokens": 1549,
+    "total_tokens": 6475,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 704,
+      "image_tokens": 4212
+    }
+  },
+  "returned_model": "Kimi-K2.6"
+}

@@ -1,0 +1,111 @@
+{
+  "id": "openrouter--anthropic_claude-haiku-4.5--907f43b8b72582285d8e204d161e30777f3128d3e23883250db58091f7f0b5b0",
+  "provider": "openrouter",
+  "model": "anthropic/claude-haiku-4.5",
+  "engine": "anthropic/claude-haiku-4.5",
+  "route": "https://openrouter.ai/api/v1/chat/completions",
+  "upstream_policy": "Anthropic only; no provider fallback",
+  "fixture": {
+    "id": "C-WINE-01__blur-1",
+    "source_fixture": "C-WINE-01",
+    "condition": "blur-1",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/C-WINE-01__blur-1.png",
+    "sha256": "ff2e8aeb7697c3b87f4e4b64a7c8f4e5f6f0536e4fa0a37a11f242551eb13370",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-WINE-01.png",
+    "source_sha256": "3e2506cb620c53fb1a267cd3bf12f38397c02bfdab849bd4aa87a2b528537eb3",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/C-WINE-01.png",
+    "original_label_sha256": "c718da519884fd0f496e166a97250a40decd98bf90a8511c7af335cab5bea771",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/C-WINE-01.json",
+    "original_truth_sha256": "35ff0e303cd93337c5a88893ab8c495e1280c5d245be318f389ec1afa7b3fc9b",
+    "source_fixture_id": "C-WINE-01",
+    "clean_parent_substitution": false,
+    "inherited_degradation": "none",
+    "parameters": {
+      "sigma_native_px": 1,
+      "sigma_div_label_width": 0.0008333333333333334,
+      "sigma_div_label_height": 0.0005364656368771012,
+      "filter": "Pillow GaussianBlur",
+      "randomness_used": false
+    },
+    "measurements": {}
+  },
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/C-WINE-01__blur-1.png",
+  "image_sha256": "ff2e8aeb7697c3b87f4e4b64a7c8f4e5f6f0536e4fa0a37a11f242551eb13370",
+  "prompt_settings_sha256": "ba93d7e53b184d2f74384c66eebdb59f523faf427337a9e3b2e702322f09040d",
+  "request_sha256": "6723e95d2e95f351c78b0200407328b9ed0c750eaede329fe79002e0a0ecfcd6",
+  "started_at": "2026-09-18T18:56:40.983584+00:00",
+  "reserved_usd": 0.4565,
+  "max_output_tokens": 3000,
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "ok": true,
+  "extracted": {
+    "brand_name": "Cedar Bluff",
+    "class_type": "RED TABLE WINE",
+    "alcohol_content": "13.5% ALC/VOL",
+    "net_contents": "750 mL",
+    "bottler_info": "Produced and bottled by Cedar Bluff Cellars, Healdsburg, California",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 0.99,
+      "class_type": 0.99,
+      "alcohol_content": 0.99,
+      "net_contents": 0.99,
+      "bottler_info": 0.99,
+      "country_of_origin": 0.99,
+      "government_warning_heading": 0.99,
+      "government_warning_body": 0.98,
+      "government_warning_heading_all_caps": 0.99,
+      "government_warning_heading_bold": 0.95,
+      "government_warning_body_bold": 0.9
+    }
+  },
+  "error_class": null,
+  "usage_cost_usd": 0.00426591,
+  "retail_estimate_usd": 0.004309,
+  "http_status": 200,
+  "request_id": null,
+  "latency_s": 4.646710062050261,
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/responses/openrouter--anthropic_claude-haiku-4.5--907f43b8b72582285d8e204d161e30777f3128d3e23883250db58091f7f0b5b0.json",
+  "response_sha256": "66ddb1ed614c8666649c62ae5d7ab6b65ec62ff355f06fe7045b38d836b5b493",
+  "usage": {
+    "prompt_tokens": 2354,
+    "completion_tokens": 391,
+    "total_tokens": 2745,
+    "cost": 0.00426591,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.004309,
+      "upstream_inference_prompt_cost": 0.002354,
+      "upstream_inference_completions_cost": 0.001955
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "generation_id": "gen-1789757802-tQ8c5XN3VsvTKOvvLmGa",
+  "returned_model": "anthropic/claude-haiku-4.5",
+  "returned_provider": "Anthropic",
+  "raw_text": "```json\n{\n  \"brand_name\": \"Cedar Bluff\",\n  \"class_type\": \"RED TABLE WINE\",\n  \"alcohol_content\": \"13.5% ALC/VOL\",\n  \"net_contents\": \"750 mL\",\n  \"bottler_info\": \"Produced and bottled by Cedar Bluff Cellars, Healdsburg, California\",\n  \"country_of_origin\": null,\n  \"government_warning_heading\": \"GOVERNMENT WARNING:\",\n  \"government_warning_body\": \"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\n  \"government_warning_heading_all_caps\": true,\n  \"government_warning_heading_bold\": true,\n  \"government_warning_body_bold\": false,\n  \"confidence\": {\n    \"brand_name\": 0.99,\n    \"class_type\": 0.99,\n    \"alcohol_content\": 0.99,\n    \"net_contents\": 0.99,\n    \"bottler_info\": 0.99,\n    \"country_of_origin\": 0.99,\n    \"government_warning_heading\": 0.99,\n    \"government_warning_body\": 0.98,\n    \"government_warning_heading_all_caps\": 0.99,\n    \"government_warning_heading_bold\": 0.95,\n    \"government_warning_body_bold\": 0.90\n  }\n}\n```",
+  "finish_reason": "stop",
+  "validation_errors": {},
+  "unknown_charge_reserved_usd": 0,
+  "pipeline_seconds": 4.677074767067097
+}

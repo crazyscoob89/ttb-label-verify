@@ -1,0 +1,285 @@
+{
+  "scope": "aggregate reconciliation of saved scoring; not scorer replay",
+  "models": {
+    "gpt-5-mini": {
+      "calls": 212,
+      "schema_valid_calls": 211,
+      "processing_failures": 1,
+      "negative_fields": 104,
+      "false_matches": 12,
+      "valid_referral_calls": 16,
+      "all_fields_correct": 197,
+      "field_correct": {
+        "brand_name": 211,
+        "class_type": 211,
+        "alcohol_content": 211,
+        "net_contents": 211,
+        "bottler_info": 211,
+        "country_of_origin": 211,
+        "government_warning": 197
+      },
+      "correct_fields": 1463,
+      "field_opportunities": 1484,
+      "accuracy_pct": 98.58490566037736,
+      "latency_p50_s": 10.988596365088597,
+      "latency_p95_s": 14.278270750271622,
+      "calls_le_5s": 0,
+      "valid_latency_p50_s": 10.993951508076862,
+      "valid_latency_p95_s": 14.278701783972792,
+      "known_retail_cost_calls": 212,
+      "retail_estimate_usd": "0.59000175",
+      "extrapolated_retail_usd_per_1000_known_calls": "2.783027122641509433962264151",
+      "routes": [
+        "Azure Foundry responses"
+      ]
+    },
+    "gpt-4.1-mini": {
+      "calls": 212,
+      "schema_valid_calls": 173,
+      "processing_failures": 39,
+      "negative_fields": 104,
+      "false_matches": 6,
+      "valid_referral_calls": 17,
+      "all_fields_correct": 166,
+      "field_correct": {
+        "brand_name": 173,
+        "class_type": 173,
+        "alcohol_content": 173,
+        "net_contents": 173,
+        "bottler_info": 173,
+        "country_of_origin": 173,
+        "government_warning": 166
+      },
+      "correct_fields": 1204,
+      "field_opportunities": 1484,
+      "accuracy_pct": 81.13207547169812,
+      "latency_p50_s": 6.215662572009023,
+      "latency_p95_s": 7.487030917685479,
+      "calls_le_5s": 3,
+      "valid_latency_p50_s": 6.219511713949032,
+      "valid_latency_p95_s": 7.484037246834487,
+      "known_retail_cost_calls": 212,
+      "retail_estimate_usd": "0.2741840000000000004",
+      "extrapolated_retail_usd_per_1000_known_calls": "1.293320754716981133962264151",
+      "routes": [
+        "Azure Foundry chat"
+      ]
+    },
+    "Mistral-Large-3": {
+      "calls": 212,
+      "schema_valid_calls": 210,
+      "processing_failures": 2,
+      "negative_fields": 104,
+      "false_matches": 11,
+      "valid_referral_calls": 17,
+      "all_fields_correct": 141,
+      "field_correct": {
+        "brand_name": 210,
+        "class_type": 209,
+        "alcohol_content": 200,
+        "net_contents": 210,
+        "bottler_info": 205,
+        "country_of_origin": 192,
+        "government_warning": 163
+      },
+      "correct_fields": 1389,
+      "field_opportunities": 1484,
+      "accuracy_pct": 93.59838274932615,
+      "latency_p50_s": 6.661470462975558,
+      "latency_p95_s": 17.82517554682563,
+      "calls_le_5s": 27,
+      "valid_latency_p50_s": 6.661470462975558,
+      "valid_latency_p95_s": 17.8324684541265,
+      "known_retail_cost_calls": 212,
+      "retail_estimate_usd": "0.4169260",
+      "extrapolated_retail_usd_per_1000_known_calls": "1.966632075471698113207547170",
+      "routes": [
+        "Azure Foundry chat"
+      ]
+    },
+    "grok-4-1-fast-non-reasoning": {
+      "calls": 212,
+      "schema_valid_calls": 199,
+      "processing_failures": 13,
+      "negative_fields": 104,
+      "false_matches": 13,
+      "valid_referral_calls": 17,
+      "all_fields_correct": 91,
+      "field_correct": {
+        "brand_name": 174,
+        "class_type": 190,
+        "alcohol_content": 189,
+        "net_contents": 199,
+        "bottler_info": 193,
+        "country_of_origin": 191,
+        "government_warning": 123
+      },
+      "correct_fields": 1259,
+      "field_opportunities": 1484,
+      "accuracy_pct": 84.83827493261455,
+      "latency_p50_s": 4.6860385670443065,
+      "latency_p95_s": 6.649634108017199,
+      "calls_le_5s": 146,
+      "valid_latency_p50_s": 4.681635739048943,
+      "valid_latency_p95_s": 6.585979971243068,
+      "known_retail_cost_calls": 212,
+      "retail_estimate_usd": "0.1309220999999999929",
+      "extrapolated_retail_usd_per_1000_known_calls": "0.6175570754716980797169811321",
+      "routes": [
+        "Azure Foundry chat"
+      ]
+    },
+    "Kimi-K2.6": {
+      "calls": 212,
+      "schema_valid_calls": 159,
+      "processing_failures": 53,
+      "negative_fields": 104,
+      "false_matches": 4,
+      "valid_referral_calls": 11,
+      "all_fields_correct": 153,
+      "field_correct": {
+        "brand_name": 159,
+        "class_type": 159,
+        "alcohol_content": 159,
+        "net_contents": 159,
+        "bottler_info": 159,
+        "country_of_origin": 159,
+        "government_warning": 153
+      },
+      "correct_fields": 1107,
+      "field_opportunities": 1484,
+      "accuracy_pct": 74.59568733153638,
+      "latency_p50_s": 21.89115669601597,
+      "latency_p95_s": 35.99473394376109,
+      "calls_le_5s": 0,
+      "valid_latency_p50_s": 18.737145719933324,
+      "valid_latency_p95_s": 29.944611602777147,
+      "known_retail_cost_calls": 212,
+      "retail_estimate_usd": "2.889980400000000178",
+      "extrapolated_retail_usd_per_1000_known_calls": "13.63198301886792536792452830",
+      "routes": [
+        "Azure Foundry chat"
+      ]
+    },
+    "mistral-document-ai-2512": {
+      "calls": 212,
+      "schema_valid_calls": 212,
+      "processing_failures": 0,
+      "negative_fields": 104,
+      "false_matches": 13,
+      "valid_referral_calls": 13,
+      "all_fields_correct": 182,
+      "field_correct": {
+        "brand_name": 201,
+        "class_type": 212,
+        "alcohol_content": 212,
+        "net_contents": 212,
+        "bottler_info": 212,
+        "country_of_origin": 206,
+        "government_warning": 199
+      },
+      "correct_fields": 1454,
+      "field_opportunities": 1484,
+      "accuracy_pct": 97.97843665768194,
+      "latency_p50_s": 4.2967633994994685,
+      "latency_p95_s": 5.05388484323048,
+      "calls_le_5s": 197,
+      "valid_latency_p50_s": 4.2967633994994685,
+      "valid_latency_p95_s": 5.05388484323048,
+      "known_retail_cost_calls": 212,
+      "retail_estimate_usd": "0.636",
+      "extrapolated_retail_usd_per_1000_known_calls": "3.000",
+      "routes": [
+        "Azure Foundry ocr"
+      ]
+    },
+    "anthropic/claude-haiku-4.5": {
+      "calls": 212,
+      "schema_valid_calls": 206,
+      "processing_failures": 6,
+      "negative_fields": 104,
+      "false_matches": 1,
+      "valid_referral_calls": 26,
+      "all_fields_correct": 172,
+      "field_correct": {
+        "brand_name": 206,
+        "class_type": 206,
+        "alcohol_content": 200,
+        "net_contents": 205,
+        "bottler_info": 195,
+        "country_of_origin": 202,
+        "government_warning": 180
+      },
+      "correct_fields": 1394,
+      "field_opportunities": 1484,
+      "accuracy_pct": 93.93530997304582,
+      "latency_p50_s": 4.230336955981329,
+      "latency_p95_s": 5.339415075723082,
+      "calls_le_5s": 193,
+      "valid_latency_p50_s": 4.231493605475407,
+      "valid_latency_p95_s": 5.254015291720862,
+      "known_retail_cost_calls": 210,
+      "retail_estimate_usd": "0.902385",
+      "extrapolated_retail_usd_per_1000_known_calls": "4.297071428571428571428571429",
+      "routes": [
+        "https://openrouter.ai/api/v1/chat/completions"
+      ]
+    }
+  },
+  "coverage": {
+    "azure_new": 1073,
+    "azure_reused_unique": 199,
+    "azure_logical": 1512,
+    "azure_http_200_invalid_new": 102,
+    "azure_transport_failures_new": 0,
+    "haiku_unique": 212,
+    "haiku_logical": 252,
+    "haiku_preserved": 148,
+    "haiku_continuation": 64,
+    "haiku_http_502": 2,
+    "haiku_http_200_invalid": 4,
+    "missing": 0
+  },
+  "costs": {
+    "azure_new_retail_usd": "4.35116825",
+    "haiku_usage_cost_usd": "0.89336115",
+    "shared_liability_nano_usd": 15220495100,
+    "cap_usd": 50,
+    "ledger_by_status": {
+      "openrouter-usage-cost": {
+        "entries": 210,
+        "nano_usd": 893361150
+      },
+      "reserved": {
+        "entries": 1,
+        "nano_usd": 7855832300
+      },
+      "unknown-charge": {
+        "entries": 2,
+        "nano_usd": 913000000
+      },
+      "usage-guard": {
+        "entries": 1380,
+        "nano_usd": 5558301650
+      }
+    },
+    "preserved_ledger_snapshots": [
+      {
+        "source_relative": "azure-severity-preservation-before/budget.sqlite",
+        "entries": 520
+      },
+      {
+        "source_relative": "openrouter-haiku-severity-v1/budget-before.snapshot.sqlite",
+        "entries": 308
+      },
+      {
+        "source_relative": "openrouter-haiku-severity-v1/continuation-1-before/budget-before.snapshot.sqlite",
+        "entries": 308
+      },
+      {
+        "source_relative": "openrouter-haiku-severity-v1/continuation-1-before/budget.sqlite",
+        "entries": 456
+      }
+    ]
+  }
+}

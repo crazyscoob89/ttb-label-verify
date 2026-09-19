@@ -1,0 +1,168 @@
+{
+  "status": "PASS",
+  "scope": "Numerical severity and provenance only; not character recognition/readability acceptance",
+  "fixtures": [
+    {
+      "fixture_id": "C-SPIRITS-01",
+      "mean_rgb_change_from_v1": 0.6620565367463278,
+      "new_saturated_dark_source_pixels": 0,
+      "no_full_white_label_rows_or_columns": true,
+      "original_bottle_label_truth_hashes_verified": true,
+      "peak_alpha_gain_from_v1": 1.6499999999999997,
+      "seed_location_shape_unchanged": true
+    },
+    {
+      "fixture_id": "C-WINE-01",
+      "mean_rgb_change_from_v1": 0.657783825132173,
+      "new_saturated_dark_source_pixels": 0,
+      "no_full_white_label_rows_or_columns": true,
+      "original_bottle_label_truth_hashes_verified": true,
+      "peak_alpha_gain_from_v1": 1.6499999999999997,
+      "seed_location_shape_unchanged": true
+    },
+    {
+      "fixture_id": "C-MALT-01",
+      "mean_rgb_change_from_v1": 1.0905597337960613,
+      "new_saturated_dark_source_pixels": 0,
+      "no_full_white_label_rows_or_columns": true,
+      "original_bottle_label_truth_hashes_verified": true,
+      "peak_alpha_gain_from_v1": 1.6499999999999997,
+      "seed_location_shape_unchanged": true
+    },
+    {
+      "fixture_id": "C-SPIRITS-IMPORT-01",
+      "mean_rgb_change_from_v1": 0.7736681341279136,
+      "new_saturated_dark_source_pixels": 0,
+      "no_full_white_label_rows_or_columns": true,
+      "original_bottle_label_truth_hashes_verified": true,
+      "peak_alpha_gain_from_v1": 1.65,
+      "seed_location_shape_unchanged": true
+    },
+    {
+      "fixture_id": "A-WARN-TITLECASE-01",
+      "mean_rgb_change_from_v1": 0.9955842278378376,
+      "new_saturated_dark_source_pixels": 0,
+      "no_full_white_label_rows_or_columns": true,
+      "original_bottle_label_truth_hashes_verified": true,
+      "peak_alpha_gain_from_v1": 1.65,
+      "seed_location_shape_unchanged": true
+    },
+    {
+      "fixture_id": "A-WARN-BOLDBODY-01",
+      "mean_rgb_change_from_v1": 0.9203680762869244,
+      "new_saturated_dark_source_pixels": 0,
+      "no_full_white_label_rows_or_columns": true,
+      "original_bottle_label_truth_hashes_verified": true,
+      "peak_alpha_gain_from_v1": 1.65,
+      "seed_location_shape_unchanged": true
+    },
+    {
+      "fixture_id": "A-BRAND-CASE-01",
+      "mean_rgb_change_from_v1": 0.9101454900199849,
+      "new_saturated_dark_source_pixels": 0,
+      "no_full_white_label_rows_or_columns": true,
+      "original_bottle_label_truth_hashes_verified": true,
+      "peak_alpha_gain_from_v1": 1.6499999999999997,
+      "seed_location_shape_unchanged": true
+    },
+    {
+      "fixture_id": "A-ABV-WRONG-01",
+      "mean_rgb_change_from_v1": 0.9375046539807613,
+      "new_saturated_dark_source_pixels": 0,
+      "no_full_white_label_rows_or_columns": true,
+      "original_bottle_label_truth_hashes_verified": true,
+      "peak_alpha_gain_from_v1": 1.6500000000000001,
+      "seed_location_shape_unchanged": true
+    },
+    {
+      "fixture_id": "A-FIELD-MISSING-01",
+      "mean_rgb_change_from_v1": 0.8963865553171213,
+      "new_saturated_dark_source_pixels": 0,
+      "no_full_white_label_rows_or_columns": true,
+      "original_bottle_label_truth_hashes_verified": true,
+      "peak_alpha_gain_from_v1": 1.6500000000000001,
+      "seed_location_shape_unchanged": true
+    },
+    {
+      "fixture_id": "A-INJECT-PROMPT-01",
+      "mean_rgb_change_from_v1": 0.7882690350633731,
+      "new_saturated_dark_source_pixels": 0,
+      "no_full_white_label_rows_or_columns": true,
+      "original_bottle_label_truth_hashes_verified": true,
+      "peak_alpha_gain_from_v1": 1.6499999999999997,
+      "seed_location_shape_unchanged": true
+    },
+    {
+      "fixture_id": "W-BRAND-WRONG-01",
+      "mean_rgb_change_from_v1": 0.8811189410811677,
+      "new_saturated_dark_source_pixels": 0,
+      "no_full_white_label_rows_or_columns": true,
+      "original_bottle_label_truth_hashes_verified": true,
+      "peak_alpha_gain_from_v1": 1.65,
+      "seed_location_shape_unchanged": true
+    },
+    {
+      "fixture_id": "W-ABV-4045-01",
+      "mean_rgb_change_from_v1": 0.9130060992533322,
+      "new_saturated_dark_source_pixels": 0,
+      "no_full_white_label_rows_or_columns": true,
+      "original_bottle_label_truth_hashes_verified": true,
+      "peak_alpha_gain_from_v1": 1.6500000000000001,
+      "seed_location_shape_unchanged": true
+    },
+    {
+      "fixture_id": "W-NETCONTENTS-WRONG-01",
+      "mean_rgb_change_from_v1": 0.7780562268570229,
+      "new_saturated_dark_source_pixels": 0,
+      "no_full_white_label_rows_or_columns": true,
+      "original_bottle_label_truth_hashes_verified": true,
+      "peak_alpha_gain_from_v1": 1.65,
+      "seed_location_shape_unchanged": true
+    },
+    {
+      "fixture_id": "W-WARN-REWORD-01",
+      "mean_rgb_change_from_v1": 1.007393567690881,
+      "new_saturated_dark_source_pixels": 0,
+      "no_full_white_label_rows_or_columns": true,
+      "original_bottle_label_truth_hashes_verified": true,
+      "peak_alpha_gain_from_v1": 1.6499999999999997,
+      "seed_location_shape_unchanged": true
+    },
+    {
+      "fixture_id": "W-BRAND-SPLITLINE-01",
+      "mean_rgb_change_from_v1": 0.5820158901006163,
+      "new_saturated_dark_source_pixels": 0,
+      "no_full_white_label_rows_or_columns": true,
+      "original_bottle_label_truth_hashes_verified": true,
+      "peak_alpha_gain_from_v1": 1.6499999999999997,
+      "seed_location_shape_unchanged": true
+    },
+    {
+      "fixture_id": "D-BLUR-01",
+      "mean_rgb_change_from_v1": 6.983682372488449,
+      "new_saturated_dark_source_pixels": 0,
+      "no_full_white_label_rows_or_columns": true,
+      "original_bottle_label_truth_hashes_verified": true,
+      "peak_alpha_gain_from_v1": 1.65,
+      "seed_location_shape_unchanged": true
+    },
+    {
+      "fixture_id": "D-WARP-01",
+      "mean_rgb_change_from_v1": 1.5594854333222765,
+      "new_saturated_dark_source_pixels": 0,
+      "no_full_white_label_rows_or_columns": true,
+      "original_bottle_label_truth_hashes_verified": true,
+      "peak_alpha_gain_from_v1": 1.6500000000000001,
+      "seed_location_shape_unchanged": true
+    },
+    {
+      "fixture_id": "D-GLARE-01",
+      "mean_rgb_change_from_v1": 0.8728223318869325,
+      "new_saturated_dark_source_pixels": 0,
+      "no_full_white_label_rows_or_columns": true,
+      "original_bottle_label_truth_hashes_verified": true,
+      "peak_alpha_gain_from_v1": 1.6500000000000001,
+      "seed_location_shape_unchanged": true
+    }
+  ]
+}

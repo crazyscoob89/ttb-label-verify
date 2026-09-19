@@ -1,0 +1,75 @@
+{
+  "id": "azure-foundry--gpt-5-mini--26a0b8062760bfbae90a01bb1c0fffdbc3b9e0076aa3003c792279fcd479382b",
+  "provider": "azure-foundry",
+  "operator": "AVA-azure-severity-v1",
+  "model": "gpt-5-mini",
+  "engine": "gpt-5-mini",
+  "fixture_id": "A-FIELD-MISSING-01",
+  "fixture": {
+    "id": "A-FIELD-MISSING-01__blur-6",
+    "source_fixture": "A-FIELD-MISSING-01",
+    "condition": "blur-6",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/A-FIELD-MISSING-01__blur-6.png",
+    "sha256": "5116356a3a956955875a7280314eec067d3712369611bd707a9578db1310030d",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-FIELD-MISSING-01.png",
+    "source_sha256": "fbe2320836ee47d13e1d3c9438d7575cb1bd0f453c44f8513bb610f960d4a3a5",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/A-FIELD-MISSING-01.png",
+    "original_label_sha256": "bccda011d9dfb0c9b5c14cd422930a5d62c315e7caa0519dfd47f988ae94497a",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/A-FIELD-MISSING-01.json",
+    "original_truth_sha256": "caf84125de42c1a8df25b6c18dd3f1351c41314a7ef621568ca77d1553f211f4",
+    "source_fixture_id": "A-FIELD-MISSING-01",
+    "clean_parent_substitution": false,
+    "inherited_degradation": "none",
+    "parameters": {
+      "sigma_native_px": 6,
+      "sigma_div_label_width": 0.005,
+      "sigma_div_label_height": 0.0032187938212626067,
+      "filter": "Pillow GaussianBlur",
+      "randomness_used": false
+    },
+    "measurements": {}
+  },
+  "repeat": 1,
+  "condition": "blur-6",
+  "route": "Azure Foundry responses",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.00336325,
+  "request_sha256": "959145463f0a7741a3e61536466a2ab3b8cfa64ea3286f7d3773ba1d180be30b",
+  "prompt_settings_sha256": "196f20e64293ebb79fcf992ad999cce80aa5a27a14685453840798f0423d2683",
+  "image_sha256": "5116356a3a956955875a7280314eec067d3712369611bd707a9578db1310030d",
+  "transport": "responses",
+  "started_at": "2026-09-18T21:22:21.630789+00:00",
+  "reserved_usd": 0.2949584,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/A-FIELD-MISSING-01__blur-6.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "old_request_ids": [],
+  "http_status": 200,
+  "request_id": "941d26f0-d8d3-4286-a151-0344975c418d",
+  "latency_s": 11.899500314029865,
+  "response_sha256": "770c79f1b4d5c2c9e3a05cc238fd16f20c7f899e6008e118f07068a768203a02",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/azure-severity-v1/responses/azure-foundry--gpt-5-mini--26a0b8062760bfbae90a01bb1c0fffdbc3b9e0076aa3003c792279fcd479382b.json",
+  "tokens_in": 1717,
+  "tokens_out": 1467,
+  "pages_processed": null,
+  "usage": {
+    "input_tokens": 1717,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1467,
+    "output_tokens_details": {
+      "reasoning_tokens": 1152
+    },
+    "total_tokens": 3184
+  },
+  "returned_model": "gpt-5-mini"
+}

@@ -1,0 +1,111 @@
+{
+  "id": "openrouter--anthropic_claude-haiku-4.5--10dd9265d15f2ede5fa9c3329b877e4730dabe04cbfcc03e9bd99c24e135f6b9",
+  "provider": "openrouter",
+  "model": "anthropic/claude-haiku-4.5",
+  "engine": "anthropic/claude-haiku-4.5",
+  "route": "https://openrouter.ai/api/v1/chat/completions",
+  "upstream_policy": "Anthropic only; no provider fallback",
+  "fixture": {
+    "id": "C-MALT-01__blur-3",
+    "source_fixture": "C-MALT-01",
+    "condition": "blur-3",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/C-MALT-01__blur-3.png",
+    "sha256": "0bfbc3684b4bbb3cfc76f0a8b62a20e45b2c4a104884cf25d36f01e44364334f",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-MALT-01.png",
+    "source_sha256": "d94072ceaa20bb53d3bcab4829e235258c2e0cc09f211e1b5959ecb2b1a8a917",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/C-MALT-01.png",
+    "original_label_sha256": "36f92b6f24b80111d5abe6a3aac8ae7538252bc58640893aa369af67fc33a559",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/C-MALT-01.json",
+    "original_truth_sha256": "fb9473919ea1e500db579ea4592ed7a8f81b82273ddf7e4ee2eaa3ae3a1aa674",
+    "source_fixture_id": "C-MALT-01",
+    "clean_parent_substitution": false,
+    "inherited_degradation": "none",
+    "parameters": {
+      "sigma_native_px": 3,
+      "sigma_div_label_width": 0.0025,
+      "sigma_div_label_height": 0.0016093969106313034,
+      "filter": "Pillow GaussianBlur",
+      "randomness_used": false
+    },
+    "measurements": {}
+  },
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/C-MALT-01__blur-3.png",
+  "image_sha256": "0bfbc3684b4bbb3cfc76f0a8b62a20e45b2c4a104884cf25d36f01e44364334f",
+  "prompt_settings_sha256": "ba93d7e53b184d2f74384c66eebdb59f523faf427337a9e3b2e702322f09040d",
+  "request_sha256": "e722c1ab04cd58a37bf988b7e0fb054afd93405ddc98b1c521bc57df355d3d5f",
+  "started_at": "2026-09-18T18:59:10.064812+00:00",
+  "reserved_usd": 0.4565,
+  "max_output_tokens": 3000,
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "ok": true,
+  "extracted": {
+    "brand_name": "Iron Kettle",
+    "class_type": "ALE",
+    "alcohol_content": "5.6% ALC/VOL",
+    "net_contents": "12 FL OZ",
+    "bottler_info": "Brewed and bottled by Iron Kettle Brewing Co., Asheville, North Carolina",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 0.99,
+      "class_type": 0.99,
+      "alcohol_content": 0.99,
+      "net_contents": 0.99,
+      "bottler_info": 0.99,
+      "country_of_origin": 0.99,
+      "government_warning_heading": 0.99,
+      "government_warning_body": 0.95,
+      "government_warning_heading_all_caps": 0.99,
+      "government_warning_heading_bold": 0.9,
+      "government_warning_body_bold": 0.85
+    }
+  },
+  "error_class": null,
+  "usage_cost_usd": 0.00426591,
+  "retail_estimate_usd": 0.004309,
+  "http_status": 200,
+  "request_id": null,
+  "latency_s": 4.337972615030594,
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/responses/openrouter--anthropic_claude-haiku-4.5--10dd9265d15f2ede5fa9c3329b877e4730dabe04cbfcc03e9bd99c24e135f6b9.json",
+  "response_sha256": "8eda51b9097efcd78f85bd65494fdd30dfaff59cf2894b0f88b9fafad0ef1fdd",
+  "usage": {
+    "prompt_tokens": 2354,
+    "completion_tokens": 391,
+    "total_tokens": 2745,
+    "cost": 0.00426591,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.004309,
+      "upstream_inference_prompt_cost": 0.002354,
+      "upstream_inference_completions_cost": 0.001955
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "generation_id": "gen-1789757951-rqFTEnRvUeT8Y7EZ7X9O",
+  "returned_model": "anthropic/claude-haiku-4.5",
+  "returned_provider": "Anthropic",
+  "raw_text": "```json\n{\n  \"brand_name\": \"Iron Kettle\",\n  \"class_type\": \"ALE\",\n  \"alcohol_content\": \"5.6% ALC/VOL\",\n  \"net_contents\": \"12 FL OZ\",\n  \"bottler_info\": \"Brewed and bottled by Iron Kettle Brewing Co., Asheville, North Carolina\",\n  \"country_of_origin\": null,\n  \"government_warning_heading\": \"GOVERNMENT WARNING:\",\n  \"government_warning_body\": \"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\n  \"government_warning_heading_all_caps\": true,\n  \"government_warning_heading_bold\": true,\n  \"government_warning_body_bold\": false,\n  \"confidence\": {\n    \"brand_name\": 0.99,\n    \"class_type\": 0.99,\n    \"alcohol_content\": 0.99,\n    \"net_contents\": 0.99,\n    \"bottler_info\": 0.99,\n    \"country_of_origin\": 0.99,\n    \"government_warning_heading\": 0.99,\n    \"government_warning_body\": 0.95,\n    \"government_warning_heading_all_caps\": 0.99,\n    \"government_warning_heading_bold\": 0.90,\n    \"government_warning_body_bold\": 0.85\n  }\n}\n```",
+  "finish_reason": "stop",
+  "validation_errors": {},
+  "unknown_charge_reserved_usd": 0,
+  "pipeline_seconds": 4.365332277026027
+}

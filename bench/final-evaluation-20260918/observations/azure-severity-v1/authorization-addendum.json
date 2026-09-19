@@ -1,0 +1,22 @@
+{
+  "authorized": true,
+  "recorded_utc": "2026-09-18T19:46:17.702413+00:00",
+  "approval_author": "Alex",
+  "approval_quote": "spin up an agent and finish the tests let's go",
+  "delegated_request_exact": "FINISH REMAINING AUTHORIZED AZURE BENCHMARK TESTS. Read client-demo-strategy skill and existing scripts/evidence quickly, then execute. Task: (a) 17 known unattempted Kimi straight/angle requests; (b) all six deployed Azure engines (gpt-5-mini,gpt-4.1-mini,Mistral-Large-3,grok-4-1-fast-non-reasoning,Kimi-K2.6,mistral-document-ai-2512 OCR separate track) on approved blur sigma1..6/glare1..5 corpus that Haiku already tested. Use same original prompts/schema/scoring; preserve OCR endpoint/schema and measured usage accounting. Azure Claude excluded pending support. No flat/Haiku replay. Clean baseline reuse existing identical bytes+prompt+model observations when proven equivalent; no silent conflation of different images. Distinct providers/models always distinct observations.",
+  "total_cap_usd": 50,
+  "cap_semantics": "unchanged total-inclusive; NOT fresh50",
+  "ledger": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/budget.sqlite",
+  "lock": "/opt/data/benchmarks/ttb-foundry-20260918-v1/run.lock",
+  "scope": "Only queue-manifest.json requests; existing exact observations reused. No Claude Azure, no flat or OpenRouter replay, no old glare.",
+  "prior_authorization_sha256": "6f2304d5d03108ada0e5ae5af9a4da3e19059b70e87917307b7d09788670ba64",
+  "queue_sha256": "b3bdf159e67a8e7a0735046bc56f393d739542479764ed9a059eb76b10231627",
+  "stops_reviewed": [
+    {
+      "path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/accounting-before/STOP",
+      "sha256": "31de78d44d7a43e132779ee08d8aba1e3b5c9c0c6479e849e121d53cf049727c",
+      "text": "Parent-supervised accounting repair: OCR usage.pages_processed=0 but pages_processed_annotation=1 and one returned page. Stop at safe boundary; delegate repair then resume exact ledger. Do not launch duplicate runners.\n"
+    }
+  ],
+  "supersession": "Later explicit execution request authorizes this Azure continuation under existing total50. Root cap-only restriction and OpenRouter-only addendum remain preserved historical records; neither cancels this current explicit scoped request."
+}

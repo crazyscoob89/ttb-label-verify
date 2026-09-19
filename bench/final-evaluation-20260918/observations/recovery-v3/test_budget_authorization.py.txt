@@ -1,0 +1,106 @@
+"""Offline execution of the real budget initialization/queue AST; temp ledgers only.
+No runner main, credentials, payload construction, or provider transport is invoked.
+"""
+import ast
+import collections
+import json
+from pathlib import Path
+import tempfile
+import unittest
+from unittest.mock import Mock
+import runner
+
+BASE = Path(runner.__file__).resolve().parent.parent
+
+
+def budget_block():
+    tree = ast.parse(Path(runner.__file__).read_text())
+    main = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == 'main')
+    start = next(i for i, n in enumerate(main.body) if isinstance(n, ast.Assign)
+                 and any(isinstance(t, ast.Name) and t.id == 'b' for t in n.targets))
+    end = next(i for i in range(start, len(main.body)) if isinstance(main.body[i], ast.For)
+               and isinstance(main.body[i].iter, ast.Name) and main.body[i].iter.id == 'queue')
+    cap_positions = [i for i, n in enumerate(main.body[:start]) if isinstance(n, ast.Assign)
+                     and any(isinstance(t, ast.Name) and t.id == 'cap' for t in n.targets)]
+    start = min([start] + cap_positions)
+    return compile(ast.fix_missing_locations(ast.Module(body=main.body[start:end + 1],
+                                                       type_ignores=[])), runner.__file__, 'exec')
+
+
+class BudgetAuthorizationTests(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.root = Path(self.tmp.name)
+        self.path = self.root / 'budget.sqlite'
+        old = runner.Budget(self.path, 10)
+        self.assertTrue(old.reserve('inherited-incurred-and-unknown', 7))
+        self.assertTrue(old.reserve('known', 1))
+        old.settle('known', 1)
+        self.assertTrue(old.reserve('unknown', 1))
+        old.settle('unknown', None)
+        self.original = old.entries()
+        self.ns = dict(ROOT=self.root, BASE=BASE, load=runner.load, Budget=runner.Budget,
+                       basis={'base_liability_usd': 7}, collections=collections, math=runner.math,
+                       queue=[], reservation=lambda model: float(model), env={})
+        self.dispatch = Mock(side_effect=self.reserve_only)
+        self.ns['one'] = self.dispatch
+
+    def reserve_only(self, model, g, rep, condition, visibility, env, budget):
+        self.assertTrue(budget.reserve(f"{model}--{g['fixture_id']}--{condition}--{rep}", float(model)))
+        return {'http_status': 200}
+
+    def run_block(self):
+        exec(budget_block(), self.ns)
+        return self.ns['b']
+
+    def test_canonical_guard_uses_50_and_retains_every_existing_entry(self):
+        b = self.run_block()
+        self.assertEqual(b.limit, 50_000_000_000)
+        self.assertEqual(b.entries(), self.original)
+        self.assertEqual(b.total(), 9)
+        self.assertFalse(b.reserve('known', 1))
+        self.assertFalse(b.reserve('unknown', 1))
+        self.assertFalse(b.reserve('inherited-incurred-and-unknown', 7))
+
+    def test_total_inclusive_exact_50_then_blocks_next_and_reports_same_cap(self):
+        self.ns['queue'] = [('41', {'fixture_id': 'new'}, 1, 'flat', None),
+                            ('0.01', {'fixture_id': 'blocked'}, 1, 'flat', None)]
+        b = self.run_block()
+        self.assertEqual(self.dispatch.call_count, 1)
+        self.assertEqual(b.total(), 50)
+        blocked = self.ns['blocked']
+        self.assertEqual(len(blocked), 1)
+        self.assertEqual(blocked[0]['reason'], 'budget')
+        self.assertEqual(blocked[0]['liability_usd'], 50)
+        self.assertAlmostEqual(blocked[0]['over_cap_usd'], .01)
+        self.assertFalse(b.reserve('direct-bypass', .01))
+        retained = [e for e in b.entries() if e['id'] in {x['id'] for x in self.original}]
+        self.assertEqual(retained, self.original)
+        # Restart retains the full total and duplicate prevention, not a new $50 pot.
+        self.dispatch.reset_mock()
+        again = self.run_block()
+        self.assertEqual(again.total(), 50)
+        self.dispatch.assert_not_called()
+        self.assertEqual(len(self.ns['blocked']), 1)
+
+    def test_inherited_envelope_mismatch_still_fails_closed(self):
+        self.ns['basis']['base_liability_usd'] = 7.5
+        with self.assertRaises(AssertionError):
+            self.run_block()
+        self.dispatch.assert_not_called()
+        self.assertEqual(runner.Budget(self.path, 50).entries(), self.original)
+
+    def test_authorization_quote_and_total_semantics(self):
+        path = BASE / 'budget-authorization.json'
+        self.assertTrue(path.is_file(), 'current root budget authorization missing')
+        data = json.loads(path.read_text())
+        self.assertEqual(data['approval_quote'], 'increade the cap to $50')
+        self.assertEqual(data['total_cap_usd'], 50)
+        self.assertEqual(data['semantics'], 'total-inclusive-not-additional')
+        self.assertEqual(data['canonical_runner'], 'recovery-v3/runner.py')
+        self.assertFalse(data['run_authorized_by_this_change'])
+
+
+if __name__ == '__main__':
+    unittest.main(verbosity=2)

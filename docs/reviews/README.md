@@ -1,5 +1,13 @@
 # Engineering review register
 
+## Final benchmark publication repair
+
+[Publication record 16](16-final-benchmark-publication.md) and the
+[final benchmark results](../../BENCHMARK-RESULTS.md) now locate the completed
+Azure/Haiku/severity battery, separate from older flat results. AVA's offline
+publication checks are not a fresh ARGUS benchmark verdict; application-phase
+PASS records below have a different review scope.
+
 ## Active application phase
 
 **Current: Phase 3 local candidate `6ca12cf761fc512031de03b0ef0ae388d085e364`**, preceded by Sprint 1 `a39e17d`; [single-review handoff](16-phase3-single-review.md). Builder reproduced 293/293 unit tests, typecheck, production build, 18/18 opted-in offline E2E cases and 4/4 production manual-input/denial smoke cases. Parent verification and consolidated independent review are pending; this is **not ARGUS PASS**. Exact-image fixture UX and UNSAVED human outcomes are implemented; real provider/auth/persistence/history remain unavailable. No remote writes, paid calls, provisioning or deployment by this worker.

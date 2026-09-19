@@ -1,0 +1,179 @@
+{
+  "id": "azure-foundry--gpt-4.1-mini--50caa38f341e264121b5fd03aa5eb3adfc2f26156b3311a59d1bc12f5bd15d5c",
+  "provider": "azure-foundry",
+  "operator": "AVA-azure-severity-v1",
+  "model": "gpt-4.1-mini",
+  "engine": "gpt-4.1-mini",
+  "fixture_id": "C-SPIRITS-01",
+  "fixture": {
+    "id": "C-SPIRITS-01__blur-4",
+    "source_fixture": "C-SPIRITS-01",
+    "condition": "blur-4",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/C-SPIRITS-01__blur-4.png",
+    "sha256": "9aa437e23e7acd11015fca231a0906fc77c80edbfe966b905fc08c06e8197916",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-SPIRITS-01.png",
+    "source_sha256": "bd601f2d9a3b0fd1b31257fd46e24eb148969519fa4833678ac604df20e037ec",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/C-SPIRITS-01.png",
+    "original_label_sha256": "6db5c6cf43a3a09e324c9e086220594ba35f8611c6e1a4966ccec9a14cce7470",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/C-SPIRITS-01.json",
+    "original_truth_sha256": "cee4f112da89aa39bec0c5a760e862dfdef0911beb254c18830564622f4f6ddf",
+    "source_fixture_id": "C-SPIRITS-01",
+    "clean_parent_substitution": false,
+    "inherited_degradation": "none",
+    "parameters": {
+      "sigma_native_px": 4,
+      "sigma_div_label_width": 0.0033333333333333335,
+      "sigma_div_label_height": 0.0021458625475084046,
+      "filter": "Pillow GaussianBlur",
+      "randomness_used": false
+    },
+    "measurements": {}
+  },
+  "repeat": 1,
+  "condition": "blur-4",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": {
+    "brand_name": "Old Harbor",
+    "class_type": "VODKA",
+    "alcohol_content": "40% ALC/VOL (80 PROOF)",
+    "net_contents": "750 mL",
+    "bottler_info": "Distilled and bottled by Old Harbor Distilling Co., Portland, Maine",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 1.0,
+      "class_type": 1.0,
+      "alcohol_content": 1.0,
+      "net_contents": 1.0,
+      "bottler_info": 0.95,
+      "country_of_origin": 0.5,
+      "government_warning_heading": 1.0,
+      "government_warning_body": 0.9,
+      "government_warning_heading_all_caps": true,
+      "government_warning_heading_bold": true,
+      "government_warning_body_bold": false
+    }
+  },
+  "error_class": "schema-or-incomplete-output",
+  "cost_usd": 0.0013112,
+  "request_sha256": "4939f6c86d095a38d8c0ef7d15e349a9f809df29421392620977b1770ca60f32",
+  "prompt_settings_sha256": "eda0aeeb59f6d94549af6aae522a43c910a5c7b3f3877c79ce1f52cde04898af",
+  "image_sha256": "9aa437e23e7acd11015fca231a0906fc77c80edbfe966b905fc08c06e8197916",
+  "transport": "chat",
+  "started_at": "2026-09-18T20:52:05.211148+00:00",
+  "reserved_usd": 0.46665344,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/C-SPIRITS-01__blur-4.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "old_request_ids": [],
+  "http_status": 200,
+  "request_id": "8bf9b2f5-eac5-4088-8fb7-acb5450fb115",
+  "latency_s": 6.418996152933687,
+  "response_sha256": "e3cea515bca99e1265806fdd5a20d2470257d96cc9f25efccbf06d02cbb8e3a3",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/azure-severity-v1/responses/azure-foundry--gpt-4.1-mini--50caa38f341e264121b5fd03aa5eb3adfc2f26156b3311a59d1bc12f5bd15d5c.json",
+  "tokens_in": 2070,
+  "tokens_out": 302,
+  "pages_processed": null,
+  "usage": {
+    "completion_tokens": 302,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "latency_checkpoint": {
+      "engine_tbt_ms": 8,
+      "engine_ttft_ms": 743,
+      "engine_ttlt_ms": 3094,
+      "pre_inference_ms": 407,
+      "service_tbt_ms": 8,
+      "service_ttft_ms": 2188,
+      "service_ttlt_ms": 4535,
+      "user_visible_ttft_ms": 1780
+    },
+    "prompt_tokens": 2070,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 0,
+      "image_tokens": 840
+    },
+    "total_tokens": 2372
+  },
+  "returned_model": "gpt-4.1-mini-2025-04-14",
+  "raw_text": "{\n  \"brand_name\": \"Old Harbor\",\n  \"class_type\": \"VODKA\",\n  \"alcohol_content\": \"40% ALC/VOL (80 PROOF)\",\n  \"net_contents\": \"750 mL\",\n  \"bottler_info\": \"Distilled and bottled by Old Harbor Distilling Co., Portland, Maine\",\n  \"country_of_origin\": null,\n  \"government_warning_heading\": \"GOVERNMENT WARNING:\",\n  \"government_warning_body\": \"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\n  \"government_warning_heading_all_caps\": true,\n  \"government_warning_heading_bold\": true,\n  \"government_warning_body_bold\": false,\n  \"confidence\": {\n    \"brand_name\": 1.0,\n    \"class_type\": 1.0,\n    \"alcohol_content\": 1.0,\n    \"net_contents\": 1.0,\n    \"bottler_info\": 0.95,\n    \"country_of_origin\": 0.5,\n    \"government_warning_heading\": 1.0,\n    \"government_warning_body\": 0.9,\n    \"government_warning_heading_all_caps\": true,\n    \"government_warning_heading_bold\": true,\n    \"government_warning_body_bold\": false\n  }\n}",
+  "finish_reason": "stop",
+  "validation_errors": {
+    "government_warning_heading_all_caps": "missing or invalid component confidence",
+    "government_warning_heading_bold": "missing or invalid component confidence",
+    "government_warning_body_bold": "missing or invalid component confidence"
+  },
+  "category": "clean",
+  "commodity": "spirits",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "needs-review",
+    "class_type": "needs-review",
+    "alcohol_content": "needs-review",
+    "net_contents": "needs-review",
+    "bottler_info": "needs-review",
+    "country_of_origin": "needs-review",
+    "government_warning": "needs-review"
+  },
+  "classes": {
+    "brand_name": "referral",
+    "class_type": "referral",
+    "alcohol_content": "referral",
+    "net_contents": "referral",
+    "bottler_info": "referral",
+    "country_of_origin": "referral",
+    "government_warning": "referral"
+  },
+  "reasons": {
+    "brand_name": "extraction failure: schema-or-incomplete-output",
+    "class_type": "extraction failure: schema-or-incomplete-output",
+    "alcohol_content": "extraction failure: schema-or-incomplete-output",
+    "net_contents": "extraction failure: schema-or-incomplete-output",
+    "bottler_info": "extraction failure: schema-or-incomplete-output",
+    "country_of_origin": "extraction failure: schema-or-incomplete-output",
+    "government_warning": "extraction failure: schema-or-incomplete-output"
+  },
+  "extraction_correct": {
+    "brand_name": false,
+    "class_type": false,
+    "alcohol_content": false,
+    "net_contents": false,
+    "bottler_info": false,
+    "country_of_origin": false,
+    "government_warning": false
+  },
+  "pipeline_seconds": 6.450162824941799,
+  "unknown_charge_reserved_usd": 0
+}

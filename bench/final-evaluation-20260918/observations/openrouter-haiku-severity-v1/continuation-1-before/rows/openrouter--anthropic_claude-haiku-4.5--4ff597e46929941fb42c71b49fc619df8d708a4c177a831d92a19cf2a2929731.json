@@ -1,0 +1,111 @@
+{
+  "id": "openrouter--anthropic_claude-haiku-4.5--4ff597e46929941fb42c71b49fc619df8d708a4c177a831d92a19cf2a2929731",
+  "provider": "openrouter",
+  "model": "anthropic/claude-haiku-4.5",
+  "engine": "anthropic/claude-haiku-4.5",
+  "route": "https://openrouter.ai/api/v1/chat/completions",
+  "upstream_policy": "Anthropic only; no provider fallback",
+  "fixture": {
+    "id": "W-BRAND-WRONG-01__blur-3",
+    "source_fixture": "W-BRAND-WRONG-01",
+    "condition": "blur-3",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/W-BRAND-WRONG-01__blur-3.png",
+    "sha256": "838570b3f5707cd54647f782ded573f6f43e4aa06b502e66971fd2c9c2ee3c2c",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/W-BRAND-WRONG-01.png",
+    "source_sha256": "a1a4443f8838733ba6478df90d170d6d3c3cc925e2d2fe6e6e606a6e11a0639b",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/W-BRAND-WRONG-01.png",
+    "original_label_sha256": "27d358e7cc919454f3388fb73d4868878b59f7b1b6433ee2bce514e0e670ca9d",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/W-BRAND-WRONG-01.json",
+    "original_truth_sha256": "b4983b90a789772ec7837b2798132997b60f96bf91f0eb00c911060015f2a425",
+    "source_fixture_id": "W-BRAND-WRONG-01",
+    "clean_parent_substitution": false,
+    "inherited_degradation": "none",
+    "parameters": {
+      "sigma_native_px": 3,
+      "sigma_div_label_width": 0.0025,
+      "sigma_div_label_height": 0.0016093969106313034,
+      "filter": "Pillow GaussianBlur",
+      "randomness_used": false
+    },
+    "measurements": {}
+  },
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/W-BRAND-WRONG-01__blur-3.png",
+  "image_sha256": "838570b3f5707cd54647f782ded573f6f43e4aa06b502e66971fd2c9c2ee3c2c",
+  "prompt_settings_sha256": "ba93d7e53b184d2f74384c66eebdb59f523faf427337a9e3b2e702322f09040d",
+  "request_sha256": "5892d058e02c5a5b77ee7fbba92b33bd7a9599f2e814926332a7937b7abf8636",
+  "started_at": "2026-09-18T18:59:46.037774+00:00",
+  "reserved_usd": 0.4565,
+  "max_output_tokens": 3000,
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "ok": true,
+  "extracted": {
+    "brand_name": "Old Harbour",
+    "class_type": "VODKA",
+    "alcohol_content": "40% ALC/VOL (80 PROOF)",
+    "net_contents": "750 mL",
+    "bottler_info": "Distilled and bottled by Old Harbour Distilling Co., Portland, Maine",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 0.95,
+      "class_type": 0.95,
+      "alcohol_content": 0.95,
+      "net_contents": 0.95,
+      "bottler_info": 0.9,
+      "country_of_origin": 0.95,
+      "government_warning_heading": 0.95,
+      "government_warning_body": 0.9,
+      "government_warning_heading_all_caps": 0.95,
+      "government_warning_heading_bold": 0.85,
+      "government_warning_body_bold": 0.85
+    }
+  },
+  "error_class": null,
+  "usage_cost_usd": 0.00426096,
+  "retail_estimate_usd": 0.004304,
+  "http_status": 200,
+  "request_id": null,
+  "latency_s": 5.609452239004895,
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/responses/openrouter--anthropic_claude-haiku-4.5--4ff597e46929941fb42c71b49fc619df8d708a4c177a831d92a19cf2a2929731.json",
+  "response_sha256": "dc575c5f8f773f2fc6451a485da1f511a82aed7efa6931c6c9728d32b65fa5bb",
+  "usage": {
+    "prompt_tokens": 2354,
+    "completion_tokens": 390,
+    "total_tokens": 2744,
+    "cost": 0.00426096,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.004304,
+      "upstream_inference_prompt_cost": 0.002354,
+      "upstream_inference_completions_cost": 0.00195
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "generation_id": "gen-1789757987-8V1cRYzVAKn3hPY76YsE",
+  "returned_model": "anthropic/claude-haiku-4.5",
+  "returned_provider": "Anthropic",
+  "raw_text": "```json\n{\n  \"brand_name\": \"Old Harbour\",\n  \"class_type\": \"VODKA\",\n  \"alcohol_content\": \"40% ALC/VOL (80 PROOF)\",\n  \"net_contents\": \"750 mL\",\n  \"bottler_info\": \"Distilled and bottled by Old Harbour Distilling Co., Portland, Maine\",\n  \"country_of_origin\": null,\n  \"government_warning_heading\": \"GOVERNMENT WARNING:\",\n  \"government_warning_body\": \"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\n  \"government_warning_heading_all_caps\": true,\n  \"government_warning_heading_bold\": true,\n  \"government_warning_body_bold\": false,\n  \"confidence\": {\n    \"brand_name\": 0.95,\n    \"class_type\": 0.95,\n    \"alcohol_content\": 0.95,\n    \"net_contents\": 0.95,\n    \"bottler_info\": 0.90,\n    \"country_of_origin\": 0.95,\n    \"government_warning_heading\": 0.95,\n    \"government_warning_body\": 0.90,\n    \"government_warning_heading_all_caps\": 0.95,\n    \"government_warning_heading_bold\": 0.85,\n    \"government_warning_body_bold\": 0.85\n  }\n}\n```",
+  "finish_reason": "stop",
+  "validation_errors": {},
+  "unknown_charge_reserved_usd": 0,
+  "pipeline_seconds": 5.640720044961199
+}

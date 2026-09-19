@@ -1,0 +1,111 @@
+{
+  "id": "openrouter--anthropic_claude-haiku-4.5--d1e3edfb2246ce37ea52b1362cd92e1cb2e10fa6cab93cbbd3579a6773579599",
+  "provider": "openrouter",
+  "model": "anthropic/claude-haiku-4.5",
+  "engine": "anthropic/claude-haiku-4.5",
+  "route": "https://openrouter.ai/api/v1/chat/completions",
+  "upstream_policy": "Anthropic only; no provider fallback",
+  "fixture": {
+    "id": "C-SPIRITS-IMPORT-01__blur-6",
+    "source_fixture": "C-SPIRITS-IMPORT-01",
+    "condition": "blur-6",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/C-SPIRITS-IMPORT-01__blur-6.png",
+    "sha256": "c07911e25f6af443ff379de1780c1c1a2e2408d88b7e3d11deaf11d5dd9a1edd",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-SPIRITS-IMPORT-01.png",
+    "source_sha256": "7557567bdfcfb73dbbf29ca3c1ee615857dd958bd0f44c144788ce0b898206ec",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/C-SPIRITS-IMPORT-01.png",
+    "original_label_sha256": "a1a8009fec8552dbbaa4610274f08b3fffaf841efc092f0de53a1af953d5e24d",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/C-SPIRITS-IMPORT-01.json",
+    "original_truth_sha256": "a5929f251146c3ecce0ec5f411795438343f4cd05f50af61b5e355eb76dd9425",
+    "source_fixture_id": "C-SPIRITS-IMPORT-01",
+    "clean_parent_substitution": false,
+    "inherited_degradation": "none",
+    "parameters": {
+      "sigma_native_px": 6,
+      "sigma_div_label_width": 0.005,
+      "sigma_div_label_height": 0.0032187938212626067,
+      "filter": "Pillow GaussianBlur",
+      "randomness_used": false
+    },
+    "measurements": {}
+  },
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/C-SPIRITS-IMPORT-01__blur-6.png",
+  "image_sha256": "c07911e25f6af443ff379de1780c1c1a2e2408d88b7e3d11deaf11d5dd9a1edd",
+  "prompt_settings_sha256": "ba93d7e53b184d2f74384c66eebdb59f523faf427337a9e3b2e702322f09040d",
+  "request_sha256": "2e44f653680d9ba39f407d87f285bc6879ca419fb6517779d507a57f0050bf5e",
+  "started_at": "2026-09-18T19:04:19.770655+00:00",
+  "reserved_usd": 0.4565,
+  "max_output_tokens": 3000,
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "ok": true,
+  "extracted": {
+    "brand_name": "Cordon Gris",
+    "class_type": "BLENDED SCOTCH WHISKY",
+    "alcohol_content": "43% ALCOHOL (86 PROOF)",
+    "net_contents": "750 mL",
+    "bottler_info": "Imported by Suntory Imports Ltd., Boston, Massachusetts",
+    "country_of_origin": "PRODUCT OF SCOTLAND",
+    "government_warning_heading": null,
+    "government_warning_body": null,
+    "government_warning_heading_all_caps": null,
+    "government_warning_heading_bold": null,
+    "government_warning_body_bold": null,
+    "confidence": {
+      "brand_name": 0.95,
+      "class_type": 0.95,
+      "alcohol_content": 0.9,
+      "net_contents": 0.95,
+      "bottler_info": 0.85,
+      "country_of_origin": 0.95,
+      "government_warning_heading": 1.0,
+      "government_warning_body": 1.0,
+      "government_warning_heading_all_caps": 1.0,
+      "government_warning_heading_bold": 1.0,
+      "government_warning_body_bold": 1.0
+    }
+  },
+  "error_class": null,
+  "usage_cost_usd": 0.00400851,
+  "retail_estimate_usd": 0.004049,
+  "http_status": 200,
+  "request_id": null,
+  "latency_s": 4.13493726903107,
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/responses/openrouter--anthropic_claude-haiku-4.5--d1e3edfb2246ce37ea52b1362cd92e1cb2e10fa6cab93cbbd3579a6773579599.json",
+  "response_sha256": "73902ddfdd4c4a25c91c915692b75c29a9e379e9074216d24341228fa22a07d8",
+  "usage": {
+    "prompt_tokens": 2354,
+    "completion_tokens": 339,
+    "total_tokens": 2693,
+    "cost": 0.00400851,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.004049,
+      "upstream_inference_prompt_cost": 0.002354,
+      "upstream_inference_completions_cost": 0.001695
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  },
+  "generation_id": "gen-1789758260-aG2cH0uJqejOMF5Cx0iJ",
+  "returned_model": "anthropic/claude-haiku-4.5",
+  "returned_provider": "Anthropic",
+  "raw_text": "```json\n{\n  \"brand_name\": \"Cordon Gris\",\n  \"class_type\": \"BLENDED SCOTCH WHISKY\",\n  \"alcohol_content\": \"43% ALCOHOL (86 PROOF)\",\n  \"net_contents\": \"750 mL\",\n  \"bottler_info\": \"Imported by Suntory Imports Ltd., Boston, Massachusetts\",\n  \"country_of_origin\": \"PRODUCT OF SCOTLAND\",\n  \"government_warning_heading\": null,\n  \"government_warning_body\": null,\n  \"government_warning_heading_all_caps\": null,\n  \"government_warning_heading_bold\": null,\n  \"government_warning_body_bold\": null,\n  \"confidence\": {\n    \"brand_name\": 0.95,\n    \"class_type\": 0.95,\n    \"alcohol_content\": 0.9,\n    \"net_contents\": 0.95,\n    \"bottler_info\": 0.85,\n    \"country_of_origin\": 0.95,\n    \"government_warning_heading\": 1.0,\n    \"government_warning_body\": 1.0,\n    \"government_warning_heading_all_caps\": 1.0,\n    \"government_warning_heading_bold\": 1.0,\n    \"government_warning_body_bold\": 1.0\n  }\n}\n```",
+  "finish_reason": "stop",
+  "validation_errors": {},
+  "unknown_charge_reserved_usd": 0,
+  "pipeline_seconds": 4.171787164057605
+}

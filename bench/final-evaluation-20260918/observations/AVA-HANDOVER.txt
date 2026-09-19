@@ -1,0 +1,73 @@
+TTB FOUNDRY — AVA PARTIAL-RUN HANDOVER / EXECUTION STOPPED
+
+Ownership lock accepted in current channel: ARGUS execution; AVA read-only QA. No additional AVA dispatches or paid calls. This document is evidence delivery, not authorization to run harness.py.
+
+VERIFIED SHARED PATHS
+Windows: C:\Users\alexm\.hermes\benchmarks\ttb-foundry-20260918-v1\
+AVA: /opt/data/benchmarks/ttb-foundry-20260918-v1/
+Shared host mount: /host-home/.hermes/benchmarks/ttb-foundry-20260918-v1/
+Host and container bottle manifest bytes independently compared equal.
+
+STATUS
+AVA flat runner proc_f69dd4ff34de / PID 11087 was killed upon discovery of concurrent ARGUS execution; PID absence verified. Subagent that generated the bottles terminated with a tool error; its completed artifacts were recovered and independently checked. No bottle inference calls were made by AVA.
+Archive repository /opt/data/projects/ttb-label-verify-revision was not edited; inspected clean at commit 4039ccce1912130e3cc9c015e439bf62f720d32f. Original evidence, fixtures, prompts and scorer retained.
+
+PARTIAL FLAT DATA — NOT A COMPLETED 324-CALL BENCHMARK
+245 persisted row records:
+- GPT-4.1 mini: 54
+- GPT-5 mini: 35
+- Grok 4.1 fast non-reasoning: 54
+- Kimi K2.6: 23
+- Mistral Large 3: 44
+- Mistral Document AI 2512: 35 (33 successful responses, two HTTP 429)
+Additionally three dispatched chat attempts remained in-flight at cancellation. Persistent ledger reservations retained; these are unknown-charge attempts, not free failures.
+Rows: rows/*.json
+Exact full provider response bodies: responses/*.json (243 responses)
+Protocol: run_manifest.json; harness.py; test_harness.py; probe.log; battery.log
+Budget evidence: budget.sqlite (use ledger table, not stale budget_summary.json from the probe). Ledger statuses show 3 reserved / 35 unknown-charge / 210 usage-guard.
+Do not resume my harness while ARGUS is canonical executor. Any reuse should be offline.
+
+PRICING — RETAIL ESTIMATES, NOT INVOICED ACTUALS
+Source snapshot: retail_prices.json, Microsoft Azure Retail Prices API, USD/eastus2 lookup. Global Standard retail assumptions; no negotiated discounts, cached-token reductions, or tax included. Region/SKU and final invoice must be reconciled separately.
+Known measured chat usage estimates:
+- GPT-5 mini, 35 responses: $0.087505 (rounded)
+- GPT-4.1 mini, 54 responses: $0.069202 (rounded)
+- Mistral Large 3, 44 responses: $0.083282 (rounded)
+- Grok 4.1 fast, 54 responses: $0.033456 (rounded)
+- Kimi K2.6, 23 responses: $0.215897 (rounded)
+Known chat total before rounding: approximately $0.489343.
+Document AI: 33 returned single-image pages at $0.003/page = $0.099 estimated. This page count is observed in response.pages; the initially expected usage_info.pages_processed was missing, so harness deliberately kept reservations rather than assert a zero cost.
+Combined observed-usage/page RETAIL ESTIMATE: approximately $0.588343 ($0.59), PLUS any charges on three interrupted requests and two HTTP 429 requests. Provider billing/cost-management actuals have NOT been obtained.
+Do not call $0.59 the final actual spend or claim unknown requests were free.
+Current conservative ledger guard: $6.4538618. This is NOT expenditure: it contains whole-context reservations for three interrupted calls, conservative page reserves, and deliberately elevated $1.10/$5.50 per-million token accounting. It exists to protect the approved allowance, not as a cost report.
+Alex explicitly approved '$10 allowance for the full comparison' through clarify in AVA's current task. Any separately claimed $20 approval for ARGUS must retain its own human provenance; AVA has not independently verified that approval. Combine both operators' actual/estimated/unknown charges without dropping mine.
+Earlier tiny smoke tests are separate pre-benchmark activity: GPT-5 mini 74 input/26 output tokens; GPT-4.1 mini 80 input/12 output tokens. At these retail assumptions approximately $0.0001217 combined, not included above.
+
+COMPARISON METHOD / FAILURES
+Original archive: 18 synthetic label fixtures, 3 repeats, 7 scored field categories. Original report and all 162 records independently replayed successfully before AVA execution; source and fixture hashes checked.
+Historic Haiku/Sonnet used OpenRouter -> Anthropic; historic GPT-5 mini used DIRECT OpenAI Responses API, not OpenRouter. Preserve this distinction.
+New GPT-5 mini intentionally uses Responses, original exact system/user prompts, high image detail, 3000 max output, default reasoning, matching the old direct GPT-5 configuration. Other chat models use original exact prompts and images with Chat Completions/json_object/3000 max tokens/default settings. Document AI uses OCR provider route and adapted annotation schema instructions, and must be reported as a separate track.
+New calls were nonstreaming. latency_s measures request start to full body; pipeline_seconds adds parsing, persistence and deterministic scoring. Neither is TTFT nor UI upload-to-display performance. Up to six model streams ran concurrently, one sequential stream per model, so historical host/load/transport differences remain confounders.
+No automatic retries. Three GPT-4.1 and eight Grok responses failed extraction schema checks; these are persisted and must not be quietly repaired or counted as successes. Two Document AI 429s caused that model's stream to stop. Raw bodies permit adjudication.
+Safety/adjudication comes from frozen deterministic scorer, not model opinions. Ground-truth applicant records were NOT sent to models. Preserve false-match denominator (negative outcomes), safe referrals, clean automation, extraction correctness and failed-call coverage separately.
+My partial set is cross-validation, not a replacement for ARGUS's complete canonical sample. Score overlaps by exact model/version, image hash, prompt, settings, fixture and repeat; do not pool as if independent new image coverage.
+
+BOTTLE ARTIFACTS
+bottles/images/: 18 PNGs, 2200x3200, original fixture IDs.
+bottles/contact-sheet.jpg: six-example preview.
+bottles/manifest.json: source/derived hashes and exact transforms.
+bottles/ground_truth/: byte-identical copies of original truths.
+bottles/render.py; bottles/test_corpus.py; bottles/README.txt; bottles/qa.json.
+Manifest SHA256: 99e134da78664682090bef7b698f47bd33e0736867949341b62bcdd26a9dfeee
+Parent independently ran both corpus tests: PASS. Verified 18 images and shared-path access. Parent visually inspected contact sheet: full bottles, labels inside bottle boundaries, no obvious crop. Parent has NOT visually read every character of all 18 full-resolution outputs; worker's stronger native-review claim is separately recorded in qa.json, not promoted to my own inspection.
+These are deterministic synthetic bottle mockups, not camera photographs. Label text is composited from original pixels; no generated lettering, invented brand text or extra semantic ground truth. Mild cylindrical warp/perspective, studio shading, large readable labels; no extra occlusion or added glare/blur. Existing degraded label cases keep their original degradation.
+
+QA CONCERNS FOR ARGUS'S 54-IMAGE BOTTLE TIER
+1. Call the result a SYNTHETIC bottle delta, not a real-world delta. Flat label is a control, not a guaranteed accuracy ceiling.
+2. Semantic label truth can remain unchanged; observability cannot be assumed unchanged under glare, cropping or severe warp. Mark per-field readability independently before viewing model answers. A genuinely unreadable field should safely refer; don't punish the model for refusing to invent hidden text or count a hallucinated correct string as visual recovery.
+3. Preserve the same original pixels and traceable source hashes. Three conditions x18 labels means 54 unique derived images, not 54 independent products. Keep repeated calls distinct from new image coverage.
+4. Control resolution/label occupancy and disclose provider resizing. A full bottle adds background and reduces effective text resolution even when its PNG is larger.
+5. Formatting is load-bearing for the warning fixture; interpolation/shading can change perceived boldness. Visually adjudicate clean and bold-body controls at full resolution before trusting warning comparisons. Never infer measured type size from these synthetic renders.
+6. Keep Document AI/OCR annotation timing and output contract separate. Retain malformed JSON, 429s, timeouts and capped reasoning as failures, with token usage and unknown charges.
+7. Compare cost/latency/accuracy on identical conditions and scoring rules. Nonstreaming call duration is not TTFT or application end-to-end latency; public Azure inference does not prove Treasury firewall/private-network compatibility.
+8. No further AVA paid calls. Reconcile combined ledger and approvals before the canonical bottle battery.

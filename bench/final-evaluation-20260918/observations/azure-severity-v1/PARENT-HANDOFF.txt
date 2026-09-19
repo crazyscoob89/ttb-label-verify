@@ -1,0 +1,34 @@
+ACTIVE PAID RUN — DO NOT LAUNCH A SECOND RUNNER
+
+Root: /opt/data/benchmarks/ttb-foundry-20260918-v1
+Version: azure-severity-v1
+Process-manager session: proc_a76733143fec (notify_on_complete=true)
+Wrapper PID: 28689
+Python execution-owner PID: 28693
+Actual process cwd: /opt/data
+Exclusive shared lock: root/run.lock (verified HELD)
+Canonical shared ledger: recovery-v3/budget.sqlite
+
+Authorized queue: 1073 new requests = 17 genuinely missing Kimi straight/angle controls + 1056 approved blur/glare calls (176 byte-unique severity images per Azure model, six engines). 199 preexisting unique control observations reused by exact image + full request hashes. No Haiku/flat replay; old rejected glare excluded. Execution is sequential, zero automatic retries, two NEW transport-failure threshold per model. First complete the17 Kimi controls, then rotate six models over severity images.
+
+Live verification 2026-09-18T19:49:03Z: rows increased from1 to4; 3valid +1JSONDecodeError, all four Kimi controls. Failure remains in the denominator, raw output retained, no retry. New observed retail estimate $0.06107080. Settled shared liability $10.93039765; live shared liability including the fifth in-flight reservation $12.03935957 / $50 total. These are estimates/reservations, not invoices. Counts/costs continue changing.
+
+OFFLINE GATE: six tests PASS, including exact queue/hash checks, legacy17 attempted-union exclusion, provider IDs, all endpoint/payload shapes through mock HTTP, unknown retention/cumulative50, OCR annotation1/pages0 positive cost, and failure denominators. Tests deny network and use temporary ledgers. tests-red.log, tests-green.log, runner-tests.log retain evidence.
+PRESERVATION PASS at2026-09-18T19:49:31Z: all2056 prior report/raw file hashes, all520 inherited ledger entries and new response hashes unchanged/valid. Read-only SQLite backup and report copies: ../azure-severity-preservation-before/.
+
+MONITOR (read-only; do not rerun --run):
+- process(action='poll', session_id='proc_a76733143fec')
+- Read azure-severity-v1/execution-state.json and execution.log.
+- execution-state.json identifies current request, saved count, model transport failures, blockers, and terminal status.
+- Raw artifacts: attempts/, responses/, rows/.
+
+AUTO-REPORTS: every6 saved calls and at terminal boundary, the active owner refreshes FINAL-COMPARISON.txt, comparison.json, coverage.json, scored-rows.json. FINAL-COMPARISON.txt exists now but is a LIVE PARTIAL report, not a completed result. Includes the frozen complete Haiku results and separate historical operator/provider flat results, plus exact-byte reused Azure controls. Terminal finalization also reruns preservation integrity checks. Do not invoke concurrent report writers while the runner is active (shared report temp files).
+
+AFTER PROCESS EXIT ONLY, refresh/verify if needed:
+/opt/data/asset-venv/bin/python -B /opt/data/benchmarks/ttb-foundry-20260918-v1/azure-severity-v1/azure.py --report
+
+Completion means execution-state.terminal=true, status=complete, remaining=0, plus integrity.json PASS. Bounded-stop means inspect exact pending IDs in comparison.json and blockers in execution-state.json; NEVER automatically replay attempted failures/unknowns. run-consumed.json fences a blind second launch. Current code/queue/auth frozen by freeze.json; editing them while live causes a safe boundary stop. Root authorization unchanged to preserve prior OpenRouter freeze; new exact scoped authorization is azure-severity-v1/authorization-addendum.json under the unchanged total50.
+
+Azure Claude and real-camera/held-out calibration are deferred, not missing paid matrix requests. Native QA was representative, not exhaustive. Severity is not calibrated confidence. OCR remains separate track. Rejected historical white-band glare data/costs preserved but excluded. No unattended-safe claim or winner inferred from referral/schema-failure bias.
+
+HANDOFF STATE: PAID EXECUTION RUNNING, NOT FINISHED. Continue monitoring this owner; no cron, support contact, Git commit/push or publication.

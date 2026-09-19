@@ -1,0 +1,128 @@
+"""Offline deterministic preview tuning. Run with asset-venv Python; --verify rechecks all PNGs."""
+import sys, hashlib, io, json, platform
+from pathlib import Path
+import numpy as np
+from PIL import Image, ImageFilter, ImageDraw, ImageFont, __version__ as PIL_VERSION
+ROOT=Path(__file__).resolve().parent
+BASE=ROOT.parent
+GLARE=BASE/'glare-preview-v2'
+BLUR=BASE/'blur-preview-v2'
+SIGMA=5.2
+GAIN=1.65
+STATUS='PREVIEW ONLY / NOT APPROVED / NOT MODEL-TESTED'
+def sha(p): return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+def dump(p,v): Path(p).write_text(json.dumps(v,indent=2)+'\n')
+def encode(im):
+    b=io.BytesIO(); im.save(b,format='PNG',compress_level=6); return b.getvalue()
+def glare(src,t,p):
+    im=Image.open(src).convert('RGB'); original=np.asarray(im); a=np.asarray(im,dtype=np.float32)/255
+    h,w=a.shape[:2]; yy=np.arange(h,dtype=np.float32)[:,None]; xx=np.arange(w,dtype=np.float32)[None,:]
+    profile=t['bottle_profile_y_radius']; rad=np.interp(yy[:,0],[v[0] for v in profile],[v[1] for v in profile]).astype(np.float32)[:,None]
+    u=(xx-1100)/rad; angle=np.arcsin(np.clip(u,-1,1)); dy=(yy-p['center_y'])/p['sigma_y']; envelope=np.exp(-.5*dy**2)
+    center=np.arcsin(p['center_u'])+p['curve']*np.tanh(dy)+.022*dy**2
+    width=p['angular_width']*(.60+.40*envelope); delta=angle-center; asym=1+.20*np.tanh(delta/(width+.00001))
+    lobe=np.exp(-.5*(delta/(width*asym))**2)*envelope
+    halo=np.exp(-.5*(delta/(width*2.2))**2)*np.exp(-.5*(dy/1.24)**2)
+    edge_center=-.88 if p['center_u']>0 else .88
+    edge=np.exp(-.5*((u-edge_center)/.038)**2)*np.exp(-.5*((yy-(p['center_y']+100))/650)**2)
+    silhouette=np.clip((1-np.abs(u))/.035,0,1)*np.clip((yy-310)/170,0,1)*np.clip((3020-yy)/100,0,1)
+    alpha=(p['strength']*((1-p['bloom_fraction'])*lobe+p['bloom_fraction']*halo)+p['edge_strength']*edge)*silhouette
+    linear=np.where(a<=.04045,a/12.92,((a+.055)/1.055)**2.4)
+    lit=linear*(1-alpha[...,None])+np.array([1.,.985,.955],np.float32)*alpha[...,None]
+    out=np.where(lit<=.0031308,12.92*lit,1.055*np.maximum(lit,0)**(1/2.4)-.055)
+    out=np.rint(np.clip(out,0,1)*255).astype(np.uint8); out[alpha<1e-7]=original[alpha<1e-7]
+    la=alpha[1100:2945,500:1701]; lo=out[1100:2945,500:1701]; old=original[1100:2945,500:1701]
+    sat=np.all(lo>=254,axis=2); dark=np.max(old,axis=2)<100; newly=sat&~np.all(old>=254,axis=2)
+    delta=np.max(np.abs(out.astype(np.int16)-original.astype(np.int16)),axis=2)
+    stats=dict(alpha_max=float(alpha.max()),source_weight_min=float(1-alpha.max()),max_adjacent_alpha_step=float(max(np.abs(np.diff(alpha,axis=0)).max(),np.abs(np.diff(alpha,axis=1)).max())),cap_alpha_max=float(alpha[:310].max()),base_alpha_max=float(alpha[3020:].max()),outside_bottle_changed_pixels=int(((silhouette==0)&(delta>0)).sum()),label_max_row_fraction_alpha_above_020=float((la>.20).mean(axis=1).max()),label_max_row_fraction_alpha_above_050=float((la>.50).mean(axis=1).max()),solid_saturated_full_label_columns=int(sat.all(axis=0).sum()),solid_saturated_full_label_rows=int(sat.all(axis=1).sum()),new_saturated_dark_ink_pixels=int((sat&dark).sum()),max_row_new_saturated_fraction=float(newly.mean(axis=1).max()),label_mean_absolute_rgb_change=float(delta[1100:2945,500:1701].mean()))
+    assert stats['alpha_max']<.65 and stats['source_weight_min']>.35
+    assert stats['max_adjacent_alpha_step']<.025
+    assert stats['cap_alpha_max']==stats['base_alpha_max']==stats['outside_bottle_changed_pixels']==0
+    assert stats['solid_saturated_full_label_columns']==stats['solid_saturated_full_label_rows']==stats['new_saturated_dark_ink_pixels']==0
+    assert stats['max_row_new_saturated_fraction']<.01
+    assert stats['label_max_row_fraction_alpha_above_020']<.55 and stats['label_max_row_fraction_alpha_above_050']<.30
+    assert stats['label_mean_absolute_rgb_change']>1
+    return Image.fromarray(out),stats
+
+def render(effect,row):
+    if effect=='glare': return glare(row['source_path'],row['source_geometry'],row['parameters'])
+    im=Image.open(row['source_path']).convert('RGB').filter(ImageFilter.GaussianBlur(row['parameters']['sigma_native_px']))
+    return im,dict(filter='GaussianBlur',sigma_native_px=SIGMA,falloff='Spatially uniform symmetric normalized Gaussian approximation; no bands or masks added; no finite localized glare field applicable')
+
+def boards(grows,brows):
+    g={r['fixture_id']:r for r in grows}; b={r['fixture_id']:r for r in brows}
+    font=lambda n:ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',n)
+    def board(path,title,rows,crop,panel):
+        cols=len(rows[0][1]); pw,ph=panel; W=cols*(pw+16)+16; H=100+len(rows)*(ph+58)
+        im=Image.new('RGB',(W,H),'#f5f2ec');d=ImageDraw.Draw(im)
+        d.text((16,10),title,font=font(29),fill='black');d.text((16,50),'PREVIEW ONLY - not approved / not model-tested',font=font(22),fill='#555555')
+        for k,(label,cells) in enumerate(rows):
+            y=100+k*(ph+58)
+            for j,(heading,p) in enumerate(cells):
+                x=16+j*(pw+16);d.text((x,y),heading,font=font(26),fill='black')
+                im.paste(Image.open(p).crop(crop).resize(panel,Image.Resampling.LANCZOS),(x,y+42))
+        im.save(path,quality=95,subsampling=0)
+    ident='C-SPIRITS-01'; gr=g[ident];br=b[ident]
+    # Label-wide overview plus native-scale detail rows makes effect comparison phone-friendly when opened.
+    board(BLUR/'C-SPIRITS-01-three-way.jpg','C-SPIRITS-01 | Original / stronger glare / blur',[(ident,[('Original',gr['source_path']),('New glare x1.65',GLARE/gr['output']),('New blur sigma 5.2',BLUR/br['output'])])],(470,1060,1730,2970),(480,728))
+    board(BLUR/'C-SPIRITS-01-v1-v2.jpg','C-SPIRITS-01 | V1 vs V2 - matched label detail',[
+        ('glare',[('Glare V1',BASE/'glare-preview-v1'/gr['previous_output']),('Glare V2 x1.65',GLARE/gr['output'])]),
+        ('blur',[('Blur V1 sigma 3.6',BASE/'blur-preview-v1'/br['previous_output']),('Blur V2 sigma 5.2',BLUR/br['output'])])],(660,1430,1540,2110),(660,510))
+    board(GLARE/'selected3-pairs.jpg','Glare V2 | spirits / wine / malt',[(i,[('Original '+i,g[i]['source_path']),('Glare V2 x1.65',GLARE/g[i]['output'])]) for i in ['C-SPIRITS-01','C-WINE-01','C-MALT-01']],(470,1060,1730,2970),(440,667))
+
+def main():
+    dirs={'glare':GLARE,'blur':BLUR}
+    if '--verify' in sys.argv:
+        for effect,d in dirs.items():
+            m=json.loads((d/'manifest.json').read_text());checks=[]
+            for row in m['fixtures']:
+                assert sha(row['source_path'])==row['source_sha256']
+                im,stats=render(effect,row);assert im.size==(2200,3200)
+                assert hashlib.sha256(encode(im)).hexdigest()==row['output_sha256']==sha(d/row['output'])
+                checks.append(dict(fixture_id=row['fixture_id'],source_identity=True,deterministic_full_png_sha256=True,dimensions=list(im.size),checks=stats))
+            inv=json.loads((d/'inventory.json').read_text());assert all(sha(p)==h for p,h in inv['immutable_hashes'].items())
+            assert len(checks)==len(list((d/'images').glob('*.png')))==18
+            dump(d/'tests.json',dict(status='PASS',scope='Offline integrity / numerical effect checks only; NOT OCR, model, human or full-character acceptance',count=18,all18_deterministic_png_hashes=True,all_prior_v1_files_and_sources_unchanged=True,visual_review='Pending parent native vision / Alex; no inference or network used',fixtures=checks))
+            print('VERIFIED',effect,flush=True)
+        return
+    assert not any((d/'manifest.json').exists() for d in dirs.values()),'Use --verify; do not overwrite finished previews'
+    gm=json.loads((BASE/'glare-preview-v1/manifest.json').read_text());bm=json.loads((BASE/'blur-preview-v1/manifest.json').read_text())
+    oldg={r['fixture_id']:r for r in gm['fixtures']};oldb={r['fixture_id']:r for r in bm['fixtures']}
+    assert len(oldg)==len(oldb)==18 and oldg.keys()==oldb.keys()
+    immutable={str(p):sha(p) for name in ['glare-preview-v1','blur-preview-v1'] for p in (BASE/name).rglob('*') if p.is_file()}
+    evidence=bm['clean_parent_evidence'];assert sha(evidence['path'])==evidence['sha256'];immutable[evidence['path']]=evidence['sha256']
+    for row in oldb.values():
+        assert sha(row['source_path'])==row['source_sha256'];immutable[row['source_path']]=row['source_sha256']
+    allrows={}
+    for effect,d in dirs.items():
+        (d/'images').mkdir(parents=True,exist_ok=True);rows=[]
+        for ident,source in oldb.items():
+            old=(oldg if effect=='glare' else oldb)[ident]
+            p=dict(oldg[ident]['parameters']) if effect=='glare' else dict(sigma_native_px=SIGMA,previous_sigma_native_px=3.6,randomness_used=False)
+            if effect=='glare': p.update(strength=p['strength']*GAIN,edge_strength=p['edge_strength']*GAIN,alpha_bound=.65,intensity_gain_from_v1=GAIN)
+            row={k:source[k] for k in ['fixture_id','source_fixture_id','source_path','source_sha256','source_label_sha256','source_geometry','original_fixture_bottle_path','original_fixture_bottle_sha256','original_source_label_path','original_source_label_sha256','original_truth_path','original_truth_sha256','inherited_degradation']}
+            row.update(parameters=p,previous_parameters=old['parameters'],previous_output=old['output'],previous_output_sha256=old['output_sha256'],previous_source_sha256=old['source_sha256'],source_same_as_v1=source['source_sha256']==old['source_sha256'],provenance=source['provenance'],output='images/'+ident+'__'+effect+'-preview.png')
+            im,stats=render(effect,row);assert im.size==(2200,3200);(d/row['output']).write_bytes(encode(im))
+            row.update(output_sha256=sha(d/row['output']),dimensions=list(im.size),effect_checks=stats);rows.append(row)
+            print('GENERATED',effect,ident,flush=True)
+        allrows[effect]=rows
+        dump(d/'manifest.json',dict(status=STATUS,effect=effect,algorithm=('V1 identical curved linear-light specular field, all intensity coefficients multiplied by 1.65; alpha ceiling 0.65' if effect=='glare' else 'Pillow GaussianBlur sigma 5.2 native pixels in encoded RGB, direct clean source'),source_policy='Reuse blur-v1 verified original / clean parents for BOTH effects: D-BLUR -> C-SPIRITS, D-GLARE -> C-MALT. No previous effect outputs as input. D-WARP retains original warp/mild blur.',comparison_exception='D-BLUR glare V1 inherited original blur; V2 now uses documented clean parent. Glare seed/location unchanged. Other glare sources unchanged.',wording='No retyping, generated pixels, inpainting or reconstruction. Source glyph geometry remains; lighting blends or convolution necessarily change RGB values, not literal pixel identity.',clean_parent_evidence=evidence,source_manifests={str(BASE/n/'manifest.json'):sha(BASE/n/'manifest.json') for n in ['glare-preview-v1','blur-preview-v1']},generator_sha256=sha(__file__),environment=dict(python=platform.python_version(),numpy=np.__version__,pillow=PIL_VERSION),fixtures=rows))
+        dump(d/'inventory.json',dict(immutable_hashes=immutable))
+        (d/'README.md').write_text(f'''# {effect.upper()} V2 — {STATUS}
+
+18 native 2200 x 3200 PNGs in images/. Offline deterministic source-pixel processing only. No network, models, OCR, publication, runners, STOP files or ledgers touched. Alex review is required before GitHub or Azure testing.
+
+Exact tuning: blur Gaussian sigma **5.2 native pixels**, previously 3.6. Glare **1.65x** every V1 lighting coefficient (strength and edge_strength); bloom_fraction 0.12, warm light RGB [1,.985,.955], unchanged seed, center, curvature, widths, falloff and geometry. Alpha bound 0.65 retains >35% linear source contribution everywhere. No clipped white stripe, no new saturated dark ink, no completely white label rows/columns. Numerical tests are NOT proof of character readability.
+
+Sources come from verified blur-v1 source mappings, not its outputs. D-BLUR uses C-SPIRITS-01 and D-GLARE uses C-MALT-01. D-BLUR glare V1 had inherited blur: its V2 clean-source change is explicitly recorded; all other glare source identities and all blur sources unchanged. D-WARP retains original perspective/mild blur. 18 fixture IDs do not imply 18 unique clean sources.
+
+No lettering is redrawn; RGB values necessarily change under deterministic lighting or Gaussian convolution. Blur is not claimed to preserve literal RGB source pixels. Original wording/geometry are inherited, not independently OCR-validated.
+
+Reproduce/verify using `/opt/data/asset-venv/bin/python generate.py --verify` (either directory verifies both). Fresh generation intentionally refuses to overwrite finished manifests. Both folders contain the same self-contained generator with explicit sibling paths. manifest.json records source and derivative SHA256 plus exact per-fixture settings. inventory.json snapshots all V1 files byte-for-byte. tests.json records independent full PNG rerender/hash verification and bounded smooth glare falloff/no broad erased band.
+
+Review boards: sibling blur-preview-v2/C-SPIRITS-01-three-way.jpg (same full-label crop), blur-preview-v2/C-SPIRITS-01-v1-v2.jpg (matched native detail crops, glare and blur), glare-preview-v2/selected3-pairs.jpg (spirits/wine/malt). Native images are authoritative. No vision tool available here; parent native vision and Alex review pending. No model-tested or approved status claimed.
+''')
+    boards(allrows['glare'],allrows['blur'])
+    assert all(sha(p)==h for p,h in immutable.items())
+    print('GENERATED ALL; run --verify',flush=True)
+if __name__=='__main__': main()

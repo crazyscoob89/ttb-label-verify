@@ -1,0 +1,179 @@
+{
+  "id": "azure-foundry--gpt-4.1-mini--cc3da81444fc8e45ce85e4c0dd2110555bbd8e1e82bb8ad8c97346ef66a92258",
+  "provider": "azure-foundry",
+  "operator": "AVA-azure-severity-v1",
+  "model": "gpt-4.1-mini",
+  "engine": "gpt-4.1-mini",
+  "fixture_id": "C-WINE-01",
+  "fixture": {
+    "id": "C-WINE-01__blur-5",
+    "source_fixture": "C-WINE-01",
+    "condition": "blur-5",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/C-WINE-01__blur-5.png",
+    "sha256": "b0fafd6b11ce41eef2c50e1461ab87516eaa4a893384a73a8b1325312315e20c",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-WINE-01.png",
+    "source_sha256": "3e2506cb620c53fb1a267cd3bf12f38397c02bfdab849bd4aa87a2b528537eb3",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/C-WINE-01.png",
+    "original_label_sha256": "c718da519884fd0f496e166a97250a40decd98bf90a8511c7af335cab5bea771",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/C-WINE-01.json",
+    "original_truth_sha256": "35ff0e303cd93337c5a88893ab8c495e1280c5d245be318f389ec1afa7b3fc9b",
+    "source_fixture_id": "C-WINE-01",
+    "clean_parent_substitution": false,
+    "inherited_degradation": "none",
+    "parameters": {
+      "sigma_native_px": 5,
+      "sigma_div_label_width": 0.004166666666666667,
+      "sigma_div_label_height": 0.0026823281843855054,
+      "filter": "Pillow GaussianBlur",
+      "randomness_used": false
+    },
+    "measurements": {}
+  },
+  "repeat": 1,
+  "condition": "blur-5",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": {
+    "brand_name": "Cedar Bluff",
+    "class_type": "RED TABLE WINE",
+    "alcohol_content": "13.5% ALC/VOL",
+    "net_contents": "750 mL",
+    "bottler_info": "Produced and bottled by Cedar Bluff Cellars, Healdsburg, California",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 1.0,
+      "class_type": 1.0,
+      "alcohol_content": 1.0,
+      "net_contents": 1.0,
+      "bottler_info": 0.95,
+      "country_of_origin": 1.0,
+      "government_warning_heading": 1.0,
+      "government_warning_body": 0.95,
+      "government_warning_heading_all_caps": true,
+      "government_warning_heading_bold": true,
+      "government_warning_body_bold": false
+    }
+  },
+  "error_class": "schema-or-incomplete-output",
+  "cost_usd": 0.0013112,
+  "request_sha256": "21b110550e3501f2bd17d2b3e75898e3b02514b31450f607cb5db506b4c3e6d7",
+  "prompt_settings_sha256": "eda0aeeb59f6d94549af6aae522a43c910a5c7b3f3877c79ce1f52cde04898af",
+  "image_sha256": "b0fafd6b11ce41eef2c50e1461ab87516eaa4a893384a73a8b1325312315e20c",
+  "transport": "chat",
+  "started_at": "2026-09-18T21:12:25.250599+00:00",
+  "reserved_usd": 0.46665344,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/C-WINE-01__blur-5.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "old_request_ids": [],
+  "http_status": 200,
+  "request_id": "535a933d-5c78-406b-ab1b-7441011a9150",
+  "latency_s": 7.659483086084947,
+  "response_sha256": "5fd319eabb89c3ebf774e16985efd22d346e14196bffe8b9f8dce5b70b044a9d",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/azure-severity-v1/responses/azure-foundry--gpt-4.1-mini--cc3da81444fc8e45ce85e4c0dd2110555bbd8e1e82bb8ad8c97346ef66a92258.json",
+  "tokens_in": 2070,
+  "tokens_out": 302,
+  "pages_processed": null,
+  "usage": {
+    "completion_tokens": 302,
+    "completion_tokens_details": {
+      "accepted_prediction_tokens": 0,
+      "audio_tokens": 0,
+      "reasoning_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "latency_checkpoint": {
+      "engine_tbt_ms": 10,
+      "engine_ttft_ms": 836,
+      "engine_ttlt_ms": 3913,
+      "pre_inference_ms": 410,
+      "service_tbt_ms": 10,
+      "service_ttft_ms": 2055,
+      "service_ttlt_ms": 5126,
+      "user_visible_ttft_ms": 1645
+    },
+    "prompt_tokens": 2070,
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cached_tokens": 0,
+      "image_tokens": 840
+    },
+    "total_tokens": 2372
+  },
+  "returned_model": "gpt-4.1-mini-2025-04-14",
+  "raw_text": "{\n  \"brand_name\": \"Cedar Bluff\",\n  \"class_type\": \"RED TABLE WINE\",\n  \"alcohol_content\": \"13.5% ALC/VOL\",\n  \"net_contents\": \"750 mL\",\n  \"bottler_info\": \"Produced and bottled by Cedar Bluff Cellars, Healdsburg, California\",\n  \"country_of_origin\": null,\n  \"government_warning_heading\": \"GOVERNMENT WARNING:\",\n  \"government_warning_body\": \"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\n  \"government_warning_heading_all_caps\": true,\n  \"government_warning_heading_bold\": true,\n  \"government_warning_body_bold\": false,\n  \"confidence\": {\n    \"brand_name\": 1.0,\n    \"class_type\": 1.0,\n    \"alcohol_content\": 1.0,\n    \"net_contents\": 1.0,\n    \"bottler_info\": 0.95,\n    \"country_of_origin\": 1.0,\n    \"government_warning_heading\": 1.0,\n    \"government_warning_body\": 0.95,\n    \"government_warning_heading_all_caps\": true,\n    \"government_warning_heading_bold\": true,\n    \"government_warning_body_bold\": false\n  }\n}",
+  "finish_reason": "stop",
+  "validation_errors": {
+    "government_warning_heading_all_caps": "missing or invalid component confidence",
+    "government_warning_heading_bold": "missing or invalid component confidence",
+    "government_warning_body_bold": "missing or invalid component confidence"
+  },
+  "category": "clean",
+  "commodity": "wine",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "needs-review",
+    "class_type": "needs-review",
+    "alcohol_content": "needs-review",
+    "net_contents": "needs-review",
+    "bottler_info": "needs-review",
+    "country_of_origin": "needs-review",
+    "government_warning": "needs-review"
+  },
+  "classes": {
+    "brand_name": "referral",
+    "class_type": "referral",
+    "alcohol_content": "referral",
+    "net_contents": "referral",
+    "bottler_info": "referral",
+    "country_of_origin": "referral",
+    "government_warning": "referral"
+  },
+  "reasons": {
+    "brand_name": "extraction failure: schema-or-incomplete-output",
+    "class_type": "extraction failure: schema-or-incomplete-output",
+    "alcohol_content": "extraction failure: schema-or-incomplete-output",
+    "net_contents": "extraction failure: schema-or-incomplete-output",
+    "bottler_info": "extraction failure: schema-or-incomplete-output",
+    "country_of_origin": "extraction failure: schema-or-incomplete-output",
+    "government_warning": "extraction failure: schema-or-incomplete-output"
+  },
+  "extraction_correct": {
+    "brand_name": false,
+    "class_type": false,
+    "alcohol_content": false,
+    "net_contents": false,
+    "bottler_info": false,
+    "country_of_origin": false,
+    "government_warning": false
+  },
+  "pipeline_seconds": 7.685850356006995,
+  "unknown_charge_reserved_usd": 0
+}

@@ -1,0 +1,31 @@
+"""Linux validation-only wrapper: deny socket creation/connections in kernel."""
+import ctypes
+import ctypes.util
+import errno
+import runpy
+import sys
+name=ctypes.util.find_library('seccomp')
+if not name:raise SystemExit('libseccomp unavailable')
+lib=ctypes.CDLL(name,use_errno=True)
+lib.seccomp_init.argtypes=[ctypes.c_uint32];lib.seccomp_init.restype=ctypes.c_void_p
+lib.seccomp_syscall_resolve_name.argtypes=[ctypes.c_char_p];lib.seccomp_syscall_resolve_name.restype=ctypes.c_int
+lib.seccomp_rule_add.argtypes=[ctypes.c_void_p,ctypes.c_uint32,ctypes.c_int,ctypes.c_uint]
+lib.seccomp_load.argtypes=[ctypes.c_void_p]
+lib.seccomp_release.argtypes=[ctypes.c_void_p]
+ctx=lib.seccomp_init(0x7fff0000)
+assert ctx
+for call in [b'socket',b'socketpair',b'connect',b'bind',b'listen',b'accept',b'accept4',b'sendto',b'sendmsg',b'recvfrom',b'recvmsg']:
+ number=lib.seccomp_syscall_resolve_name(call)
+ if number>=0:assert lib.seccomp_rule_add(ctx,0x00050000|errno.EPERM,number,0)==0
+assert lib.seccomp_load(ctx)==0
+lib.seccomp_release(ctx)
+# Positive denial control; failure must be the kernel's EPERM, not lack of route.
+import socket
+try:socket.socket()
+except PermissionError:pass
+else:raise AssertionError('network not denied')
+print('Kernel seccomp socket denial active; inherited by subprocesses.',flush=True)
+sys.argv=sys.argv[1:]
+from pathlib import Path
+sys.path.insert(0,str(Path(sys.argv[0]).resolve().parent))
+runpy.run_path(sys.argv[0],run_name='__main__')

@@ -1,0 +1,66 @@
+"""Exact approved ladder renderer expanded across preserved source pixels. Offline only."""
+import sys
+sys.dont_write_bytecode=True
+import json,hashlib,importlib.util,copy,shutil,io,datetime,platform
+from pathlib import Path
+from PIL import Image,ImageFilter,ImageDraw,__version__ as PIL_VERSION
+import numpy as np
+D=Path(__file__).resolve().parent;B=D.parent
+load=lambda p:json.loads(Path(p).read_text())
+sha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()
+def save(p,x):Path(p).write_text(json.dumps(x,indent=2)+'\n')
+def module():
+ spec=importlib.util.spec_from_file_location('approved_renderer',B/'severity-ladder-preview-v1/generate.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
+
+def main():
+ assert not (D/'manifest.json').exists(),'Frozen corpus already exists'
+ P=module();preview=load(B/'severity-ladder-preview-v1/manifest.json')
+ assert sha(B/'severity-ladder-preview-v1/generate.py')==preview['generator_sha256']
+ assert sha(P.ENGINE)==preview['render_engine_sha256']
+ sources=load(B/'blur-preview-v3/manifest.json')['fixtures'];accepted=load(B/'recovery-v3/bottles/manifest.json')['fixtures']
+ immutable={str(p):sha(p) for sub in ['bottles','severity-ladder-preview-v1','recovery-v3/bottles'] for p in (B/sub).rglob('*') if p.is_file()}
+ save(D/'immutable-inputs.json',immutable)
+ (D/'images').mkdir(exist_ok=True);(D/'qa').mkdir(exist_ok=True)
+ rows=[];cache={}
+ for s in sources:
+  fid=s['fixture_id'];src=Path(s['source_path']);assert sha(src)==s['source_sha256']
+  for condition in ['clean']+[f'blur-{i}' for i in range(1,7)]+[f'glare-{i}' for i in range(1,6)]+['straight','angle']:
+   stats={};params={};actualsrc=src
+   if condition in ['straight','angle']:
+    f=next(f for f in accepted if f['source_fixture']==fid and f['condition']==condition)
+    actualsrc=B/'recovery-v3/bottles'/f['image'];assert sha(actualsrc)==f['sha256'];data=actualsrc.read_bytes();params=f['transform']
+   else:
+    key=(sha(src),condition)
+    if key in cache:data,params,stats=cache[key]
+    elif condition=='clean':data=src.read_bytes();params={'operation':'byte-identical approved clean-parent copy'}
+    elif condition.startswith('blur-'):
+     k=int(condition.split('-')[1]);data=P.encode(Image.open(src).convert('RGB').filter(ImageFilter.GaussianBlur(k)));params=next(r['parameters'] for r in preview['images'] if r['effect']=='blur' and r['level']==k)
+    else:
+     k=int(condition.split('-')[1]);params=P.params(k)
+     im,alpha,peak,clipped,silhouette=P.optical(str(src),P.GEO,params);data=P.encode(im)
+     stats={'effective_alpha_peak':float(alpha.max()),'uncapped_alpha_peak':peak,'opacity_cap':.65,'clipped_pixel_count':clipped,'clipped_fraction_full_image':clipped/alpha.size,'source_weight_min':float(1-alpha.max())}
+    cache[key]=(data,params,stats)
+   dest=D/'images'/f'{fid}__{condition}.png';dest.write_bytes(data)
+   if fid=='C-SPIRITS-01' and condition not in ['straight','angle']:
+    effect,k=('baseline',0) if condition=='clean' else (condition.split('-')[0],int(condition.split('-')[1]))
+    original=next(r for r in preview['images'] if r['effect']==effect and r['level']==k)
+    assert sha(dest)==original['sha256'],'Approved reference byte drift'
+   rows.append({'id':f'{fid}__{condition}','source_fixture':fid,'condition':condition,'image':str(dest),'sha256':sha(dest),'dimensions':list(Image.open(dest).size),'source_path':str(actualsrc),'source_sha256':sha(actualsrc),'original_label_path':s['original_source_label_path'],'original_label_sha256':s['original_source_label_sha256'],'original_truth_path':s['original_truth_path'],'original_truth_sha256':s['original_truth_sha256'],'source_fixture_id':s['source_fixture_id'],'clean_parent_substitution':s['source_path']!=s['original_fixture_bottle_path'],'inherited_degradation':s['inherited_degradation'] if condition not in ['straight','angle'] else 'unchanged accepted control; may include original source degradation','parameters':params,'measurements':stats})
+  print('CORPUS',fid,flush=True)
+ assert all(sha(p)==h for p,h in immutable.items())
+ manifest={'created_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'synthetic':True,'real_camera_validation':False,'original_fixture_ids':18,'logical_images':len(rows),'unique_image_bytes':len({r['sha256'] for r in rows}),'policy':'Exact C-SPIRITS approved optical geometry/seed/intensity coefficients applied unchanged across source pixels; no lettering regeneration. Clean parent substitutions for D-BLUR and D-GLARE disclosed; D-WARP retains inherited degradation. Original straight/angle bytes reused unchanged. Rejected old glare entirely excluded.','renderer_sha256':sha(__file__),'approved_generator_sha256':sha(B/'severity-ladder-preview-v1/generate.py'),'approved_manifest_sha256':sha(B/'severity-ladder-preview-v1/manifest.json'),'approval_sha256':sha(B/'severity-ladder-preview-v1/SCALE-APPROVAL.md'),'environment':{'python':platform.python_version(),'pillow':PIL_VERSION,'numpy':np.__version__},'fixtures':rows}
+ save(D/'manifest.json',manifest)
+ # Full-label overview, plus UNRESIZED native-pixel details for independent visual QA.
+ selected=['C-SPIRITS-01','C-WINE-01','C-MALT-01','W-WARN-REWORD-01','A-FIELD-MISSING-01','A-WARN-BOLDBODY-01']
+ conditions=['clean','angle','blur-1','blur-3','blur-6','glare-1','glare-3','glare-5']
+ for fid in selected:
+  sheet=Image.new('RGB',(8*300,505),'white');draw=ImageDraw.Draw(sheet)
+  for j,c in enumerate(conditions):
+   r=next(r for r in rows if r['source_fixture']==fid and r['condition']==c)
+   im=Image.open(r['image']);tile=im.crop((450,1040,1760,3000));tile.thumbnail((294,465));sheet.paste(tile,(j*300,30));draw.text((j*300+4,5),c,fill='black')
+   if c in ['clean','blur-6','glare-5']:
+    im.crop((500,1700,1701,2800)).save(D/'qa'/f'{fid}__{c}__native.png')
+  sheet.save(D/'qa'/f'{fid}__overview.jpg',quality=95)
+ save(D/'corpus-tests.json',{'status':'PASS','all_source_hashes_preserved':True,'reference_all12_exact_png_matches':True,'count':len(rows),'unique':manifest['unique_image_bytes'],'no_paid_calls':True})
+ print('CORPUS COMPLETE',manifest['logical_images'],manifest['unique_image_bytes'],flush=True)
+if __name__=='__main__':main()

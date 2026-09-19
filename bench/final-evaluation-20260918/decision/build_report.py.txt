@@ -1,0 +1,181 @@
+from pathlib import Path
+import json, hashlib, statistics, urllib.request
+
+ROOT=Path('/opt/data/benchmarks/ttb-foundry-20260918-v1')
+OUT=Path(__file__).parent
+SOURCE='https://raw.githubusercontent.com/treasurytakehome-rgb/instructions/62bd63cd2f6b5af088b1d3c3b039c48cfcb012ef/README.md'
+paths=[ROOT/'azure-severity-v1/comparison.json',ROOT/'azure-severity-v1/scored-rows.json',ROOT/'openrouter-haiku-severity-v1/scored-rows.json',ROOT/'azure-severity-v1/execution-state.json',ROOT/'azure-severity-v1/integrity.json']
+before={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths}
+comp=json.loads(paths[0].read_text());az=json.loads(paths[1].read_text());ha=json.loads(paths[2].read_text())
+source=urllib.request.urlopen(SOURCE,timeout=30).read().decode()
+(OUT/'assignment-source.md').write_text(source)
+models=[('Haiku 4.5','haiku','OpenRouter → Anthropic'),('Mistral Document AI','mistral-document-ai-2512','Azure, separate OCR pipeline'),('Grok 4.1 Fast','grok-4-1-fast-non-reasoning','Azure'),('GPT-4.1 mini','gpt-4.1-mini','Azure'),('Mistral Large 3','Mistral-Large-3','Azure'),('GPT-5 mini','gpt-5-mini','Azure'),('Kimi K2.6','Kimi-K2.6','Azure')]
+fields=['brand_name','class_type','alcohol_content','net_contents','bottler_info','country_of_origin','government_warning']
+metrics=[]
+def pct(xs,p):
+ xs=sorted(xs);k=(len(xs)-1)*p;i=int(k);return xs[i]+(xs[min(i+1,len(xs)-1)]-xs[i])*(k-i)
+for name,key,route in models:
+ cs=comp['haiku_openrouter_by_condition'] if key=='haiku' else comp['azure_by_condition'][key]
+ vals=[v for c,v in cs.items() if c!='clean']
+ pool=ha if key=='haiku' else [r for r in az if r['model']==key]
+ unique={r['image_sha256']:r for r in pool if r['condition']!='clean'}
+ rows=list(unique.values());assert len(rows)==212
+ # Cross-check all aggregate quantities from saved scored rows, not a fresh scorer replay.
+ correct={f:sum(r['extraction_correct'][f] for r in rows) for f in fields}
+ for f in fields:assert correct[f]==sum(v['field_correct'][f] for v in vals)
+ failures=sum(not r['ok'] for r in rows)
+ fm=sum(r['truth'][f]=='mismatch' and r['verdicts'][f]=='match' for r in rows for f in fields)
+ neg=sum(r['truth'][f]=='mismatch' for r in rows for f in fields)
+ refs=sum(r['ok'] and any(v=='needs-review' for v in r['verdicts'].values()) for r in rows)
+ assert failures==sum(v['processing_failures'] for v in vals)
+ assert fm==sum(v['false_matches'] for v in vals)
+ assert refs==sum(v['valid_referral_calls'] for v in vals)
+ assert neg==104
+ times=[r['latency_s'] for r in rows]
+ costs=[r.get('retail_estimate_usd',0) if key=='haiku' else r.get('cost_usd',0) for r in rows]
+ unknown_costs=sum(v is None for v in costs)
+ costs=[v for v in costs if v is not None]
+ assert all(isinstance(v,(float,int)) for v in costs)
+ allcorrect=sum(all(r['extraction_correct'].values()) for r in rows)
+ assert allcorrect==sum(v['all_fields_correct'] for v in vals)
+ m=dict(name=name,key=key,route=route,n=212,field_counts=correct,accuracy=100*sum(correct.values())/1484,all_fields_correct=allcorrect,failures=failures,false_matches=fm,negative_fields=neg,referrals=refs,p50=statistics.median(times),p95=pct(times,.95),under5=sum(t<=5 for t in times),mean_cost=sum(costs)/len(costs),known_cost_calls=len(costs),unknown_cost_calls=unknown_costs,cost_basis='retail estimate, incomplete usage for failed responses' if key=='haiku' else 'saved retail estimate',conditions={c:{'accuracy':100*sum(v['field_correct'].values())/(v['calls']*7),'failures':v['processing_failures'],'calls':v['calls']} for c,v in cs.items() if c!='clean'})
+ metrics.append(m)
+
+def table(headers,rows):
+ return '\n'.join([' | '.join(headers),' | '.join(['---']*len(headers))]+[' | '.join(map(str,r)) for r in rows])
+summary=table(['Model / route','Median / p95','Calls ≤5s','Field accuracy','All 7 fields correct','False matches /104 negatives','Processing failures /212','Valid review referrals /212'],[[m['name']+(' (OpenRouter)' if m['key']=='haiku' else ' (Azure)'),f"{m['p50']:.2f}s / {m['p95']:.2f}s",f"{m['under5']}/212",f"{m['accuracy']:.2f}%",f"{m['all_fields_correct']}/212",m['false_matches'],m['failures'],m['referrals']] for m in metrics])
+fieldtable=table(['Model','Brand','Class/type','ABV','Net contents','Bottler/address','Origin','Warning'],[[m['name']]+[f"{100*m['field_counts'][f]/212:.2f}%" for f in fields] for m in metrics])
+costtable=table(['Model','Estimated average / image','Estimated /1,000 single calls','Calls with cost estimate /212'],[[m['name'],f"${m['mean_cost']:.5f}",f"${m['mean_cost']*1000:.2f}",m['known_cost_calls']] for m in metrics])
+severetable=table(['Model','Straight accuracy','Angle accuracy','Blur-6 accuracy','Glare-5 accuracy'],[[m['name']]+[f"{m['conditions'][c]['accuracy']:.2f}%" for c in ['straight','angle','blur-6','glare-5']] for m in metrics])
+text=f'''TTB LABEL VERIFICATION — MODEL / PROJECT SUCCESS COMPARISON
+Version 1 — internal decision package, not third-party-certified output
+
+BOTTOM LINE
+No tested model is a complete project PASS. Haiku and Azure Mistral Document AI are the strongest candidates for the next app-level feasibility check, for different reasons. GPT-5 mini is not the primary candidate under Alex's five-second priority: its measured model call alone exceeds that target. Grok is a speed comparator, not the preferred quality choice. No further paid run or app build was launched to produce this document.
+
+1. WHAT ACTUALLY DEFINES SUCCESS
+Controlling assignment revision: 62bd63cd2f6b5af088b1d3c3b039c48cfcb012ef
+Source: {SOURCE}
+A full copy is saved alongside this report as assignment-source.md.
+
+The official six evaluation categories are:
+• Correctness and completeness of core requirements.
+• Code quality and organization.
+• Appropriate technical choices for the scope.
+• User experience and error handling.
+• Attention to requirements.
+• Creative problem-solving.
+
+The source asks for comparison of application information with label artwork; common TTB information categories vary by beverage type. Brand comparisons must tolerate harmless capitalization changes, while warning text and the all-caps/bold heading need exact treatment. It asks for a simple UI, batch handling, a standalone prototype (no COLA integration), source/setup/assumption documentation and a working deployed URL. Difficult-photo recovery is described as potentially out of scope for a prototype; safe handling is still necessary. The source favors a working core and clean code over incomplete ambition.
+
+Timing: the assignment says 'about 5 seconds'; Alex has adopted five seconds or less as the selection target. It applies to the usable result, not just the model. Median ≤5s is only a screening gate: a requirement that most requests finish within 5s would be stricter. We must report the actual end-to-end distribution, not silently equate these definitions. No current route has demonstrated the full app target.
+
+Additional Alex requirement: observed Azure/restricted-network deployment feasibility. The assignment itself mentions Azure and prior blocked outbound ML domains, but does not mandate a named Azure model or certify any provider route.
+
+Team-defined design/acceptance criteria, NOT numerical requirements supplied by Treasury: four-state field outcomes, controlled cost/retries, provider abstraction, zero observed false matches and a clean-input automation threshold. The existing checklist calls for zero observed false matches and ≥60% clean seven-field automation with repeated trials; these are not established by this mixed-severity aggregate. Every engine below has observed false matches. Human confirmation is a proposed risk control, NOT a retroactive pass on the original internal zero-false-match gate. Any revision to that gate must be explicit.
+
+2. MEASURED ENGINE SCORECARD
+{summary}
+
+Definition / denominator notes:
+• Every engine has 212 byte-unique images: straight, angle, blur sigma 1–6 and glare ×1–×5. The extra clean condition aliases existing images and is excluded from totals. These are transforms of a small source-label set, not 212 independent real-world labels.
+• Field accuracy is saved extraction_correct against fixture truth, with 1,484 field opportunities. It is NOT whole-label accuracy, real-world compliance certification or an automatic-approval success rate. All-seven-correct counts require all seven extraction checks to be correct; they still do not certify image readability, regulatory completeness or the app.
+• False matches count known-negative fields wrongly marked match: denominator 104 negative-field opportunities per engine. Referrals and processing failures are not false matches; low false-match counts can reflect excessive failure/referral instead of better discrimination.
+• Valid review referrals mean otherwise valid extractions containing at least one needs-review outcome. Processing failures are separate. These are observed model/scorer referrals, not the proposed mandatory human confirmation on every final approval.
+• All model-call latency values include failed attempts. They measure nonstreaming request-to-completion, not upload/display time; the fast completion of a failed request is not useful success. 'Calls ≤5s' is timing only, not successful completed reviews.
+• OCR uses a different annotation endpoint/schema, so compare full pipeline outcomes but do not describe it as an identical model interface. Only Haiku was tested via OpenRouter; the other six routes were Azure.
+
+3. THE SEVEN FIELD CATEGORIES
+{fieldtable}
+
+Failures remain in every field's denominator. Applicable country-of-origin absence can be correctly scored; 100% here does not mean every imported-label situation was covered. Warning accuracy combines the benchmark's wording/formatting checks, not physical font-size certification. Printed size still needs a scale-aware/manual check.
+
+The key GPT-5 mini error was systematic: all 12 false matches were variants of the same bold-warning-body defect. Its strong aggregate extraction score did not remove this warning-format blind spot. ARGUS adjudicated Haiku's one blur-4 bold-body false match as genuine. Neither model gets an automatic formatting PASS.
+
+4. REPRESENTATIVE DIFFICULTY SLICES
+{severetable}
+
+These slices expose degradation but do not supply a calibrated confidence threshold. Safe refusal/review and successful extraction must stay separate. Real photos and unseen source labels remain unvalidated; we cannot extrapolate these synthetic percentages to production error rates.
+
+5. COST AND OPERATIONAL FIT
+{costtable}
+
+These are averages of recorded per-call retail estimates over calls WITH cost data (denominators shown), not fresh market quotes, fixed prices or invoices. Unknown failed-call charges are excluded from these unit-cost averages, not assumed free; actual billed charges may differ. Output size, image resolution, reasoning configuration, retries and multi-image labels change cost. Hosting, storage and manual-review labor are excluded. Haiku's sample retail estimate is distinct from provider-reported usage and the conservative unresolved-charge reserve.
+Shared benchmark liability: ${comp['costs']['shared_total_liability_usd']:.2f} against the $50 total ceiling, including historical amounts and unresolved reservations. New Azure estimated cost: ${comp['costs']['new_azure_observed_retail_estimate_usd']:.2f}. This is not a production cost ceiling or confirmed billed total.
+
+6. REQUIREMENT-BY-MODEL DISPOSITION
+Requirement | Haiku | Azure Mistral OCR | Azure Grok | Azure GPT-4.1 mini | Azure Mistral Large | Azure GPT-5 mini | Azure Kimi
+--- | --- | --- | --- | --- | --- | --- | ---
+Model median ≤5s (screen only) | Meets | Meets | Meets | Misses | Misses | Misses | Misses
+Model p95 ≤5s (stricter screen) | Misses | Misses narrowly | Misses | Misses | Misses | Misses | Misses
+App upload-to-result ≤5s | Unproven | Unproven | Unproven | Unproven | Unproven | Unproven, model too slow | Unproven
+Seven-field benchmark coverage | Tested | Tested via OCR | Tested | Tested | Tested | Tested | Tested
+No observed false matches on this suite | Fails: 1 | Fails: 13 | Fails: 13 | Fails: 6 | Fails: 11 | Fails: 12 | Fails: 4
+Zero processing failures | No: 6 | Yes on this suite | No: 13 | No: 39 | No: 2 | No: 1 | No: 53
+Live Azure inference evidence | No, OpenRouter only | Yes | Yes | Yes | Yes | Yes | Yes
+Restricted-network execution proof | Not established | Not established | Not established | Not established | Not established | Not established | Not established
+Real-camera/unseen-label qualification | Not established | Not established | Not established | Not established | Not established | Not established | Not established
+Safe unattended approval | Not supported | Not supported | Not supported | Not supported | Not supported | Not supported | Not supported
+Final selection under speed priority | Conditional shortlist | Conditional Azure shortlist | Reserve comparator | Deprioritize | Deprioritize | Deprioritize as primary | Deprioritize
+
+'Meets' above means the specific measured screening metric, not assignment acceptance. Successful Azure API calls do not establish private routing, customer firewall compatibility, Azure Government availability or federal production authorization. OpenRouter Haiku does not establish Azure Claude availability.
+
+7. OFFICIAL EVALUATION RUBRIC: WHAT A MODEL CAN AND CANNOT SATISFY
+Correctness/completeness:
+  Model evidence: seven-field, per-condition accuracy; warning checks; negative-field false matches; failures/referrals above.
+  Remaining application proof: each image paired with its own declared application data, commodity-aware deterministic rules, explicit results for every field and no silent loss in a batch. No model currently receives an overall correctness PASS.
+Code quality/organization:
+  This is an application/repository criterion, not a model benchmark. Prior baseline review does not grade unbuilt UI/intake/orchestration. Verify separate intake, extraction, rules and UI responsibilities, tests and clear contracts for whichever provider is chosen. No extra model points for an unimplemented architecture.
+Appropriate technical choices:
+  Haiku offers the best observed false-match profile among the fast routes, but has external-route and Azure-availability uncertainty. Azure Mistral OCR offers strong extraction and zero processing failures in this suite, with substantial warning-format false matches. Grok is fast enough at median but markedly weaker in warning accuracy. All choices must justify cost, latency, dependency and manual-review trade-offs; no unnecessary microservices or multi-model ensemble without measured benefit.
+UX/error handling:
+  No model alone supplies a simple upload/result interface, intelligible mismatches, uncertainty display, retry controls or batch progress. Demonstrate clear per-item errors, side-by-side image/application/extracted values and a useful next action. Manual review is a cost and UX trade-off, not a magic accuracy repair.
+Attention to requirements:
+  Preserve all seven categories and applicability rules; relaxed brand normalization versus exact warning checks; batch mapping; complete deployed timing; source plus setup/run instructions and testable URL. Do not add COLA integration or claim universal TTB certification.
+Creative problem-solving:
+  Evidence-backed provider selection, explicit unsupported physical-size checks, deterministic rules around model extraction, and a bounded firewall-feasibility trial are defensible choices. They earn credibility only when implemented and demonstrated; extra complexity or more tests alone are not success.
+
+8. PROPOSED FAILURE HANDLING (NOT YET A VERIFIED APP CAPABILITY)
+• Validate input type/size and structured output. A malformed result, timeout or provider error produces a processing-error state with fields unresolved, never a green match.
+• For transient service failures, proposed bounded retries must respect time and spend budgets. Do not silently exceed the five-second target through retry chains; show honest pending/failed status. Benchmark calls used no automatic retries.
+• Readable disagreements are mismatches; missing/unclear readings are needs-review with a clearer-image/manual-review action.
+• Exact deterministic checks cannot recover text/style that the model read incorrectly. Warning-format verification and physical type-size checks require explicit review until a separately validated detector/control exists.
+• Show the evidence beside the proposed result and require human confirmation under the current prototype recommendation. This mitigates reliance; it does not establish corrected statistical accuracy or fulfill a stricter automatic-approval objective.
+• Batch failures must not drop records or attach results to the wrong application. Bounded concurrency needs its own real-app latency/rate-limit test; sequential benchmark timings do not prove batch capacity.
+
+9. RECOMMENDATION / NEXT ACCEPTANCE DECISION
+Do NOT lock GPT-5 mini as primary given the speed requirement. Retain its benchmark as a quality reference, not a default fallback: a slow second call would worsen the latency target.
+
+Keep TWO bounded candidates, with different purposes:
+1) Haiku/OpenRouter: candidate if that provider route is acceptable for the demo; strongest observed false-match profile among fast options, not a verified Azure deployment solution.
+2) Azure Mistral Document AI: candidate when Azure feasibility is essential; near-Haiku median and strong extraction, but explicit human warning verification remains necessary.
+Grok stays a comparator rather than a third active build lane. Slower/less reliable tested configurations are parked. These conclusions apply to the exact tested routes/configurations, not every possible setting of a model family.
+
+The next deciding evidence is the SAME minimal app flow measured on the shortlisted routes: upload → matched application record → seven-field output → displayed errors/review states. Record full latency distribution and usable-output rate, then exercise representative batch mapping and restricted-network routing in an isolated environment. Azure identity/resource binding may need resolving before network proof; no presumed access or customer certification.
+
+Define the timing acceptance explicitly before that run: representative typical result within five seconds versus p95 within five seconds are different requirements. The app should report both regardless; do not call p50 alone a universal five-second guarantee. The assignment gives no numerical accuracy floor. Any new accuracy/automation threshold requires an explicit scoped decision, not an invented Treasury requirement.
+
+Approval of a comparison report is not permission for new paid calls, infrastructure changes or an expanded build. Current next move is review this matrix and choose the bounded implementation/test scope.
+
+10. VERIFICATION, REVIEW AND LIMITATIONS
+ARGUS's second PASS was relayed by Alex in the current thread: exact request/coverage reconciliation, preserved continuation, reused-control accounting, ledger reconciliation and hash checks were reported reproduced. Scoring was sampled plus false-match adjudication; no full frozen-scorer end-to-end replay was claimed. This report independently recomputes aggregate metrics from the existing scored rows and checks them against comparison.json; that is NOT a raw-response frozen-scorer replay. Complete that replay before third-party presentation.
+
+Haiku duplicate-502 footnote: ARGUS reported two distinct failed requests with byte-identical 502 response bodies, not duplicated paid request identities. Six processing failures remain in the denominators; the two identical error-body hashes are not two successful observations.
+
+Ranking limits:
+• Controlled synthetic images, not real-camera validation. Native visual QA/visibility was representative, NOT exhaustive readability annotation.
+• Nominal blur sigma/glare levels are not calibrated confidence. Held-out source-label calibration and real-camera validation deferred.
+• Azure Claude excluded pending support; OpenRouter Haiku is a distinct provider observation, not Azure availability/hosting/latency proof.
+• OCR uses the original separate annotation endpoint/schema. Do not rank schema failures or abstention as superior perception.
+• False matches rule out unattended-safe claims. No winner is inferred from zero false matches combined with high referral/failure rates.
+• Original broad white glare is REJECTED historical occlusion; prior data and cost preserved, excluded from approved severity comparisons.
+• Costs are documented retail/usage estimates and conservative liability, not invoice verification. Failures remain in accuracy denominators.
+
+Source/evidence hashes and machine-readable aggregates accompany this internal report. Original benchmark evidence was read-only throughout; no report regeneration, paid execution, repository commit or external publication was performed.
+'''
+(OUT/'MODEL-PROJECT-COMPARISON.txt').write_text(text)
+(OUT/'metrics.json').write_text(json.dumps(metrics,indent=2)+'\n')
+after={str(p):hashlib.sha256(p.read_bytes()).hexdigest() for p in paths};assert before==after
+verification={'status':'PASS','checks':['Seven models, 212 byte-unique observations each','Per-field totals reconcile to saved comparison.json','Failures, false matches and referral totals reconcile','104 negative-field opportunities per model','All-seven-field-correct totals reconcile','Median and linear p95 recomputed from per-request latencies','Input evidence hash-stable; no paid execution'],'not_performed':'Full raw-response frozen-scorer replay; app, network and real-camera testing','source_url':SOURCE,'source_sha256':hashlib.sha256(source.encode()).hexdigest(),'input_sha256':before,'report_sha256':hashlib.sha256(text.encode()).hexdigest()}
+(OUT/'verification.json').write_text(json.dumps(verification,indent=2)+'\n')
+print(summary);print('\nCOST\n'+costtable);print('\nREPORT',OUT/'MODEL-PROJECT-COMPARISON.txt');print('VERIFICATION PASS')

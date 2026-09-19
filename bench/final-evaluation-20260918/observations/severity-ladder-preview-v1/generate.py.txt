@@ -1,0 +1,171 @@
+"""Offline one-source ladder. No imports of corpus entrypoints; --verify writes nothing."""
+import sys
+sys.dont_write_bytecode = True
+import ast, copy, hashlib, io, json, platform
+from pathlib import Path
+import numpy as np
+from PIL import Image, ImageFilter, ImageDraw, ImageFont, __version__ as PIL_VERSION
+D=Path(__file__).resolve().parent
+B=D.parent
+STATUS='PREVIEW ONLY / NOT MODEL-TESTED'
+SRC=B/'bottles/images/C-SPIRITS-01.png'
+ENGINE=B/'glare-preview-v3/generate.py'
+CROP=(650,1720,1550,2580)
+LABEL=(500,1079,1701,2944)
+load=lambda p:json.loads(Path(p).read_text())
+def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+def dump(p,x):Path(p).write_text(json.dumps(x,indent=2)+'\n')
+def encode(im):
+    s=io.BytesIO();im.save(s,format='PNG',compress_level=6);return s.getvalue()
+def row(version):return next(r for r in load(B/f'glare-preview-v{version}/manifest.json')['fixtures'] if r['fixture_id']=='C-SPIRITS-01')
+V4=row(4); V1=row(1); GEO=V4['source_geometry']; P1=V1['parameters']
+# Reuse the inspected renderer's exact optical statements through quantization.
+# Stop before its legacy acceptance assertions/statistics (not calibrated for x1..x5).
+# No module top-level statements or corpus main are executed, and no bytecode is written.
+tree=ast.parse(ENGINE.read_text()); fn=next(n for n in tree.body if isinstance(n,ast.FunctionDef) and n.name=='glare')
+keep=[]
+for stmt in fn.body:
+    if isinstance(stmt,ast.Assign) and any(isinstance(t,ast.Name) and t.id=='la' for t in stmt.targets):break
+    keep.append(stmt)
+fn.body=keep+ast.parse('return Image.fromarray(out), alpha, uncapped_max, clipped_pixels, silhouette').body
+mod=ast.fix_missing_locations(ast.Module(body=[fn],type_ignores=[])); ns={'np':np,'Image':Image};exec(compile(mod,str(ENGINE),'exec'),ns); optical=ns['glare']
+
+def params(k):
+    p=copy.deepcopy(P1)
+    p.update(strength=P1['strength']*k,edge_strength=P1['edge_strength']*k,alpha_bound=.65,intensity_gain_from_v1=k,requested_intensity_gain_from_v1=k,opacity_cap=.65)
+    for key in ['seed','center_u','center_y','sigma_y','angular_width','curve','bloom_fraction']:assert p[key]==V4['parameters'][key]
+    return p
+
+def render(effect,level):
+    if effect=='baseline':return SRC.read_bytes(),{}
+    if effect=='blur':return encode(Image.open(SRC).convert('RGB').filter(ImageFilter.GaussianBlur(level))),{}
+    im,alpha,peak,clipped,silhouette=optical(str(SRC),GEO,params(level))
+    x0,y0,x1,y1=LABEL;la=alpha[y0:y1,x0:x1]
+    stats=dict(requested_multiplier=level,effective_alpha_peak=float(alpha.max()),uncapped_alpha_peak=peak,effective_peak_gain_from_v1=float(alpha.max())/(peak/level),opacity_cap=.65,clipped_pixel_count=clipped,clipped_fraction_full_image=clipped/alpha.size,clipped_fraction_bottle=clipped/int((silhouette>0).sum()),clipped_fraction_label=float((la>=np.float32(.65)).mean()),mean_alpha_label=float(la.mean()),source_weight_min=float(1-alpha.max()))
+    return encode(im),stats
+
+def luminance(a):return a.astype(np.float32)@np.array([.2126,.7152,.0722],np.float32)
+
+def setup_masks():
+    a=np.asarray(Image.open(SRC).convert('RGB'));x0,y0,x1,y1=LABEL;clean=a[y0:y1,x0:x1]
+    yy=np.arange(y0,y1)[:,None];xx=np.arange(x0,x1)[None,:]
+    u=np.arcsin(np.clip((xx-GEO['cx'])*np.sin(GEO['theta_radians'])/GEO['half'],-1,1))/GEO['theta_radians']
+    v=(yy-GEO['top']-GEO['sag']*(1-u*u)-GEO['tilt']*u+.5*GEO['perspective']*u)/(GEO['height']+GEO['perspective']*u)
+    sx=(u+1)*999/2;sy=v*1499
+    # Known government-warning text area from original generator, not OCR.
+    roi=(sx>=100)&(sx<=900)&(sy>=1010)&(sy<=1280)
+    mask=roi&(clean.max(axis=2)<100)
+    assert mask.sum()>0
+    return a,mask,roi
+CLEAN,MASK,ROI=setup_masks()
+
+def descriptives(a):
+    x0,y0,x1,y1=LABEL; l=a[y0:y1,x0:x1]; y=luminance(l)
+    # 31x31 local max provides nearby paper estimate, evaluated at fixed clean dark-text pixels.
+    bg=np.asarray(Image.fromarray(np.rint(y).astype(np.uint8)).filter(ImageFilter.MaxFilter(31)),dtype=np.float32)
+    local=(bg-y)/np.maximum(bg,1)
+    contrast=float(local[MASK].mean())
+    d=np.abs(a.astype(np.int16)-CLEAN.astype(np.int16));changed=np.any(d!=0,axis=2)
+    return dict(label_luminance_std=float(y.std()),label_rms_contrast=float(y.std()/y.mean()),label_gradient_rms=float(np.sqrt((np.mean(np.diff(y,axis=0)**2)+np.mean(np.diff(y,axis=1)**2))/2)),dark_text_local_weber_contrast=contrast,dark_text_mean_luminance=float(y[MASK].mean()),changed_pixel_count=int(changed.sum()),changed_pixel_fraction=float(changed.mean()),mean_absolute_rgb_change=float(d.mean()),max_rgb_change=int(d.max()),label_changed_pixel_fraction=float(changed[y0:y1,x0:x1].mean()),dark_text_mean_absolute_rgb_change=float(d[y0:y1,x0:x1][MASK].mean()))
+REF=descriptives(CLEAN)
+
+def board(rows,effect):
+    selected=[rows[0]]+[r for r in rows if r['effect']==effect];nrows=(len(selected)+1)//2
+    width=1160;ch=654;im=Image.new('RGB',(width,132+nrows*ch),'#f5f2ec');d=ImageDraw.Draw(im)
+    font=lambda n:ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',n)
+    d.text((18,12),f'C-SPIRITS-01 | {effect.upper()} LADDER',font=font(32),fill='black')
+    d.text((18,56),STATUS+' | Same native detail crop throughout',font=font(23),fill='#444444')
+    d.text((18,90),'Independent clean-source levels; no combined effects. Human review pending.',font=font(22),fill='#444444')
+    for i,r in enumerate(selected):
+        x=18+(i%2)*574;y=132+(i//2)*ch;s=r['measurements']
+        title='UNCHANGED CLEAN' if r['effect']=='baseline' else ('Blur sigma '+str(r['level'])+' px' if effect=='blur' else 'Requested glare x'+str(r['level']))
+        d.text((x,y),title,font=font(29),fill='black')
+        subtitle=f"Text contrast loss {s['dark_text_contrast_loss_percent']:.1f}%"
+        if r['effect']=='glare':subtitle+=f" | peak {s['effective_alpha_peak']:.3f}"
+        d.text((x,y+40),subtitle,font=font(21),fill='#444444')
+        tile=Image.open(D/r['output']).convert('RGB').crop(CROP).resize((550,526),Image.Resampling.LANCZOS);im.paste(tile,(x,y+78))
+        d.text((x,y+611),'Native PNG authoritative; no confidence score',font=font(20),fill='#555555')
+    if len(selected)%2:
+        x=592;y=132+(nrows-1)*ch
+        for j,text in enumerate(['PREVIEW ONLY','No OCR or model calls.','Sigma is native-pixel blur.','Metrics are descriptive,','not calibrated confidence.','Field visibility: human review.']):d.text((x,y+60+j*43),text,font=font(26),fill='#444444')
+    im.save(D/f'{effect}-ladder.jpg',quality=95,subsampling=0)
+
+def snapshot():
+    dirs=[p for p in B.glob('*preview-v*') if p.is_dir() and p!=D]
+    paths=[p for dd in dirs for p in dd.rglob('*') if p.is_file()]
+    paths += [SRC,Path(V4['original_source_label_path']),Path(V4['original_truth_path']),Path(load(B/'glare-preview-v4/manifest.json')['clean_parent_evidence']['path'])]
+    return dict(prior_directories=[str(p) for p in dirs],hashes={str(p):sha(p) for p in paths})
+
+def verify(m,inv):
+    assert len(list((D/'images').glob('*.png')))==len(m['images'])==12
+    results=[]
+    for r in m['images']:
+        data,stats=render(r['effect'],r['level']);p=D/r['output']
+        assert hashlib.sha256(data).hexdigest()==sha(p)==r['sha256']
+        assert Image.open(p).size==(2200,3200)
+        for k,v in stats.items():assert r['measurements'][k]==v
+        fresh=descriptives(np.asarray(Image.open(p).convert('RGB')))
+        for k,v in fresh.items():assert r['measurements'][k]==v
+        results.append(dict(output=r['output'],independent_png_rerender_sha256=True,dimensions=[2200,3200],measurement_recomputed=True))
+    assert sha(D/m['images'][0]['output'])==sha(SRC)==m['source_sha256']
+    actual={str(p) for dd in inv['prior_directories'] for p in Path(dd).rglob('*') if p.is_file()}
+    old={p for p in inv['hashes'] if any(Path(p).is_relative_to(Path(dd)) for dd in inv['prior_directories'])}
+    assert actual==old
+    assert all(sha(p)==h for p,h in inv['hashes'].items())
+    for p,h in m['artifact_sha256'].items():assert sha(D/p)==h
+    x3=next(r for r in m['images'] if r['effect']=='glare' and r['level']==3)
+    assert x3['sha256']==V4['output_sha256']
+    return dict(status='PASS',preview_status=STATUS,native_count=12,all_dimensions=[2200,3200],baseline_byte_identical=True,all12_independent_rerenders=True,source_and_previous_artifacts_byte_unchanged=True,previous_file_sets_unchanged=True,original_v4_x3_exact_png_match=True,same_geometry_seed_and_original_v1_coefficients=True,no_combined_effects=True,only_source_copy_gaussian_convolution_or_original_optical_blend=True,no_text_retyping_deletion_inpainting=True,groundtruth_field_visibility='PENDING HUMAN REVIEW',model_tested=False,scope='Offline integrity/numerical checks, no readability acceptance thresholds',files=results)
+
+def main():
+    if '--verify' in sys.argv:
+        print(json.dumps(verify(load(D/'manifest.json'),load(D/'inventory.json')),indent=2));return
+    assert not (D/'manifest.json').exists(),'Refusing overwrite'
+    assert sha(SRC)==V4['source_sha256']==V1['source_sha256']
+    inv=snapshot();dump(D/'inventory.json',inv);(D/'images').mkdir()
+    Image.fromarray(MASK.astype(np.uint8)*255).save(D/'known-warning-dark-text-mask.png')
+    levels=[('baseline',0)]+[('blur',i) for i in range(1,7)]+[('glare',i) for i in range(1,6)]
+    rows=[];last=None;pairs=[]
+    for effect,k in levels:
+        data,stats=render(effect,k);name=f'images/C-SPIRITS-01__{effect}-{k}.png';(D/name).write_bytes(data)
+        a=np.asarray(Image.open(io.BytesIO(data)).convert('RGB'));stats.update(descriptives(a))
+        stats['dark_text_contrast_loss_percent']=100*(1-stats['dark_text_local_weber_contrast']/REF['dark_text_local_weber_contrast'])
+        stats['label_std_contrast_loss_percent']=100*(1-stats['label_luminance_std']/REF['label_luminance_std'])
+        if effect=='glare':
+            if last is not None:
+                delta=np.abs(a.astype(np.int16)-last.astype(np.int16));pairs.append(dict(levels=[k-1,k],exact_image_plateau=bool(np.array_equal(a,last)),identical_pixel_fraction=float(np.all(delta==0,axis=2).mean()),mean_absolute_rgb_difference=float(delta.mean()),maximum_rgb_difference=int(delta.max())))
+            last=a.copy()
+        p=params(k) if effect=='glare' else (dict(sigma_native_px=k,sigma_div_label_width=k/(GEO['label_bounds'][2]-GEO['label_bounds'][0]),sigma_div_label_height=k/(GEO['label_bounds'][3]-GEO['label_bounds'][1]),filter='Pillow GaussianBlur',randomness_used=False) if effect=='blur' else dict(operation='byte-identical source copy'))
+        rows.append(dict(effect=effect,level=k,output=name,sha256=sha(D/name),source_sha256=sha(SRC),dimensions=[2200,3200],parameters=p,measurements=stats,groundtruth_field_visibility='PENDING HUMAN REVIEW'))
+        print(effect,k,flush=True)
+    for effect in ['blur','glare']:board(rows,effect)
+    warnings=['Requested x1..x5 multiply ORIGINAL V1 coefficients, not brightness. Opacity cap remains 0.65.','Peak alpha plateaus at 0.65 for x3/x4/x5; shoulders and affected area can still grow. No entire-image plateau unless pair measurements say so.','High identical-pixel fractions include unaffected image regions; do not interpret as globally identical severity. No perceptual equivalence threshold used.']
+    table=['| Level | Peak alpha | Cap clipped % image | Changed % image | RGB MAE | Dark-text contrast loss % | Label edge RMS |','|---|---:|---:|---:|---:|---:|---:|']
+    for r in rows:
+        s=r['measurements'];table.append(f"| {r['effect']} {r['level']} | {s.get('effective_alpha_peak',0):.6f} | {100*s.get('clipped_fraction_full_image',0):.4f} | {100*s['changed_pixel_fraction']:.3f} | {s['mean_absolute_rgb_change']:.4f} | {s['dark_text_contrast_loss_percent']:.3f} | {s['label_gradient_rms']:.4f} |")
+    (D/'measurements.md').write_text('\n'.join(table)+'\n\n'+json.dumps(pairs,indent=2)+'\n')
+    readme='''# One-source severity ladder — PREVIEW ONLY / NOT MODEL-TESTED
+
+12 native 2200x3200 PNGs: unchanged source copy, six independent Gaussian blurs sigma 1–6 native pixels, five independent glare levels x1–x5. No combined effects, recursive filtering, source wording edits, OCR, vision model predictions, confidence values, network or publication. No corpus expansion. Ground-truth content stays unchanged; visibility of every field is PENDING HUMAN REVIEW. Parent/Alex must inspect boards.
+
+## Boards and coordinates
+blur-ladder.jpg: 2 columns × 4 rows (last cell notes). glare-ladder.jpg: 2 columns × 3 rows. Both include unchanged baseline and EXACT same representative label-detail crop (650,1720,1550,2580), resized consistently to 550×526. Crop includes central text and upper warning detail; does not claim to display every field. Original native images in images/ remain authoritative. Source label bounds and optical geometry recorded in manifest unchanged.
+
+## Renderer
+Inspected glare-preview-v4/generate.py, glare-preview-v3/generate.py and blur-preview-v3/generate_v3.py. Uses AST-isolated original V3 optical function prefix, which V4 calls unchanged, through uint8 quantization. No corpus main or import-time entrypoint is executed. Legacy renderer acceptance assertions are not used as calibrated visibility thresholds; optical statements, lighting color, shape, seed and 0.65 cap are unchanged. x3 PNG must exactly match prior approved representative V4 PNG. Both intensity coefficients originate from ORIGINAL V1 on every level, never compounded. Blur is Pillow's Gaussian approximation in encoded RGB, directly from clean source each time. Source baseline is byte-identical, including its original PNG encoding.
+
+## Descriptive metrics (not calibrated confidence)
+Full native-image changed pixels: any RGB channel differs; MAE: mean absolute channel difference (0–255). Cap clipping fraction: requested pre-cap alpha >0.65 over full image, plus bottle and label denominators in manifest. Exact effective alpha peaks, uncapped peaks and peak gains are recorded. Label contrast is luminance SD and RMS (SD/mean), edge sharpness is RMS first differences on unscaled label crop (500,1079,1701,2944), encoded-sRGB luma weights .2126/.7152/.0722. Gaussian sigma normalized by original label width and height is recorded.
+
+Known dark-text mask: invert documented cylinder mapping, restrict to original source warning-text region sx100..900, sy1010..1280 (generator anchors statutory heading/body at y1010), and select clean native max(R,G,B)<100. This is fixed clean-reference ink selection, not OCR. Saved mask is label-crop-local. Local paper estimate: 31×31 max-filter of rounded luminance per level; local Weber contrast (paper−ink)/paper averaged ONLY on the same clean dark-text pixels. Contrast loss = 100×(1−level/clean). This is an operational descriptive measure and may vary with window size, not a readability or accuracy threshold. It intentionally targets known warning text, not a claim to annotate all text glyphs. Source geometry gives warning area provenance. Whole-label SD also includes graphics/paper variation. No metric proves text preservation/readability.
+
+## Reproduce / verify
+`/opt/data/asset-venv/bin/python generate.py --verify` performs all12 independent PNG rerenders, measurement recomputation, dimensions/count, source and previous-preview file SHA/file-set invariance, exact x3 agreement with prior V4 and artifact hashes without writes. tests.json records completed checks. inventory.json captures previous artifacts plus source, original label/truth and label generator before rendering. All writes limited to this new directory; no runner/budget/reports touched.
+
+## Plateau caveat
+'''+ '\n'.join('- '+w for w in warnings)+'\n\n'+ '\n'.join(table)+'\n'
+    (D/'README.md').write_text(readme)
+    artifacts={p.name:sha(p) for p in D.iterdir() if p.is_file() and p.name not in ['manifest.json','tests.json']}
+    m=dict(status=STATUS,source_id='C-SPIRITS-01',source_path=str(SRC),source_sha256=sha(SRC),source_geometry=GEO,original_v1_parameters=P1,approved_v4_parameters=V4['parameters'],render_engine_path=str(ENGINE),render_engine_sha256=sha(ENGINE),generator_sha256=sha(__file__),environment=dict(python=platform.python_version(),pillow=PIL_VERSION,numpy=np.__version__),board_crop=list(CROP),measurement_label_crop=list(LABEL),known_dark_text_mask=dict(file='known-warning-dark-text-mask.png',pixels=int(MASK.sum()),source_roi=[100,1010,900,1280],selection='clean native maxRGB <100 within inverse-mapped known warning text region',clean_contrast=REF['dark_text_local_weber_contrast']),groundtruth_field_visibility={k:'PENDING HUMAN REVIEW' for k in load(V4['original_truth_path'])['expected']},images=rows,adjacent_glare_comparisons=pairs,plateau_warnings=warnings,artifact_sha256=artifacts)
+    dump(D/'manifest.json',m);dump(D/'tests.json',verify(m,inv));print('PASS',D,flush=True)
+if __name__=='__main__':main()

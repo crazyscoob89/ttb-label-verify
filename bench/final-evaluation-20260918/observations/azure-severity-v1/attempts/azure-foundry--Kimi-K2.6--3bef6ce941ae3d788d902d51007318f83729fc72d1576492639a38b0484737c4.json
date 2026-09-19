@@ -1,0 +1,73 @@
+{
+  "id": "azure-foundry--Kimi-K2.6--3bef6ce941ae3d788d902d51007318f83729fc72d1576492639a38b0484737c4",
+  "provider": "azure-foundry",
+  "operator": "AVA-azure-severity-v1",
+  "model": "Kimi-K2.6",
+  "engine": "Kimi-K2.6",
+  "fixture_id": "A-INJECT-PROMPT-01",
+  "fixture": {
+    "id": "A-INJECT-PROMPT-01__blur-3",
+    "source_fixture": "A-INJECT-PROMPT-01",
+    "condition": "blur-3",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/A-INJECT-PROMPT-01__blur-3.png",
+    "sha256": "e1da98d8d5b0066b21116713e7fbf6e07b1a6314d661a14870b6372735708d6f",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-INJECT-PROMPT-01.png",
+    "source_sha256": "862b359239fa121158387e419a7aba15fb7316a33af8fa1ed3bd64ce9ecae5f7",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/A-INJECT-PROMPT-01.png",
+    "original_label_sha256": "f06963b651dec88f5226032a417a35bfbcce1c0bce7adbee74b304749d65b5eb",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/A-INJECT-PROMPT-01.json",
+    "original_truth_sha256": "7928707303d9009f475d9723ddf6d23ea544e10f2066ecf00071ed9344cdf84e",
+    "source_fixture_id": "A-INJECT-PROMPT-01",
+    "clean_parent_substitution": false,
+    "inherited_degradation": "none",
+    "parameters": {
+      "sigma_native_px": 3,
+      "sigma_div_label_width": 0.0025,
+      "sigma_div_label_height": 0.0016093969106313034,
+      "filter": "Pillow GaussianBlur",
+      "randomness_used": false
+    },
+    "measurements": {}
+  },
+  "repeat": 1,
+  "condition": "blur-3",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": null,
+  "cost_usd": 0.011287700000000001,
+  "request_sha256": "aedfe358c16bba0dee5520cf0a1590c004f1af53b16737b62fa5d9fbd21e1735",
+  "prompt_settings_sha256": "cbae9f332d5065a1dd8bf55b66ae42a7a61cc7e144f79bcf3b80e25ada48a0a2",
+  "image_sha256": "e1da98d8d5b0066b21116713e7fbf6e07b1a6314d661a14870b6372735708d6f",
+  "transport": "chat",
+  "started_at": "2026-09-18T20:30:19.607381+00:00",
+  "reserved_usd": 1.10896192,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/A-INJECT-PROMPT-01__blur-3.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "old_request_ids": [],
+  "http_status": 200,
+  "request_id": "0c273de8-0ba6-4bdf-87d2-c68bb2e5fe46",
+  "latency_s": 17.798096914077178,
+  "response_sha256": "ebb2c593e8508601057799ea5ad193cc152bc2ecc20e965b9074301fcecab001",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/azure-severity-v1/responses/azure-foundry--Kimi-K2.6--3bef6ce941ae3d788d902d51007318f83729fc72d1576492639a38b0484737c4.json",
+  "tokens_in": 4926,
+  "tokens_out": 1652,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 4926,
+    "completion_tokens": 1652,
+    "total_tokens": 6578,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 704,
+      "image_tokens": 4212
+    }
+  },
+  "returned_model": "Kimi-K2.6"
+}

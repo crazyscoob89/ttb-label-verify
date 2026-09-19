@@ -1,0 +1,257 @@
+"""Scoped Azure continuation. Frozen input bytes, original protocol, no automatic retry."""
+import sys
+sys.dont_write_bytecode=True
+import json,hashlib,datetime,os,sqlite3,fcntl,time,urllib.request,urllib.error,collections,copy,math,signal,subprocess,traceback
+from pathlib import Path
+D=Path(__file__).resolve().parent;B=D.parent;O=B/'openrouter-haiku-severity-v1'
+sys.path.insert(0,str(B/'recovery-v3'))
+import runner as VR
+H=VR.H
+load=VR.load;sha=VR.sha;save=VR.save
+CONDITIONS=['clean','straight','angle']+[f'blur-{i}' for i in range(1,7)]+[f'glare-{i}' for i in range(1,6)]
+LEDGER=B/'recovery-v3/budget.sqlite'
+STOP=False
+
+def now():return datetime.datetime.now(datetime.timezone.utc).isoformat()
+def identity(model,image_hash,prompt,provider='azure-foundry'):
+ return provider+'--'+model+'--'+hashlib.sha256(json.dumps([provider,model,image_hash,prompt],separators=(',',':')).encode()).hexdigest()
+def prompt_hash(model):
+ kind,p=H.payload(model,Path('/dev/null'))
+ return hashlib.sha256(json.dumps({'provider':'azure-foundry','resource':'ttb-foundry-trial-resource','kind':kind,'payload':p,'timeout':120,'retries':0},sort_keys=True).encode()).hexdigest()
+def item(model,f):
+ ph=prompt_hash(model);kind,p=H.payload(model,f['image']);body=json.dumps(p).encode()
+ return {'id':identity(model,f['sha256'],ph),'model':model,'fixture':f,'prompt_settings_sha256':ph,'request_sha256':hashlib.sha256(body).hexdigest(),'transport':kind,'reservation_usd':VR.reservation(model),'old_request_ids':[]}
+def readonly_entries(path=LEDGER):
+ c=sqlite3.connect('file:'+str(path)+'?mode=ro',uri=True)
+ try:return [dict(id=i,nano=n,status=s) for i,n,s in c.execute('select id,nano,status from ledger order by id')]
+ finally:c.close()
+class Budget(H.Budget):
+ def __init__(self,path,limit):
+  super().__init__(path,limit)
+  with self.connect() as c:c.execute('CREATE TABLE IF NOT EXISTS azure_severity_attempts(id TEXT PRIMARY KEY, metadata_json TEXT NOT NULL)')
+ def reserve(self,ident,amount,metadata):
+  assert type(amount) in (int,float) and math.isfinite(amount) and amount>0
+  n=int(round(amount*1e9))
+  with self.connect() as c:
+   c.execute('BEGIN IMMEDIATE')
+   if c.execute('SELECT 1 FROM ledger WHERE id=?',(ident,)).fetchone():return False
+   if c.execute('SELECT COALESCE(SUM(nano),0) FROM ledger').fetchone()[0]+n>self.limit:return False
+   c.execute('INSERT INTO ledger VALUES(?,?,?)',(ident,n,'reserved'))
+   c.execute('INSERT INTO azure_severity_attempts VALUES(?,?)',(ident,json.dumps(metadata,allow_nan=False)))
+  return True
+
+def evidence_index():
+ # Existing requests from both operators, including attempts without scored output.
+ index=collections.defaultdict(list);ids=set();files=[]
+ for p in B.rglob('*.json'):
+  rel=p.relative_to(B)
+  if rel.parts[0] in [D.name,'azure-severity-preservation-before'] or 'accounting-before' in rel.parts or 'continuation-1-before' in rel.parts:continue
+  if p.parent.name not in ('rows','attempts') and p.name not in ('all-rescored-records.json','raw_results.json'):continue
+  try:data=load(p)
+  except (ValueError,UnicodeError):continue
+  records=data if isinstance(data,list) else data.get('results',[data])
+  for r in records:
+   if not isinstance(r,dict):continue
+   model=r.get('model',r.get('engine'));ih=r.get('image_sha256');rh=r.get('request_sha256')
+   ident=r.get('id',p.stem);ids.add(ident)
+   if model in H.MODELS and ih and rh and 'OpenRouter' not in r.get('route','') and r.get('operator')!='historical':
+    index[(model,ih,rh)].append({'path':str(p),'id':ident,'saved':p.parent.name=='rows','row':r})
+  files.append(str(p))
+ for p in B.rglob('*.sqlite'):
+  if 'azure-severity-preservation-before' in p.parts:continue
+  try:ids.update(e['id'] for e in readonly_entries(p))
+  except sqlite3.Error:pass
+ return index,ids,files
+
+def build_plan():
+ manifest=load(O/'manifest.json');freeze=load(O/'freeze.json')
+ assert sha(O/'manifest.json')==freeze['hashes'][str(O/'manifest.json')]
+ assert all(sha(p)==h for p,h in freeze['hashes'].items()),'Prior frozen input/config drift'
+ for f in manifest['fixtures']:
+  assert f['condition'] in CONDITIONS and sha(f['image'])==f['sha256']
+  assert sha(f['original_truth_path'])==f['original_truth_sha256']
+ index,attempted,evidence_files=evidence_index()
+ blocked=load(B/'recovery-v3/execution-result.json')['blocked']
+ missing=[x['id'] for x in blocked if x['reason']=='budget']
+ assert len(missing)==17 and all(x.startswith('Kimi-K2.6--') and ('--straight--' in x or '--angle--' in x) for x in missing)
+ assert not set(missing)&attempted,'Old blocked call was attempted elsewhere'
+ # Only completion logs (not plans/blocked reports) count as log-only attempts.
+ log_hits=[]
+ for p in B.rglob('*.log'):
+  if D.name in p.parts or 'azure-severity-preservation-before' in p.parts:continue
+  for line in p.read_text(errors='replace').splitlines():
+   if '"ok"' in line and ('"seconds"' in line or '"cost_usd"' in line):
+    for ident in missing:
+     if '"'+ident+'"' in line:log_hits.append({'path':str(p),'id':ident})
+ assert not log_hits,log_hits
+ unique={};mapping=[]
+ for f in sorted(manifest['fixtures'],key=lambda f:(CONDITIONS.index(f['condition']),f['source_fixture'])):
+  for model in H.MODELS:
+   key=(model,f['sha256'])
+   if key not in unique:
+    x=item(model,f);found=index.get((model,f['sha256'],x['request_sha256']),[])
+    saved=sorted([a for a in found if a['saved']],key=lambda a:(not a['path'].startswith(str(B/'recovery-v3/rows')),a['path']))
+    x['reuse_row']=saved[0]['path'] if saved else None
+    x['prior_attempt_without_row']=[a['path'] for a in found] if found and not saved else []
+    x['aliases']=[];unique[key]=x
+   x=unique[key];x['aliases'].append(f['id'])
+   old=f"{model}--{f['source_fixture']}--{f['condition']}--1"
+   if f['condition'] in ('straight','angle'):x['old_request_ids'].append(old)
+   mapping.append({'id':x['id'],'model':model,'fixture':f,'reuse_row':x['reuse_row']})
+ queue=[]
+ for x in unique.values():
+  if x['reuse_row'] or x['prior_attempt_without_row']:continue
+  old_missing=sorted(set(x['old_request_ids'])&set(missing))
+  severity=any('__blur-' in a or '__glare-' in a for a in x['aliases'])
+  assert old_missing or severity,('Unapproved extra baseline/control',x['id'],x['aliases'])
+  if old_missing:
+   old=old_missing[0];fid,condition=old.split('--')[1:3]
+   x['fixture']=next(f for f in manifest['fixtures'] if f['source_fixture']==fid and f['condition']==condition)
+  queue.append(x)
+ queue.sort(key=lambda x:(0 if set(x['old_request_ids'])&set(missing) else 1,CONDITIONS.index(x['fixture']['condition']),x['fixture']['source_fixture'],H.MODELS.index(x['model'])))
+ assert len({x['id'] for x in queue})==len(queue)
+ return {'created_utc':now(),'provider':'azure-foundry','resource':'ttb-foundry-trial-resource','models':H.MODELS,'missing_kimi_old_ids':missing,'queue':queue,'mapping':mapping,'unique_candidates':len(unique),'reuse_unique':sum(bool(x['reuse_row']) for x in unique.values()),'prior_attempts_without_rows':[x for x in unique.values() if x['prior_attempt_without_row']],'evidence_files_checked':evidence_files,'manifest_sha256':sha(O/'manifest.json'),'concurrency':1,'no_automatic_retries':True,'ledger':str(LEDGER),'lock':str(B/'run.lock'),'total_cap_usd':50,'starting_liability_usd':sum(e['nano'] for e in readonly_entries())/1e9,'reservation_by_model':{m:VR.reservation(m) for m in H.MODELS},'reservation_policy':'Sequential. Atomic shared ledger includes all inherited/unknown entries; reserve full1048576 input plus3000 output at frozen model-specific rates with10% margin, OCR .05. Only grounded usage settles; unknowns retained. Entire queue reservation is NOT simultaneously held.','pricing_snapshot_date':'2026-09-18','pricing_basis':'Unmodified recovery-v3/v3.py RATES and runner.cost, same-day recovery-v4 REPORT retail snapshot EastUS2 Global assumption for EastUS Global deployment; no fresh rates guessed, not invoice. OCR .003/page max overlapping positive counters.','rates_per_million':VR.RATES,'ocr_per_page_usd':.003}
+
+def stops():
+ allow={x['path']:x['sha256'] for x in load(O/'authorization-addendum.json')['stops_reviewed']}
+ return [str(p) for p in B.rglob('*STOP*') if p.is_file() and allow.get(str(p))!=sha(p)]
+def durable_bytes(p,data):
+ with Path(p).open('wb') as f:f.write(data);f.flush();os.fsync(f.fileno())
+def one(x,truth,env,budget,out=D,transport=None):
+ out=Path(out);ident=x['id'];model=x['model'];f=x['fixture']
+ for sub in ['rows','responses','attempts']:(out/sub).mkdir(parents=True,exist_ok=True)
+ if (out/'attempts'/(ident+'.json')).exists() or (out/'rows'/(ident+'.json')).exists() or any(e['id']==ident for e in budget.entries()):return None
+ assert f['condition'] in CONDITIONS and f['condition']!='clean' or out!=D
+ assert sha(f['image'])==f['sha256']
+ kind,p=H.payload(model,f['image']);body=json.dumps(p).encode();assert hashlib.sha256(body).hexdigest()==x['request_sha256']
+ row={'id':ident,'provider':'azure-foundry','operator':'AVA-azure-severity-v1','model':model,'engine':model,'fixture_id':f['source_fixture'],'fixture':f,'repeat':1,'condition':f['condition'],'route':'Azure Foundry '+kind,'tier':'OCR separate' if model==H.OCR else 'vision','ok':False,'extracted':None,'error_class':None,'cost_usd':None,'request_sha256':x['request_sha256'],'prompt_settings_sha256':x['prompt_settings_sha256'],'image_sha256':f['sha256'],'transport':kind,'started_at':now(),'reserved_usd':VR.reservation(model),'source_image':f['image'],'timeout_seconds':120,'auto_retries':0,'old_request_ids':x['old_request_ids']}
+ if not budget.reserve(ident,row['reserved_usd'],row):return None
+ save(out/'attempts'/(ident+'.json'),row)
+ if kind=='ocr':url=env['AZURE_FOUNDRY_ENDPOINT'].rstrip('/')+'/providers/mistral/azure/ocr';headers={'Authorization':'Bearer '+env['AZURE_FOUNDRY_API_KEY']}
+ else:url=env['AZURE_OPENAI_ENDPOINT'].rstrip('/')+('/responses' if kind=='responses' else '/chat/completions');headers={'api-key':env['AZURE_FOUNDRY_API_KEY']}
+ headers['Content-Type']='application/json';start=time.perf_counter();billed=None;transport=transport or urllib.request.urlopen
+ try:
+  with transport(urllib.request.Request(url,data=body,headers=headers),timeout=120) as response:
+   row['http_status']=response.status;raw=response.read();row['request_id']=response.headers.get('apim-request-id') or response.headers.get('x-request-id')
+  row['latency_s']=time.perf_counter()-start;dest=out/'responses'/(ident+'.json');durable_bytes(dest,raw)
+  row.update(response_sha256=sha(dest),response_file=str(dest));d=json.loads(raw);billed,ti,to,pages=VR.cost(model,d)
+  row.update(cost_usd=billed,tokens_in=ti,tokens_out=to,pages_processed=pages,usage=d.get('usage',d.get('usage_info',{})),returned_model=d.get('model'))
+  save(out/'attempts'/(ident+'.json'),row)
+  text,finish=H.parse_response(kind,d);row.update(raw_text=text,finish_reason=finish)
+  row['extracted']=json.loads(H.E._strip_fences(text));row['validation_errors']=H.validate_extraction(row['extracted']);row['ok']=not row['validation_errors'] and finish in ('stop','completed')
+  if not row['ok']:row['error_class']='schema-or-incomplete-output'
+ except urllib.error.HTTPError as e:
+  row.update(latency_s=time.perf_counter()-start,http_status=e.code,error_class='http-'+str(e.code));dest=out/'responses'/(ident+'.http-error.txt')
+  durable_bytes(dest,e.read().replace(env['AZURE_FOUNDRY_API_KEY'].encode(),b'[REDACTED]'));row.update(response_file=str(dest),response_sha256=sha(dest))
+ except Exception as e:
+  row.setdefault('latency_s',time.perf_counter()-start);row.update(error_class=type(e).__name__,error=str(e).replace(env['AZURE_FOUNDRY_API_KEY'],'[REDACTED]')[:1000])
+ over=False
+ try:budget.settle(ident,billed)
+ except ValueError:over=True;row['budget_overage']=True
+ row=H.score(row,truth[f['source_fixture']]);row['pipeline_seconds']=time.perf_counter()-start;row['unknown_charge_reserved_usd']=row['reserved_usd'] if billed is None else 0
+ save(out/'rows'/(ident+'.json'),row)
+ print(json.dumps({'id':ident,'model':model,'condition':f['condition'],'ok':row['ok'],'seconds':row['latency_s'],'error':row['error_class'],'cost_usd':billed,'shared_liability_usd':budget.total()}),flush=True)
+ if over:raise RuntimeError('Observed charge exceeded reservation; persisted and stopped')
+ return row
+
+def percentile(xs,p):
+ if not xs:return None
+ s=sorted(xs);i=(len(s)-1)*p;lo=math.floor(i);hi=math.ceil(i);return s[lo]+(s[hi]-s[lo])*(i-lo)
+def summarize(rows):
+ valid=[r for r in rows if r['ok']];neg=[(r,f) for r in rows for f in H.S.FIELDS if r['truth'][f]=='mismatch']
+ return {'calls':len(rows),'schema_valid_calls':len(valid),'processing_failures':len(rows)-len(valid),'negative_fields':len(neg),'false_matches':sum(r['verdicts'][f]=='match' for r,f in neg),'negative_calls':sum(any(t=='mismatch' for t in r['truth'].values()) for r in rows),'false_match_calls':sum(any(r['truth'][f]=='mismatch' and r['verdicts'][f]=='match' for f in H.S.FIELDS) for r in rows),'valid_referral_calls':sum(any(v=='needs-review' for v in r['verdicts'].values()) for r in valid),'valid_referral_fields':sum(v=='needs-review' for r in valid for v in r['verdicts'].values()),'failure_referral_fields':sum(v=='needs-review' for r in rows if not r['ok'] for v in r['verdicts'].values()),'field_correct':{f:sum(r['extraction_correct'][f] for r in rows) for f in H.S.FIELDS},'all_fields_correct':sum(all(r['extraction_correct'].values()) for r in rows),'latency_p50_s':percentile([r['latency_s'] for r in rows if r.get('latency_s') is not None],.5),'latency_p95_s':percentile([r['latency_s'] for r in rows if r.get('latency_s') is not None],.95),'errors':dict(collections.Counter(r.get('error_class') or 'unknown' for r in rows if not r['ok']))}
+
+def report():
+ plan=load(D/'queue-manifest.json');_,truth=H.R.load_evidence();entries=readonly_entries();byid={e['id']:e for e in entries};rows={p.stem:load(p) for p in (D/'rows').glob('*.json')};coverage=[];groups=collections.defaultdict(dict);scored=[]
+ for x in plan['mapping']:
+  path=Path(x['reuse_row']) if x['reuse_row'] else D/'rows'/(x['id']+'.json');r=load(path) if path.exists() else None;f=x['fixture']
+  coverage.append({'model':x['model'],'fixture':f['id'],'attempt_id':x['id'],'image_sha256':f['sha256'],'status':'processed-valid' if r and r['ok'] else ('processed-with-failure' if r else ('attempted-no-row' if x['id'] in byid else 'missing-unattempted')),'source_row':str(path) if r else None,'reused':bool(x['reuse_row'])})
+  if r is not None:
+   r=H.score(dict(r),truth[f['source_fixture']]);r.update(condition=f['condition'],logical_fixture_id=f['id'],comparison_attempt_id=x['id']);scored.append(r);groups[(x['model'],f['condition'])].setdefault(f['sha256'],r)
+ metrics={m:{c:summarize(list(groups[(m,c)].values())) for c in CONDITIONS} for m in H.MODELS}
+ for m in H.MODELS:
+  for c in CONDITIONS:metrics[m][c]['planned_unique_images']=len({x['fixture']['sha256'] for x in plan['mapping'] if x['model']==m and x['fixture']['condition']==c})
+ previous=load(B/'azure-severity-preservation-before/preservation.json');preserved=all(byid.get(e['id'])==e for e in previous['ledger_entries']);assert preserved,'Inherited ledger changed'
+ pending=[dict(id=x['id'],model=x['model'],fixture=x['fixture']['id'],attempted=x['id'] in byid) for x in plan['queue'] if x['id'] not in rows]
+ state=load(D/'execution-state.json') if (D/'execution-state.json').exists() else {'status':'prepared','terminal':False}
+ costs={'new_azure_observed_retail_estimate_usd':sum(r['cost_usd'] for r in rows.values() if r.get('cost_usd') is not None),'new_known_usage_calls':sum(r.get('cost_usd') is not None for r in rows.values()),'new_unknown_or_inflight_usd':sum(e['nano'] for e in entries if e['id'].startswith('azure-foundry--') and e['status']!='usage-guard')/1e9,'shared_total_liability_usd':sum(e['nano'] for e in entries)/1e9,'starting_liability_usd':previous['starting_liability_usd'],'total_cap_usd':50,'preexisting_ledger_preserved':preserved,'not_invoice':True}
+ haiku=load(O/'report.json');historical=collections.defaultdict(list)
+ for r in load(B/'recovery-v3/all-rescored-records.json'):
+  if r['condition']=='flat':historical[(r['operator'],r.get('model',r['engine']),r.get('route','unknown'))].append(r)
+ hist=[{'operator':op,'model':m,'route':route,'metrics':summarize(rs)} for (op,m,route),rs in historical.items()]
+ limitations=['Controlled synthetic images, not real-camera validation. Native visual QA/visibility was representative, NOT exhaustive readability annotation.','Nominal blur sigma/glare levels are not calibrated confidence. Held-out source-label calibration and real-camera validation deferred.','Azure Claude excluded pending support; OpenRouter Haiku is a distinct provider observation, not Azure availability/hosting/latency proof.','OCR uses the original separate annotation endpoint/schema. Do not rank schema failures or abstention as superior perception.','False matches rule out unattended-safe claims. No winner is inferred from zero false matches combined with high referral/failure rates.','Each condition deduplicates identical image bytes within a model; aliases and reused controls remain explicit. Conditions cannot be summed as independent paid calls.','Latency is nonstreaming request-to-complete, not TTFT/UI time; historical operator/concurrency/settings differences remain separate.','Original broad white glare is REJECTED historical occlusion; prior data and cost preserved, excluded from approved severity comparisons.','Costs are documented retail/usage estimates and conservative liability, not invoice verification. Failures remain in accuracy denominators.']
+ result={'utc':now(),'state':state,'new_saved_rows':len(rows),'new_planned_requests':len(plan['queue']),'remaining':pending,'azure_by_condition':metrics,'haiku_openrouter_by_condition':haiku['conditions'],'haiku_complete_unique':haiku['unique_requests_with_saved_rows'],'haiku_costs_frozen':haiku['costs'],'costs':costs,'historical_flat_separate':hist,'historical_bottle_report':str(B/'recovery-v4/REPORT.txt'),'limitations':limitations}
+ save(D/'comparison.json',result);save(D/'coverage.json',coverage);save(D/'scored-rows.json',scored)
+ lines=['TTB — AZURE + OPENROUTER COMPARISON',f"State: {state['status']}; NEW Azure records {len(rows)}/{len(plan['queue'])}; remaining {len(pending)}.",f"Updated UTC: {result['utc']}",'Completed records include processing failures; missing/unattempted are separately recorded.','All 17 previously budget-blocked Kimi controls are part of this queue; no flat/Haiku replay.','',f"New Azure observed retail estimate: ${costs['new_azure_observed_retail_estimate_usd']:.8f}; conservative SHARED total liability: ${costs['shared_total_liability_usd']:.8f} / $50 total.",f"OpenRouter Haiku complete: {haiku['unique_requests_with_saved_rows']}/212 unique; observed usage.cost ${haiku['costs']['usage_cost_usd']:.8f}. Do NOT add this again to shared liability.",'','provider/model | condition | processed/planned | valid | correct fields/all | false matches/negative fields | valid referral calls | processing failures | p50/p95 seconds']
+ def line(name,c,s,planned):
+  p50=s['latency_p50_s'];p95=s['latency_p95_s'];lat='n/a' if p50 is None else f'{p50:.3f}/{p95:.3f}'
+  return f"{name} | {c} | {s['calls']}/{planned} | {s['schema_valid_calls']} | {sum(s['field_correct'].values())}/{len(H.S.FIELDS)*s['calls']} | {s['false_matches']}/{s['negative_fields']} | {s['valid_referral_calls']} | {s['processing_failures']} | {lat}"
+ for m,cs in metrics.items():
+  for c,s in cs.items():lines.append(line('Azure/'+m+(' [OCR separate]' if m==H.OCR else ''),c,s,s['planned_unique_images']))
+ for c,s in haiku['conditions'].items():lines.append(line('OpenRouter/Haiku-4.5',c,s,s['calls']))
+ lines+=['','HISTORICAL FLAT — separate provider/operator/settings; no replay']
+ for h in hist:lines.append(line(h['operator']+'/'+h['model']+' ['+h['route']+']','flat',h['metrics'],h['metrics']['calls']))
+ lines+=['','Per-field correct counts, exact missing IDs, failures, aliases and provenance: comparison.json / coverage.json / scored-rows.json.','Historical bottle/occlusion evidence and accounting: '+str(B/'recovery-v4/REPORT.txt'),'','LIMITATIONS']+limitations
+ tmp=D/'FINAL-COMPARISON.txt.tmp';tmp.write_text('\n'.join(lines)+'\n');os.replace(tmp,D/'FINAL-COMPARISON.txt')
+ return result
+
+def integrity():
+ previous=load(B/'azure-severity-preservation-before/preservation.json');entries={e['id']:e for e in readonly_entries()}
+ drift=[p for p,h in previous['hashes'].items() if sha(p)!=h]
+ changed=[e['id'] for e in previous['ledger_entries'] if entries.get(e['id'])!=e]
+ body_drift=[]
+ for p in (D/'rows').glob('*.json'):
+  r=load(p)
+  if r.get('response_file') and sha(r['response_file'])!=r['response_sha256']:body_drift.append(str(p))
+ result={'utc':now(),'preserved_file_count':len(previous['hashes']),'prior_file_drift':drift,'prior_ledger_entry_changes':changed,'new_response_hash_drift':body_drift,'status':'PASS' if not drift+changed+body_drift else 'FAIL'}
+ save(D/'integrity.json',result);assert result['status']=='PASS';return result
+
+def prepare():
+ lock=open(B/'run.lock','a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+ assert not (D/'queue-manifest.json').exists(),'Prepared already; do not replace frozen queue'
+ assert not stops(),stops();p=build_plan();save(D/'queue-manifest.json',p)
+ auth={'authorized':True,'recorded_utc':now(),'approval_author':'Alex','approval_quote':'spin up an agent and finish the tests let\'s go','delegated_request_exact':'FINISH REMAINING AUTHORIZED AZURE BENCHMARK TESTS. Read client-demo-strategy skill and existing scripts/evidence quickly, then execute. Task: (a) 17 known unattempted Kimi straight/angle requests; (b) all six deployed Azure engines (gpt-5-mini,gpt-4.1-mini,Mistral-Large-3,grok-4-1-fast-non-reasoning,Kimi-K2.6,mistral-document-ai-2512 OCR separate track) on approved blur sigma1..6/glare1..5 corpus that Haiku already tested. Use same original prompts/schema/scoring; preserve OCR endpoint/schema and measured usage accounting. Azure Claude excluded pending support. No flat/Haiku replay. Clean baseline reuse existing identical bytes+prompt+model observations when proven equivalent; no silent conflation of different images. Distinct providers/models always distinct observations.','total_cap_usd':50,'cap_semantics':'unchanged total-inclusive; NOT fresh50','ledger':str(LEDGER),'lock':str(B/'run.lock'),'scope':'Only queue-manifest.json requests; existing exact observations reused. No Claude Azure, no flat or OpenRouter replay, no old glare.','prior_authorization_sha256':sha(B/'budget-authorization.json'),'queue_sha256':sha(D/'queue-manifest.json'),'stops_reviewed':load(O/'authorization-addendum.json')['stops_reviewed'],'supersession':'Later explicit execution request authorizes this Azure continuation under existing total50. Root cap-only restriction and OpenRouter-only addendum remain preserved historical records; neither cancels this current explicit scoped request.'}
+ save(D/'authorization-addendum.json',auth)
+ save(D/'freeze.json',{'utc':now(),'hashes':{str(p):sha(p) for p in [Path(__file__),D/'test_offline.py',D/'queue-manifest.json',D/'authorization-addendum.json',B/'harness.py',B/'recovery-v3/runner.py',B/'recovery-v3/v3.py',O/'manifest.json',O/'visibility.json',B/'budget-authorization.json']}})
+ report();integrity();print(json.dumps({'queue':len(p['queue']),'reused':p['reuse_unique'],'missing_kimi':len(p['missing_kimi_old_ids']),'starting_liability':p['starting_liability_usd'],'reservations':p['reservation_by_model']}),flush=True)
+
+def run():
+ global STOP
+ lock=open(B/'run.lock','a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+ for sig in (signal.SIGINT,signal.SIGTERM):signal.signal(sig,lambda *_:globals().__setitem__('STOP',True))
+ assert not (D/'run-consumed.json').exists(),'Single authorized run already consumed. Inspect status, never rerun blindly.'
+ freeze=load(D/'freeze.json');assert all(sha(p)==h for p,h in freeze['hashes'].items());assert not stops(),stops()
+ assert load(B/'budget-authorization.json')['total_cap_usd']==50
+ assert load(D/'authorization-addendum.json')['authorized']
+ test=subprocess.run([sys.executable,'-B',str(D/'test_offline.py')],capture_output=True,text=True);(D/'runner-tests.log').write_text(test.stdout+test.stderr);assert test.returncode==0,'Offline gate failed'
+ integrity();env=H.E.load_env('/opt/data/.env');assert 'ttb-foundry-trial-resource.' in env['AZURE_FOUNDRY_ENDPOINT'];assert 'ttb-foundry-trial-resource.' in env['AZURE_OPENAI_ENDPOINT']
+ budget=Budget(LEDGER,50);_,truth=H.R.load_evidence();plan=load(D/'queue-manifest.json')
+ state={'status':'running','terminal':False,'pid':os.getpid(),'cwd':os.getcwd(),'started_utc':now(),'new_planned':len(plan['queue']),'saved_rows':0,'failures_by_model':{},'blocked':[],'concurrency':1}
+ save(D/'run-consumed.json',{'pid':os.getpid(),'utc':now(),'automatic_resume_allowed':False});save(D/'execution-state.json',state);failures=collections.Counter();reason='queue-complete'
+ try:
+  for x in plan['queue']:
+   if STOP:reason='signal-stop';break
+   if stops():reason='human-or-new-stop-file';break
+   if any(sha(p)!=h for p,h in freeze['hashes'].items()):reason='frozen-config-drift';break
+   model=x['model']
+   if failures[model]>=2:state['blocked'].append({'id':x['id'],'model':model,'reason':'two-new-transport-failures'});continue
+   if budget.total()+x['reservation_usd']>50:state['blocked'].append({'id':x['id'],'model':model,'reason':'budget-cap','liability_usd':budget.total(),'reservation_usd':x['reservation_usd']});continue
+   state.update(current_id=x['id'],current_model=model,current_fixture=x['fixture']['id'],updated_utc=now());save(D/'execution-state.json',state)
+   row=one(x,truth,env,budget)
+   if row is None:reason='unexpected-dedupe-or-budget-fence';break
+   if row.get('http_status')!=200:failures[model]+=1
+   state['saved_rows']+=1;state.update(failures_by_model=dict(failures),updated_utc=now(),liability_usd=budget.total());save(D/'execution-state.json',state)
+   if state['saved_rows']%6==0:report()
+ except Exception as e:
+  reason='runner-exception';state['error']=str(e).replace(env['AZURE_FOUNDRY_API_KEY'],'[REDACTED]');state['traceback']=traceback.format_exc().replace(env['AZURE_FOUNDRY_API_KEY'],'[REDACTED]')
+ finally:
+  saved={p.stem for p in (D/'rows').glob('*.json')};pending=[x['id'] for x in plan['queue'] if x['id'] not in saved]
+  state.update(status='complete' if not pending else 'bounded-stop',terminal=True,reason=reason,finished_utc=now(),saved_rows=len(saved),remaining=len(pending),liability_usd=budget.total())
+  save(D/'execution-state.json',state);report();integrity();print('RUN TERMINAL '+json.dumps(state),flush=True)
+if __name__=='__main__':
+ import argparse
+ ap=argparse.ArgumentParser();ap.add_argument('--prepare',action='store_true');ap.add_argument('--run',action='store_true');ap.add_argument('--report',action='store_true');a=ap.parse_args()
+ if a.prepare:prepare()
+ elif a.run:run()
+ elif a.report:report();integrity()
+ else:print('Offline prepare: --prepare; paid scoped one-time run: --run; offline progress: --report')

@@ -1,0 +1,161 @@
+{
+  "id": "azure-foundry--gpt-5-mini--682aac559f8d94640a95380c768f1d178733afc0529cfe0871dba4d3ace50b3c",
+  "provider": "azure-foundry",
+  "operator": "AVA-azure-severity-v1",
+  "model": "gpt-5-mini",
+  "engine": "gpt-5-mini",
+  "fixture_id": "C-MALT-01",
+  "fixture": {
+    "id": "C-MALT-01__blur-4",
+    "source_fixture": "C-MALT-01",
+    "condition": "blur-4",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/C-MALT-01__blur-4.png",
+    "sha256": "3827df1bbfd317bbb0fd11367f19f2b6c5411e4567ad8134acb81b694134d081",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/C-MALT-01.png",
+    "source_sha256": "d94072ceaa20bb53d3bcab4829e235258c2e0cc09f211e1b5959ecb2b1a8a917",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/C-MALT-01.png",
+    "original_label_sha256": "36f92b6f24b80111d5abe6a3aac8ae7538252bc58640893aa369af67fc33a559",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/C-MALT-01.json",
+    "original_truth_sha256": "fb9473919ea1e500db579ea4592ed7a8f81b82273ddf7e4ee2eaa3ae3a1aa674",
+    "source_fixture_id": "C-MALT-01",
+    "clean_parent_substitution": false,
+    "inherited_degradation": "none",
+    "parameters": {
+      "sigma_native_px": 4,
+      "sigma_div_label_width": 0.0033333333333333335,
+      "sigma_div_label_height": 0.0021458625475084046,
+      "filter": "Pillow GaussianBlur",
+      "randomness_used": false
+    },
+    "measurements": {}
+  },
+  "repeat": 1,
+  "condition": "blur-4",
+  "route": "Azure Foundry responses",
+  "tier": "vision",
+  "ok": true,
+  "extracted": {
+    "brand_name": "Iron Kettle",
+    "class_type": "ALE",
+    "alcohol_content": "5.6% ALC/VOL",
+    "net_contents": "12 FL OZ",
+    "bottler_info": "Brewed and bottled by Iron Kettle Brewing Co., Asheville, North Carolina",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 0.98,
+      "class_type": 0.98,
+      "alcohol_content": 0.95,
+      "net_contents": 0.95,
+      "bottler_info": 0.9,
+      "country_of_origin": 0.9,
+      "government_warning_heading": 0.95,
+      "government_warning_body": 0.92,
+      "government_warning_heading_all_caps": 0.99,
+      "government_warning_heading_bold": 0.9,
+      "government_warning_body_bold": 0.8
+    }
+  },
+  "error_class": null,
+  "cost_usd": 0.00282525,
+  "request_sha256": "206068ae809ddf72a071a2861cfdbdc93296d9409239213d42e29b1dd01093c0",
+  "prompt_settings_sha256": "196f20e64293ebb79fcf992ad999cce80aa5a27a14685453840798f0423d2683",
+  "image_sha256": "3827df1bbfd317bbb0fd11367f19f2b6c5411e4567ad8134acb81b694134d081",
+  "transport": "responses",
+  "started_at": "2026-09-18T20:50:39.857255+00:00",
+  "reserved_usd": 0.2949584,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/C-MALT-01__blur-4.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "old_request_ids": [],
+  "http_status": 200,
+  "request_id": "914db4d1-a948-4d3a-97a5-f07fdac8fc48",
+  "latency_s": 11.557377357967198,
+  "response_sha256": "048f0fd667c63af0f02f0021f79aa8819303030704ef516963a99ca08e075419",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/azure-severity-v1/responses/azure-foundry--gpt-5-mini--682aac559f8d94640a95380c768f1d178733afc0529cfe0871dba4d3ace50b3c.json",
+  "tokens_in": 1717,
+  "tokens_out": 1198,
+  "pages_processed": null,
+  "usage": {
+    "input_tokens": 1717,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1198,
+    "output_tokens_details": {
+      "reasoning_tokens": 832
+    },
+    "total_tokens": 2915
+  },
+  "returned_model": "gpt-5-mini",
+  "raw_text": "{\n  \"brand_name\": \"Iron Kettle\",\n  \"class_type\": \"ALE\",\n  \"alcohol_content\": \"5.6% ALC/VOL\",\n  \"net_contents\": \"12 FL OZ\",\n  \"bottler_info\": \"Brewed and bottled by Iron Kettle Brewing Co., Asheville, North Carolina\",\n  \"country_of_origin\": null,\n  \"government_warning_heading\": \"GOVERNMENT WARNING:\",\n  \"government_warning_body\": \"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\n  \"government_warning_heading_all_caps\": true,\n  \"government_warning_heading_bold\": true,\n  \"government_warning_body_bold\": false,\n  \"confidence\": {\n    \"brand_name\": 0.98,\n    \"class_type\": 0.98,\n    \"alcohol_content\": 0.95,\n    \"net_contents\": 0.95,\n    \"bottler_info\": 0.90,\n    \"country_of_origin\": 0.90,\n    \"government_warning_heading\": 0.95,\n    \"government_warning_body\": 0.92,\n    \"government_warning_heading_all_caps\": 0.99,\n    \"government_warning_heading_bold\": 0.90,\n    \"government_warning_body_bold\": 0.80\n  }\n}",
+  "finish_reason": "completed",
+  "validation_errors": {},
+  "category": "clean",
+  "commodity": "malt",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "classes": {
+    "brand_name": "correct",
+    "class_type": "correct",
+    "alcohol_content": "correct",
+    "net_contents": "correct",
+    "bottler_info": "correct",
+    "country_of_origin": "correct",
+    "government_warning": "correct"
+  },
+  "reasons": {
+    "brand_name": "normalized equivalence",
+    "class_type": "normalized equivalence",
+    "alcohol_content": "5.6 == 5.6",
+    "net_contents": "354.88mL ~= 354.88mL",
+    "bottler_info": "full normalized bottler identity and address",
+    "country_of_origin": "domestic product",
+    "government_warning": "exact statutory wording and formatting"
+  },
+  "extraction_correct": {
+    "brand_name": true,
+    "class_type": true,
+    "alcohol_content": true,
+    "net_contents": true,
+    "bottler_info": true,
+    "country_of_origin": true,
+    "government_warning": true
+  },
+  "pipeline_seconds": 11.594780941028148,
+  "unknown_charge_reserved_usd": 0
+}

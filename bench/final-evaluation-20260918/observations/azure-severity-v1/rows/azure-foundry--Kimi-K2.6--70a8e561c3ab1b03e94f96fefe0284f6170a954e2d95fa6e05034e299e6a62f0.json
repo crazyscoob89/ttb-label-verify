@@ -1,0 +1,145 @@
+{
+  "id": "azure-foundry--Kimi-K2.6--70a8e561c3ab1b03e94f96fefe0284f6170a954e2d95fa6e05034e299e6a62f0",
+  "provider": "azure-foundry",
+  "operator": "AVA-azure-severity-v1",
+  "model": "Kimi-K2.6",
+  "engine": "Kimi-K2.6",
+  "fixture_id": "D-GLARE-01",
+  "fixture": {
+    "id": "D-GLARE-01__straight",
+    "source_fixture": "D-GLARE-01",
+    "condition": "straight",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/D-GLARE-01__straight.png",
+    "sha256": "4bb6cfeccacf118647cfd357c33044ec5453f1f4723947615f071e3f8e74adfa",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/recovery-v3/bottles/images/D-GLARE-01__straight.png",
+    "source_sha256": "4bb6cfeccacf118647cfd357c33044ec5453f1f4723947615f071e3f8e74adfa",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/D-GLARE-01.png",
+    "original_label_sha256": "02a00f894da7459c30bb799d7d59fabdd3c56bfdb9408182e559688cb23af83d",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/D-GLARE-01.json",
+    "original_truth_sha256": "4231822e0f6d0f6c51b18e3110d1bdc3b7871f03b51ae31c51038e8a897ed5cb",
+    "source_fixture_id": "C-MALT-01",
+    "clean_parent_substitution": true,
+    "inherited_degradation": "unchanged accepted control; may include original source degradation",
+    "parameters": {
+      "seed": 20260918,
+      "randomness_used": false,
+      "resolution": [
+        2200,
+        3200
+      ],
+      "source_pixels_only": true,
+      "condition": "straight",
+      "content_bounds": [
+        0,
+        0,
+        2200,
+        3200
+      ]
+    },
+    "measurements": {}
+  },
+  "repeat": 1,
+  "condition": "straight",
+  "route": "Azure Foundry chat",
+  "tier": "vision",
+  "ok": false,
+  "extracted": null,
+  "error_class": "JSONDecodeError",
+  "cost_usd": 0.016679700000000002,
+  "request_sha256": "2bd6bea18925fc189b7a3852cabebdbb6d0b125fce9321a6b797e63add495bbe",
+  "prompt_settings_sha256": "cbae9f332d5065a1dd8bf55b66ae42a7a61cc7e144f79bcf3b80e25ada48a0a2",
+  "image_sha256": "4bb6cfeccacf118647cfd357c33044ec5453f1f4723947615f071e3f8e74adfa",
+  "transport": "chat",
+  "started_at": "2026-09-18T19:47:35.729762+00:00",
+  "reserved_usd": 1.10896192,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/D-GLARE-01__straight.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "old_request_ids": [
+    "Kimi-K2.6--D-GLARE-01--straight--1"
+  ],
+  "http_status": 200,
+  "request_id": "e487a95c-c946-40b0-a742-ffb0b5428b1d",
+  "latency_s": 33.25528415304143,
+  "response_sha256": "8e1f9012d0e604fb210426917af1500d0b1c20ec70d5b1f89374f49aaa2a2315",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/azure-severity-v1/responses/azure-foundry--Kimi-K2.6--70a8e561c3ab1b03e94f96fefe0284f6170a954e2d95fa6e05034e299e6a62f0.json",
+  "tokens_in": 4926,
+  "tokens_out": 3000,
+  "pages_processed": null,
+  "usage": {
+    "prompt_tokens": 4926,
+    "completion_tokens": 3000,
+    "total_tokens": 7926,
+    "audio_prompt_tokens": 0,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "image_tokens": 4212
+    }
+  },
+  "returned_model": "Kimi-K2.6",
+  "raw_text": "{\"brand_name\":\"Iron Kettle\",\"class_type\":\"ALE\",\"alcohol_content\":\"5.6% ALC/VOL\",\"net_contents\":\"12 FL OZ\",\"bottler_info\":\"Brewed and bottled by Iron Kettle Brewing Co., Asheville, North Carolina\",\"country_of_origin\":null,\"government_warning_heading\":\"GOVERNMENT WARNING:\",\"government_warning_body\":\"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems",
+  "finish_reason": "length",
+  "error": "Unterminated string starting at: line 1 column 299 (char 298)",
+  "category": "degraded",
+  "commodity": "malt",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "match",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "needs-review",
+    "class_type": "needs-review",
+    "alcohol_content": "needs-review",
+    "net_contents": "needs-review",
+    "bottler_info": "needs-review",
+    "country_of_origin": "needs-review",
+    "government_warning": "needs-review"
+  },
+  "classes": {
+    "brand_name": "referral",
+    "class_type": "referral",
+    "alcohol_content": "referral",
+    "net_contents": "referral",
+    "bottler_info": "referral",
+    "country_of_origin": "referral",
+    "government_warning": "referral"
+  },
+  "reasons": {
+    "brand_name": "extraction failure: JSONDecodeError",
+    "class_type": "extraction failure: JSONDecodeError",
+    "alcohol_content": "extraction failure: JSONDecodeError",
+    "net_contents": "extraction failure: JSONDecodeError",
+    "bottler_info": "extraction failure: JSONDecodeError",
+    "country_of_origin": "extraction failure: JSONDecodeError",
+    "government_warning": "extraction failure: JSONDecodeError"
+  },
+  "extraction_correct": {
+    "brand_name": false,
+    "class_type": false,
+    "alcohol_content": false,
+    "net_contents": false,
+    "bottler_info": false,
+    "country_of_origin": false,
+    "government_warning": false
+  },
+  "pipeline_seconds": 33.28043802001048,
+  "unknown_charge_reserved_usd": 0
+}

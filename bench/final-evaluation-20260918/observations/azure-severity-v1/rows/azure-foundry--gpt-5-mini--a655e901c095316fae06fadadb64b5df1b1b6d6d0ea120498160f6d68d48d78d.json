@@ -1,0 +1,161 @@
+{
+  "id": "azure-foundry--gpt-5-mini--a655e901c095316fae06fadadb64b5df1b1b6d6d0ea120498160f6d68d48d78d",
+  "provider": "azure-foundry",
+  "operator": "AVA-azure-severity-v1",
+  "model": "gpt-5-mini",
+  "engine": "gpt-5-mini",
+  "fixture_id": "A-ABV-WRONG-01",
+  "fixture": {
+    "id": "A-ABV-WRONG-01__blur-1",
+    "source_fixture": "A-ABV-WRONG-01",
+    "condition": "blur-1",
+    "image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/A-ABV-WRONG-01__blur-1.png",
+    "sha256": "d4609bb44f442bac7374ff30df2988e0f2178a418a63c5830dfe567811440cf4",
+    "dimensions": [
+      2200,
+      3200
+    ],
+    "source_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/images/A-ABV-WRONG-01.png",
+    "source_sha256": "7535698250fa4d7cfd76f9936305f2376dcde95e4bb1ec1bedc66cf77198bebd",
+    "original_label_path": "/opt/data/projects/ttb-label-verify-revision/fixtures/images/A-ABV-WRONG-01.png",
+    "original_label_sha256": "bb19b282fe059b2f429d0f91904639cb82e1fc256b0f026ee7d484e39cfad135",
+    "original_truth_path": "/opt/data/benchmarks/ttb-foundry-20260918-v1/bottles/ground_truth/A-ABV-WRONG-01.json",
+    "original_truth_sha256": "ed423edb1fc7d0dd5158bb9fc302c702644567ac4dcd1718eb63c601d15a3d1e",
+    "source_fixture_id": "A-ABV-WRONG-01",
+    "clean_parent_substitution": false,
+    "inherited_degradation": "none",
+    "parameters": {
+      "sigma_native_px": 1,
+      "sigma_div_label_width": 0.0008333333333333334,
+      "sigma_div_label_height": 0.0005364656368771012,
+      "filter": "Pillow GaussianBlur",
+      "randomness_used": false
+    },
+    "measurements": {}
+  },
+  "repeat": 1,
+  "condition": "blur-1",
+  "route": "Azure Foundry responses",
+  "tier": "vision",
+  "ok": true,
+  "extracted": {
+    "brand_name": "Marsh Lantern",
+    "class_type": "PINOT NOIR",
+    "alcohol_content": "13.5% ALC/VOL",
+    "net_contents": "750 mL",
+    "bottler_info": "Produced and bottled by Marsh Lantern Winery, McMinnville, Oregon",
+    "country_of_origin": null,
+    "government_warning_heading": "GOVERNMENT WARNING:",
+    "government_warning_body": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+    "government_warning_heading_all_caps": true,
+    "government_warning_heading_bold": true,
+    "government_warning_body_bold": false,
+    "confidence": {
+      "brand_name": 0.98,
+      "class_type": 0.98,
+      "alcohol_content": 0.95,
+      "net_contents": 0.98,
+      "bottler_info": 0.9,
+      "country_of_origin": 0.9,
+      "government_warning_heading": 0.95,
+      "government_warning_body": 0.95,
+      "government_warning_heading_all_caps": 0.98,
+      "government_warning_heading_bold": 0.9,
+      "government_warning_body_bold": 0.9
+    }
+  },
+  "error_class": null,
+  "cost_usd": 0.00246325,
+  "request_sha256": "4cdc9eef18a63ddcfcc3480a9796533b3f651fd3bf17e8fc0ee3e24181971422",
+  "prompt_settings_sha256": "196f20e64293ebb79fcf992ad999cce80aa5a27a14685453840798f0423d2683",
+  "image_sha256": "d4609bb44f442bac7374ff30df2988e0f2178a418a63c5830dfe567811440cf4",
+  "transport": "responses",
+  "started_at": "2026-09-18T19:53:57.807582+00:00",
+  "reserved_usd": 0.2949584,
+  "source_image": "/opt/data/benchmarks/ttb-foundry-20260918-v1/openrouter-haiku-severity-v1/images/A-ABV-WRONG-01__blur-1.png",
+  "timeout_seconds": 120,
+  "auto_retries": 0,
+  "old_request_ids": [],
+  "http_status": 200,
+  "request_id": "226424a6-a74c-4b71-a688-87c34348dddf",
+  "latency_s": 8.30946408607997,
+  "response_sha256": "8b0c87d65af4758d1eb7b2bc4c6dc9c47c1664b6fded9a03b06512a33ad7f6c8",
+  "response_file": "/opt/data/benchmarks/ttb-foundry-20260918-v1/azure-severity-v1/responses/azure-foundry--gpt-5-mini--a655e901c095316fae06fadadb64b5df1b1b6d6d0ea120498160f6d68d48d78d.json",
+  "tokens_in": 1717,
+  "tokens_out": 1017,
+  "pages_processed": null,
+  "usage": {
+    "input_tokens": 1717,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1017,
+    "output_tokens_details": {
+      "reasoning_tokens": 640
+    },
+    "total_tokens": 2734
+  },
+  "returned_model": "gpt-5-mini",
+  "raw_text": "{\n  \"brand_name\": \"Marsh Lantern\",\n  \"class_type\": \"PINOT NOIR\",\n  \"alcohol_content\": \"13.5% ALC/VOL\",\n  \"net_contents\": \"750 mL\",\n  \"bottler_info\": \"Produced and bottled by Marsh Lantern Winery, McMinnville, Oregon\",\n  \"country_of_origin\": null,\n  \"government_warning_heading\": \"GOVERNMENT WARNING:\",\n  \"government_warning_body\": \"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\n  \"government_warning_heading_all_caps\": true,\n  \"government_warning_heading_bold\": true,\n  \"government_warning_body_bold\": false,\n  \"confidence\": {\n    \"brand_name\": 0.98,\n    \"class_type\": 0.98,\n    \"alcohol_content\": 0.95,\n    \"net_contents\": 0.98,\n    \"bottler_info\": 0.90,\n    \"country_of_origin\": 0.90,\n    \"government_warning_heading\": 0.95,\n    \"government_warning_body\": 0.95,\n    \"government_warning_heading_all_caps\": 0.98,\n    \"government_warning_heading_bold\": 0.90,\n    \"government_warning_body_bold\": 0.90\n  }\n}",
+  "finish_reason": "completed",
+  "validation_errors": {},
+  "category": "adversarial",
+  "commodity": "wine",
+  "truth": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "mismatch",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "expected_safe": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "mismatch",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "verdicts": {
+    "brand_name": "match",
+    "class_type": "match",
+    "alcohol_content": "mismatch",
+    "net_contents": "match",
+    "bottler_info": "match",
+    "country_of_origin": "not-applicable",
+    "government_warning": "match"
+  },
+  "classes": {
+    "brand_name": "correct",
+    "class_type": "correct",
+    "alcohol_content": "correct",
+    "net_contents": "correct",
+    "bottler_info": "correct",
+    "country_of_origin": "correct",
+    "government_warning": "correct"
+  },
+  "reasons": {
+    "brand_name": "normalized equivalence",
+    "class_type": "normalized equivalence",
+    "alcohol_content": "label 13.5 vs declared 11.0",
+    "net_contents": "750.00mL ~= 750.00mL",
+    "bottler_info": "full normalized bottler identity and address",
+    "country_of_origin": "domestic product",
+    "government_warning": "exact statutory wording and formatting"
+  },
+  "extraction_correct": {
+    "brand_name": true,
+    "class_type": true,
+    "alcohol_content": true,
+    "net_contents": true,
+    "bottler_info": true,
+    "country_of_origin": true,
+    "government_warning": true
+  },
+  "pipeline_seconds": 8.336094005033374,
+  "unknown_charge_reserved_usd": 0
+}
