@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
-test.beforeEach(async ({page}) => {
-  await page.route('**/*', route => new URL(route.request().url()).origin === 'http://127.0.0.1:3100' ? route.continue() : route.abort());
+test.beforeEach(async ({page,baseURL}) => {
+  await page.route('**/*', route => new URL(route.request().url()).origin === new URL(baseURL!).origin ? route.continue() : route.abort());
   await page.goto('/review');
 });
 const compare = async (page: import('@playwright/test').Page, scenario:string) => { await page.getByLabel('Synthetic scenario').selectOption(scenario); await page.getByRole('button',{name:'Submit comparison',exact:true}).click(); await expect(page.getByRole('table')).toBeVisible(); };

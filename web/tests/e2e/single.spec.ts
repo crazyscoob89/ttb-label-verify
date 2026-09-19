@@ -1,13 +1,13 @@
 import { test, expect } from '@playwright/test';
 
-test.beforeEach(async ({ page }) => {
-  await page.route('**/*', route => new URL(route.request().url()).origin === 'http://127.0.0.1:3100' ? route.continue() : route.abort());
+test.beforeEach(async ({ page, baseURL }) => {
+  await page.route('**/*', route => new URL(route.request().url()).origin === new URL(baseURL!).origin ? route.continue() : route.abort());
   await page.goto('/review');
 });
 
 test('explicit known sample comparison, image pairing, enlargement and stale reset', async ({ page }, info) => {
   await expect(page.getByText('Offline fixture demonstration – not AI analysis; nothing saved', { exact: true })).toBeVisible();
-  await expect(page.getByRole('tab', { name: /Batch/ })).toBeDisabled();
+  await expect(page.getByRole('tab', { name: /Batch/ })).toBeEnabled();
   await expect(page.getByRole('table')).toHaveCount(0);
   await page.getByLabel('Synthetic scenario').selectOption('match');
   await page.getByRole('button', { name: 'Submit comparison', exact: true }).click();

@@ -7,17 +7,24 @@ import OutcomeCards, { outcomeLabels } from './OutcomeCards';
 
 const labels = { brand:'Brand name', classType:'Class / type', abv:'Alcohol by volume', netContents:'Net contents', producer:'Producer name and address', origin:'Country of origin', warning:'Government warning' };
 /** Parent remounts this component on ANY pairing/evidence generation change. */
-export default function ReviewConfirmation({record}:{record:ComparisonRecord|null}) {
-  const [intent,setIntent]=useState(()=>newReviewIntent(record));
-  const [draft,setDraft]=useState<UnsavedDraft|null>(null);
+export type ControlledReview = {
+  intent: ReviewIntent; draft: UnsavedDraft | null;
+  onEdit: (intent: ReviewIntent) => void; onConfirm: (checked: boolean) => void; onDraft: () => void;
+};
+export default function ReviewConfirmation({record, controlled}:{record:ComparisonRecord|null;controlled?:ControlledReview}) {
+  const [localIntent,setIntent]=useState(()=>newReviewIntent(record));
+  const [localDraft,setDraft]=useState<UnsavedDraft|null>(null);
+  const intent=controlled?.intent??localIntent;
+  const draft=controlled?controlled.draft:localDraft;
   const eligibility=evaluateReview(record,intent);
   const complete=record?.processing==='complete';
-  function change(next:ReviewIntent) { setIntent({...next,confirmed:false});setDraft(null); }
+  function change(next:ReviewIntent) { if(controlled){controlled.onEdit(next);return;} setIntent({...next,confirmed:false});setDraft(null); }
   function resolve(field:typeof FIELD_KEYS[number],patch:Partial<HumanResolution>) {
     change({...intent,resolutions:{...intent.resolutions,[field]:{decision:'unresolved',note:'',evidence:'',...intent.resolutions[field],...patch}}});
   }
   function submit() {
     if (draft) return;
+    if (controlled) { controlled.onDraft(); return; }
     const candidate=buildUnsavedDraft(record,intent);
     if (candidate) setDraft(candidate);
   }
@@ -44,7 +51,7 @@ export default function ReviewConfirmation({record}:{record:ComparisonRecord|nul
     <OutcomeCards value={intent.outcome} onChange={outcome=>change({...intent,outcome})} passReasons={eligibility.passReasons} disabled={!complete} />
     <label htmlFor="review-notes">Correction / escalation notes</label><textarea id="review-notes" maxLength={2000} disabled={!complete} value={intent.notes} onChange={e=>change({...intent,notes:e.target.value})} />
     <div className="submit-row">
-      <label className="check-label"><input type="checkbox" checked={intent.confirmed} disabled={!complete||!!draft} onChange={e=>setIntent({...intent,confirmed:e.target.checked})} />I reviewed this exact evidence and application and confirm this internal outcome</label>
+      <label className="check-label"><input type="checkbox" checked={intent.confirmed} disabled={!complete||!!draft} onChange={e=>controlled?controlled.onConfirm(e.target.checked):setIntent({...intent,confirmed:e.target.checked})} />I reviewed this exact evidence and application and confirm this internal outcome</label>
       <button onClick={submit} disabled={!eligibility.canSubmit||!!draft} aria-describedby="submit-help">Submit review</button>
       <p id="submit-help" className="help">{draft?'Draft prepared in memory only. Change a decision to prepare another draft.':eligibility.canSubmit?'Ready to prepare an UNSAVED internal draft.':eligibility.reasons.join(' ')}</p>
     </div>

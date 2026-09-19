@@ -1,11 +1,11 @@
 import { test, expect } from '@playwright/test';
 import { image } from '../fixtures/synthetic';
 
-test('application checks are local, reject gaps, clear stale feedback and never enable comparison', async ({ page }) => {
+test('application checks are local, reject gaps, clear stale feedback and never enable comparison', async ({ page, baseURL }) => {
   await page.goto('/review');
   await page.getByLabel('Input source').selectOption('manual');
   const requests: string[] = [];
-  page.on('request', req => { if (new URL(req.url()).origin !== 'http://127.0.0.1:3100' || req.method() !== 'GET' || new URL(req.url()).pathname.startsWith('/api/')) requests.push(req.url()); });
+  page.on('request', req => { if (new URL(req.url()).origin !== new URL(baseURL!).origin || req.method() !== 'GET' || new URL(req.url()).pathname.startsWith('/api/')) requests.push(req.url()); });
   await page.getByRole('button', { name: 'Check application fields' }).click();
   await expect(page.locator('form').getByRole('alert')).toContainText('Choose a label image');
   await page.getByLabel('Label image (JPEG or PNG)', { exact: true }).setInputFiles({ name: 'label.png', mimeType: 'image/png', buffer: await image() });
@@ -28,12 +28,12 @@ test('application checks are local, reject gaps, clear stale feedback and never 
   expect(requests).toEqual([]);
 });
 
-test('local-only foundation renders without external requests or mobile overflow', async ({ page }, testInfo) => {
+test('local-only foundation renders without external requests or mobile overflow', async ({ page, baseURL }, testInfo) => {
   const external: string[] = [];
   const errors: string[] = [];
   page.on('pageerror', e => errors.push(e.message));
   await page.route('**/*', route => {
-    if (new URL(route.request().url()).origin !== 'http://127.0.0.1:3100') {
+    if (new URL(route.request().url()).origin !== new URL(baseURL!).origin) {
       external.push(route.request().url());
       return route.abort();
     }
@@ -42,7 +42,7 @@ test('local-only foundation renders without external requests or mobile overflow
   await page.goto('/');
   await expect(page).toHaveURL(/\/review$/);
   await expect(page.getByRole('heading', { name: 'Single label review' })).toBeVisible();
-  await expect(page.getByRole('tab', { name: /Batch/ })).toBeDisabled();
+  await expect(page.getByRole('tab', { name: /Batch/ })).toBeEnabled();
   await page.getByLabel('Input source').selectOption('manual');
   await expect(page.getByRole('button', { name: 'Submit for comparison' })).toBeDisabled();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);

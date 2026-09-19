@@ -9,7 +9,7 @@ import { FIELD_KEYS } from '../lib/rules';
 import type { ComparisonRecord } from '../lib/comparison-record';
 
 export const fieldLabels = { brand:'Brand name', classType:'Class / type', abv:'Alcohol by volume', netContents:'Net contents', producer:'Producer name and address', origin:'Country of origin', warning:'Government warning' };
-function observations(value: unknown): string {
+export function observations(value: unknown): string {
   if (value === null) return 'Unknown';
   if (typeof value !== 'object') return String(value);
   if ('status' in value && 'text' in value && 'reason' in value) return `${value.status}: ${value.text ?? 'No readable text'} — ${value.reason}`;
@@ -55,7 +55,6 @@ export default function ComparisonWorkspace({ offlineEnabled }: { offlineEnabled
     finally { clearTimeout(timer); if (generation.current === run) { setRunning(false); active.current = null; } }
   }
   return <>
-    <nav className="tabs" role="tablist" aria-label="Review mode"><button id="single-tab" role="tab" aria-selected="true" aria-controls="single-panel">Single review</button><button role="tab" disabled aria-selected="false">Batch upload — Phase 5</button></nav>
     <section id="single-panel" role="tabpanel" aria-labelledby="single-tab" className="card">
       <h1>Single label review</h1>
       <p>Pair evidence with one application. Findings support an internal human review, not government submission.</p>
