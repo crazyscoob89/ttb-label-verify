@@ -1,6 +1,17 @@
 # Engineering review register
 
-## Active PR #9 — Windows SQLite repair
+## Active PR #9 — second Windows repair
+
+**ARGUS REVISE on `1df409401e76cc964b5f774c4bd160e254532f1f`.**
+The recovered native report establishes 500 passed / 3 failed / 5 skipped;
+original route/CAS failures are fixed, but bracket-path handling and two
+unelevated fixture failures remain. [Round 23](23-pr9-literal-path-and-fixture-repair.md)
+preserves the actual reviewer log and bounded repair. AVA's replacement has
+511 passing **Linux** tests, typecheck/build PASS; **replacement native Windows
+acceptance remains pending and paid execution stays held**. AVA builds/publishes;
+ARGUS remains read-only outside disposable test fixtures.
+
+## Historical PR #9 — first Windows SQLite repair
 
 **Reported ARGUS verdict: REVISE**, relayed by Alex for
 `7c45c74094c7712d9ca60dd6494f22c2d30edd50`. Windows reported a private-ledger

@@ -1,4 +1,16 @@
-# Local PR #9 SQLite repair evidence
+# PR #9 SQLite repair evidence
+
+## Round 2 additions
+
+- `argus-1df4094-native-review.txt`: exact recovered reviewer worker-log bytes,
+  not raw npm output and not AVA-native execution. The substantive verdict is
+  REVISE; a later automatic-verifier timeout did not accept the candidate.
+- `r2-unit.log`: AVA Linux Node24, 511 tests / 23 files passed.
+- `r2-typecheck.log`, `r2-build.log`: AVA Linux project gates, exit 0.
+- [Round 23](../../23-pr9-literal-path-and-fixture-repair.md) documents provenance,
+  byte hash, repair, RED/GREEN distinction and pending native Windows gate.
+
+## Round 1 captures
 
 These are AVA repair-worker **Linux x64 / Node v24.21.0** stdout/stderr captures,
 not ARGUS logs and not native Windows proof. See

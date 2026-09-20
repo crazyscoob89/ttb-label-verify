@@ -22,26 +22,34 @@ try {
   $parent = [IO.Path]::GetDirectoryName($path)
   $ancestor = $parent
   while ($ancestor) {
-    $item = Get-Item -LiteralPath $ancestor -Force
-    if (-not $item.PSIsContainer -or ($item.Attributes -band [IO.FileAttributes]::ReparsePoint)) { throw 'Reparse path denied' }
+    $attributes = [IO.File]::GetAttributes($ancestor)
+    if (-not ($attributes -band [IO.FileAttributes]::Directory) -or ($attributes -band [IO.FileAttributes]::ReparsePoint)) { throw 'Reparse path denied' }
     $ancestor = [IO.Path]::GetDirectoryName($ancestor)
   }
   $entries = @()
   foreach ($name in @($parent, $path, ($path + '-wal'), ($path + '-shm'), ($path + '-journal'))) {
-    try { $item = Get-Item -LiteralPath $name -Force }
-    catch [System.Management.Automation.ItemNotFoundException] {
+    try { $attributes = [IO.File]::GetAttributes($name) }
+    catch [IO.FileNotFoundException] {
       if ($name -eq $parent -or ($name -eq $path -and -not $request.creating)) { throw }
       continue
     }
+    catch [IO.DirectoryNotFoundException] {
+      if ($name -eq $parent -or ($name -eq $path -and -not $request.creating)) { throw }
+      continue
+    }
+    if ($attributes -band [IO.FileAttributes]::ReparsePoint) { throw 'Reparse path denied' }
     if ($request.creating -and $name -ne $parent) { throw 'Existing ledger or sidecar' }
-    $acl = Get-Acl -LiteralPath $name
+    $directory = [bool]($attributes -band [IO.FileAttributes]::Directory)
+    $item = if ($directory) { [IO.DirectoryInfo]::new($name) } else { [IO.FileInfo]::new($name) }
+    # .NET treats brackets literally; read DACL + owner only, never Audit/SACL.
+    $acl = $item.GetAccessControl([Security.AccessControl.AccessControlSections]'Access, Owner')
     $raw = [Security.AccessControl.RawSecurityDescriptor]::new($acl.GetSecurityDescriptorBinaryForm(), 0)
     $aces = @()
     foreach ($ace in $raw.DiscretionaryAcl) {
       if ($ace -isnot [Security.AccessControl.CommonAce]) { throw 'Unsupported ACE' }
       $aces += @{ sid = $ace.SecurityIdentifier.Value; type = [int]$ace.AceType; flags = [int]$ace.AceFlags; mask = [int]$ace.AccessMask; callback = $ace.IsCallback }
     }
-    $entries += @{ path = $name; directory = [bool]$item.PSIsContainer; reparse = [bool]($item.Attributes -band [IO.FileAttributes]::ReparsePoint); owner = $raw.Owner.Value; protected = $acl.AreAccessRulesProtected; canonical = $acl.AreAccessRulesCanonical; daclPresent = [bool](($raw.ControlFlags -band [Security.AccessControl.ControlFlags]::DiscretionaryAclPresent) -and $null -ne $raw.DiscretionaryAcl); aces = @($aces) }
+    $entries += @{ path = $name; directory = $directory; reparse = [bool]($attributes -band [IO.FileAttributes]::ReparsePoint); owner = $raw.Owner.Value; protected = $acl.AreAccessRulesProtected; canonical = $acl.AreAccessRulesCanonical; daclPresent = [bool](($raw.ControlFlags -band [Security.AccessControl.ControlFlags]::DiscretionaryAclPresent) -and $null -ne $raw.DiscretionaryAcl); aces = @($aces) }
   }
   $result = @{ current = [Security.Principal.WindowsIdentity]::GetCurrent().User.Value; entries = @($entries) }
   [Console]::OutputEncoding = [Text.UTF8Encoding]::new($false)

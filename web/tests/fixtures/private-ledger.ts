@@ -14,21 +14,33 @@ $ErrorActionPreference = 'Stop'
 try {
   [Console]::InputEncoding = [Text.UTF8Encoding]::new($false)
   $request = [Console]::In.ReadToEnd() | ConvertFrom-Json
-  $item = Get-Item -LiteralPath $request.path -Force
-  if ($item.Attributes -band [IO.FileAttributes]::ReparsePoint) { throw 'Fixture reparse denied' }
+  $attributes = [IO.File]::GetAttributes([string]$request.path)
+  if ($attributes -band [IO.FileAttributes]::ReparsePoint) { throw 'Fixture reparse denied' }
+  $directory = [bool]($attributes -band [IO.FileAttributes]::Directory)
+  $item = if ($directory) { [IO.DirectoryInfo]::new([string]$request.path) } else { [IO.FileInfo]::new([string]$request.path) }
   if ($request.action -eq 'private') {
-    if (-not $item.PSIsContainer) { throw 'Fixture directory required' }
+    if (-not $directory) { throw 'Fixture directory required' }
     $acl = [Security.AccessControl.DirectorySecurity]::new()
     $sid = [Security.Principal.WindowsIdentity]::GetCurrent().User
     $acl.SetOwner($sid)
     $acl.SetAccessRuleProtection($true, $false)
     $acl.AddAccessRule([Security.AccessControl.FileSystemAccessRule]::new($sid, [Security.AccessControl.FileSystemRights]::FullControl, [Security.AccessControl.InheritanceFlags]'ContainerInherit, ObjectInherit', [Security.AccessControl.PropagationFlags]::None, [Security.AccessControl.AccessControlType]::Allow))
   } elseif ($request.action -eq 'expose') {
-    $acl = Get-Acl -LiteralPath $request.path
+    # DACL only: no audit section to reapply and no SeSecurityPrivilege needed.
+    $acl = $item.GetAccessControl([Security.AccessControl.AccessControlSections]::Access)
     $sid = [Security.Principal.SecurityIdentifier]::new('S-1-1-0')
     $acl.AddAccessRule([Security.AccessControl.FileSystemAccessRule]::new($sid, [Security.AccessControl.FileSystemRights]::ReadAndExecute, [Security.AccessControl.AccessControlType]::Allow))
   } else { throw 'Unknown fixture action' }
-  Set-Acl -LiteralPath $request.path -AclObject $acl
+  $item.SetAccessControl($acl)
+  if ($request.action -eq 'expose') {
+    $observed = $item.GetAccessControl([Security.AccessControl.AccessControlSections]::Access)
+    $rules = $observed.GetAccessRules($true, $true, [Security.Principal.SecurityIdentifier])
+    $found = $false
+    foreach ($rule in $rules) {
+      if ($rule.IdentityReference.Value -eq 'S-1-1-0' -and $rule.AccessControlType -eq [Security.AccessControl.AccessControlType]::Allow -and (($rule.FileSystemRights -band [Security.AccessControl.FileSystemRights]::ReadAndExecute) -eq [Security.AccessControl.FileSystemRights]::ReadAndExecute) -and -not ($rule.PropagationFlags -band [Security.AccessControl.PropagationFlags]::InheritOnly)) { $found = $true }
+    }
+    if (-not $found) { throw 'Fixture exposure not observed' }
+  }
 } catch { [Console]::Error.WriteLine($_.Exception.Message); exit 1 }
 `;
   const result = spawnSync(join(process.env.SystemRoot!, 'System32', 'WindowsPowerShell', 'v1.0', 'powershell.exe'),
