@@ -25,7 +25,7 @@ const prompt = [
   JSON.stringify(z.toJSONSchema(extractionEvidenceSchema)),
 ].join('\n');
 
-const messageSchema = z.object({ role: z.literal('assistant'), content: z.string(), refusal: z.null().optional() }).strict();
+const messageSchema = z.object({ role: z.literal('assistant'), content: z.string(), refusal: z.null().optional(), reasoning: z.null().optional() }).strict();
 // Recognized envelope metadata/usage is untrusted and discarded. Unknown root
 // keys (including error/verdict) fail closed; choice/message/evidence are strict.
 const envelopeSchema = z.object({
@@ -33,8 +33,22 @@ const envelopeSchema = z.object({
   created: z.number().int().nonnegative().optional(), provider: z.string().max(256).optional(),
   system_fingerprint: z.string().max(512).nullable().optional(), usage: z.record(z.string(), z.unknown()).optional(),
   model: z.literal(OPENROUTER_MODEL).optional(),
-  choices: z.array(z.object({ index: z.literal(0), finish_reason: z.literal('stop'), message: messageSchema, logprobs: z.null().optional() }).strict()).length(1),
+  service_tier: z.string().min(1).max(256).optional(),
+  // This adapter pins Claude: if a native reason is supplied, require its normal
+  // completion signal too. Never accept native truncation/refusal masked by stop.
+  choices: z.array(z.object({ index: z.literal(0), finish_reason: z.literal('stop'), native_finish_reason: z.literal('end_turn').optional(), message: messageSchema, logprobs: z.null().optional() }).strict()).length(1),
 }).strict();
+
+function parseContent(content: string): unknown {
+  // Strip only a single complete outer Markdown fence, not prose or a substring
+  // that happens to parse. Bare JSON and the unwrapped payload use the same strict
+  // JSON decoder and evidence schema. Transport bytes remain bounded upstream.
+  const trimmed = content.replace(/^[ \t\r\n]+|[ \t\r\n]+$/g, '');
+  if (!trimmed.startsWith('```')) return JSON.parse(content) as unknown;
+  const fenced = /^```(?:json)?\r?\n([\s\S]*?)\r?\n```$/.exec(trimmed);
+  if (!fenced || fenced[1].includes('```')) throw new Error('Invalid JSON fence');
+  return JSON.parse(fenced[1]) as unknown;
+}
 
 async function boundedResponse(transport: Transport, init: RequestInit): Promise<unknown> {
   const controller = new AbortController();
@@ -96,7 +110,7 @@ export function createOpenRouterProvider(dependencies: OpenRouterDependencies = 
         const envelope = envelopeSchema.parse(await boundedResponse(transport, {
           method: 'POST', redirect: 'error', headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json', 'X-Request-ID': request.requestId }, body,
         }));
-        return parseExtractionEvidence(JSON.parse(envelope.choices[0].message.content));
+        return parseExtractionEvidence(parseContent(envelope.choices[0].message.content));
       });
       if (!result.ok) return { processing: 'failed', code: result.code === 'execution-failed' ? 'provider-failed' : 'spend-unavailable' };
       return { processing: 'complete', evidence: result.value, metadata };

@@ -1,0 +1,46 @@
+{
+  "id": "gen-1789943427-pl8XdmEGwUqfVK8c5Db1",
+  "object": "chat.completion",
+  "created": 1789943427,
+  "model": "anthropic/claude-haiku-4.5",
+  "provider": "Amazon Bedrock",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+    {
+      "index": 0,
+      "logprobs": null,
+      "finish_reason": "stop",
+      "native_finish_reason": "end_turn",
+      "message": {
+        "role": "assistant",
+        "content": "```json\n{\n  \"schemaVersion\": 1,\n  \"brand\": {\n    \"status\": \"readable\",\n    \"text\": \"Old Harbor\",\n    \"reason\": \"Brand name clearly printed in large bold text\"\n  },\n  \"classType\": {\n    \"status\": \"readable\",\n    \"text\": \"Vodka\",\n    \"reason\": \"Class type explicitly stated below brand name\"\n  },\n  \"abv\": {\n    \"status\": \"readable\",\n    \"text\": \"40%\",\n    \"reason\": \"ABV clearly visible on label\"\n  },\n  \"netContents\": {\n    \"status\": \"readable\",\n    \"text\": \"750 mL\",\n    \"reason\": \"Net contents clearly printed on label\"\n  },\n  \"producer\": {\n    \"name\": {\n      \"status\": \"readable\",\n      \"text\": \"Harbor Distillery\",\n      \"reason\": \"Producer name clearly visible on label\"\n    },\n    \"address\": {\n      \"status\": \"readable\",\n      \"text\": \"12 Wharf Road, Paris\",\n      \"reason\": \"Producer address clearly printed on label\"\n    }\n  },\n  \"origin\": {\n    \"status\": \"readable\",\n    \"text\": \"France\",\n    \"reason\": \"Country of origin clearly stated on label\"\n  },\n  \"warning\": {\n    \"heading\": {\n      \"status\": \"readable\",\n      \"text\": \"GOVERNMENT WARNING:\",\n      \"reason\": \"Warning heading clearly visible and in bold\"\n    },\n    \"body\": {\n      \"status\": \"readable\",\n      \"text\": \"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\n      \"reason\": \"Warning body text fully readable on label\"\n    },\n    \"headingBold\": true,\n    \"bodyBold\": false\n  }\n}\n```",
+        "refusal": null,
+        "reasoning": null
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2263,
+    "completion_tokens": 482,
+    "total_tokens": 2745,
+    "cost": 0.00462627,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.004673,
+      "upstream_inference_prompt_cost": 0.002263,
+      "upstream_inference_completions_cost": 0.00241
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}
