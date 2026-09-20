@@ -2,7 +2,7 @@
 
 An AI-assisted alcohol-label review prototype: compare label artwork against an application record and surface matches, discrepancies and information that needs a human check. This is a review aid, not TTB/COLA approval or legal certification.
 
-**Live demo:** deployment pending. The single-label upload/comparison flow is implemented and tested with simulated model responses; real-model and deployed acceptance remain open. See [release status](docs/deep-dive/RELEASE-STATUS.md).
+**Live demo:** deployment pending. Two local browser uploads now have real Haiku comparison results; the guarded batch candidate has synthetic browser acceptance and awaits independent review. Saved history is not implemented. See [live evidence and findings](docs/reviews/25-live-provider-and-batch-candidate.md) and [release status](docs/deep-dive/RELEASE-STATUS.md).
 
 ## Review scope
 
@@ -29,7 +29,7 @@ npm --prefix web run build
 
 - Next.js/React/TypeScript interface, validated image intake and deterministic comparison rules.
 - Haiku vision via a server-side OpenRouter adapter is the selected extraction path; historical model benchmarks are not deployed-app accuracy or latency measurements.
-- Single-label upload/comparison is wired; real-provider acceptance and a deployed URL remain open. The existing batch interface still uses offline samples.
+- Real single-label comparison has bounded local proof on two synthetic labels, not a general accuracy claim. Batch now has guarded live wiring with synthetic acceptance only; real batch and deployed acceptance remain open.
 - Difficult photographs and uncertain typography require human review. No physical print-size certification or COLA-system integration is claimed.
 - Persistent identity/history and Azure network feasibility are separate engineering tracks, not working-demo claims.
 

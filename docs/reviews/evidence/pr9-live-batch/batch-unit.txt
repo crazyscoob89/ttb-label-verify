@@ -1,0 +1,37 @@
+
+> ttb-label-review-foundation@0.1.0 test
+> vitest run --maxWorkers=1 tests/live-batch-route.test.ts tests/live-batch-state.test.ts tests/batch-state.test.ts tests/batch-manifest.test.ts tests/demo-route.test.ts tests/compare-service.test.ts tests/review-policy.test.ts tests/openrouter-compatibility.test.ts tests/extraction.test.ts tests/spend.test.ts tests/sqlite-spend.test.ts tests/sqlite-spend-security.test.ts tests/sqlite-spend-native-security.test.ts tests/sqlite-spend-windows-script.test.ts tests/intake.test.ts tests/offline-demo.test.ts tests/pair-input.test.ts
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.1 [39m[90m/opt/data/ttb-prototype-delivery/web[39m
+
+ [32m✓[39m tests/sqlite-spend.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 5244[2mms[22m[39m
+   [33m[2m✓[22m[39m child startup failures include diagnostics, not swallowed CAS exit codes[33m 1584[2mms[22m[39m
+   [33m[2m✓[22m[39m independent processes share atomic identity and claims; persisted cap mismatch rejects[33m 1916[2mms[22m[39m
+   [33m[2m✓[22m[39m atomic dedup, single winner claim, retained holds, restart and hard cap[33m 1679[2mms[22m[39m
+ [32m✓[39m tests/sqlite-spend-native-security.test.ts [2m([22m[2m11 tests[22m[2m)[22m[33m 3288[2mms[22m[39m
+   [33m[2m✓[22m[39m native security: actual provisioning CLI accepts private Unicode/spaced directory and refuses reuse[33m 3070[2mms[22m[39m
+ [32m✓[39m tests/sqlite-spend-security.test.ts [2m([22m[2m32 tests[22m[2m)[22m[33m 552[2mms[22m[39m
+ [32m✓[39m tests/live-batch-route.test.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 879[2mms[22m[39m
+ [32m✓[39m tests/demo-route.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 371[2mms[22m[39m
+ [32m✓[39m tests/intake.test.ts [2m([22m[2m71 tests[22m[2m)[22m[32m 204[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts [2m([22m[2m44 tests[22m[2m)[22m[32m 107[2mms[22m[39m
+ [32m✓[39m tests/batch-state.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 217[2mms[22m[39m
+ [32m✓[39m tests/compare-service.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 162[2mms[22m[39m
+ [32m✓[39m tests/review-policy.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 121[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts [2m([22m[2m46 tests[22m[2m)[22m[32m 102[2mms[22m[39m
+ [32m✓[39m tests/offline-demo.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 92[2mms[22m[39m
+ [32m✓[39m tests/batch-manifest.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 88[2mms[22m[39m
+ [32m✓[39m tests/live-batch-state.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 66[2mms[22m[39m
+ [32m✓[39m tests/spend.test.ts [2m([22m[2m25 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+ [32m✓[39m tests/pair-input.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+ [32m✓[39m tests/sqlite-spend-windows-script.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m17 passed[39m[22m[90m (17)[39m
+[2m      Tests [22m [1m[32m318 passed[39m[22m[90m (318)[39m
+[2m   Start at [22m 23:22:52
+[2m   Duration [22m 54.30s[2m (import 66%, tests 28%, transform 5%, worker 1%)[22m
+
+[2m     Import [22m [33m60 modules were evaluated 82 times[39m[2m · 27.16s total, 66% of tracked time[22m
+[2m            [22m [2m~7.29s faster with [22m[33misolate: false[39m[2m — shared modules are evaluated once per worker instead of once per file[22m
+[2m            [22m [2mlearn more: https://vitest.dev/guide/improving-performance#test-isolation[22m

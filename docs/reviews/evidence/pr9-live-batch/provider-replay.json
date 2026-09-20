@@ -1,0 +1,16 @@
+{
+  "source": "/opt/data/ttb-live-acceptance/transport.jsonl",
+  "sourceSha256": "a5b875c04415b44da4a3ce2e2995dff02d89b3e9fcbbcab9564a990ca7d3dd56",
+  "fixtureEqualsCapturedEnvelope": true,
+  "processing": "complete",
+  "evidenceEqualsEntireCapturedJsonPayload": true,
+  "replayTransportCalls": 1,
+  "networkCalls": 0,
+  "testStoreUnresolvedMicrousd": 100,
+  "sameAttemptRetry": {
+    "processing": "failed",
+    "code": "spend-unavailable"
+  },
+  "productionLedgerAccessed": false,
+  "liveAcceptance": false
+}

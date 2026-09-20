@@ -1,6 +1,10 @@
 # Engineering review register
 
-## Active PR #9 — native Windows PASS
+## Active PR #9 — live proof and batch candidate awaiting review
+
+[Record 25](25-live-provider-and-batch-candidate.md) preserves the first live failure, provider-format repair, two successful real-model comparisons, human-review provenance correction and guarded batch implementation. Frozen code `75fe83d30441b3917869fb6a1164506337b9940c`: AVA parent reproduced **562 unit tests**; builder type/build and synthetic browser gates passed. New ARGUS review remains pending. No durable saved history or deployed URL is claimed.
+
+## Historical baseline PR #9 — native Windows PASS
 
 **ARGUS PASS on `106aac25a37e05840aa38e41ccc9f8db4c6009e6`.**
 Actual native logs show **506 passed, 5 POSIX-only skipped, 0 failed**, with

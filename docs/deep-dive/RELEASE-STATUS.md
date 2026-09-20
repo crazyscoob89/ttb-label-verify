@@ -1,34 +1,33 @@
 # Prototype release status
 
-## Accepted Windows repair
+## Current candidate
 
-ARGUS granted native Windows PASS for `106aac25a37e05840aa38e41ccc9f8db4c6009e6`:
-506 passed, 5 POSIX-only skips, 0 failures; typecheck/build passed on unelevated
-Windows with Node22.22.2 and PowerShell5.1. AVA's Linux Node24 gates passed 511
-cases. [The attributed verdict and exact evidence](../reviews/24-pr9-native-windows-pass.md)
-close the Windows bracket/ACL-fixture blockers. These are not hosted or live-model
-results; the release gates below retain their separate scope.
+Frozen code: `75fe83d30441b3917869fb6a1164506337b9940c`; independent review pending.
+[Current findings and evidence](../reviews/25-live-provider-and-batch-candidate.md).
 
-## Baseline and implemented candidate
-
-Base: `master`, commit `6f253361f7a3aa3e939f9fd813ba2f9fd8067da5`.
-
-The candidate adds real arbitrary-image HTTP intake, server-only access control, the existing Haiku extraction adapter, existing comparison rules and the existing review cards. The former always-denied route remains default-closed but can now be configured for the guarded demo. A SQLite spending ledger enforces atomic reservations and claims across processes using one persistent local volume. No Supabase account/storage stack is required for this demo route.
-
-Builder verification: 464 unit tests across 20 files, project typecheck and production build passed after restoring the original fixtures omitted by the sparse checkout. Synthetic browser upload tests passed on the worker candidate; those tests are not proof of real AI extraction or final deployed ingress. Parent corrected a catalog-compatibility blocker using observed cache tariffs, with RED/GREEN regression and conservative $1 holds. The $25 total ceiling is unchanged. No paid model call has been made by this integration work.
+- Real browser -> guarded route -> Haiku -> seven-field results succeeded on two synthetic cases at provider-repair `bb1089868649ff522185454ccfc72cb23a3f6b7a`: matching artwork and a detected 45%-versus-40% alcohol discrepancy. Browser timings were 5360.36 ms and 4720.77 ms; no five-second guarantee.
+- First paid attempt failed closed on response metadata/fenced JSON; narrow repair and captured-response regression preserve that failure.
+- Live proof exposed fixture-only human-review validation. The current candidate repairs it; synthetic browser acceptance now covers UNSAVED review drafts.
+- Guarded live batch wiring, stable-intent deduplication and retained Single/Batch tab state are implemented. Real batch acceptance is still open.
+- Parent reproduced 562 tests / 26 files. Builder typecheck/build, 4 simulated-provider browser cases and 36 offline browser regressions passed. New independent/native review pending.
+- Three total paid attempts; $3 retained unresolved holds, $22 hold capacity remaining under the same $25 ledger. Holds are not actual billed charges. Never reprovision/reset/copy the authorization into a second active deployment.
 
 ## Remaining release gates
 
-- [ ] Independent review of exact candidate: access, upload bounds, response provenance, persistent cap, timeout/claim lifecycle.
-- [ ] Select and verify a Node24 host with one persistent private spending-ledger volume and HTTPS.
-- [ ] Inject private runtime credentials and demo access code without publishing them.
-- [ ] Run real label uploads through the actual deployed route under the same $25 ledger.
-- [ ] Measure upload-to-visible-result timing; document misses rather than claim unmeasured five-second performance.
-- [ ] Connect and verify live batch scheduling; current batch remains offline-only.
-- [ ] Update the root README with the verified live URL and release verdict.
+- [ ] ARGUS independent review of the exact new code delta.
+- [ ] Durable save/reopen implementation and runtime acceptance. Current review drafts remain page-memory only.
+- [ ] Real-provider batch acceptance under the same bounded authorization, after source review.
+- [ ] Approve hosting target/cost and qualify Node24, private durable local filesystem/locking, HTTPS and origin handling.
+- [ ] Move authorization custody exclusively if hosting changes; never create a second active budget.
+- [ ] Deployed browser acceptance and measured upload-to-result timings.
+- [ ] Publish verified live URL and final source/setup handover.
+
+No eligible existing host was confirmed in the Azure identity's inspected inventory. PAYG billing access is already present; that does not authorize new hosting spend. Azure-hosting OpenRouter is not proof of restricted-network Foundry compatibility.
+
+## Accepted Windows baseline, preserved
+
+ARGUS granted native Windows PASS for `106aac25a37e05840aa38e41ccc9f8db4c6009e6`: 506 passed, 5 POSIX-only skips, 0 failures; typecheck/build passed on unelevated Windows Node22.22.2 / PowerShell5.1. AVA Linux Node24 gates passed 511 cases. [Record 24](../reviews/24-pr9-native-windows-pass.md) preserves original evidence. This closes those bracket/ACL-fixture defects, not subsequent batch or deployment acceptance.
 
 ## Explicit limitations
 
-This is not yet a deployed working scanner. No real model accuracy, real end-to-end latency, multi-user authentication or persistent review history is certified. The shared access code is a demo capability, not user identity. SQLite must not be deployed onto independent ephemeral serverless instances. A missing ledger fails closed rather than resetting the budget. Review decisions remain unsaved page-memory drafts.
-
-Repository cleanup provides a brief front page and optional deep-dive navigation while preserving original benchmarks, source and review history. Documentation and source tests do not close deployment gates.
+No public deployment, durable review history, authenticated multi-user reviewer identity or legal certification. Shared demo code is a capability, not personal identity. Two paid synthetic examples are not representative model accuracy, camera robustness or throughput. Persistent spend does not imply persistent results. Reload loses page-memory drafts. Existing offline benchmarks remain historical, separate from app acceptance.

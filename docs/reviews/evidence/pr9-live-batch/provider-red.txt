@@ -1,0 +1,227 @@
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.1 [39m[90m/opt/data/ttb-prototype-delivery/web[39m
+
+ [32m✓[39m tests/extraction.test.ts [2m([22m[2m46 tests[22m[2m)[22m[32m 85[2mms[22m[39m
+ [31m❯[39m tests/openrouter-compatibility.test.ts [2m([22m[2m44 tests[22m[2m | [22m[31m5 failed[39m[2m)[22m[32m 104[2mms[22m[39m
+[31m   [31m×[31m exact captured OpenRouter completion replays offline without changing its content or metadata[39m[32m 38[2mms[22m[39m
+[31m   [31m×[31m captured metadata is accepted independently of fenced-content support[39m[32m 11[2mms[22m[39m
+   [32m✓[39m accepts only complete JSON: bare JSON[32m 4[2mms[22m[39m
+   [32m✓[39m accepts only complete JSON: bare JSON with whitespace[32m 3[2mms[22m[39m
+[31m   [31m×[31m accepts only complete JSON: single json fence[39m[32m 3[2mms[22m[39m
+[31m   [31m×[31m accepts only complete JSON: single untagged fence[39m[32m 2[2mms[22m[39m
+[31m   [31m×[31m accepts only complete JSON: single fence with CRLF and surrounding …[39m[32m 3[2mms[22m[39m
+   [32m✓[39m fails closed without salvaging content: multiple fences[32m 2[2mms[22m[39m
+   [32m✓[39m fails closed without salvaging content: prose before fence[32m 2[2mms[22m[39m
+   [32m✓[39m fails closed without salvaging content: prose after fence[32m 1[2mms[22m[39m
+   [32m✓[39m fails closed without salvaging content: prose around bare JSON[32m 1[2mms[22m[39m
+   [32m✓[39m fails closed without salvaging content: two bare objects[32m 1[2mms[22m[39m
+   [32m✓[39m fails closed without salvaging content: two objects inside fence[32m 1[2mms[22m[39m
+   [32m✓[39m fails closed without salvaging content: wrong fence language[32m 1[2mms[22m[39m
+   [32m✓[39m fails closed without salvaging content: inline fence[32m 1[2mms[22m[39m
+   [32m✓[39m fails closed without salvaging content: nested fence[32m 1[2mms[22m[39m
+   [32m✓[39m fails closed without salvaging content: unclosed fence[32m 1[2mms[22m[39m
+   [32m✓[39m fails closed without salvaging content: truncated closing fence[32m 1[2mms[22m[39m
+   [32m✓[39m fails closed without salvaging content: truncated bare JSON despite stop[32m 1[2mms[22m[39m
+   [32m✓[39m fails closed without salvaging content: truncated fenced JSON despite stop[32m 1[2mms[22m[39m
+   [32m✓[39m fails closed without salvaging content: malformed bare JSON[32m 1[2mms[22m[39m
+   [32m✓[39m fails closed without salvaging content: malformed fenced JSON[32m 1[2mms[22m[39m
+   [32m✓[39m fails closed without salvaging content: unknown extraction key[32m 1[2mms[22m[39m
+   [32m✓[39m fails closed without salvaging content: unknown nested extraction key[32m 1[2mms[22m[39m
+   [32m✓[39m fails closed without salvaging content: missing evidence[32m 1[2mms[22m[39m
+   [32m✓[39m fails closed without salvaging content: array instead of object[32m 1[2mms[22m[39m
+   [32m✓[39m fails closed without salvaging content: null instead of object[32m 1[2mms[22m[39m
+   [32m✓[39m fails closed without salvaging content: empty content[32m 1[2mms[22m[39m
+   [32m✓[39m captured envelope still rejects truncated finish reason with valid fenc…[32m 1[2mms[22m[39m
+   [32m✓[39m captured envelope still rejects native truncation despite stop[32m 3[2mms[22m[39m
+   [32m✓[39m captured envelope still rejects native refusal despite stop[32m 1[2mms[22m[39m
+   [32m✓[39m captured envelope still rejects native error despite stop[32m 1[2mms[22m[39m
+   [32m✓[39m captured envelope still rejects refusal with valid content[32m 1[2mms[22m[39m
+   [32m✓[39m captured envelope still rejects root error with valid content[32m 1[2mms[22m[39m
+   [32m✓[39m captured envelope still rejects choice error with valid content[32m 1[2mms[22m[39m
+   [32m✓[39m captured envelope still rejects message error with valid content[32m 1[2mms[22m[39m
+   [32m✓[39m captured envelope still rejects missing content[32m 1[2mms[22m[39m
+   [32m✓[39m captured envelope still rejects null content[32m 1[2mms[22m[39m
+   [32m✓[39m captured envelope still rejects structured content[32m 1[2mms[22m[39m
+   [32m✓[39m captured envelope still rejects non-null reasoning[32m 1[2mms[22m[39m
+   [32m✓[39m captured envelope still rejects invalid service tier type[32m 1[2mms[22m[39m
+   [32m✓[39m captured envelope still rejects oversized service tier[32m 1[2mms[22m[39m
+   [32m✓[39m captured envelope still rejects invalid native finish type[32m 1[2mms[22m[39m
+   [32m✓[39m captured envelope still rejects oversized native finish reason[32m 1[2mms[22m[39m
+
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 5 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m tests/openrouter-compatibility.test.ts[2m > [22mexact captured OpenRouter completion replays offline without changing its content or metadata
+[31m[1mAssertionError[22m: expected 'failed' to be 'complete' // Object.is equality[39m
+
+Expected: [32m"complete"[39m
+Received: [31m"failed"[39m
+
+[36m [2m❯[22m tests/openrouter-compatibility.test.ts:[2m37:29[22m[39m
+    [90m 35|[39m   expect(captured.choices[0].message.reasoning).toBeNull();
+    [90m 36|[39m   const result = await replay(captured);
+    [90m 37|[39m   expect(result.processing).toBe('complete');
+    [90m   |[39m                             [31m^[39m
+    [90m 38|[39m   if (result.processing !== 'complete') throw new Error('Expected capt…
+    [90m 39|[39m   // Independently remove the known fixture wrapper to check ALL evide…
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m tests/openrouter-compatibility.test.ts[2m > [22mcaptured metadata is accepted independently of fenced-content support
+[31m[1mAssertionError[22m: expected { processing: 'failed', …(1) } to match object { processing: 'complete', …(1) }
+(1 matching property omitted from actual)[39m
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[2m  {[22m
+[32m-   "evidence": {[39m
+[32m-     "abv": {[39m
+[32m-       "reason": "Synthetic legible ABV",[39m
+[32m-       "status": "readable",[39m
+[32m-       "text": "40%",[39m
+[32m-     },[39m
+[32m-     "brand": {[39m
+[32m-       "reason": "Synthetic legible brand",[39m
+[32m-       "status": "readable",[39m
+[32m-       "text": "Old Harbor",[39m
+[32m-     },[39m
+[32m-     "classType": {[39m
+[32m-       "reason": "Synthetic legible class",[39m
+[32m-       "status": "readable",[39m
+[32m-       "text": "Vodka",[39m
+[32m-     },[39m
+[32m-     "netContents": {[39m
+[32m-       "reason": "Synthetic legible volume",[39m
+[32m-       "status": "readable",[39m
+[32m-       "text": "750 mL",[39m
+[32m-     },[39m
+[32m-     "origin": {[39m
+[32m-       "reason": "Synthetic legible country",[39m
+[32m-       "status": "readable",[39m
+[32m-       "text": "France",[39m
+[32m-     },[39m
+[32m-     "producer": {[39m
+[32m-       "address": {[39m
+[32m-         "reason": "Synthetic legible address",[39m
+[32m-         "status": "readable",[39m
+[32m-         "text": "12 Wharf Road, Paris",[39m
+[32m-       },[39m
+[32m-       "name": {[39m
+[32m-         "reason": "Synthetic legible name",[39m
+[32m-         "status": "readable",[39m
+[32m-         "text": "Harbor Distillery",[39m
+[32m-       },[39m
+[32m-     },[39m
+[32m-     "schemaVersion": 1,[39m
+[32m-     "warning": {[39m
+[32m-       "body": {[39m
+[32m-         "reason": "Synthetic legible body",[39m
+[32m-         "status": "readable",[39m
+[32m-         "text": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",[39m
+[32m-       },[39m
+[32m-       "bodyBold": false,[39m
+[32m-       "heading": {[39m
+[32m-         "reason": "Synthetic legible heading",[39m
+[32m-         "status": "readable",[39m
+[32m-         "text": "GOVERNMENT WARNING:",[39m
+[32m-       },[39m
+[32m-       "headingBold": true,[39m
+[32m-     },[39m
+[32m-   },[39m
+[32m-   "processing": "complete",[39m
+[31m+   "processing": "failed",[39m
+[2m  }[22m
+
+[36m [2m❯[22m tests/openrouter-compatibility.test.ts:[2m50:31[22m[39m
+    [90m 48|[39m   const value = structuredClone(captured);
+    [90m 49|[39m   value.choices[0].message.content = json;
+    [90m 50|[39m   expect(await replay(value)).toMatchObject({ processing: 'complete', …
+    [90m   |[39m                               [31m^[39m
+    [90m 51|[39m });
+    [90m 52|[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m tests/openrouter-compatibility.test.ts[2m > [22maccepts only complete JSON: single json fence
+[41m[1m FAIL [22m[49m tests/openrouter-compatibility.test.ts[2m > [22maccepts only complete JSON: single untagged fence
+[41m[1m FAIL [22m[49m tests/openrouter-compatibility.test.ts[2m > [22maccepts only complete JSON: single fence with CRLF and surrounding …
+[31m[1mAssertionError[22m: expected { processing: 'failed', …(1) } to match object { processing: 'complete', …(1) }
+(1 matching property omitted from actual)[39m
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[2m  {[22m
+[32m-   "evidence": {[39m
+[32m-     "abv": {[39m
+[32m-       "reason": "Synthetic legible ABV",[39m
+[32m-       "status": "readable",[39m
+[32m-       "text": "40%",[39m
+[32m-     },[39m
+[32m-     "brand": {[39m
+[32m-       "reason": "Synthetic legible brand",[39m
+[32m-       "status": "readable",[39m
+[32m-       "text": "Old Harbor",[39m
+[32m-     },[39m
+[32m-     "classType": {[39m
+[32m-       "reason": "Synthetic legible class",[39m
+[32m-       "status": "readable",[39m
+[32m-       "text": "Vodka",[39m
+[32m-     },[39m
+[32m-     "netContents": {[39m
+[32m-       "reason": "Synthetic legible volume",[39m
+[32m-       "status": "readable",[39m
+[32m-       "text": "750 mL",[39m
+[32m-     },[39m
+[32m-     "origin": {[39m
+[32m-       "reason": "Synthetic legible country",[39m
+[32m-       "status": "readable",[39m
+[32m-       "text": "France",[39m
+[32m-     },[39m
+[32m-     "producer": {[39m
+[32m-       "address": {[39m
+[32m-         "reason": "Synthetic legible address",[39m
+[32m-         "status": "readable",[39m
+[32m-         "text": "12 Wharf Road, Paris",[39m
+[32m-       },[39m
+[32m-       "name": {[39m
+[32m-         "reason": "Synthetic legible name",[39m
+[32m-         "status": "readable",[39m
+[32m-         "text": "Harbor Distillery",[39m
+[32m-       },[39m
+[32m-     },[39m
+[32m-     "schemaVersion": 1,[39m
+[32m-     "warning": {[39m
+[32m-       "body": {[39m
+[32m-         "reason": "Synthetic legible body",[39m
+[32m-         "status": "readable",[39m
+[32m-         "text": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",[39m
+[32m-       },[39m
+[32m-       "bodyBold": false,[39m
+[32m-       "heading": {[39m
+[32m-         "reason": "Synthetic legible heading",[39m
+[32m-         "status": "readable",[39m
+[32m-         "text": "GOVERNMENT WARNING:",[39m
+[32m-       },[39m
+[32m-       "headingBold": true,[39m
+[32m-     },[39m
+[32m-   },[39m
+[32m-   "processing": "complete",[39m
+[31m+   "processing": "failed",[39m
+[2m  }[22m
+
+[36m [2m❯[22m tests/openrouter-compatibility.test.ts:[2m60:43[22m[39m
+    [90m 58|[39m   { id: 'single fence with CRLF and surrounding whitespace', content: …
+    [90m 59|[39m ])('accepts only complete JSON: $id', async ({ content }) => {
+    [90m 60|[39m   expect(await replay(envelope(content))).toMatchObject({ processing: …
+    [90m   |[39m                                           [31m^[39m
+    [90m 61|[39m });
+    [90m 62|[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m1 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[31m5 failed[39m[22m[2m | [22m[1m[32m85 passed[39m[22m[90m (90)[39m
+[2m   Start at [22m 22:38:16
+[2m   Duration [22m 1.47s[2m (import 69%, transform 20%, tests 9%, worker 1%)[22m
