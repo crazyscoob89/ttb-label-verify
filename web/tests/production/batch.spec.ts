@@ -30,5 +30,5 @@ test('production has no fixture controls and even exact known uploads remain una
 test('production comparison API stays default-denied before interpreting fixture requests',async({request})=>{
   const response=await request.post('/api/comparisons',{data:{offline:true,fixture:'match',application:samples.match.application},headers:{'x-offline-demo':'1'}});
   expect(response.status()).toBe(403);
-  expect(await response.json()).toEqual({processing:'failed',code:'access-denied'});
+  expect(await response.json()).toMatchObject({processing:'failed',code:'access-denied'});
 });

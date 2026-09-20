@@ -2,7 +2,7 @@ import { randomUUID } from 'node:crypto';
 import { z } from 'zod';
 
 const units = z.number().int().nonnegative().max(Number.MAX_SAFE_INTEGER);
-const bindingSchema = z.object({
+export const bindingSchema = z.object({
   reservationId: z.uuid(), attemptId: z.uuid(), requestId: z.uuid(),
   imageSha256: z.string().regex(/^[a-f0-9]{64}$/), schemaVersion: z.literal(1),
   rulesVersion: z.literal('prototype-seven-fields-v1'), promptVersion: z.literal('image-observations-v1'),
