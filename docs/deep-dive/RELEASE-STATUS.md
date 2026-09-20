@@ -1,5 +1,14 @@
 # Prototype release status
 
+## Accepted Windows repair
+
+ARGUS granted native Windows PASS for `106aac25a37e05840aa38e41ccc9f8db4c6009e6`:
+506 passed, 5 POSIX-only skips, 0 failures; typecheck/build passed on unelevated
+Windows with Node22.22.2 and PowerShell5.1. AVA's Linux Node24 gates passed 511
+cases. [The attributed verdict and exact evidence](../reviews/24-pr9-native-windows-pass.md)
+close the Windows bracket/ACL-fixture blockers. These are not hosted or live-model
+results; the release gates below retain their separate scope.
+
 ## Baseline and implemented candidate
 
 Base: `master`, commit `6f253361f7a3aa3e939f9fd813ba2f9fd8067da5`.

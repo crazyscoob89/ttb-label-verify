@@ -1,6 +1,17 @@
 # Engineering review register
 
-## Active PR #9 — second Windows repair
+## Active PR #9 — native Windows PASS
+
+**ARGUS PASS on `106aac25a37e05840aa38e41ccc9f8db4c6009e6`.**
+Actual native logs show **506 passed, 5 POSIX-only skipped, 0 failed**, with
+typecheck/build PASS; the runtime was **Node22.22.2 / PowerShell5.1**, unelevated.
+[Closeout record 24](24-pr9-native-windows-pass.md) preserves the original verdict,
+logs/probes, exact byte manifest and evidence limits. AVA inspected these files
+and leaves the entire accepted application tree unchanged. Earlier REVISE rounds
+below remain historical. This is Windows guard/source acceptance, not deployed
+or paid-model/end-to-end acceptance; no live application URL is certified.
+
+## Historical PR #9 — second Windows repair
 
 **ARGUS REVISE on `1df409401e76cc964b5f774c4bd160e254532f1f`.**
 The recovered native report establishes 500 passed / 3 failed / 5 skipped;
