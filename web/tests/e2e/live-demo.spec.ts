@@ -32,7 +32,7 @@ test('browser upload through real guarded handler and synthetic provider transpo
  await page.getByLabel('Label image (JPEG or PNG)',{exact:true}).setInputFiles('public/offline-samples/match.png');
  for(const key of ['applicationId','applicationVersion','brand','classType','abv','netContents','producerName','producerAddress'] as const) await page.locator(`#${key}`).fill(String(fixtures.application[key]));
  await page.locator('#commodity').selectOption(fixtures.application.commodity);await page.locator('#imported').selectOption(String(fixtures.application.imported));await page.locator('#originKind').selectOption(fixtures.application.origin.kind);await page.locator('#country').fill(fixtures.application.origin.country);
- await page.getByLabel('Demo access code').fill(code);await page.getByRole('button',{name:'Submit for comparison',exact:true}).click();
+ await page.getByLabel('Demo access code',{exact:true}).fill(code);await page.getByRole('button',{name:'Submit for comparison',exact:true}).click();
  await expect(page.getByRole('table')).toBeVisible();await expect(page.getByText(/Measured elapsed time:/)).toBeVisible();await expect(page.getByText(/Source: openrouter/)).toBeVisible();await expect(page.getByRole('radio',{name:'Pass',exact:true})).toBeDisabled();expect(calls).toBe(2);
  await page.locator('#brand').fill('Changed');await expect(page.getByRole('table')).toHaveCount(0);
  }finally{server.closeAllConnections();await new Promise<void>(resolve=>server.close(()=>resolve()));rmSync(dir,{recursive:true,force:true});}

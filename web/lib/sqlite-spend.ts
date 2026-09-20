@@ -45,6 +45,12 @@ export class SqliteSpendStore implements SpendStore {
   private transaction<T>(work:()=>T):T { this.db.exec('BEGIN IMMEDIATE'); try { const result=work(); this.db.exec('COMMIT');return result; } catch(e) { this.db.exec('ROLLBACK');throw e; } }
   acquireWork(id:string) { return this.transaction(()=> { this.totals(); if ((this.db.prepare('SELECT COUNT(*) AS n FROM work').get()!.n as number)>=2) throw Error('Busy'); this.db.prepare('INSERT INTO work VALUES (?)').run(id); }); }
   releaseWork(id:string) { this.transaction(()=> {this.db.prepare('DELETE FROM work WHERE id=?').run(id);}); }
+  /** Advisory duplicate response only. reserve's UNIQUE constraints remain the
+   * atomic authority, including concurrent requests/processes and restarts. */
+  hasIntent(attemptId: string, reservationId: string) {
+    z.uuid().parse(attemptId); z.uuid().parse(reservationId); this.totals();
+    return !!this.db.prepare('SELECT 1 FROM holds WHERE attempt=? OR reservation=? LIMIT 1').get(attemptId, reservationId);
+  }
   async reserve(input:Readonly<SpendBinding>) {
     const b=bindingSchema.parse(input); if(b.maxCostMicrousd!==DEMO_RESERVATION) throw Error('Reservation mismatch');
     return this.transaction(()=>{const totals=this.totals();if(totals.incurredMicrousd+totals.unresolvedMicrousd+DEMO_RESERVATION>DEMO_CEILING)throw Error('Exhausted');this.db.prepare("INSERT INTO holds VALUES (?,?,?,?, 'reserved',NULL)").run(b.reservationId,b.attemptId,JSON.stringify(b),DEMO_RESERVATION);return {binding:b,state:'reserved',claimId:null,ledger:this.totals()};});

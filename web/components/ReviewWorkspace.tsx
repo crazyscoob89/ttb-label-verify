@@ -11,6 +11,7 @@ export default function ReviewWorkspace({offlineEnabled}:{offlineEnabled:boolean
       event.preventDefault();const next=event.key==='Home'?'single':event.key==='End'?'batch':tab==='single'?'batch':'single';
       setTab(next);document.getElementById(`${next}-tab`)?.focus();
     }}>{id==='single'?'Single review':'Batch upload'}</button>)}</nav>
-    {tab==='single'?<ComparisonWorkspace offlineEnabled={offlineEnabled}/>:<BatchWorkspace offlineEnabled={offlineEnabled}/>}
+    <div hidden={tab!=='single'}><ComparisonWorkspace offlineEnabled={offlineEnabled}/></div>
+    <div hidden={tab!=='batch'}><BatchWorkspace offlineEnabled={offlineEnabled}/></div>
   </>;
 }

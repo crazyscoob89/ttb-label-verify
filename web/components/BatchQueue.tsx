@@ -12,6 +12,7 @@ export default function BatchQueue({state,onCompare,onRetry}:{state:BatchState;o
       <p>Saved outcomes — Pass: {summary.outcomes.pass} · Correction: {summary.outcomes.correction} · Second review: {summary.outcomes['second-review']}</p>
     </div>
     <p>Local queue concurrency: {state.concurrency} (default / maximum 2). No automatic retry. Failed and blocked entries are still remaining; compared is not reviewed or saved. No durable history.</p>
-    <div className="actions"><button onClick={onCompare} disabled={!summary.queued||state.inFlight.length>0}>Compare queued fixtures</button><button onClick={onRetry} disabled={selected.processing!=='failed'||state.inFlight.length>=state.concurrency}>Retry selected fixture</button></div>
+    {state.mode==='live' && <p>Live start may incur a $1 hold per attempted pair, within the shared $25 ceiling. Failures, duplicates and timeouts may already have incurred spend. Retry explicitly starts a NEW paid intent; it does not recover an old result. Nothing is saved.</p>}
+    <div className="actions"><button onClick={onCompare} disabled={!summary.queued||state.inFlight.length>0}>{state.mode==='live'?'Start live batch':'Compare queued fixtures'}</button><button onClick={onRetry} disabled={selected.processing!=='failed'||state.inFlight.length>=state.concurrency}>{state.mode==='live'?'Retry selected pair (new paid intent)':'Retry selected fixture'}</button></div>
   </section>;
 }

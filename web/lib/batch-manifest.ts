@@ -4,11 +4,13 @@ import { immutable } from './comparison-record';
 
 /** References sanitized evidence; this is NOT image decoding or hash verification. */
 export const batchImageSchema = z.object({ filename: filenameSchema, imageSha256: z.string().regex(/^[a-f0-9]{64}$/) }).strict();
+/** Local live declarations are explicitly unprepared, never a fake/raw hash. */
+export const unpreparedBatchImageSchema = z.object({ filename: filenameSchema, imageSha256: z.null() }).strict();
 export type BatchImage = z.infer<typeof batchImageSchema>;
 export type ManifestIssue = 'invalid-filename' | 'invalid-file' | 'invalid-mapping' | 'invalid-application' |
   'duplicate-file' | 'duplicate-mapping' | 'duplicate-application' | 'missing-file' | 'missing-mapping';
 type EntryBase = { id: string; filename: string | null; fileIndexes: number[]; mappingIndexes: number[]; issues: ManifestIssue[] };
-export type ValidBatchEntry = EntryBase & { status: 'valid'; filename: string; application: Application; imageSha256: string };
+export type ValidBatchEntry = EntryBase & { status: 'valid'; filename: string; application: Application; imageSha256: string | null };
 export type BatchEntry = ValidBatchEntry | (EntryBase & { status: 'blocked' });
 export type BatchManifest = { entries: BatchEntry[]; counts: { total: number; valid: number; blocked: number } };
 
@@ -21,7 +23,8 @@ const object = (value: unknown): Record<string, unknown> => value !== null && ty
  * A JSON array is intentional: unlike a filename-keyed object, it retains duplicates.
  * No list-order pairing, sample lookup, filesystem, provider, or application defaults.
  */
-export function buildBatchManifest(filesInput: unknown, manifestInput: unknown): BatchManifest {
+export function buildBatchManifest(filesInput: unknown, manifestInput: unknown, options: { live?: boolean } = {}): BatchManifest {
+  const imageSchema = options.live ? unpreparedBatchImageSchema : batchImageSchema;
   const files = arraySchema.parse(filesInput);
   const mappings = arraySchema.parse(typeof manifestInput === 'string' ? JSON.parse(manifestInput) : manifestInput);
   const groups = new Map<string, EntryBase>();
@@ -54,7 +57,7 @@ export function buildBatchManifest(filesInput: unknown, manifestInput: unknown):
     if (!group.mappingIndexes.length) issues.add('missing-mapping');
     if (group.fileIndexes.length > 1) issues.add('duplicate-file');
     if (group.mappingIndexes.length > 1) issues.add('duplicate-mapping');
-    for (const i of group.fileIndexes) if (!batchImageSchema.safeParse(files[i]).success) issues.add('invalid-file');
+    for (const i of group.fileIndexes) if (!imageSchema.safeParse(files[i]).success) issues.add('invalid-file');
     for (const i of group.mappingIndexes) {
       if (!mappingSchema.safeParse(mappings[i]).success) issues.add('invalid-mapping');
       if (!applicationSchema.safeParse(object(mappings[i]).application).success) issues.add('invalid-application');
@@ -62,7 +65,7 @@ export function buildBatchManifest(filesInput: unknown, manifestInput: unknown):
     }
     const base = { ...group, issues: [...issues] };
     if (issues.size) return { ...base, status: 'blocked' };
-    const image = batchImageSchema.parse(files[group.fileIndexes[0]]);
+    const image = imageSchema.parse(files[group.fileIndexes[0]]);
     const mapping = mappingSchema.parse(mappings[group.mappingIndexes[0]]);
     return { ...base, status: 'valid', filename: image.filename, imageSha256: image.imageSha256, application: mapping.application };
   });

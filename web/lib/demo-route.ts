@@ -5,6 +5,8 @@ import { MAX_IMAGE_BYTES, parseApplication } from './contracts';
 import { createComparisonService } from './compare-service';
 import { createOpenRouterProvider, OPENROUTER_MODEL, type Transport } from './extraction/openrouter';
 import { SqliteSpendStore, DEMO_RESERVATION } from './sqlite-spend';
+import { preparePair, type ImageInput } from './intake';
+import { batchAttemptSchema, signBatchBinding, verifyBatchBinding } from './batch-binding';
 
 const BODY_LIMIT = MAX_IMAGE_BYTES + 32768;
 let active = 0;
@@ -81,9 +83,29 @@ export function createDemoHandler({env=process.env,transport=(url,init)=>fetch(u
    const file=form.get('image');const json=form.get('application');
    if(!(file instanceof File)||typeof json!=='string'||json.length>16384||file.size>MAX_IMAGE_BYTES||!['image/png','image/jpeg'].includes(file.type))return reply(400,'invalid-input');
    let application;try{application=parseApplication(JSON.parse(json));}catch{return reply(400,'invalid-input');}
+   const phase = request.headers.get('x-ttb-batch-phase');
+   const rawIntent = request.headers.get('x-ttb-batch-intent');
+   const binding = request.headers.get('x-ttb-batch-binding');
+   if (phase !== null && phase !== 'prepare' && phase !== 'execute') return reply(400,'invalid-input');
+   if (phase !== 'execute' && (rawIntent !== null || binding !== null)) return reply(400,'invalid-input');
+   let intent;
+   if (phase === 'execute') {
+    if (!rawIntent || rawIntent.length > 4096 || !binding || binding.length !== 129) return reply(400,'invalid-input');
+    try { intent = batchAttemptSchema.parse(JSON.parse(rawIntent)); } catch { return reply(400,'invalid-input'); }
+    if (store.hasIntent(intent.attemptId,intent.reservationId)) return reply(409,'attempt-already-recorded');
+   }
+   const input = { file: { filename:file.name,mime:file.type as ImageInput['mime'],bytes:Buffer.from(await file.arrayBuffer()) }, binding: { filename:file.name,application } };
+   if (phase === 'prepare') {
+    const pair = await preparePair(input.file,input.binding);
+    return Response.json({prepared:{imageSha256:pair.image.sanitizedSha256,binding:signBatchBinding(pair,env.TTB_DEMO_ACCESS_SECRET!)}},{headers:{'Cache-Control':'no-store'}});
+   }
    const provider=createOpenRouterProvider({authorized:true,apiKey:env.OPENROUTER_API_KEY,store,maxCostMicrousd:DEMO_RESERVATION,transport:priceCheckedTransport(transport)});
-   const compare=createComparisonService({provider,authorize:()=>true});
-   const result=await compare({file:{filename:file.name,mime:file.type as 'image/png'|'image/jpeg',bytes:Buffer.from(await file.arrayBuffer())},binding:{filename:file.name,application}});
+   const identity = intent;
+   const compare=createComparisonService({provider,authorize:()=>true,preparedAttempt:identity ? pair => {
+    if (!verifyBatchBinding(pair,env.TTB_DEMO_ACCESS_SECRET!,binding!)) throw Error('Preparation mismatch');
+    return {attemptId:identity.attemptId,reservationId:identity.reservationId};
+   } : undefined});
+   const result=await compare(input);
    return Response.json({result,elapsedMs:Math.round(performance.now()-started)},{status:result.processing==='complete'?200:result.code==='invalid-input'?400:502,headers:{'Cache-Control':'no-store'}});
   }catch(e){return reply(e instanceof InputError?e.status:400,'invalid-input');}
   finally{if(store){try{if(acquired)store.releaseWork(workId);}catch{}try{store.close();}catch{}}active--;}
