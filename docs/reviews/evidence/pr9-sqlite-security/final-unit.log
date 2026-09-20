@@ -1,0 +1,45 @@
+
+> ttb-label-review-foundation@0.1.0 test
+> vitest run
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.1 [39m[90m/opt/data/ttb-prototype-delivery/web[39m
+
+ [32m✓[39m tests/db/gate-refusal.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 1284[2mms[22m[39m
+   [32m✓[39m DB gate refusal subprocess — never connects to a DB [2m(4)[22m
+     [33m[2m✓[22m[39m fails specifically for missing isolated authorization/config, even without psql on PATH[33m 547[2mms[22m[39m
+     [33m[2m✓[22m[39m rejects caller-supplied narrower suite arguments before configuration/DB access[33m 723[2mms[22m[39m
+ [32m✓[39m tests/batch-state.test.ts [2m([22m[2m19 tests[22m[2m)[22m[32m 159[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts [2m([22m[2m46 tests[22m[2m)[22m[32m 126[2mms[22m[39m
+ [32m✓[39m tests/storage.test.ts [2m([22m[2m34 tests[22m[2m)[22m[32m 165[2mms[22m[39m
+ [32m✓[39m tests/repository.test.ts [2m([22m[2m20 tests[22m[2m)[22m[32m 266[2mms[22m[39m
+ [32m✓[39m tests/persistence.test.ts [2m([22m[2m34 tests[22m[2m)[22m[32m 226[2mms[22m[39m
+ [32m✓[39m tests/sqlite-spend-security.test.ts [2m([22m[2m32 tests[22m[2m)[22m[33m 680[2mms[22m[39m
+ [32m✓[39m tests/intake.test.ts [2m([22m[2m71 tests[22m[2m)[22m[33m 390[2mms[22m[39m
+ [32m✓[39m tests/demo-route.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 488[2mms[22m[39m
+ [32m✓[39m tests/rules.test.ts [2m([22m[2m117 tests[22m[2m)[22m[32m 108[2mms[22m[39m
+ [32m✓[39m tests/review-policy.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 166[2mms[22m[39m
+ [32m✓[39m tests/auth.test.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+ [32m✓[39m tests/spend.test.ts [2m([22m[2m25 tests[22m[2m)[22m[32m 32[2mms[22m[39m
+ [32m✓[39m tests/sqlite-spend-native-security.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 4232[2mms[22m[39m
+   [33m[2m✓[22m[39m native security: actual provisioning CLI accepts private Unicode/spaced directory and refuses reuse[33m 4064[2mms[22m[39m
+ [32m✓[39m tests/db/sql-contract.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m tests/offline-demo.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 116[2mms[22m[39m
+ [32m✓[39m tests/db/gate-config.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m tests/pair-input.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+ [32m✓[39m tests/batch-manifest.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 81[2mms[22m[39m
+ [32m✓[39m tests/smoke.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 14[2mms[22m[39m
+ [32m✓[39m tests/compare-service.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 90[2mms[22m[39m
+ [32m✓[39m tests/sqlite-spend.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 6018[2mms[22m[39m
+   [33m[2m✓[22m[39m child startup failures include diagnostics, not swallowed CAS exit codes[33m 1737[2mms[22m[39m
+   [33m[2m✓[22m[39m independent processes share atomic identity and claims; persisted cap mismatch rejects[33m 2991[2mms[22m[39m
+   [33m[2m✓[22m[39m atomic dedup, single winner claim, retained holds, restart and hard cap[33m 1243[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m22 passed[39m[22m[90m (22)[39m
+[2m      Tests [22m [1m[32m508 passed[39m[22m[90m (508)[39m
+[2m   Start at [22m 20:44:42
+[2m   Duration [22m 8.22s[2m (import 59%, tests 26%, transform 14%, worker 1%)[22m
+
+[2m    Isolate [22m [33m22 workers spawned[39m[2m · ~886ms startup each (spawn + environment, per file)[22m
+[2m            [22m [2mat least ~886ms faster with [22m[33misolate: false[39m[2m — reuses workers across files instead of one per file[22m
+

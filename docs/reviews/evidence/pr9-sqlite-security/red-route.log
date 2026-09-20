@@ -1,0 +1,68 @@
+
+> ttb-label-review-foundation@0.1.0 test
+> vitest run tests/sqlite-spend-security.test.ts -t route delegates
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.1 [39m[90m/opt/data/ttb-prototype-delivery/web[39m
+
+ [31m❯[39m tests/sqlite-spend-security.test.ts [2m([22m[2m32 tests[22m[2m | [22m[31m1 failed[39m[2m | [22m[33m31 skipped[39m[2m)[22m[32m 55[2mms[22m[39m
+   [2m[90m↓[39m[22m Windows ACL contract accepts current-user private ACL despite Windows-style 0666 modes
+   [2m[90m↓[39m[22m Windows ACL contract fails closed: foreign-owner
+   [2m[90m↓[39m[22m Windows ACL contract fails closed: everyone
+   [2m[90m↓[39m[22m Windows ACL contract fails closed: authenticated-users
+   [2m[90m↓[39m[22m Windows ACL contract fails closed: unknown-sid
+   [2m[90m↓[39m[22m Windows ACL contract fails closed: null-dacl
+   [2m[90m↓[39m[22m Windows ACL contract fails closed: empty-dacl
+   [2m[90m↓[39m[22m Windows ACL contract fails closed: reparse
+   [2m[90m↓[39m[22m Windows ACL contract fails closed: unprotected-parent
+   [2m[90m↓[39m[22m Windows ACL contract fails closed: no-child-inheritance
+   [2m[90m↓[39m[22m Windows ACL contract fails closed: inherit-only
+   [2m[90m↓[39m[22m Windows ACL contract fails closed: no-propagate
+   [2m[90m↓[39m[22m Windows ACL contract fails closed: callback
+   [2m[90m↓[39m[22m Windows ACL contract fails closed: object-ace
+   [2m[90m↓[39m[22m Windows ACL contract fails closed: deny-ace
+   [2m[90m↓[39m[22m Windows ACL contract fails closed: noncanonical
+   [2m[90m↓[39m[22m Windows ACL contract fails closed: missing-parent
+   [2m[90m↓[39m[22m Windows ACL contract fails closed: missing-ledger
+   [2m[90m↓[39m[22m Windows ACL contract fails closed: extra-entry
+   [2m[90m↓[39m[22m Windows ACL contract fails closed: no-current-grant
+   [2m[90m↓[39m[22m Windows ACL contract fails closed: read-only-current
+   [2m[90m↓[39m[22m Windows ACL contract fails closed: malformed
+   [2m[90m↓[39m[22m Windows ACL contract fails closed: inspection-error
+   [2m[90m↓[39m[22m Windows ACL contract explicitly allows SYSTEM and built-in Administrators alongside current user
+[31m   [31m×[31m Windows ACL contract: route delegates ledger privacy to the same OS-aware guard[39m[32m 54[2mms[22m[39m
+   [2m[90m↓[39m[22m Windows provisioning ACL inspection failure creates no ledger or sidecars
+   [2m[90m↓[39m[22m native POSIX: provisioning refuses a public parent before creating ledger
+   [2m[90m↓[39m[22m native POSIX: opening rejects exposed ledger/sidecar 
+   [2m[90m↓[39m[22m native POSIX: opening rejects exposed ledger/sidecar -wal
+   [2m[90m↓[39m[22m native POSIX: opening rejects exposed ledger/sidecar -shm
+   [2m[90m↓[39m[22m native POSIX: opening rejects exposed ledger/sidecar -journal
+   [2m[90m↓[39m[22m provisioning refuses stale sidecars without creating a new ledger
+
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 1 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m tests/sqlite-spend-security.test.ts[2m > [22mWindows ACL contract: route delegates ledger privacy to the same OS-aware guard
+[31m[1mAssertionError[22m: expected 503 to be 415 // Object.is equality[39m
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[32m- 415[39m
+[31m+ 503[39m
+
+[36m [2m❯[22m tests/sqlite-spend-security.test.ts:[2m83:45[22m[39m
+    [90m 81|[39m   const request = () => new Request('https://demo.example/api/comparis…
+    [90m 82|[39m   // Reaches content-type validation only after the real store securit…
+    [90m 83|[39m   expect((await handler(request())).status).toBe(415);
+    [90m   |[39m                                             [31m^[39m
+    [90m 84|[39m   data.entries[0].aces.push(ace('S-1-1-0', 3)); inspect.mockReturnValu…
+    [90m 85|[39m   expect((await handler(request())).status).toBe(503); expect(transpor…
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[31m1 failed[39m[22m[2m | [22m[33m31 skipped[39m[90m (32)[39m
+[2m   Start at [22m 20:42:38
+[2m   Duration [22m 2.87s[2m (import 79%, transform 17%, tests 3%, worker 1%)[22m
+

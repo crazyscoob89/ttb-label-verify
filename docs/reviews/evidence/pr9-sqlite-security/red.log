@@ -1,0 +1,170 @@
+
+> ttb-label-review-foundation@0.1.0 test
+> vitest run tests/sqlite-spend-security.test.ts
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.1 [39m[90m/opt/data/ttb-prototype-delivery/web[39m
+
+ [31m❯[39m tests/sqlite-spend-security.test.ts [2m([22m[2m31 tests[22m[2m | [22m[31m30 failed[39m[2m)[22m[33m 435[2mms[22m[39m
+[31m   [31m×[31m Windows ACL contract accepts current-user private ACL despite Windows-style 0666 modes[39m[32m 28[2mms[22m[39m
+[31m   [31m×[31m Windows ACL contract fails closed: foreign-owner[39m[32m 16[2mms[22m[39m
+[31m   [31m×[31m Windows ACL contract fails closed: everyone[39m[32m 15[2mms[22m[39m
+[31m   [31m×[31m Windows ACL contract fails closed: authenticated-users[39m[32m 12[2mms[22m[39m
+[31m   [31m×[31m Windows ACL contract fails closed: unknown-sid[39m[32m 13[2mms[22m[39m
+[31m   [31m×[31m Windows ACL contract fails closed: null-dacl[39m[32m 12[2mms[22m[39m
+[31m   [31m×[31m Windows ACL contract fails closed: empty-dacl[39m[32m 12[2mms[22m[39m
+[31m   [31m×[31m Windows ACL contract fails closed: reparse[39m[32m 14[2mms[22m[39m
+[31m   [31m×[31m Windows ACL contract fails closed: unprotected-parent[39m[32m 14[2mms[22m[39m
+[31m   [31m×[31m Windows ACL contract fails closed: no-child-inheritance[39m[32m 16[2mms[22m[39m
+[31m   [31m×[31m Windows ACL contract fails closed: inherit-only[39m[32m 13[2mms[22m[39m
+[31m   [31m×[31m Windows ACL contract fails closed: no-propagate[39m[32m 15[2mms[22m[39m
+[31m   [31m×[31m Windows ACL contract fails closed: callback[39m[32m 14[2mms[22m[39m
+[31m   [31m×[31m Windows ACL contract fails closed: object-ace[39m[32m 13[2mms[22m[39m
+[31m   [31m×[31m Windows ACL contract fails closed: deny-ace[39m[32m 13[2mms[22m[39m
+[31m   [31m×[31m Windows ACL contract fails closed: noncanonical[39m[32m 12[2mms[22m[39m
+[31m   [31m×[31m Windows ACL contract fails closed: missing-parent[39m[32m 12[2mms[22m[39m
+[31m   [31m×[31m Windows ACL contract fails closed: missing-ledger[39m[32m 11[2mms[22m[39m
+[31m   [31m×[31m Windows ACL contract fails closed: extra-entry[39m[32m 12[2mms[22m[39m
+[31m   [31m×[31m Windows ACL contract fails closed: no-current-grant[39m[32m 12[2mms[22m[39m
+[31m   [31m×[31m Windows ACL contract fails closed: read-only-current[39m[32m 12[2mms[22m[39m
+[31m   [31m×[31m Windows ACL contract fails closed: malformed[39m[32m 13[2mms[22m[39m
+[31m   [31m×[31m Windows ACL contract fails closed: inspection-error[39m[32m 12[2mms[22m[39m
+[31m   [31m×[31m Windows ACL contract explicitly allows SYSTEM and built-in Administrators alongside current user[39m[32m 13[2mms[22m[39m
+[31m   [31m×[31m Windows provisioning ACL inspection failure creates no ledger or sidecars[39m[32m 13[2mms[22m[39m
+[31m   [31m×[31m native POSIX: provisioning refuses a public parent before creating ledger[39m[32m 12[2mms[22m[39m
+   [32m✓[39m native POSIX: opening rejects exposed ledger/sidecar [32m 12[2mms[22m[39m
+[31m   [31m×[31m native POSIX: opening rejects exposed ledger/sidecar -wal[39m[32m 16[2mms[22m[39m
+[31m   [31m×[31m native POSIX: opening rejects exposed ledger/sidecar -shm[39m[32m 18[2mms[22m[39m
+[31m   [31m×[31m native POSIX: opening rejects exposed ledger/sidecar -journal[39m[32m 15[2mms[22m[39m
+[31m   [31m×[31m provisioning refuses stale sidecars without creating a new ledger[39m[32m 17[2mms[22m[39m
+
+[31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 30 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m tests/sqlite-spend-security.test.ts[2m > [22mWindows ACL contract accepts current-user private ACL despite Windows-style 0666 modes
+[31m[1mError[22m: Private existing ledger required[39m
+[36m [2m❯[22m new SqliteSpendStore lib/sqlite-spend.ts:[2m26:85[22m[39m
+    [90m 24|[39m   constructor(path: string) {
+    [90m 25|[39m     const stat = lstatSync(path);
+    [90m 26|[39m     if (!stat.isFile() || stat.isSymbolicLink() || (stat.mode & 0o077)…
+    [90m   |[39m                                                                                     [31m^[39m
+    [90m 27|[39m     this.db = new DatabaseSync(path);
+    [90m 28|[39m     this.db.exec('PRAGMA busy_timeout=5000; PRAGMA journal_mode=WAL; P…
+[90m [2m❯[22m tests/sqlite-spend-security.test.ts:[2m30:17[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/30]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m tests/sqlite-spend-security.test.ts[2m > [22mWindows ACL contract fails closed: foreign-owner
+[41m[1m FAIL [22m[49m tests/sqlite-spend-security.test.ts[2m > [22mWindows ACL contract fails closed: everyone
+[41m[1m FAIL [22m[49m tests/sqlite-spend-security.test.ts[2m > [22mWindows ACL contract fails closed: authenticated-users
+[41m[1m FAIL [22m[49m tests/sqlite-spend-security.test.ts[2m > [22mWindows ACL contract fails closed: unknown-sid
+[41m[1m FAIL [22m[49m tests/sqlite-spend-security.test.ts[2m > [22mWindows ACL contract fails closed: null-dacl
+[41m[1m FAIL [22m[49m tests/sqlite-spend-security.test.ts[2m > [22mWindows ACL contract fails closed: empty-dacl
+[41m[1m FAIL [22m[49m tests/sqlite-spend-security.test.ts[2m > [22mWindows ACL contract fails closed: reparse
+[41m[1m FAIL [22m[49m tests/sqlite-spend-security.test.ts[2m > [22mWindows ACL contract fails closed: unprotected-parent
+[41m[1m FAIL [22m[49m tests/sqlite-spend-security.test.ts[2m > [22mWindows ACL contract fails closed: no-child-inheritance
+[41m[1m FAIL [22m[49m tests/sqlite-spend-security.test.ts[2m > [22mWindows ACL contract fails closed: inherit-only
+[41m[1m FAIL [22m[49m tests/sqlite-spend-security.test.ts[2m > [22mWindows ACL contract fails closed: no-propagate
+[41m[1m FAIL [22m[49m tests/sqlite-spend-security.test.ts[2m > [22mWindows ACL contract fails closed: callback
+[41m[1m FAIL [22m[49m tests/sqlite-spend-security.test.ts[2m > [22mWindows ACL contract fails closed: object-ace
+[41m[1m FAIL [22m[49m tests/sqlite-spend-security.test.ts[2m > [22mWindows ACL contract fails closed: deny-ace
+[41m[1m FAIL [22m[49m tests/sqlite-spend-security.test.ts[2m > [22mWindows ACL contract fails closed: noncanonical
+[41m[1m FAIL [22m[49m tests/sqlite-spend-security.test.ts[2m > [22mWindows ACL contract fails closed: missing-parent
+[41m[1m FAIL [22m[49m tests/sqlite-spend-security.test.ts[2m > [22mWindows ACL contract fails closed: missing-ledger
+[41m[1m FAIL [22m[49m tests/sqlite-spend-security.test.ts[2m > [22mWindows ACL contract fails closed: extra-entry
+[41m[1m FAIL [22m[49m tests/sqlite-spend-security.test.ts[2m > [22mWindows ACL contract fails closed: no-current-grant
+[41m[1m FAIL [22m[49m tests/sqlite-spend-security.test.ts[2m > [22mWindows ACL contract fails closed: read-only-current
+[41m[1m FAIL [22m[49m tests/sqlite-spend-security.test.ts[2m > [22mWindows ACL contract fails closed: malformed
+[41m[1m FAIL [22m[49m tests/sqlite-spend-security.test.ts[2m > [22mWindows ACL contract fails closed: inspection-error
+[31m[1mAssertionError[22m: expected [Function] to throw an error[39m
+
+[32m- Expected:[39m
+null
+
+[31m+ Received:[39m
+undefined
+
+[36m [2m❯[22m tests/sqlite-spend-security.test.ts:[2m61:78[22m[39m
+    [90m 59|[39m   if (fault === 'inspection-error') inspect.mockImplementation(() => {…
+    [90m 60|[39m   else inspect.mockReturnValue(fault === 'malformed' ? '{}' : JSON.str…
+    [90m 61|[39m   expect(() => { const store = new SqliteSpendStore(path); store.close…
+    [90m   |[39m                                                                              [31m^[39m
+    [90m 62|[39m });
+    [90m 63|[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/30]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m tests/sqlite-spend-security.test.ts[2m > [22mWindows ACL contract explicitly allows SYSTEM and built-in Administrators alongside current user
+[31m[1mAssertionError[22m: expected "vi.fn()" to be called at least once[39m
+[36m [2m❯[22m tests/sqlite-spend-security.test.ts:[2m68:76[22m[39m
+    [90m 66|[39m   for (const entry of data.entries) entry.aces.push(ace('S-1-5-18'), a…
+    [90m 67|[39m   os.platform = 'win32'; inspect.mockReturnValue(JSON.stringify(data));
+    [90m 68|[39m   const store = new SqliteSpendStore(path); store.close(); expect(insp…
+    [90m   |[39m                                                                            [31m^[39m
+    [90m 69|[39m });
+    [90m 70|[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/30]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m tests/sqlite-spend-security.test.ts[2m > [22mWindows provisioning ACL inspection failure creates no ledger or sidecars
+[31m[1mAssertionError[22m: expected [Function] to throw an error[39m
+[36m [2m❯[22m tests/sqlite-spend-security.test.ts:[2m73:50[22m[39m
+    [90m 71|[39m test('Windows provisioning ACL inspection failure creates no ledger or…
+    [90m 72|[39m   const { path } = fixture(); os.platform = 'win32'; inspect.mockImple…
+    [90m 73|[39m   expect(() => SqliteSpendStore.provision(path)).toThrow(); expect(exi…
+    [90m   |[39m                                                  [31m^[39m
+    [90m 74|[39m   for (const suffix of ['-wal', '-shm', '-journal']) expect(existsSync…
+    [90m 75|[39m });
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/30]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m tests/sqlite-spend-security.test.ts[2m > [22mnative POSIX: provisioning refuses a public parent before creating ledger
+[31m[1mAssertionError[22m: expected [Function] to throw an error[39m
+[36m [2m❯[22m tests/sqlite-spend-security.test.ts:[2m79:50[22m[39m
+    [90m 77|[39m test.runIf(process.platform !== 'win32')('native POSIX: provisioning r…
+    [90m 78|[39m   const { dir, path } = fixture(); chmodSync(dir, 0o755);
+    [90m 79|[39m   expect(() => SqliteSpendStore.provision(path)).toThrow(); expect(exi…
+    [90m   |[39m                                                  [31m^[39m
+    [90m 80|[39m });
+    [90m 81|[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/30]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m tests/sqlite-spend-security.test.ts[2m > [22mnative POSIX: opening rejects exposed ledger/sidecar -wal
+[41m[1m FAIL [22m[49m tests/sqlite-spend-security.test.ts[2m > [22mnative POSIX: opening rejects exposed ledger/sidecar -shm
+[41m[1m FAIL [22m[49m tests/sqlite-spend-security.test.ts[2m > [22mnative POSIX: opening rejects exposed ledger/sidecar -journal
+[31m[1mAssertionError[22m: expected [Function] to throw an error[39m
+
+[32m- Expected:[39m
+null
+
+[31m+ Received:[39m
+undefined
+
+[36m [2m❯[22m tests/sqlite-spend-security.test.ts:[2m85:78[22m[39m
+    [90m 83|[39m   const { path } = fixture(); SqliteSpendStore.provision(path);
+    [90m 84|[39m   if (suffix) writeFileSync(path + suffix, '', { mode: 0o600 }); chmod…
+    [90m 85|[39m   expect(() => { const store = new SqliteSpendStore(path); store.close…
+    [90m   |[39m                                                                              [31m^[39m
+    [90m 86|[39m });
+    [90m 87|[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/30]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m tests/sqlite-spend-security.test.ts[2m > [22mprovisioning refuses stale sidecars without creating a new ledger
+[31m[1mAssertionError[22m: expected [Function] to throw an error[39m
+[36m [2m❯[22m tests/sqlite-spend-security.test.ts:[2m90:50[22m[39m
+    [90m 88|[39m test('provisioning refuses stale sidecars without creating a new ledge…
+    [90m 89|[39m   const { path } = fixture(); writeFileSync(path + '-wal', '', { mode:…
+    [90m 90|[39m   expect(() => SqliteSpendStore.provision(path)).toThrow(); expect(exi…
+    [90m   |[39m                                                  [31m^[39m
+    [90m 91|[39m });
+    [90m 92|[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/30]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[31m30 failed[39m[22m[2m | [22m[1m[32m1 passed[39m[22m[90m (31)[39m
+[2m   Start at [22m 20:19:30
+[2m   Duration [22m 3.58s[2m (import 63%, tests 29%, transform 6%, worker 2%)[22m
+

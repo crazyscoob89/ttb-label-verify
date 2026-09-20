@@ -1,5 +1,6 @@
 import { DatabaseSync } from 'node:sqlite';
-import { closeSync, openSync, lstatSync } from 'node:fs';
+import { closeSync, openSync } from 'node:fs';
+import { assertPrivateLedger, assertPrivateLedgerCreation } from './ledger-security';
 import { z } from 'zod';
 import { bindingSchema, type SpendBinding, type SpendReceipt, type SpendStore } from './spend';
 
@@ -10,7 +11,9 @@ export const DEMO_RESERVATION = 1_000_000;
 export class SqliteSpendStore implements SpendStore {
   private db: DatabaseSync;
   static provision(path: string) {
+    assertPrivateLedgerCreation(path);
     const fd = openSync(path, 'wx', 0o600); closeSync(fd);
+    assertPrivateLedger(path);
     const db = new DatabaseSync(path);
     try {
       db.exec(`PRAGMA journal_mode=WAL; PRAGMA synchronous=FULL; BEGIN IMMEDIATE;
@@ -19,14 +22,17 @@ export class SqliteSpendStore implements SpendStore {
         CREATE TABLE holds (reservation TEXT PRIMARY KEY, attempt TEXT NOT NULL UNIQUE, binding TEXT NOT NULL, amount INTEGER NOT NULL CHECK(amount=1000000), state TEXT NOT NULL CHECK(state IN ('reserved','claimed','unresolved')), claim TEXT UNIQUE);
         CREATE TABLE work (id TEXT PRIMARY KEY);
         COMMIT;`);
+      assertPrivateLedger(path);
     } finally { db.close(); }
   }
   constructor(path: string) {
-    const stat = lstatSync(path);
-    if (!stat.isFile() || stat.isSymbolicLink() || (stat.mode & 0o077) !== 0) throw Error('Private existing ledger required');
+    assertPrivateLedger(path);
     this.db = new DatabaseSync(path);
-    this.db.exec('PRAGMA busy_timeout=5000; PRAGMA journal_mode=WAL; PRAGMA synchronous=FULL;');
-    try { this.totals(); } catch { this.db.close(); throw Error('Invalid ledger'); }
+    try {
+      this.db.exec('PRAGMA busy_timeout=5000; PRAGMA journal_mode=WAL; PRAGMA synchronous=FULL;');
+      assertPrivateLedger(path);
+      this.totals();
+    } catch (error) { this.db.close(); throw error; }
   }
   close() { this.db.close(); }
   totals(): SpendReceipt['ledger'] {

@@ -1,6 +1,6 @@
 import { afterEach, expect, test, vi } from 'vitest';
-import { mkdtempSync, rmSync } from 'node:fs';
-import { tmpdir } from 'node:os';
+import { rmSync } from 'node:fs';
+import { privateLedgerDir } from './fixtures/private-ledger';
 import { join } from 'node:path';
 import { createDemoHandler } from '../lib/demo-route';
 import { SqliteSpendStore } from '../lib/sqlite-spend';
@@ -10,13 +10,14 @@ import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import PairInput from '../components/PairInput';
 const dirs: string[] = [];
+vi.setConfig({ testTimeout: 60_000 }); // Real Windows ACL checks are not mocked/skipped.
 afterEach(() => { for (const d of dirs.splice(0)) rmSync(d, { recursive: true, force: true }); });
 const secret = 'synthetic-only-access-code-0123456789abcdef';
 test('access secret is user-entered, never rendered from the server environment',()=>{vi.stubEnv('TTB_DEMO_ACCESS_SECRET',secret);try{const html=renderToStaticMarkup(createElement(PairInput));expect(html).toContain('type="password"');expect(html).not.toContain(secret);}finally{vi.unstubAllEnvs();}});
 test('each missing required configuration closes before reading body',async()=>{const {env,transport}=setup();for(const key of Object.keys(env)){const req=await request();expect((await createDemoHandler({env:{...env,[key]:undefined},transport})(req)).status).toBe(403);expect(req.bodyUsed).toBe(false);}expect(transport).not.toHaveBeenCalled();});
 test('chunked body without content-length is capped before multipart decoding',async()=>{const {handler,transport}=setup();const req=new Request('https://demo.example/api/comparisons',{method:'POST',headers:{origin:'https://demo.example','x-ttb-demo-code':secret,'content-type':'multipart/form-data; boundary=x'},body:new ReadableStream({start(c){c.enqueue(new Uint8Array(11*1024*1024));c.close();}}),duplex:'half'} as RequestInit);expect((await handler(req)).status).toBe(413);expect(transport).not.toHaveBeenCalled();});
 function setup(bad = false) {
- const dir = mkdtempSync(join(tmpdir(), 'ttb-demo-')); dirs.push(dir);
+ const dir = privateLedgerDir(); dirs.push(dir);
  const path = join(dir, 'spend.sqlite'); SqliteSpendStore.provision(path);
  const transport = vi.fn(async (url: string) => url.endsWith('/models') ? Response.json({data:[{id:'anthropic/claude-haiku-4.5',context_length:200000,pricing:{prompt:'0.000001',completion:'0.000005',image:'0',request:'0'}}]}) : Response.json({choices:[{index:0,finish_reason:'stop',message:{role:'assistant',content:bad ? '{}' : JSON.stringify(fixtures.evidence)}}]}));
  const env = {TTB_DEMO_ENABLED:'true',TTB_DEMO_ACCESS_SECRET:secret,TTB_DEMO_ORIGIN:'https://demo.example',TTB_DEMO_DATA_DIR:dir,TTB_DEMO_PERSISTENT_VOLUME:'single-private-volume-v1',OPENROUTER_API_KEY:'synthetic-key'};

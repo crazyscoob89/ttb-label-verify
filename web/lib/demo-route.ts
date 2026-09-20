@@ -1,5 +1,5 @@
 import { createHash, timingSafeEqual, randomUUID } from 'node:crypto';
-import { lstatSync, realpathSync } from 'node:fs';
+
 import { isAbsolute, join } from 'node:path';
 import { MAX_IMAGE_BYTES, parseApplication } from './contracts';
 import { createComparisonService } from './compare-service';
@@ -64,7 +64,9 @@ export function createDemoHandler({env=process.env,transport=(url,init)=>fetch(u
    const supplied=request.headers.get('x-ttb-demo-code')??'';
    const hash=(s:string)=>createHash('sha256').update(s).digest();
    if(supplied.length>256||!timingSafeEqual(hash(supplied),hash(secret))||request.headers.get('origin')!==origin||new URL(request.url).origin!==origin||!['same-origin',null].includes(request.headers.get('sec-fetch-site')))return reply(403,'access-denied');
-   const stat=lstatSync(dir);if(!stat.isDirectory()||stat.isSymbolicLink()||(stat.mode&0o077)!==0||realpathSync(dir)!==dir) return reply(503,'unconfigured');
+   // SqliteSpendStore below verifies parent + ledger + sidecars using the OS's
+   // security model, before any body read/provider work. Do not duplicate POSIX
+   // mode checks here: Windows modes are not NTFS ACL evidence.
    path=join(dir,'spend.sqlite');
   } catch {return reply(403,'access-denied');}
   if(active>=2)return reply(429,'busy');active++;

@@ -1,5 +1,18 @@
 # Engineering review register
 
+## Active PR #9 — Windows SQLite repair
+
+**Reported ARGUS verdict: REVISE**, relayed by Alex for
+`7c45c74094c7712d9ca60dd6494f22c2d30edd50`. Windows reported a private-ledger
+constructor failure and two-process dedup assertion failure. The
+[repair and evidence record 22](22-pr9-windows-sqlite-repair.md) preserves those
+findings, root cause, bounded ACL-aware repair and local RED/GREEN logs.
+AVA's final **Linux Node24** gates passed (508 unit tests, typecheck); **native
+Windows proof and the replacement independent verdict remain pending**.
+The worker did not commit, push, deploy, provision a live ledger or call models.
+Parent owns verification/publication; ARGUS remains the read-only reviewer.
+Earlier scoped PASS records below do not accept this new connected demo.
+
 ## Final benchmark publication repair
 
 [Publication record 16](16-final-benchmark-publication.md) and the

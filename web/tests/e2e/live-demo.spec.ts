@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { mkdtempSync, rmSync, readFileSync } from 'node:fs';
-import { tmpdir } from 'node:os';
+import { rmSync, readFileSync } from 'node:fs';
+import { privateLedgerDir } from '../fixtures/private-ledger';
 import { join } from 'node:path';
 import { createServer } from 'node:http';
 import { createDemoHandler } from '../../lib/demo-route';
@@ -8,7 +8,7 @@ import { SqliteSpendStore } from '../../lib/sqlite-spend';
 const fixtures = JSON.parse(readFileSync(new URL('../fixtures/comparisons.json', import.meta.url),'utf8'));
 
 test('browser upload through real guarded handler and synthetic provider transport',async({page,baseURL})=>{
- const dir=mkdtempSync(join(tmpdir(),'ttb-browser-'));SqliteSpendStore.provision(join(dir,'spend.sqlite'));
+ const dir=privateLedgerDir();SqliteSpendStore.provision(join(dir,'spend.sqlite'));
  const code='synthetic-only-browser-code-0123456789abcdef';let calls=0;
  const env={TTB_DEMO_ENABLED:'true',TTB_DEMO_ACCESS_SECRET:code,TTB_DEMO_ORIGIN:'',TTB_DEMO_DATA_DIR:dir,TTB_DEMO_PERSISTENT_VOLUME:'single-private-volume-v1',OPENROUTER_API_KEY:'synthetic-key'};
  const handler=createDemoHandler({env,transport:async(url)=>{calls++;return url.endsWith('/models')?Response.json({data:[{id:'anthropic/claude-haiku-4.5',context_length:200000,pricing:{prompt:'0.000001',completion:'0.000005'}}]}):Response.json({choices:[{index:0,finish_reason:'stop',message:{role:'assistant',content:JSON.stringify(fixtures.evidence)}}]});}});
