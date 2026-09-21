@@ -9,6 +9,9 @@ import { privateLedgerDir } from './fixtures/private-ledger';
 import { image } from './fixtures/synthetic';
 import fixtures from './fixtures/comparisons.json';
 
+// Real Windows PowerShell ACL checks can exceed Vitest's default test timeout.
+if (process.platform === 'win32') vi.setConfig({ testTimeout: 60_000 });
+
 const dirs: string[] = [];
 afterEach(() => { for (const dir of dirs.splice(0)) rmSync(dir, { recursive: true, force: true }); });
 const secret = 'synthetic-only-access-code-0123456789abcdef';

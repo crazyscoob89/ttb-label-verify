@@ -3,7 +3,7 @@
 ## Status
 
 - Baseline: `fa56bcc7d5b50bb63b4bc559c91682e237f355ab`, code `75fe83d30441b3917869fb6a1164506337b9940c`, ARGUS PASS recorded in [round 26](26-live-batch-argus-pass.md).
-- New application candidate: **`e721936518e36b7c6d65b5649308f21d1b57e784`**. AVA implemented; **new independent ARGUS review pending**. A following documentation commit publishes evidence without changing application code.
+- New application candidate: **`e721936518e36b7c6d65b5649308f21d1b57e784`**. AVA implemented; **ARGUS PASS with findings at published 474c887; native full-suite correction verification pending**. A following documentation commit publishes evidence without changing application code.
 - New capability: server-owned immutable normalized label/application/comparison snapshots; explicit human review save; durable receipt; protected saved history and evidence reopen after restart. This is shared-code demo identity, not an authenticated individual reviewer or COLA approval.
 - No public deployment, hosting purchase, production review-store provisioning or merge in this tranche.
 
@@ -35,12 +35,14 @@ If snapshot storage is absent/fails, the already-completed comparison still retu
 | Project typecheck and production Webpack build | Passed | Builder |
 | Durable browser flow | Desktop1 + mobile1 passed, actual DB and service restart | Builder |
 | Prior single/batch simulated browser regressions | 2 passed | Builder |
-| Full combined unit suite | **565 tests / 28 files passed** | Independently executed by AVA parent, Node24.21.0 |
+| Full combined unit suite (Linux only) | **565 tests / 28 files passed** | Independently executed by AVA parent, Linux / Node24.21.0; not a Windows result |
 | Persisted receipt/full-record/image/integrity | Verified via separate readonly SQLite connection | AVA parent |
-| New independent/native Windows review | **Pending** | Not inherited from baseline |
+| Independent native Windows review of 474c887 | **PASS with findings; full suite 555 passed / 5 failed / 5 skipped** | ARGUS, Windows / Node22.22.2; typecheck and Turbopack build exit 0; see [bounded correction record](28-native-timeout-and-report-correction.md) |
 
 Initial RED found missing implementation; intermediate RED exposed SQL insert arity; both were repaired. Memory-limited build/browser attempts are preserved externally. Final build used bounded workers and browser Node heaps, not longer production deadlines. Every original and published selected artifact has a manifest hash; text normalization is disclosed. See [archive](evidence/pr9-durable-reviews/), including original implementation report, unit/build/browser logs, proof JSON and screenshot. Actual disposable databases and credential-bearing runtime helper directories are intentionally **not** published.
 
-## Next gate
+## Original review scope (completed; follow-up below)
 
 ARGUS reviews only `fa56bcc..e721936` for material defects in server evidence authority, transactional/idempotent saves, receipt/revision correctness, private endpoint access, immutable evidence recovery and noninterference with spending guards. No paid calls, no canonical ledger or non-disposable review DB, no source edits, no cloud work. Disposable fixture provisioning is permitted for tests. AVA owns fixes and publication. Hosting target/cost/exposure approval remains an external decision; a PASS is not deployment authority.
+
+ARGUS subsequently completed that review. The current gate is the bounded Windows timeout/report correction and a fresh native full-suite rerun, recorded in [record 28](28-native-timeout-and-report-correction.md); the implementation review is not reopened.

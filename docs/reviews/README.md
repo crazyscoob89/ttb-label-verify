@@ -1,8 +1,8 @@
 # Engineering review register
 
-## Active PR #9 — durable save/reopen candidate awaiting review
+## Active PR #9 — persistence reviewed; Windows test/report correction
 
-[Record 26](26-live-batch-argus-pass.md) preserves ARGUS PASS for75fe83d, native timeout qualifications, original logs, and distinct Webpack/Turbopack results. [Record 27](27-durable-save-reopen-candidate.md) adds bounded real batch proof on that baseline and new persistence candidate **e721936**: actual SQLite/browser/service-restart proof with simulated extraction, **565 parent-reproduced unit tests**, new ARGUS review pending. No merged/public deployment or combined real-provider-to-saved-history acceptance claimed.
+[Record 26](26-live-batch-argus-pass.md) preserves ARGUS PASS for75fe83d, native timeout qualifications, original logs, and distinct Webpack/Turbopack results. [Record 27](27-durable-save-reopen-candidate.md) adds bounded real batch proof on that baseline and new persistence candidate **e721936**: actual SQLite/browser/service-restart proof with simulated extraction, **565 parent-reproduced Linux/Node24 unit tests**. ARGUS reviewed published 474c887 on native Windows/Node22: **PASS with findings**, full suite **555 passed / 5 failed / 5 skipped**, typecheck/build exit 0. [Record 28](28-native-timeout-and-report-correction.md) preserves the original review, platform correction and file-specific Windows timeout repair; fresh native full-suite verification remains pending. No merged/public deployment or combined real-provider-to-saved-history acceptance claimed.
 
 ## Historical PR #9 — live proof and batch candidate awaiting review
 
