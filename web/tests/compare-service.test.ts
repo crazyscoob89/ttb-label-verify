@@ -72,6 +72,17 @@ describe('offline comparison composition', () => {
     const abort = new AbortController(); abort.abort();
     expect(await run(await input(), abort.signal)).toEqual({ processing: 'failed', code: 'cancelled' });
   });
+  it('awaits async snapshot acknowledgment without losing completed extraction to its old deadline', async () => {
+    let committed=false;
+    const run=createComparisonService({authorize:trusted,provider:provider(),timeoutMs:100,completed:async()=>{await new Promise(r=>setTimeout(r,150));committed=true;}});
+    expect((await run(await input())).processing).toBe('complete');expect(committed).toBe(true);
+  });
+  it('snapshot rejection preserves complete comparison and late provider completion never snapshots', async () => {
+    expect((await createComparisonService({authorize:trusted,provider:provider(),completed:async()=>{throw Error('storage');}})(await input())).processing).toBe('complete');
+    const completed=vi.fn();const base=provider();
+    const run=createComparisonService({authorize:trusted,timeoutMs:10,provider:{extract:async(req)=>{await new Promise(r=>setTimeout(r,40));return base.extract(req);}},completed});
+    expect(await run(await input())).toMatchObject({code:'timeout'});await new Promise(r=>setTimeout(r,60));expect(completed).not.toHaveBeenCalled();
+  });
   it('maps thrown provider errors to content-free processing failure', async () => {
     expect(await createComparisonService({ authorize: trusted, provider: { extract: async () => { throw Error('secret payload'); } } })(await input())).toEqual({ processing: 'failed', code: 'provider-failed' });
   });

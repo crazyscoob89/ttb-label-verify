@@ -9,9 +9,9 @@ import { MAX_IMAGE_BYTES } from './contracts';
 import type { CompleteComparison } from './comparison-record';
 import type { SavedReceipt } from './saved-review-contract';
 
-export const REVIEW_LIMITS = { snapshots:200, totalBytes:128*1024*1024, recordBytes:256*1024, requestBytes:384*1024 } as const;
+import { REVIEW_LIMITS, ReviewError } from './demo-store-contracts';
+export { REVIEW_LIMITS, ReviewError } from './demo-store-contracts';
 const requestSchema=z.object({comparisonId:z.uuid(),idempotencyKey:z.uuid(),intent:z.unknown()}).strict();
-export class ReviewError extends Error { constructor(public status:number,public code:string){super(code);} }
 export function reviewPath(env:Record<string,string|undefined>):string {
  const dir=env.TTB_REVIEW_DATA_DIR;
  if(!dir||!isAbsolute(dir)||resolve(dir)!==dir||dir===env.TTB_DEMO_DATA_DIR) throw new ReviewError(503,'reviews-disabled');
