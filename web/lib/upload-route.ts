@@ -1,4 +1,5 @@
 import { randomUUID } from 'node:crypto';
+import { mediaSigningSecret } from './runtime-env';
 import { demoAccess, InputError } from './demo-security';
 import { readMediaJson, signUploadTicket, uploadDeclarationSchema } from './hosted-media';
 import { signPrivateUpload, storageConfig, type MediaEnv } from './persistence/supabase-storage';
@@ -12,7 +13,7 @@ export function createUploadHandler({ env, quota }: {
     const reply = (status: number, code: string) => Response.json({ code }, { status, headers: { 'Cache-Control': 'no-store' } });
     if (!demoAccess(request, env)) return reply(403, 'access-denied');
     let declaration;
-    try { storageConfig(env); } catch { return reply(503, 'media-unavailable'); }
+    try { storageConfig(env); mediaSigningSecret(env); } catch { return reply(503, 'media-unavailable'); }
     try { declaration = uploadDeclarationSchema.parse(await readMediaJson(request)); }
     catch (error) { return reply(error instanceof InputError ? error.status : 400, 'invalid-input'); }
     try {

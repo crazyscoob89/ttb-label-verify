@@ -69,6 +69,12 @@ test('history rejects link metadata mismatch before Storage and verifies fetched
   fetcher.mockReset().mockResolvedValueOnce(Response.json(link)).mockResolvedValueOnce(response);await expect(loadReviewEvidence('00000000-0000-4000-8000-000000000001',hash,code,AbortSignal.timeout(1000),fetcher)).rejects.toThrow();
  }
 });
+test('build rejects public credential aliases and conflicting server/browser origins',async()=>{
+ hosted();vi.stubEnv('NEXT_PUBLIC_TTB_MEDIA_SIGNING_SECRET','never-public');vi.resetModules();
+ await expect(import('../next.config')).rejects.toThrow();
+ vi.stubEnv('NEXT_PUBLIC_TTB_MEDIA_SIGNING_SECRET',undefined);vi.stubEnv('TTB_SUPABASE_URL','https://different.supabase.co');vi.resetModules();
+ await expect(import('../next.config')).rejects.toThrow();
+});
 test('CSP adds only exact configured Storage origin, fails closed for invalid hosted origin and retains local policy',async()=>{
  hosted();vi.resetModules();let config=(await import('../next.config')).default;let headers=await config.headers!();expect(JSON.stringify(headers)).toContain(`connect-src 'self' ${origin};`);expect(JSON.stringify(headers)).not.toContain('*.supabase.co');
  vi.stubEnv('NEXT_PUBLIC_TTB_SUPABASE_ORIGIN',origin+"; connect-src *");vi.resetModules();await expect(import('../next.config')).rejects.toThrow();

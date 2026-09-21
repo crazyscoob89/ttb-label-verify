@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { applicationSchema, checkFileDeclaration, filenameSchema, MAX_IMAGE_BYTES } from './contracts';
 import { boundedBody, demoAccess, InputError } from './demo-security';
 import { readPrivateUpload, storageConfig, type MediaEnv } from './persistence/supabase-storage';
+import { mediaSigningSecret } from './runtime-env';
 import type { ComparisonInput } from './compare-service';
 
 export const UPLOAD_TICKET_SECONDS = 10 * 60;
@@ -14,13 +15,9 @@ export const uploadDeclarationSchema = z.object({ filename: filenameSchema, mime
 const ticketSchema = z.object({ v: z.literal(1), id: z.uuid(), key: z.string(), issuedAt: z.number().int().nonnegative(),
   expiresAt: z.number().int().nonnegative(), declaration: uploadDeclarationSchema }).strict();
 const ticketEnvelope = z.object({ ticket: z.string().min(1).max(60000) }).strict();
-function secret(env: MediaEnv) {
-  const key = env.TTB_DEMO_ACCESS_SECRET;
-  if (!key || !/^[A-Za-z0-9_-]{32,256}$/.test(key)) throw Error('Media unavailable');
-  return key;
-}
-// Domain separated: an upload token cannot act as a batch preparation signature.
-const mac = (payload: string, env: MediaEnv) => createHmac('sha256', secret(env)).update('ttb-upload-v1\0').update(payload).digest();
+// Domain separated and signed only with an independent server secret. Knowing
+// the shared demo access code grants issuance, never arbitrary ticket minting.
+const mac = (payload: string, env: MediaEnv) => createHmac('sha256', mediaSigningSecret(env)).update('ttb-upload-v1\0').update(payload).digest();
 export function signUploadTicket(id: string, declaration: z.output<typeof uploadDeclarationSchema>, env: MediaEnv) {
   const issuedAt = Math.floor(Date.now() / 1000);
   const data = ticketSchema.parse({ v: 1, id, key: `uploads/${id}`, issuedAt, expiresAt: issuedAt + UPLOAD_TICKET_SECONDS, declaration });

@@ -1,5 +1,5 @@
 import { afterEach, expect, test, vi } from 'vitest';
-import { createHash } from 'node:crypto';
+import { createHash, createHmac } from 'node:crypto';
 import { createSupabaseObjects } from '../lib/persistence/supabase-storage';
 import { createUploadHandler } from '../lib/upload-route';
 import { createHostedInputReader, UPLOAD_TICKET_SECONDS } from '../lib/hosted-media';
@@ -9,7 +9,7 @@ import { createComparisonService } from '../lib/compare-service';
 import fixtures from './fixtures/comparisons.json';
 import { image } from './fixtures/synthetic';
 const origin='https://synthetic-ref.supabase.co';
-const env={TTB_PERSISTENCE:'supabase',TTB_SUPABASE_URL:origin,TTB_SUPABASE_SERVICE_ROLE_KEY:'synthetic-server-only',TTB_SUPABASE_EVIDENCE_BUCKET:'ttb-evidence',TTB_SUPABASE_UPLOAD_BUCKET:'ttb-uploads',TTB_DEMO_ENABLED:'true',TTB_DEMO_ORIGIN:'https://demo.example',TTB_DEMO_ACCESS_SECRET:'a'.repeat(32)};
+const env={TTB_PERSISTENCE:'supabase',TTB_SUPABASE_URL:origin,TTB_SUPABASE_SERVICE_ROLE_KEY:'synthetic-server-only',TTB_SUPABASE_EVIDENCE_BUCKET:'ttb-evidence',TTB_SUPABASE_UPLOAD_BUCKET:'ttb-uploads',TTB_DEMO_ENABLED:'true',TTB_DEMO_ORIGIN:'https://demo.example',TTB_MEDIA_SIGNING_SECRET:'b'.repeat(64),TTB_DEMO_ACCESS_SECRET:'a'.repeat(32)};
 const id='00000000-0000-4000-8000-000000000001';
 const sha=(b:Buffer)=>createHash('sha256').update(b).digest('hex');
 const declaration=(bytes=5)=>({filename:'label.png',mime:'image/png',bytes,application:fixtures.application});
@@ -78,6 +78,29 @@ test('HMAC tamper, expiry, future issuance, wrong auth and arbitrary URL never c
  await expect(reader(request({ticket},false))).rejects.toThrow();await expect(reader(request({ticket,url:'https://evil.example'}))).rejects.toThrow();
  vi.setSystemTime(new Date('2025-12-31T23:59:59Z'));await expect(reader(request({ticket}))).rejects.toThrow();
  vi.setSystemTime(new Date(Date.UTC(2026,0,1)+UPLOAD_TICKET_SECONDS*1000));await expect(reader(request({ticket}))).rejects.toThrow();expect(fetcher).not.toHaveBeenCalled();
+});
+test('shared demo code holder cannot forge, renew, rebind or redirect a media ticket',async()=>{
+ const fetcher=mockStorage(Buffer.from('bytes'));vi.stubGlobal('fetch',fetcher);
+ const {ticket}=await(await createUploadHandler({env,quota:{reserve:vi.fn().mockResolvedValue(undefined)}})(request(declaration()))).json();
+ const data=JSON.parse(Buffer.from(ticket.split('.')[0],'base64url').toString());
+ const variants=[data,{...data,issuedAt:data.issuedAt+1,expiresAt:data.expiresAt+1},
+  {...data,id,key:`uploads/${id}`},{...data,declaration:{...data.declaration,filename:'other.png'}},
+  {...data,declaration:{...data.declaration,bytes:1}}];
+ fetcher.mockClear();
+ for(const value of variants){
+  const payload=Buffer.from(JSON.stringify(value)).toString('base64url');
+  const forged=payload+'.'+createHmac('sha256',env.TTB_DEMO_ACCESS_SECRET).update('ttb-upload-v1\0').update(payload).digest('hex');
+  await expect(createHostedInputReader(env)(request({ticket:forged}))).rejects.toThrow();
+ }
+ expect(fetcher).not.toHaveBeenCalled();
+ expect(ticket).not.toContain(env.TTB_MEDIA_SIGNING_SECRET);
+});
+test('missing, weak or shared signing key fails before quota or Storage issuance',async()=>{
+ const fetcher=mockStorage(Buffer.from('bytes'));vi.stubGlobal('fetch',fetcher);const quota={reserve:vi.fn()};
+ for(const secret of [undefined,'short',env.TTB_DEMO_ACCESS_SECRET]){
+  expect((await createUploadHandler({env:{...env,TTB_MEDIA_SIGNING_SECRET:secret},quota})(request(declaration()))).status).toBe(503);
+ }
+ expect(quota.reserve).not.toHaveBeenCalled();expect(fetcher).not.toHaveBeenCalled();
 });
 test('ticket reader enforces exact length/type and corrupt image cannot reach paid provider',async()=>{
  const bytes=Buffer.from('not a png'),fetcher=mockStorage(bytes);vi.stubGlobal('fetch',fetcher);const handler=createUploadHandler({env,quota:{reserve:vi.fn().mockResolvedValue(undefined)}});

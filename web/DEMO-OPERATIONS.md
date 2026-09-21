@@ -1,4 +1,11 @@
-# Guarded single-label demo operations
+# Guarded single-label demo operations — local SQLite mode
+
+**For Vercel + Supabase, use [HOSTED-OPERATIONS.md](HOSTED-OPERATIONS.md).** The
+persistent-volume restrictions below apply only to the local `sqlite` adapter.
+The hosted adapter uses private Storage/RPCs, never an ephemeral SQLite fallback.
+`.env.example` now defaults to hosted selection; use its commented local alternative
+and unset hosted/public settings before following these local provisioning steps.
+
 
 Node 24, one service on one host, **one private persistent local volume**. Every worker must open the same `TTB_DEMO_DATA_DIR/spend.sqlite`. This is NOT safe for serverless ephemeral filesystems, independent horizontal disks, copied databases, network filesystems without SQLite lock guarantees, or restoring an older backup. Never change data paths, replace/delete the ledger, or re-provision to reset spend. The code deliberately does not create a missing ledger at startup.
 
