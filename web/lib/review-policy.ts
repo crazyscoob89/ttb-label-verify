@@ -16,7 +16,7 @@ export type Outcome = NonNullable<ReviewIntent['outcome']>;
 export type HumanResolution = z.infer<typeof resolutionSchema>;
 export type UnsavedDraft = { state:'UNSAVED'; record:CompleteComparison; intent:ReviewIntent };
 const recordSchema = z.object({processing:z.literal('complete'),application:applicationSchema,imageSha256:z.string().regex(/^[a-f0-9]{64}$/),source:z.enum(['fixture','openrouter']),evidence:extractionEvidenceSchema,comparison:z.unknown()}).strict();
-function checkedRecord(value:unknown): CompleteComparison | null {
+export function checkedRecord(value:unknown): CompleteComparison | null {
   const parsed = recordSchema.safeParse(value);
   if (!parsed.success) return null;
   const comparison = compareApplication(parsed.data.application,parsed.data.evidence);

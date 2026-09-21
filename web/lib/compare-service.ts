@@ -3,13 +3,16 @@ import { preparePair, type ImageInput } from './intake';
 import { MAX_IMAGE_BYTES, parseApplication } from './contracts';
 import { runtimeAccess } from './access';
 import type { ExtractionProvider } from './extraction/provider';
-import { finalizeComparison, type ComparisonRecord } from './comparison-record';
+import { finalizeComparison, type ComparisonRecord, type CompleteComparison } from './comparison-record';
 
 export type ComparisonInput = { file: ImageInput; binding: { filename: string; application: unknown } };
 /** Node-only direct/offline composition. authorize is a trusted dependency, NEVER
  * supplied from a client request. No real provider is imported or configured here. */
 export function createComparisonService(options: {
   provider: ExtractionProvider; authorize?: () => boolean | Promise<boolean>; timeoutMs?: number;
+  /** Trusted synchronous server snapshot sink; never browser input. Failure must
+   * not discard a completed paid response. Called only before the deadline. */
+  completed?: (record:CompleteComparison,pair:Awaited<ReturnType<typeof preparePair>>) => void;
   /** Trusted server seam, after sanitation and before any reservation. Not an
    * input parameter clients may supply. Throw to reject a preparation binding. */
   preparedAttempt?: (pair: Awaited<ReturnType<typeof preparePair>>) => { reservationId: string; attemptId: string };
@@ -46,7 +49,9 @@ export function createComparisonService(options: {
       try {
         const result = await options.provider.extract({ image: pair.image.bytes, mimeType: pair.image.mime, ...identity });
         if (result.processing === 'failed') return fail(result.code === 'unconfigured' ? 'unconfigured' : 'provider-failed');
-        return finalizeComparison(pair.application, result, pair.image.sanitizedSha256);
+        const record=finalizeComparison(pair.application, result, pair.image.sanitizedSha256);
+        if(!stopped && record.processing==='complete') {try{options.completed?.(record,pair);}catch{/* Comparison remains available, UNSAVED. */}}
+        return record;
       } catch { return fail('provider-failed'); }
     };
     try { return await Promise.race([work(), deadline]); }

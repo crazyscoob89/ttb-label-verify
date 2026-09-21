@@ -21,11 +21,13 @@ export default function PairInput() {
   const [running, setRunning] = useState(false);
   const [record, setRecord] = useState<ComparisonRecord|null>(null);
   const [elapsed, setElapsed] = useState<number|null>(null);
+  const [comparisonId,setComparisonId]=useState<string|undefined>();
+  const [accessCode,setAccessCode]=useState('');
 
   async function check(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (running) return;
-    setRecord(null); setElapsed(null);
+    setRecord(null); setElapsed(null); setComparisonId(undefined);
     const live = (event.nativeEvent as SubmitEvent).submitter?.getAttribute('value') === 'live';
     const data = new FormData(event.currentTarget);
     const selected = data.get('image');
@@ -56,6 +58,7 @@ export default function PairInput() {
     requestAnimationFrame(() => feedbackRef.current?.focus());
     if (!live || errors.length || !result.success || !(selected instanceof File)) return;
     const code = String(data.get('accessCode') ?? '');
+    setAccessCode(code);
     if (!code) { setFeedback({kind:'error',messages:['Enter the demo access code.']}); return; }
     const body = new FormData(); body.set('image', selected); body.set('application', JSON.stringify(result.data));
     setRunning(true); const started = performance.now();
@@ -67,7 +70,7 @@ export default function PairInput() {
         setRecord(payload.result ?? null);
         const code = payload.result?.code ?? payload.code;
         setFeedback({kind:'error',messages:[code === 'access-denied' ? 'Access denied. Check the code; the server may have live demo disabled.' : code === 'invalid-input' ? 'Invalid image or application. Check the file signature, size and required fields.' : `Comparison unavailable (${code ?? 'provider-failed'}). No match was produced. A spend hold may remain; do not automatically retry.`]});
-      } else { setRecord(payload.result); setFeedback({kind:'checked',messages:['Live provider observations compared using local rules. Human review required; nothing saved.']}); }
+      } else { setRecord(payload.result);setComparisonId(payload.comparisonId); setFeedback({kind:'checked',messages:[`Live provider observations compared using local rules. Human review required; check submission status below. ${payload.comparisonId?'Server snapshot available for explicit save.':'Durable save unavailable; comparison retained on this page only.'}`]}); }
     } catch { setElapsed(Math.round(performance.now()-started)); setFeedback({kind:'error',messages:['Network or provider timeout. No match produced; spend may have been incurred. No automatic retry.']}); }
     finally { setRunning(false); requestAnimationFrame(()=>feedbackRef.current?.focus()); }
   }
@@ -102,9 +105,9 @@ export default function PairInput() {
       {feedback.kind === 'error' && <strong>Check the required input</strong>}
       <ul>{feedback.messages.map(message => <li key={message}>{message}</li>)}</ul>
     </div>}
-    <div className="notice" id="processing-help"><strong>Guarded live demo</strong><p>Requires a server-enabled demo and access code. No saved history or durable review submission. Reload clears this draft. No automatic retries.</p></div>
+    <div className="notice" id="processing-help"><strong>Guarded live demo</strong><p>Requires a server-enabled demo and shared access code, not individual reviewer authentication. Only a confirmed SAVED receipt is durable. No automatic comparison retries.</p></div>
   </form>
   {elapsed !== null && <p role="status">Measured elapsed time: {elapsed} ms (request processing, not a model-only benchmark).</p>}
-  {record?.processing === 'complete' && <section aria-label="Live comparison results"><p className="notice hash">Source: {record.source} · Application {record.application.applicationId} / {record.application.applicationVersion} · Sanitized image SHA-256 {record.imageSha256}</p><h2>Seven-field comparison</h2><table><thead><tr><th>Field</th><th>Observed evidence</th><th>Expected</th><th>Machine finding</th></tr></thead><tbody>{FIELD_KEYS.map(key=>{const field=record.comparison.fields[key];return <tr key={key}><th>{key}</th><td><pre style={{whiteSpace:'pre-wrap'}}>{JSON.stringify(field.observed,null,2)}</pre></td><td>{field.expected}</td><td><strong className={`status ${field.status}`}>{field.status}</strong><p>{field.reasons.join(' ')}</p></td></tr>;})}</tbody></table><ReviewConfirmation key={record.imageSha256+String(elapsed)} record={record}/></section>}
+  {record?.processing === 'complete' && <section aria-label="Live comparison results"><p className="notice hash">Source: {record.source} · Application {record.application.applicationId} / {record.application.applicationVersion} · Sanitized image SHA-256 {record.imageSha256}</p><h2>Seven-field comparison</h2><table><thead><tr><th>Field</th><th>Observed evidence</th><th>Expected</th><th>Machine finding</th></tr></thead><tbody>{FIELD_KEYS.map(key=>{const field=record.comparison.fields[key];return <tr key={key}><th>{key}</th><td><pre style={{whiteSpace:'pre-wrap'}}>{JSON.stringify(field.observed,null,2)}</pre></td><td>{field.expected}</td><td><strong className={`status ${field.status}`}>{field.status}</strong><p>{field.reasons.join(' ')}</p></td></tr>;})}</tbody></table><ReviewConfirmation key={record.imageSha256+String(elapsed)} record={record} comparisonId={comparisonId} accessCode={accessCode}/></section>}
   </>;
 }

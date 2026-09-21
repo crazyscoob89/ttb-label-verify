@@ -19,7 +19,8 @@ export async function prepareLivePair(file: File, application: Application, code
  * File objects are retained by the workspace; only active slots upload them.
  */
 export async function executeLivePair(command: DispatchCommand, file: File, code: string,
-  acceptPreparation: (token: AttemptToken, imageSha256: string) => boolean, transport: Fetch = fetch): Promise<unknown> {
+  acceptPreparation: (token: AttemptToken, imageSha256: string) => boolean, transport: Fetch = fetch,
+  onSnapshot?: (comparisonId:string) => void): Promise<unknown> {
   try {
     if (file.name !== command.image.filename) throw Error('invalid-input');
     const prepared = await prepareLivePair(file, command.application, code, transport);
@@ -29,6 +30,7 @@ export async function executeLivePair(command: DispatchCommand, file: File, code
       'x-ttb-demo-code': code, 'x-ttb-batch-phase': 'execute', 'x-ttb-batch-intent': headerIntent(command.token), 'x-ttb-batch-binding': prepared.binding,
     }, body, cache: 'no-store', signal: AbortSignal.timeout(35000) });
     const payload = await response.json();
+    if(response.ok&&payload.result?.processing==='complete'&&z.uuid().safeParse(payload.comparisonId).success)onSnapshot?.(payload.comparisonId);
     return payload.result ?? { processing: 'failed', code: 'provider-failed' };
   } catch (error) {
     return { processing: 'failed', code: error instanceof Error && error.message === 'invalid-input' ? 'invalid-input' : 'provider-failed' };

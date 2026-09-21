@@ -1,4 +1,6 @@
-import { createHash, timingSafeEqual, randomUUID } from 'node:crypto';
+import { randomUUID } from 'node:crypto';
+import { demoAccess, boundedBody, InputError } from './demo-security';
+import { ReviewStore, reviewPath } from './review-store';
 
 import { isAbsolute, join } from 'node:path';
 import { MAX_IMAGE_BYTES, parseApplication } from './contracts';
@@ -10,16 +12,7 @@ import { batchAttemptSchema, signBatchBinding, verifyBatchBinding } from './batc
 
 const BODY_LIMIT = MAX_IMAGE_BYTES + 32768;
 let active = 0;
-class InputError extends Error { constructor(public status:number) { super('Rejected input'); } }
-async function boundedBody(message: Request | Response, max:number, timeout=5000): Promise<Buffer> {
- const length=message.headers.get('content-length');
- if(length!==null && (!/^\d+$/.test(length)||Number(length)>max))throw new InputError(413);
- const reader=message.body?.getReader();if(!reader)throw new InputError(400);
- let timer:ReturnType<typeof setTimeout>|undefined;
- const work=async()=>{const chunks:Uint8Array[]=[];let size=0;for(;;){const {done,value}=await reader.read();if(done)break;size+=value.byteLength;if(size>max)throw new InputError(413);chunks.push(value);}return Buffer.concat(chunks,size);};
- try{return await Promise.race([work(),new Promise<never>((_,reject)=>{timer=setTimeout(()=>reject(new InputError(408)),timeout);})]);}
- finally{clearTimeout(timer);void reader.cancel().catch(()=>{});}
-}
+
 /** Catalog checked immediately before each paid dispatch, inside executeReserved.
  * No retry/cache, no unknown nonzero fees; price/context drift closes the route. */
 function priceCheckedTransport(transport:Transport):Transport {
@@ -63,9 +56,7 @@ export function createDemoHandler({env=process.env,transport=(url,init)=>fetch(u
   try {
    const secret=env.TTB_DEMO_ACCESS_SECRET;const origin=env.TTB_DEMO_ORIGIN;const dir=env.TTB_DEMO_DATA_DIR;
    if(env.TTB_DEMO_ENABLED!=='true'||!secret||!/^[A-Za-z0-9_-]{32,256}$/.test(secret)||!env.OPENROUTER_API_KEY||!origin||new URL(origin).origin!==origin||!dir||!isAbsolute(dir)||env.TTB_DEMO_PERSISTENT_VOLUME!=='single-private-volume-v1')return reply(403,'access-denied');
-   const supplied=request.headers.get('x-ttb-demo-code')??'';
-   const hash=(s:string)=>createHash('sha256').update(s).digest();
-   if(supplied.length>256||!timingSafeEqual(hash(supplied),hash(secret))||request.headers.get('origin')!==origin||new URL(request.url).origin!==origin||!['same-origin',null].includes(request.headers.get('sec-fetch-site')))return reply(403,'access-denied');
+   if(!demoAccess(request,env))return reply(403,'access-denied');
    // SqliteSpendStore below verifies parent + ledger + sidecars using the OS's
    // security model, before any body read/provider work. Do not duplicate POSIX
    // mode checks here: Windows modes are not NTFS ACL evidence.
@@ -101,12 +92,20 @@ export function createDemoHandler({env=process.env,transport=(url,init)=>fetch(u
    }
    const provider=createOpenRouterProvider({authorized:true,apiKey:env.OPENROUTER_API_KEY,store,maxCostMicrousd:DEMO_RESERVATION,transport:priceCheckedTransport(transport)});
    const identity = intent;
-   const compare=createComparisonService({provider,authorize:()=>true,preparedAttempt:identity ? pair => {
+   let comparisonId:string|undefined;
+   let reviewAvailability='reviews-disabled';
+   const compare=createComparisonService({provider,authorize:()=>true,completed:(record,pair)=>{
+    if(!env.TTB_REVIEW_DATA_DIR)return;
+    let reviews:ReviewStore|undefined;
+    try {reviews=new ReviewStore(reviewPath(env));comparisonId=reviews.snapshot(record,pair.image.bytes,pair.image.mime);reviewAvailability='available';}
+    catch {reviewAvailability='snapshot-unavailable';}
+    finally {reviews?.close();}
+   },preparedAttempt:identity ? pair => {
     if (!verifyBatchBinding(pair,env.TTB_DEMO_ACCESS_SECRET!,binding!)) throw Error('Preparation mismatch');
     return {attemptId:identity.attemptId,reservationId:identity.reservationId};
    } : undefined});
    const result=await compare(input);
-   return Response.json({result,elapsedMs:Math.round(performance.now()-started)},{status:result.processing==='complete'?200:result.code==='invalid-input'?400:502,headers:{'Cache-Control':'no-store'}});
+   return Response.json({result,comparisonId,reviewAvailability,elapsedMs:Math.round(performance.now()-started)},{status:result.processing==='complete'?200:result.code==='invalid-input'?400:502,headers:{'Cache-Control':'no-store'}});
   }catch(e){return reply(e instanceof InputError?e.status:400,'invalid-input');}
   finally{if(store){try{if(acquired)store.releaseWork(workId);}catch{}try{store.close();}catch{}}active--;}
  };
