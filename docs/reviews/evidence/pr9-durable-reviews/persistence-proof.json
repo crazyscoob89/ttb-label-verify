@@ -1,0 +1,222 @@
+{
+  "pids": [
+    59962,
+    61128
+  ],
+  "reviewDb": "/opt/data/ttb-durable-review-evidence/disposable-ttb-review-3fNK66/reviews/reviews.sqlite",
+  "receipt": {
+    "state": "SAVED",
+    "reviewId": "172b86fe-aa6e-48c2-b566-1f04b3407f63",
+    "comparisonId": "ab0c7d14-cdca-4163-abe2-a2b33b5efb99",
+    "savedAt": "2026-09-21T01:51:41.602Z",
+    "identity": "Shared demo access code — NOT an individually authenticated reviewer"
+  },
+  "record": {
+    "processing": "complete",
+    "application": {
+      "applicationId": "DURABLE-SYNTHETIC-001",
+      "applicationVersion": "original-v1",
+      "brand": "Old Harbor",
+      "classType": "Vodka",
+      "abv": 40,
+      "netContents": "750 mL",
+      "producerName": "Harbor Distillery",
+      "producerAddress": "12 Wharf Road, Paris",
+      "commodity": "distilled-spirits",
+      "imported": true,
+      "origin": {
+        "kind": "imported",
+        "country": "France"
+      }
+    },
+    "imageSha256": "46912750a0d1708a9883e83ce8161f3e1eb811ab5060b6037473437ffc0095e3",
+    "source": "openrouter",
+    "evidence": {
+      "schemaVersion": 1,
+      "brand": {
+        "status": "readable",
+        "text": "Old Harbor",
+        "reason": "Synthetic legible brand"
+      },
+      "classType": {
+        "status": "readable",
+        "text": "Vodka",
+        "reason": "Synthetic legible class"
+      },
+      "abv": {
+        "status": "readable",
+        "text": "40%",
+        "reason": "Synthetic legible ABV"
+      },
+      "netContents": {
+        "status": "readable",
+        "text": "750 mL",
+        "reason": "Synthetic legible volume"
+      },
+      "producer": {
+        "name": {
+          "status": "readable",
+          "text": "Harbor Distillery",
+          "reason": "Synthetic legible name"
+        },
+        "address": {
+          "status": "readable",
+          "text": "12 Wharf Road, Paris",
+          "reason": "Synthetic legible address"
+        }
+      },
+      "origin": {
+        "status": "readable",
+        "text": "France",
+        "reason": "Synthetic legible country"
+      },
+      "warning": {
+        "heading": {
+          "status": "readable",
+          "text": "GOVERNMENT WARNING:",
+          "reason": "Synthetic legible heading"
+        },
+        "body": {
+          "status": "readable",
+          "text": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+          "reason": "Synthetic legible body"
+        },
+        "headingBold": true,
+        "bodyBold": false
+      }
+    },
+    "comparison": {
+      "processing": "complete",
+      "applicationId": "DURABLE-SYNTHETIC-001",
+      "applicationVersion": "original-v1",
+      "rulesVersion": "prototype-seven-fields-v1",
+      "fields": {
+        "brand": {
+          "status": "match",
+          "reasons": [
+            "Brand: readable text agrees under case/whitespace/NFC equivalence."
+          ],
+          "expected": "Old Harbor",
+          "observed": {
+            "status": "readable",
+            "text": "Old Harbor",
+            "reason": "Synthetic legible brand"
+          }
+        },
+        "classType": {
+          "status": "match",
+          "reasons": [
+            "Class/type: readable text agrees under case/whitespace/NFC equivalence."
+          ],
+          "expected": "Vodka",
+          "observed": {
+            "status": "readable",
+            "text": "Vodka",
+            "reason": "Synthetic legible class"
+          }
+        },
+        "abv": {
+          "status": "match",
+          "reasons": [
+            "ABV: equal declared/observed decimal percentage; no regulatory tolerance applied."
+          ],
+          "expected": "40",
+          "observed": {
+            "status": "readable",
+            "text": "40%",
+            "reason": "Synthetic legible ABV"
+          }
+        },
+        "netContents": {
+          "status": "match",
+          "reasons": [
+            "Net contents: equal exact metric volume (1 L = 1000 mL); standards of fill not evaluated."
+          ],
+          "expected": "750 mL",
+          "observed": {
+            "status": "readable",
+            "text": "750 mL",
+            "reason": "Synthetic legible volume"
+          }
+        },
+        "producer": {
+          "status": "match",
+          "reasons": [
+            "Producer name: readable text agrees under case/whitespace/NFC equivalence.",
+            "Producer address: readable text agrees under case/whitespace/NFC equivalence."
+          ],
+          "expected": "Harbor Distillery\n12 Wharf Road, Paris",
+          "observed": {
+            "name": {
+              "status": "readable",
+              "text": "Harbor Distillery",
+              "reason": "Synthetic legible name"
+            },
+            "address": {
+              "status": "readable",
+              "text": "12 Wharf Road, Paris",
+              "reason": "Synthetic legible address"
+            }
+          }
+        },
+        "origin": {
+          "status": "match",
+          "reasons": [
+            "Origin applies to imported distilled-spirits.",
+            "Imported country of origin: readable text agrees under case/whitespace/NFC equivalence."
+          ],
+          "expected": "France",
+          "observed": {
+            "status": "readable",
+            "text": "France",
+            "reason": "Synthetic legible country"
+          }
+        },
+        "warning": {
+          "status": "match",
+          "reasons": [
+            "Warning all-caps heading: readable text agrees under exact wording (layout whitespace only).",
+            "Warning body wording: readable text agrees under exact wording (layout whitespace only).",
+            "Warning bold heading: observed as required.",
+            "Warning nonbold body: observed as required."
+          ],
+          "expected": "GOVERNMENT WARNING:\n(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+          "observed": {
+            "heading": {
+              "status": "readable",
+              "text": "GOVERNMENT WARNING:",
+              "reason": "Synthetic legible heading"
+            },
+            "body": {
+              "status": "readable",
+              "text": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+              "reason": "Synthetic legible body"
+            },
+            "headingBold": true,
+            "bodyBold": false
+          }
+        }
+      },
+      "physicalPrintSize": {
+        "status": "unverified",
+        "reason": "Physical print size cannot be established from extraction/photo evidence; not measured or certified. This source-backed prototype is not exhaustive TTB legal certification."
+      }
+    }
+  },
+  "intent": {
+    "bindingKey": "{\"processing\":\"complete\",\"application\":{\"applicationId\":\"DURABLE-SYNTHETIC-001\",\"applicationVersion\":\"original-v1\",\"brand\":\"Old Harbor\",\"classType\":\"Vodka\",\"abv\":40,\"netContents\":\"750 mL\",\"producerName\":\"Harbor Distillery\",\"producerAddress\":\"12 Wharf Road, Paris\",\"commodity\":\"distilled-spirits\",\"imported\":true,\"origin\":{\"kind\":\"imported\",\"country\":\"France\"}},\"imageSha256\":\"46912750a0d1708a9883e83ce8161f3e1eb811ab5060b6037473437ffc0095e3\",\"source\":\"openrouter\",\"evidence\":{\"schemaVersion\":1,\"brand\":{\"status\":\"readable\",\"text\":\"Old Harbor\",\"reason\":\"Synthetic legible brand\"},\"classType\":{\"status\":\"readable\",\"text\":\"Vodka\",\"reason\":\"Synthetic legible class\"},\"abv\":{\"status\":\"readable\",\"text\":\"40%\",\"reason\":\"Synthetic legible ABV\"},\"netContents\":{\"status\":\"readable\",\"text\":\"750 mL\",\"reason\":\"Synthetic legible volume\"},\"producer\":{\"name\":{\"status\":\"readable\",\"text\":\"Harbor Distillery\",\"reason\":\"Synthetic legible name\"},\"address\":{\"status\":\"readable\",\"text\":\"12 Wharf Road, Paris\",\"reason\":\"Synthetic legible address\"}},\"origin\":{\"status\":\"readable\",\"text\":\"France\",\"reason\":\"Synthetic legible country\"},\"warning\":{\"heading\":{\"status\":\"readable\",\"text\":\"GOVERNMENT WARNING:\",\"reason\":\"Synthetic legible heading\"},\"body\":{\"status\":\"readable\",\"text\":\"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\"reason\":\"Synthetic legible body\"},\"headingBold\":true,\"bodyBold\":false}},\"comparison\":{\"processing\":\"complete\",\"applicationId\":\"DURABLE-SYNTHETIC-001\",\"applicationVersion\":\"original-v1\",\"rulesVersion\":\"prototype-seven-fields-v1\",\"fields\":{\"brand\":{\"status\":\"match\",\"reasons\":[\"Brand: readable text agrees under case/whitespace/NFC equivalence.\"],\"expected\":\"Old Harbor\",\"observed\":{\"status\":\"readable\",\"text\":\"Old Harbor\",\"reason\":\"Synthetic legible brand\"}},\"classType\":{\"status\":\"match\",\"reasons\":[\"Class/type: readable text agrees under case/whitespace/NFC equivalence.\"],\"expected\":\"Vodka\",\"observed\":{\"status\":\"readable\",\"text\":\"Vodka\",\"reason\":\"Synthetic legible class\"}},\"abv\":{\"status\":\"match\",\"reasons\":[\"ABV: equal declared/observed decimal percentage; no regulatory tolerance applied.\"],\"expected\":\"40\",\"observed\":{\"status\":\"readable\",\"text\":\"40%\",\"reason\":\"Synthetic legible ABV\"}},\"netContents\":{\"status\":\"match\",\"reasons\":[\"Net contents: equal exact metric volume (1 L = 1000 mL); standards of fill not evaluated.\"],\"expected\":\"750 mL\",\"observed\":{\"status\":\"readable\",\"text\":\"750 mL\",\"reason\":\"Synthetic legible volume\"}},\"producer\":{\"status\":\"match\",\"reasons\":[\"Producer name: readable text agrees under case/whitespace/NFC equivalence.\",\"Producer address: readable text agrees under case/whitespace/NFC equivalence.\"],\"expected\":\"Harbor Distillery\\n12 Wharf Road, Paris\",\"observed\":{\"name\":{\"status\":\"readable\",\"text\":\"Harbor Distillery\",\"reason\":\"Synthetic legible name\"},\"address\":{\"status\":\"readable\",\"text\":\"12 Wharf Road, Paris\",\"reason\":\"Synthetic legible address\"}}},\"origin\":{\"status\":\"match\",\"reasons\":[\"Origin applies to imported distilled-spirits.\",\"Imported country of origin: readable text agrees under case/whitespace/NFC equivalence.\"],\"expected\":\"France\",\"observed\":{\"status\":\"readable\",\"text\":\"France\",\"reason\":\"Synthetic legible country\"}},\"warning\":{\"status\":\"match\",\"reasons\":[\"Warning all-caps heading: readable text agrees under exact wording (layout whitespace only).\",\"Warning body wording: readable text agrees under exact wording (layout whitespace only).\",\"Warning bold heading: observed as required.\",\"Warning nonbold body: observed as required.\"],\"expected\":\"GOVERNMENT WARNING:\\n(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\"observed\":{\"heading\":{\"status\":\"readable\",\"text\":\"GOVERNMENT WARNING:\",\"reason\":\"Synthetic legible heading\"},\"body\":{\"status\":\"readable\",\"text\":\"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\"reason\":\"Synthetic legible body\"},\"headingBold\":true,\"bodyBold\":false}}},\"physicalPrintSize\":{\"status\":\"unverified\",\"reason\":\"Physical print size cannot be established from extraction/photo evidence; not measured or certified. This source-backed prototype is not exhaustive TTB legal certification.\"}}}",
+    "outcome": "second-review",
+    "confirmed": true,
+    "physical": {
+      "checked": false,
+      "note": ""
+    },
+    "notes": "Synthetic durability proof: original evidence needs another reviewer.",
+    "resolutions": {}
+  },
+  "imageSha256": "46912750a0d1708a9883e83ce8161f3e1eb811ab5060b6037473437ffc0095e3",
+  "savedReviewCount": 2,
+  "identicalRetry": true,
+  "unauthenticatedEvidenceStatus": 403,
+  "browserErrors": []
+}

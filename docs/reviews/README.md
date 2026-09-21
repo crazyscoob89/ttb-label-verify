@@ -1,6 +1,10 @@
 # Engineering review register
 
-## Active PR #9 — live proof and batch candidate awaiting review
+## Active PR #9 — durable save/reopen candidate awaiting review
+
+[Record 26](26-live-batch-argus-pass.md) preserves ARGUS PASS for75fe83d, native timeout qualifications, original logs, and distinct Webpack/Turbopack results. [Record 27](27-durable-save-reopen-candidate.md) adds bounded real batch proof on that baseline and new persistence candidate **e721936**: actual SQLite/browser/service-restart proof with simulated extraction, **565 parent-reproduced unit tests**, new ARGUS review pending. No merged/public deployment or combined real-provider-to-saved-history acceptance claimed.
+
+## Historical PR #9 — live proof and batch candidate awaiting review
 
 [Record 25](25-live-provider-and-batch-candidate.md) preserves the first live failure, provider-format repair, two successful real-model comparisons, human-review provenance correction and guarded batch implementation. Frozen code `75fe83d30441b3917869fb6a1164506337b9940c`: AVA parent reproduced **562 unit tests**; builder type/build and synthetic browser gates passed. New ARGUS review remains pending. No durable saved history or deployed URL is claimed.
 

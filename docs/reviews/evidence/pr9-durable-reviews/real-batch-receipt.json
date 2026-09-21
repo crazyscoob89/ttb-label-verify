@@ -1,0 +1,290 @@
+{
+  "schemaVersion": 1,
+  "verdict": "PASS \u2014 bounded real-provider live batch and UNSAVED draft usability",
+  "createdAt": "2026-09-21T01:05:32.756909+00:00",
+  "sourceAcceptance": {
+    "label": "ARGUS-reviewed accepted code 75fe83d; documentation head fa56bcc",
+    "basis": "Delegated parent context: /host-home/Projects/argus-pr9-live-batch-review/docs/reviews/verdict.md PASS, no critical/high. No new ARGUS call or source review performed.",
+    "executedRoot": "/opt/data/ttb-live-batch-paid-75fe83d/web",
+    "snapshotHasGitMetadata": false,
+    "sourceAndBuildFileCount": 338,
+    "beforeAfterManifestSha256": "d81c4bb2bd9e73ad4a5bd489dab19a50aae587eda19471433689a62544778c3d",
+    "unchanged": true,
+    "exclusions": [
+      "node_modules dependency symlink (not modified)",
+      "git metadata"
+    ]
+  },
+  "execution": {
+    "origin": "http://localhost:3187",
+    "bind": "127.0.0.1",
+    "browser": "Headless Chromium via Playwright",
+    "model": "anthropic/claude-haiku-4.5",
+    "startedAt": "2026-09-21T01:00:11.698Z",
+    "finishedAt": "2026-09-21T01:00:21.349Z",
+    "batchRows": 2,
+    "explicitStarts": 1,
+    "prepareRequests": 2,
+    "executeRequests": 2,
+    "catalogRequests": 2,
+    "actualProviderAttempts": 2,
+    "automaticRetries": 0,
+    "fallbacks": false,
+    "beforeStartComparisonRequests": 0,
+    "pageErrors": [],
+    "drafts": 2,
+    "savedReviews": 0,
+    "humanUiExercisedByAutomation": true,
+    "independentPhysicalAssessmentPerformed": false,
+    "finalQueue": "Total: 2 \u00b7 Compared: 2 \u00b7 Failed: 0 \u00b7 Blocked: 0 \u00b7 Queued: 0 \u00b7 Running: 0\n\nSaved reviews: 0 \u00b7 UNSAVED drafts: 2 \u00b7 Remaining: 2 \u00b7 Attempts: 2 \u00b7 Occupied slots: 0\n\nSaved outcomes \u2014 Pass: 0 \u00b7 Correction: 0 \u00b7 Second review: 0",
+    "retainedFileCount": 2,
+    "manifestRetained": true
+  },
+  "rows": [
+    {
+      "name": "match",
+      "applicationId": "LIVE-BATCH-75fe83d-match",
+      "imageSha256": "46912750a0d1708a9883e83ce8161f3e1eb811ab5060b6037473437ffc0095e3",
+      "source": "openrouter",
+      "processing": "complete",
+      "fields": {
+        "brand": "match",
+        "classType": "match",
+        "abv": "match",
+        "netContents": "match",
+        "producer": "match",
+        "origin": "match",
+        "warning": "match"
+      },
+      "observedAbv": "40%",
+      "expectedAbv": 40,
+      "httpStatus": 200,
+      "timingsMs": {
+        "prepareBrowserRequest": 995.968,
+        "executeBrowserRequest": 4670.127,
+        "executeServerRoute": 4620,
+        "providerThroughFullResponseBody": 4385.922461999999,
+        "startToRowDisplayed": 5722.0,
+        "reviewSubmitToDraft": 51.56861099999878
+      },
+      "providerModel": "anthropic/claude-haiku-4.5",
+      "providerReportedBackend": "Amazon Bedrock",
+      "providerReportedCostUsd": "0.00462627",
+      "providerUsage": {
+        "prompt_tokens": 2263,
+        "completion_tokens": 482,
+        "total_tokens": 2745,
+        "cost": 0.00462627,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.004673,
+          "upstream_inference_prompt_cost": 0.002263,
+          "upstream_inference_completions_cost": 0.00241
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "providerObservationId": 3,
+      "draftText": "UNSAVED draft \u2014 Second reviewer\n\nNot committed to a server. Reload or changing evidence clears this draft. No authenticated reviewer, timestamp, durable receipt, history or external notification.\n\nApplication LIVE-BATCH-75fe83d-match / version 1\n\nNotes: Synthetic-only usability acceptance draft. Image findings reviewed; physical print/type size has not been assessed. Escalate for an independent human assessment.",
+      "passBlocked": true,
+      "draftRetainedAfterNavigation": true,
+      "machineFindingsUnchanged": true
+    },
+    {
+      "name": "discrepancy",
+      "applicationId": "LIVE-BATCH-75fe83d-discrepancy",
+      "imageSha256": "3f726b34a74502131164b34f75d29e6521505bd3fd6471598fa0c05724bcfd48",
+      "source": "openrouter",
+      "processing": "complete",
+      "fields": {
+        "brand": "match",
+        "classType": "match",
+        "abv": "mismatch",
+        "netContents": "match",
+        "producer": "match",
+        "origin": "match",
+        "warning": "match"
+      },
+      "observedAbv": "45%",
+      "expectedAbv": 40,
+      "httpStatus": 200,
+      "timingsMs": {
+        "prepareBrowserRequest": 975.68,
+        "executeBrowserRequest": 4762.844,
+        "executeServerRoute": 4735,
+        "providerThroughFullResponseBody": 4434.544972000003,
+        "startToRowDisplayed": 5791.0,
+        "reviewSubmitToDraft": 51.418900000000576
+      },
+      "providerModel": "anthropic/claude-haiku-4.5",
+      "providerReportedBackend": "Amazon Bedrock",
+      "providerReportedCostUsd": "0.00460152",
+      "providerUsage": {
+        "prompt_tokens": 2263,
+        "completion_tokens": 477,
+        "total_tokens": 2740,
+        "cost": 0.00460152,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.004648,
+          "upstream_inference_prompt_cost": 0.002263,
+          "upstream_inference_completions_cost": 0.002385
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      },
+      "providerObservationId": 4,
+      "draftText": "UNSAVED draft \u2014 Request correction\n\nNot committed to a server. Reload or changing evidence clears this draft. No authenticated reviewer, timestamp, durable receipt, history or external notification.\n\nApplication LIVE-BATCH-75fe83d-discrepancy / version 1\n\nNotes: Synthetic-only acceptance draft: correct the label/application ABV discrepancy (label 45%, application 40%) and obtain a new review. No external notification.\n\nAlcohol by volume: confirmed-mismatch \u2014 Synthetic label states 45% ABV; the mapped application states 40%. This is a real fixture discrepancy, not an extraction correction. Supporting evidence: Approved discrepancy.png visibly states 45%; application abv is 40.. Machine finding retained: mismatch.",
+      "passBlocked": true,
+      "draftRetainedAfterNavigation": true,
+      "machineFindingsUnchanged": true
+    }
+  ],
+  "timingsMs": {
+    "browserLaunchMs": 744.4819269999999,
+    "navigationMs": 678.6880789999998,
+    "manifestValidationMs": 194.75866099999985,
+    "startToSettledDisplayMs": 5795.398125,
+    "totalBrowserRunMs": 12573.027693
+  },
+  "concurrency": {
+    "browserComparisonRequestsMax": 2,
+    "providerAttemptsMax": 2,
+    "ledgerWorkSlotsSampledMax": 2,
+    "ledgerClaimedHoldsSampledMax": 2,
+    "uiOccupiedSlotsMax": 2,
+    "ledgerSampleIntervalMs": 50
+  },
+  "cost": {
+    "currency": "USD",
+    "providerReportedCostMetadataUsd": "0.00922779",
+    "label": "Provider-reported usage.cost metadata; not a billing settlement, refund or ledger reconciliation",
+    "ledgerPath": "/opt/data/ttb-demo-private/spend.sqlite",
+    "sameExistingLedgerInode": 4222124653476316,
+    "sharedCeilingUsd": "25.00",
+    "priorUnresolvedHeldUpperBoundUsd": "3.00",
+    "newUnresolvedHeldUpperBoundUsd": "2.00",
+    "finalUnresolvedHeldUpperBoundUsd": "5.00",
+    "remainingCapacityUsd": "20.00",
+    "ledgerIncurredMicrousd": 0,
+    "incurredZeroMeans": "No costs reconciled into incurred; it does NOT mean zero actual provider spend",
+    "oldHoldsUnchanged": true,
+    "newHolds": 2,
+    "finalHoldCount": 5,
+    "finalWorkSlots": 0,
+    "allHoldsUnresolved": true,
+    "provisionCopyResetRefundOrSecondAuthorization": false
+  },
+  "shutdown": {
+    "serverExit": {
+      "code": 143,
+      "signal": null,
+      "time": "2026-09-21T01:00:29.006Z"
+    },
+    "ownedServerPidsAbsent": true,
+    "browserClosed": true,
+    "ownedRunnersRemaining": [],
+    "chromiumProcessesRemaining": [],
+    "port3187Closed": true,
+    "frozenSourceAndBuildUnchanged": true
+  },
+  "sanitization": {
+    "at": "2026-09-21T01:05:32.526Z",
+    "rawCredentialValueScanPassed": true,
+    "scannedFiles": 30,
+    "leaks": [],
+    "screenshotChecks": [
+      {
+        "file": "batch-before-start.png",
+        "width": 1440,
+        "height": 2645,
+        "maskPixels": 61548
+      },
+      {
+        "file": "batch-final.png",
+        "width": 1440,
+        "height": 5003,
+        "maskPixels": 61548
+      },
+      {
+        "file": "batch-settled.png",
+        "width": 1440,
+        "height": 4330,
+        "maskPixels": 61548
+      },
+      {
+        "file": "browser-final.png",
+        "width": 1440,
+        "height": 5003,
+        "maskPixels": 61548
+      },
+      {
+        "file": "discrepancy-comparison.png",
+        "width": 1440,
+        "height": 4802,
+        "maskPixels": 61548
+      },
+      {
+        "file": "discrepancy-review.png",
+        "width": 1440,
+        "height": 5003,
+        "maskPixels": 61548
+      },
+      {
+        "file": "match-comparison.png",
+        "width": 1440,
+        "height": 4330,
+        "maskPixels": 61548
+      },
+      {
+        "file": "match-review.png",
+        "width": 1440,
+        "height": 4498,
+        "maskPixels": 61548
+      }
+    ],
+    "requestHeadersOrAuthLogged": false,
+    "screenshots": "Every capture masks all input[type=password] elements; only approved synthetic labels/application data are displayed."
+  },
+  "evidence": {
+    "browser": "browser-result.json",
+    "transport": "transport.jsonl",
+    "before": "snapshot-before.json",
+    "after": "snapshot-after.json",
+    "manifest": "manifest.json",
+    "queueAndSevenFieldScreenshots": [
+      "batch-before-start.png",
+      "batch-final.png",
+      "batch-settled.png",
+      "browser-final.png",
+      "discrepancy-comparison.png",
+      "discrepancy-review.png",
+      "match-comparison.png",
+      "match-review.png"
+    ]
+  },
+  "limitations": [
+    "Synthetic approved labels only; not a benchmark, real application adjudication, legal approval or government submission.",
+    "Automation exercised the human-review controls. No authenticated human reviewer, physical print assessment, durable commit, history or external notification.",
+    "Timing is this single local warm-server run, not a throughput or latency guarantee.",
+    "ARGUS acceptance provenance is supplied by parent; this frozen copy has no .git metadata."
+  ]
+}

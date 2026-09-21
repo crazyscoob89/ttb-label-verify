@@ -1,0 +1,8 @@
+# Original ARGUS artifacts: preserve bytes, BOMs, and native line endings.
+/verdict.md -text -filter -ident !eol !working-tree-encoding
+/NOTES-setup.md -text -filter -ident !eol !working-tree-encoding
+/build.txt -text -filter -ident !eol !working-tree-encoding
+/out-test.txt -text -filter -ident !eol !working-tree-encoding
+/test-livebatch-30s.txt -text -filter -ident !eol !working-tree-encoding
+/test-run-full.txt -text -filter -ident !eol !working-tree-encoding
+/typecheck.txt -text -filter -ident !eol !working-tree-encoding
