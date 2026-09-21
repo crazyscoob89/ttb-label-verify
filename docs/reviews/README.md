@@ -1,6 +1,12 @@
 # Engineering review register
 
-## Active PR #9 — persistence reviewed; Windows test/report correction
+## Current PR #9 — native Windows correction accepted
+
+**ARGUS PASS on `bfc19494ff22ad3905bb98fb865af5c149f36941`.** The [committed independent verdict](25-pr9-bfc1949-windows-gate.md), preserved from reviewer commit `d8fd56c88e22c344e2b9316f0a94628c76b702ec`, reports **560 passed / 5 pre-existing POSIX-only skipped / 0 failed** across 28 files on native Windows / Node22.22.2, with no global timeout override, clean typecheck and Turbopack build. AVA inspected the committed report; these native results are ARGUS's execution, not an AVA rerun. Linux / Node24.21.0 separately passed 565 tests, typecheck and Webpack build. No application or test bytes change in this documentation closeout.
+
+H-1/H-2 are closed. ARGUS explicitly withdrew L-1 as a console-decoding artifact. M-1 retention/capacity, M-2 Windows-specific negative review-store permission coverage and M-3 shared demo identity remain disclosed and outside the bounded correction. Alex approved merging PR #9 with the review record included. That authorizes source promotion, not deployment, paid inference, live store provisioning or branch deletion. GitHub PR/ref state is the authoritative merge receipt. This status supersedes the historical pending wording below and in record 28; original evidence remains intact.
+
+## Historical PR #9 — persistence reviewed; Windows test/report correction
 
 [Record 26](26-live-batch-argus-pass.md) preserves ARGUS PASS for75fe83d, native timeout qualifications, original logs, and distinct Webpack/Turbopack results. [Record 27](27-durable-save-reopen-candidate.md) adds bounded real batch proof on that baseline and new persistence candidate **e721936**: actual SQLite/browser/service-restart proof with simulated extraction, **565 parent-reproduced Linux/Node24 unit tests**. ARGUS reviewed published 474c887 on native Windows/Node22: **PASS with findings**, full suite **555 passed / 5 failed / 5 skipped**, typecheck/build exit 0. [Record 28](28-native-timeout-and-report-correction.md) preserves the original review, platform correction and file-specific Windows timeout repair; fresh native full-suite verification remains pending. No merged/public deployment or combined real-provider-to-saved-history acceptance claimed.
 
