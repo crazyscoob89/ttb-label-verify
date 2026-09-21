@@ -61,12 +61,23 @@ export async function stageCustody(sealed:SealedCustody,objects:HostedEvidenceOb
   const check=await objects.getEvidence(key,sha,image.length,s.mime);if(check.length!==image.length||digest(check)!==sha)throw Error('Custody object mismatch');
  }
 }
+// Mirrors migration 002's immutable upload quota (separate from snapshots).
+const uploadFootprintSchema=z.array(z.object({id:z.uuid().transform(id=>id.toLowerCase()),bytes:integer.min(1).max(10485760)}).strict()).max(200)
+ .refine(rows=>new Set(rows.map(r=>r.id)).size===rows.length,'Duplicate upload ID')
+ .refine(rows=>rows.reduce((total,r)=>total+r.bytes,0)<=134217728,'Upload quota exceeded');
+export type ExpectedUploadFootprint=z.input<typeof uploadFootprintSchema>;
+export type CustodyImportOptions={expectedUploads?:ExpectedUploadFootprint};
+const importOptionsSchema=z.object({expectedUploads:uploadFootprintSchema.default([])}).strict();
+
 /** Generates owner-executed SQL only, never opens a destination connection. This
  * transaction preserves all source text and remains disabled after import.
- * Same manifest replay is a no-op; changed custody/nonempty target is refused.
+ * Same manifest replay is a no-op; changed custody/nonempty target is refused,
+ * except for the operator-approved exact immutable upload footprint (default []).
+ * The footprint/quota is rechecked under lock even on replay; no quota is refunded.
  * The operator MUST stage/verify all objects first and independently reconcile
  * destination rows plus exclusive source fencing before any separate activation. */
-export function importSql(sealed:SealedCustody):string {
+export function importSql(sealed:SealedCustody,options:CustodyImportOptions={}):string {
+ const {expectedUploads}=importOptionsSchema.parse(options);
  const d=verifyCustody(sealed),q=(value:string|number|null)=>value===null?'NULL':typeof value==='number'?String(value):`'${value.replaceAll("'","''")}'`;
  const rows:string[]=[];
  for(const h of d.holds)rows.push(`INSERT INTO ttb_demo_private.holds VALUES(${[h.reservation,h.attempt,h.binding,h.amount,h.state,h.claim].map(q).join(',')});`);
@@ -75,5 +86,28 @@ export function importSql(sealed:SealedCustody):string {
  for(const r of d.reviews)rows.push(`INSERT INTO ttb_demo_private.reviews VALUES(${[r.id,r.comparison_id,r.key,r.request,r.intent,r.saved_at].map(q).join(',')});`);
  // Random dollar delimiter avoids record content terminating the DO body.
  const tag=`$custody_${d.transferId.replaceAll('-','')}$`;if(rows.some(r=>r.includes(tag)))throw Error('Custody delimiter');
- return `BEGIN; SET LOCAL standard_conforming_strings=on; SET LOCAL lock_timeout='5s';\nDO ${tag}\nDECLARE l ttb_demo_private.ledger;\nBEGIN\nSELECT * INTO STRICT l FROM ttb_demo_private.ledger WHERE id=1 FOR UPDATE;\nPERFORM 1 FROM ttb_demo_private.quota WHERE id=1 FOR UPDATE;\nIF l.custody_id IS NOT NULL THEN\n IF l.custody_id<>${q(d.transferId)}::uuid OR l.custody_sha256<>${q(sealed.sha256)} THEN RAISE EXCEPTION 'custody mismatch'; END IF;\n RETURN;\nEND IF;\nIF l.enabled OR l.ceiling<>0 OR l.incurred<>0 OR EXISTS(SELECT 1 FROM ttb_demo_private.holds) OR EXISTS(SELECT 1 FROM ttb_demo_private.work) OR EXISTS(SELECT 1 FROM ttb_demo_private.snapshot_allocations) OR EXISTS(SELECT 1 FROM ttb_demo_private.uploads) THEN RAISE EXCEPTION 'destination not empty and disabled'; END IF;\n${rows.join('\n')}\nUPDATE ttb_demo_private.ledger SET enabled=false,ceiling=${d.ledger.ceiling},incurred=${d.ledger.incurred},custody_id=${q(d.transferId)},custody_sha256=${q(sealed.sha256)} WHERE id=1;\nEND ${tag};\nCOMMIT;\n`;
+ return `BEGIN; SET LOCAL standard_conforming_strings=on; SET LOCAL lock_timeout='5s';
+DO ${tag}
+DECLARE l ttb_demo_private.ledger;
+BEGIN
+SELECT * INTO STRICT l FROM ttb_demo_private.ledger WHERE id=1 FOR UPDATE;
+PERFORM 1 FROM ttb_demo_private.quota WHERE id=1 FOR UPDATE;
+IF NOT FOUND THEN RAISE EXCEPTION 'quota unavailable'; END IF;
+-- Quota is derived from immutable allocations, not from remaining raw objects.
+IF (SELECT count(*)>200 OR coalesce(sum(bytes),0)>134217728 FROM ttb_demo_private.uploads) THEN RAISE EXCEPTION 'upload quota inconsistent'; END IF;
+IF EXISTS(
+ SELECT 1 FROM ttb_demo_private.uploads u
+ FULL JOIN jsonb_to_recordset(${q(JSON.stringify(expectedUploads))}::jsonb) AS e(id uuid,bytes integer) ON u.id=e.id
+ WHERE u.bytes IS DISTINCT FROM e.bytes
+) THEN RAISE EXCEPTION 'upload footprint mismatch'; END IF;
+IF l.custody_id IS NOT NULL THEN
+ IF l.custody_id<>${q(d.transferId)}::uuid OR l.custody_sha256<>${q(sealed.sha256)} THEN RAISE EXCEPTION 'custody mismatch'; END IF;
+ RETURN;
+END IF;
+IF l.enabled OR l.ceiling<>0 OR l.incurred<>0 OR EXISTS(SELECT 1 FROM ttb_demo_private.holds) OR EXISTS(SELECT 1 FROM ttb_demo_private.work) OR EXISTS(SELECT 1 FROM ttb_demo_private.snapshot_allocations) THEN RAISE EXCEPTION 'destination not empty and disabled'; END IF;
+${rows.join('\n')}
+UPDATE ttb_demo_private.ledger SET enabled=false,ceiling=${d.ledger.ceiling},incurred=${d.ledger.incurred},custody_id=${q(d.transferId)},custody_sha256=${q(sealed.sha256)} WHERE id=1;
+END ${tag};
+COMMIT;
+`;
 }
