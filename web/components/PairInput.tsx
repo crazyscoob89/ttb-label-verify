@@ -2,6 +2,7 @@
 
 import { useRef, useState, type FormEvent } from 'react';
 import { applicationSchema, checkFileDeclaration } from '../lib/contracts';
+import { prepareLiveMedia } from '../lib/live-media-client';
 import type { ComparisonRecord } from '../lib/comparison-record';
 import { FIELD_KEYS } from '../lib/rules';
 import ReviewConfirmation from './ReviewConfirmation';
@@ -19,6 +20,7 @@ export default function PairInput() {
   const [feedback, setFeedback] = useState<Feedback>(null);
   const feedbackRef = useRef<HTMLDivElement>(null);
   const [running, setRunning] = useState(false);
+  const submitting = useRef(false);
   const [record, setRecord] = useState<ComparisonRecord|null>(null);
   const [elapsed, setElapsed] = useState<number|null>(null);
   const [comparisonId,setComparisonId]=useState<string|undefined>();
@@ -26,7 +28,7 @@ export default function PairInput() {
 
   async function check(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (running) return;
+    if (submitting.current) return;
     setRecord(null); setElapsed(null); setComparisonId(undefined);
     const live = (event.nativeEvent as SubmitEvent).submitter?.getAttribute('value') === 'live';
     const data = new FormData(event.currentTarget);
@@ -60,10 +62,11 @@ export default function PairInput() {
     const code = String(data.get('accessCode') ?? '');
     setAccessCode(code);
     if (!code) { setFeedback({kind:'error',messages:['Enter the demo access code.']}); return; }
-    const body = new FormData(); body.set('image', selected); body.set('application', JSON.stringify(result.data));
+    submitting.current = true;
     setRunning(true); const started = performance.now();
     try {
-      const response = await fetch('/api/comparisons', {method:'POST', headers:{'x-ttb-demo-code':code},body,signal:AbortSignal.timeout(35000),cache:'no-store'});
+      const media = await prepareLiveMedia(selected, result.data, code, AbortSignal.timeout(35000));
+      const response = await fetch('/api/comparisons', {method:'POST', headers:{...media.headers,'x-ttb-demo-code':code},body:media.body,signal:AbortSignal.timeout(35000),cache:'no-store',redirect:'error'});
       const payload = await response.json();
       setElapsed(payload.elapsedMs ?? Math.round(performance.now()-started));
       if (!payload.result || payload.result.processing !== 'complete') {
@@ -72,7 +75,7 @@ export default function PairInput() {
         setFeedback({kind:'error',messages:[code === 'access-denied' ? 'Access denied. Check the code; the server may have live demo disabled.' : code === 'invalid-input' ? 'Invalid image or application. Check the file signature, size and required fields.' : `Comparison unavailable (${code ?? 'provider-failed'}). No match was produced. A spend hold may remain; do not automatically retry.`]});
       } else { setRecord(payload.result);setComparisonId(payload.comparisonId); setFeedback({kind:'checked',messages:[`Live provider observations compared using local rules. Human review required; check submission status below. ${payload.comparisonId?'Server snapshot available for explicit save.':'Durable save unavailable; comparison retained on this page only.'}`]}); }
     } catch { setElapsed(Math.round(performance.now()-started)); setFeedback({kind:'error',messages:['Network or provider timeout. No match produced; spend may have been incurred. No automatic retry.']}); }
-    finally { setRunning(false); requestAnimationFrame(()=>feedbackRef.current?.focus()); }
+    finally { submitting.current = false; setRunning(false); requestAnimationFrame(()=>feedbackRef.current?.focus()); }
   }
 
   return <><form onSubmit={check} onChange={() => {setFeedback(null);setRecord(null);setElapsed(null);}} noValidate autoComplete="off">

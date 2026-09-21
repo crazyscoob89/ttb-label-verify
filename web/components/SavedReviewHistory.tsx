@@ -4,6 +4,7 @@ import type { CompleteComparison } from '../lib/comparison-record';
 import type { Application } from '../lib/contracts';
 import type { ReviewIntent } from '../lib/review-policy';
 import { savedReceiptSchema, type SavedReceipt } from '../lib/saved-review-contract';
+import { loadReviewEvidence } from '../lib/live-media-client';
 import { FIELD_KEYS } from '../lib/rules';
 import { fieldLabels, observations } from './ComparisonWorkspace';
 type Summary={receipt:SavedReceipt;application:Application;outcome:string};
@@ -28,11 +29,9 @@ export default function SavedReviewHistory(){
   const run=++generation.current;release();setDetail(null);setError('');setBusy(true);
   try{
    const data:Detail=await(await request(id)).json();savedReceiptSchema.parse(data.receipt);
-   const response=await request(`${id}/evidence`),bytes=await response.arrayBuffer();
-   const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');
-   if(hash!==data.record.imageSha256)throw Error('evidence-integrity-mismatch');
+   const evidence=await loadReviewEvidence(id,data.record.imageSha256,code,AbortSignal.timeout(15000));
    if(run!==generation.current)return;
-   const url=URL.createObjectURL(new Blob([bytes],{type:response.headers.get('content-type')??'image/png'}));imageUrl.current=url;setImage(url);setDetail(data);
+   const url=URL.createObjectURL(evidence);imageUrl.current=url;setImage(url);setDetail(data);
   }catch(e){if(run===generation.current)setError(e instanceof Error?e.message:'reopen-failed');}
   finally{if(run===generation.current)setBusy(false);}
  }
