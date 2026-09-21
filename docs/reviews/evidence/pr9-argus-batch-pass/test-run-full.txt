@@ -1,0 +1,662 @@
+﻿
+ RUN  v5.0.1 C:/Users/alexm/Projects/argus-pr9-live-batch-review/repo/web
+
+ Γ£ô tests/batch-state.test.ts > 300-item bounded queue emits authorization/reservation commands, default and maximum two 52ms
+ Γ£ô tests/batch-state.test.ts > failed item is not reviewed and neither settle nor navigation retries or dispatches 5ms
+ Γ£ô tests/batch-state.test.ts > retry requires fresh attempt AND reservation IDs, even after terminal failure 2ms
+ Γ£ô tests/batch-state.test.ts > stale old attempt cannot complete a fresh retry or free its slot 4ms
+ Γ£ô tests/batch-state.test.ts > foreign batch token or forged token cannot settle a pair 2ms
+ Γ£ô tests/batch-state.test.ts > unrelated application, hash or forged findings fail closed without inheriting sample findings 6ms
+ Γ£ô tests/batch-state.test.ts > unserializable completion is failed without throwing or retaining its queue slot 3ms
+ Γ£ô tests/batch-state.test.ts > drafts are independent and card/next/previous switching resets confirmation only 7ms
+ Γ£ô tests/batch-state.test.ts > editing review choices resets confirmation and does not invent saved state 3ms
+ Γ£ô tests/batch-state.test.ts > real review policy blocks pass without physical assessment and confirmed drafts 2ms
+ Γ£ô tests/batch-state.test.ts > saved outcome requires validated server receipt, never a draft, HTTP-like object or absent validator 5ms
+ Γ£ô tests/batch-state.test.ts > receipt adapter exception, mismatched binding or outcome fail closed 4ms
+ Γ£ô tests/batch-state.test.ts > A to B to A navigation fences delayed review-save receipt, never reactivates confirmation 4ms
+ Γ£ô tests/batch-state.test.ts > image/application A to B to A replacement fences old extraction and retains history 2ms
+ Γ£ô tests/batch-state.test.ts > replacement clears current result/confirmation/saved count but preserves historical saved outcome 6ms
+ Γ£ô tests/batch-state.test.ts > replacement cannot bypass invalid application, filename or duplicate identity checks 1ms
+ Γ£ô tests/batch-state.test.ts > blocked rows never dispatch; counters and completion summary derive from same snapshot 6ms
+ Γ£ô tests/batch-state.test.ts > navigation does not abandon correctly keyed background pair results 1ms
+ Γ£ô tests/batch-state.test.ts > outputs are immutable snapshots; state instances share no mutable queue or review data 2ms
+ Γ£ô tests/extraction.test.ts > default provider denies without network 4ms
+ Γ£ô tests/extraction.test.ts > authorization undefined cannot dispatch via adapter directly 1ms
+ Γ£ô tests/extraction.test.ts > authorization false cannot dispatch via adapter directly 0ms
+ Γ£ô tests/extraction.test.ts > authorization true cannot dispatch via adapter directly 0ms
+ Γ£ô tests/extraction.test.ts > extracts strict evidence with bound provenance, no verdict and no cost release 35ms
+ Γ£ô tests/extraction.test.ts > wire request is fixed no-tools image-only, no canonical answers or silent fallback 3ms
+ Γ£ô tests/extraction.test.ts > image is snapshotted before awaiting store; hash and wire bytes agree 2ms
+ Γ£ô tests/extraction.test.ts > invalid evidence never yields comparison or raw error: invalid JSON 1ms
+ Γ£ô tests/extraction.test.ts > invalid evidence never yields comparison or raw error: missing schema 3ms
+ Γ£ô tests/extraction.test.ts > invalid evidence never yields comparison or raw error: provider verdict 2ms
+ Γ£ô tests/extraction.test.ts > invalid evidence never yields comparison or raw error: wrong version 1ms
+ Γ£ô tests/extraction.test.ts > HTTP 301 fails without retries or raw response 1ms
+ Γ£ô tests/extraction.test.ts > HTTP 401 fails without retries or raw response 1ms
+ Γ£ô tests/extraction.test.ts > HTTP 429 fails without retries or raw response 1ms
+ Γ£ô tests/extraction.test.ts > HTTP 500 fails without retries or raw response 1ms
+ Γ£ô tests/extraction.test.ts > invalid envelope length cannot yield evidence 1ms
+ Γ£ô tests/extraction.test.ts > invalid envelope tools cannot yield evidence 1ms
+ Γ£ô tests/extraction.test.ts > invalid envelope multi cannot yield evidence 1ms
+ Γ£ô tests/extraction.test.ts > invalid envelope role cannot yield evidence 1ms
+ Γ£ô tests/extraction.test.ts > invalid envelope null cannot yield evidence 1ms
+ Γ£ô tests/extraction.test.ts > invalid envelope refusal cannot yield evidence 1ms
+ Γ£ô tests/extraction.test.ts > invalid envelope model cannot yield evidence 1ms
+ Γ£ô tests/extraction.test.ts > invalid envelope error cannot yield evidence 1ms
+ Γ£ô tests/extraction.test.ts > invalid envelope unknown cannot yield evidence 1ms
+ Γ£ô tests/extraction.test.ts > invalid request empty denied before reservation/network 0ms
+ Γ£ô tests/extraction.test.ts > invalid request oversized denied before reservation/network 0ms
+ Γ£ô tests/extraction.test.ts > invalid request mime denied before reservation/network 0ms
+ Γ£ô tests/extraction.test.ts > invalid request extra denied before reservation/network 0ms
+ Γ£ô tests/extraction.test.ts > invalid request identity denied before reservation/network 0ms
+ Γ£ô tests/extraction.test.ts > response limit enforced on streamed chunks before complete JSON parsing 2ms
+ Γ£ô tests/extraction.test.ts > extraction timeout matches the planned 20-second limit 0ms
+ Γ£ô tests/extraction.test.ts > timeout includes headers and leaves liability, no same-key retry 5ms
+ Γ£ô tests/extraction.test.ts > timeout includes stream and leaves liability, no same-key retry 1ms
+ Γ£ô tests/extraction.test.ts > store outages and invalid completion prevent evidence 1ms
+ Γ£ô tests/extraction.test.ts > unexpected transport exception sanitized and no fallback 0ms
+ Γ£ô tests/extraction.test.ts > racing provider calls dispatch once; explicit new attempt consumes another hold 2ms
+ Γ£ô tests/extraction.test.ts > missing dependency key blocks even explicit authorization 0ms
+ Γ£ô tests/extraction.test.ts > missing dependency store blocks even explicit authorization 0ms
+ Γ£ô tests/extraction.test.ts > missing dependency amount blocks even explicit authorization 0ms
+ Γ£ô tests/extraction.test.ts > authorization configuration is snapshotted and client runtime is denied 0ms
+ Γ£ô tests/extraction.test.ts > shared image memory is rejected before dispatch 0ms
+ Γ£ô tests/extraction.test.ts > response declared size fails with held liability 1ms
+ Γ£ô tests/extraction.test.ts > response invalid utf8 fails with held liability 1ms
+ Γ£ô tests/extraction.test.ts > response malformed JSON fails with held liability 0ms
+ Γ£ô tests/extraction.test.ts > response redirected fails with held liability 0ms
+ Γ£ô tests/extraction.test.ts > fixture provider is explicitly offline and cannot claim real extraction 1ms
+ Γ£ô tests/rules.test.ts > seven-field per-pair source-backed comparison > exact-import has all seven independent outcomes 11ms
+ Γ£ô tests/rules.test.ts > seven-field per-pair source-backed comparison > readable-seven-discrepancies has all seven independent outcomes 1ms
+ Γ£ô tests/rules.test.ts > seven-field per-pair source-backed comparison > domestic-wine has all seven independent outcomes 1ms
+ Γ£ô tests/rules.test.ts > seven-field per-pair source-backed comparison > fixed warning matches archived source, not applicant or provider substitution 1ms
+ Γ£ô tests/rules.test.ts > seven-field per-pair source-backed comparison > preserves original text and extraction reasons without mutating inputs 2ms
+ Γ£ô tests/rules.test.ts > seven-field per-pair source-backed comparison > brand case/whitespace equivalence: "old harbor" 1ms
+ Γ£ô tests/rules.test.ts > seven-field per-pair source-backed comparison > brand case/whitespace equivalence: " OLD   HARBOR " 1ms
+ Γ£ô tests/rules.test.ts > seven-field per-pair source-backed comparison > brand case/whitespace equivalence: "Old\nHarbor" 1ms
+ Γ£ô tests/rules.test.ts > seven-field per-pair source-backed comparison > brand case/whitespace equivalence: "Old\tHarbor" 1ms
+ Γ£ô tests/rules.test.ts > seven-field per-pair source-backed comparison > does not erase meaningful brand distinctions: "Old-Harbor" 1ms
+ Γ£ô tests/rules.test.ts > seven-field per-pair source-backed comparison > does not erase meaningful brand distinctions: "OldHarbor" 1ms
+ Γ£ô tests/rules.test.ts > seven-field per-pair source-backed comparison > does not erase meaningful brand distinctions: "Old Harbor 2" 1ms
+ Γ£ô tests/rules.test.ts > seven-field per-pair source-backed comparison > does not erase meaningful brand distinctions: "├ôld Harbor" 0ms
+ Γ£ô tests/rules.test.ts > seven-field per-pair source-backed comparison > does not erase meaningful brand distinctions: "Old Harbor!" 1ms
+ Γ£ô tests/rules.test.ts > seven-field per-pair source-backed comparison > does not erase meaningful brand distinctions: "OldΓÇï Harbor" 1ms
+ Γ£ô tests/rules.test.ts > seven-field per-pair source-backed comparison > brand cannot silently pass uncertain/unreadable/missing text 2ms
+ Γ£ô tests/rules.test.ts > seven-field per-pair source-backed comparison > classType cannot silently pass uncertain/unreadable/missing text 1ms
+ Γ£ô tests/rules.test.ts > seven-field per-pair source-backed comparison > abv cannot silently pass uncertain/unreadable/missing text 2ms
+ Γ£ô tests/rules.test.ts > seven-field per-pair source-backed comparison > netContents cannot silently pass uncertain/unreadable/missing text 2ms
+ Γ£ô tests/rules.test.ts > seven-field per-pair source-backed comparison > origin cannot silently pass uncertain/unreadable/missing text 1ms
+ Γ£ô tests/rules.test.ts > seven-field per-pair source-backed comparison > producer requires both independent name and address evidence 1ms
+ Γ£ô tests/rules.test.ts > seven-field per-pair source-backed comparison > class and origin do not fuzzy-match differing designations or country aliases 1ms
+ Γ£ô tests/rules.test.ts > decimal ABV consistency, never tolerance > supported numeric notation 40 matches 1ms
+ Γ£ô tests/rules.test.ts > decimal ABV consistency, never tolerance > supported numeric notation 40% matches 1ms
+ Γ£ô tests/rules.test.ts > decimal ABV consistency, never tolerance > supported numeric notation 40.0 % matches 2ms
+ Γ£ô tests/rules.test.ts > decimal ABV consistency, never tolerance > supported numeric notation 40.000% ABV matches 0ms
+ Γ£ô tests/rules.test.ts > decimal ABV consistency, never tolerance > supported numeric notation 40% alc/vol matches 0ms
+ Γ£ô tests/rules.test.ts > decimal ABV consistency, never tolerance > supported numeric notation 40% alcohol by volume matches 0ms
+ Γ£ô tests/rules.test.ts > decimal ABV consistency, never tolerance > readable unequal 45% mismatches without rounding 0ms
+ Γ£ô tests/rules.test.ts > decimal ABV consistency, never tolerance > readable unequal 40.1% mismatches without rounding 0ms
+ Γ£ô tests/rules.test.ts > decimal ABV consistency, never tolerance > readable unequal 39.999% mismatches without rounding 1ms
+ Γ£ô tests/rules.test.ts > decimal ABV consistency, never tolerance > readable unequal 40.000000000000000001% mismatches without rounding 0ms
+ Γ£ô tests/rules.test.ts > decimal ABV consistency, never tolerance > readable unequal 101% mismatches without rounding 1ms
+ Γ£ô tests/rules.test.ts > decimal ABV consistency, never tolerance > unsupported or ambiguous 80 proof requires review 0ms
+ Γ£ô tests/rules.test.ts > decimal ABV consistency, never tolerance > unsupported or ambiguous 40/45% requires review 0ms
+ Γ£ô tests/rules.test.ts > decimal ABV consistency, never tolerance > unsupported or ambiguous 4e1 requires review 0ms
+ Γ£ô tests/rules.test.ts > decimal ABV consistency, never tolerance > unsupported or ambiguous 0x28 requires review 0ms
+ Γ£ô tests/rules.test.ts > decimal ABV consistency, never tolerance > unsupported or ambiguous -1% requires review 0ms
+ Γ£ô tests/rules.test.ts > decimal ABV consistency, never tolerance > unsupported or ambiguous +40% requires review 0ms
+ Γ£ô tests/rules.test.ts > decimal ABV consistency, never tolerance > unsupported or ambiguous 40,0% requires review 0ms
+ Γ£ô tests/rules.test.ts > decimal ABV consistency, never tolerance > unsupported or ambiguous 40 percent requires review 0ms
+ Γ£ô tests/rules.test.ts > decimal ABV consistency, never tolerance > explicit zero can match but null/missing never becomes zero 2ms
+ Γ£ô tests/rules.test.ts > decimal precision boundaries > tiny finite application numbers retain their declared decimal value 3ms
+ Γ£ô tests/rules.test.ts > decimal precision boundaries > precision outside bounded decimal grammar is review, not rounded equality 0ms
+ Γ£ô tests/rules.test.ts > exact metric net contents, conservative exclusions > equivalent 0.75 L matches 1ms
+ Γ£ô tests/rules.test.ts > exact metric net contents, conservative exclusions > equivalent 0.7500 l matches 0ms
+ Γ£ô tests/rules.test.ts > exact metric net contents, conservative exclusions > equivalent 750 ml matches 1ms
+ Γ£ô tests/rules.test.ts > exact metric net contents, conservative exclusions > equivalent 750.000 mL matches 0ms
+ Γ£ô tests/rules.test.ts > exact metric net contents, conservative exclusions > unequal 700 mL mismatches 0ms
+ Γ£ô tests/rules.test.ts > exact metric net contents, conservative exclusions > unequal 0.750000000000000001 L mismatches 0ms
+ Γ£ô tests/rules.test.ts > exact metric net contents, conservative exclusions > unsupported 25.36 fl oz requires review, even if declared identically 0ms
+ Γ£ô tests/rules.test.ts > exact metric net contents, conservative exclusions > unsupported 750 requires review, even if declared identically 0ms
+ Γ£ô tests/rules.test.ts > exact metric net contents, conservative exclusions > unsupported 75 cL requires review, even if declared identically 0ms
+ Γ£ô tests/rules.test.ts > exact metric net contents, conservative exclusions > unsupported 750 mL / 25.4 fl oz requires review, even if declared identically 0ms
+ Γ£ô tests/rules.test.ts > exact metric net contents, conservative exclusions > unsupported 0,75 L requires review, even if declared identically 0ms
+ Γ£ô tests/rules.test.ts > exact metric net contents, conservative exclusions > unsupported 7.5e2 mL requires review, even if declared identically 0ms
+ Γ£ô tests/rules.test.ts > exact metric net contents, conservative exclusions > unsupported 0 mL requires review, even if declared identically 0ms
+ Γ£ô tests/rules.test.ts > exact metric net contents, conservative exclusions > unsupported -750 mL requires review, even if declared identically 0ms
+ Γ£ô tests/rules.test.ts > exact metric net contents, conservative exclusions > unsupported applicant notation also cannot silently match 0ms
+ Γ£ô tests/rules.test.ts > explicit applicability in every supported commodity > wine import requires origin; domestic alone is N/A 1ms
+ Γ£ô tests/rules.test.ts > explicit applicability in every supported commodity > distilled-spirits import requires origin; domestic alone is N/A 1ms
+ Γ£ô tests/rules.test.ts > explicit applicability in every supported commodity > malt-beverage import requires origin; domestic alone is N/A 1ms
+ Γ£ô tests/rules.test.ts > explicit applicability in every supported commodity > invalid applicability fails processing {} 0ms
+ Γ£ô tests/rules.test.ts > explicit applicability in every supported commodity > invalid applicability fails processing {"commodity":"cider"} 0ms
+ Γ£ô tests/rules.test.ts > explicit applicability in every supported commodity > invalid applicability fails processing {} 0ms
+ Γ£ô tests/rules.test.ts > explicit applicability in every supported commodity > invalid applicability fails processing {"imported":false} 0ms
+ Γ£ô tests/rules.test.ts > warning wording and independently observed formatting > heading defect Government Warning: mismatches 0ms
+ Γ£ô tests/rules.test.ts > warning wording and independently observed formatting > heading defect GOVERNMENT WARNING mismatches 1ms
+ Γ£ô tests/rules.test.ts > warning wording and independently observed formatting > heading defect GOVERNMENT  WARNING! mismatches 0ms
+ Γ£ô tests/rules.test.ts > warning wording and independently observed formatting > removing warning wording may mismatches 0ms
+ Γ£ô tests/rules.test.ts > warning wording and independently observed formatting > removing warning wording not mismatches 0ms
+ Γ£ô tests/rules.test.ts > warning wording and independently observed formatting > removing warning wording birth defects. mismatches 0ms
+ Γ£ô tests/rules.test.ts > warning wording and independently observed formatting > removing warning wording (2) mismatches 0ms
+ Γ£ô tests/rules.test.ts > warning wording and independently observed formatting > line wrapping is allowed but body punctuation/case is not erased 1ms
+ Γ£ô tests/rules.test.ts > warning wording and independently observed formatting > headingBold defect mismatches; unknown requires review 1ms
+ Γ£ô tests/rules.test.ts > warning wording and independently observed formatting > bodyBold defect mismatches; unknown requires review 1ms
+ Γ£ô tests/rules.test.ts > warning wording and independently observed formatting > uncertain/missing/unreadable heading needs review 1ms
+ Γ£ô tests/rules.test.ts > warning wording and independently observed formatting > uncertain/missing/unreadable body needs review 1ms
+ Γ£ô tests/rules.test.ts > warning wording and independently observed formatting > known warning defects dominate independent uncertainty 1ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > schema/parser accept valid evidence and preserve observations 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > malformed envelope null is processing failure, not fields 1ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > malformed envelope undefined is processing failure, not fields 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > malformed envelope {} is processing failure, not fields 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > malformed envelope undefined is processing failure, not fields 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > malformed envelope "not JSON" is processing failure, not fields 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > malformed envelope "{\"match\":true}" is processing failure, not fields 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > malformed envelope 42 is processing failure, not fields 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > omitted schemaVersion rejects the entire extraction 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > omitted brand rejects the entire extraction 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > omitted classType rejects the entire extraction 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > omitted abv rejects the entire extraction 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > omitted netContents rejects the entire extraction 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > omitted producer rejects the entire extraction 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > omitted origin rejects the entire extraction 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > omitted warning rejects the entire extraction 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > rejects extra/coerced/unbounded evidence {"match":true} 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > rejects extra/coerced/unbounded evidence {"verdict":"match"} 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > rejects extra/coerced/unbounded evidence {"schemaVersion":2} 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > rejects extra/coerced/unbounded evidence {"brand":{"status":"readable","text":"Old Harbor","reason":"Synthetic observation; not a provider verdict","match":true}} 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > rejects extra/coerced/unbounded evidence {"producer":{"name":{"status":"readable","text":"Harbor Distillery","reason":"Synthetic legible name"},"address":{"status":"readable","text":"12 Wharf Road, Paris","reason":"Synthetic legible address"},"verdict":"match"}} 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > rejects extra/coerced/unbounded evidence {"warning":{"heading":{"status":"readable","text":"GOVERNMENT WARNING:","reason":"Synthetic legible heading"},"body":{"status":"readable","text":"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.","reason":"Synthetic legible body"},"headingBold":true,"bodyBold":false,"allCaps":true}} 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > rejects extra/coerced/unbounded evidence {"warning":{"heading":{"status":"readable","text":"GOVERNMENT WARNING:","reason":"Synthetic legible heading"},"body":{"status":"readable","text":"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.","reason":"Synthetic legible body"},"headingBold":"true","bodyBold":false}} 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > rejects extra/coerced/unbounded evidence {"warning":{"heading":{"status":"readable","text":"GOVERNMENT WARNING:","reason":"Synthetic legible heading"},"body":{"status":"readable","text":"(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.","reason":"Synthetic legible body"},"headingBold":true,"bodyBold":0}} 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > rejects extra/coerced/unbounded evidence {"brand":{"status":"match","text":"Old Harbor","reason":"Synthetic observation; not a provider verdict"}} 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > rejects extra/coerced/unbounded evidence {"brand":{"status":"readable","text":null,"reason":"Synthetic observation; not a provider verdict"}} 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > rejects extra/coerced/unbounded evidence {"brand":{"status":"readable","text":"","reason":"Synthetic observation; not a provider verdict"}} 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > rejects extra/coerced/unbounded evidence {"brand":{"status":"readable","text":" \n ","reason":"Synthetic observation; not a provider verdict"}} 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > rejects extra/coerced/unbounded evidence {"brand":{"status":"missing","text":"Old Harbor","reason":"Synthetic observation; not a provider verdict"}} 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > rejects extra/coerced/unbounded evidence {"brand":{"status":"readable","text":"Old Harbor"}} 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > rejects extra/coerced/unbounded evidence {"brand":{"status":"readable","text":"Old Harbor","reason":""}} 1ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > rejects extra/coerced/unbounded evidence {"brand":{"status":"readable","text":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx","reason":"Synthetic observation; not a provider verdict"}} 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > rejects extra/coerced/unbounded evidence {"brand":{"status":"readable","text":"Old Harbor","reason":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"}} 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > rejects extra/coerced/unbounded evidence {"brand":{"status":"readable","text":"Old\u0000Harbor","reason":"Synthetic observation; not a provider verdict"}} 1ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > rejects extra/coerced/unbounded evidence {"abv":{"status":"readable","text":null,"reason":"Synthetic observation; not a provider verdict"}} 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > rejects extra/coerced/unbounded evidence {"abv":{"status":"readable","text":null,"reason":"Synthetic observation; not a provider verdict"}} 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > rejects extra/coerced/unbounded evidence {"abv":{"status":"readable","text":40,"reason":"Synthetic observation; not a provider verdict"}} 0ms
+ Γ£ô tests/rules.test.ts > strict untrusted extraction boundary > maximum bounded text/reasons accepted, instructions remain inert text 1ms
+ Γ£ô tests/intake.test.ts > application contract > preserves declared identity and strings, normalizes only decimal ABV 6ms
+ Γ£ô tests/intake.test.ts > application contract > rejects missing or ambiguous ABV: undefined 2ms
+ Γ£ô tests/intake.test.ts > application contract > rejects missing or ambiguous ABV: null 0ms
+ Γ£ô tests/intake.test.ts > application contract > rejects missing or ambiguous ABV: "" 1ms
+ Γ£ô tests/intake.test.ts > application contract > rejects missing or ambiguous ABV: " " 0ms
+ Γ£ô tests/intake.test.ts > application contract > rejects missing or ambiguous ABV: "\t" 0ms
+ Γ£ô tests/intake.test.ts > application contract > rejects missing or ambiguous ABV: true 0ms
+ Γ£ô tests/intake.test.ts > application contract > rejects missing or ambiguous ABV: undefined 1ms
+ Γ£ô tests/intake.test.ts > application contract > rejects missing or ambiguous ABV: {} 1ms
+ Γ£ô tests/intake.test.ts > application contract > rejects missing or ambiguous ABV: "NaN" 1ms
+ Γ£ô tests/intake.test.ts > application contract > rejects missing or ambiguous ABV: null 0ms
+ Γ£ô tests/intake.test.ts > application contract > rejects missing or ambiguous ABV: null 0ms
+ Γ£ô tests/intake.test.ts > application contract > rejects missing or ambiguous ABV: "Infinity" 0ms
+ Γ£ô tests/intake.test.ts > application contract > rejects missing or ambiguous ABV: "0x28" 0ms
+ Γ£ô tests/intake.test.ts > application contract > rejects missing or ambiguous ABV: "4e1" 0ms
+ Γ£ô tests/intake.test.ts > application contract > rejects missing or ambiguous ABV: "40%" 0ms
+ Γ£ô tests/intake.test.ts > application contract > rejects missing or ambiguous ABV: "+40" 0ms
+ Γ£ô tests/intake.test.ts > application contract > rejects missing or ambiguous ABV: "-0" 0ms
+ Γ£ô tests/intake.test.ts > application contract > rejects missing or ambiguous ABV: "1,5" 0ms
+ Γ£ô tests/intake.test.ts > application contract > rejects missing or ambiguous ABV: "40junk" 0ms
+ Γ£ô tests/intake.test.ts > application contract > rejects missing or ambiguous ABV: -1 0ms
+ Γ£ô tests/intake.test.ts > application contract > rejects missing or ambiguous ABV: 101 0ms
+ Γ£ô tests/intake.test.ts > application contract > accepts explicit bounded decimal ABV 0 0ms
+ Γ£ô tests/intake.test.ts > application contract > accepts explicit bounded decimal ABV "0" 0ms
+ Γ£ô tests/intake.test.ts > application contract > accepts explicit bounded decimal ABV "40.5" 0ms
+ Γ£ô tests/intake.test.ts > application contract > accepts explicit bounded decimal ABV " 40.5 " 0ms
+ Γ£ô tests/intake.test.ts > application contract > accepts explicit bounded decimal ABV 100 0ms
+ Γ£ô tests/intake.test.ts > application contract > requires applicationId rather than defaults 0ms
+ Γ£ô tests/intake.test.ts > application contract > requires applicationVersion rather than defaults 0ms
+ Γ£ô tests/intake.test.ts > application contract > requires brand rather than defaults 0ms
+ Γ£ô tests/intake.test.ts > application contract > requires classType rather than defaults 0ms
+ Γ£ô tests/intake.test.ts > application contract > requires netContents rather than defaults 0ms
+ Γ£ô tests/intake.test.ts > application contract > requires producerName rather than defaults 0ms
+ Γ£ô tests/intake.test.ts > application contract > requires producerAddress rather than defaults 0ms
+ Γ£ô tests/intake.test.ts > application contract > requires commodity rather than defaults 0ms
+ Γ£ô tests/intake.test.ts > application contract > rejects surrounding identifier whitespace for applicationId 0ms
+ Γ£ô tests/intake.test.ts > application contract > rejects surrounding identifier whitespace for applicationVersion 0ms
+ Γ£ô tests/intake.test.ts > application contract > requires explicit import flag and origin context 2ms
+ Γ£ô tests/intake.test.ts > application contract > rejects editable warning and other undeclared fields 0ms
+ Γ£ô tests/intake.test.ts > explicit filename binding > maps by exact filename, never array order 7ms
+ Γ£ô tests/intake.test.ts > explicit filename binding > rejects duplicate manifest and file names 3ms
+ Γ£ô tests/intake.test.ts > explicit filename binding > rejects missing, unmatched and extra files before decoding 3ms
+ Γ£ô tests/intake.test.ts > explicit filename binding > rejects paths, URLs and ambiguous names "../label.png" 2ms
+ Γ£ô tests/intake.test.ts > explicit filename binding > rejects paths, URLs and ambiguous names "/label.png" 1ms
+ Γ£ô tests/intake.test.ts > explicit filename binding > rejects paths, URLs and ambiguous names "C:\\label.png" 1ms
+ Γ£ô tests/intake.test.ts > explicit filename binding > rejects paths, URLs and ambiguous names "https://example.com/label.png" 1ms
+ Γ£ô tests/intake.test.ts > explicit filename binding > rejects paths, URLs and ambiguous names " label.png" 1ms
+ Γ£ô tests/intake.test.ts > explicit filename binding > rejects paths, URLs and ambiguous names "label.png " 2ms
+ Γ£ô tests/intake.test.ts > explicit filename binding > rejects paths, URLs and ambiguous names "a\u0000.png" 1ms
+ Γ£ô tests/intake.test.ts > explicit filename binding > rejects repeated application identity/version and too many pairs 3ms
+ Γ£ô tests/intake.test.ts > explicit filename binding > validates application before dispatch and rejects malformed manifest 2ms
+ Γ£ô tests/intake.test.ts > buffer-only image sanitation > fully decodes and re-encodes png with dimensions, MIME and both hashes 7ms
+ Γ£ô tests/intake.test.ts > buffer-only image sanitation > fully decodes and re-encodes jpeg with dimensions, MIME and both hashes 4ms
+ Γ£ô tests/intake.test.ts > buffer-only image sanitation > strips jpeg EXIF and ICC while applying orientation; hashes original and sanitized independently 11ms
+ Γ£ô tests/intake.test.ts > buffer-only image sanitation > strips png EXIF and ICC while applying orientation; hashes original and sanitized independently 11ms
+ Γ£ô tests/intake.test.ts > buffer-only image sanitation > rejects zero bytes and byte overflow without decoding 2ms
+ Γ£ô tests/intake.test.ts > buffer-only image sanitation > enforces the 20MP decoder limit 144ms
+ Γ£ô tests/intake.test.ts > buffer-only image sanitation > rejects misleading extension/MIME {"filename":"fake.jpg","mime":"image/png"} 2ms
+ Γ£ô tests/intake.test.ts > buffer-only image sanitation > rejects misleading extension/MIME {"filename":"fake.png","mime":"image/jpeg"} 2ms
+ Γ£ô tests/intake.test.ts > buffer-only image sanitation > rejects misleading extension/MIME {"filename":"fake.svg","mime":"image/png"} 1ms
+ Γ£ô tests/intake.test.ts > buffer-only image sanitation > rejects misleading extension/MIME {"filename":"fake.png","mime":"application/octet-stream"} 1ms
+ Γ£ô tests/intake.test.ts > buffer-only image sanitation > rejects corrupt, spoofed, truncated and unsupported buffers 3ms
+ Γ£ô tests/intake.test.ts > buffer-only image sanitation > animation rejection uses a well-formed two-frame APNG, not just corrupt bytes 4ms
+ Γ£ô tests/intake.test.ts > buffer-only image sanitation > rejects animation containers, concatenated frames and MPO 3ms
+ Γ£ô tests/intake.test.ts > buffer-only image sanitation > accepts and strips bounded compressed PNG zTXt metadata 4ms
+ Γ£ô tests/intake.test.ts > buffer-only image sanitation > accepts and strips bounded compressed PNG iTXt metadata 2ms
+ Γ£ô tests/intake.test.ts > buffer-only image sanitation > bounds compressed PNG metadata independently of pixel dimensions 5ms
+ Γ£ô tests/intake.test.ts > buffer-only image sanitation > rejects a PNG with a damaged IDAT checksum even when its pixels decode 2ms
+ Γ£ô tests/intake.test.ts > buffer-only image sanitation > snapshots source bytes before asynchronous decoding 3ms
+ Γ£ô tests/intake.test.ts > buffer-only image sanitation > rejects path/string byte sources rather than opening or fetching them 2ms
+ Γ£ô tests/intake.test.ts > buffer-only image sanitation > single pair composes binding/sanitation with zero fetch calls and no original buffer returned 5ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > verifies the bound bearer through the authoritative session RPC without decoding a JWT locally 24ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > composes managed identity and scoped membership with the existing auth service 3ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > rejects unsafe configured origin http://isolated.example.test 1ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > rejects unsafe configured origin https://user:pass@isolated.example.test 1ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > rejects unsafe configured origin https://isolated.example.test/path 1ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > rejects unsafe configured origin https://isolated.example.test?x=1 1ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > rejects browser construction 0ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > rejects a different token and cross-workspace selector before transport 3ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > rejects malformed/revoked/expired session null 2ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > rejects malformed/revoked/expired session {} 1ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > rejects malformed/revoked/expired session {"userId":"11111111-1111-4111-8111-111111111111","sessionId":"22222222-2222-4222-8222-222222222222","expiresAt":1789949125830,"revoked":true} 1ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > rejects malformed/revoked/expired session {"userId":"11111111-1111-4111-8111-111111111111","sessionId":"22222222-2222-4222-8222-222222222222","expiresAt":1,"revoked":false} 1ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > rejects malformed/revoked/expired session {"userId":"not-uuid","sessionId":"22222222-2222-4222-8222-222222222222","expiresAt":1789949125830,"revoked":false} 1ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > rejects malformed/revoked/expired session {"userId":"11111111-1111-4111-8111-111111111111","sessionId":"22222222-2222-4222-8222-222222222222","expiresAt":1789949125830,"revoked":false,"token":"leak"} 3ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > rejects mismatched membership {"userId":"22222222-2222-4222-8222-222222222222","workspaceId":"workspace-a","role":"reviewer","active":true} 1ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > rejects mismatched membership {"userId":"11111111-1111-4111-8111-111111111111","workspaceId":"other","role":"reviewer","active":true} 1ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > rejects mismatched membership {"userId":"11111111-1111-4111-8111-111111111111","workspaceId":"workspace-a","role":"reviewer","active":false} 1ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > rejects mismatched membership {"userId":"11111111-1111-4111-8111-111111111111","workspaceId":"workspace-a","role":"superuser","active":true} 1ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > returns only the exact committed evidence, sends a snapshot and no upsert preference 2ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > failed/mismatched insert never fabricates a receipt null 1ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > failed/mismatched insert never fabricates a receipt {"ok":true} 1ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > failed/mismatched insert never fabricates a receipt {"evidenceId":"22222222-2222-4222-8222-222222222222","workspaceId":"workspace-a","createdBy":"11111111-1111-4111-8111-111111111111","createdAt":1789949005830,"expiresAt":1789949065830,"revokedAt":null,"application":{"applicationId":"SYNTH-001","applicationVersion":"v1","brand":"Sample Brand","classType":"Vodka","abv":40,"netContents":"750 mL","producerName":"Synthetic Producer","producerAddress":"1 Example Street, Example City","commodity":"distilled-spirits","imported":false,"origin":{"kind":"domestic","country":"United States"}},"image":{"objectKey":"private/workspace-a/33333333-3333-4333-8333-333333333333/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.png","objectVersionId":"33333333-3333-4333-8333-333333333333","sha256":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","mime":"image/png","byteLength":100,"width":2,"height":2}} 1ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > failed/mismatched insert never fabricates a receipt {"evidenceId":"33333333-3333-4333-8333-333333333333","workspaceId":"workspace-a","createdBy":"11111111-1111-4111-8111-111111111111","createdAt":1789949005830,"expiresAt":1789949065830,"revokedAt":null,"application":{"applicationId":"SYNTH-001","applicationVersion":"v1","brand":"rebound","classType":"Vodka","abv":40,"netContents":"750 mL","producerName":"Synthetic Producer","producerAddress":"1 Example Street, Example City","commodity":"distilled-spirits","imported":false,"origin":{"kind":"domestic","country":"United States"}},"image":{"objectKey":"private/workspace-a/33333333-3333-4333-8333-333333333333/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.png","objectVersionId":"33333333-3333-4333-8333-333333333333","sha256":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","mime":"image/png","byteLength":100,"width":2,"height":2}} 1ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > reads exact scoped records and preserves authorized absence 2ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > denies viewer insert, expired actor and creator mismatch before dispatch 1ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > rejects HTTP 401 without receipt, retry or upstream data leakage 1ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > rejects HTTP 403 without receipt, retry or upstream data leakage 1ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > rejects HTTP 409 without receipt, retry or upstream data leakage 1ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > rejects HTTP 500 without receipt, retry or upstream data leakage 1ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > rejects non-JSON, oversized replies, and transports that ignore cancellation 117ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > dispatches only after reserve and single-winner claim, then retains unresolved liability 4ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > rejects reservation collision without dispatch or retry 1ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > failed dispatch still completes unresolved, completion error never releases or retries 2ms
+ Γ£ô tests/persistence.test.ts > Supabase persistence transport contracts (offline, NOT DB proof) > uses the existing spend validator to reject binding/state/ledger mismatch before work 2ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > re-encodes raw input and stores only sanitized bytes under a server key 26ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > authorizes by evidence ID before signing and bounds URL TTL to 60 seconds 5ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > clips TTL to evidence and session expiry 1ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > denies anonymous/forged/cross-workspace access null 5ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > denies anonymous/forged/cross-workspace access {} 4ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > denies anonymous/forged/cross-workspace access {"sessionToken":"opaque-session","workspaceId":"workspace-a","actor":"forged"} 4ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > denies anonymous/forged/cross-workspace access {"sessionToken":"opaque-session","workspaceId":"workspace-b"} 4ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > rejects arbitrary caller path or TTL {"objectKey":"private/workspace-a/22222222-2222-4222-8222-222222222222/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.png"} 1ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > rejects arbitrary caller path or TTL {"evidenceId":"11111111-1111-4111-8111-111111111111","objectKey":"private/workspace-a/22222222-2222-4222-8222-222222222222/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.png"} 1ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > rejects arbitrary caller path or TTL {"evidenceId":"11111111-1111-4111-8111-111111111111","expiresAt":1800000999999} 1ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > rejects arbitrary caller path or TTL {"evidenceId":"../arbitrary/object"} 0ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > rejects a caller key or fabricated sanitized declaration on upload 4ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > does not sign expired evidence/access 1ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > does not sign revoked evidence/access 1ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > does not sign workspace evidence/access 0ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > does not sign path evidence/access 1ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > does not sign id evidence/access 1ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > does not sign membership evidence/access 0ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > does not sign session evidence/access 0ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > withholds signed URL if expiry changes during signing 1ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > withholds signed URL if revocation changes during signing 0ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > withholds signed URL if binding-drift changes during signing 1ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > withholds a URL when the managed session lifetime shortens during signing 1ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > withholds a URL if the verified subject changes during signing 1ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > never acknowledges throw object write receipt 9ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > never acknowledges public object write receipt 8ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > never acknowledges wrong-hash object write receipt 9ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > never acknowledges missing object write receipt 8ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > withholds throw signed response 1ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > withholds wrong-origin signed response 0ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > withholds wrong-key signed response 0ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > withholds long-ttl signed response 1ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > withholds malformed signed response 1ms
+ Γ£ô tests/storage.test.ts > private immutable sanitized image storage foundation > has no implicit storage fallback 0ms
+ Γ£ô tests/live-batch-route.test.ts > preparation sanitizes on server, binds application, and never reserves or dispatches 4498ms
+ ├ù tests/live-batch-route.test.ts > same intent survives handler restart without another dispatch or hold; changed IDs do not evade dedup 6286ms
+   ΓåÆ Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ├ù tests/live-batch-route.test.ts > failed paid intent remains consumed with its full hold; replay never dispatches again 5230ms
+   ΓåÆ Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ├ù tests/live-batch-route.test.ts > edited application needs new preparation and explicit new attempt; no trusted browser hash/cost 5687ms
+   ΓåÆ Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ├ù tests/live-batch-route.test.ts > two server slots admit work, third fails closed and duplicate racing intent dispatches once 5734ms
+   ΓåÆ Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+   ΓåÆ EBUSY: resource busy or locked, unlink 'C:\Users\alexm\AppData\Local\Temp\ttb-ledger-fixture-s5PQAY\spend.sqlite'
+ Γ£ô tests/openrouter-compatibility.test.ts > exact captured OpenRouter completion replays offline without changing its content or metadata 37ms
+ Γ£ô tests/openrouter-compatibility.test.ts > captured metadata is accepted independently of fenced-content support 3ms
+ Γ£ô tests/openrouter-compatibility.test.ts > accepts only complete JSON: bare JSON 2ms
+ Γ£ô tests/openrouter-compatibility.test.ts > accepts only complete JSON: bare JSON with whitespace 2ms
+ Γ£ô tests/openrouter-compatibility.test.ts > accepts only complete JSON: single json fence 2ms
+ Γ£ô tests/openrouter-compatibility.test.ts > accepts only complete JSON: single untagged fence 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > accepts only complete JSON: single fence with CRLF and surrounding ΓÇª 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > fails closed without salvaging content: multiple fences 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > fails closed without salvaging content: prose before fence 3ms
+ Γ£ô tests/openrouter-compatibility.test.ts > fails closed without salvaging content: prose after fence 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > fails closed without salvaging content: prose around bare JSON 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > fails closed without salvaging content: two bare objects 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > fails closed without salvaging content: two objects inside fence 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > fails closed without salvaging content: wrong fence language 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > fails closed without salvaging content: inline fence 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > fails closed without salvaging content: nested fence 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > fails closed without salvaging content: unclosed fence 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > fails closed without salvaging content: truncated closing fence 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > fails closed without salvaging content: truncated bare JSON despite stop 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > fails closed without salvaging content: truncated fenced JSON despite stop 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > fails closed without salvaging content: malformed bare JSON 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > fails closed without salvaging content: malformed fenced JSON 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > fails closed without salvaging content: unknown extraction key 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > fails closed without salvaging content: unknown nested extraction key 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > fails closed without salvaging content: missing evidence 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > fails closed without salvaging content: array instead of object 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > fails closed without salvaging content: null instead of object 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > fails closed without salvaging content: empty content 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > captured envelope still rejects truncated finish reason with valid fencΓÇª 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > captured envelope still rejects native truncation despite stop 2ms
+ Γ£ô tests/openrouter-compatibility.test.ts > captured envelope still rejects native refusal despite stop 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > captured envelope still rejects native error despite stop 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > captured envelope still rejects refusal with valid content 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > captured envelope still rejects root error with valid content 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > captured envelope still rejects choice error with valid content 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > captured envelope still rejects message error with valid content 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > captured envelope still rejects missing content 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > captured envelope still rejects null content 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > captured envelope still rejects structured content 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > captured envelope still rejects non-null reasoning 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > captured envelope still rejects invalid service tier type 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > captured envelope still rejects oversized service tier 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > captured envelope still rejects invalid native finish type 1ms
+ Γ£ô tests/openrouter-compatibility.test.ts > captured envelope still rejects oversized native finish reason 1ms
+ Γ£ô tests/sqlite-spend-security.test.ts > Windows ACL contract accepts current-user private ACL despite Windows-style 0666 modes 1545ms
+ Γ£ô tests/sqlite-spend-security.test.ts > Windows ACL contract fails closed: foreign-owner 1668ms
+ Γ£ô tests/sqlite-spend-security.test.ts > Windows ACL contract fails closed: everyone 1828ms
+ Γ£ô tests/sqlite-spend-security.test.ts > Windows ACL contract fails closed: authenticated-users 1710ms
+ Γ£ô tests/sqlite-spend-security.test.ts > Windows ACL contract fails closed: unknown-sid 1473ms
+ Γ£ô tests/sqlite-spend-security.test.ts > Windows ACL contract fails closed: null-dacl 1460ms
+ Γ£ô tests/sqlite-spend-security.test.ts > Windows ACL contract fails closed: empty-dacl 1483ms
+ Γ£ô tests/sqlite-spend-security.test.ts > Windows ACL contract fails closed: reparse 1655ms
+ Γ£ô tests/sqlite-spend-security.test.ts > Windows ACL contract fails closed: unprotected-parent 2110ms
+ Γ£ô tests/sqlite-spend-security.test.ts > Windows ACL contract fails closed: no-child-inheritance 1764ms
+ Γ£ô tests/sqlite-spend-security.test.ts > Windows ACL contract fails closed: inherit-only 1441ms
+ Γ£ô tests/sqlite-spend-security.test.ts > Windows ACL contract fails closed: no-propagate 1496ms
+ Γ£ô tests/sqlite-spend-security.test.ts > Windows ACL contract fails closed: callback 1492ms
+ Γ£ô tests/sqlite-spend-security.test.ts > Windows ACL contract fails closed: object-ace 1645ms
+ Γ£ô tests/sqlite-spend-security.test.ts > Windows ACL contract fails closed: deny-ace 2196ms
+ Γ£ô tests/sqlite-spend-security.test.ts > Windows ACL contract fails closed: noncanonical 1868ms
+ Γ£ô tests/sqlite-spend-security.test.ts > Windows ACL contract fails closed: missing-parent 1781ms
+ Γ£ô tests/sqlite-spend-security.test.ts > Windows ACL contract fails closed: missing-ledger 1629ms
+ Γ£ô tests/sqlite-spend-security.test.ts > Windows ACL contract fails closed: extra-entry 1782ms
+ Γ£ô tests/sqlite-spend-security.test.ts > Windows ACL contract fails closed: no-current-grant 2092ms
+ Γ£ô tests/sqlite-spend-security.test.ts > Windows ACL contract fails closed: read-only-current 1598ms
+ Γ£ô tests/sqlite-spend-security.test.ts > Windows ACL contract fails closed: malformed 1553ms
+ Γ£ô tests/sqlite-spend-security.test.ts > Windows ACL contract fails closed: inspection-error 1506ms
+ Γ£ô tests/sqlite-spend-security.test.ts > Windows ACL contract explicitly allows SYSTEM and built-in Administrators alongside current user 1472ms
+ Γ£ô tests/sqlite-spend-security.test.ts > Windows ACL contract: route delegates ledger privacy to the same OS-aware guard 1555ms
+ Γ£ô tests/sqlite-spend-security.test.ts > Windows provisioning ACL inspection failure creates no ledger or sidecars 370ms
+ Γåô tests/sqlite-spend-security.test.ts > native POSIX: provisioning refuses a public parent before creating ledger
+ Γåô tests/sqlite-spend-security.test.ts > native POSIX: opening rejects exposed ledger/sidecar 
+ Γåô tests/sqlite-spend-security.test.ts > native POSIX: opening rejects exposed ledger/sidecar -wal
+ Γåô tests/sqlite-spend-security.test.ts > native POSIX: opening rejects exposed ledger/sidecar -shm
+ Γåô tests/sqlite-spend-security.test.ts > native POSIX: opening rejects exposed ledger/sidecar -journal
+ Γ£ô tests/sqlite-spend-security.test.ts > provisioning refuses stale sidecars without creating a new ledger 340ms
+ Γ£ô tests/repository.test.ts > immutable evidence repository source foundation > binds a server-owned image version to a frozen application, identity and server time 32ms
+ Γ£ô tests/repository.test.ts > immutable evidence repository source foundation > snapshots mutable application and bytes before any asynchronous authorization 11ms
+ Γ£ô tests/repository.test.ts > immutable evidence repository source foundation > denies anonymous/forged/cross-workspace create null 5ms
+ Γ£ô tests/repository.test.ts > immutable evidence repository source foundation > denies anonymous/forged/cross-workspace create {"sessionToken":"opaque-session","workspaceId":"workspace-a","userId":"admin"} 5ms
+ Γ£ô tests/repository.test.ts > immutable evidence repository source foundation > denies anonymous/forged/cross-workspace create {"sessionToken":"opaque-session","workspaceId":"workspace-b"} 5ms
+ Γ£ô tests/repository.test.ts > immutable evidence repository source foundation > rejects caller-owned actor 5ms
+ Γ£ô tests/repository.test.ts > immutable evidence repository source foundation > rejects caller-owned workspaceId 5ms
+ Γ£ô tests/repository.test.ts > immutable evidence repository source foundation > rejects caller-owned createdAt 5ms
+ Γ£ô tests/repository.test.ts > immutable evidence repository source foundation > rejects caller-owned expiresAt 8ms
+ Γ£ô tests/repository.test.ts > immutable evidence repository source foundation > rejects caller-owned evidenceId 6ms
+ Γ£ô tests/repository.test.ts > immutable evidence repository source foundation > rejects caller-owned objectKey 5ms
+ Γ£ô tests/repository.test.ts > immutable evidence repository source foundation > denies revoked membership and viewer writes 7ms
+ Γ£ô tests/repository.test.ts > immutable evidence repository source foundation > rechecks membership after object storage before committing 13ms
+ Γ£ô tests/repository.test.ts > immutable evidence repository source foundation > does not acknowledge throw persistence 13ms
+ Γ£ô tests/repository.test.ts > immutable evidence repository source foundation > does not acknowledge malformed persistence 14ms
+ Γ£ô tests/repository.test.ts > immutable evidence repository source foundation > does not acknowledge binding-drift persistence 13ms
+ Γ£ô tests/repository.test.ts > immutable evidence repository source foundation > storage failure never produces an evidence receipt 13ms
+ Γ£ô tests/repository.test.ts > immutable evidence repository source foundation > denies expired, revoked, mismatched-ID and cross-workspace records 16ms
+ Γ£ô tests/repository.test.ts > immutable evidence repository source foundation > cannot replace an immutable binding through create 25ms
+ Γ£ô tests/repository.test.ts > immutable evidence repository source foundation > has no implicit durable or memory fallback 0ms
+ Γ£ô tests/demo-route.test.ts > access secret is user-entered, never rendered from the server environment 17ms
+ Γ£ô tests/demo-route.test.ts > each missing required configuration closes before reading body 1745ms
+ Γ£ô tests/demo-route.test.ts > chunked body without content-length is capped before multipart decoding 2310ms
+ Γ£ô tests/demo-route.test.ts > missing config and unauthorized deny before reading body or transport 1504ms
+ Γ£ô tests/demo-route.test.ts > exact origin, schema, oversized and malformed chunked input fail closed 4195ms
+ Γ£ô tests/demo-route.test.ts > synthetic route -> real Haiku adapter transport -> real rules and provenance 2528ms
+ Γ£ô tests/demo-route.test.ts > bad evidence never returns a match and does not release spend 3022ms
+ Γ£ô tests/demo-route.test.ts > observed Haiku catalog cache prices allow bounded tool-free dispatch 2306ms
+ Γ£ô tests/demo-route.test.ts > unknown paid fee still refuses dispatch 2693ms
+ Γ£ô tests/demo-route.test.ts > catalog price drift denies paid dispatch 2443ms
+ Γ£ô tests/sqlite-spend.test.ts > child startup failures include diagnostics, not swallowed CAS exit codes 696ms
+ Γ£ô tests/sqlite-spend.test.ts > independent processes share atomic identity and claims; persisted cap mismatch rejects 6303ms
+ Γ£ô tests/sqlite-spend.test.ts > atomic dedup, single winner claim, retained holds, restart and hard cap 5349ms
+ Γ£ô tests/sqlite-spend.test.ts > work and claim concurrency remain bounded and crash holds persist on restart 3156ms
+ Γ£ô tests/live-batch-state.test.ts > live slots start unprepared; edited revision and out-of-order preparation/completion cannot replace current evidence 34ms
+ Γ£ô tests/live-batch-state.test.ts > client preserves File, exact application and stable intent; preparation failure/staleness never executes 26ms
+ Γ£ô tests/spend.test.ts > authorized valid reservation dispatches once and holds all cost after success 20ms
+ Γ£ô tests/spend.test.ts > reserve outage rejects without leaking store details 2ms
+ Γ£ô tests/spend.test.ts > claim outage rejects without leaking store details 5ms
+ Γ£ô tests/spend.test.ts > complete outage rejects without leaking store details 3ms
+ Γ£ô tests/spend.test.ts > no store defaults deny 1ms
+ Γ£ô tests/spend.test.ts > concurrent same reservation/attempt cannot dispatch twice 10ms
+ Γ£ô tests/spend.test.ts > atomic claim rejects duplicate even when reserve replays a valid receipt 2ms
+ Γ£ô tests/spend.test.ts > cumulative historical and unresolved liabilities are not reset across boundaries 2ms
+ Γ£ô tests/spend.test.ts > exceptions retain reservation and retries require both new identities 8ms
+ Γ£ô tests/spend.test.ts > invalid integer money 0 never reserves 1ms
+ Γ£ô tests/spend.test.ts > invalid integer money -1 never reserves 1ms
+ Γ£ô tests/spend.test.ts > invalid integer money 0.1 never reserves 1ms
+ Γ£ô tests/spend.test.ts > invalid integer money NaN never reserves 1ms
+ Γ£ô tests/spend.test.ts > invalid integer money Infinity never reserves 0ms
+ Γ£ô tests/spend.test.ts > invalid integer money 9007199254740992 never reserves 2ms
+ Γ£ô tests/spend.test.ts > invalid reserve receipt binding fails closed 2ms
+ Γ£ô tests/spend.test.ts > invalid reserve receipt currency fails closed 1ms
+ Γ£ô tests/spend.test.ts > invalid reserve receipt overflow fails closed 1ms
+ Γ£ô tests/spend.test.ts > invalid reserve receipt ceiling fails closed 0ms
+ Γ£ô tests/spend.test.ts > invalid reserve receipt liability fails closed 0ms
+ Γ£ô tests/spend.test.ts > invalid reserve receipt state fails closed 1ms
+ Γ£ô tests/spend.test.ts > invalid reserve receipt nonce fails closed 1ms
+ Γ£ô tests/spend.test.ts > invalid reserve receipt extra fails closed 1ms
+ Γ£ô tests/spend.test.ts > invalid claim receipt refuses output and holds liability 1ms
+ Γ£ô tests/spend.test.ts > invalid complete receipt refuses output and holds liability 1ms
+ Γ£ô tests/sqlite-spend-native-security.test.ts > native security: exposed parent refuses provisioning before any ledger is created 1601ms
+ Γ£ô tests/sqlite-spend-native-security.test.ts > native security: exposed parent denies existing ledger 2727ms
+ Γ£ô tests/sqlite-spend-native-security.test.ts > native security: exposed  denies existing ledger 2609ms
+ Γ£ô tests/sqlite-spend-native-security.test.ts > native security: exposed -wal denies existing ledger 2917ms
+ Γ£ô tests/sqlite-spend-native-security.test.ts > native security: exposed -shm denies existing ledger 2946ms
+ Γ£ô tests/sqlite-spend-native-security.test.ts > native security: exposed -journal denies existing ledger 2610ms
+ Γ£ô tests/sqlite-spend-native-security.test.ts > native security: real WAL and SHM retain private permissions 2840ms
+ Γ£ô tests/sqlite-spend-native-security.test.ts > native security: directory junction/symlink in parent path is rejected 346ms
+ Γ£ô tests/sqlite-spend-native-security.test.ts > native security: hardlinked ledger is rejected 1866ms
+ Γ£ô tests/sqlite-spend-native-security.test.ts > native security: actual provisioning CLI accepts private Unicode/spaced directory and refuses reuse 3652ms
+ Γ£ô tests/sqlite-spend-native-security.test.ts > native security: renamed bracket paths preserve acceptance and reject real exposure 4065ms
+ Γ£ô tests/compare-service.test.ts > offline comparison composition > denies by default without provider dispatch or touching input 4ms
+ Γ£ô tests/compare-service.test.ts > offline comparison composition > route denies before request body parsing, including forged authorization 20ms
+ Γ£ô tests/compare-service.test.ts > offline comparison composition > production can never enable the fixture demonstration 0ms
+ Γ£ô tests/compare-service.test.ts > offline comparison composition > composes sanitized image, strict application and rules with retained binding 20ms
+ Γ£ô tests/compare-service.test.ts > offline comparison composition > snapshots application and bytes before asynchronous access 4ms
+ Γ£ô tests/compare-service.test.ts > offline comparison composition > rejects provider hash corruption 4ms
+ Γ£ô tests/compare-service.test.ts > offline comparison composition > rejects provider extra corruption 5ms
+ Γ£ô tests/compare-service.test.ts > offline comparison composition > rejects provider evidence corruption 4ms
+ Γ£ô tests/compare-service.test.ts > offline comparison composition > rejects provider source corruption 4ms
+ Γ£ô tests/compare-service.test.ts > offline comparison composition > handles corrupt image with no content leak or provider call 2ms
+ Γ£ô tests/compare-service.test.ts > offline comparison composition > bounds a hung provider, distinguishes cancellation and never creates fields on failure 19ms
+ Γ£ô tests/compare-service.test.ts > offline comparison composition > maps thrown provider errors to content-free processing failure 4ms
+ Γ£ô tests/review-policy.test.ts > requires explicit physical assessment and human confirmation even for seven matching fields 22ms
+ Γ£ô tests/review-policy.test.ts > readable mismatch blocks Pass until explicit supported resolution; never edits machine findings 6ms
+ Γ£ô tests/review-policy.test.ts > a unresolved resolution cannot permit Pass 2ms
+ Γ£ô tests/review-policy.test.ts > a confirmed-mismatch resolution cannot permit Pass 2ms
+ Γ£ô tests/review-policy.test.ts > uncertainty remains needs-review without a supported human assessment 2ms
+ Γ£ô tests/review-policy.test.ts > correction needs relevant notes but not a pretend physical Pass assessment 2ms
+ Γ£ô tests/review-policy.test.ts > second-review needs relevant notes but not a pretend physical Pass assessment 2ms
+ Γ£ô tests/review-policy.test.ts > changing evidence, applicant declaration, or version invalidates old confirmation 5ms
+ Γ£ô tests/review-policy.test.ts > failed, missing or unmapped records cannot submit null 2ms
+ Γ£ô tests/review-policy.test.ts > failed, missing or unmapped records cannot submit {} 1ms
+ Γ£ô tests/review-policy.test.ts > failed, missing or unmapped records cannot submit {"processing":"failed","code":"provider-failed"} 1ms
+ Γ£ô tests/review-policy.test.ts > failed, missing or unmapped records cannot submit {"processing":"complete"} 1ms
+ Γ£ô tests/review-policy.test.ts > failed, missing or unmapped records cannot submit {"processing":"complete","application":null} 1ms
+ Γ£ô tests/review-policy.test.ts > rejects a forged passing field, extra identity properties and malformed review state 3ms
+ Γ£ô tests/batch-manifest.test.ts > 300 synthetic pairs bind by literal filename independent of both input orders 124ms
+ Γ£ô tests/batch-manifest.test.ts > duplicate mappings and physical filenames block all affected names, not unrelated pairs 3ms
+ Γ£ô tests/batch-manifest.test.ts > missing mapping and missing image are separate blocked entries; no sample fallback 1ms
+ Γ£ô tests/batch-manifest.test.ts > invalid ABV undefined blocks just its mapping 3ms
+ Γ£ô tests/batch-manifest.test.ts > invalid ABV null blocks just its mapping 1ms
+ Γ£ô tests/batch-manifest.test.ts > invalid ABV "" blocks just its mapping 1ms
+ Γ£ô tests/batch-manifest.test.ts > invalid ABV " " blocks just its mapping 1ms
+ Γ£ô tests/batch-manifest.test.ts > invalid ABV "40%" blocks just its mapping 1ms
+ Γ£ô tests/batch-manifest.test.ts > invalid ABV -1 blocks just its mapping 2ms
+ Γ£ô tests/batch-manifest.test.ts > invalid ABV 101 blocks just its mapping 2ms
+ Γ£ô tests/batch-manifest.test.ts > explicit zero is preserved; schema rejects missing declarations and unknown fields 4ms
+ Γ£ô tests/batch-manifest.test.ts > duplicate application/version identities block both names 3ms
+ Γ£ô tests/batch-manifest.test.ts > invalid row or file metadata is isolated and snapshots are immutable 1ms
+ Γ£ô tests/batch-manifest.test.ts > invalid envelopes, oversized arrays, and more than 300 logical names fail closed 6ms
+ Γ£ô tests/db/sql-contract.test.ts > offline SQL source contracts ΓÇö NOT PostgreSQL execution proof > defines the durable scope, immutable evidence and global spend tables 5ms
+ Γ£ô tests/db/sql-contract.test.ts > offline SQL source contracts ΓÇö NOT PostgreSQL execution proof > locks every security definer search path and revokes public/default runtime authority 2ms
+ Γ£ô tests/db/sql-contract.test.ts > offline SQL source contracts ΓÇö NOT PostgreSQL execution proof > derives identity from verified gateway claims plus live auth rows, not caller JSON 1ms
+ Γ£ô tests/db/sql-contract.test.ts > offline SQL source contracts ΓÇö NOT PostgreSQL execution proof > rejects updates/deletes of source evidence and requires attested private object bindings 1ms
+ Γ£ô tests/db/sql-contract.test.ts > offline SQL source contracts ΓÇö NOT PostgreSQL execution proof > rejects JSON null commodity and revalidates current reservation cost on claim 0ms
+ Γ£ô tests/db/sql-contract.test.ts > offline SQL source contracts ΓÇö NOT PostgreSQL execution proof > serializes global holds and single-winner dispatch without reclaim/refund or caller ceiling 1ms
+ Γ£ô tests/auth.test.ts > server-trusted workspace authentication (offline adapter tests only) > derives identity, role and time from trusted adapters, never the selector 8ms
+ Γ£ô tests/auth.test.ts > server-trusted workspace authentication (offline adapter tests only) > denies anonymous or forged actor/context null 2ms
+ Γ£ô tests/auth.test.ts > server-trusted workspace authentication (offline adapter tests only) > denies anonymous or forged actor/context {} 1ms
+ Γ£ô tests/auth.test.ts > server-trusted workspace authentication (offline adapter tests only) > denies anonymous or forged actor/context {"sessionToken":"opaque-managed-session","workspaceId":"workspace-a","userId":"admin"} 1ms
+ Γ£ô tests/auth.test.ts > server-trusted workspace authentication (offline adapter tests only) > denies anonymous or forged actor/context {"sessionToken":"opaque-managed-session","workspaceId":"workspace-a","role":"owner"} 1ms
+ Γ£ô tests/auth.test.ts > server-trusted workspace authentication (offline adapter tests only) > denies anonymous or forged actor/context {"sessionToken":"opaque-managed-session","workspaceId":"workspace-a","actor":{"userId":"admin"}} 0ms
+ Γ£ô tests/auth.test.ts > server-trusted workspace authentication (offline adapter tests only) > denies anonymous or forged actor/context {"sessionToken":"opaque-managed-session","workspaceId":"workspace-a","checkedAt":1800000000000} 0ms
+ Γ£ô tests/auth.test.ts > server-trusted workspace authentication (offline adapter tests only) > denies anonymous or forged actor/context {"sessionToken":"","workspaceId":"workspace-a"} 1ms
+ Γ£ô tests/auth.test.ts > server-trusted workspace authentication (offline adapter tests only) > rechecks session and active membership on every authorization 2ms
+ Γ£ô tests/auth.test.ts > server-trusted workspace authentication (offline adapter tests only) > denies cross-workspace membership 1ms
+ Γ£ô tests/auth.test.ts > server-trusted workspace authentication (offline adapter tests only) > denies expired session 1ms
+ Γ£ô tests/auth.test.ts > server-trusted workspace authentication (offline adapter tests only) > denies revoked session 1ms
+ Γ£ô tests/auth.test.ts > server-trusted workspace authentication (offline adapter tests only) > denies malformed session 0ms
+ Γ£ô tests/auth.test.ts > server-trusted workspace authentication (offline adapter tests only) > denies failure session 0ms
+ Γ£ô tests/auth.test.ts > server-trusted workspace authentication (offline adapter tests only) > denies unknown roles and membership backend errors 1ms
+ Γ£ô tests/auth.test.ts > server-trusted workspace authentication (offline adapter tests only) > has no implicit auth fallback 0ms
+ Γ£ô tests/offline-demo.test.ts > binds match to exact normalized PNG and independently fixed evidence 37ms
+ Γ£ô tests/offline-demo.test.ts > binds discrepancy to exact normalized PNG and independently fixed evidence 17ms
+ Γ£ô tests/offline-demo.test.ts > binds uncertainty to exact normalized PNG and independently fixed evidence 14ms
+ Γ£ô tests/offline-demo.test.ts > binds failure to exact normalized PNG and independently fixed evidence 1ms
+ Γ£ô tests/offline-demo.test.ts > rejects unrelated image bytes and missing application; applicant edits never rewrite observations 3ms
+ Γ£ô tests/db/gate-refusal.test.ts > DB gate refusal subprocess ΓÇö never connects to a DB > is an explicit package gate, not the unit suite 2ms
+ Γ£ô tests/db/gate-refusal.test.ts > DB gate refusal subprocess ΓÇö never connects to a DB > fails specifically for missing isolated authorization/config, even without psql on PATH 262ms
+ Γ£ô tests/db/gate-refusal.test.ts > DB gate refusal subprocess ΓÇö never connects to a DB > rejects caller-supplied narrower suite arguments before configuration/DB access 220ms
+ Γ£ô tests/db/gate-refusal.test.ts > DB gate refusal subprocess ΓÇö never connects to a DB > cannot promote a catalog-only pass to behavioral acceptance 1ms
+ Γ£ô tests/db/gate-config.test.ts > actual-DB gate configuration (offline) > accepts only an explicitly pinned isolated target 3ms
+ Γ£ô tests/db/gate-config.test.ts > actual-DB gate configuration (offline) > fails absent TTB_DB_GATE_AUTHORIZATION without default target 1ms
+ Γ£ô tests/db/gate-config.test.ts > actual-DB gate configuration (offline) > fails absent TTB_DB_GATE_HOST without default target 0ms
+ Γ£ô tests/db/gate-config.test.ts > actual-DB gate configuration (offline) > fails absent TTB_DB_GATE_DATABASE without default target 0ms
+ Γ£ô tests/db/gate-config.test.ts > actual-DB gate configuration (offline) > fails absent TTB_DB_GATE_URL without default target 0ms
+ Γ£ô tests/db/gate-config.test.ts > actual-DB gate configuration (offline) > rejects unapproved/ambiguous target without leaking connection text {"TTB_DB_GATE_AUTHORIZATION":"yes"} 0ms
+ Γ£ô tests/db/gate-config.test.ts > actual-DB gate configuration (offline) > rejects unapproved/ambiguous target without leaking connection text {"TTB_DB_GATE_HOST":"other"} 0ms
+ Γ£ô tests/db/gate-config.test.ts > actual-DB gate configuration (offline) > rejects unapproved/ambiguous target without leaking connection text {"TTB_DB_GATE_DATABASE":"postgres"} 0ms
+ Γ£ô tests/db/gate-config.test.ts > actual-DB gate configuration (offline) > rejects unapproved/ambiguous target without leaking connection text {"TTB_DB_GATE_URL":"postgresql://test:synthetic@production.example.test/ttb_phase4_test_synthetic","TTB_DB_GATE_HOST":"production.example.test"} 1ms
+ Γ£ô tests/db/gate-config.test.ts > actual-DB gate configuration (offline) > rejects unapproved/ambiguous target without leaking connection text {"TTB_DB_GATE_URL":"postgresql://test:synthetic@127.0.0.1:5432/ttb_phase4_test_synthetic?options=-c%20role%3Dpostgres"} 0ms
+ Γ£ô tests/db/gate-config.test.ts > actual-DB gate configuration (offline) > rejects unapproved/ambiguous target without leaking connection text {"TTB_DB_GATE_URL":"not-a-url"} 0ms
+ Γ£ô tests/db/gate-config.test.ts > actual-DB gate configuration (offline) > rejects unapproved/ambiguous target without leaking connection text {"TTB_DB_GATE_URL":"postgresql://test@127.0.0.1:5432/ttb_phase4_test_synthetic"} 0ms
+ Γ£ô tests/pair-input.test.ts > manual entry has every explicit field and no commodity/import default 20ms
+ Γ£ô tests/pair-input.test.ts > browser declarations are advisory and reject unsupported or empty selections 1ms
+ Γ£ô tests/sqlite-spend-windows-script.test.ts > Windows production ACL reader uses literal .NET IO and never requests Audit/SACL 2ms
+ Γ£ô tests/sqlite-spend-windows-script.test.ts > Windows fixture edits only DACL and verifies exposed ACE before returning 0ms
+ Γ£ô tests/smoke.test.ts > review shell declares foundation limits without fabricated results 19ms
+node.exe : 
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ» Failed Tests 4 ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»
+
+ FAIL  tests/live-batch-route.test.ts > same intent survives handler restart without another dispatch or hold; changed 
+IDs do not evade dedup
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ Γ¥» tests/live-batch-route.test.ts:56:1
+     54| });
+     55|
+     56| test('same intent survives handler restart without another dispatch orΓÇª
+       | ^
+     57|   const s = setup(); const { binding } = await prepare(s); const tokenΓÇª
+     58|   expect((await s.handler(await request('execute', { binding, token })ΓÇª
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[1/5]ΓÄ»
+
+ FAIL  tests/live-batch-route.test.ts > failed paid intent remains consumed with its full hold; replay never 
+dispatches again
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ Γ¥» tests/live-batch-route.test.ts:68:1
+     66| });
+     67|
+     68| test('failed paid intent remains consumed with its full hold; replay nΓÇª
+       | ^
+     69|   const s = setup(); const { binding } = await prepare(s); const tokenΓÇª
+     70|   const original = s.transport.getMockImplementation()!;
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[2/5]ΓÄ»
+
+ FAIL  tests/live-batch-route.test.ts > edited application needs new preparation and explicit new attempt; no trusted 
+browser hash/cost
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ Γ¥» tests/live-batch-route.test.ts:78:1
+     76| });
+     77|
+     78| test('edited application needs new preparation and explicit new attempΓÇª
+       | ^
+     79|   const s = setup(); const { binding } = await prepare(s); const tokenΓÇª
+     80|   const app = { ...fixtures.application, applicationVersion: 'v2', braΓÇª
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[3/5]ΓÄ»
+
+ FAIL  tests/live-batch-route.test.ts > two server slots admit work, third fails closed and duplicate racing intent 
+dispatches once
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ Γ¥» tests/live-batch-route.test.ts:93:1
+     91| });
+     92|
+     93| test('two server slots admit work, third fails closed and duplicate raΓÇª
+       | ^
+     94|   const s = setup(); const { binding } = await prepare(s);
+     95|   const original = s.transport.getMockImplementation()!;
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[4/5]ΓÄ»
+
+ FAIL  tests/live-batch-route.test.ts > two server slots admit work, third fails closed and duplicate racing intent 
+dispatches once
+Error: EBUSY: resource busy or locked, unlink 
+'C:\Users\alexm\AppData\Local\Temp\ttb-ledger-fixture-s5PQAY\spend.sqlite'
+ Γ¥» tests/live-batch-route.test.ts:13:53
+     11|
+     12| const dirs: string[] = [];
+     13| afterEach(() => { for (const dir of dirs.splice(0)) rmSync(dir, { recuΓÇª
+       |                                                     ^
+     14| const secret = 'synthetic-only-access-code-0123456789abcdef';
+     15| const intent = () => ({ attemptId: randomUUID(), reservationId: randomΓÇª
+
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»
+Serialized Error: { errno: -4082, code: 'EBUSY', syscall: 'unlink', path: 
+'C:\Users\alexm\AppData\Local\Temp\ttb-ledger-fixture-s5PQAY\spend.sqlite' }
+ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»ΓÄ»[5/5]ΓÄ»
+
+
+ Test Files  1 failed | 25 passed (26)
+      Tests  4 failed | 553 passed | 5 skipped (562)
+   Start at  20:03:23
+   Duration  147.83s (tests 97%, import 3%, transform 1%)
+

@@ -1,0 +1,418 @@
+{
+  "sourceSha": "bb1089868649ff522185454ccfc72cb23a3f6b7a",
+  "frozenTrackedFilesVerified": 96,
+  "frozenTrackedFilesChanged": [],
+  "result": "LIVE_EXTRACTION_COMPARISON_PASS; LIVE_HUMAN_REVIEW_BLOCKED",
+  "paidInferenceAttempts": 2,
+  "attemptLimit": 2,
+  "retries": 0,
+  "fallbacks": 0,
+  "origin": "http://localhost:3187",
+  "bind": "127.0.0.1:3187",
+  "ledgerPath": "/opt/data/ttb-demo-private/spend.sqlite",
+  "ledgerReused": true,
+  "ceilingUsd": "25",
+  "heldBeforeUsd": "1",
+  "newHeldUsd": "2",
+  "heldFinalUsd": "3",
+  "remainingHoldCapacityUsd": "22",
+  "ledgerIncurredUsd": "0",
+  "reportedCostThisRunUsd": "0.00922779",
+  "reportedUpstreamCostThisRunUsd": "0.009321",
+  "providerCostMetadataTrustedForSettlement": false,
+  "holdsReleasedOrRefunded": false,
+  "catalogWorstCaseBoundUsd": "0.88500000",
+  "cases": [
+    {
+      "case": "match",
+      "httpStatus": 200,
+      "processing": "complete",
+      "fieldOutcomes": {
+        "brand": "match",
+        "classType": "match",
+        "abv": "match",
+        "netContents": "match",
+        "producer": "match",
+        "origin": "match",
+        "warning": "match"
+      },
+      "abvExpected": "40",
+      "abvObserved": "40%",
+      "displayedElapsedMs": 4640,
+      "browserTimings": {
+        "browserLaunchMs": 821.4636099999999,
+        "navigationMs": 650.033463,
+        "submitToHeadersMs": 5308.990923,
+        "submitToBodyMs": 5353.341454,
+        "submitToDisplayedMs": 5360.358523,
+        "request": {
+          "startTime": 1789944513395.326,
+          "domainLookupStart": -1,
+          "domainLookupEnd": -1,
+          "connectStart": -1,
+          "secureConnectionStart": -1,
+          "connectEnd": -1,
+          "requestStart": 4.053,
+          "responseStart": 5243.575,
+          "responseEnd": 5248.176
+        },
+        "responseBodyBytes": 5015,
+        "navigationEntry": [
+          {
+            "name": "http://localhost:3187/review",
+            "entryType": "navigation",
+            "startTime": 0,
+            "duration": 250.59999990463257,
+            "navigationId": 1556,
+            "initiatorType": "navigation",
+            "deliveryType": "",
+            "nextHopProtocol": "http/1.1",
+            "renderBlockingStatus": "non-blocking",
+            "contentType": "text/html",
+            "contentEncoding": "gzip",
+            "workerStart": 0,
+            "workerRouterEvaluationStart": 0,
+            "workerCacheLookupStart": 0,
+            "workerMatchedSourceType": "",
+            "workerFinalSourceType": "",
+            "redirectStart": 2,
+            "redirectEnd": 15.599999904632568,
+            "fetchStart": 15.599999904632568,
+            "domainLookupStart": 15.599999904632568,
+            "domainLookupEnd": 15.599999904632568,
+            "connectStart": 15.599999904632568,
+            "secureConnectionStart": 0,
+            "connectEnd": 15.599999904632568,
+            "requestStart": 17.299999952316284,
+            "responseStart": 49.09999990463257,
+            "firstInterimResponseStart": 0,
+            "finalResponseHeadersStart": 49.09999990463257,
+            "responseEnd": 51.09999990463257,
+            "transferSize": 3945,
+            "encodedBodySize": 3645,
+            "decodedBodySize": 11355,
+            "responseStatus": 200,
+            "serverTiming": [],
+            "unloadEventStart": 0,
+            "unloadEventEnd": 0,
+            "domInteractive": 139.79999995231628,
+            "domContentLoadedEventStart": 139.90000009536743,
+            "domContentLoadedEventEnd": 140,
+            "domComplete": 250.5,
+            "loadEventStart": 250.59999990463257,
+            "loadEventEnd": 250.59999990463257,
+            "type": "navigate",
+            "redirectCount": 1,
+            "activationStart": 0,
+            "criticalCHRestart": 0,
+            "notRestoredReasons": null,
+            "confidence": {
+              "randomizedTriggerRate": 0.4994798,
+              "value": "low"
+            }
+          }
+        ],
+        "comparisonResource": [
+          {
+            "name": "http://localhost:3187/api/comparisons",
+            "entryType": "resource",
+            "startTime": 1057.5999999046326,
+            "duration": 5248.100000143051,
+            "navigationId": 1556,
+            "initiatorType": "fetch",
+            "deliveryType": "",
+            "nextHopProtocol": "http/1.1",
+            "renderBlockingStatus": "non-blocking",
+            "contentType": "application/json",
+            "contentEncoding": "",
+            "workerStart": 0,
+            "workerRouterEvaluationStart": 0,
+            "workerCacheLookupStart": 0,
+            "workerMatchedSourceType": "",
+            "workerFinalSourceType": "",
+            "redirectStart": 0,
+            "redirectEnd": 0,
+            "fetchStart": 1057.5999999046326,
+            "domainLookupStart": 1057.5999999046326,
+            "domainLookupEnd": 1057.5999999046326,
+            "connectStart": 1057.5999999046326,
+            "secureConnectionStart": 0,
+            "connectEnd": 1057.5999999046326,
+            "requestStart": 1065.2999999523163,
+            "responseStart": 6304.799999952316,
+            "firstInterimResponseStart": 0,
+            "finalResponseHeadersStart": 6304.799999952316,
+            "responseEnd": 6305.700000047684,
+            "transferSize": 5315,
+            "encodedBodySize": 5015,
+            "decodedBodySize": 5015,
+            "responseStatus": 200,
+            "serverTiming": []
+          }
+        ],
+        "totalBrowserRunMs": 7516.768593000001
+      },
+      "provider": {
+        "httpStatus": 200,
+        "model": "anthropic/claude-haiku-4.5",
+        "provider": "Amazon Bedrock",
+        "headersMs": 1367.421366999999,
+        "observedDispatchToCompleteMs": 4439.0,
+        "reportedCostUsd": "0.00462627",
+        "reportedUpstreamCostUsd": "0.004673",
+        "usage": {
+          "prompt_tokens": 2263,
+          "completion_tokens": 482,
+          "total_tokens": 2745,
+          "cost": 0.00462627,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.004673,
+            "upstream_inference_prompt_cost": 0.002263,
+            "upstream_inference_completions_cost": 0.00241
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        }
+      },
+      "heldAfterUsd": "2",
+      "remainingHoldCapacityUsd": "23",
+      "activeWorkSlots": 0,
+      "pageErrors": [],
+      "passDisplayedBlocked": true,
+      "screenshot": "match-result.png",
+      "screenshotDimensions": [
+        1440,
+        4759
+      ],
+      "exactDisplayedText": "match-displayed.txt"
+    },
+    {
+      "case": "discrepancy",
+      "httpStatus": 200,
+      "processing": "complete",
+      "fieldOutcomes": {
+        "brand": "match",
+        "classType": "match",
+        "abv": "mismatch",
+        "netContents": "match",
+        "producer": "match",
+        "origin": "match",
+        "warning": "match"
+      },
+      "abvExpected": "40",
+      "abvObserved": "45%",
+      "displayedElapsedMs": 4591,
+      "browserTimings": {
+        "browserLaunchMs": 756.794349,
+        "navigationMs": 625.2001379999999,
+        "submitToHeadersMs": 4673.002343,
+        "submitToBodyMs": 4712.502358,
+        "submitToDisplayedMs": 4720.771343,
+        "request": {
+          "startTime": 1789944546332.556,
+          "domainLookupStart": -1,
+          "domainLookupEnd": -1,
+          "connectStart": -1,
+          "secureConnectionStart": -1,
+          "connectEnd": -1,
+          "requestStart": 0.651,
+          "responseStart": 4607.14,
+          "responseEnd": 4610.724
+        },
+        "responseBodyBytes": 5008,
+        "navigationEntry": [
+          {
+            "name": "http://localhost:3187/review",
+            "entryType": "navigation",
+            "startTime": 0,
+            "duration": 225,
+            "navigationId": 8452,
+            "initiatorType": "navigation",
+            "deliveryType": "",
+            "nextHopProtocol": "http/1.1",
+            "renderBlockingStatus": "non-blocking",
+            "contentType": "text/html",
+            "contentEncoding": "gzip",
+            "workerStart": 0,
+            "workerRouterEvaluationStart": 0,
+            "workerCacheLookupStart": 0,
+            "workerMatchedSourceType": "",
+            "workerFinalSourceType": "",
+            "redirectStart": 2.200000047683716,
+            "redirectEnd": 15.799999952316284,
+            "fetchStart": 15.799999952316284,
+            "domainLookupStart": 15.799999952316284,
+            "domainLookupEnd": 15.799999952316284,
+            "connectStart": 15.799999952316284,
+            "secureConnectionStart": 0,
+            "connectEnd": 15.799999952316284,
+            "requestStart": 17.899999856948853,
+            "responseStart": 22,
+            "firstInterimResponseStart": 0,
+            "finalResponseHeadersStart": 22,
+            "responseEnd": 23.700000047683716,
+            "transferSize": 3945,
+            "encodedBodySize": 3645,
+            "decodedBodySize": 11355,
+            "responseStatus": 200,
+            "serverTiming": [],
+            "unloadEventStart": 0,
+            "unloadEventEnd": 0,
+            "domInteractive": 115.70000004768372,
+            "domContentLoadedEventStart": 115.70000004768372,
+            "domContentLoadedEventEnd": 115.79999995231628,
+            "domComplete": 225,
+            "loadEventStart": 225,
+            "loadEventEnd": 225,
+            "type": "navigate",
+            "redirectCount": 1,
+            "activationStart": 0,
+            "criticalCHRestart": 0,
+            "notRestoredReasons": null,
+            "confidence": {
+              "randomizedTriggerRate": 0.4994798,
+              "value": "low"
+            }
+          }
+        ],
+        "comparisonResource": [
+          {
+            "name": "http://localhost:3187/api/comparisons",
+            "entryType": "resource",
+            "startTime": 1023.0999999046326,
+            "duration": 4610.700000047684,
+            "navigationId": 8452,
+            "initiatorType": "fetch",
+            "deliveryType": "",
+            "nextHopProtocol": "http/1.1",
+            "renderBlockingStatus": "non-blocking",
+            "contentType": "application/json",
+            "contentEncoding": "",
+            "workerStart": 0,
+            "workerRouterEvaluationStart": 0,
+            "workerCacheLookupStart": 0,
+            "workerMatchedSourceType": "",
+            "workerFinalSourceType": "",
+            "redirectStart": 0,
+            "redirectEnd": 0,
+            "fetchStart": 1023.0999999046326,
+            "domainLookupStart": 1023.0999999046326,
+            "domainLookupEnd": 1023.0999999046326,
+            "connectStart": 1023.0999999046326,
+            "secureConnectionStart": 0,
+            "connectEnd": 1023.0999999046326,
+            "requestStart": 1026.3999998569489,
+            "responseStart": 5632.899999856949,
+            "firstInterimResponseStart": 0,
+            "finalResponseHeadersStart": 5632.899999856949,
+            "responseEnd": 5633.799999952316,
+            "transferSize": 5308,
+            "encodedBodySize": 5008,
+            "decodedBodySize": 5008,
+            "responseStatus": 200,
+            "serverTiming": []
+          }
+        ],
+        "totalBrowserRunMs": 6717.492953
+      },
+      "provider": {
+        "httpStatus": 200,
+        "model": "anthropic/claude-haiku-4.5",
+        "provider": "Amazon Bedrock",
+        "headersMs": 1308.8100980000017,
+        "observedDispatchToCompleteMs": 4433.0,
+        "reportedCostUsd": "0.00460152",
+        "reportedUpstreamCostUsd": "0.004648",
+        "usage": {
+          "prompt_tokens": 2263,
+          "completion_tokens": 477,
+          "total_tokens": 2740,
+          "cost": 0.00460152,
+          "is_byok": false,
+          "prompt_tokens_details": {
+            "cached_tokens": 0,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost_details": {
+            "upstream_inference_cost": 0.004648,
+            "upstream_inference_prompt_cost": 0.002263,
+            "upstream_inference_completions_cost": 0.002385
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 0,
+            "image_tokens": 0,
+            "audio_tokens": 0
+          }
+        }
+      },
+      "heldAfterUsd": "3",
+      "remainingHoldCapacityUsd": "22",
+      "activeWorkSlots": 0,
+      "pageErrors": [],
+      "passDisplayedBlocked": true,
+      "screenshot": "discrepancy-result.png",
+      "screenshotDimensions": [
+        1440,
+        5203
+      ],
+      "exactDisplayedText": "discrepancy-displayed.txt"
+    }
+  ],
+  "blocker": "web/lib/review-policy.ts:18 only accepts source fixture, rejecting complete openrouter records at lines 20-21 before review eligibility. Displayed correction/escalation availability is misleading: no live draft can submit.",
+  "shutdown": {
+    "processStillExists": {
+      "29192": false,
+      "29199": false,
+      "29164": false
+    },
+    "port3187ConnectErrno": 111,
+    "matchingServerOrBrowserProcesses": [],
+    "serverExit": {
+      "code": 143,
+      "signal": null,
+      "time": "2026-09-20T22:49:21.724Z"
+    }
+  },
+  "ledger": [
+    {
+      "id": 1,
+      "version": 1,
+      "ceiling": 25000000,
+      "incurred": 0
+    }
+  ],
+  "holds": [
+    {
+      "reservation": "658b1db8-90d3-4960-b520-36a9d4bd50db",
+      "attempt": "beb2199b-8e63-4839-ad85-c587d8ed2eb1",
+      "amount": 1000000,
+      "state": "unresolved"
+    },
+    {
+      "reservation": "68958db2-02e8-4967-9a15-fe4d3727a9d3",
+      "attempt": "4278c509-18e4-4c13-b3b4-efe47cce369d",
+      "amount": 1000000,
+      "state": "unresolved"
+    },
+    {
+      "reservation": "bb89f1d1-cfb8-49a4-afdd-3fb799d764a7",
+      "attempt": "344fcb6f-47db-479a-bfca-f83e539050e6",
+      "amount": 1000000,
+      "state": "unresolved"
+    }
+  ],
+  "activeWorkSlots": [],
+  "credentialLeaksInArtifacts": []
+}

@@ -1,0 +1,13 @@
+
+> ttb-label-review-foundation@0.1.0 test:e2e
+> playwright test tests/e2e/live-batch.spec.ts tests/e2e/live-demo.spec.ts
+
+
+Running 4 tests using 1 worker
+
+  ✓  1 [desktop] › tests/e2e/live-batch.spec.ts:11:1 › live batch retains Files/tabs, caps two slots, fences edited revision, and creates only UNSAVED drafts (2.1s)
+  ✓  2 [desktop] › tests/e2e/live-demo.spec.ts:10:1 › browser upload through real guarded handler and synthetic provider transport (620ms)
+  ✓  3 [mobile] › tests/e2e/live-batch.spec.ts:11:1 › live batch retains Files/tabs, caps two slots, fences edited revision, and creates only UNSAVED drafts (2.2s)
+  ✓  4 [mobile] › tests/e2e/live-demo.spec.ts:10:1 › browser upload through real guarded handler and synthetic provider transport (915ms)
+
+  4 passed (15.6s)

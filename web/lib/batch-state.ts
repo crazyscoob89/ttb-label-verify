@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { applicationSchema, MAX_BATCH_PAIRS, type Application } from './contracts';
-import { batchImageSchema, type BatchManifest, type ManifestIssue } from './batch-manifest';
+import { batchImageSchema, unpreparedBatchImageSchema, type BatchManifest, type ManifestIssue } from './batch-manifest';
 import { immutable, type CompleteComparison, type FailureCode } from './comparison-record';
 import { buildUnsavedDraft, newReviewIntent, reviewBinding, type Outcome, type ReviewIntent, type UnsavedDraft } from './review-policy';
 
@@ -16,7 +16,7 @@ export type DispatchCommand = {
    * on EVERY attempt. Replaying commands must not bypass server deduplication.
    */
   kind: 'authorize-reserve-and-dispatch'; token: AttemptToken; application: Application;
-  image: { filename: string; imageSha256: string };
+  image: { filename: string; imageSha256: string | null };
 };
 export type BatchCommand = DispatchCommand | SaveReviewCommand;
 export interface ReviewReceiptValidator {
@@ -35,6 +35,7 @@ export type PairSnapshot = {
 };
 export type BatchPairState = PairSnapshot & { id: string; history: PairSnapshot[] };
 export type BatchState = {
+  mode: 'offline' | 'live';
   batchId: string; concurrency: number; pairs: BatchPairState[]; selectedId: string; selectionEpoch: number;
   inFlight: AttemptToken[]; usedAttemptIds: string[]; usedReservationIds: string[]; usedSubmissionIds: string[];
 };
@@ -43,6 +44,7 @@ export type BatchAction =
   | ({ type: 'dispatch' | 'retry'; pairId: string } & AttemptIdentity)
   | { type: 'dispatch-next'; attempts: AttemptIdentity[] }
   | { type: 'settle'; token: AttemptToken; result: unknown }
+  | { type: 'prepared'; token: AttemptToken; imageSha256: string }
   | { type: 'navigate'; target: 'next' | 'previous' | string }
   | { type: 'replace'; pairId: string; application: unknown; image: unknown }
   | { type: 'edit-intent'; pairId: string; edits: ReviewEdits }
@@ -67,7 +69,7 @@ const blank = () => ({ activeAttempt: null, failure: null, record: null, intent:
 /** Caller owns this immutable snapshot. Do not use untrusted hydrated state or
  * concurrent stale snapshots as an authority store. The server owns global caps.
  */
-export function createBatchState(manifest: BatchManifest, options: { batchId: string; concurrency?: number }): BatchState {
+export function createBatchState(manifest: BatchManifest, options: { batchId: string; concurrency?: number; live?: boolean }): BatchState {
   const batchId = z.uuid().parse(options.batchId);
   const concurrency = z.number().int().min(1).max(2).parse(options.concurrency ?? 2);
   if (!manifest.entries.length || manifest.entries.length > MAX_BATCH_PAIRS || new Set(manifest.entries.map(e => e.id)).size !== manifest.entries.length) throw new Error('Invalid batch manifest');
@@ -75,15 +77,15 @@ export function createBatchState(manifest: BatchManifest, options: { batchId: st
     id: entry.id, filename: entry.filename, issues: [...entry.issues], revision: 1, history: [], ...blank(),
     processing: entry.status === 'valid' ? 'queued' : 'blocked',
     application: entry.status === 'valid' ? applicationSchema.parse(entry.application) : null,
-    imageSha256: entry.status === 'valid' ? batchImageSchema.parse({ filename: entry.filename, imageSha256: entry.imageSha256 }).imageSha256 : null,
+    imageSha256: entry.status === 'valid' ? (options.live ? unpreparedBatchImageSchema : batchImageSchema).parse({ filename: entry.filename, imageSha256: entry.imageSha256 }).imageSha256 : null,
   }));
-  return immutable({ batchId, concurrency, pairs, selectedId: pairs[0].id, selectionEpoch: 0, inFlight: [], usedAttemptIds: [], usedReservationIds: [], usedSubmissionIds: [] });
+  return immutable({ mode: options.live ? 'live' : 'offline', batchId, concurrency, pairs, selectedId: pairs[0].id, selectionEpoch: 0, inFlight: [], usedAttemptIds: [], usedReservationIds: [], usedSubmissionIds: [] });
 }
 
 function dispatch(state: BatchState, pairId: string, identity: AttemptIdentity, retry: boolean): BatchTransition {
   const parsed = identitySchema.safeParse(identity);
   const pair = state.pairs.find(p => p.id === pairId);
-  if (!parsed.success || !pair || pair.processing !== (retry ? 'failed' : 'queued') || !pair.application || !pair.filename || !pair.imageSha256) return reject(state, 'Pair or attempt is not dispatchable');
+  if (!parsed.success || !pair || pair.processing !== (retry ? 'failed' : 'queued') || !pair.application || !pair.filename || (!pair.imageSha256 && state.mode !== 'live')) return reject(state, 'Pair or attempt is not dispatchable');
   if (state.inFlight.length >= state.concurrency) return reject(state, 'Queue is at capacity');
   if (state.usedAttemptIds.includes(identity.attemptId) || state.usedReservationIds.includes(identity.reservationId)) return reject(state, 'Fresh attempt and reservation identities are required');
   const token: AttemptToken = { ...parsed.data, batchId: state.batchId, pairId, revision: pair.revision };
@@ -136,6 +138,14 @@ export function transitionBatch(state: BatchState, action: BatchAction): BatchTr
     }
     return result(next);
   }
+  if (action.type === 'prepared') {
+    const token = attemptSchema.safeParse(action.token);
+    const pair = token.success ? state.pairs.find(p => p.id === token.data.pairId) : undefined;
+    if (state.mode !== 'live' || !token.success || !pair?.activeAttempt || pair.revision !== token.data.revision || !equalAttempt(pair.activeAttempt, token.data) || !state.inFlight.some(t => equalAttempt(t, token.data)) || !/^[a-f0-9]{64}$/.test(action.imageSha256) || (pair.imageSha256 !== null && pair.imageSha256 !== action.imageSha256)) return reject(state, 'Unknown, stale or inconsistent preparation');
+    const next = structuredClone(state);
+    next.pairs.find(p => p.id === pair.id)!.imageSha256 = action.imageSha256;
+    return result(next);
+  }
   if (action.type === 'settle') {
     const parsed = attemptSchema.safeParse(action.token);
     if (!parsed.success || !state.inFlight.some(t => equalAttempt(t, parsed.data))) return reject(state, 'Unknown or stale attempt');
@@ -159,7 +169,7 @@ export function transitionBatch(state: BatchState, action: BatchAction): BatchTr
   if (!pair) return reject(state, 'Unknown pair');
   if (action.type === 'replace') {
     const application = applicationSchema.safeParse(action.application);
-    const image = batchImageSchema.safeParse(action.image);
+    const image = (state.mode === 'live' ? unpreparedBatchImageSchema : batchImageSchema).safeParse(action.image);
     if (pair.processing === 'blocked' || !application.success || !image.success || image.data.filename !== pair.filename || state.pairs.some(p => p.id !== pair.id && p.application?.applicationId === application.data.applicationId && p.application.applicationVersion === application.data.applicationVersion)) return reject(state, 'Invalid or ambiguous replacement; rebuild blocked manifests explicitly');
     const next = structuredClone(state);
     const current = next.pairs.find(p => p.id === pair.id)!;

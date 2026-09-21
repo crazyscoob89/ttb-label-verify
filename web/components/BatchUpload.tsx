@@ -5,7 +5,7 @@ import { checkFileDeclaration, MAX_BATCH_PAIRS, MAX_IMAGE_BYTES } from '../lib/c
 import { samples, type Scenario } from '../lib/offline-demo';
 
 export type FixtureAsset = { scenario: Scenario; bytes: Uint8Array<ArrayBuffer> };
-export type PreparedBatch = { manifest: BatchManifest; assets: Map<string, FixtureAsset>; diagnostics: string[] };
+export type PreparedBatch = { manifest: BatchManifest; assets: Map<string, FixtureAsset>; files: Map<string, File>; live: boolean; diagnostics: string[] };
 
 /** Read a bounded declaration, not an image sanitizer. Only an exact catalog hash
  * may enter the offline executor. Unknown files never get a preview or findings. */
@@ -23,8 +23,8 @@ async function readBounded(blob: Blob): Promise<Uint8Array<ArrayBuffer>> {
   return bytes;
 }
 
-export default function BatchUpload({ offlineEnabled, onPrepared, onClear }: {
-  offlineEnabled: boolean; onPrepared: (batch: PreparedBatch) => void; onClear: () => void;
+export default function BatchUpload({ offlineEnabled, live, onPrepared, onClear }: {
+  offlineEnabled: boolean; live: boolean; onPrepared: (batch: PreparedBatch) => void; onClear: () => void;
 }) {
   const [files, setFiles] = useState<File[]>([]);
   const [json, setJson] = useState('');
@@ -34,7 +34,7 @@ export default function BatchUpload({ offlineEnabled, onPrepared, onClear }: {
   useEffect(() => () => { generation.current++; controller.current?.abort(); }, []);
   function invalidate() { generation.current++; controller.current?.abort(); setBusy(false); setError(''); onClear(); }
   async function loadFixtures() {
-    if (!offlineEnabled) return;
+    if (!offlineEnabled || live) return;
     invalidate(); const run = generation.current; setBusy(true);
     const active = new AbortController(); controller.current = active;
     const timeout = setTimeout(() => active.abort(), 5000);
@@ -62,12 +62,13 @@ export default function BatchUpload({ offlineEnabled, onPrepared, onClear }: {
       const mapping: unknown = JSON.parse(json);
       if (!Array.isArray(mapping) || mapping.length > MAX_BATCH_PAIRS || files.length > MAX_BATCH_PAIRS) throw Error('Use a JSON array and at most 300 files / mappings.');
       const assets = new Map<string, FixtureAsset>(); const diagnostics: string[] = [];
-      const declarations: {filename:string;imageSha256:string}[] = [];
+      const declarations: {filename:string;imageSha256:string|null}[] = [];
       // Sequential reads bound working memory; retained assets deduplicate the four
       // known PNGs by hash. A 300-card rail never creates 300 image elements.
       for (const file of files) {
-        const issue = checkFileDeclaration(file); let hash = 'unavailable';
+        const issue = checkFileDeclaration(file); let hash: string | null = 'unavailable';
         if (issue) diagnostics.push(`${file.name}: ${issue}`);
+        else if (live) hash = null; // Preserve File; active queue slots prepare on server.
         else if (!offlineEnabled) diagnostics.push(`${file.name}: Processing unavailable — runtime adapters are not configured.`);
         else {
           const bytes = await readBounded(file);
@@ -80,14 +81,14 @@ export default function BatchUpload({ offlineEnabled, onPrepared, onClear }: {
         if (run !== generation.current) return;
         declarations.push({filename:file.name,imageSha256:hash});
       }
-      const manifest = buildBatchManifest(declarations, mapping);
-      if (run === generation.current) onPrepared({manifest,assets,diagnostics});
+      const manifest = buildBatchManifest(declarations, mapping, {live});
+      if (run === generation.current) onPrepared({manifest,assets,files:new Map(files.map(file=>[file.name,file])),live,diagnostics});
     } catch { if (run === generation.current) setError('Provide a valid JSON array with 1–300 logical entries and at most 300 files / mappings. Each row requires an exact filename and a complete application version.'); }
     finally { if (run === generation.current) setBusy(false); }
   }
   return <section aria-label="Batch preparation">
-    <p>Maximum 300 files, mappings and logical entries. Exact, case-sensitive filename pairing only — never list order. Unknown uploads remain unavailable until real runtime adapters exist.</p>
-    {offlineEnabled && <><div className="notice"><strong>Development-only synthetic fixture batch — not AI analysis; nothing saved</strong><p>Only exact known PNG bytes can use predefined observations. Uploaded copies are checked by bytes, not by filename.</p></div><button onClick={loadFixtures} disabled={busy}>Load synthetic fixture batch</button></>}
+    <p>Maximum 300 files, mappings and logical entries. Exact, case-sensitive filename pairing only — never list order. {live?'Validation checks declarations only. Explicit queue start uploads active files for server sanitation and guarded live comparison.':'Only exact known fixtures can run offline.'}</p>
+    {offlineEnabled && !live && <><div className="notice"><strong>Development-only synthetic fixture batch — not AI analysis; nothing saved</strong><p>Only exact known PNG bytes can use predefined observations. Uploaded copies are checked by bytes, not by filename.</p></div><button onClick={loadFixtures} disabled={busy}>Load synthetic fixture batch</button></>}
     <label htmlFor="batch-files">Batch label images</label><input ref={fileInput} id="batch-files" type="file" multiple accept="image/png,image/jpeg" onChange={e=>{invalidate();setFiles(Array.from(e.target.files ?? []));}} />
     <p>{files.length} files selected</p>
     <label htmlFor="batch-json">Batch JSON manifest</label><textarea id="batch-json" className="batch-json" value={json} onChange={e=>{invalidate();setJson(e.target.value);}} spellCheck={false} />

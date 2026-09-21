@@ -60,9 +60,9 @@ export default function ComparisonWorkspace({ offlineEnabled }: { offlineEnabled
       <p>Pair evidence with one application. Findings support an internal human review, not government submission.</p>
       {offlineEnabled && <div className="notice"><strong>Offline fixture demonstration – not AI analysis; nothing saved</strong><p>Only explicitly selected synthetic PNGs have predefined observations. Local rules compare declarations; no model latency is measured.</p></div>}
       <label htmlFor="input-mode">Input source</label><select id="input-mode" value={mode} onChange={e=>{reset();setMode(e.target.value as typeof mode);}}>
-        {offlineEnabled && <option value="fixture">Known synthetic fixture</option>}<option value="manual">My image and application — service unavailable</option>
+        {offlineEnabled && <option value="fixture">Known synthetic fixture</option>}<option value="manual">My image and application — guarded live demo</option>
       </select>
-      {mode === 'manual' ? <><div className="notice">Live comparison unavailable until authorized provider and authentication are configured. Arbitrary images never receive sample findings.</div><PairInput /></> : <>
+      {mode === 'manual' ? <><div className="notice">Live comparison requires a demo access code and server configuration. Arbitrary images never receive sample findings.</div><PairInput /></> : <>
         <div className="toolbar"><label htmlFor="scenario">Synthetic scenario</label><select id="scenario" value={scenario} onChange={e=>{reset();const id=e.target.value as Scenario;setScenario(id);setApplication(structuredClone(samples[id].application));}}>{Object.entries(samples).map(([id,s])=><option value={id} key={id}>{s.title}</option>)}</select></div>
         <div className="field-grid">
           <label>Sample application ID<input value={application.applicationId} maxLength={128} onChange={e=>{reset();setApplication({...application,applicationId:e.target.value});}} /></label>

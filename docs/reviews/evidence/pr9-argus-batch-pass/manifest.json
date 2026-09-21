@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "purpose": "Documentation-only preservation of the human-supplied ARGUS PASS and selected original native receipts; no new independent application review.",
+  "review_date_as_reported": "2026-09-20",
+  "reviewer": "ARGUS",
+  "verdict": "PASS",
+  "application_candidate": "75fe83d30441b3917869fb6a1164506337b9940c",
+  "published_evidence_commit": "fa56bcc7d5b50bb63b4bc559c91682e237f355ab",
+  "source_root": "/host-home/Projects/argus-pr9-live-batch-review",
+  "source_access": "read-only; exact report and top-level selected receipts only; no historical clone or benchmark archive",
+  "hash_algorithm": "SHA-256",
+  "originals": [
+    {
+      "archive_path": "verdict.md",
+      "source_path": "/host-home/Projects/argus-pr9-live-batch-review/docs/reviews/verdict.md",
+      "source_relative_path": "docs/reviews/verdict.md",
+      "source_sha256": "89af24b1ad422f048fed14889f887222deb661d06ee796e93ed216b9512be749",
+      "archive_sha256": "89af24b1ad422f048fed14889f887222deb661d06ee796e93ed216b9512be749",
+      "source_bytes": 10251,
+      "archive_bytes": 10251,
+      "byte_identical": true,
+      "encoding": "UTF-8",
+      "bom_hex": "none",
+      "decoded_line_endings": {
+        "crlf": 0,
+        "bare_lf": 144,
+        "bare_cr": 0
+      },
+      "status": "available",
+      "interpretation": "Supplied final ARGUS PASS; unedited historical claims and qualifications."
+    },
+    {
+      "archive_path": "test-run-full.txt",
+      "source_path": "/host-home/Projects/argus-pr9-live-batch-review/test-run-full.txt",
+      "source_relative_path": "test-run-full.txt",
+      "source_sha256": "f9a11a79c2d2b1615400f89617adcc90cbff931c4b8af109a922cd8a74eb49ee",
+      "archive_sha256": "f9a11a79c2d2b1615400f89617adcc90cbff931c4b8af109a922cd8a74eb49ee",
+      "source_bytes": 85724,
+      "archive_bytes": 85724,
+      "byte_identical": true,
+      "encoding": "UTF-8",
+      "bom_hex": "EF BB BF",
+      "decoded_line_endings": {
+        "crlf": 662,
+        "bare_lf": 0,
+        "bare_cr": 0
+      },
+      "status": "available",
+      "interpretation": "Complete initial Windows output: 553 passed, 5 skipped, 4 timeout failures; includes EBUSY cleanup diagnostic."
+    },
+    {
+      "archive_path": "test-livebatch-30s.txt",
+      "source_path": "/host-home/Projects/argus-pr9-live-batch-review/test-livebatch-30s.txt",
+      "source_relative_path": "test-livebatch-30s.txt",
+      "source_sha256": "7296a263ec620eefd81ab97d4cbd1cfbbfc1583708941c08975bc8febbe3961e",
+      "archive_sha256": "7296a263ec620eefd81ab97d4cbd1cfbbfc1583708941c08975bc8febbe3961e",
+      "source_bytes": 927,
+      "archive_bytes": 927,
+      "byte_identical": true,
+      "encoding": "UTF-8",
+      "bom_hex": "EF BB BF",
+      "decoded_line_endings": {
+        "crlf": 14,
+        "bare_lf": 0,
+        "bare_cr": 0
+      },
+      "status": "available",
+      "interpretation": "Complete available targeted rerun output: 5 passed, 30-second test timeout as reported by ARGUS."
+    },
+    {
+      "archive_path": "typecheck.txt",
+      "source_path": "/host-home/Projects/argus-pr9-live-batch-review/typecheck.txt",
+      "source_relative_path": "typecheck.txt",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "archive_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "source_bytes": 0,
+      "archive_bytes": 0,
+      "byte_identical": true,
+      "encoding": "empty",
+      "bom_hex": "none",
+      "decoded_line_endings": {
+        "crlf": 0,
+        "bare_lf": 0,
+        "bare_cr": 0
+      },
+      "status": "available",
+      "interpretation": "Existing zero-byte output; exit 0 is reported in verdict/setup notes, not independently encoded in this file."
+    },
+    {
+      "archive_path": "build.txt",
+      "source_path": "/host-home/Projects/argus-pr9-live-batch-review/build.txt",
+      "source_relative_path": "build.txt",
+      "source_sha256": "d96fab99e36a522c77b15816b1c4e0f4bf93be22aa318b0ac1337a6c5f33f231",
+      "archive_sha256": "d96fab99e36a522c77b15816b1c4e0f4bf93be22aa318b0ac1337a6c5f33f231",
+      "source_bytes": 789,
+      "archive_bytes": 789,
+      "byte_identical": true,
+      "encoding": "UTF-8",
+      "bom_hex": "EF BB BF",
+      "decoded_line_endings": {
+        "crlf": 25,
+        "bare_lf": 0,
+        "bare_cr": 0
+      },
+      "status": "available",
+      "interpretation": "Turbopack success output; exit 0 is reported in verdict/setup notes, with no standalone exit marker in this file."
+    },
+    {
+      "archive_path": "out-test.txt",
+      "source_path": "/host-home/Projects/argus-pr9-live-batch-review/out-test.txt",
+      "source_relative_path": "out-test.txt",
+      "source_sha256": "6f10bd008580e3f29ec2d67081693e22ddc97dc61ba623eee842b190006ec134",
+      "archive_sha256": "6f10bd008580e3f29ec2d67081693e22ddc97dc61ba623eee842b190006ec134",
+      "source_bytes": 3344,
+      "archive_bytes": 3344,
+      "byte_identical": true,
+      "encoding": "UTF-16LE",
+      "bom_hex": "FF FE",
+      "decoded_line_endings": {
+        "crlf": 23,
+        "bare_lf": 0,
+        "bare_cr": 0
+      },
+      "status": "available",
+      "interpretation": "Partial preliminary capture with 3 failed route cases and native warnings; no final totals, complete command, or exit marker. Not a full-suite or successful rerun receipt."
+    },
+    {
+      "archive_path": "NOTES-setup.md",
+      "source_path": "/host-home/Projects/argus-pr9-live-batch-review/NOTES-setup.md",
+      "source_relative_path": "NOTES-setup.md",
+      "source_sha256": "7c43abed2b7963803f0dc1f31bb3d210592ec72171d67a75a48f9fa30ff55552",
+      "archive_sha256": "7c43abed2b7963803f0dc1f31bb3d210592ec72171d67a75a48f9fa30ff55552",
+      "source_bytes": 2938,
+      "archive_bytes": 2938,
+      "byte_identical": true,
+      "encoding": "UTF-8",
+      "bom_hex": "none",
+      "decoded_line_endings": {
+        "crlf": 1,
+        "bare_lf": 44,
+        "bare_cr": 0
+      },
+      "status": "available",
+      "interpretation": "Original setup/final-result notes; resolved checkout operations and historical bundler wording retained unchanged."
+    }
+  ],
+  "separate_committed_ava_references": [
+    {
+      "repository_path": "docs/reviews/evidence/pr9-live-batch/batch-build.txt",
+      "commit": "fa56bcc7d5b50bb63b4bc559c91682e237f355ab",
+      "git_blob_oid": "e674f5ff414fc9a07fe4749791f854933366192d",
+      "sha256": "578c95e0b1c6cac2d6110799c3b05e338600f73b33eaf14d0a5117b391704939",
+      "bytes": 809,
+      "copied_into_argus_archive": false,
+      "interpretation": "Separate AVA Webpack success; committed command output is next build --webpack. Not an ARGUS run."
+    },
+    {
+      "repository_path": "docs/reviews/evidence/pr9-live-batch/parent-unit.txt",
+      "commit": "fa56bcc7d5b50bb63b4bc559c91682e237f355ab",
+      "git_blob_oid": "b2f3c507c851e07cab5a014c47bf59678beb84bb",
+      "sha256": "d07940dcf38614ba665858241f6e887d8cc395aa72c8447f3eb37e69c7e83ab0",
+      "bytes": 4360,
+      "copied_into_argus_archive": false,
+      "interpretation": "Separate AVA Linux full suite: 562 passed / 26 files. Not full Windows green."
+    }
+  ],
+  "summary": {
+    "repository_path": "docs/reviews/26-live-batch-argus-pass.md",
+    "sha256": "68199fd80bb3a940ae72aa3fbb3d3fe61a24e4b6642d268c59907ce91f798c50",
+    "bytes": 8906
+  },
+  "availability_limits": [
+    "The final verdict, full-suite log, targeted rerun log, typecheck file, and build file are present and preserved.",
+    "typecheck.txt is available but empty; no machine-readable exit-status receipt was available among inspected review-directory/top-level files. Exit 0 for type/build is attributed to ARGUS verdict/setup notes.",
+    "out-test.txt is a partial preliminary capture, not a complete alternative full-suite result; its exact complete invocation and final outcome are unavailable in that file.",
+    "A full 562-passed Windows rerun receipt is unavailable among the supplied selected outputs; none is claimed or fabricated.",
+    "Independent ARGUS browser rerun receipts are unavailable because ARGUS explicitly did not independently rerun those checks.",
+    "Delivery restart/status notices are operational chatter, not application failures; no transcript is reconstructed or copied."
+  ],
+  "publication_screening": {
+    "scope": "All seven selected original report/log files, decoded for inspection but copied without transformation.",
+    "pattern_categories": [
+      "private_key",
+      "provider_token",
+      "github_token",
+      "aws_key",
+      "bearer",
+      "credential_assignment"
+    ],
+    "pattern_findings": 0,
+    "credential_files_accessed": false,
+    "qualification": "Targeted pattern screening and receipt inspection, not an exhaustive secret-free certification. Synthetic fixture secrets and example database URLs are test data. No secret values are emitted by the scan."
+  },
+  "preservation": {
+    "transformation": "none; raw bytes copied, including BOMs, native newlines, empty file, and existing mojibake",
+    "git_protection": "Archive-local .gitattributes disables text conversion, filters, ident, and inherited encoding/eol attributes for each original.",
+    "checksums": "SHA256SUMS covers all archive files except itself and also the summary. Manifest records source/archive equality; manifest does not hash itself."
+  },
+  "not_authorized_or_certified": [
+    "merge",
+    "deploy",
+    "paid calls",
+    "production readiness",
+    "saved-review history"
+  ]
+}

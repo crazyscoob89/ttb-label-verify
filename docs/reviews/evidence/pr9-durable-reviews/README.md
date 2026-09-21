@@ -1,0 +1,3 @@
+# Durable review and real batch evidence
+
+Durable review proof uses a synthetic provider and actual SQLite/browser/service restart at application e721936. Real paid batch proof used earlier independently reviewed75fe83d, not the new persistence candidate. Do not combine them into a claim of full live-provider-to-saved-history acceptance. Text copies normalize whitespace as manifest records; originals remain externally. Screenshot is byte-identical, with password input masked by the browser. No operational helpers, credentials, database files or whole private directory is published. ARGUS review of the new persistence code remains pending.

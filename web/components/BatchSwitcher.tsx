@@ -2,7 +2,7 @@
 import { useEffect, useRef } from 'react';
 import type { BatchState } from '../lib/batch-state';
 
-export default function BatchSwitcher({state,onNavigate}:{state:BatchState;onNavigate:(target:string)=>void}) {
+export default function BatchSwitcher({state,onNavigate,isSaved=()=>false}:{state:BatchState;onNavigate:(target:string)=>void;isSaved?:(pairId:string)=>boolean}) {
   const rail = useRef<HTMLDivElement>(null);
   const index = state.pairs.findIndex(pair=>pair.id===state.selectedId);
   useEffect(()=>{
@@ -17,7 +17,7 @@ export default function BatchSwitcher({state,onNavigate}:{state:BatchState;onNav
       <div className="actions"><button onClick={()=>onNavigate('previous')} disabled={index===0}>Previous item</button><button onClick={()=>onNavigate('next')} disabled={index===state.pairs.length-1}>Next item</button></div>
     </div>
     <div className="batch-rail" ref={rail}>{state.pairs.map(pair=><button className="batch-card" key={pair.id} aria-label={`Open ${pair.filename??pair.id}`} aria-current={pair.id===state.selectedId?'true':undefined} onClick={()=>onNavigate(pair.id)}>
-      <strong>{pair.filename??'Invalid filename'}</strong><span>{pair.application?.applicationId??'Application blocked'} / {pair.application?.applicationVersion??'—'}</span><span>Revision {pair.revision} · {pair.processing}</span><span>{pair.draft?'UNSAVED draft':'Not saved'}</span>
+      <strong>{pair.filename??'Invalid filename'}</strong><span>{pair.application?.applicationId??'Application blocked'} / {pair.application?.applicationVersion??'—'}</span><span>Revision {pair.revision} · {pair.processing}</span><span>{isSaved(pair.id)?'SAVED':pair.draft?'UNSAVED draft':'Not saved'}</span>
     </button>)}</div>
   </nav>;
 }

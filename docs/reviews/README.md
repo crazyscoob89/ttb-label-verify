@@ -1,5 +1,54 @@
 # Engineering review register
 
+## Current PR #9 — native Windows correction accepted
+
+**ARGUS PASS on `bfc19494ff22ad3905bb98fb865af5c149f36941`.** The [committed independent verdict](25-pr9-bfc1949-windows-gate.md), preserved from reviewer commit `d8fd56c88e22c344e2b9316f0a94628c76b702ec`, reports **560 passed / 5 pre-existing POSIX-only skipped / 0 failed** across 28 files on native Windows / Node22.22.2, with no global timeout override, clean typecheck and Turbopack build. AVA inspected the committed report; these native results are ARGUS's execution, not an AVA rerun. Linux / Node24.21.0 separately passed 565 tests, typecheck and Webpack build. No application or test bytes change in this documentation closeout.
+
+H-1/H-2 are closed. ARGUS explicitly withdrew L-1 as a console-decoding artifact. M-1 retention/capacity, M-2 Windows-specific negative review-store permission coverage and M-3 shared demo identity remain disclosed and outside the bounded correction. Alex approved merging PR #9 with the review record included. That authorizes source promotion, not deployment, paid inference, live store provisioning or branch deletion. GitHub PR/ref state is the authoritative merge receipt. This status supersedes the historical pending wording below and in record 28; original evidence remains intact.
+
+## Historical PR #9 — persistence reviewed; Windows test/report correction
+
+[Record 26](26-live-batch-argus-pass.md) preserves ARGUS PASS for75fe83d, native timeout qualifications, original logs, and distinct Webpack/Turbopack results. [Record 27](27-durable-save-reopen-candidate.md) adds bounded real batch proof on that baseline and new persistence candidate **e721936**: actual SQLite/browser/service-restart proof with simulated extraction, **565 parent-reproduced Linux/Node24 unit tests**. ARGUS reviewed published 474c887 on native Windows/Node22: **PASS with findings**, full suite **555 passed / 5 failed / 5 skipped**, typecheck/build exit 0. [Record 28](28-native-timeout-and-report-correction.md) preserves the original review, platform correction and file-specific Windows timeout repair; fresh native full-suite verification remains pending. No merged/public deployment or combined real-provider-to-saved-history acceptance claimed.
+
+## Historical PR #9 — live proof and batch candidate awaiting review
+
+[Record 25](25-live-provider-and-batch-candidate.md) preserves the first live failure, provider-format repair, two successful real-model comparisons, human-review provenance correction and guarded batch implementation. Frozen code `75fe83d30441b3917869fb6a1164506337b9940c`: AVA parent reproduced **562 unit tests**; builder type/build and synthetic browser gates passed. New ARGUS review remains pending. No durable saved history or deployed URL is claimed.
+
+## Historical baseline PR #9 — native Windows PASS
+
+**ARGUS PASS on `106aac25a37e05840aa38e41ccc9f8db4c6009e6`.**
+Actual native logs show **506 passed, 5 POSIX-only skipped, 0 failed**, with
+typecheck/build PASS; the runtime was **Node22.22.2 / PowerShell5.1**, unelevated.
+[Closeout record 24](24-pr9-native-windows-pass.md) preserves the original verdict,
+logs/probes, exact byte manifest and evidence limits. AVA inspected these files
+and leaves the entire accepted application tree unchanged. Earlier REVISE rounds
+below remain historical. This is Windows guard/source acceptance, not deployed
+or paid-model/end-to-end acceptance; no live application URL is certified.
+
+## Historical PR #9 — second Windows repair
+
+**ARGUS REVISE on `1df409401e76cc964b5f774c4bd160e254532f1f`.**
+The recovered native report establishes 500 passed / 3 failed / 5 skipped;
+original route/CAS failures are fixed, but bracket-path handling and two
+unelevated fixture failures remain. [Round 23](23-pr9-literal-path-and-fixture-repair.md)
+preserves the actual reviewer log and bounded repair. AVA's replacement has
+511 passing **Linux** tests, typecheck/build PASS; **replacement native Windows
+acceptance remains pending and paid execution stays held**. AVA builds/publishes;
+ARGUS remains read-only outside disposable test fixtures.
+
+## Historical PR #9 — first Windows SQLite repair
+
+**Reported ARGUS verdict: REVISE**, relayed by Alex for
+`7c45c74094c7712d9ca60dd6494f22c2d30edd50`. Windows reported a private-ledger
+constructor failure and two-process dedup assertion failure. The
+[repair and evidence record 22](22-pr9-windows-sqlite-repair.md) preserves those
+findings, root cause, bounded ACL-aware repair and local RED/GREEN logs.
+AVA's final **Linux Node24** gates passed (508 unit tests, typecheck); **native
+Windows proof and the replacement independent verdict remain pending**.
+The worker did not commit, push, deploy, provision a live ledger or call models.
+Parent owns verification/publication; ARGUS remains the read-only reviewer.
+Earlier scoped PASS records below do not accept this new connected demo.
+
 ## Final benchmark publication repair
 
 [Publication record 16](16-final-benchmark-publication.md) and the

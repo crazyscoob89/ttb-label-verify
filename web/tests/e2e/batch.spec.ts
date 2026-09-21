@@ -7,6 +7,7 @@ const forbiddenTraffic = new WeakMap<Page, string[]>();
 const browserErrors = new WeakMap<Page, string[]>();
 
 const confirmation = 'I reviewed this exact evidence and application and confirm this internal outcome';
+// Both workspaces stay mounted; target the visible panel, not hidden review labels.
 const panel = (page: Page) => page.getByRole('tabpanel');
 const choose = (page: Page, filename: string) => page.getByRole('button', { name: `Open ${filename}`, exact: true }).click();
 async function load(page: Page) {
@@ -48,11 +49,11 @@ test.afterEach(async ({page})=>{
 
 test('explicit manifest rejects missing, duplicate and invalid mappings without list-order pairing', async ({ page }, info) => {
   await load(page);
-  const manifest = JSON.parse(await page.getByLabel('Batch JSON manifest').inputValue());
+  const manifest = JSON.parse(await panel(page).getByLabel('Batch JSON manifest').inputValue());
   manifest.reverse();
   manifest.find((row: {filename:string}) => row.filename === 'discrepancy.png').application.abv = '';
   manifest.push(structuredClone(manifest.find((row: {filename:string}) => row.filename === 'failure.png')));
-  await page.getByLabel('Batch JSON manifest').fill(JSON.stringify(manifest.filter((row: {filename:string}) => row.filename !== 'uncertainty.png')));
+  await panel(page).getByLabel('Batch JSON manifest').fill(JSON.stringify(manifest.filter((row: {filename:string}) => row.filename !== 'uncertainty.png')));
   await validate(page);
   await expect(page.getByTestId('manifest-counts')).toContainText('Valid: 1 · Blocked: 3');
   await expect(page.getByTestId('manifest-entries')).toContainText('duplicate-mapping');
@@ -82,8 +83,8 @@ test('exact known fixtures compare, previews decode, unknown same-name uploads n
   await page.keyboard.press('Escape');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({path:info.outputPath('batch-mismatch.png'),fullPage:true});
-  await page.getByLabel('Batch label images').setInputFiles({name:'match.png',mimeType:'image/png',buffer:await image()});
-  await page.getByLabel('Batch JSON manifest').fill(JSON.stringify([{filename:'match.png',application:samples.match.application}]));
+  await panel(page).getByLabel('Batch label images').setInputFiles({name:'match.png',mimeType:'image/png',buffer:await image()});
+  await panel(page).getByLabel('Batch JSON manifest').fill(JSON.stringify([{filename:'match.png',application:samples.match.application}]));
   await validate(page);
   await expect(page.getByTestId('manifest-counts')).toContainText('Valid: 0 · Blocked: 1');
   await expect(page.getByTestId('manifest-entries')).toContainText('Unknown image — processing unavailable');
@@ -93,8 +94,8 @@ test('exact known fixtures compare, previews decode, unknown same-name uploads n
 });
 
 test('file-byte identity, not filename, selects the fixture and explicit application mapping', async ({page}) => {
-  await page.getByLabel('Batch label images').setInputFiles({name:'renamed.png',mimeType:'image/png',buffer:await readFile('public/offline-samples/discrepancy.png')});
-  await page.getByLabel('Batch JSON manifest').fill(JSON.stringify([{filename:'renamed.png',application:{...samples.match.application,applicationId:'EXPLICIT',applicationVersion:'v7'}}]));
+  await panel(page).getByLabel('Batch label images').setInputFiles({name:'renamed.png',mimeType:'image/png',buffer:await readFile('public/offline-samples/discrepancy.png')});
+  await panel(page).getByLabel('Batch JSON manifest').fill(JSON.stringify([{filename:'renamed.png',application:{...samples.match.application,applicationId:'EXPLICIT',applicationVersion:'v7'}}]));
   await validate(page);
   await expect(page.getByTestId('manifest-counts')).toContainText('Valid: 1 · Blocked: 0');
   await page.getByRole('button',{name:'Compare queued fixtures',exact:true}).click();
@@ -106,23 +107,23 @@ test('file-byte identity, not filename, selects the fixture and explicit applica
 test('card and previous/next navigation isolate drafts, reset confirmation and never claim saved history', async ({page},info) => {
   await compare(page);
   await page.getByRole('radio',{name:'Second reviewer',exact:true}).check();
-  await page.getByLabel('Correction / escalation notes').fill('Match pair independent escalation draft.');
-  await page.getByLabel(confirmation).check();
+  await panel(page).getByLabel('Correction / escalation notes').fill('Match pair independent escalation draft.');
+  await panel(page).getByLabel(confirmation).check();
   await page.getByRole('button',{name:'Submit review',exact:true}).click();
   await expect(page.getByTestId('unsaved-draft')).toContainText('UNSAVED');
   await page.getByRole('button',{name:'Next item',exact:true}).click();
-  await expect(page.getByLabel('Correction / escalation notes')).toHaveValue('');
-  await expect(page.getByLabel(confirmation)).not.toBeChecked();
+  await expect(panel(page).getByLabel('Correction / escalation notes')).toHaveValue('');
+  await expect(panel(page).getByLabel(confirmation)).not.toBeChecked();
   await page.getByRole('radio',{name:'Request correction',exact:true}).check();
-  await page.getByLabel('Correction / escalation notes').fill('Discrepancy pair independent correction notes.');
-  await page.getByLabel(confirmation).check();
+  await panel(page).getByLabel('Correction / escalation notes').fill('Discrepancy pair independent correction notes.');
+  await panel(page).getByLabel(confirmation).check();
   await page.getByRole('button',{name:'Previous item',exact:true}).click();
-  await expect(page.getByLabel('Correction / escalation notes')).toHaveValue('Match pair independent escalation draft.');
+  await expect(panel(page).getByLabel('Correction / escalation notes')).toHaveValue('Match pair independent escalation draft.');
   await expect(page.getByTestId('unsaved-draft')).toContainText('Match pair independent');
-  await expect(page.getByLabel(confirmation)).not.toBeChecked();
+  await expect(panel(page).getByLabel(confirmation)).not.toBeChecked();
   await choose(page,'discrepancy.png');
-  await expect(page.getByLabel('Correction / escalation notes')).toHaveValue('Discrepancy pair independent correction notes.');
-  await expect(page.getByLabel(confirmation)).not.toBeChecked();
+  await expect(panel(page).getByLabel('Correction / escalation notes')).toHaveValue('Discrepancy pair independent correction notes.');
+  await expect(panel(page).getByLabel(confirmation)).not.toBeChecked();
   await expect(page.getByTestId('batch-summary')).toContainText('Saved reviews: 0');
   await expect(page.getByTestId('batch-summary')).toContainText('UNSAVED drafts: 1');
   await expect(page.getByTestId('batch-summary')).toContainText('Remaining: 4');
@@ -152,12 +153,12 @@ test('failure cannot be reviewed, retry is manual and only the selected pair run
 test('replacement advances revision and discards old review intent without inventing saved versions', async ({page}) => {
   await compare(page);
   await page.getByRole('radio',{name:'Second reviewer',exact:true}).check();
-  await page.getByLabel('Correction / escalation notes').fill('Old version is not reusable intent.');
-  await page.getByLabel(confirmation).check();
+  await panel(page).getByLabel('Correction / escalation notes').fill('Old version is not reusable intent.');
+  await panel(page).getByLabel(confirmation).check();
   await page.getByRole('button',{name:'Submit review',exact:true}).click();
   const replacement = {...samples.match.application,applicationVersion:'v2',abv:45};
   await page.getByText('Replace this pair with a new application version', {exact:true}).click();
-  await page.getByLabel('Replacement application JSON').fill(JSON.stringify(replacement));
+  await panel(page).getByLabel('Replacement application JSON').fill(JSON.stringify(replacement));
   await page.getByRole('button',{name:'Replace selected pair',exact:true}).click();
   await expect(page.getByTestId('active-pair')).toContainText('Revision 2');
   await expect(page.getByTestId('unsaved-draft')).toHaveCount(0);
@@ -165,8 +166,8 @@ test('replacement advances revision and discards old review intent without inven
   await page.getByRole('button',{name:'Compare queued fixtures',exact:true}).click();
   await expect(page.getByRole('table')).toBeVisible();
   await expect(page.getByRole('row').filter({hasText:'Alcohol by volume'})).toContainText('mismatch');
-  await expect(page.getByLabel(confirmation)).not.toBeChecked();
-  await expect(page.getByLabel('Correction / escalation notes')).toHaveValue('');
+  await expect(panel(page).getByLabel(confirmation)).not.toBeChecked();
+  await expect(panel(page).getByLabel('Correction / escalation notes')).toHaveValue('');
   await expect(page.getByTestId('active-pair')).toContainText('version v2');
   await expect(page.getByTestId('active-pair')).toContainText('Superseded page-memory versions: 1');
 });
@@ -183,7 +184,7 @@ test('replacement fences a delayed completion and keeps the two occupied slots u
   await page.getByRole('button',{name:'Compare queued fixtures',exact:true}).click();
   await expect(page.getByTestId('batch-summary')).toContainText('Running: 2');
   await page.getByText('Replace this pair with a new application version', {exact:true}).click();
-  await page.getByLabel('Replacement application JSON').fill(JSON.stringify({...samples.match.application,applicationVersion:'v2'}));
+  await panel(page).getByLabel('Replacement application JSON').fill(JSON.stringify({...samples.match.application,applicationVersion:'v2'}));
   await page.getByRole('button',{name:'Replace selected pair',exact:true}).click();
   await expect(page.getByTestId('active-pair')).toContainText('Revision 2');
   await expect(page.getByTestId('batch-summary')).toContainText('Occupied slots: 2');
@@ -193,7 +194,7 @@ test('replacement fences a delayed completion and keeps the two occupied slots u
   await expect(page.getByTestId('batch-summary')).toContainText('Occupied slots: 0');
   await expect(page.getByRole('table')).toHaveCount(0);
   await expect(page.getByTestId('active-pair')).toContainText('version v2');
-  await expect(page.getByLabel(confirmation)).not.toBeChecked();
+  await expect(panel(page).getByLabel(confirmation)).not.toBeChecked();
   await page.getByRole('button',{name:'Compare queued fixtures',exact:true}).click();
   await expect(page.getByRole('table')).toBeVisible();
 });
@@ -202,25 +203,25 @@ test('batch uses the existing human policy for physical assessment and machine-p
   await compare(page);
   const pass=page.getByRole('radio',{name:'Pass',exact:true});
   await expect(pass).toBeDisabled();
-  await page.getByLabel('Physical assessment notes').fill('Independent physical-scale inspection, synthetic exercise only.');
-  await page.getByLabel('I assessed physical print/type size outside this image').check();
-  await pass.check(); await page.getByLabel(confirmation).check();
+  await panel(page).getByLabel('Physical assessment notes').fill('Independent physical-scale inspection, synthetic exercise only.');
+  await panel(page).getByLabel('I assessed physical print/type size outside this image').check();
+  await pass.check(); await panel(page).getByLabel(confirmation).check();
   await page.getByRole('button',{name:'Submit review',exact:true}).click();
   await expect(page.getByTestId('unsaved-draft')).toContainText('UNSAVED draft — Pass');
   await choose(page,'discrepancy.png');
   await expect(pass).toBeDisabled();
-  await page.getByLabel('Human resolution for Alcohol by volume').selectOption('verified-match');
-  await page.getByLabel('Resolution reason for Alcohol by volume').fill('Synthetic exercise: independent inspection corrects extraction.');
-  await page.getByLabel('Supporting evidence for Alcohol by volume').fill('Simulated physical label assessment finds declared 40%.');
-  await page.getByLabel('Physical assessment notes').fill('Independent physical-scale inspection, synthetic exercise only.');
-  await page.getByLabel('I assessed physical print/type size outside this image').check();
+  await panel(page).getByLabel('Human resolution for Alcohol by volume').selectOption('verified-match');
+  await panel(page).getByLabel('Resolution reason for Alcohol by volume').fill('Synthetic exercise: independent inspection corrects extraction.');
+  await panel(page).getByLabel('Supporting evidence for Alcohol by volume').fill('Simulated physical label assessment finds declared 40%.');
+  await panel(page).getByLabel('Physical assessment notes').fill('Independent physical-scale inspection, synthetic exercise only.');
+  await panel(page).getByLabel('I assessed physical print/type size outside this image').check();
   await expect(pass).toBeEnabled();
   await expect(page.getByRole('row').filter({hasText:'Alcohol by volume'})).toContainText('mismatch');
-  await page.getByLabel('Human resolution for Alcohol by volume').selectOption('confirmed-mismatch');
+  await panel(page).getByLabel('Human resolution for Alcohol by volume').selectOption('confirmed-mismatch');
   await expect(pass).toBeDisabled();
   await choose(page,'match.png');
   await expect(page.getByTestId('unsaved-draft')).toContainText('UNSAVED draft — Pass');
-  await expect(page.getByLabel(confirmation)).not.toBeChecked();
+  await expect(panel(page).getByLabel(confirmation)).not.toBeChecked();
 });
 
 test('corrupt fixture bytes are blocked and pending validation cannot restore edited-away input', async ({page}) => {
@@ -236,7 +237,7 @@ test('corrupt fixture bytes are blocked and pending validation cannot restore ed
   });
   await page.getByRole('button',{name:'Validate batch manifest',exact:true}).click();
   await expect(page.getByRole('status')).toContainText('Checking local fixture bytes');
-  await page.getByLabel('Batch JSON manifest').fill('[]');
+  await panel(page).getByLabel('Batch JSON manifest').fill('[]');
   await page.evaluate(()=>(window as unknown as {releaseValidation:()=>void}).releaseValidation());
   await expect(page.getByTestId('batch-summary')).toHaveCount(0);
   await expect(page.getByTestId('manifest-counts')).toHaveCount(0);
@@ -244,11 +245,35 @@ test('corrupt fixture bytes are blocked and pending validation cannot restore ed
   await expect(page.getByTestId('manifest-counts')).toContainText('Valid: 0 · Blocked: 4');
 });
 
+test('Single and Batch retain independent outcomes, label targets and UNSAVED drafts across tab switches', async ({page}) => {
+  await compare(page);
+  await page.getByRole('radio',{name:'Second reviewer',exact:true}).check();
+  await panel(page).getByLabel('Correction / escalation notes').fill('Batch draft retained independently.');
+  await panel(page).getByLabel(confirmation).check();
+  await page.getByRole('button',{name:'Submit review',exact:true}).click();
+  await page.getByRole('tab',{name:'Single review',exact:true}).click();
+  await page.getByRole('button',{name:'Submit comparison',exact:true}).click();
+  await expect(page.getByRole('table')).toBeVisible();
+  await page.getByRole('radio',{name:'Request correction',exact:true}).check();
+  await panel(page).getByLabel('Correction / escalation notes').fill('Single draft retained independently.');
+  await panel(page).getByLabel(confirmation).check();
+  await page.getByRole('button',{name:'Submit review',exact:true}).click();
+  await expect(panel(page).getByTestId('unsaved-draft')).toContainText('Single draft retained independently.');
+  await page.getByRole('tab',{name:'Batch upload',exact:true}).click();
+  await expect(page.getByRole('radio',{name:'Second reviewer',exact:true})).toBeChecked();
+  await expect(panel(page).getByTestId('unsaved-draft')).toContainText('Batch draft retained independently.');
+  await page.getByRole('tab',{name:'Single review',exact:true}).click();
+  await expect(page.getByRole('radio',{name:'Request correction',exact:true})).toBeChecked();
+  await expect(panel(page).getByTestId('unsaved-draft')).toContainText('Single draft retained independently.');
+  const duplicateIds=await page.evaluate(()=>{const ids=Array.from(document.querySelectorAll('[id]'),node=>node.id);return ids.filter((id,index)=>ids.indexOf(id)!==index);});
+  expect(duplicateIds).toEqual([]);
+});
+
 test('malformed and oversized manifests fail closed; keyboard mode navigation works', async ({page}) => {
-  await page.getByLabel('Batch JSON manifest').fill('{bad json');
+  await panel(page).getByLabel('Batch JSON manifest').fill('{bad json');
   await page.getByRole('button',{name:'Validate batch manifest',exact:true}).click();
   await expect(panel(page).getByRole('alert')).toContainText('JSON array');
-  await page.getByLabel('Batch JSON manifest').fill(JSON.stringify(Array.from({length:301},(_,i)=>({filename:`${i}.png`,application:samples.match.application}))));
+  await panel(page).getByLabel('Batch JSON manifest').fill(JSON.stringify(Array.from({length:301},(_,i)=>({filename:`${i}.png`,application:samples.match.application}))));
   await page.getByRole('button',{name:'Validate batch manifest',exact:true}).click();
   await expect(panel(page).getByRole('alert')).toContainText('300');
   await expect(page.getByTestId('batch-summary')).toHaveCount(0);

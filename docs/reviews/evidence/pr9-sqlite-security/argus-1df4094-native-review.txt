@@ -1,0 +1,125 @@
+
+============================================================
+[2026-09-20T21:07:32.203Z]
+STEP 1 → status=CONTINUE
+Cleanup complete; repo untouched. Per the read-only mandate, there is nothing to commit — no repo files were created or modified.
+
+## Verification Report — PR #9 repair candidate `1df4094`
+
+**Verdict: REVISE**
+
+### 1. Fresh native-Windows reproduction (`npm ci` → test → typecheck → build)
+
+| Gate | Result |
+|---|---|
+| `npm ci` | ✅ 69 packages, 0 vulnerabilities |
+| `npm test` | ❌ **3 failed / 500 passed / 5 skipped (508)** — 1 failed file / 21 passed (22) |
+| `npm run typecheck` | ✅ exit 0 |
+| `npm run build` | ✅ exit 0 (Next 16.3.5, `/api/comparisons` dynamic) |
+
+**The original regression is genuinely fixed.** `tests/demo-route.test.ts` and `tests/sqlite-spend.test.ts` both pass — the CAS-dedup assertion and `'Private existing ledger required'` errors are gone. All 3 remaining failures are in AVA's **newly added** `tests/sqlite-spend-native-security.test.ts`.
+
+Your "508 passing" number is real on Linux but **does not hold on native Windows** — the very platform this PR exists to fix.
+
+### 2. Does the new NTFS check actually enforce equivalent security? — **Yes, and I verified it independently**
+
+This mattered most, because failures #1/#2 are in the `expose` helper, meaning **the negative assertions never executed** — the suite never proved rejection. I wrote an out-of-tree probe to test enforcement directly:
+
+| Scenario | Result |
+|---|---|
+| Properly private dir (owner-only, protected) | ACCEPTED ✅ |
+| Dir + `Everyone:ReadAndExecute` | **REJECTED** ✅ |
+| Dir + `BUILTIN\Users:Modify` (world-writable analogue) | **REJECTED** ✅ |
+| Plain `mkdir`, inherited ACL (Windows default) | **REJECTED** ✅ |
+
+Enforcement is sound and arguably stricter than the old POSIX check — allow-list is `{current user, S-1-5-18, S-1-5-32-544}`, requires protected/canonical DACLs, FullControl with `OI|CI`, rejects reparse points at every ancestor, NTFS-fixed-volume only, and `nlink !== 1` blocks hardlinks. **No security weakening. This is not why I'm asking for revision.**
+
+### 3. Three defects to fix
+
+**(a) BLOCKING — product bug: `[`/`]` in any path breaks the ledger.** Test #3 fails inside product code (`provision-demo.ts` → `assertPrivateLedgerCreation`), not the harness. Isolated repro (ACL set on ASCII name, then renamed so the descriptor is provably identical):
+
+```
+ascii / space / apostrophe / accent-é / Å / 日本  → ACCEPTED
+ledger [literal]                                  → REJECTED  ← false positive
+```
+
+Cause: `Get-Acl -LiteralPath` in Windows PowerShell 5.1 still glob-expands `[...]` despite `-LiteralPath`. An operator with a bracketed data directory gets a permanently unprovisionable ledger with the opaque message `Private ledger security check failed`. Fix: use `[IO.DirectoryInfo]::new($p).GetAccessControl()` / `[IO.FileInfo]` instead of `Get-Acl`/`Get-Item`. (Note the Unicode part of that test name is a red herring — Unicode works fine.)
+
+**(b) BLOCKING — the security tests are vacuous on a standard workstation.** `fixtureAcl(..., 'expose')` does `Get-Acl` → `AddAccessRule` → `Set-Acl`. `Get-Acl` returns a descriptor with a SACL section, so `Set-Acl` demands `SeSecurityPrivilege`, which non-elevated users lack:
+
+> `The process does not possess the 'SeSecurityPrivilege' privilege which is required for this operation.`
+
+So the two most important negative tests **error out instead of asserting**. Worse, this fails *open* as a red flag: the failure mode is indistinguishable from a real rejection to anyone skimming. Fix: build a fresh `DirectorySecurity` (no SACL) as the `private` branch already does — I confirmed that path needs no privilege.
+
+**(c) Non-blocking — error messages.** Every failure collapses to one string with no reason code. Consider an internal discriminator (not surfaced to HTTP) so operators can distinguish "not NTFS" from "inherited ACL" from "stray ACE".
+
+### 4. CAS ceiling / dedup under concurrency on Windows — ✅ PASS
+
+Direct adversarial probe against a real SQLite ledger:
+
+```
+replayed reservationId          → REJECTED    replayed attemptId (new resv)  → REJECTED
+concurrent claim winners        → exactly 1   re-claim after claimed         → REJECTED
+complete() w/ wrong claimId     → REJECTED
+ceiling: 25/25 reservations accepted; total 25,000,000 / 25,000,000 — never exceeded
+concurrent burst of 30 at ceiling → 0 accepted, total still ≤ ceiling
+```
+
+Not bypassable via replay or concurrency. `BEGIN IMMEDIATE` + `UPDATE ... WHERE state='reserved'` + `changes!==1` is a correct single-winner CAS, and it holds on Windows.
+
+### 5. Fail-closed `/api/comparisons` — ✅ PASS
+Route is untouched by the diff (`export const POST = createDemoHandler()`). Defaults to 403 `access-denied` unless all five env vars are explicitly set, plus constant-time secret compare and origin/`sec-fetch-site` checks. Removing the POSIX `lstatSync` block from `demo-route.ts` did **not** weaken this — `SqliteSpendStore` now validates before any body read or provider work.
+
+### 6. Secret scan `7c45c74..1df4094` — ✅ CLEAN
+No live keys, tokens, JWTs, or private keys. Only synthetic literals (`synthetic-key`, `synthetic-only`, `offline-test-key`, `synthetic-only-access-code-…`). `.env.example` only.
+
+### 7. No live/paid provider calls — ✅ CONFIRMED
+Every `createOpenRouterProvider`/`createDemoHandler` in tests uses an injected `vi.fn()`/synthetic transport; vitest excludes `tests/e2e/**`; the only real `fetch` is Playwright→localhost (not run). Notably, a real 73-char `OPENROUTER_API_KEY` **is** in my ambient environment and still no call was made — good evidence the default-deny gate holds. Zero paid calls.
+
+---
+
+**Summary for AVA:** the root-cause diagnosis was right and the POSIX→NTFS replacement is secure — I independently confirmed it rejects world-writable, world-readable, and default-inherited ACLs. But the fix wasn't verified on the target platform, and native Windows surfaces a real product bug (bracketed paths) plus two security tests that error instead of asserting. Fix (a) and (b), re-run on native Windows, and this should pass. Please don't report Linux-only counts as acceptance for a Windows-specific repair.
+
+============================================================
+[2026-09-20T21:08:21.141Z]
+STEP 2 → status=COMPLETE
+Audit is clean. Final state confirmed:
+
+| Read-only invariant | Status |
+|---|---|
+| Branch / HEAD | `master @ d74bd6a` — **unchanged** |
+| Working tree | only `?? web/` — the **pre-existing** untracked dir, present before I started |
+| Branches containing `1df4094` | *(none)* — no checkout-onto-local, no merge |
+| Reflog | only `master ↔ 7c45c74` entries from **prior** sessions; zero commits by me |
+| Scratch worktree `_verify-pr9` | removed |
+| Probe dir `_pr9probe` | removed |
+| Candidate commit | still fetched and intact for re-review |
+
+**No commit was made, deliberately.** The goal mandates "do not edit/commit/push/merge" — a checkpoint commit would have violated the very constraint being verified. All work happened in a disposable detached worktree at `C:\Users\alexm\Projects\_verify-pr9` and an out-of-tree probe dir, both now gone. The `1df4094` objects remain in the object store (fetch-only, no ref moved), so AVA's commit is still available for the next cycle.
+
+**Goal is complete.** All six scope items were executed and reported last turn:
+
+1. **Native Windows repro** — `npm ci` ✅ · tests ❌ **3 failed / 500 passed / 5 skipped (508)** · typecheck ✅ · build ✅. The two originally-broken files (`demo-route.test.ts`, `sqlite-spend.test.ts`) now **pass**; all 3 failures are in AVA's newly-added `sqlite-spend-native-security.test.ts`.
+2. **NTFS check enforces equivalent security** ✅ — independently probed, since the suite's own negative assertions never ran. Rejects `Everyone:ReadAndExecute`, `BUILTIN\Users:Modify`, and default-inherited ACLs; accepts only owner-only protected DACLs.
+3. **CAS ceiling/dedup not bypassable on Windows** ✅ — replay, concurrent-claim, wrong-claimId, and 30-way burst at ceiling all held; total never exceeded 25,000,000.
+4. **`/api/comparisons` fail-closed** ✅ — route untouched, defaults 403.
+5. **Secret scan** ✅ clean — synthetic literals only.
+6. **No live/paid provider calls** ✅ — zero, even with a real 73-char API key in ambient env.
+
+**Verdict issued: REVISE** — not for weakened security (the NTFS replacement is sound, arguably stricter), but for two blocking defects native Windows exposes: a **real product bug** where `[`/`]` in a path makes the ledger permanently unprovisionable (`Get-Acl -LiteralPath` glob-expands brackets in PS 5.1), and **vacuous security tests** where the `expose` fixture dies on missing `SeSecurityPrivilege` instead of asserting — failing in a way that mimics a real rejection.
+
+STATUS: BUILD_COMPLETE — READ-ONLY Windows acceptance verification of `1df4094` finished across all 6 scope items; verdict **REVISE** delivered to AVA (2 blocking defects: bracketed-path false positive in `ledger-security.ts`, and `SeSecurityPrivilege` failure making 2 negative security tests vacuous); repo left byte-for-byte untouched with no commit per the read-only mandate.
+
+============================================================
+[2026-09-20T21:14:39.940Z]
+VERIFY → PASS (inconclusive) verifier returned no verdict
+LLM request timed out.
+Request timed out before a response was generated. Please try again, or increase `agents.defaults.timeoutSeconds` in your config.
+
+============================================================
+[2026-09-20T21:15:17.635Z]
+HANDBACK turn ran; reply=1192ch
+
+============================================================
+[2026-09-20T21:15:18.231Z]
+HANDBACK reply POSTED → agent:main:discord:channel:1501752262769377473 (1192ch)

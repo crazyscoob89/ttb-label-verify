@@ -1,0 +1,98 @@
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.1 [39m[90m/opt/data/ttb-prototype-delivery/web[39m
+
+ [32m✓[39m tests/extraction.test.ts[2m > [22mdefault provider denies without network[32m 4[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22mauthorization undefined cannot dispatch via adapter directly[32m 1[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22mauthorization false cannot dispatch via adapter directly[32m 0[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22mauthorization true cannot dispatch via adapter directly[32m 1[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22mextracts strict evidence with bound provenance, no verdict and no cost release[32m 35[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22mwire request is fixed no-tools image-only, no canonical answers or silent fallback[32m 3[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22mimage is snapshotted before awaiting store; hash and wire bytes agree[32m 2[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22minvalid evidence never yields comparison or raw error: invalid JSON[32m 4[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22minvalid evidence never yields comparison or raw error: missing schema[32m 3[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22minvalid evidence never yields comparison or raw error: provider verdict[32m 2[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22minvalid evidence never yields comparison or raw error: wrong version[32m 1[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22mHTTP 301 fails without retries or raw response[32m 1[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22mHTTP 401 fails without retries or raw response[32m 1[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22mHTTP 429 fails without retries or raw response[32m 1[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22mHTTP 500 fails without retries or raw response[32m 1[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22minvalid envelope length cannot yield evidence[32m 1[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22minvalid envelope tools cannot yield evidence[32m 1[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22minvalid envelope multi cannot yield evidence[32m 1[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22minvalid envelope role cannot yield evidence[32m 1[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22minvalid envelope null cannot yield evidence[32m 1[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22minvalid envelope refusal cannot yield evidence[32m 1[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22minvalid envelope model cannot yield evidence[32m 1[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22minvalid envelope error cannot yield evidence[32m 1[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22minvalid envelope unknown cannot yield evidence[32m 1[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22minvalid request empty denied before reservation/network[32m 0[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22minvalid request oversized denied before reservation/network[32m 1[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22minvalid request mime denied before reservation/network[32m 0[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22minvalid request extra denied before reservation/network[32m 0[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22minvalid request identity denied before reservation/network[32m 0[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22mresponse limit enforced on streamed chunks before complete JSON parsing[32m 2[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22mextraction timeout matches the planned 20-second limit[32m 0[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22mtimeout includes headers and leaves liability, no same-key retry[32m 4[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22mtimeout includes stream and leaves liability, no same-key retry[32m 5[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22mstore outages and invalid completion prevent evidence[32m 1[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22munexpected transport exception sanitized and no fallback[32m 0[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22mracing provider calls dispatch once; explicit new attempt consumes another hold[32m 2[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22mmissing dependency key blocks even explicit authorization[32m 0[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22mmissing dependency store blocks even explicit authorization[32m 0[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22mmissing dependency amount blocks even explicit authorization[32m 0[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22mauthorization configuration is snapshotted and client runtime is denied[32m 0[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22mshared image memory is rejected before dispatch[32m 0[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22mresponse declared size fails with held liability[32m 1[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22mresponse invalid utf8 fails with held liability[32m 1[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22mresponse malformed JSON fails with held liability[32m 1[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22mresponse redirected fails with held liability[32m 0[2mms[22m[39m
+ [32m✓[39m tests/extraction.test.ts[2m > [22mfixture provider is explicitly offline and cannot claim real extraction[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mexact captured OpenRouter completion replays offline without changing its content or metadata[32m 47[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mcaptured metadata is accepted independently of fenced-content support[32m 3[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22maccepts only complete JSON: bare JSON[32m 2[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22maccepts only complete JSON: bare JSON with whitespace[32m 3[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22maccepts only complete JSON: single json fence[32m 5[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22maccepts only complete JSON: single untagged fence[32m 2[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22maccepts only complete JSON: single fence with CRLF and surrounding …[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mfails closed without salvaging content: multiple fences[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mfails closed without salvaging content: prose before fence[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mfails closed without salvaging content: prose after fence[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mfails closed without salvaging content: prose around bare JSON[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mfails closed without salvaging content: two bare objects[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mfails closed without salvaging content: two objects inside fence[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mfails closed without salvaging content: wrong fence language[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mfails closed without salvaging content: inline fence[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mfails closed without salvaging content: nested fence[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mfails closed without salvaging content: unclosed fence[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mfails closed without salvaging content: truncated closing fence[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mfails closed without salvaging content: truncated bare JSON despite stop[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mfails closed without salvaging content: truncated fenced JSON despite stop[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mfails closed without salvaging content: malformed bare JSON[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mfails closed without salvaging content: malformed fenced JSON[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mfails closed without salvaging content: unknown extraction key[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mfails closed without salvaging content: unknown nested extraction key[32m 2[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mfails closed without salvaging content: missing evidence[32m 2[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mfails closed without salvaging content: array instead of object[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mfails closed without salvaging content: null instead of object[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mfails closed without salvaging content: empty content[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mcaptured envelope still rejects truncated finish reason with valid fenc…[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mcaptured envelope still rejects native truncation despite stop[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mcaptured envelope still rejects native refusal despite stop[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mcaptured envelope still rejects native error despite stop[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mcaptured envelope still rejects refusal with valid content[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mcaptured envelope still rejects root error with valid content[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mcaptured envelope still rejects choice error with valid content[32m 3[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mcaptured envelope still rejects message error with valid content[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mcaptured envelope still rejects missing content[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mcaptured envelope still rejects null content[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mcaptured envelope still rejects structured content[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mcaptured envelope still rejects non-null reasoning[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mcaptured envelope still rejects invalid service tier type[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mcaptured envelope still rejects oversized service tier[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mcaptured envelope still rejects invalid native finish type[32m 1[2mms[22m[39m
+ [32m✓[39m tests/openrouter-compatibility.test.ts[2m > [22mcaptured envelope still rejects oversized native finish reason[32m 1[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[32m90 passed[39m[22m[90m (90)[39m
+[2m   Start at [22m 22:39:11
+[2m   Duration [22m 1.25s[2m (import 59%, transform 27%, tests 11%, worker 2%)[22m

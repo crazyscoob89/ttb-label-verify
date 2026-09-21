@@ -1,0 +1,22 @@
+
+> ttb-label-review-foundation@0.1.0 test
+> vitest run tests/sqlite-spend-native-security.test.ts tests/sqlite-spend-security.test.ts tests/sqlite-spend.test.ts tests/spend.test.ts tests/demo-route.test.ts
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.1 [39m[90m/opt/data/ttb-prototype-delivery/web[39m
+
+ [32m✓[39m tests/spend.test.ts [2m([22m[2m25 tests[22m[2m)[22m[32m 50[2mms[22m[39m
+ [32m✓[39m tests/sqlite-spend-security.test.ts [2m([22m[2m31 tests[22m[2m)[22m[33m 498[2mms[22m[39m
+ [32m✓[39m tests/demo-route.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 403[2mms[22m[39m
+ [32m✓[39m tests/sqlite-spend-native-security.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 2933[2mms[22m[39m
+   [33m[2m✓[22m[39m native security: actual provisioning CLI accepts private Unicode/spaced directory and refuses reuse[33m 2801[2mms[22m[39m
+ [32m✓[39m tests/sqlite-spend.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 4893[2mms[22m[39m
+   [33m[2m✓[22m[39m child startup failures include diagnostics, not swallowed CAS exit codes[33m 1687[2mms[22m[39m
+   [33m[2m✓[22m[39m independent processes share atomic identity and claims; persisted cap mismatch rejects[33m 1809[2mms[22m[39m
+   [33m[2m✓[22m[39m atomic dedup, single winner claim, retained holds, restart and hard cap[33m 1347[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m5 passed[39m[22m[90m (5)[39m
+[2m      Tests [22m [1m[32m80 passed[39m[22m[90m (80)[39m
+[2m   Start at [22m 20:36:14
+[2m   Duration [22m 6.64s[2m (tests 53%, import 33%, transform 14%, worker 1%)[22m
+

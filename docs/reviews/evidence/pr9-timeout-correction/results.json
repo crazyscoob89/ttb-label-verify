@@ -1,0 +1,41 @@
+[
+  {
+    "name": "full-unit",
+    "command": [
+      "/opt/data/tools/node24-phase0/node-v24.21.0-linux-x64/bin/node",
+      "node_modules/vitest/vitest.mjs",
+      "run"
+    ],
+    "exit": 0,
+    "seconds": 16.569,
+    "platform": "Linux",
+    "node": "v24.21.0"
+  },
+  {
+    "name": "typecheck",
+    "command": [
+      "/opt/data/tools/node24-phase0/node-v24.21.0-linux-x64/bin/node",
+      "node_modules/typescript/bin/tsc",
+      "--noEmit",
+      "--incremental",
+      "false"
+    ],
+    "exit": 0,
+    "seconds": 15.767,
+    "platform": "Linux",
+    "node": "v24.21.0"
+  },
+  {
+    "name": "build",
+    "command": [
+      "/opt/data/tools/node24-phase0/node-v24.21.0-linux-x64/bin/node",
+      "node_modules/next/dist/bin/next",
+      "build",
+      "--webpack"
+    ],
+    "exit": 0,
+    "seconds": 100.945,
+    "platform": "Linux",
+    "node": "v24.21.0"
+  }
+]

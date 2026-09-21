@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import ComparisonWorkspace from './ComparisonWorkspace';
 import BatchWorkspace from './BatchWorkspace';
+import SavedReviewHistory from './SavedReviewHistory';
 
 export default function ReviewWorkspace({offlineEnabled}:{offlineEnabled:boolean}) {
   const [tab,setTab]=useState<'single'|'batch'>('single');
@@ -11,6 +12,8 @@ export default function ReviewWorkspace({offlineEnabled}:{offlineEnabled:boolean
       event.preventDefault();const next=event.key==='Home'?'single':event.key==='End'?'batch':tab==='single'?'batch':'single';
       setTab(next);document.getElementById(`${next}-tab`)?.focus();
     }}>{id==='single'?'Single review':'Batch upload'}</button>)}</nav>
-    {tab==='single'?<ComparisonWorkspace offlineEnabled={offlineEnabled}/>:<BatchWorkspace offlineEnabled={offlineEnabled}/>}
+    <div hidden={tab!=='single'}><ComparisonWorkspace offlineEnabled={offlineEnabled}/></div>
+    <div hidden={tab!=='batch'}><BatchWorkspace offlineEnabled={offlineEnabled}/></div>
+    <SavedReviewHistory/>
   </>;
 }
