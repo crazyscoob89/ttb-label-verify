@@ -66,7 +66,7 @@ test('real signed-upload protocol and HMAC ticket round trip preserves binding a
  expect(quota.reserve).toHaveBeenCalledWith(expect.any(String),bytes.length);expect(quota.reserve.mock.invocationCallOrder[0]).toBeLessThan(fetcher.mock.invocationCallOrder[0]);
  expect(fetcher.mock.calls[0][1]?.method).toBe('POST');expect(fetcher.mock.calls[0][1]?.body).toBe('{}');expect(new Headers(fetcher.mock.calls[0][1]?.headers).get('x-upsert')).toBe('false');
  expect(ticket).not.toContain(env.TTB_SUPABASE_SERVICE_ROLE_KEY);
- const input=await createHostedInputReader(env)(request({ticket}));expect(input.file.bytes).toEqual(bytes);expect(input.binding.application).toEqual(fixtures.application);
+ const input=await createHostedInputReader(env)(request({ticket}));if('schemaVersion' in input)throw Error('Expected legacy input');expect(input.file.bytes).toEqual(bytes);expect(input.binding.application).toEqual(fixtures.application);
  expect((await preparePair(input.file,input.binding)).image.sanitizedSha256).toMatch(/^[a-f0-9]{64}$/);
 });
 test('HMAC tamper, expiry, future issuance, wrong auth and arbitrary URL never cause private reads',async()=>{
@@ -105,7 +105,7 @@ test('missing, weak or shared signing key fails before quota or Storage issuance
 test('ticket reader enforces exact length/type and corrupt image cannot reach paid provider',async()=>{
  const bytes=Buffer.from('not a png'),fetcher=mockStorage(bytes);vi.stubGlobal('fetch',fetcher);const handler=createUploadHandler({env,quota:{reserve:vi.fn().mockResolvedValue(undefined)}});
  const {ticket}=await(await handler(request(declaration(bytes.length)))).json();const input=await createHostedInputReader(env)(request({ticket}));const extract=vi.fn();
- expect(await createComparisonService({provider:{extract},authorize:()=>true})(input)).toEqual({processing:'failed',code:'invalid-input'});expect(extract).not.toHaveBeenCalled();
+ if('schemaVersion' in input)throw Error('Expected legacy input');expect(await createComparisonService({provider:{extract},authorize:()=>true})(input)).toEqual({processing:'failed',code:'invalid-input'});expect(extract).not.toHaveBeenCalled();
  fetcher.mockResolvedValueOnce(new Response('short',{headers:{'content-type':'image/png'}}));await expect(createHostedInputReader(env)(request({ticket}))).rejects.toThrow();
  fetcher.mockResolvedValueOnce(new Response(new Uint8Array(bytes),{headers:{'content-type':'image/jpeg'}}));await expect(createHostedInputReader(env)(request({ticket}))).rejects.toThrow();
 });

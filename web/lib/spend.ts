@@ -2,12 +2,13 @@ import { randomUUID } from 'node:crypto';
 import { z } from 'zod';
 
 const units = z.number().int().nonnegative().max(Number.MAX_SAFE_INTEGER);
-export const bindingSchema = z.object({
+const legacyBindingSchema = z.object({
   reservationId: z.uuid(), attemptId: z.uuid(), requestId: z.uuid(),
   imageSha256: z.string().regex(/^[a-f0-9]{64}$/), schemaVersion: z.literal(1),
   rulesVersion: z.literal('prototype-seven-fields-v1'), promptVersion: z.literal('image-observations-v1'),
   model: z.literal('anthropic/claude-haiku-4.5'), maxCostMicrousd: units.positive(),
 }).strict();
+export const bindingSchema=z.union([legacyBindingSchema,legacyBindingSchema.extend({schemaVersion:z.literal(2),promptVersion:z.literal('photo-set-observations-v2')})]);
 const receiptSchema = z.object({
   binding: bindingSchema, state: z.enum(['reserved', 'claimed', 'unresolved']), claimId: z.uuid().nullable(),
   ledger: z.object({ currency: z.literal('USD'), ceilingMicrousd: units, incurredMicrousd: units, unresolvedMicrousd: units }).strict(),

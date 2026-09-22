@@ -1,4 +1,5 @@
 import { demoAccess, boundedBody, InputError } from './demo-security';
+import { photoSelectorSchema } from './group-assets';
 import { ReviewError, REVIEW_LIMITS, type DemoStoreFactory, type DemoReviewStore } from './demo-store-contracts';
 const headers={'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'};
 let active=0;
@@ -24,6 +25,12 @@ export function createReviewHandler(env:Record<string,string|undefined>=process.
    }
    if(parts.length===1&&parts[0]==='list')return json({reviews:await store.list(Number(url.searchParams.get('offset')??0))});
    if(parts.length===1)return json(await store.detail(parts[0]));
+   if(parts.length===5&&parts[1]==='photos'){
+    const parsed=photoSelectorSchema.safeParse({photoId:parts[2],variant:parts[3]});
+    if(!parsed.success)return json({code:'not-found'},404);
+    if(parts[4]==='evidence-link'&&store.evidenceLink)return json(await store.evidenceLink(parts[0],parsed.data));
+    if(parts[4]==='evidence'){const evidence=await store.evidence(parts[0],parsed.data);return new Response(new Uint8Array(evidence.bytes),{headers:{...headers,'Content-Type':evidence.mime,'Content-Disposition':'inline; filename="label-photo"'}});}
+   }
    if(parts.length===2&&parts[1]==='evidence-link'&&store.evidenceLink)return json(await store.evidenceLink(parts[0]));
    if(parts.length===2&&parts[1]==='evidence'){
     const evidence=await store.evidence(parts[0]);

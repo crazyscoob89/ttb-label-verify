@@ -1,6 +1,8 @@
 import { createHash } from 'node:crypto';
 import { crc32, inflateSync } from 'node:zlib';
 import sharp from 'sharp';
+import { photoGroupDeclarationSchema,photoDescriptorsSchema,MAX_GROUP_PIXELS,type PhotoGroupDeclaration,type PhotoDescriptor } from './photo-contracts';
+import { photoSetHash } from './group-binding';
 import { z } from 'zod';
 import { filenameSchema, manifestSchema, MAX_BATCH_PAIRS, MAX_IMAGE_BYTES, MAX_IMAGE_PIXELS, type Application } from './contracts';
 
@@ -142,6 +144,40 @@ export async function sanitizeImage(input: unknown): Promise<SanitizedImage> {
     // Never leak decoder payloads, filenames or applicant content to future UI/logs.
     return reject();
   }
+}
+
+export type GroupComparisonInput = {schemaVersion:2;group:PhotoGroupDeclaration;files:{photoId:string;image:ImageInput}[]};
+export type PreparedPhotoGroup = {group:PhotoGroupDeclaration;photoSetSha256:string;photos:{descriptor:PhotoDescriptor;original:Buffer;normalized:SanitizedImage}[]};
+/** Synchronous ownership boundary before authorization, IO or decoder awaits. */
+export function snapshotPhotoGroup(input:GroupComparisonInput):GroupComparisonInput {
+ const group=photoGroupDeclarationSchema.parse(input.group);
+ if(input.schemaVersion!==2 || !Array.isArray(input.files) || input.files.length!==group.photos.length || new Set(input.files.map(f=>f.photoId)).size!==group.photos.length)throw Error('Invalid group');
+ const files=group.photos.map(p=>{
+  const file=input.files.find(f=>f.photoId===p.photoId);if(!file)throw Error('Missing photo');
+  const image=imageSchema.parse(file.image);
+  if(image.bytes.buffer instanceof SharedArrayBuffer || image.filename!==p.filename||image.mime!==p.mime||image.bytes.length!==p.bytes)throw Error('Photo declaration mismatch');
+  return {photoId:p.photoId,image:{...image,bytes:Buffer.from(image.bytes)}};
+ });
+ return {schemaVersion:2,group,files};
+}
+export async function preparePhotoGroup(input:GroupComparisonInput,signal?:AbortSignal):Promise<PreparedPhotoGroup> {
+ const snapshot=snapshotPhotoGroup(input);const {group,files}=snapshot;
+ let pixels=0;
+ // Preflight every container and metadata before any full decode.
+ for(const f of files){
+  signal?.throwIfAborted();const b=f.image.bytes;
+  if(f.image.mime==='image/png')validatePng(b);else validateJpeg(b);
+  const m=await sharp(b,{failOn:'warning',limitInputPixels:MAX_IMAGE_PIXELS,sequentialRead:true}).metadata();
+  if(!m.width||!m.height||(m.pages??1)!==1||m.width*m.height>MAX_IMAGE_PIXELS)reject();
+  pixels+=m.width*m.height;if(pixels>MAX_GROUP_PIXELS)reject();
+ }
+ const photos:PreparedPhotoGroup['photos']=[];
+ for(const [i,f] of files.entries()){
+  signal?.throwIfAborted();const normalized=await sanitizeImage(f.image);
+  photos.push({descriptor:{...group.photos[i],sourceSha256:normalized.sourceSha256,normalized:{sha256:normalized.sanitizedSha256,bytes:normalized.bytes.length,mime:normalized.mime,width:normalized.width,height:normalized.height}},original:f.image.bytes,normalized});
+ }
+ signal?.throwIfAborted();photoDescriptorsSchema.parse(photos.map(p=>p.descriptor));
+ return {group,photos,photoSetSha256:photoSetHash(photos.map(p=>p.descriptor))};
 }
 
 export async function preparePair(file: unknown, binding: unknown) {

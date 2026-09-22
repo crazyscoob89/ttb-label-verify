@@ -1,3 +1,4 @@
+export type {GroupExtractionRequest,GroupExtractionResult,GroupExtractionMetadata,GroupExtractionProvider} from './group-provider';
 import { createHash, randomUUID } from 'node:crypto';
 import { z } from 'zod';
 import { RULES_VERSION } from '../rules';

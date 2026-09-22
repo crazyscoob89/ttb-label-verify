@@ -1,4 +1,6 @@
 import { createHash, randomUUID } from 'node:crypto';
+import { prepareGroupAssets,checkedServerRecord,validateAssetManifest,assetExpected,photoSelectorSchema } from '../group-assets';
+import type { PhotoSelector } from '../photo-contracts';
 import { z } from 'zod';
 import { boundedBody } from '../demo-security';
 import { MAX_IMAGE_BYTES } from '../contracts';
@@ -11,6 +13,7 @@ import type { SavedReceipt } from '../saved-review-contract';
 type Env=Record<string,string|undefined>;
 type TransportOptions={fetch?:typeof fetch;timeoutMs?:number};
 const unavailable=()=>new Error('Persistence unavailable');
+function persistedRecord(value:unknown){try{return checkedServerRecord(value);}catch{throw unavailable();}}
 const identity='Shared demo access code — NOT an individually authenticated reviewer' as const;
 const saveSchema=z.object({comparisonId:z.uuid(),idempotencyKey:z.uuid(),intent:z.unknown()}).strict();
 const receiptSchema=z.object({state:z.literal('SAVED'),reviewId:z.uuid(),comparisonId:z.uuid(),savedAt:z.string().datetime(),identity:z.literal(identity)}).strict();
@@ -54,12 +57,15 @@ export function createHostedStores({env,objects,...options}:{env:Env;objects:Hos
   async complete(input:Parameters<typeof bindingSchema.parse>[0],claimId:string){return rpc('spend','complete',{binding:bindingSchema.parse(input),claimId:z.uuid().parse(claimId)});},
   close(){},
  };
- async function descriptor(id:string){
-  const d=descriptorSchema.parse(await rpc('review','evidence',{id:z.uuid().parse(id)}));
+ async function descriptor(id:string,selector?:PhotoSelector){
+  if(selector)photoSelectorSchema.parse(selector);
+  const d=descriptorSchema.parse(await rpc('review','evidence',{id:z.uuid().parse(id),...selector}));
+  if(selector){const detail=await reviews.detail(id);if(!('recordVersion' in detail.record))throw new ReviewError(404,'review-not-found');const e=assetExpected(detail.record,selector);if(e.bytes!==d.bytes||e.sha256!==d.sha256||e.mime!==d.mime)throw unavailable();}
   if(!/^snapshots\/[0-9a-f-]{36}$/.test(d.key))throw unavailable();return d;
  }
  const reviews:DemoReviewStore={
   async snapshot(record,image,mime){
+   if('recordVersion' in record)throw new ReviewError(400,'invalid-snapshot');
    const recordText=JSON.stringify(record);
    if(!checkedRecord(record)||!Buffer.isBuffer(image)||image.length<1||image.length>MAX_IMAGE_BYTES||Buffer.byteLength(recordText)>REVIEW_LIMITS.recordBytes||!['image/png','image/jpeg'].includes(mime)||createHash('sha256').update(image).digest('hex')!==record.imageSha256)throw new ReviewError(400,'invalid-snapshot');
    // Hold quota before object creation; crashes/lost acknowledgments retain quota.
@@ -71,12 +77,26 @@ export function createHostedStores({env,objects,...options}:{env:Env;objects:Hos
    if(verified.length!==bytes.length||createHash('sha256').update(verified).digest('hex')!==sha256)throw unavailable();
    await rpc('review','snapshot_commit',{id});return id;
   },
+  async snapshotGroup(record,photos,signal){
+   const group=prepareGroupAssets(record,photos),primary=group.assets[1];
+   signal?.throwIfAborted();
+   await rpc('review','snapshot_prepare',{id:group.id,record:group.recordText,key:primary.key,sha256:primary.sha256,bytes:primary.bytes,mime:primary.mime,assets:group.assets});
+   for(const [i,a] of group.assets.entries()){
+    signal?.throwIfAborted();
+    const stored=await objects.putEvidence(a.key.slice('snapshots/'.length),group.buffers[i],a.mime,a.sha256,signal);if(stored.key!==a.key)throw unavailable();
+    signal?.throwIfAborted();const bytes=await objects.getEvidence(a.key,a.sha256,a.bytes,a.mime,signal);
+    if(bytes.length!==a.bytes||createHash('sha256').update(bytes).digest('hex')!==a.sha256)throw unavailable();
+   }
+   signal?.throwIfAborted();await rpc('review','snapshot_commit',{id:group.id});signal?.throwIfAborted();return group.id;
+  },
   async save(input):Promise<SavedReceipt>{
    const parsed=saveSchema.safeParse(input);
    if(!parsed.success||Buffer.byteLength(JSON.stringify(input))>REVIEW_LIMITS.requestBytes)throw new ReviewError(400,'invalid-review');
    const {comparisonId,idempotencyKey,intent}=parsed.data;
-   const row=z.object({record:z.string()}).strict().parse(await rpc('review','snapshot_get',{id:comparisonId}));
-   const draft=buildUnsavedDraft(JSON.parse(row.record),intent);
+   const row=z.object({record:z.string(),assets:z.unknown().optional()}).strict().parse(await rpc('review','snapshot_get',{id:comparisonId}));
+   const record=persistedRecord(JSON.parse(row.record));
+   if('recordVersion' in record)validateAssetManifest(record,comparisonId,row.assets);
+   const draft=buildUnsavedDraft(record,intent);
    if(!draft)throw new ReviewError(409,'review-policy-or-stale-binding');
    return receiptSchema.parse(await rpc('review','save',{comparisonId,idempotencyKey,request:JSON.stringify({comparisonId,intent:draft.intent}),intent:JSON.stringify(draft.intent)}));
   },
@@ -87,18 +107,19 @@ export function createHostedStores({env,objects,...options}:{env:Env;objects:Hos
   },
   async detail(id){
    if(!z.uuid().safeParse(id).success)throw new ReviewError(404,'review-not-found');
-   const row=z.object({receipt:receiptSchema,record:z.string(),intent:z.string()}).strict().parse(await rpc('review','detail',{id}));
-   const record=JSON.parse(row.record) as CompleteComparison,intent=JSON.parse(row.intent);
+   const row=z.object({receipt:receiptSchema,record:z.string(),intent:z.string(),assets:z.unknown().optional()}).strict().parse(await rpc('review','detail',{id}));
+   const record=persistedRecord(JSON.parse(row.record)),intent=JSON.parse(row.intent);
+   if('recordVersion' in record)validateAssetManifest(record,row.receipt.comparisonId,row.assets);
    if(!checkedRecord(record)||!buildUnsavedDraft(record,intent))throw unavailable();
    return {receipt:row.receipt,record,intent};
   },
-  async evidence(id){const d=await descriptor(id);const bytes=await objects.getEvidence(d.key,d.sha256,d.bytes,d.mime);if(bytes.length!==d.bytes||createHash('sha256').update(bytes).digest('hex')!==d.sha256)throw unavailable();return {bytes,mime:d.mime};},
-  async evidenceLink(id){const d=await descriptor(id);return objects.signEvidence(d.key,d.sha256,d.bytes,d.mime);},
+  async evidence(id,selector){const d=await descriptor(id,selector);const bytes=await objects.getEvidence(d.key,d.sha256,d.bytes,d.mime);if(bytes.length!==d.bytes||createHash('sha256').update(bytes).digest('hex')!==d.sha256)throw unavailable();return {bytes,mime:d.mime};},
+  async evidenceLink(id,selector){const d=await descriptor(id,selector);return objects.signEvidence(d.key,d.sha256,d.bytes,d.mime);},
   close(){},
  };
  return {openSpend:()=>spend,openReviews:()=>reviews};
 }
 export function createHostedUploadQuota(env:Env,options:TransportOptions={}) {
  const rpc=client(env,options);
- return {async reserve(ticketId:string,bytes:number){await rpc('review','upload_reserve',{id:z.uuid().parse(ticketId),bytes:z.number().int().min(1).max(MAX_IMAGE_BYTES).parse(bytes)});}};
+ return {async reserve(ticketId:string,bytes:number){await rpc('review','upload_reserve',{id:z.uuid().parse(ticketId),bytes:z.number().int().min(1).max(MAX_IMAGE_BYTES).parse(bytes)});},async reserveGroup(uploads:{id:string;bytes:number}[]){const parsed=z.array(z.object({id:z.uuid(),bytes:z.number().int().min(1).max(MAX_IMAGE_BYTES)}).strict()).min(1).max(4).parse(uploads);if(new Set(parsed.map(p=>p.id)).size!==parsed.length||parsed.reduce((n,p)=>n+p.bytes,0)>20*1024*1024)throw unavailable();await rpc('review','upload_reserve_group',{uploads:parsed});}};
 }

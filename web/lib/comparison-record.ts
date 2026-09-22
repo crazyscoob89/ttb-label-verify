@@ -4,7 +4,10 @@ import { compareApplication, RULES_VERSION, type ComparisonResult } from './rule
 import { extractionEvidenceSchema, type ExtractionEvidence } from './extraction/schema';
 
 export type FailureCode = 'access-denied' | 'invalid-input' | 'invalid-extraction' | 'provider-failed' | 'timeout' | 'cancelled' | 'unconfigured';
-export type CompleteComparison = { processing: 'complete'; application: Application; imageSha256: string; source: 'fixture' | 'openrouter'; evidence: ExtractionEvidence; comparison: Extract<ComparisonResult, { processing: 'complete' }> };
+export type { CompletePhotoComparison } from './photo-record';
+import type { CompletePhotoComparison } from './photo-record';
+export type CompleteComparison = LegacyCompleteComparison | CompletePhotoComparison;
+export type LegacyCompleteComparison = { processing: 'complete'; application: Application; imageSha256: string; source: 'fixture' | 'openrouter'; evidence: ExtractionEvidence; comparison: Extract<ComparisonResult, { processing: 'complete' }> };
 export type ComparisonRecord = CompleteComparison | { processing: 'failed'; code: FailureCode };
 export function immutable<T>(value: T): T {
   if (value && typeof value === 'object') { Object.values(value).forEach(immutable); Object.freeze(value); }

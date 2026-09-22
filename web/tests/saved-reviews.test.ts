@@ -47,7 +47,7 @@ it('bounds snapshot count and rejects mismatched/oversized image or record witho
   const bytes=readFileSync(`public${samples.match.imagePath}`),record=await compareOfflineSample('match',samples.match.application,bytes) as CompleteComparison;
   expect(()=>store!.snapshot(record,Buffer.from('wrong bytes'),'image/png')).toThrow();
   expect(()=>store!.snapshot(record,Buffer.alloc(10*1024*1024+1),'image/png')).toThrow();
-  expect(()=>store!.snapshot({...record,comparison:{...record.comparison,extra:'x'.repeat(REVIEW_LIMITS.recordBytes)}} as CompleteComparison,bytes,'image/png')).toThrow();
+  expect(()=>store!.snapshot({...record,comparison:{...record.comparison,extra:'x'.repeat(REVIEW_LIMITS.recordBytes)}} as unknown as CompleteComparison,bytes,'image/png')).toThrow();
   for(let i=0;i<REVIEW_LIMITS.snapshots;i++)store.snapshot(record,bytes,'image/png');
   expect(()=>store!.snapshot(record,bytes,'image/png')).toThrow('review-capacity');
   const db=new DatabaseSync(path,{readOnly:true});expect(db.prepare('SELECT COUNT(*) n FROM snapshots').get()!.n).toBe(REVIEW_LIMITS.snapshots);db.close();

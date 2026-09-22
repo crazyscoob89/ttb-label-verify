@@ -1,4 +1,7 @@
 import type { SpendStore } from './spend';
+import type { CompletePhotoComparison } from './comparison-record';
+import type { GroupPhotoBytes } from './group-assets';
+import type { PhotoSelector } from './photo-contracts';
 import type { CompleteComparison } from './comparison-record';
 import type { SavedReceipt } from './saved-review-contract';
 import type { ReviewStore } from './review-store';
@@ -16,11 +19,12 @@ export interface DemoSpendStore extends SpendStore {
 export type EvidenceLink = {url:string;sha256:string;bytes:number;mime:string;expiresIn:number};
 export interface DemoReviewStore {
  snapshot(record:CompleteComparison,image:Buffer,mime:string):MaybePromise<string>;
+ snapshotGroup?(record:CompletePhotoComparison,photos:GroupPhotoBytes[],signal?:AbortSignal):MaybePromise<string>;
  save(input:unknown):MaybePromise<SavedReceipt>;
  list(offset?:number):MaybePromise<ReturnType<ReviewStore['list']>>;
  detail(id:string):MaybePromise<ReturnType<ReviewStore['detail']>>;
- evidence(id:string):MaybePromise<{bytes:Buffer;mime:string}>;
- evidenceLink?(id:string):Promise<EvidenceLink>;
+ evidence(id:string,selector?:PhotoSelector):MaybePromise<{bytes:Buffer;mime:string}>;
+ evidenceLink?(id:string,selector?:PhotoSelector):Promise<EvidenceLink>;
  close():MaybePromise<void>;
 }
 export interface DemoStoreFactory {
@@ -28,7 +32,7 @@ export interface DemoStoreFactory {
  openReviews():MaybePromise<DemoReviewStore>;
 }
 export interface HostedEvidenceObjects {
- putEvidence(id:string,bytes:Buffer,mime:string,sha256:string):Promise<{key:string}>;
- getEvidence(key:string,sha256:string,bytes:number,mime:string):Promise<Buffer>;
+ putEvidence(id:string,bytes:Buffer,mime:string,sha256:string,signal?:AbortSignal):Promise<{key:string}>;
+ getEvidence(key:string,sha256:string,bytes:number,mime:string,signal?:AbortSignal):Promise<Buffer>;
  signEvidence(key:string,sha256:string,bytes:number,mime:string):Promise<EvidenceLink>;
 }

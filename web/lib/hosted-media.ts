@@ -5,6 +5,8 @@ import { boundedBody, demoAccess, InputError } from './demo-security';
 import { readPrivateUpload, storageConfig, type MediaEnv } from './persistence/supabase-storage';
 import { mediaSigningSecret } from './runtime-env';
 import type { ComparisonInput } from './compare-service';
+import {groupCompareRequestSchema} from './photo-contracts';
+import {readGroupUploadTicket,type GroupRouteInput} from './group-media';
 
 export const UPLOAD_TICKET_SECONDS = 10 * 60;
 export const MEDIA_JSON_LIMIT = 65536;
@@ -43,11 +45,18 @@ export async function readMediaJson(request: Request): Promise<unknown> {
  * This seam returns RAW bytes; preparePair/sanitizeImage still runs before spend.
  * Repeat reads are needed for batch prepare/execute. This is not a paid intent;
  * durable ledger attempt IDs and batch signatures remain the at-most-once fence. */
-export function createHostedInputReader(env: MediaEnv): (request: Request) => Promise<ComparisonInput> {
-  return async request => {
+export function createHostedInputReader(env: MediaEnv): (request: Request,signal?:AbortSignal) => Promise<ComparisonInput|GroupRouteInput> {
+  return async (request,signal) => {
     if (!demoAccess(request, env)) throw new InputError(403);
     storageConfig(env);
-    const { ticket } = ticketEnvelope.parse(await readMediaJson(request));
+    const input=await readMediaJson(request);
+    if(input&&typeof input==='object'&&'schemaVersion' in input){
+     const parsed=groupCompareRequestSchema.parse(input);
+     if(['x-ttb-batch-phase','x-ttb-batch-intent','x-ttb-batch-binding'].some(h=>request.headers.has(h)))throw new InputError(400);
+     const operation=parsed.phase==='prepare'?{phase:'prepare' as const}:{phase:'execute' as const,attemptId:parsed.attemptId,reservationId:parsed.reservationId,binding:parsed.binding};
+     return readGroupUploadTicket(parsed.ticket,env,operation,signal);
+    }
+    const { ticket } = ticketEnvelope.parse(input);
     const data = verifyUploadTicket(ticket, env);
     const { filename, mime, bytes, application } = data.declaration;
     const image = await readPrivateUpload(env, data.key, bytes, mime);

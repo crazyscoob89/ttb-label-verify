@@ -1,0 +1,40 @@
+import { z } from 'zod';
+import { applicationSchema, type Application } from './contracts';
+import { extractionEvidenceSchema, type ExtractionEvidence } from './extraction/schema';
+import { RULES_VERSION } from './rules';
+import { comparePhotoApplication, type GroupComparison } from './group-rules';
+import { aggregatePhotoEvidence } from './photo-evidence';
+import { AGGREGATION_VERSION,GROUP_PROMPT_VERSION,MAX_GROUP_RECORD_BYTES,photoDescriptorsSchema,photoIdSchema,sha256Schema,parsePhotoSetEvidence,photoSetCanonical,type PhotoDescriptor,type PhotoSetEvidence,type PhotoProvenance } from './photo-contracts';
+const extractionBase=z.object({schemaVersion:z.literal(2),promptVersion:z.literal(GROUP_PROMPT_VERSION),model:z.literal('offline-fixture'),requestId:photoIdSchema}).strict();
+const liveExtraction=extractionBase.extend({model:z.literal('anthropic/claude-haiku-4.5'),attemptId:photoIdSchema,reservationId:photoIdSchema});
+const extraction=z.union([extractionBase,liveExtraction]);
+export type CompletePhotoComparison={recordVersion:2;processing:'complete';application:Application;groupId:string;revision:number;photos:PhotoDescriptor[];photoSetSha256:string;imageSha256:string;source:'fixture'|'openrouter';photoEvidence:PhotoSetEvidence;aggregationVersion:typeof AGGREGATION_VERSION;evidence:ExtractionEvidence;provenance:PhotoProvenance;extraction:z.infer<typeof extraction>;comparison:GroupComparison};
+const schema=z.object({recordVersion:z.literal(2),processing:z.literal('complete'),application:applicationSchema,groupId:photoIdSchema,revision:z.number().int().positive().max(Number.MAX_SAFE_INTEGER),photos:photoDescriptorsSchema,photoSetSha256:sha256Schema,imageSha256:sha256Schema,source:z.enum(['fixture','openrouter']),photoEvidence:z.unknown(),aggregationVersion:z.literal(AGGREGATION_VERSION),evidence:extractionEvidenceSchema,provenance:z.unknown(),extraction,comparison:z.unknown()}).strict();
+/** Browser-safe structural replay; server additionally recomputes the digest on
+ * every snapshot/read. Browser consumers can await verifyPhotoRecordDigest. */
+export function checkedPhotoRecord(value:unknown):CompletePhotoComparison|null {
+ try {
+  if(new TextEncoder().encode(JSON.stringify(value)).length>MAX_GROUP_RECORD_BYTES)return null;
+  const r=schema.parse(value);
+  if((r.source==='fixture')!==(r.extraction.model==='offline-fixture')||r.imageSha256!==r.photos[0].normalized.sha256)return null;
+  const photoEvidence=parsePhotoSetEvidence(r.photoEvidence,r.photos.map(p=>p.photoId));
+  if(JSON.stringify(photoEvidence)!==JSON.stringify(r.photoEvidence))return null;
+  const aggregate=aggregatePhotoEvidence(photoEvidence);const comparison=comparePhotoApplication(r.application,photoEvidence);
+  if(JSON.stringify(aggregate.evidence)!==JSON.stringify(r.evidence)||JSON.stringify(aggregate.provenance)!==JSON.stringify(r.provenance)||JSON.stringify(comparison)!==JSON.stringify(r.comparison))return null;
+  return {...r,photoEvidence,...aggregate,comparison};
+ }catch{return null;}
+}
+export async function verifyPhotoRecordDigest(record:CompletePhotoComparison):Promise<boolean> {
+ const hash=await globalThis.crypto.subtle.digest('SHA-256',new TextEncoder().encode(photoSetCanonical(record.photos)));
+ return Array.from(new Uint8Array(hash),b=>b.toString(16).padStart(2,'0')).join('')===record.photoSetSha256;
+}
+const metadataBase=z.object({source:z.literal('fixture'),model:z.literal('offline-fixture'),schemaVersion:z.literal(2),promptVersion:z.literal(GROUP_PROMPT_VERSION),rulesVersion:z.literal(RULES_VERSION),requestId:photoIdSchema,photoSetSha256:sha256Schema,photos:z.array(z.object({photoId:photoIdSchema,imageSha256:sha256Schema}).strict()).min(1).max(4)}).strict();
+export const groupExtractionEnvelope=z.object({processing:z.literal('complete'),evidence:z.unknown(),metadata:z.union([metadataBase,metadataBase.extend({source:z.literal('openrouter'),model:z.literal('anthropic/claude-haiku-4.5'),attemptId:photoIdSchema,reservationId:photoIdSchema})])}).strict();
+export function finalizePhotoComparison(application:Application,groupId:string,revision:number,photos:PhotoDescriptor[],photoSetSha256:string,input:unknown):CompletePhotoComparison {
+ const {metadata,evidence:raw}=groupExtractionEnvelope.parse(input);
+ if(metadata.photoSetSha256!==photoSetSha256||JSON.stringify(metadata.photos)!==JSON.stringify(photos.map(p=>({photoId:p.photoId,imageSha256:p.normalized.sha256}))))throw Error('Input provenance mismatch');
+ const photoEvidence=parsePhotoSetEvidence(raw,photos.map(p=>p.photoId));
+ const ex={schemaVersion:2 as const,promptVersion:GROUP_PROMPT_VERSION,model:metadata.model,requestId:metadata.requestId,...(metadata.source==='openrouter'?{attemptId:metadata.attemptId,reservationId:metadata.reservationId}:{})};
+ const record=checkedPhotoRecord({recordVersion:2,processing:'complete',application,groupId,revision,photos,photoSetSha256,imageSha256:photos[0].normalized.sha256,source:metadata.source,photoEvidence,aggregationVersion:AGGREGATION_VERSION,...aggregatePhotoEvidence(photoEvidence),extraction:ex,comparison:comparePhotoApplication(application,photoEvidence)});
+ if(!record)throw Error('Invalid group record');return record;
+}

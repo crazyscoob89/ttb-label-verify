@@ -1,3 +1,4 @@
+import { checkedPhotoRecord } from './photo-record';
 import { z } from 'zod';
 import { applicationSchema } from './contracts';
 import { extractionEvidenceSchema } from './extraction/schema';
@@ -18,6 +19,7 @@ export type HumanResolution = z.infer<typeof resolutionSchema>;
 export type UnsavedDraft = { state:'UNSAVED'; record:CompleteComparison; intent:ReviewIntent };
 const recordSchema = z.object({processing:z.literal('complete'),application:applicationSchema,imageSha256:z.string().regex(/^[a-f0-9]{64}$/),source:z.enum(['fixture','openrouter']),evidence:extractionEvidenceSchema,comparison:z.unknown()}).strict();
 export function checkedRecord(value:unknown): CompleteComparison | null {
+  if(value && typeof value==='object' && 'recordVersion' in value) return value.recordVersion===2?checkedPhotoRecord(value):null;
   const parsed = recordSchema.safeParse(value);
   if (!parsed.success) return null;
   const stored = parsed.data.comparison;

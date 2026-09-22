@@ -1,3 +1,5 @@
+export { createGroupComparisonService } from './group-compare-service';
+export type { GroupComparisonInput,PreparedPhotoGroup } from './intake';
 import { randomUUID } from 'node:crypto';
 import { preparePair, type ImageInput } from './intake';
 import { MAX_IMAGE_BYTES, parseApplication } from './contracts';

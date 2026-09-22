@@ -43,7 +43,7 @@ export function createStorageTransport(env: MediaEnv) {
     const timer = setTimeout(() => controller.abort(), 15000);
     try {
       const response = await fetch(`${config.origin}/storage/v1${path}`, { ...init, redirect: 'error',
-        cache: 'no-store', signal: controller.signal, headers: { ...init.headers,
+        cache: 'no-store', signal: init.signal?AbortSignal.any([init.signal,controller.signal]):controller.signal, headers: { ...init.headers,
           authorization: `Bearer ${config.secret}`, apikey: config.secret } });
       if (!response.ok || response.redirected || (expectedMime && response.headers.get('content-type')?.split(';')[0].trim().toLowerCase() !== expectedMime)) {
         void response.body?.cancel().catch(() => {}); throw Error('Storage unavailable');
@@ -63,14 +63,14 @@ export function createStorageTransport(env: MediaEnv) {
 
 export function createSupabaseObjects(env: MediaEnv) {
   const { config, call, signedUrl } = createStorageTransport(env);
-  async function getEvidence(key: string, hash: string, bytes: number, mime: string): Promise<Buffer> {
+  async function getEvidence(key: string, hash: string, bytes: number, mime: string,signal?:AbortSignal): Promise<Buffer> {
     metadata(key, hash, bytes, mime);
-    const result = await call(`/object/authenticated/${config.evidence}/${key}`, { method: 'GET' }, bytes, mime);
+    const result = await call(`/object/authenticated/${config.evidence}/${key}`, { method: 'GET',signal }, bytes, mime);
     if (result.length !== bytes || sha256(result) !== hash) throw Error('Evidence integrity mismatch');
     return result;
   }
   return {
-    async putEvidence(id: string, bytes: Buffer, mime: string, hash: string): Promise<{ key: string }> {
+    async putEvidence(id: string, bytes: Buffer, mime: string, hash: string,signal?:AbortSignal): Promise<{ key: string }> {
       uuid.parse(id);
       if (!Buffer.isBuffer(bytes) || bytes.buffer instanceof SharedArrayBuffer) throw Error('Invalid evidence');
       const key = `snapshots/${id}`; metadata(key, hash, bytes.length, mime);
@@ -79,10 +79,10 @@ export function createSupabaseObjects(env: MediaEnv) {
       if (sha256(snapshot) !== hash) throw Error('Evidence integrity mismatch');
       await call(`/object/${config.evidence}/${key}`, { method: 'POST', headers: {
         'content-type': mime, 'x-upsert': 'false', 'cache-control': 'no-store',
-      }, body: new Uint8Array(snapshot) }, 16384);
+      }, body: new Uint8Array(snapshot),signal }, 16384);
       // Do not acknowledge snapshot metadata until persisted bytes are verified.
       // A lost acknowledgement remains conservative; never overwrite or retry.
-      await getEvidence(key, hash, snapshot.length, mime);
+      await getEvidence(key, hash, snapshot.length, mime,signal);
       return { key };
     },
     getEvidence,
@@ -95,17 +95,17 @@ export function createSupabaseObjects(env: MediaEnv) {
   };
 }
 
-export async function signPrivateUpload(env: MediaEnv, key: string): Promise<string> {
+export async function signPrivateUpload(env: MediaEnv, key: string,signal?:AbortSignal): Promise<string> {
   keyFor('uploads', key);
   const { config, call, signedUrl } = createStorageTransport(env);
   const path = `/object/upload/sign/${config.uploads}/${key}`;
-  const result = JSON.parse((await call(path, { method: 'POST', headers: { 'content-type': 'application/json', 'x-upsert': 'false' }, body: '{}' }, 16384)).toString('utf8'));
+  const result = JSON.parse((await call(path, { method: 'POST', headers: { 'content-type': 'application/json', 'x-upsert': 'false' }, body: '{}',signal }, 16384)).toString('utf8'));
   return signedUrl(result.url, path);
 }
-export async function readPrivateUpload(env: MediaEnv, key: string, bytes: number, mime: string): Promise<Buffer> {
+export async function readPrivateUpload(env: MediaEnv, key: string, bytes: number, mime: string,signal?:AbortSignal): Promise<Buffer> {
   keyFor('uploads', key); byteCount.parse(bytes); mimeType.parse(mime);
   const { config, call } = createStorageTransport(env);
-  const result = await call(`/object/authenticated/${config.uploads}/${key}`, { method: 'GET' }, bytes, mime);
+  const result = await call(`/object/authenticated/${config.uploads}/${key}`, { method: 'GET',signal }, bytes, mime);
   if (result.length !== bytes) throw Error('Upload integrity mismatch');
   return result;
 }
