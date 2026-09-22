@@ -10,6 +10,7 @@ vi.mock('react',async()=>{
  return {...actual,useState:(initial:unknown)=>{const index=hooks.cursor++;if(!(index in hooks.values))hooks.values[index]=initial;return [hooks.values[index],(value:unknown)=>{hooks.values[index]=value;}];},
  useRef:(initial:unknown)=>{const index=hooks.cursor++;if(!(index in hooks.values))hooks.values[index]={current:initial};return hooks.values[index];},useEffect:()=>{}};
 });
+vi.mock('../components/SessionAccess',()=>({useSessionAccess:()=>({code:'synthetic-code',reviewEpoch:0})}));
 import PairInput from '../components/PairInput';
 import SavedReviewHistory from '../components/SavedReviewHistory';
 type Element=ReactElement<Record<string,unknown>>;
@@ -53,8 +54,7 @@ test('SavedReviewHistory uses evidence-link helper and discards late evidence af
  .mockResolvedValueOnce(Response.json({url:origin+`/storage/v1/object/sign/ttb-evidence/snapshots/${id}?token=synthetic`,sha256,bytes:bytes.length,mime:'image/png',expiresIn:60}))
  .mockImplementationOnce(()=>new Promise(resolve=>{finish=resolve;}));
  vi.stubGlobal('fetch',fetcher);const create=vi.spyOn(URL,'createObjectURL');
- let tree=render(SavedReviewHistory);(node(tree,'input').props.onChange as (e:unknown)=>void)({target:{value:'synthetic-code'}});
- tree=render(SavedReviewHistory);await(node(tree,'button','Load saved reviews').props.onClick as ()=>Promise<void>)();
+ let tree=render(SavedReviewHistory);await(node(tree,'button','Load saved reviews').props.onClick as ()=>Promise<void>)();
  // The JSX onClick uses void, so wait on the visible state update instead.
  await vi.waitFor(()=>expect(JSON.stringify(render(SavedReviewHistory))).toContain('Reopen'));
  tree=render(SavedReviewHistory);(node(tree,'button','Reopen').props.onClick as ()=>void)();

@@ -5,17 +5,18 @@ import BatchQueue from './BatchQueue';
 import BatchSwitcher from './BatchSwitcher';
 import ReviewConfirmation from './ReviewConfirmation';
 import ProcessingState from './ProcessingState';
-import { fieldLabels, observations } from './ComparisonWorkspace';
+import { useSessionAccess } from './SessionAccess';
 import { createBatchState, transitionBatch, type BatchAction, type BatchState, type DispatchCommand } from '../lib/batch-state';
 import { compareOfflineSample, samples, type Scenario } from '../lib/offline-demo';
 import { parseApplication } from '../lib/contracts';
-import { FIELD_KEYS } from '../lib/rules';
+
 import { executeLivePair } from '../lib/live-batch-client';
 import type { Outcome } from '../lib/review-policy';
 
 export default function BatchWorkspace({offlineEnabled}:{offlineEnabled:boolean}) {
   const [live,setLive] = useState(!offlineEnabled);
-  const [accessCode,setAccessCode] = useState('');
+  const {code:accessCode} = useSessionAccess();
+  const [overview,setOverview] = useState(true);
   const snapshotIds=useRef(new Map<string,string>());
   const [saved,setSaved]=useState<Record<string,Outcome>>({});
   const files = useRef<Map<string,File>>(new Map());
@@ -27,7 +28,7 @@ export default function BatchWorkspace({offlineEnabled}:{offlineEnabled:boolean}
   const mounted = useRef(true);
   const [error,setError] = useState('');
   const [preview,setPreview] = useState<string|null>(null);
-  const zoom = useRef<HTMLDialogElement>(null);
+
   const [replacement,setReplacement] = useState('');
   const [replacementImage,setReplacementImage] = useState<Scenario>('match');
   const selected = state?.pairs.find(pair=>pair.id===state.selectedId);
@@ -36,7 +37,7 @@ export default function BatchWorkspace({offlineEnabled}:{offlineEnabled:boolean}
   // Preview only the active exact, hash-checked asset. Navigation/replacement and
   // unmount revoke its URL; the rail itself contains no expensive image loads.
   useEffect(()=>{
-    zoom.current?.close(); setPreview(null);
+    setPreview(null);
     const asset = selected?.record && assets.current.get(selected.record.imageSha256);
     const file = selected?.record && selected.filename && files.current.get(selected.filename);
     const source = state?.mode==='live' ? file : asset && new Blob([asset.bytes],{type:'image/png'});
@@ -52,6 +53,7 @@ export default function BatchWorkspace({offlineEnabled}:{offlineEnabled:boolean}
 
   function clear() { current.current=null;planned.current=[];assets.current=new Map();files.current=new Map();snapshotIds.current.clear();setSaved({});setState(null);setPrepared(null);setError(''); }
   function prepare(batch:PreparedBatch) {
+    setOverview(true);
     snapshotIds.current.clear();setSaved({});
     const next=createBatchState(batch.manifest,{batchId:crypto.randomUUID(),live:batch.live});
     files.current=batch.files; assets.current=batch.assets; planned.current=[]; current.current=next;setState(next);setPrepared(batch);setError('');
@@ -63,6 +65,15 @@ export default function BatchWorkspace({offlineEnabled}:{offlineEnabled:boolean}
     if (step.rejected) setError(step.rejected);
     // The server owns durable review authority; reducer remains page-memory only.
     return step;
+  }
+  function unconfirm(pairId:string) {
+    // Mode/overview navigation is not an edit to evidence or a prepared draft.
+    // Mirror the reducer's navigation fence without changing its selected ID.
+    const previous=current.current;
+    if(!previous||!mounted.current)return;
+    const next={...previous,pairs:previous.pairs.map(pair=>pair.id===pairId&&pair.intent
+      ? {...pair,intent:{...pair.intent,confirmed:false},pendingSave:null} : pair)};
+    current.current=next;setState(next);
   }
   async function execute(command:DispatchCommand) {
     const asset=command.image.imageSha256 && assets.current.get(command.image.imageSha256);
@@ -97,7 +108,7 @@ export default function BatchWorkspace({offlineEnabled}:{offlineEnabled:boolean}
   }
   function compareQueue() {
     if (!current.current || current.current.inFlight.length) return;
-    if (current.current.mode==='live' && !accessCode) {setError('Enter the batch demo access code before starting.');return;}
+    if (current.current.mode==='live' && !accessCode) {setError('Verify demo access above before starting.');return;}
     planned.current=current.current.pairs.filter(p=>p.processing==='queued').map(p=>({id:p.id,revision:p.revision}));pump();
   }
   function replace() {
@@ -111,32 +122,35 @@ export default function BatchWorkspace({offlineEnabled}:{offlineEnabled:boolean}
     } catch(e) { setError(e instanceof Error && e.message.startsWith('Use a new')?e.message:'Replacement requires valid application JSON and a new application version. Offline images must be fixtures already validated in this batch.'); }
   }
   return <section id="batch-panel" role="tabpanel" aria-labelledby="batch-tab" className="card batch-workspace">
-    <h1>Batch label review</h1>
+    <div hidden={!overview}>
+    <p className="eyebrow">Batch upload · queue landing</p><h1>Prepare a batch. Review one label at a time.</h1>
+    <p>Open a record for its full-width comparison and individual confirmation. No bulk approve.</p>
     {offlineEnabled && <label>Batch execution mode<select aria-label="Batch execution mode" value={live?'live':'offline'} disabled={!!state?.inFlight.length} onChange={e=>{clear();setLive(e.target.value==='live');}}><option value="offline">Offline synthetic samples</option><option value="live">Guarded live comparison</option></select></label>}
-    {live && <><p className="notice">Guarded live batch — shared demo access code, NOT an individually authenticated reviewer. Reviews remain UNSAVED until a server receipt confirms save. No automatic comparison retries or refunds. Use authorized demo images only.</p><label htmlFor="batch-access-code">Batch demo access code</label><input id="batch-access-code" type="password" maxLength={256} autoComplete="off" value={accessCode} disabled={!!state?.inFlight.length} onChange={e=>setAccessCode(e.target.value)} /></>}
+    {live && <p className="help">Shared session access is reused. Reviews remain UNSAVED until a server receipt confirms save. No automatic comparison retries or refunds. Use authorized demo images only.</p>}
     <BatchUpload key={live?'live':'offline'} offlineEnabled={offlineEnabled} live={live} onPrepared={prepare} onClear={clear} />
     {prepared && <section aria-label="Manifest validation" className="notice">
       <p data-testid="manifest-counts">Manifest — Total: {prepared.manifest.counts.total} · Valid: {prepared.manifest.counts.valid} · Blocked: {prepared.manifest.counts.blocked}</p>
       <p>{prepared.live?'Valid means declarations and explicit mapping only. Image is unprepared until its active queue slot is sanitized by the server.':'Valid means explicit mapping plus recognized fixture bytes, not arbitrary-image sanitation or live analysis.'}</p>
-      <details data-testid="manifest-entries" open><summary>Per-entry validation</summary><ul>{prepared.manifest.entries.map(entry=><li key={entry.id}>{entry.filename??entry.id}: {entry.status}{entry.status==='valid'?` — ${entry.application.applicationId} / version ${entry.application.applicationVersion}`:` — ${entry.issues.join(', ')}`}</li>)}{prepared.diagnostics.map((message,index)=><li key={`diagnostic:${index}`}>{message}</li>)}</ul></details>
+      <details data-testid="manifest-entries"><summary>Per-entry validation</summary><ul>{prepared.manifest.entries.map(entry=><li key={entry.id}>{entry.filename??entry.id}: {entry.status}{entry.status==='valid'?` — ${entry.application.applicationId} / version ${entry.application.applicationVersion}`:` — ${entry.issues.join(', ')}`}</li>)}{prepared.diagnostics.map((message,index)=><li key={`diagnostic:${index}`}>{message}</li>)}</ul></details>
     </section>}
+    </div>
     {state && selected && <>
+      <div hidden={!overview}>
       <BatchQueue state={state} saved={state.pairs.flatMap(pair=>{const id=snapshotIds.current.get(`${state.batchId}:${pair.id}:${pair.revision}`);return id&&saved[id]?[saved[id]]:[];})} onCompare={compareQueue} onRetry={()=>dispatch(selected.id,true)} />
-      <BatchSwitcher state={state} isSaved={pairId=>{const pair=state.pairs.find(p=>p.id===pairId)!;const id=snapshotIds.current.get(`${state.batchId}:${pair.id}:${pair.revision}`);return !!id&&!!saved[id];}} onNavigate={target=>apply({type:'navigate',target})} />
+      <div className="batch-overview" aria-label="Batch overview records">{state.pairs.map(pair=>{const snapshot=snapshotIds.current.get(`${state.batchId}:${pair.id}:${pair.revision}`);return <article className="queue-item" key={pair.id}><div><h3>{pair.filename??'Blocked entry'}</h3><p>{pair.application?.applicationId??'Missing application'} / {pair.application?.applicationVersion??'—'}</p></div><span className={`status ${pair.processing==='failed'||pair.processing==='blocked'?'mismatch':'needs-review'}`}>{snapshot&&saved[snapshot]?'SAVED':pair.processing}</span><button onClick={()=>{apply({type:'navigate',target:pair.id});setOverview(false);}}>Open review</button></article>;})}</div>
+      </div>
+      <div hidden={overview}>
+      <BatchSwitcher state={state} onOverview={()=>{unconfirm(selected.id);setOverview(true);}} isSaved={pairId=>{const pair=state.pairs.find(p=>p.id===pairId)!;const id=snapshotIds.current.get(`${state.batchId}:${pair.id}:${pair.revision}`);return !!id&&!!saved[id];}} onNavigate={target=>apply({type:'navigate',target})} />
       <section data-testid="active-pair" aria-label="Active batch review">
         <h2>{selected.filename??'Blocked entry'} — Revision {selected.revision}</h2>
         <p className="hash">Application {selected.application?.applicationId??'unavailable'} / version {selected.application?.applicationVersion??'unavailable'} · {selected.processing} · Image SHA-256 {selected.imageSha256??'unavailable'}</p>
         {selected.processing==='blocked' && <p role="alert" className="notice error">Pair blocked: {selected.issues.join(', ')}. Correct the explicit manifest / files and validate again. No findings or review available.</p>}
         {selected.processing==='queued' && <p>Queued {state.mode==='live'?'pair':'fixture'} — not compared. Start the queue explicitly.</p>}
         <ProcessingState running={selected.processing==='running'} result={selected.record??(selected.failure?{processing:'failed',code:selected.failure}:null)} />
-        {selected.record && <div className="workspace">
-          <section aria-label="Label preview"><div className="preview-head"><h2>{state.mode==='live'?'Uploaded label':'Synthetic label'}</h2><button onClick={()=>zoom.current?.showModal()}>Enlarge label</button></div>{preview && <img className="label-preview" src={preview} alt={state.mode==='live'?'Original uploaded batch label':'Exact batch synthetic label'} />}<p className="help">{state.mode==='live'?'Preview is the original File, not the server-normalized bytes. Results bind the sanitized image SHA-256 and this exact application.':'Exact synthetic fixture bytes. Not AI analysis.'} Not physical print/type-size verification.</p></section>
-          <section aria-label="Comparison evidence"><h2>Seven-field comparison</h2><table><thead><tr><th>Field</th><th>Observed evidence</th><th>Application / reference</th><th>Machine finding</th></tr></thead><tbody>{FIELD_KEYS.map(key=>{const field=selected.record!.comparison.fields[key];return <tr key={key}><th scope="row">{fieldLabels[key]}</th><td data-title="Observed">{observations(field.observed)}</td><td data-title="Expected">{field.expected}</td><td data-title="Finding"><strong className={`status ${field.status}`}>{field.status}</strong><p className="help">{field.reasons.join(' ')}</p></td></tr>;})}</tbody></table></section>
-        </div>}
-        <ReviewConfirmation key={`${state.batchId}:${selected.id}:${selected.revision}:${selected.record?.imageSha256??'empty'}`} comparisonId={snapshotIds.current.get(`${state.batchId}:${selected.id}:${selected.revision}`)} accessCode={accessCode} onSaved={receipt=>{if(mounted.current&&current.current?.batchId===state.batchId&&selected.intent?.outcome)setSaved(previous=>({...previous,[receipt.comparisonId]:selected.intent!.outcome!}));}} record={selected.record} controlled={selected.intent?{
+        <ReviewConfirmation preview={preview} previewNote={state.mode==='live'?'Original uploaded File preview; comparison binds the server-sanitized image hash.':'Exact synthetic fixture bytes; not AI analysis.'} key={`${state.batchId}:${selected.id}:${selected.revision}:${selected.record?.imageSha256??'empty'}`} comparisonId={snapshotIds.current.get(`${state.batchId}:${selected.id}:${selected.revision}`)} accessCode={accessCode} onSaved={receipt=>{if(mounted.current&&current.current?.batchId===state.batchId&&selected.intent?.outcome)setSaved(previous=>({...previous,[receipt.comparisonId]:selected.intent!.outcome!}));}} record={selected.record} controlled={selected.intent?{
           intent:selected.intent,draft:selected.draft,
           onEdit:intent=>apply({type:'edit-intent',pairId:selected.id,edits:{outcome:intent.outcome,notes:intent.notes,physical:intent.physical,resolutions:intent.resolutions}}),
-          onConfirm:checked=>apply(checked?{type:'confirm',pairId:selected.id}:{type:'edit-intent',pairId:selected.id,edits:{}}),
+          onConfirm:checked=>checked?apply({type:'confirm',pairId:selected.id}):unconfirm(selected.id),
           onDraft:()=>apply({type:'draft',pairId:selected.id}),
         }:undefined} />
         {selected.application && <details className="batch-replacement"><summary>Replace this pair with a new application version</summary>
@@ -147,7 +161,7 @@ export default function BatchWorkspace({offlineEnabled}:{offlineEnabled:boolean}
         </details>}
         <p className="help">Superseded page-memory versions: {selected.history.length}. Not durable saved history. Reload clears all versions.</p>
       </section>
-      <dialog ref={zoom} aria-labelledby="batch-zoom-title"><h2 id="batch-zoom-title">Larger label preview</h2><button onClick={()=>zoom.current?.close()}>Close preview</button>{preview&&<img className="label-preview" src={preview} alt={state.mode==='live'?'Enlarged original uploaded batch label':'Enlarged exact batch synthetic label'} />}</dialog>
+      </div>
     </>}
     {error && <p role="alert" className="notice error">{error}</p>}
   </section>;

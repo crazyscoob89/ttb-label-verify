@@ -8,12 +8,12 @@ import fixtures from './fixtures/comparisons.json';
 import { image } from './fixtures/synthetic';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import PairInput from '../components/PairInput';
+import ReviewWorkspace from '../components/ReviewWorkspace';
 const dirs: string[] = [];
 vi.setConfig({ testTimeout: 60_000 }); // Real Windows ACL checks are not mocked/skipped.
 afterEach(() => { for (const d of dirs.splice(0)) rmSync(d, { recursive: true, force: true }); });
 const secret = 'synthetic-only-access-code-0123456789abcdef';
-test('access secret is user-entered, never rendered from the server environment',()=>{vi.stubEnv('TTB_DEMO_ACCESS_SECRET',secret);try{const html=renderToStaticMarkup(createElement(PairInput));expect(html).toContain('type="password"');expect(html).not.toContain(secret);}finally{vi.unstubAllEnvs();}});
+test('access secret is user-entered, never rendered from the server environment',()=>{vi.stubEnv('TTB_DEMO_ACCESS_SECRET',secret);try{const html=renderToStaticMarkup(createElement(ReviewWorkspace,{offlineEnabled:false}));expect(html.match(/type="password"/g)).toHaveLength(1);expect(html).not.toContain(secret);}finally{vi.unstubAllEnvs();}});
 test('each missing required configuration closes before reading body',async()=>{const {env,transport}=setup();for(const key of Object.keys(env)){const req=await request();expect((await createDemoHandler({env:{...env,[key]:undefined},transport})(req)).status).toBe(403);expect(req.bodyUsed).toBe(false);}expect(transport).not.toHaveBeenCalled();});
 test('chunked body without content-length is capped before multipart decoding',async()=>{const {handler,transport}=setup();const req=new Request('https://demo.example/api/comparisons',{method:'POST',headers:{origin:'https://demo.example','x-ttb-demo-code':secret,'content-type':'multipart/form-data; boundary=x'},body:new ReadableStream({start(c){c.enqueue(new Uint8Array(11*1024*1024));c.close();}}),duplex:'half'} as RequestInit);expect((await handler(req)).status).toBe(413);expect(transport).not.toHaveBeenCalled();});
 function setup(bad = false) {

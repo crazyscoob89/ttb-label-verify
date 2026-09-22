@@ -38,12 +38,13 @@ test('durable single + batch save, lost-response retry, process restart and orig
  try{
   await start();
   await page.route('**/*',route=>new URL(route.request().url()).origin===origin?route.continue():route.abort());
-  await page.goto(origin+'/review');await page.getByLabel('Input source').selectOption('manual');
+  await page.goto(origin+'/review');const source=page.getByLabel('Input source');if(await source.count())await source.selectOption('manual');
   await page.getByLabel('Label image (JPEG or PNG)',{exact:true}).setInputFiles('public/offline-samples/match.png');
+  await page.locator('#entry-application-tab').click();
   const application={...fixtures.application,applicationId:'DURABLE-SYNTHETIC-001',applicationVersion:'original-v1'};
   for(const key of ['applicationId','applicationVersion','brand','classType','abv','netContents','producerName','producerAddress'])await page.locator('#'+key).fill(String(application[key]));
   await page.locator('#commodity').selectOption(application.commodity);await page.locator('#imported').selectOption(String(application.imported));await page.locator('#originKind').selectOption(application.origin.kind);await page.locator('#country').fill(application.origin.country);
-  await page.getByLabel('Demo access code',{exact:true}).fill(code);
+  await page.getByLabel('Demo access code',{exact:true}).fill(code);await page.getByRole('button',{name:'Verify access',exact:true}).click();await expect(page.getByText('✓ Access verified',{exact:true})).toBeVisible();
   const comparing=page.waitForResponse(r=>r.url()===origin+'/api/comparisons');
   await page.getByRole('button',{name:'Submit for comparison',exact:true}).click();const compared=await(await comparing).json();expect(compared.comparisonId).toBeTruthy();
   await expect(page.getByRole('radio',{name:'Pass',exact:true})).toBeDisabled();
@@ -64,12 +65,13 @@ test('durable single + batch save, lost-response retry, process restart and orig
   // Batch uses the same real save endpoint, never the reducer as receipt authority.
   await page.getByRole('tab',{name:'Batch upload',exact:true}).click();
   const mode=page.getByLabel('Batch execution mode');if(await mode.count())await mode.selectOption('live');
-  await page.getByLabel('Batch demo access code',{exact:true}).fill(code);
+  await expect(page.locator('input[type=password]')).toHaveCount(0);
   const png=readFileSync('public/offline-samples/match.png');
   await page.getByLabel('Batch label images').setInputFiles(['a.png','b.png'].map(name=>({name,mimeType:'image/png',buffer:png})));
   const manifest=['a.png','b.png'].map(filename=>({filename,application:{...fixtures.application,applicationId:'DURABLE-BATCH-'+filename}}));
-  await page.getByLabel('Batch JSON manifest').fill(JSON.stringify(manifest));await page.getByRole('button',{name:'Validate batch manifest',exact:true}).click();await page.getByRole('button',{name:'Start live batch',exact:true}).click();
+  await page.locator('#batch-input-application-tab').click();await page.getByLabel('Application manifest file (JSON)').setInputFiles({name:'manifest.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(manifest))});await page.getByRole('button',{name:'Validate batch manifest',exact:true}).click();await page.getByRole('button',{name:'Start live batch',exact:true}).click();
   await expect(page.getByTestId('batch-summary')).toContainText('Compared: 2');
+  await page.getByRole('button',{name:'Open review',exact:true}).first().click();
   const activePair=page.getByTestId('active-pair');
   await activePair.getByRole('radio',{name:'Second reviewer',exact:true}).check();await activePair.getByLabel('Correction / escalation notes').fill('Synthetic batch durable human decision.');await activePair.getByLabel(confirmation).check();await activePair.getByRole('button',{name:'Submit review',exact:true}).click();
   await expect(page.getByTestId('batch-summary')).toContainText('Saved reviews: 1');
@@ -80,10 +82,11 @@ test('durable single + batch save, lost-response retry, process restart and orig
   await expect(activePair).toContainText('Revision 2');await expect(activePair.getByTestId('saved-review')).toHaveCount(0);await expect(page.getByTestId('batch-summary')).toContainText('Saved reviews: 0');
   // A new OS process, same explicitly provisioned SQLite files, empty browser state.
   await stop();await start();expect(pids[1]).not.toBe(pids[0]);await page.reload();
-  await page.getByLabel('History demo access code').fill(code);await page.getByRole('button',{name:'Load saved reviews',exact:true}).click();
+  await page.getByLabel('Demo access code',{exact:true}).fill(code);await page.getByRole('button',{name:'Verify access',exact:true}).click();await expect(page.getByText('✓ Access verified',{exact:true})).toBeVisible();await page.getByRole('button',{name:'Load saved reviews',exact:true}).click();
   await page.getByRole('button',{name:'Reopen DURABLE-SYNTHETIC-001 / original-v1 — second-review',exact:true}).click();
   await expect(page.getByTestId('reopened-review')).toContainText('SAVED — original review reopened');
-  const original=JSON.parse(await page.getByTestId('original-application').innerText());expect(original).toEqual(compared.result.application);
+  await page.getByText('Original application declarations',{exact:true}).click();
+  const original=page.getByTestId('original-application');for(const value of Object.values(compared.result.application))await expect(original).toContainText(typeof value==='object'?Object.values(value as object).join(' · '):String(value));
   const image=page.getByAltText('Preserved normalized label from saved review');await expect(image).toBeVisible();expect(await image.evaluate((img:HTMLImageElement)=>img.complete&&img.naturalWidth>0)).toBe(true);
   const store=new ReviewStore(join(reviews,'reviews.sqlite'));const list=store.list();expect(list).toHaveLength(2);const saved=list.find(r=>r.application.applicationId===application.applicationId)!;expect(saved.receipt).toEqual(firstReceipt);const detail=store.detail(saved.receipt.reviewId);expect(detail.record).toEqual(compared.result);const bytes=store.evidence(saved.receipt.reviewId).bytes;expect(createHash('sha256').update(bytes).digest('hex')).toBe(compared.result.imageSha256);store.close();
   // No public access to original label, including after restart.
