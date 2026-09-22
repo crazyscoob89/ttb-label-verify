@@ -30,6 +30,22 @@ describe('origin context and printed prefix',()=>{
   const result=compareApplication({...r.application,commodity},r.evidence);
   expect(result).toMatchObject({fields:{origin:{status:'mismatch'}}});
  });
+ it.each(['MADE IN USA','BOTTLED IN CALIFORNIA','MADE IN NEW ZEALAND','CALIFORNIA','PRODUCT OF CALIFORNIA','PRODUCT OF ATLANTIS','UNKNOWN','NEW ZEALAND WINE','PRODUCT OF NEW ZEALAND WINE','NEW ZEALAND.'])('unsupported domestic statement %s requires review, not an invented conflict',text=>{
+  for(const commodity of ['wine','distilled-spirits','malt-beverage']){
+   const r=compare('12.5%',text,false);
+   const before=JSON.stringify(r);
+   const result=compareApplication({...r.application,commodity},r.evidence);
+   expect(result).toMatchObject({fields:{origin:{status:'needs-review',observed:r.evidence.origin}}});
+   expect(JSON.stringify(r)).toBe(before);
+  }
+ });
+ it.each(['Australia','Canada','France','Germany','Italy','Japan','Mexico','New Zealand','Portugal','South Africa','Spain','United Kingdom'])('recognizes only whole supported foreign country %s as a domestic conflict',country=>{
+  for(const text of [country,`PRODUCT OF ${country.toUpperCase()}`]){
+   const r=compare('12.5%',text,false);
+   expect(r.comparison.fields.origin.status).toBe('mismatch');
+   expect(r.comparison.fields.origin.observed).toEqual(r.evidence.origin);
+  }
+ });
  it('does not conceal a readable unequal imported country',()=>expect(compare('12.5%','PRODUCT OF AUSTRALIA').comparison.fields.origin.status).toBe('mismatch'));
  it.each(['USA','U.S.A.','United States','PRODUCT OF UNITED STATES OF AMERICA'])('domestic evidence %s remains N/A',text=>expect(compare('12.5%',text,false).comparison.fields.origin.status).toBe('not-applicable'));
  it.each(['PRODUCT OF','PRODUCT OF NEW ZEALAND / AUSTRALIA','PRODUCT OF NEW ZEALAND OR AUSTRALIA','PRODUCT OF PRODUCT OF NEW ZEALAND','PRODUCT OF NEW ZEALAND?'])('ambiguous %s requires review',text=>{
@@ -40,6 +56,26 @@ describe('origin context and printed prefix',()=>{
    const r=compare('12.5%','PRODUCT OF NEW ZEALAND',imported);
    const result=compareApplication(r.application,{...r.evidence,origin:{...r.evidence.origin,status,text:status==='missing'?null:r.evidence.origin.text}});
    expect(result).toMatchObject({fields:{origin:{status:!imported&&status==='missing'?'not-applicable':'needs-review'}}});
+  }
+ });
+});
+describe('current origin snapshots stay fail-closed',()=>{
+ it.each(['MADE IN USA','BOTTLED IN CALIFORNIA'])('%s retains uncertainty and rejects status/revision tampering',text=>{
+  const record=compare('12.5%',text,false);
+  expect(checkedRecord(record)).toEqual(record);
+  const intent={...newReviewIntent(record),outcome:'pass',confirmed:true,physical:{checked:true,note:'Synthetic physical assessment control only.'}};
+  const review=evaluateReview(record,intent);
+  expect(review.canSubmit).toBe(false);
+  expect(review.passReasons).toEqual(['origin: needs-review; explicit verified-match resolution with supporting evidence and reason required. Confirmed defects cannot pass.']);
+  for(const status of ['match','mismatch','not-applicable'] as const){
+   const forged=structuredClone(record);forged.comparison.fields.origin.status=status;
+   expect(checkedRecord(forged)).toBeNull();
+  }
+  for(const revision of [undefined,1,999]){
+   const forged=structuredClone(record);
+   if(revision===undefined)delete forged.comparison.rulesRevision;
+   else Object.assign(forged.comparison,{rulesRevision:revision});
+   expect(checkedRecord(forged)).toBeNull();
   }
  });
 });

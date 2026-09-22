@@ -103,6 +103,12 @@ function volumeDecision(expected: string, observed: Observation): Decision {
   const equal = equalDecimal(declared, extracted);
   return decision(equal ? 'match' : 'mismatch', `Net contents: ${equal ? 'equal' : 'unequal'} exact metric volume (1 L = 1000 mL); standards of fill not evaluated.`);
 }
+// Deliberately bounded domestic-conflict recognition, not a geography registry.
+// Exact normalized whole names only; all other non-US values require review.
+const DOMESTIC_FOREIGN_COUNTRIES = new Set([
+  'australia', 'canada', 'france', 'germany', 'italy', 'japan', 'mexico',
+  'new zealand', 'portugal', 'south africa', 'spain', 'united kingdom',
+]);
 function originDecision(application: Application, observed: Observation): Decision {
   // Explicit table leaves no implicit commodity/default applicability fallback.
   const policy: Record<Application['commodity'], boolean> = {
@@ -126,6 +132,10 @@ function originDecision(application: Application, observed: Observation): Decisi
   if (domestic) {
     // Same explicit US designations as intake; no foreign alias/geography inference.
     if (['united states', 'united states of america', 'us', 'usa'].includes(country.replaceAll('.', ''))) return notApplicable();
+    // A letters-and-spaces grammar alone cannot establish a foreign country.
+    if (!DOMESTIC_FOREIGN_COUNTRIES.has(country)) {
+      return decision('needs-review', 'Origin: country statement not recognized by the bounded domestic-conflict policy; human review required.');
+    }
     return decision('mismatch', `Origin: readable country statement conflicts with declared domestic ${application.commodity} origin; verify application/import context. No foreign-origin statement requirement inferred.`);
   }
   const result = textDecision(application.origin.country, { ...observed, text: country }, 'Imported country of origin');
