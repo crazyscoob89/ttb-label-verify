@@ -4,7 +4,7 @@ import {groupAttemptIds} from '../lib/group-binding';
 import {createOpenRouterGroupProvider} from '../lib/extraction/openrouter';
 import {OfflineSpendStore} from './helpers/offline-spend-store';
 import {createGroupComparisonService} from '../lib/group-compare-service';
-import {checkedRecord,newReviewIntent,evaluateReview} from '../lib/review-policy';
+import {checkedRecord,newReviewIntent,evaluateReview,reviewBinding} from '../lib/review-policy';
 import {checkedServerRecord} from '../lib/group-assets';
 import {verifyPhotoRecordDigest} from '../lib/photo-record';
 import type {GroupExtractionRequest} from '../lib/extraction/group-provider';
@@ -39,6 +39,11 @@ test('invalid secondary never reaches provider; originals are snapshotted before
  const compare=createGroupComparisonService({provider:s.provider,authorize,completed});const pending=compare(s.input);s.input.files[0].image.bytes.fill(0);s.input.group.application.brand='MUTATED';release(true);
  const record=await pending;expect(record.processing).toBe('complete');if(record.processing==='complete'){expect(record.application.brand).not.toBe('MUTATED');expect(checkedRecord(record)).not.toBeNull();}expect(completed).toHaveBeenCalledTimes(1);
  s.transport.mockClear();expect(await createGroupComparisonService({provider:s.provider,authorize:()=>true})(s.input)).toMatchObject({processing:'failed',code:'invalid-input'});expect(s.transport).not.toHaveBeenCalled();
+});
+test('server integrity validation preserves exact full-record confirmation serialization',async()=>{
+ const {record}=await groupFixture();const reordered=Object.fromEntries(Object.entries(record).reverse());
+ expect(checkedRecord(reordered)).not.toBeNull();
+ expect(reviewBinding(checkedServerRecord(reordered))).toBe(reviewBinding(reordered));
 });
 test('record replay detects derived/raw provenance mutation and server digest tampering',async()=>{
  const {record}=await groupFixture();expect(record.comparison.rulesRevision).toBe(4);expect(checkedRecord(record)).not.toBeNull();expect(await verifyPhotoRecordDigest(record)).toBe(true);
