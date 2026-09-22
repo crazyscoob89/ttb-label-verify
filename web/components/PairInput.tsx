@@ -1,8 +1,9 @@
 'use client';
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { applicationSchema, checkFileDeclaration } from '../lib/contracts';
-import { prepareLiveMedia } from '../lib/live-media-client';
-import type { ComparisonRecord } from '../lib/comparison-record';
+import {prepareLiveGroup,executeLiveGroup,photoRecord,type UiComparisonRecord as ComparisonRecord,type StageMeasurement,type PhotoDeclaration} from '../lib/live-photo-client';
+import PhotoInput,{type LocalPhoto} from './PhotoInput';
+import OperationTimings from './OperationTimings';
 import ReviewConfirmation from './ReviewConfirmation';
 import { useSessionAccess } from './SessionAccess';
 const fields = [
@@ -18,23 +19,21 @@ export default function PairInput() {
   const [comparisonId,setComparisonId]=useState<string|undefined>();
   const {code:accessCode}=useSessionAccess();
   const [tab,setTab]=useState<'application'|'images'>('images');
-  const [editing,setEditing]=useState(true), [preview,setPreview]=useState<string|null>(null),[filename,setFilename]=useState('');
-  const feedbackRef=useRef<HTMLDivElement>(null), submitting=useRef(false), previewRef=useRef<string|null>(null), generation=useRef(0), mounted=useRef(true);
-  useEffect(()=>{mounted.current=true;return()=>{mounted.current=false;generation.current++;if(previewRef.current)URL.revokeObjectURL(previewRef.current);};},[]);
-  function invalidate(){generation.current++;setFeedback(null);setRecord(null);setElapsed(null);setComparisonId(undefined);}
-  function selectImage(file?:File){
-    if(previewRef.current)URL.revokeObjectURL(previewRef.current);previewRef.current=null;setPreview(null);setFilename(file?.name??'');
-    if(!file)return;const error=checkFileDeclaration(file);if(error){setFeedback({kind:'error',messages:[error]});return;}
-    const url=URL.createObjectURL(file);previewRef.current=url;setPreview(url);
-  }
+  const [editing,setEditing]=useState(true),[photos,setPhotos]=useState<LocalPhoto[]>([]),[stages,setStages]=useState<StageMeasurement[]>([]);
+  const filename=photos[0]?.file.name??'',preview=photos[0]?.url??null;
+  const photoRef=useRef(photos);photoRef.current=photos;
+  const groupId=useRef(''),revision=useRef(1),controller=useRef<AbortController|null>(null);
+  const feedbackRef=useRef<HTMLDivElement>(null), submitting=useRef(false),generation=useRef(0),mounted=useRef(true);
+  useEffect(()=>{mounted.current=true;return()=>{mounted.current=false;generation.current++;controller.current?.abort();photoRef.current.forEach(p=>URL.revokeObjectURL(p.url));};},[]);
+  function invalidate(edit=true){generation.current++;if(edit)revision.current++;controller.current?.abort();setFeedback(null);setRecord(null);setElapsed(null);setStages([]);setComparisonId(undefined);}
   async function check(event:FormEvent<HTMLFormElement>){
     event.preventDefault();if(submitting.current)return;
-    invalidate();const run=generation.current;
+    invalidate(false);const run=generation.current;
     const live=(event.nativeEvent as SubmitEvent).submitter?.getAttribute('value')==='live';
-    const data=new FormData(event.currentTarget),selected=data.get('image');
+    const data=new FormData(event.currentTarget);
     const errors:string[]=[];
-    if(!(selected instanceof File)||!selected.name)errors.push('Choose a label image to pair with this application.');
-    else {const error=checkFileDeclaration(selected);if(error)errors.push(error);}
+    if(!photos.length)errors.push('Choose 1–4 label photos for this bottle and application.');
+    for(const photo of photos){const error=checkFileDeclaration(photo.file);if(error)errors.push(`${photo.file.name}: ${error}`);}
     const values=Object.fromEntries(fields.map(([key])=>[key,data.get(key)]));
     const imported=data.get('imported');
     const result=applicationSchema.safeParse({...values,commodity:data.get('commodity'),imported:imported==='true'?true:imported==='false'?false:undefined,origin:{kind:data.get('originKind'),country:data.get('country')}});
@@ -42,36 +41,38 @@ export default function PairInput() {
     if(!result.success)setTab('application');
     setFeedback(errors.length?{kind:'error',messages:errors}:{kind:'checked',messages:['Application fields checked locally. Image content is still unvalidated. Nothing has been uploaded, analyzed or saved.']});
     requestAnimationFrame(()=>feedbackRef.current?.focus());
-    if(!live||errors.length||!result.success||!(selected instanceof File))return;
+    if(!live||errors.length||!result.success)return;
     if(!accessCode){setFeedback({kind:'error',messages:['Verify demo access once above before starting a live comparison.']});return;}
     submitting.current=true;setRunning(true);const started=performance.now();
     try{
-      const media=await prepareLiveMedia(selected,result.data,accessCode,AbortSignal.timeout(35000));
-      const response=await fetch('/api/comparisons',{method:'POST',headers:{...media.headers,'x-ttb-demo-code':accessCode},body:media.body,signal:AbortSignal.timeout(35000),cache:'no-store',redirect:'error'});
-      const payload=await response.json();if(!mounted.current||run!==generation.current)return;
-      setElapsed(payload.elapsedMs??Math.round(performance.now()-started));
-      if(!response.ok||payload.result?.processing!=='complete'){
+      const active=new AbortController();controller.current=active;const signal=AbortSignal.any([active.signal,AbortSignal.timeout(55000)]);
+      if(!groupId.current)groupId.current=crypto.randomUUID();
+      const onStage=(stage:StageMeasurement)=>{if(mounted.current&&run===generation.current)setStages(previous=>[...previous.filter(s=>s.stage!==stage.stage),stage]);};
+      const ready=await prepareLiveGroup({schemaVersion:2,groupId:groupId.current,revision:revision.current,application:result.data,photos:photos.map(p=>({photoId:p.photoId,role:p.role,filename:p.file.name,mime:p.file.type as PhotoDeclaration['mime'],bytes:p.file.size}))},photos.map(p=>p.file),accessCode,signal,fetch,onStage);
+      if(!mounted.current||run!==generation.current)return;
+      const payload=await executeLiveGroup(ready,accessCode,signal,fetch,onStage);if(!mounted.current||run!==generation.current)return;
+      setElapsed(Math.round(performance.now()-started));
+      if(payload.result?.processing!=='complete'){
         setRecord(payload.result?.processing==='failed'?payload.result:null);
-        const code=payload.result?.code??payload.code;
+        const code=payload.result?.processing==='failed'?payload.result.code:'provider-failed';
         setFeedback({kind:'error',messages:[code==='access-denied'?'Access denied by server. The code or server access configuration may have changed.':code==='invalid-input'?'Invalid image or application. Check the file signature, size and required fields.':`Comparison unavailable (${code??'provider-failed'}). No match was produced. A spend hold may remain; do not automatically retry.`]});
       }else{setRecord(payload.result);setComparisonId(payload.comparisonId);setEditing(false);setFeedback(null);}
-    }catch{if(mounted.current&&run===generation.current){setElapsed(Math.round(performance.now()-started));setFeedback({kind:'error',messages:['Network or provider timeout. No match produced; spend may have been incurred. No automatic retry.']});}}
+    }catch(error){if(mounted.current&&run===generation.current){setElapsed(Math.round(performance.now()-started));const reason=error instanceof Error&&/^[a-z-]{1,80}$/.test(error.message)?` (${error.message})`:'';setFeedback({kind:'error',messages:[`Whole photo group unavailable${reason}. No match produced; spend may have been incurred. No automatic retry. Check saved history before starting new work.`]});}}
     finally{submitting.current=false;if(mounted.current){setRunning(false);requestAnimationFrame(()=>feedbackRef.current?.focus());}}
   }
   function navigate(next:typeof tab){setTab(next);requestAnimationFrame(()=>document.getElementById(`entry-${next}-tab`)?.focus());}
   return <>
     {!editing&&<div className="review-heading"><div><p className="eyebrow">Single review · live comparison</p><h2>{record?.processing==='complete'?record.application.brand:filename}</h2><p>Inspect the label and independent application, then record one human outcome.</p></div><button onClick={()=>{invalidate();setEditing(true);}}>Change input</button></div>}
-    <form onSubmit={check} onChangeCapture={invalidate} hidden={!editing} noValidate autoComplete="off">
+    <form onSubmit={check} onChangeCapture={()=>invalidate()} hidden={!editing} noValidate autoComplete="off">
       <nav className="tabs entry-tabs" role="tablist" aria-label="Review inputs">{(['application','images'] as const).map(key=><button type="button" role="tab" id={`entry-${key}-tab`} aria-selected={tab===key} aria-controls={`entry-${key}-panel`} tabIndex={tab===key?0:-1} key={key} onClick={()=>navigate(key)} onKeyDown={e=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){e.preventDefault();navigate(e.key==='Home'?'application':e.key==='End'?'images':tab==='application'?'images':'application');}}}>{key==='application'?'Application':'Label images'}</button>)}</nav>
       <section id="entry-images-panel" role="tabpanel" aria-labelledby="entry-images-tab" hidden={tab!=='images'}>
-        <fieldset disabled={running} className="input-card"><legend>Choose a label image</legend><p>Select an image now; the application can be entered separately. No form completion is required to select or preview a file.</p><label htmlFor="label-image">Label image (JPEG or PNG)</label><input id="label-image" name="image" type="file" accept="image/jpeg,image/png" onChange={e=>selectImage(e.target.files?.[0])} aria-describedby="file-help limits"/>
-          {preview&&<div className="intake-preview"><img src={preview} alt="Selected label — not analyzed"/><p>{filename} · Local preview only — not uploaded or analyzed.</p></div>}
+        <fieldset className="input-card"><legend>Choose photos of one bottle</legend><p>Select photos now; the application can be entered separately. Front, back, neck and closeups are reviewed jointly, not as separate bottles.</p><PhotoInput photos={photos} onChange={next=>{invalidate();setPhotos(next);}}/>
           <p className="help">Image-only extraction cannot establish an application match. This backend requires an independent application before comparison; image-only analysis is not connected.</p><button type="button" onClick={()=>navigate('application')}>Add application reference</button>
-          <details><summary>Image limits & privacy</summary><p id="file-help" className="help">Image bytes are not read or uploaded for application-field checking. Local preview reads your selected file in this browser only. Explicit Submit for comparison uploads it and sends sanitized image bytes to the AI provider.</p><p id="limits" className="help">10 MiB input and sanitized output; 20 megapixels; one still JPEG or PNG. Server decoding, metadata removal and hashes are enforced. Use synthetic or authorized demo data only.</p></details>
+          <details><summary>Image limits & privacy</summary><p id="file-help" className="help">Local previews stay in this browser. Explicit Submit for comparison uploads all selected originals and sends normalized photos in one joint extraction request.</p><p id="limits" className="help">1–4 still JPEG/PNG photos per bottle. 10 MiB and 20 megapixels per photo; 20 MiB originals, 20 MiB normalized output and 40 megapixels per group. Server decoding, metadata removal and hashes are enforced. Use synthetic or authorized demo data only.</p></details>
         </fieldset>
       </section>
       <section id="entry-application-panel" role="tabpanel" aria-labelledby="entry-application-tab" hidden={tab!=='application'}>
-        <fieldset disabled={running} className="input-card"><legend>Independent application reference</legend><p className="help">Enter the application's declarations, not values copied from label extraction. No commodity, import status, origin or alcohol value is inferred.</p><div className="field-grid">
+        <fieldset className="input-card"><legend>Independent application reference</legend><p className="help">Enter the application's declarations, not values copied from label extraction. No commodity, import status, origin or alcohol value is inferred.</p><div className="field-grid">
           {fields.map(([key,label])=><div key={key}><label htmlFor={key}>{label}</label><input id={key} name={key} type="text" inputMode={key==='abv'?'decimal':'text'} required maxLength={key==='abv'?32:key.startsWith('application')?128:1000}/></div>)}
           <div><label htmlFor="commodity">Commodity</label><select id="commodity" name="commodity" required defaultValue=""><option value="">Choose a commodity</option><option value="wine">Wine</option><option value="distilled-spirits">Distilled spirits</option><option value="malt-beverage">Malt beverage</option></select></div>
           <div><label htmlFor="imported">Imported product?</label><select id="imported" name="imported" required defaultValue=""><option value="">Choose import status</option><option value="true">Yes — imported</option><option value="false">No — domestic</option></select></div>
@@ -81,9 +82,9 @@ export default function PairInput() {
       </section>
       <div className="actions"><button type="submit" disabled={running}>Check application fields</button><button type="submit" value="live" disabled={running||!accessCode}>Submit for comparison</button></div><p className="help">{accessCode?'Access verified.':'Verify access above before live processing.'} Submission may incur provider spend. No automatic retries. Only a server-confirmed SAVED receipt is durable.</p>
     </form>
-    {running&&<p role="status">Comparing label — waiting for provider observations…</p>}
+    <OperationTimings stages={stages} local={!process.env.NEXT_PUBLIC_TTB_MEDIA_TRANSPORT}/>
     {feedback&&<div ref={feedbackRef} tabIndex={-1} className={`notice ${feedback.kind==='error'?'error':''}`} role={feedback.kind==='error'?'alert':'status'}><ul>{feedback.messages.map(message=><li key={message}>{message}</li>)}</ul></div>}
     {elapsed!==null&&<p className="help" role="status">Measured elapsed time: {elapsed} ms (request processing, not a model-only benchmark).</p>}
-    {record?.processing==='complete'&&<section aria-label="Live comparison results"><ReviewConfirmation key={record.imageSha256+String(elapsed)} record={record} comparisonId={comparisonId} accessCode={accessCode} preview={preview}/></section>}
+    {record?.processing==='complete'&&<section aria-label="Live comparison results"><ReviewConfirmation key={(photoRecord(record)?.photoSetSha256??record.imageSha256)+String(elapsed)} record={record} comparisonId={comparisonId} accessCode={accessCode} preview={preview} photos={photos.map(p=>({photoId:p.photoId,url:p.url}))}/></section>}
   </>;
 }

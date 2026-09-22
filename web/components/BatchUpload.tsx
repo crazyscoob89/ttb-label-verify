@@ -61,7 +61,8 @@ export default function BatchUpload({ offlineEnabled, live, onPrepared, onClear 
     invalidate(); const run = generation.current; setBusy(true);
     try {
       const mapping: unknown = JSON.parse(json);
-      if (!Array.isArray(mapping) || mapping.length > MAX_BATCH_PAIRS || files.length > MAX_BATCH_PAIRS) throw Error('Use a JSON array and at most 300 files / mappings.');
+      const grouped=!!mapping&&typeof mapping==='object'&&!Array.isArray(mapping)&&'schemaVersion' in mapping&&mapping.schemaVersion===2;
+      if ((!grouped&&(!Array.isArray(mapping)||mapping.length>MAX_BATCH_PAIRS))||files.length>(grouped?1200:MAX_BATCH_PAIRS))throw Error('Use grouped v2 JSON or a legacy array.');
       const assets = new Map<string, FixtureAsset>(); const diagnostics: string[] = [];
       const declarations: {filename:string;imageSha256:string|null}[] = [];
       // Sequential reads bound working memory; retained assets deduplicate the four
@@ -84,11 +85,11 @@ export default function BatchUpload({ offlineEnabled, live, onPrepared, onClear 
       }
       const manifest = buildBatchManifest(declarations, mapping, {live});
       if (run === generation.current) onPrepared({manifest,assets,files:new Map(files.map(file=>[file.name,file])),live,diagnostics});
-    } catch { if (run === generation.current) setError('Provide a valid JSON array with 1–300 logical entries and at most 300 files / mappings. Each row requires an exact filename and a complete application version.'); }
+    } catch { if (run === generation.current) setError('Provide a valid grouped v2 manifest (1–300 bottles, 1–4 photos each), or a legacy singleton array. Each bottle needs a complete independent application, unique group/photo IDs and exact filename references.'); }
     finally { if (run === generation.current) setBusy(false); }
   }
   return <section aria-label="Batch preparation">
-    <p>Maximum 300 files, mappings and logical entries. Exact, case-sensitive filename pairing only — never list order. {live?'Validation checks declarations only. Explicit queue start uploads active files for server sanitation and guarded live comparison.':'Only exact known fixtures can run offline.'}</p>
+    <p>Maximum 300 bottles, 1–4 photos per bottle (up to 1,200 references). One application and one review per bottle. Exact, case-sensitive filename mapping only — never list order or guessed grouping. {live?'Validation checks declarations only. Explicit queue start uploads active groups for server sanitation and one joint comparison per bottle.':'Only exact known singleton fixtures can run offline; grouped manifests require the guarded live transport.'}</p>
     {offlineEnabled && !live && <><div className="notice"><strong>Development-only synthetic fixture batch — not AI analysis; nothing saved</strong><p>Only exact known PNG bytes can use predefined observations. Uploaded copies are checked by bytes, not by filename.</p></div><button onClick={loadFixtures} disabled={busy}>Load synthetic fixture batch</button></>}
     <nav className="tabs entry-tabs" role="tablist" aria-label="Batch inputs">{(['application','images'] as const).map(key=><button type="button" role="tab" id={`batch-input-${key}-tab`} aria-controls={`batch-input-${key}-panel`} aria-selected={inputTab===key} tabIndex={inputTab===key?0:-1} key={key} onClick={()=>setInputTab(key)} onKeyDown={e=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){e.preventDefault();const next=e.key==='Home'?'application':e.key==='End'?'images':inputTab==='images'?'application':'images';setInputTab(next);document.getElementById(`batch-input-${next}-tab`)?.focus();}}}>{key==='application'?'Application':'Label images'}</button>)}</nav>
     <div id="batch-input-images-panel" role="tabpanel" aria-labelledby="batch-input-images-tab" hidden={inputTab!=='images'} className="input-card">
@@ -97,11 +98,11 @@ export default function BatchUpload({ offlineEnabled, live, onPrepared, onClear 
     <p className="help">Select images before completing application mapping. Nothing is uploaded until explicit queue start. Image-only extraction cannot establish an application match.</p>
     <button onClick={()=>setInputTab('application')}>Add application mapping</button></div>
     <div id="batch-input-application-panel" role="tabpanel" aria-labelledby="batch-input-application-tab" hidden={inputTab!=='application'} className="input-card">
-    <h2>Independent application mapping</h2><p>Import a JSON manifest pairing each exact filename to its original application declarations. Do not use label extraction as the application reference.</p>
+    <h2>Independent application mapping</h2><p>Import a grouped JSON manifest identifying the photos of each bottle under one independent application. Old singleton arrays are still supported. Do not use label extraction as the application reference.</p>
     <label htmlFor="batch-manifest-file">Application manifest file (JSON)</label><input id="batch-manifest-file" type="file" accept="application/json,.json" onChange={async e=>{invalidate();const run=generation.current,file=e.target.files?.[0];if(!file)return;if(file.size>4*1024*1024){setError('Manifest exceeds 4 MiB.');return;}try{const value=await file.text();if(run===generation.current)setJson(value);}catch{if(run===generation.current)setError('Could not read the application manifest.');}}}/>
     <p className="help">{json?'Application mapping loaded. Validate before queue start.':'No application mapping yet.'}</p>
     <details><summary>Advanced: edit JSON mapping</summary><label htmlFor="batch-json">Batch JSON manifest</label><textarea id="batch-json" className="batch-json" value={json} onChange={e=>{invalidate();setJson(e.target.value);}} spellCheck={false} />
-    <p className="help">Array shape: [{'{'}"filename": "label.png", "application": {'{'}"applicationId": "…", "applicationVersion": "…", plus all application declarations{'}'}{'}'}]. The fixture button supplies an editable complete example. Input changes clear the previous batch; use Replace selected pair to retain superseded page-memory versions.</p>
+    <p className="help">Grouped shape: schemaVersion: 2, groups: [groupId (UUID), application (all independent declarations), photos: [photoId (UUID), filename, role]]. Roles: front, back, neck, closeup, other. Photos are ordered; repeated roles are allowed. Duplicate/cross-bottle filenames or IDs are blocked, not guessed. Input changes clear the previous batch.</p><pre>{JSON.stringify({schemaVersion:2,groups:[{groupId:'00000000-0000-4000-8000-000000000001',application:{applicationId:'YOUR-APPLICATION',applicationVersion:'1','…':'all independent application fields required'},photos:[{photoId:'00000000-0000-4000-8000-000000000002',filename:'front.png',role:'front'},{photoId:'00000000-0000-4000-8000-000000000003',filename:'back.png',role:'back'}]}]},null,2)}</pre>
     </details></div>
     <button onClick={validate} disabled={busy}>Validate batch manifest</button>
     {busy && <p role="status">Checking local fixture bytes / declarations. No AI request.</p>}

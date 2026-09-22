@@ -7,7 +7,7 @@ const hashSchema = z.string().regex(/^[a-f0-9]{64}$/);
 const mimeSchema = z.enum(['image/png', 'image/jpeg']);
 const evidenceLinkSchema = z.object({ url: z.string().max(8192), sha256: hashSchema, bytes: z.number().int().min(1).max(MAX_IMAGE_BYTES),
   mime: mimeSchema, expiresIn: z.literal(60) }).strict();
-function hostedMode() {
+export function hostedMode() {
   const mode = process.env.NEXT_PUBLIC_TTB_MEDIA_TRANSPORT;
   if (!mode) return false;
   if (mode !== 'supabase-v1') throw Error('media-unavailable');
@@ -18,7 +18,7 @@ function storageOrigin() {
   if (!origin || !/^https:\/\/[a-z0-9-]+\.supabase\.co$/.test(origin)) throw Error('media-unavailable');
   return origin;
 }
-function capability(value: string, kind: 'upload' | 'evidence') {
+export function capability(value: string, kind: 'upload' | 'evidence') {
   const url = new URL(value);
   const prefix = kind === 'upload' ? '/storage/v1/object/upload/sign/' : '/storage/v1/object/sign/';
   if (url.origin !== storageOrigin() || url.username || url.password || url.hash || !url.pathname.startsWith(prefix)
@@ -27,7 +27,7 @@ function capability(value: string, kind: 'upload' | 'evidence') {
     || [...url.searchParams.keys()].some(key => key !== 'token')) throw Error('media-unavailable');
   return url.href;
 }
-async function boundedBytes(response: Response, max: number, signal: AbortSignal): Promise<Uint8Array<ArrayBuffer>> {
+export async function boundedBytes(response: Response, max: number, signal: AbortSignal): Promise<Uint8Array<ArrayBuffer>> {
   const length = response.headers.get('content-length');
   if (!response.ok || response.redirected || (length !== null && (!/^\d+$/.test(length) || Number(length) > max))) {
     void response.body?.cancel().catch(() => {}); throw Error('media-unavailable');
@@ -85,26 +85,29 @@ export async function prepareLiveMedia(file: File, application: Application, cod
   return { body: JSON.stringify({ ticket: data.ticket }), headers: { 'content-type': 'application/json' } };
 }
 
-export async function loadReviewEvidence(id: string, expectedHash: string, code: string, signal: AbortSignal, transport: Fetch = fetch): Promise<Blob> {
+export async function loadReviewEvidence(id: string, expectedHash: string, code: string, signal: AbortSignal, transport: Fetch = fetch,
+  selector?: {photoId:string;variant:'original'|'normalized';bytes:number;mime:'image/png'|'image/jpeg'}): Promise<Blob> {
   z.uuid().parse(id); hashSchema.parse(expectedHash);
   const deadline = AbortSignal.any([signal, AbortSignal.timeout(15000)]);
   const isHosted = hostedMode();
-  const response = await transport(`/api/reviews/${id}/${isHosted ? 'evidence-link' : 'evidence'}`, {
+  if (selector) { z.uuid().parse(selector.photoId); z.enum(['original','normalized']).parse(selector.variant); z.number().int().positive().max(MAX_IMAGE_BYTES).parse(selector.bytes); mimeSchema.parse(selector.mime); }
+  const path = selector ? `${id}/photos/${selector.photoId}/${selector.variant}` : id;
+  const response = await transport(`/api/reviews/${path}/${isHosted ? 'evidence-link' : 'evidence'}`, {
     method: 'POST', headers: { 'x-ttb-demo-code': code }, signal: deadline, cache: 'no-store', redirect: 'error',
   });
   let evidence = response, declared: z.output<typeof evidenceLinkSchema> | undefined;
   if (isHosted) {
     declared = evidenceLinkSchema.parse(await json(response, deadline));
-    if (declared.sha256 !== expectedHash) throw Error('evidence-integrity-mismatch');
+    if (declared.sha256 !== expectedHash || (selector && (declared.bytes !== selector.bytes || declared.mime !== selector.mime))) throw Error('evidence-integrity-mismatch');
     const url = capability(declared.url, 'evidence');
     evidence = await transport(url, { method: 'GET', signal: deadline, cache: 'no-store', redirect: 'error', credentials: 'omit', referrerPolicy: 'no-referrer' });
   }
   const mime = evidence.headers.get('content-type')?.split(';')[0].trim().toLowerCase();
-  if (!mimeSchema.safeParse(mime).success || (declared && mime !== declared.mime)) {
+  if (!mimeSchema.safeParse(mime).success || (declared && mime !== declared.mime) || (selector && mime !== selector.mime)) {
     void evidence.body?.cancel().catch(() => {}); throw Error('evidence-integrity-mismatch');
   }
-  const bytes = await boundedBytes(evidence, declared?.bytes ?? MAX_IMAGE_BYTES, deadline);
-  if (!bytes.length || (declared && bytes.length !== declared.bytes)) throw Error('evidence-integrity-mismatch');
+  const bytes = await boundedBytes(evidence, selector?.bytes ?? declared?.bytes ?? MAX_IMAGE_BYTES, deadline);
+  if (!bytes.length || (declared && bytes.length !== declared.bytes) || (selector && bytes.length !== selector.bytes)) throw Error('evidence-integrity-mismatch');
   const hash = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', bytes)), b => b.toString(16).padStart(2, '0')).join('');
   if (hash !== expectedHash) throw Error('evidence-integrity-mismatch');
   return new Blob([bytes], { type: mime });

@@ -8,11 +8,14 @@ const attempts=new Map<string,{payload:string;key:string;receipt?:SavedReceipt}>
 export function useDurableReview(comparisonId:string|undefined,code:string|undefined,intent:ReviewIntent,onSaved?:(receipt:SavedReceipt)=>void) {
  const [receipt,setReceipt]=useState<SavedReceipt|undefined>(()=>comparisonId?attempts.get(comparisonId)?.receipt:undefined);
  const [pending,setPending]=useState(false),[error,setError]=useState('');
+ const [elapsedMs,setElapsedMs]=useState<number|null>(null);
+ const selection=JSON.stringify([comparisonId,intent]);
+ const latest=useRef(selection);latest.current=selection;
  const mounted=useRef(true),busy=useRef(false);
  useEffect(()=>{mounted.current=true;return()=>{mounted.current=false;};},[]);
  async function save(){
   if(!comparisonId||!code||busy.current||receipt)return;
-  busy.current=true;setPending(true);setError('');
+  busy.current=true;setPending(true);setError('');setElapsedMs(null);const started=performance.now(),run=selection;
   const payload=JSON.stringify(intent);
   let attempt=attempts.get(comparisonId);
   if(!attempt||attempt.payload!==payload){
@@ -26,11 +29,12 @@ export function useDurableReview(comparisonId:string|undefined,code:string|undef
    if(!response.ok)throw Error(typeof data.code==='string'?data.code:'save-failed');
    const saved=savedReceiptSchema.parse(data.receipt);
    if(saved.comparisonId!==comparisonId)throw Error('receipt-binding-mismatch');
+   if(!mounted.current||latest.current!==run)return;
    attempt.receipt=saved;
    onSaved?.(saved);
    if(mounted.current)setReceipt(saved);
-  }catch(e){if(mounted.current)setError(`UNSAVED — receipt not confirmed (${e instanceof Error?e.message:'network failure'}). Retry unchanged to recover the same receipt, or check saved history before changing the decision.`);}
-  finally{busy.current=false;if(mounted.current)setPending(false);}
+  }catch(e){if(mounted.current&&latest.current===run)setError(`UNSAVED — receipt not confirmed (${e instanceof Error?e.message:'network failure'}). Retry unchanged to recover the same receipt, or check saved history before changing the decision.`);}
+  finally{busy.current=false;if(mounted.current){setPending(false);if(latest.current===run)setElapsedMs(Math.round(performance.now()-started));}}
  }
- return {receipt,pending,error,save};
+ return {receipt,pending,error,save,elapsedMs};
 }

@@ -3,6 +3,8 @@ import { applicationSchema, MAX_BATCH_PAIRS, type Application } from './contract
 import { batchImageSchema, unpreparedBatchImageSchema, type BatchManifest, type ManifestIssue } from './batch-manifest';
 import { immutable, type CompleteComparison, type FailureCode } from './comparison-record';
 import { buildUnsavedDraft, newReviewIntent, reviewBinding, type Outcome, type ReviewIntent, type UnsavedDraft } from './review-policy';
+import {photoRecord,type PreparedGroup,type UiCompleteComparison} from './live-photo-client';
+import type {BatchPhotoReference} from './batch-manifest';
 
 export type AttemptIdentity = { attemptId: string; reservationId: string };
 export type AttemptToken = AttemptIdentity & { batchId: string; pairId: string; revision: number };
@@ -17,6 +19,7 @@ export type DispatchCommand = {
    */
   kind: 'authorize-reserve-and-dispatch'; token: AttemptToken; application: Application;
   image: { filename: string; imageSha256: string | null };
+  group?:{groupId:string;photos:BatchPhotoReference[]};
 };
 export type BatchCommand = DispatchCommand | SaveReviewCommand;
 export interface ReviewReceiptValidator {
@@ -27,9 +30,10 @@ export interface ReviewReceiptValidator {
   validate(receipt: unknown, expected: SaveReviewCommand): ValidatedReviewReceipt | null;
 }
 export type PairSnapshot = {
+  groupId?:string;photos?:BatchPhotoReference[];preparedGroup?:PreparedGroup|null;resolutionEdits?:ReviewIntent['resolutions'];
   revision: number; filename: string | null; application: Application | null; imageSha256: string | null;
   processing: 'blocked' | 'queued' | 'running' | 'complete' | 'failed'; issues: ManifestIssue[];
-  activeAttempt: AttemptToken | null; failure: FailureCode | null; record: CompleteComparison | null;
+  activeAttempt: AttemptToken | null; failure: FailureCode | null; record: UiCompleteComparison | null;
   intent: ReviewIntent | null; draft: UnsavedDraft | null; saved: ValidatedReviewReceipt | null;
   pendingSave: SaveReviewCommand | null;
 };
@@ -41,6 +45,10 @@ export type BatchState = {
 };
 export type ReviewEdits = Partial<Pick<ReviewIntent, 'outcome' | 'notes' | 'physical' | 'resolutions'>>;
 export type BatchAction =
+  | {type:'invalidate-input';pairId:string}
+  | {type:'prepared-group';token:AttemptToken;prepared:PreparedGroup}
+  | {type:'replace-group';pairId:string;application:unknown;photos:BatchPhotoReference[]}
+  | {type:'resolution-edit';pairId:string;field:keyof ReviewIntent['resolutions'];value:NonNullable<ReviewIntent['resolutions']['abv']>}
   | ({ type: 'dispatch' | 'retry'; pairId: string } & AttemptIdentity)
   | { type: 'dispatch-next'; attempts: AttemptIdentity[] }
   | { type: 'settle'; token: AttemptToken; result: unknown }
@@ -64,7 +72,7 @@ const equalAttempt = (a: AttemptToken, b: AttemptToken) => a.batchId === b.batch
 const equalSave = (a: SaveToken, b: SaveToken) => a.batchId === b.batchId && a.pairId === b.pairId && a.revision === b.revision && a.selectionEpoch === b.selectionEpoch && a.submissionId === b.submissionId && a.bindingKey === b.bindingKey && a.intentKey === b.intentKey;
 const result = (state: BatchState, commands: BatchCommand[] = [], rejected: string | null = null): BatchTransition => immutable({ state, commands, rejected });
 const reject = (state: BatchState, reason: string) => result(state, [], reason);
-const blank = () => ({ activeAttempt: null, failure: null, record: null, intent: null, draft: null, saved: null, pendingSave: null });
+const blank = () => ({ activeAttempt: null, failure: null, record: null, intent: null, draft: null, saved: null, pendingSave: null,preparedGroup:null,resolutionEdits:{} });
 
 /** Caller owns this immutable snapshot. Do not use untrusted hydrated state or
  * concurrent stale snapshots as an authority store. The server owns global caps.
@@ -75,9 +83,10 @@ export function createBatchState(manifest: BatchManifest, options: { batchId: st
   if (!manifest.entries.length || manifest.entries.length > MAX_BATCH_PAIRS || new Set(manifest.entries.map(e => e.id)).size !== manifest.entries.length) throw new Error('Invalid batch manifest');
   const pairs: BatchPairState[] = manifest.entries.map(entry => ({
     id: entry.id, filename: entry.filename, issues: [...entry.issues], revision: 1, history: [], ...blank(),
+    ...(entry.status==='valid'&&entry.groupId?{groupId:entry.groupId,photos:entry.photos}:{}),
     processing: entry.status === 'valid' ? 'queued' : 'blocked',
     application: entry.status === 'valid' ? applicationSchema.parse(entry.application) : null,
-    imageSha256: entry.status === 'valid' ? (options.live ? unpreparedBatchImageSchema : batchImageSchema).parse({ filename: entry.filename, imageSha256: entry.imageSha256 }).imageSha256 : null,
+    imageSha256: entry.status === 'valid' && !entry.groupId ? (options.live ? unpreparedBatchImageSchema : batchImageSchema).parse({ filename: entry.filename, imageSha256: entry.imageSha256 }).imageSha256 : null,
   }));
   return immutable({ mode: options.live ? 'live' : 'offline', batchId, concurrency, pairs, selectedId: pairs[0].id, selectionEpoch: 0, inFlight: [], usedAttemptIds: [], usedReservationIds: [], usedSubmissionIds: [] });
 }
@@ -93,16 +102,19 @@ function dispatch(state: BatchState, pairId: string, identity: AttemptIdentity, 
   const current = next.pairs.find(p => p.id === pairId)!;
   current.processing = 'running'; current.activeAttempt = token; current.failure = null;
   next.inFlight.push(token); next.usedAttemptIds.push(token.attemptId); next.usedReservationIds.push(token.reservationId);
-  return result(next, [{ kind: 'authorize-reserve-and-dispatch', token, application: structuredClone(pair.application), image: { filename: pair.filename, imageSha256: pair.imageSha256 } }]);
+  return result(next, [{ kind: 'authorize-reserve-and-dispatch', token, application: structuredClone(pair.application), image: { filename: pair.filename, imageSha256: pair.imageSha256 },...(pair.groupId&&pair.photos?{group:{groupId:pair.groupId,photos:pair.photos}}:{}) }]);
 }
 
 /** Validate complete records through the existing policy, including recomputation
  * of findings. The temporary intent is solely a validation probe, not a human vote.
  */
-function checkedCompletion(pair: BatchPairState, input: unknown): CompleteComparison | null {
+function checkedCompletion(pair: BatchPairState, input: unknown): UiCompleteComparison | null {
   try {
     const probe = buildUnsavedDraft(input, { ...newReviewIntent(input), outcome: 'second-review', notes: 'Internal record validation probe only.', confirmed: true });
-    if (!probe || probe.record.imageSha256 !== pair.imageSha256 || JSON.stringify(probe.record.application) !== JSON.stringify(pair.application)) return null;
+    if (!probe || JSON.stringify(probe.record.application) !== JSON.stringify(pair.application)) return null;
+    const group=photoRecord(probe.record);
+    if(pair.groupId){if(!group||!pair.preparedGroup||group.groupId!==pair.groupId||group.revision!==pair.revision||group.photoSetSha256!==pair.preparedGroup.photoSetSha256||JSON.stringify(group.photos)!==JSON.stringify(pair.preparedGroup.photos))return null;}
+    else if(group||probe.record.imageSha256!==pair.imageSha256)return null;
     return probe.record;
   } catch { return null; } // Unknown async input must not strand the queue on serialization errors.
 }
@@ -111,6 +123,11 @@ function checkedCompletion(pair: BatchPairState, input: unknown): CompleteCompar
  * emit commands. No automatic retry, navigation dispatch, transport or storage.
  */
 export function transitionBatch(state: BatchState, action: BatchAction): BatchTransition {
+  if(action.type==='prepared-group'){
+    const pair=state.pairs.find(p=>p.id===action.token.pairId),p=action.prepared;
+    if(!pair?.groupId||!pair.activeAttempt||!equalAttempt(pair.activeAttempt,action.token)||pair.revision!==action.token.revision||!state.inFlight.some(t=>equalAttempt(t,action.token))||p.groupId!==pair.groupId||p.revision!==pair.revision||!pair.photos||JSON.stringify(p.photos.map(({photoId,filename,role})=>({photoId,filename,role})))!==JSON.stringify(pair.photos)||!/^[a-f0-9]{64}$/.test(p.photoSetSha256))return reject(state,'Unknown, stale or inconsistent photo-group preparation');
+    const next=structuredClone(state);next.pairs.find(v=>v.id===pair.id)!.preparedGroup=structuredClone(p);return result(next);
+  }
   if (action.type === 'dispatch' || action.type === 'retry') return dispatch(state, action.pairId, { attemptId: action.attemptId, reservationId: action.reservationId }, action.type === 'retry');
   if (action.type === 'dispatch-next') {
     let next = state;
@@ -167,6 +184,12 @@ export function transitionBatch(state: BatchState, action: BatchAction): BatchTr
   }
   const pair = state.pairs.find(p => p.id === action.pairId);
   if (!pair) return reject(state, 'Unknown pair');
+  if(action.type==='invalidate-input'){const next=structuredClone(state),current=next.pairs.find(p=>p.id===pair.id)!;Object.assign(current,blank(),{imageSha256:null,revision:pair.revision+1,processing:'blocked',issues:['invalid-application']});return result(next);}
+  if(action.type==='replace-group'){
+    const application=applicationSchema.safeParse(action.application),photos=z.array(z.object({photoId:z.uuid(),filename:z.string().min(1).max(255),role:z.enum(['front','back','neck','closeup','other'])}).strict()).max(4).safeParse(action.photos);
+    if(!pair.groupId||!application.success||!photos.success||new Set(photos.data.map(p=>p.photoId)).size!==photos.data.length||state.pairs.some(p=>p.id!==pair.id&&(p.photos?.some(v=>photos.data.some(n=>n.photoId===v.photoId))||(p.application?.applicationId===application.data.applicationId&&p.application.applicationVersion===application.data.applicationVersion))))return reject(state,'Invalid or ambiguous group replacement');
+    const next=structuredClone(state),current=next.pairs.find(p=>p.id===pair.id)!;const {id:_id,history:_history,...snapshot}=structuredClone(pair);current.history.push(snapshot);Object.assign(current,blank(),{application:application.data,photos:photos.data,filename:photos.data.map(p=>p.filename).join(' + '),imageSha256:null,revision:pair.revision+1,processing:photos.data.length?'queued':'blocked',issues:photos.data.length?[]:['missing-file']});return result(next);
+  }
   if (action.type === 'replace') {
     const application = applicationSchema.safeParse(action.application);
     const image = (state.mode === 'live' ? unpreparedBatchImageSchema : batchImageSchema).safeParse(action.image);
@@ -182,6 +205,7 @@ export function transitionBatch(state: BatchState, action: BatchAction): BatchTr
   const next = structuredClone(state);
   const current = next.pairs.find(p => p.id === pair.id)!;
   if (action.type === 'edit-intent') {
+    // Confirmed resolutions alone enter policy; tentative selection is stored separately.
     // Explicitly copy only editable policy fields: no receipt, binding or confirmation injection.
     const edits = action.edits;
     current.intent = { ...pair.intent,
@@ -194,6 +218,7 @@ export function transitionBatch(state: BatchState, action: BatchAction): BatchTr
     current.draft = null; current.pendingSave = null;
     return result(next);
   }
+  if(action.type==='resolution-edit'){current.resolutionEdits={...pair.resolutionEdits,[action.field]:structuredClone(action.value)};current.intent={...pair.intent,confirmed:false};current.draft=null;current.pendingSave=null;return result(next);}
   if (action.type === 'confirm') { current.intent!.confirmed = true; return result(next); }
   if (action.type === 'draft') {
     const draft = buildUnsavedDraft(pair.record, pair.intent);

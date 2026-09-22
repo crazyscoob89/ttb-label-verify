@@ -1,0 +1,1091 @@
+{
+  "provenance": "Synthetic UI-only observations over existing demo PNG assets; generated locally using backend aggregation. Not AI analysis or real scan evidence.",
+  "complementary": {
+    "recordVersion": 2,
+    "processing": "complete",
+    "application": {
+      "applicationId": "RULES-SYNTH-001",
+      "applicationVersion": "1",
+      "brand": "Old Harbor",
+      "classType": "Vodka",
+      "abv": 40,
+      "netContents": "750 mL",
+      "producerName": "Harbor Distillery",
+      "producerAddress": "12 Wharf Road, Paris",
+      "commodity": "distilled-spirits",
+      "imported": true,
+      "origin": {
+        "kind": "imported",
+        "country": "France"
+      }
+    },
+    "groupId": "00000000-0000-4000-8000-000000000001",
+    "revision": 1,
+    "photos": [
+      {
+        "photoId": "00000000-0000-4000-8000-000000000002",
+        "role": "front",
+        "filename": "front.png",
+        "mime": "image/png",
+        "bytes": 79690,
+        "sourceSha256": "46912750a0d1708a9883e83ce8161f3e1eb811ab5060b6037473437ffc0095e3",
+        "normalized": {
+          "sha256": "46912750a0d1708a9883e83ce8161f3e1eb811ab5060b6037473437ffc0095e3",
+          "bytes": 79690,
+          "mime": "image/png",
+          "width": 840,
+          "height": 1020
+        }
+      },
+      {
+        "photoId": "00000000-0000-4000-8000-000000000003",
+        "role": "back",
+        "filename": "back.png",
+        "mime": "image/png",
+        "bytes": 80288,
+        "sourceSha256": "3f726b34a74502131164b34f75d29e6521505bd3fd6471598fa0c05724bcfd48",
+        "normalized": {
+          "sha256": "3f726b34a74502131164b34f75d29e6521505bd3fd6471598fa0c05724bcfd48",
+          "bytes": 80288,
+          "mime": "image/png",
+          "width": 840,
+          "height": 1020
+        }
+      }
+    ],
+    "photoSetSha256": "456813ed6de7c7049db1e63accde1647e52c5c12c0bda676ffed519a283ed092",
+    "imageSha256": "46912750a0d1708a9883e83ce8161f3e1eb811ab5060b6037473437ffc0095e3",
+    "source": "fixture",
+    "photoEvidence": {
+      "schemaVersion": 2,
+      "photos": [
+        {
+          "photoId": "00000000-0000-4000-8000-000000000002",
+          "evidence": {
+            "schemaVersion": 1,
+            "brand": {
+              "status": "readable",
+              "text": "Old Harbor",
+              "reason": "Synthetic legible brand"
+            },
+            "classType": {
+              "status": "readable",
+              "text": "Vodka",
+              "reason": "Synthetic legible class"
+            },
+            "abv": {
+              "status": "readable",
+              "text": "40%",
+              "reason": "Synthetic legible ABV"
+            },
+            "netContents": {
+              "status": "readable",
+              "text": "750 mL",
+              "reason": "Synthetic legible volume"
+            },
+            "producer": {
+              "name": {
+                "status": "readable",
+                "text": "Harbor Distillery",
+                "reason": "Synthetic legible name"
+              },
+              "address": {
+                "status": "readable",
+                "text": "12 Wharf Road, Paris",
+                "reason": "Synthetic legible address"
+              }
+            },
+            "origin": {
+              "status": "readable",
+              "text": "France",
+              "reason": "Synthetic legible country"
+            },
+            "warning": {
+              "heading": {
+                "status": "missing",
+                "text": null,
+                "reason": "Not visible in this synthetic photo."
+              },
+              "body": {
+                "status": "missing",
+                "text": null,
+                "reason": "Not visible in this synthetic photo."
+              },
+              "headingBold": null,
+              "bodyBold": null
+            }
+          }
+        },
+        {
+          "photoId": "00000000-0000-4000-8000-000000000003",
+          "evidence": {
+            "schemaVersion": 1,
+            "brand": {
+              "status": "missing",
+              "text": null,
+              "reason": "Not visible in this synthetic photo."
+            },
+            "classType": {
+              "status": "missing",
+              "text": null,
+              "reason": "Not visible in this synthetic photo."
+            },
+            "abv": {
+              "status": "missing",
+              "text": null,
+              "reason": "Not visible in this synthetic photo."
+            },
+            "netContents": {
+              "status": "missing",
+              "text": null,
+              "reason": "Not visible in this synthetic photo."
+            },
+            "producer": {
+              "name": {
+                "status": "missing",
+                "text": null,
+                "reason": "Not visible in this synthetic photo."
+              },
+              "address": {
+                "status": "missing",
+                "text": null,
+                "reason": "Not visible in this synthetic photo."
+              }
+            },
+            "origin": {
+              "status": "missing",
+              "text": null,
+              "reason": "Not visible in this synthetic photo."
+            },
+            "warning": {
+              "heading": {
+                "status": "readable",
+                "text": "GOVERNMENT WARNING:",
+                "reason": "Synthetic legible heading"
+              },
+              "body": {
+                "status": "readable",
+                "text": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+                "reason": "Synthetic legible body"
+              },
+              "headingBold": true,
+              "bodyBold": false
+            }
+          }
+        }
+      ]
+    },
+    "aggregationVersion": "photo-set-aggregation-v1",
+    "evidence": {
+      "schemaVersion": 1,
+      "brand": {
+        "status": "readable",
+        "text": "Old Harbor",
+        "reason": "Synthetic legible brand"
+      },
+      "classType": {
+        "status": "readable",
+        "text": "Vodka",
+        "reason": "Synthetic legible class"
+      },
+      "abv": {
+        "status": "readable",
+        "text": "40%",
+        "reason": "Synthetic legible ABV"
+      },
+      "netContents": {
+        "status": "readable",
+        "text": "750 mL",
+        "reason": "Synthetic legible volume"
+      },
+      "producer": {
+        "name": {
+          "status": "readable",
+          "text": "Harbor Distillery",
+          "reason": "Synthetic legible name"
+        },
+        "address": {
+          "status": "readable",
+          "text": "12 Wharf Road, Paris",
+          "reason": "Synthetic legible address"
+        }
+      },
+      "origin": {
+        "status": "readable",
+        "text": "France",
+        "reason": "Synthetic legible country"
+      },
+      "warning": {
+        "heading": {
+          "status": "readable",
+          "text": "GOVERNMENT WARNING:",
+          "reason": "Synthetic legible heading"
+        },
+        "body": {
+          "status": "readable",
+          "text": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+          "reason": "Synthetic legible body"
+        },
+        "headingBold": true,
+        "bodyBold": false
+      }
+    },
+    "provenance": {
+      "brand": {
+        "sourcePhotoIds": [
+          "00000000-0000-4000-8000-000000000002"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "Old Harbor",
+            "sourcePhotoIds": [
+              "00000000-0000-4000-8000-000000000002"
+            ]
+          }
+        ]
+      },
+      "classType": {
+        "sourcePhotoIds": [
+          "00000000-0000-4000-8000-000000000002"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "Vodka",
+            "sourcePhotoIds": [
+              "00000000-0000-4000-8000-000000000002"
+            ]
+          }
+        ]
+      },
+      "abv": {
+        "sourcePhotoIds": [
+          "00000000-0000-4000-8000-000000000002"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "40%",
+            "sourcePhotoIds": [
+              "00000000-0000-4000-8000-000000000002"
+            ]
+          }
+        ]
+      },
+      "netContents": {
+        "sourcePhotoIds": [
+          "00000000-0000-4000-8000-000000000002"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "750 mL",
+            "sourcePhotoIds": [
+              "00000000-0000-4000-8000-000000000002"
+            ]
+          }
+        ]
+      },
+      "producer.name": {
+        "sourcePhotoIds": [
+          "00000000-0000-4000-8000-000000000002"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "Harbor Distillery",
+            "sourcePhotoIds": [
+              "00000000-0000-4000-8000-000000000002"
+            ]
+          }
+        ]
+      },
+      "producer.address": {
+        "sourcePhotoIds": [
+          "00000000-0000-4000-8000-000000000002"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "12 Wharf Road, Paris",
+            "sourcePhotoIds": [
+              "00000000-0000-4000-8000-000000000002"
+            ]
+          }
+        ]
+      },
+      "origin": {
+        "sourcePhotoIds": [
+          "00000000-0000-4000-8000-000000000002"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "France",
+            "sourcePhotoIds": [
+              "00000000-0000-4000-8000-000000000002"
+            ]
+          }
+        ]
+      },
+      "warning.heading": {
+        "sourcePhotoIds": [
+          "00000000-0000-4000-8000-000000000003"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "GOVERNMENT WARNING:",
+            "sourcePhotoIds": [
+              "00000000-0000-4000-8000-000000000003"
+            ]
+          }
+        ]
+      },
+      "warning.body": {
+        "sourcePhotoIds": [
+          "00000000-0000-4000-8000-000000000003"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+            "sourcePhotoIds": [
+              "00000000-0000-4000-8000-000000000003"
+            ]
+          }
+        ]
+      },
+      "warning.headingBold": {
+        "sourcePhotoIds": [
+          "00000000-0000-4000-8000-000000000003"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": true,
+            "sourcePhotoIds": [
+              "00000000-0000-4000-8000-000000000003"
+            ]
+          }
+        ]
+      },
+      "warning.bodyBold": {
+        "sourcePhotoIds": [
+          "00000000-0000-4000-8000-000000000003"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": false,
+            "sourcePhotoIds": [
+              "00000000-0000-4000-8000-000000000003"
+            ]
+          }
+        ]
+      }
+    },
+    "extraction": {
+      "schemaVersion": 2,
+      "promptVersion": "photo-set-observations-v2",
+      "model": "offline-fixture",
+      "requestId": "00000000-0000-4000-8000-000000000009"
+    },
+    "comparison": {
+      "processing": "complete",
+      "applicationId": "RULES-SYNTH-001",
+      "applicationVersion": "1",
+      "rulesVersion": "prototype-seven-fields-v1",
+      "rulesRevision": 4,
+      "fields": {
+        "brand": {
+          "status": "match",
+          "reasons": [
+            "Brand: readable text agrees under case/whitespace/NFC equivalence."
+          ],
+          "expected": "Old Harbor",
+          "observed": {
+            "status": "readable",
+            "text": "Old Harbor",
+            "reason": "Synthetic legible brand"
+          },
+          "sourcePhotoIds": [
+            "00000000-0000-4000-8000-000000000002"
+          ],
+          "conflict": false
+        },
+        "classType": {
+          "status": "match",
+          "reasons": [
+            "Class/type: readable text agrees under case/whitespace/NFC equivalence."
+          ],
+          "expected": "Vodka",
+          "observed": {
+            "status": "readable",
+            "text": "Vodka",
+            "reason": "Synthetic legible class"
+          },
+          "sourcePhotoIds": [
+            "00000000-0000-4000-8000-000000000002"
+          ],
+          "conflict": false
+        },
+        "abv": {
+          "status": "match",
+          "reasons": [
+            "ABV: equal declared/observed decimal percentage; no regulatory tolerance applied."
+          ],
+          "expected": "40",
+          "observed": {
+            "status": "readable",
+            "text": "40%",
+            "reason": "Synthetic legible ABV"
+          },
+          "sourcePhotoIds": [
+            "00000000-0000-4000-8000-000000000002"
+          ],
+          "conflict": false
+        },
+        "netContents": {
+          "status": "match",
+          "reasons": [
+            "Net contents: equal exact metric volume (1 L = 1000 mL); standards of fill not evaluated."
+          ],
+          "expected": "750 mL",
+          "observed": {
+            "status": "readable",
+            "text": "750 mL",
+            "reason": "Synthetic legible volume"
+          },
+          "sourcePhotoIds": [
+            "00000000-0000-4000-8000-000000000002"
+          ],
+          "conflict": false
+        },
+        "producer": {
+          "status": "match",
+          "reasons": [
+            "Producer name: readable text agrees under case/whitespace/NFC equivalence.",
+            "Producer address: readable text agrees under case/whitespace/NFC equivalence."
+          ],
+          "expected": "Harbor Distillery\n12 Wharf Road, Paris",
+          "observed": {
+            "name": {
+              "status": "readable",
+              "text": "Harbor Distillery",
+              "reason": "Synthetic legible name"
+            },
+            "address": {
+              "status": "readable",
+              "text": "12 Wharf Road, Paris",
+              "reason": "Synthetic legible address"
+            }
+          },
+          "sourcePhotoIds": [
+            "00000000-0000-4000-8000-000000000002"
+          ],
+          "conflict": false
+        },
+        "origin": {
+          "status": "match",
+          "reasons": [
+            "Origin applies to imported distilled-spirits.",
+            "Imported country of origin: readable text agrees under case/whitespace/NFC equivalence."
+          ],
+          "expected": "France",
+          "observed": {
+            "status": "readable",
+            "text": "France",
+            "reason": "Synthetic legible country"
+          },
+          "sourcePhotoIds": [
+            "00000000-0000-4000-8000-000000000002"
+          ],
+          "conflict": false
+        },
+        "warning": {
+          "status": "match",
+          "reasons": [
+            "Warning all-caps heading: readable text agrees under exact wording (layout whitespace only).",
+            "Warning body wording: readable text agrees under exact wording (layout whitespace only).",
+            "Warning bold heading: observed as required.",
+            "Warning nonbold body: observed as required."
+          ],
+          "expected": "GOVERNMENT WARNING:\n(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+          "observed": {
+            "heading": {
+              "status": "readable",
+              "text": "GOVERNMENT WARNING:",
+              "reason": "Synthetic legible heading"
+            },
+            "body": {
+              "status": "readable",
+              "text": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+              "reason": "Synthetic legible body"
+            },
+            "headingBold": true,
+            "bodyBold": false
+          },
+          "sourcePhotoIds": [
+            "00000000-0000-4000-8000-000000000003"
+          ],
+          "conflict": false
+        }
+      },
+      "physicalPrintSize": {
+        "status": "unverified",
+        "reason": "Physical print size cannot be established from extraction/photo evidence; not measured or certified. This source-backed prototype is not exhaustive TTB legal certification."
+      }
+    }
+  },
+  "conflict": {
+    "recordVersion": 2,
+    "processing": "complete",
+    "application": {
+      "applicationId": "RULES-SYNTH-001",
+      "applicationVersion": "1",
+      "brand": "Old Harbor",
+      "classType": "Vodka",
+      "abv": 40,
+      "netContents": "750 mL",
+      "producerName": "Harbor Distillery",
+      "producerAddress": "12 Wharf Road, Paris",
+      "commodity": "distilled-spirits",
+      "imported": true,
+      "origin": {
+        "kind": "imported",
+        "country": "France"
+      }
+    },
+    "groupId": "00000000-0000-4000-8000-000000000001",
+    "revision": 1,
+    "photos": [
+      {
+        "photoId": "00000000-0000-4000-8000-000000000002",
+        "role": "front",
+        "filename": "front.png",
+        "mime": "image/png",
+        "bytes": 79690,
+        "sourceSha256": "46912750a0d1708a9883e83ce8161f3e1eb811ab5060b6037473437ffc0095e3",
+        "normalized": {
+          "sha256": "46912750a0d1708a9883e83ce8161f3e1eb811ab5060b6037473437ffc0095e3",
+          "bytes": 79690,
+          "mime": "image/png",
+          "width": 840,
+          "height": 1020
+        }
+      },
+      {
+        "photoId": "00000000-0000-4000-8000-000000000003",
+        "role": "back",
+        "filename": "back.png",
+        "mime": "image/png",
+        "bytes": 80288,
+        "sourceSha256": "3f726b34a74502131164b34f75d29e6521505bd3fd6471598fa0c05724bcfd48",
+        "normalized": {
+          "sha256": "3f726b34a74502131164b34f75d29e6521505bd3fd6471598fa0c05724bcfd48",
+          "bytes": 80288,
+          "mime": "image/png",
+          "width": 840,
+          "height": 1020
+        }
+      }
+    ],
+    "photoSetSha256": "456813ed6de7c7049db1e63accde1647e52c5c12c0bda676ffed519a283ed092",
+    "imageSha256": "46912750a0d1708a9883e83ce8161f3e1eb811ab5060b6037473437ffc0095e3",
+    "source": "fixture",
+    "photoEvidence": {
+      "schemaVersion": 2,
+      "photos": [
+        {
+          "photoId": "00000000-0000-4000-8000-000000000002",
+          "evidence": {
+            "schemaVersion": 1,
+            "brand": {
+              "status": "readable",
+              "text": "Old Harbor",
+              "reason": "Synthetic legible brand"
+            },
+            "classType": {
+              "status": "readable",
+              "text": "Vodka",
+              "reason": "Synthetic legible class"
+            },
+            "abv": {
+              "status": "readable",
+              "text": "40%",
+              "reason": "Synthetic legible ABV"
+            },
+            "netContents": {
+              "status": "readable",
+              "text": "750 mL",
+              "reason": "Synthetic legible volume"
+            },
+            "producer": {
+              "name": {
+                "status": "readable",
+                "text": "Harbor Distillery",
+                "reason": "Synthetic legible name"
+              },
+              "address": {
+                "status": "readable",
+                "text": "12 Wharf Road, Paris",
+                "reason": "Synthetic legible address"
+              }
+            },
+            "origin": {
+              "status": "readable",
+              "text": "France",
+              "reason": "Synthetic legible country"
+            },
+            "warning": {
+              "heading": {
+                "status": "missing",
+                "text": null,
+                "reason": "Not visible in this synthetic photo."
+              },
+              "body": {
+                "status": "missing",
+                "text": null,
+                "reason": "Not visible in this synthetic photo."
+              },
+              "headingBold": null,
+              "bodyBold": null
+            }
+          }
+        },
+        {
+          "photoId": "00000000-0000-4000-8000-000000000003",
+          "evidence": {
+            "schemaVersion": 1,
+            "brand": {
+              "status": "missing",
+              "text": null,
+              "reason": "Not visible in this synthetic photo."
+            },
+            "classType": {
+              "status": "missing",
+              "text": null,
+              "reason": "Not visible in this synthetic photo."
+            },
+            "abv": {
+              "status": "readable",
+              "text": "45%",
+              "reason": "Synthetic conflicting observation."
+            },
+            "netContents": {
+              "status": "missing",
+              "text": null,
+              "reason": "Not visible in this synthetic photo."
+            },
+            "producer": {
+              "name": {
+                "status": "missing",
+                "text": null,
+                "reason": "Not visible in this synthetic photo."
+              },
+              "address": {
+                "status": "missing",
+                "text": null,
+                "reason": "Not visible in this synthetic photo."
+              }
+            },
+            "origin": {
+              "status": "missing",
+              "text": null,
+              "reason": "Not visible in this synthetic photo."
+            },
+            "warning": {
+              "heading": {
+                "status": "readable",
+                "text": "GOVERNMENT WARNING:",
+                "reason": "Synthetic legible heading"
+              },
+              "body": {
+                "status": "readable",
+                "text": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+                "reason": "Synthetic legible body"
+              },
+              "headingBold": true,
+              "bodyBold": false
+            }
+          }
+        }
+      ]
+    },
+    "aggregationVersion": "photo-set-aggregation-v1",
+    "evidence": {
+      "schemaVersion": 1,
+      "brand": {
+        "status": "readable",
+        "text": "Old Harbor",
+        "reason": "Synthetic legible brand"
+      },
+      "classType": {
+        "status": "readable",
+        "text": "Vodka",
+        "reason": "Synthetic legible class"
+      },
+      "abv": {
+        "status": "uncertain",
+        "text": null,
+        "reason": "Conflicting photo observations; inspect source photos."
+      },
+      "netContents": {
+        "status": "readable",
+        "text": "750 mL",
+        "reason": "Synthetic legible volume"
+      },
+      "producer": {
+        "name": {
+          "status": "readable",
+          "text": "Harbor Distillery",
+          "reason": "Synthetic legible name"
+        },
+        "address": {
+          "status": "readable",
+          "text": "12 Wharf Road, Paris",
+          "reason": "Synthetic legible address"
+        }
+      },
+      "origin": {
+        "status": "readable",
+        "text": "France",
+        "reason": "Synthetic legible country"
+      },
+      "warning": {
+        "heading": {
+          "status": "readable",
+          "text": "GOVERNMENT WARNING:",
+          "reason": "Synthetic legible heading"
+        },
+        "body": {
+          "status": "readable",
+          "text": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+          "reason": "Synthetic legible body"
+        },
+        "headingBold": true,
+        "bodyBold": false
+      }
+    },
+    "provenance": {
+      "brand": {
+        "sourcePhotoIds": [
+          "00000000-0000-4000-8000-000000000002"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "Old Harbor",
+            "sourcePhotoIds": [
+              "00000000-0000-4000-8000-000000000002"
+            ]
+          }
+        ]
+      },
+      "classType": {
+        "sourcePhotoIds": [
+          "00000000-0000-4000-8000-000000000002"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "Vodka",
+            "sourcePhotoIds": [
+              "00000000-0000-4000-8000-000000000002"
+            ]
+          }
+        ]
+      },
+      "abv": {
+        "sourcePhotoIds": [
+          "00000000-0000-4000-8000-000000000002",
+          "00000000-0000-4000-8000-000000000003"
+        ],
+        "conflict": true,
+        "variants": [
+          {
+            "value": "40%",
+            "sourcePhotoIds": [
+              "00000000-0000-4000-8000-000000000002"
+            ]
+          },
+          {
+            "value": "45%",
+            "sourcePhotoIds": [
+              "00000000-0000-4000-8000-000000000003"
+            ]
+          }
+        ]
+      },
+      "netContents": {
+        "sourcePhotoIds": [
+          "00000000-0000-4000-8000-000000000002"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "750 mL",
+            "sourcePhotoIds": [
+              "00000000-0000-4000-8000-000000000002"
+            ]
+          }
+        ]
+      },
+      "producer.name": {
+        "sourcePhotoIds": [
+          "00000000-0000-4000-8000-000000000002"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "Harbor Distillery",
+            "sourcePhotoIds": [
+              "00000000-0000-4000-8000-000000000002"
+            ]
+          }
+        ]
+      },
+      "producer.address": {
+        "sourcePhotoIds": [
+          "00000000-0000-4000-8000-000000000002"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "12 Wharf Road, Paris",
+            "sourcePhotoIds": [
+              "00000000-0000-4000-8000-000000000002"
+            ]
+          }
+        ]
+      },
+      "origin": {
+        "sourcePhotoIds": [
+          "00000000-0000-4000-8000-000000000002"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "France",
+            "sourcePhotoIds": [
+              "00000000-0000-4000-8000-000000000002"
+            ]
+          }
+        ]
+      },
+      "warning.heading": {
+        "sourcePhotoIds": [
+          "00000000-0000-4000-8000-000000000003"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "GOVERNMENT WARNING:",
+            "sourcePhotoIds": [
+              "00000000-0000-4000-8000-000000000003"
+            ]
+          }
+        ]
+      },
+      "warning.body": {
+        "sourcePhotoIds": [
+          "00000000-0000-4000-8000-000000000003"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+            "sourcePhotoIds": [
+              "00000000-0000-4000-8000-000000000003"
+            ]
+          }
+        ]
+      },
+      "warning.headingBold": {
+        "sourcePhotoIds": [
+          "00000000-0000-4000-8000-000000000003"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": true,
+            "sourcePhotoIds": [
+              "00000000-0000-4000-8000-000000000003"
+            ]
+          }
+        ]
+      },
+      "warning.bodyBold": {
+        "sourcePhotoIds": [
+          "00000000-0000-4000-8000-000000000003"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": false,
+            "sourcePhotoIds": [
+              "00000000-0000-4000-8000-000000000003"
+            ]
+          }
+        ]
+      }
+    },
+    "extraction": {
+      "schemaVersion": 2,
+      "promptVersion": "photo-set-observations-v2",
+      "model": "offline-fixture",
+      "requestId": "00000000-0000-4000-8000-000000000009"
+    },
+    "comparison": {
+      "processing": "complete",
+      "applicationId": "RULES-SYNTH-001",
+      "applicationVersion": "1",
+      "rulesVersion": "prototype-seven-fields-v1",
+      "rulesRevision": 4,
+      "fields": {
+        "brand": {
+          "status": "match",
+          "reasons": [
+            "Brand: readable text agrees under case/whitespace/NFC equivalence."
+          ],
+          "expected": "Old Harbor",
+          "observed": {
+            "status": "readable",
+            "text": "Old Harbor",
+            "reason": "Synthetic legible brand"
+          },
+          "sourcePhotoIds": [
+            "00000000-0000-4000-8000-000000000002"
+          ],
+          "conflict": false
+        },
+        "classType": {
+          "status": "match",
+          "reasons": [
+            "Class/type: readable text agrees under case/whitespace/NFC equivalence."
+          ],
+          "expected": "Vodka",
+          "observed": {
+            "status": "readable",
+            "text": "Vodka",
+            "reason": "Synthetic legible class"
+          },
+          "sourcePhotoIds": [
+            "00000000-0000-4000-8000-000000000002"
+          ],
+          "conflict": false
+        },
+        "abv": {
+          "status": "mismatch",
+          "reasons": [
+            "ABV: uncertain observation; human review required.",
+            "abv: conflicting photo observations (00000000-0000-4000-8000-000000000002, 00000000-0000-4000-8000-000000000003).",
+            "abv: proven defect in photo 00000000-0000-4000-8000-000000000003."
+          ],
+          "expected": "40",
+          "observed": {
+            "status": "uncertain",
+            "text": null,
+            "reason": "Conflicting photo observations; inspect source photos."
+          },
+          "sourcePhotoIds": [
+            "00000000-0000-4000-8000-000000000002",
+            "00000000-0000-4000-8000-000000000003"
+          ],
+          "conflict": true
+        },
+        "netContents": {
+          "status": "match",
+          "reasons": [
+            "Net contents: equal exact metric volume (1 L = 1000 mL); standards of fill not evaluated."
+          ],
+          "expected": "750 mL",
+          "observed": {
+            "status": "readable",
+            "text": "750 mL",
+            "reason": "Synthetic legible volume"
+          },
+          "sourcePhotoIds": [
+            "00000000-0000-4000-8000-000000000002"
+          ],
+          "conflict": false
+        },
+        "producer": {
+          "status": "match",
+          "reasons": [
+            "Producer name: readable text agrees under case/whitespace/NFC equivalence.",
+            "Producer address: readable text agrees under case/whitespace/NFC equivalence."
+          ],
+          "expected": "Harbor Distillery\n12 Wharf Road, Paris",
+          "observed": {
+            "name": {
+              "status": "readable",
+              "text": "Harbor Distillery",
+              "reason": "Synthetic legible name"
+            },
+            "address": {
+              "status": "readable",
+              "text": "12 Wharf Road, Paris",
+              "reason": "Synthetic legible address"
+            }
+          },
+          "sourcePhotoIds": [
+            "00000000-0000-4000-8000-000000000002"
+          ],
+          "conflict": false
+        },
+        "origin": {
+          "status": "match",
+          "reasons": [
+            "Origin applies to imported distilled-spirits.",
+            "Imported country of origin: readable text agrees under case/whitespace/NFC equivalence."
+          ],
+          "expected": "France",
+          "observed": {
+            "status": "readable",
+            "text": "France",
+            "reason": "Synthetic legible country"
+          },
+          "sourcePhotoIds": [
+            "00000000-0000-4000-8000-000000000002"
+          ],
+          "conflict": false
+        },
+        "warning": {
+          "status": "match",
+          "reasons": [
+            "Warning all-caps heading: readable text agrees under exact wording (layout whitespace only).",
+            "Warning body wording: readable text agrees under exact wording (layout whitespace only).",
+            "Warning bold heading: observed as required.",
+            "Warning nonbold body: observed as required."
+          ],
+          "expected": "GOVERNMENT WARNING:\n(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+          "observed": {
+            "heading": {
+              "status": "readable",
+              "text": "GOVERNMENT WARNING:",
+              "reason": "Synthetic legible heading"
+            },
+            "body": {
+              "status": "readable",
+              "text": "(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+              "reason": "Synthetic legible body"
+            },
+            "headingBold": true,
+            "bodyBold": false
+          },
+          "sourcePhotoIds": [
+            "00000000-0000-4000-8000-000000000003"
+          ],
+          "conflict": false
+        }
+      },
+      "physicalPrintSize": {
+        "status": "unverified",
+        "reason": "Physical print size cannot be established from extraction/photo evidence; not measured or certified. This source-backed prototype is not exhaustive TTB legal certification."
+      }
+    }
+  }
+}

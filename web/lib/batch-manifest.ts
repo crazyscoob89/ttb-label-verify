@@ -1,6 +1,8 @@
 import { z } from 'zod';
 import { applicationSchema, filenameSchema, MAX_BATCH_PAIRS, type Application } from './contracts';
 import { immutable } from './comparison-record';
+import type {PhotoRole} from './live-photo-client';
+export type BatchPhotoReference={photoId:string;filename:string;role:PhotoRole};
 
 /** References sanitized evidence; this is NOT image decoding or hash verification. */
 export const batchImageSchema = z.object({ filename: filenameSchema, imageSha256: z.string().regex(/^[a-f0-9]{64}$/) }).strict();
@@ -10,7 +12,7 @@ export type BatchImage = z.infer<typeof batchImageSchema>;
 export type ManifestIssue = 'invalid-filename' | 'invalid-file' | 'invalid-mapping' | 'invalid-application' |
   'duplicate-file' | 'duplicate-mapping' | 'duplicate-application' | 'missing-file' | 'missing-mapping';
 type EntryBase = { id: string; filename: string | null; fileIndexes: number[]; mappingIndexes: number[]; issues: ManifestIssue[] };
-export type ValidBatchEntry = EntryBase & { status: 'valid'; filename: string; application: Application; imageSha256: string | null };
+export type ValidBatchEntry = EntryBase & { status: 'valid'; filename: string; application: Application; imageSha256: string | null;groupId?:string;photos?:BatchPhotoReference[] };
 export type BatchEntry = ValidBatchEntry | (EntryBase & { status: 'blocked' });
 export type BatchManifest = { entries: BatchEntry[]; counts: { total: number; valid: number; blocked: number } };
 
@@ -24,6 +26,8 @@ const object = (value: unknown): Record<string, unknown> => value !== null && ty
  * No list-order pairing, sample lookup, filesystem, provider, or application defaults.
  */
 export function buildBatchManifest(filesInput: unknown, manifestInput: unknown, options: { live?: boolean } = {}): BatchManifest {
+  const decoded=typeof manifestInput==='string'?JSON.parse(manifestInput):manifestInput;
+  if(object(decoded).schemaVersion===2)return buildGroupedManifest(filesInput,decoded,options);
   const imageSchema = options.live ? unpreparedBatchImageSchema : batchImageSchema;
   const files = arraySchema.parse(filesInput);
   const mappings = arraySchema.parse(typeof manifestInput === 'string' ? JSON.parse(manifestInput) : manifestInput);
@@ -71,4 +75,27 @@ export function buildBatchManifest(filesInput: unknown, manifestInput: unknown, 
   });
   const valid = entries.filter(e => e.status === 'valid').length;
   return immutable({ entries, counts: { total: entries.length, valid, blocked: entries.length - valid } });
+}
+
+const groupedMapping=z.object({groupId:z.uuid(),application:applicationSchema,photos:z.array(z.object({photoId:z.uuid(),filename:filenameSchema,role:z.enum(['front','back','neck','closeup','other'])}).strict()).min(1).max(4)}).strict();
+function buildGroupedManifest(filesInput:unknown,input:unknown,options:{live?:boolean}):BatchManifest {
+ const files=z.array(z.unknown()).max(1200).parse(filesInput),envelope=z.object({schemaVersion:z.literal(2),groups:z.array(z.unknown()).min(1).max(300)}).strict().parse(input);
+ const mappings=envelope.groups, fileNames=new Map<string,number[]>(), names=new Map<string,number[]>(),ids=new Map<string,number[]>(),groups=new Map<string,number[]>(),apps=new Map<string,number[]>();
+ const add=(map:Map<string,number[]>,key:unknown,i:number)=>{if(typeof key==='string')map.set(key,[...(map.get(key)??[]),i]);};
+ files.forEach((f,i)=>add(fileNames,object(f).filename,i));
+ mappings.forEach((m,i)=>{const value=object(m),a=object(value.application);add(groups,value.groupId,i);add(apps,JSON.stringify([a.applicationId,a.applicationVersion]),i);if(Array.isArray(value.photos))value.photos.forEach(p=>{add(names,object(p).filename,i);add(ids,object(p).photoId,i);});});
+ const entries:BatchEntry[]=mappings.map((m,i)=>{
+  const parsed=groupedMapping.safeParse(m),raw=object(m),refs=Array.isArray(raw.photos)?raw.photos:[],issues=new Set<ManifestIssue>();
+  if(!parsed.success||!options.live)issues.add('invalid-mapping');
+  if(!applicationSchema.safeParse(raw.application).success)issues.add('invalid-application');
+  if((groups.get(String(raw.groupId))?.length??0)>1)issues.add('duplicate-mapping');
+  const a=object(raw.application);if((apps.get(JSON.stringify([a.applicationId,a.applicationVersion]))?.length??0)>1)issues.add('duplicate-application');
+  const fileIndexes:number[]=[];
+  refs.forEach(p=>{const ref=object(p),indexes=fileNames.get(String(ref.filename))??[];fileIndexes.push(...indexes);if(!indexes.length)issues.add('missing-file');if(indexes.length>1)issues.add('duplicate-file');if((names.get(String(ref.filename))?.length??0)>1||(ids.get(String(ref.photoId))?.length??0)>1)issues.add('duplicate-mapping');for(const index of indexes)if(!unpreparedBatchImageSchema.safeParse(files[index]).success)issues.add('invalid-file');});
+  const base={id:`group:${String(raw.groupId)}:${i}`,filename:parsed.success?parsed.data.application.brand:null,fileIndexes,mappingIndexes:[i],issues:[...issues]};
+  return parsed.success&&!issues.size?{...base,status:'valid',filename:parsed.data.photos.map(p=>p.filename).join(' + '),application:parsed.data.application,imageSha256:null,groupId:parsed.data.groupId,photos:parsed.data.photos}:{...base,status:'blocked'};
+ });
+ files.forEach((f,i)=>{if(!names.has(String(object(f).filename)))entries.push({id:`unmapped:${i}`,filename:typeof object(f).filename==='string'?String(object(f).filename):null,fileIndexes:[i],mappingIndexes:[],issues:['missing-mapping'],status:'blocked'});});
+ if(entries.length>300)throw Error('Batch must contain 1 to 300 logical entries');
+ const valid=entries.filter(e=>e.status==='valid').length;return immutable({entries,counts:{total:entries.length,valid,blocked:entries.length-valid}});
 }
