@@ -7,10 +7,21 @@ import {prepareLiveGroup, executeLiveGroup,loadReviewPhotoEvidence, type PhotoGr
 import {createBatchState,transitionBatch,type DispatchCommand} from '../lib/batch-state';
 import {preparedGroupSchema} from '../lib/photo-contracts';
 import {buildBatchManifest} from '../lib/batch-manifest';
+import {groupFixture} from './fixtures/photo-groups';
 const application=parseApplication(fixtures.application), code='synthetic-test-only';
 function input(){const files=[new File(['front'],'front.png',{type:'image/png'}),new File(['back'],'back.png',{type:'image/png'})]; const group:PhotoGroupDeclaration={schemaVersion:2,groupId:randomUUID(),revision:1,application,photos:files.map((file,i)=>({photoId:randomUUID(),filename:file.name,role:i?'back':'front',mime:'image/png',bytes:file.size}))}; return {files,group};}
 function prepared(group:PhotoGroupDeclaration){const photos:PhotoDescriptor[]=group.photos.map((p,i)=>({...p,sourceSha256:String(i+1).repeat(64),normalized:{sha256:'c'.repeat(64),bytes:10,mime:'image/png',width:1,height:1}}));const photoSetSha256=createHash('sha256').update(photoSetCanonical(photos)).digest('hex');return {schemaVersion:2,groupId:group.groupId,revision:group.revision,photoSetSha256,photos,attemptId:randomUUID(),reservationId:randomUUID(),binding:photoSetSha256+'.'+'b'.repeat(64)};}
 afterEach(()=>vi.unstubAllEnvs());
+test('client admits actual replayable group and rejects invented findings/provenance before render',async()=>{
+ vi.stubEnv('NEXT_PUBLIC_TTB_MEDIA_TRANSPORT','');const f=await groupFixture();
+ const files=f.input.files.map(p=>new File([new Uint8Array(p.image.bytes)],p.image.filename,{type:p.image.mime}));
+ const p=preparedGroupSchema.parse({...prepared(f.input.group),photos:f.record.photos,photoSetSha256:f.record.photoSetSha256,binding:f.record.photoSetSha256+'.'+'b'.repeat(64)});
+ const ready={group:f.input.group,files,prepared:p};
+ const valid=vi.fn<typeof fetch>().mockResolvedValue(Response.json({result:f.record}));expect((await executeLiveGroup(ready,code,AbortSignal.timeout(5000),valid)).result).toEqual(f.record);
+ const forged=structuredClone(f.record);forged.comparison.fields.brand.reasons=['Invented explanation not produced by the evaluator.'];
+ await expect(executeLiveGroup(ready,code,AbortSignal.timeout(5000),vi.fn<typeof fetch>().mockResolvedValue(Response.json({result:forged})))).rejects.toThrow('invalid-extraction');
+ const badDigest={...f.record,photoSetSha256:'a'.repeat(64)};await expect(executeLiveGroup(ready,code,AbortSignal.timeout(5000),vi.fn<typeof fetch>().mockResolvedValue(Response.json({result:badDigest})))).rejects.toThrow('invalid-extraction');
+});
 test('local group sends exact identified files in prepare then one execute, reusing server IDs',async()=>{
  vi.stubEnv('NEXT_PUBLIC_TTB_MEDIA_TRANSPORT','');const {files,group}=input(), p=prepared(group);const transport=vi.fn<typeof fetch>().mockResolvedValueOnce(Response.json({prepared:p})).mockResolvedValueOnce(Response.json({result:{processing:'failed',code:'provider-failed'}}));
  const ready=await prepareLiveGroup(group,files,code,AbortSignal.timeout(5000),transport);await executeLiveGroup(ready,code,AbortSignal.timeout(5000),transport);

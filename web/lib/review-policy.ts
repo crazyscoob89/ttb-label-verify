@@ -4,6 +4,7 @@ import { applicationSchema } from './contracts';
 import { extractionEvidenceSchema } from './extraction/schema';
 import { compareApplication, FIELD_KEYS, RULES_VERSION, RULES_REVISION } from './rules';
 import { compareApplication as compareHistoricalApplication } from './rules-v1';
+import { compareApplicationV3, RULES_REVISION_V3 } from './wine-rules';
 import { immutable, type CompleteComparison } from './comparison-record';
 
 const note = z.string().max(2000).refine(v => !/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/.test(v));
@@ -25,10 +26,10 @@ export function checkedRecord(value:unknown): CompleteComparison | null {
   const stored = parsed.data.comparison;
   if (!stored || typeof stored !== 'object' || !('rulesVersion' in stored) || stored.rulesVersion !== RULES_VERSION) return null;
   // Dispatch by the explicit stored revision, never try both and accept whichever
-  // matches. Original snapshots omit revision; current snapshots MUST contain 2.
+  // matches. Missing revision is historical v1; new singleton snapshots use v3.
   const revision = 'rulesRevision' in stored ? stored.rulesRevision : 1;
-  if (revision !== 1 && revision !== RULES_REVISION) return null;
-  const compare = revision === 1 ? compareHistoricalApplication : compareApplication;
+  if (revision !== 1 && revision !== RULES_REVISION && revision !== RULES_REVISION_V3) return null;
+  const compare = revision === 1 ? compareHistoricalApplication : revision === RULES_REVISION ? compareApplication : compareApplicationV3;
   const comparison = compare(parsed.data.application,parsed.data.evidence);
   if (comparison.processing !== 'complete' || JSON.stringify(comparison) !== JSON.stringify(parsed.data.comparison)) return null;
   return {...parsed.data, comparison};

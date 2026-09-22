@@ -1,6 +1,7 @@
 'use client';
 import { useCallback,useEffect, useRef, useState } from 'react';
-import {photoRecord,verifyPhotoSet,loadReviewPhotoEvidence,type UiCompleteComparison as CompleteComparison,type PhotoDescriptor} from '../lib/live-photo-client';
+import {photoRecord,loadReviewPhotoEvidence,type UiCompleteComparison as CompleteComparison,type PhotoDescriptor} from '../lib/live-photo-client';
+import {verifyPhotoRecordDigest} from '../lib/photo-record';
 import type { Application } from '../lib/contracts';
 import {checkedRecord,type ReviewIntent} from '../lib/review-policy';
 import { savedReceiptSchema, type SavedReceipt } from '../lib/saved-review-contract';
@@ -32,7 +33,7 @@ export default function SavedReviewHistory(){
   try{
    const data:Detail=await(await request(id)).json();savedReceiptSchema.parse(data.receipt);
    if(data.receipt.reviewId!==id||!checkedRecord(data.record))throw Error('invalid-saved-record');
-   const group=photoRecord(data.record);if(group){await verifyPhotoSet(group.photos,group.photoSetSha256);if(run===generation.current)setDetail(data);return;}
+   const group=photoRecord(data.record);if(group){if(!await verifyPhotoRecordDigest(group))throw Error('invalid-saved-record');if(run===generation.current)setDetail(data);return;}
    const evidence=await loadReviewEvidence(id,data.record.imageSha256,code,AbortSignal.timeout(15000));
    if(run!==generation.current)return;
    const url=URL.createObjectURL(evidence);imageUrl.current=url;setImage(url);setDetail(data);

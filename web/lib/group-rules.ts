@@ -1,16 +1,17 @@
-import { compareApplication, FIELD_KEYS, type ComparisonFields, type ComparisonResult, type FieldKey } from './rules';
+import { FIELD_KEYS, type ComparisonFields, type ComparisonResult, type FieldKey } from './rules';
+import { compareApplicationV3 } from './wine-rules';
 import type { Application } from './contracts';
 import { aggregatePhotoEvidence } from './photo-evidence';
 import { EVIDENCE_PATHS, type PhotoSetEvidence } from './photo-contracts';
 export const GROUP_RULES_REVISION=4 as const;
 export type GroupComparison=Omit<Extract<ComparisonResult,{processing:'complete'}>,'rulesRevision'|'fields'>&{rulesRevision:4;fields:{[K in FieldKey]:ComparisonFields[K]&{sourcePhotoIds:string[];conflict:boolean}}};
-/** Parent integration replaces base comparison with compareApplicationV3. Frozen
- * revision-1/2 evaluators themselves must never be modified. */
+/** Group revision 4 wraps wine revision 3, including individual defect checks.
+ * Frozen revision-1/2 evaluators themselves must never be modified. */
 export function comparePhotoApplication(application:Application,photoEvidence:PhotoSetEvidence):GroupComparison {
  const {evidence,provenance}=aggregatePhotoEvidence(photoEvidence);
- const base=compareApplication(application,evidence);
+ const base=compareApplicationV3(application,evidence);
  if(base.processing!=='complete')throw Error('Invalid group comparison');
- const individual=photoEvidence.photos.map(p=>({id:p.photoId,result:compareApplication(application,p.evidence)}));
+ const individual=photoEvidence.photos.map(p=>({id:p.photoId,result:compareApplicationV3(application,p.evidence)}));
  const fields={} as GroupComparison['fields'];
  for(const key of FIELD_KEYS){
   const paths=EVIDENCE_PATHS.filter(p=>p===key||p.startsWith(key+'.'));

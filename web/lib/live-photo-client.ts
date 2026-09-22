@@ -1,15 +1,14 @@
 import {checkFileDeclaration} from './contracts';
 import {FIELD_KEYS} from './rules';
 import type {CompleteComparison, ComparisonRecord} from './comparison-record';
-import type {ExtractionEvidence} from './extraction/schema';
+import {checkedPhotoRecord,verifyPhotoRecordDigest,type CompletePhotoComparison} from './photo-record';
+export type {CompletePhotoComparison} from './photo-record';
 import {boundedBytes, capability, hostedMode, loadReviewEvidence} from './live-media-client';
 
 import {photoGroupDeclarationSchema,preparedGroupSchema,photoSetCanonical,photoIdSchema,parsePhotoSetEvidence,EVIDENCE_PATHS,type PhotoRole,type PhotoDeclaration,type PhotoGroupDeclaration,type PhotoDescriptor,type PreparedGroup,type FieldProvenance} from './photo-contracts';
 export type {PhotoRole,PhotoDeclaration,PhotoGroupDeclaration,PhotoDescriptor,PreparedGroup,FieldProvenance} from './photo-contracts';
 export const PHOTO_ROLES:PhotoRole[]=['front','back','neck','closeup','other'];
-// Record structural bridge only until parent integrates backend-owned photo-record.
-// Wire schemas above are the authoritative shared module (backend b950673).
-export type CompletePhotoComparison=Omit<CompleteComparison,'comparison'> & {recordVersion:2;groupId:string;revision:number;photos:PhotoDescriptor[];photoSetSha256:string;photoEvidence:{schemaVersion:2;photos:{photoId:string;evidence:ExtractionEvidence}[]};provenance:Record<string,FieldProvenance>;aggregationVersion:'photo-set-aggregation-v1';comparison:Omit<CompleteComparison['comparison'],'rulesRevision'> & {rulesRevision:4}};
+
 export type UiCompleteComparison=CompleteComparison|CompletePhotoComparison;
 export type UiComparisonRecord=ComparisonRecord|CompletePhotoComparison;
 export function photoRecord(record:UiCompleteComparison):CompletePhotoComparison|null {return 'recordVersion' in record && record.recordVersion===2 ? record as CompletePhotoComparison : null;}
@@ -61,8 +60,8 @@ export async function executeLiveGroup(ready:ReadyPhotoGroup,code:string,signal:
  return measured('compare',onStage,async()=>{const media=bodyFor(ready.group,ready.files,ready.ticket,{phase:'execute',attemptId:p.attemptId,reservationId:p.reservationId,binding:p.binding});const response=await transport('/api/comparisons',{method:'POST',...media,headers:{...media.headers,'x-ttb-demo-code':code},signal,cache:'no-store',redirect:'error'});const payload=await readJson(response,signal);
  if(payload.result?.processing==='complete'){
   const record=photoRecord(payload.result);if(!record||record.groupId!==p.groupId||record.revision!==p.revision||record.photoSetSha256!==p.photoSetSha256||photoSetCanonical(record.photos)!==photoSetCanonical(p.photos)||JSON.stringify(record.application)!==JSON.stringify(ready.group.application)||record.comparison?.rulesRevision!==4)throw Error('invalid-extraction');
-  // This guards rendering only; authoritative policy replay/save remains owned
-  // by checkedRecord/evaluateReview and the immutable server snapshot.
+  // Reject forged findings/provenance before rendering, not merely on Save.
+  if(!checkedPhotoRecord(record)||!await verifyPhotoRecordDigest(record))throw Error('invalid-extraction');
   const ids=record.photos.map(p=>p.photoId);parsePhotoSetEvidence(record.photoEvidence,ids);
   for(const key of FIELD_KEYS){const field=record.comparison.fields?.[key];if(!field||!['match','mismatch','needs-review','not-applicable'].includes(field.status)||!Array.isArray(field.reasons)||field.reasons.some(reason=>typeof reason!=='string'))throw Error('invalid-extraction');}
   for(const key of EVIDENCE_PATHS){const source=record.provenance?.[key];if(!source||typeof source.conflict!=='boolean'||!Array.isArray(source.sourcePhotoIds)||source.sourcePhotoIds.some(id=>!ids.includes(id))||!Array.isArray(source.variants)||source.variants.some(v=>!['string','boolean'].includes(typeof v.value)||!Array.isArray(v.sourcePhotoIds)||v.sourcePhotoIds.some(id=>!ids.includes(id))))throw Error('invalid-extraction');}
