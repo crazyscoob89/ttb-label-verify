@@ -83,7 +83,10 @@ export default function BatchUpload({ offlineEnabled, live, onPrepared, onClear 
         if (run !== generation.current) return;
         declarations.push({filename:file.name,imageSha256:hash});
       }
-      const manifest = buildBatchManifest(declarations, mapping, {live});
+      const checked = buildBatchManifest(declarations, mapping, {live});
+      // Legacy arrays are an import convenience only. Every NEW live bottle,
+      // including a singleton row, uses v2 and retains original + normalized media.
+      const manifest:BatchManifest=live?{...checked,entries:checked.entries.map(entry=>entry.status==='valid'&&!entry.groupId?{...entry,groupId:crypto.randomUUID(),photos:[{photoId:crypto.randomUUID(),filename:entry.filename,role:'other'}]}:entry)}:checked;
       if (run === generation.current) onPrepared({manifest,assets,files:new Map(files.map(file=>[file.name,file])),live,diagnostics});
     } catch { if (run === generation.current) setError('Provide a valid grouped v2 manifest (1–300 bottles, 1–4 photos each), or a legacy singleton array. Each bottle needs a complete independent application, unique group/photo IDs and exact filename references.'); }
     finally { if (run === generation.current) setBusy(false); }

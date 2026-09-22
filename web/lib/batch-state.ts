@@ -5,6 +5,7 @@ import { immutable, type CompleteComparison, type FailureCode } from './comparis
 import { buildUnsavedDraft, newReviewIntent, reviewBinding, type Outcome, type ReviewIntent, type UnsavedDraft } from './review-policy';
 import {photoRecord,type PreparedGroup,type UiCompleteComparison} from './live-photo-client';
 import type {BatchPhotoReference} from './batch-manifest';
+import {photoSetCanonical} from './photo-contracts';
 
 export type AttemptIdentity = { attemptId: string; reservationId: string };
 export type AttemptToken = AttemptIdentity & { batchId: string; pairId: string; revision: number };
@@ -113,7 +114,7 @@ function checkedCompletion(pair: BatchPairState, input: unknown): UiCompleteComp
     const probe = buildUnsavedDraft(input, { ...newReviewIntent(input), outcome: 'second-review', notes: 'Internal record validation probe only.', confirmed: true });
     if (!probe || JSON.stringify(probe.record.application) !== JSON.stringify(pair.application)) return null;
     const group=photoRecord(probe.record);
-    if(pair.groupId){if(!group||!pair.preparedGroup||group.groupId!==pair.groupId||group.revision!==pair.revision||group.photoSetSha256!==pair.preparedGroup.photoSetSha256||JSON.stringify(group.photos)!==JSON.stringify(pair.preparedGroup.photos))return null;}
+    if(pair.groupId){if(!group||!pair.preparedGroup||group.groupId!==pair.groupId||group.revision!==pair.revision||group.photoSetSha256!==pair.preparedGroup.photoSetSha256||photoSetCanonical(group.photos)!==photoSetCanonical(pair.preparedGroup.photos))return null;}
     else if(group||probe.record.imageSha256!==pair.imageSha256)return null;
     return probe.record;
   } catch { return null; } // Unknown async input must not strand the queue on serialization errors.

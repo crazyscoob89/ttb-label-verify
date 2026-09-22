@@ -51,7 +51,7 @@ export default function BatchWorkspace({offlineEnabled}:{offlineEnabled:boolean}
     if (!source) return;
     const url = URL.createObjectURL(source); setPreview(url);
     return ()=>URL.revokeObjectURL(url);
-  },[state?.batchId,selected?.id,selected?.revision,selected?.record]);
+  },[state?.batchId,selected?.id,selected?.revision,selected?.record?.imageSha256]);
   useEffect(()=>{
     setReplacement(selected?.application?JSON.stringify(selected.application,null,2):'');
     const asset = selected?.imageSha256 && assets.current.get(selected.imageSha256);
@@ -163,7 +163,7 @@ export default function BatchWorkspace({offlineEnabled}:{offlineEnabled:boolean}
       <BatchSwitcher state={state} onOverview={()=>{unconfirm(selected.id);setOverview(true);}} isSaved={pairId=>{const pair=state.pairs.find(p=>p.id===pairId)!;const id=snapshotIds.current.get(`${state.batchId}:${pair.id}:${pair.revision}`);return !!id&&!!saved[id];}} onNavigate={target=>apply({type:'navigate',target})} />
       <section data-testid="active-pair" aria-label="Active batch review">
         <h2>{selected.filename??'Blocked entry'} — Revision {selected.revision}</h2>
-        <p className="hash">Application {selected.application?.applicationId??'unavailable'} / version {selected.application?.applicationVersion??'unavailable'} · {selected.processing} · Image SHA-256 {selected.imageSha256??'unavailable'}</p>
+        <p className="hash">Application {selected.application?.applicationId??'unavailable'} / version {selected.application?.applicationVersion??'unavailable'} · {selected.processing} · {selected.groupId?`${selected.photos?.length??0} photos · Photo-set SHA-256 ${selected.preparedGroup?.photoSetSha256??'unprepared'}`:`Image SHA-256 ${selected.imageSha256??'unavailable'}`}</p>
         {selected.processing==='blocked' && <p role="alert" className="notice error">Pair blocked: {selected.issues.join(', ')}. Correct the explicit manifest / files and validate again. No findings or review available.</p>}
         {selected.processing==='queued' && <p>Queued {state.mode==='live'?'pair':'fixture'} — not compared. Start the queue explicitly.</p>}
         <ProcessingState live={state.mode==='live'} running={selected.processing==='running'} result={selected.record??(selected.failure?{processing:'failed',code:selected.failure}:null)} />
@@ -175,7 +175,7 @@ export default function BatchWorkspace({offlineEnabled}:{offlineEnabled:boolean}
           onConfirm:checked=>checked?apply({type:'confirm',pairId:selected.id}):unconfirm(selected.id),
           onDraft:()=>apply({type:'draft',pairId:selected.id}),
         }:undefined} />
-        {selected.groupId&&selected.application&&<details className="batch-replacement"><summary>Edit this bottle’s photos</summary><p>Any addition, removal, role or order edit immediately clears preparation, results, decisions and confirmation for this bottle. It does not delete saved history. Start the updated queue explicitly.</p><PhotoInput photos={photoPreviews} onChange={next=>{const step=apply({type:'replace-group',pairId:selected.id,application:selected.application,photos:next.map(p=>({photoId:p.photoId,filename:p.file.name,role:p.role}))});if(step&&!step.rejected){for(const p of next)groupFiles.current.set(p.photoId,p.file);}for(const p of next)if(!photoPreviews.some(old=>old.url===p.url))URL.revokeObjectURL(p.url);}}/></details>}
+        {selected.groupId&&selected.application&&<details className="batch-replacement"><summary>Edit this bottle’s photos</summary><p>Any addition, removal, role or order edit immediately clears preparation, results, decisions and confirmation for this bottle. It does not delete saved history. Start the updated queue explicitly.</p><PhotoInput photos={photoPreviews} onChange={next=>{const step=apply({type:'replace-group',pairId:selected.id,application:selected.application,photos:next.map(p=>({photoId:p.photoId,filename:p.file.name,role:p.role}))});if(step&&!step.rejected){for(const p of next)groupFiles.current.set(p.photoId,p.file);if(selected.issues.includes('invalid-application'))apply({type:'invalidate-input',pairId:selected.id});}for(const p of next)if(!photoPreviews.some(old=>old.url===p.url))URL.revokeObjectURL(p.url);}}/></details>}
         {selected.application && <details className="batch-replacement"><summary>Replace this pair with a new application version</summary>
           <p>Replacement supersedes this page’s results, not any committed historical review. It clears the current intent and requires a new comparison. Any old running attempt still occupies its slot until it settles.</p>
           <label htmlFor="batch-replacement-json">Replacement application JSON</label><textarea id="batch-replacement-json" value={replacement} onChange={e=>{if(selected.groupId&&selected.processing!=='blocked')apply({type:'invalidate-input',pairId:selected.id});setReplacement(e.target.value);}} />

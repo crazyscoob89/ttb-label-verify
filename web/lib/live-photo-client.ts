@@ -1,10 +1,10 @@
-import {z} from 'zod';
-import {checkFileDeclaration, parseApplication, type Application} from './contracts';
+import {checkFileDeclaration} from './contracts';
+import {FIELD_KEYS} from './rules';
 import type {CompleteComparison, ComparisonRecord} from './comparison-record';
 import type {ExtractionEvidence} from './extraction/schema';
 import {boundedBytes, capability, hostedMode, loadReviewEvidence} from './live-media-client';
 
-import {photoGroupDeclarationSchema,preparedGroupSchema,photoSetCanonical,photoIdSchema,type PhotoRole,type PhotoDeclaration,type PhotoGroupDeclaration,type PhotoDescriptor,type PreparedGroup,type FieldProvenance} from './photo-contracts';
+import {photoGroupDeclarationSchema,preparedGroupSchema,photoSetCanonical,photoIdSchema,parsePhotoSetEvidence,EVIDENCE_PATHS,type PhotoRole,type PhotoDeclaration,type PhotoGroupDeclaration,type PhotoDescriptor,type PreparedGroup,type FieldProvenance} from './photo-contracts';
 export type {PhotoRole,PhotoDeclaration,PhotoGroupDeclaration,PhotoDescriptor,PreparedGroup,FieldProvenance} from './photo-contracts';
 export const PHOTO_ROLES:PhotoRole[]=['front','back','neck','closeup','other'];
 // Record structural bridge only until parent integrates backend-owned photo-record.
@@ -61,6 +61,11 @@ export async function executeLiveGroup(ready:ReadyPhotoGroup,code:string,signal:
  return measured('compare',onStage,async()=>{const media=bodyFor(ready.group,ready.files,ready.ticket,{phase:'execute',attemptId:p.attemptId,reservationId:p.reservationId,binding:p.binding});const response=await transport('/api/comparisons',{method:'POST',...media,headers:{...media.headers,'x-ttb-demo-code':code},signal,cache:'no-store',redirect:'error'});const payload=await readJson(response,signal);
  if(payload.result?.processing==='complete'){
   const record=photoRecord(payload.result);if(!record||record.groupId!==p.groupId||record.revision!==p.revision||record.photoSetSha256!==p.photoSetSha256||photoSetCanonical(record.photos)!==photoSetCanonical(p.photos)||JSON.stringify(record.application)!==JSON.stringify(ready.group.application)||record.comparison?.rulesRevision!==4)throw Error('invalid-extraction');
+  // This guards rendering only; authoritative policy replay/save remains owned
+  // by checkedRecord/evaluateReview and the immutable server snapshot.
+  const ids=record.photos.map(p=>p.photoId);parsePhotoSetEvidence(record.photoEvidence,ids);
+  for(const key of FIELD_KEYS){const field=record.comparison.fields?.[key];if(!field||!['match','mismatch','needs-review','not-applicable'].includes(field.status)||!Array.isArray(field.reasons)||field.reasons.some(reason=>typeof reason!=='string'))throw Error('invalid-extraction');}
+  for(const key of EVIDENCE_PATHS){const source=record.provenance?.[key];if(!source||typeof source.conflict!=='boolean'||!Array.isArray(source.sourcePhotoIds)||source.sourcePhotoIds.some(id=>!ids.includes(id))||!Array.isArray(source.variants)||source.variants.some(v=>!['string','boolean'].includes(typeof v.value)||!Array.isArray(v.sourcePhotoIds)||v.sourcePhotoIds.some(id=>!ids.includes(id))))throw Error('invalid-extraction');}
   if(payload.comparisonId!==undefined&&(!uuid(payload.comparisonId)||payload.reviewAvailability!=='available'))throw Error('invalid-snapshot');
  }return payload;});
 }

@@ -27,7 +27,7 @@ export default function ReviewConfirmation({record, controlled, comparisonId, ac
   useEffect(()=>{
     if(previousEpoch.current!==reviewEpoch){previousEpoch.current=reviewEpoch;if(controlled)controlled.onConfirm(false);else setIntent(previous=>({...previous,confirmed:false}));}
   },[reviewEpoch,controlled]);
-  const durable=useDurableReview(comparisonId,accessCode,intent,onSaved);
+  const durable=useDurableReview(comparisonId,accessCode,intent,onSaved,reviewEpoch);
   const eligibility=evaluateReview(record,intent);
   const complete=record?.processing==='complete';
   function change(next:ReviewIntent) { if(controlled){controlled.onEdit({...next,confirmed:false});return;} setIntent({...next,confirmed:false});setDraft(null); }
