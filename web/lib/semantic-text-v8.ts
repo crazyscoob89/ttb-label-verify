@@ -1,4 +1,4 @@
-import { compatibleClass, countryKey, nameKey, textKey } from './semantic-text';
+import { compatibleClass, countryKey, nameKey, tequilaType, textKey } from './semantic-text';
 export { nameKey as brandKey } from './semantic-text';
 
 /** Whole positive metric amount only; rational arithmetic has no rounding or
@@ -30,7 +30,27 @@ export function rumType(text: string): string | null {
   const spanish = value.match(/^ron (?:superior )?(?:carta )?(oro|blanco|oscuro|anejo)$/);
   return spanish ? ({ oro: 'gold', blanco: 'white', oscuro: 'dark', anejo: 'aged' } as Record<string,string>)[spanish[1]] : null;
 }
+/** A fragment is not a category. Preserve the old comparison for named
+ * commodities and numeric/age text; this predicate never establishes equality. */
+export function incompleteClassFragment(text: string): boolean {
+  return !/[0-9]|\b(?:rum|ron|rhum|vodka|gin|tequila|whisk[ey]+|bourbon|brandy|cognac|armagnac|mezcal|liqueur|cordial|schnapps|aquavit|aguardiente|pisco|absinthe|sake|wine|beer|ale|stout|porter)\b/u.test(nameKey(text));
+}
+const CLASS_STYLES = new Set(['gold','white','dark','aged','spiced','silver','blanco','reposado','anejo','extra anejo','joven','oro','carta oro','oscuro']);
+/** Only a whole recognized style and a whole supported *specific* designation
+ * can agree. Generic categories cannot supply the missing subtype, and unknown
+ * words are not discarded. A false result is a real style contradiction. */
+export function partialClassCompatibility(fragment: string, complete: string): boolean | null {
+  const style = nameKey(fragment);
+  if (!CLASS_STYLES.has(style)) return null;
+  const rum = rumType(complete), tequila = tequilaType(complete);
+  if (rum !== null && rum !== '') {
+    const mapped = ({ oro:'gold', 'carta oro':'gold', blanco:'white', oscuro:'dark', anejo:'aged' } as Record<string,string>)[style] ?? style;
+    return mapped === rum;
+  }
+  return tequila !== null && tequila !== '' ? style === nameKey(tequila) : null;
+}
 export function compatibleClassV8(a: string, b: string): boolean {
+  if (partialClassCompatibility(a,b) === true || partialClassCompatibility(b,a) === true) return true;
   if (compatibleClass(a,b)) return true;
   const x = rumType(a), y = rumType(b);
   return x !== null && y !== null && (x === y || x === '' || y === '');

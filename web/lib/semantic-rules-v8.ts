@@ -1,7 +1,7 @@
 import { applicationSchema, type Application } from './contracts';
 import type { ExtractionEvidence } from './extraction/schema';
 import { compareApplicationV5 } from './semantic-rules';
-import { abvNotation, brandKey, domesticOrigin, equalVolume, originKey, rumType } from './semantic-text-v8';
+import { abvNotation, brandKey, domesticOrigin, equalVolume, incompleteClassFragment, originKey, partialClassCompatibility, rumType } from './semantic-text-v8';
 
 /** New group-only semantics. Frozen revisions remain separate. The US context
  * projection permits reusing unchanged warning/producer/wine/ABV rules, NOT
@@ -26,7 +26,12 @@ export function compareEvidenceV8(application: Application, evidence: Extraction
   }
   if (app.commodity === 'distilled-spirits' && evidence.classType.status === 'readable' && evidence.classType.text !== null) {
     const declared = rumType(app.classType), actual = rumType(evidence.classType.text);
-    if (declared !== null && actual !== null) {
+    if (incompleteClassFragment(evidence.classType.text)) {
+      const conflict = partialClassCompatibility(evidence.classType.text, app.classType) === false;
+      fields.classType = { ...fields.classType, status: conflict ? 'mismatch' : 'needs-review', reasons: [conflict
+        ? 'Class/type: readable style fragment conflicts with the declared subtype; verify the source designation.'
+        : 'Class/type: incomplete or unsupported fragment does not establish a commodity/category. A complete compatible source photo is required; no missing class words inferred.'] };
+    } else if (declared !== null && actual !== null) {
       const status = declared === actual || declared === '' ? 'match' : actual === '' ? 'needs-review' : 'mismatch';
       fields.classType = { ...fields.classType, status, reasons: [status === 'match'
         ? 'Class/type: explicit rum designation is compatible with the declared rum class/subtype under bounded English/Spanish wording; raw designation retained, no legal classification certified.'
