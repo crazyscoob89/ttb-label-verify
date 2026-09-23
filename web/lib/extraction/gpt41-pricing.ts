@@ -25,12 +25,12 @@ export function gpt41ImageTokenBound(width:number,height:number):number {
   return bound;
 }
 export function makeGpt41Request(image:Buffer,mime:'image/png'|'image/jpeg',details:Gpt41DetailView[]=[]) {
-  if(!image.length||image.length>MAX_IMAGE_BYTES||![0,2].includes(details.length)||details.some(d=>!d.bytes.length||d.bytes.length>MAX_IMAGE_BYTES))throw Error('Image byte bound');
+  if(!image.length||image.length>MAX_IMAGE_BYTES||![0,4].includes(details.length)||details.some(d=>!d.bytes.length||d.bytes.length>MAX_IMAGE_BYTES))throw Error('Image byte bound');
   const content=[{type:'text',text:details.length
     ? 'Read this one photograph independently. The first image is the complete photograph; the following overlapping detail views come only from that same photograph. Read the whole photograph and use the details to check visible characters and context. Return one observation set, not one per view. Do not reconstruct clipped or unreadable text, expand printed abbreviations, or treat repeated views as independent evidence.'
     : 'Read this one photograph independently.'},
     {type:'image_url',image_url:{url:`data:${mime};base64,${image.toString('base64')}`,detail:'high'}},
-    ...details.flatMap(d=>[{type:'text',text:JSON.stringify(d.tag)},{type:'image_url',image_url:{url:`data:image/png;base64,${d.bytes.toString('base64')}`,detail:'high'}}])];
+    ...details.flatMap(d=>[{type:'text',text:JSON.stringify(d.tag)},{type:'image_url',image_url:{url:`data:image/jpeg;base64,${d.bytes.toString('base64')}`,detail:'high'}}])];
   const body={model:GPT41_MODEL,messages:[{role:'system',content:GPT41_PHOTO_PROMPT},{role:'user',content}],
     response_format:{type:'json_schema',json_schema:{name:'isolated_label_transcription',strict:true,schema:gpt41JsonSchema}},
     max_tokens:GPT41_OUTPUT_TOKENS,temperature:0,stream:false,
@@ -50,7 +50,7 @@ export function gpt41RequestInputTokenBound(body:ReturnType<typeof makeGpt41Requ
   const content=body.messages[1].content;
   if(!Array.isArray(content))throw Error('Invalid content');
   const images=content.filter(p=>p.type==='image_url');
-  if(![1,3].includes(images.length)||images.length!==dimensions.length)throw Error('Image count bound');
+  if(![1,5].includes(images.length)||images.length!==dimensions.length)throw Error('Image count bound');
   const vision=dimensions.reduce((sum,d)=>sum+gpt41ImageTokenBound(d.width,d.height),0);
   if(vision>GPT41_VISION_ALLOWANCE)throw Error('Combined image token bound');
   const encoded=JSON.stringify(body),base64=images.reduce((sum,p)=>sum+(p.image_url?.url.split(',')[1]?.length??0),0);
@@ -111,7 +111,7 @@ export function gpt41PriceCheckedTransport(transport:Transport):Transport {
     const init={...incoming};
     if(url!==OPENROUTER_ENDPOINT||init.method!=='POST'||init.redirect!=='error'||typeof init.body!=='string'||Buffer.byteLength(init.body)>MAX_GROUP_REQUEST_BYTES)throw Error('Unexpected paid request');
     const body=JSON.parse(init.body),content=body?.messages?.[1]?.content;
-    if(!Array.isArray(content)||![2,6].includes(content.length))throw Error('Invalid image count');
+    if(!Array.isArray(content)||![2,10].includes(content.length))throw Error('Invalid image count');
     const images: {bytes:Buffer;mime:'image/png'|'image/jpeg';width:number;height:number}[]=[];
     for(let index=1;index<content.length;index+=2){
       init.signal?.throwIfAborted();

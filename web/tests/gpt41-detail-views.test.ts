@@ -22,22 +22,29 @@ const content=(body:unknown)=> (body as {messages:{content:any}[]}).messages[1].
 const imageBytes=(part:any)=>Buffer.from(part.image_url.url.split(',')[1],'base64');
 const init=(body:unknown)=>({method:'POST',redirect:'error' as const,body:JSON.stringify(body)});
 
-test('generic large tall geometry only: two full-width overlapping views; never small/control or landscape',()=>{
- expect(gpt41DetailRectangles(1716,4000)).toEqual([{left:0,top:0,width:1716,height:2400},{left:0,top:1600,width:1716,height:2400}]);
+test('generic large tall geometry splits BOTH axes: four overlapping corner views; never small/control or landscape',()=>{
+ expect(gpt41DetailRectangles(1716,4000)).toEqual([{left:0,top:0,width:1030,height:2400},{left:686,top:0,width:1030,height:2400},{left:0,top:1600,width:1030,height:2400},{left:686,top:1600,width:1030,height:2400}]);
+ // At the same input short-side resolution each source character is genuinely
+ // larger, unlike full-width crops. This is geometry, not remote telemetry.
+ for(const r of gpt41DetailRectangles(1716,4000)){
+  expect(1716/r.width).toBeGreaterThan(1.66);expect(4000/r.height).toBeGreaterThan(1.66);
+ }
  for(const [w,h] of [[686,1600],[1000,2048],[1500,2500],[4000,1716],[700,4000]])expect(gpt41DetailRectangles(w,h)).toEqual([]);
  for(const [w,h] of [[0,4000],[1,20000001],[NaN,4000],[1000,1.5]])expect(()=>gpt41DetailRectangles(w,h)).toThrow();
- const r=gpt41DetailRectangles(1000,2501);expect(r[0].top+r[0].height).toBeGreaterThan(r[1].top);expect(r[1].top+r[1].height).toBe(2501);
+ const r=gpt41DetailRectangles(1000,2501);expect(r[0].top+r[0].height).toBeGreaterThan(r[2].top);expect(r[2].top+r[2].height).toBe(2501);expect(r[0].width).toBeGreaterThan(r[1].left);expect(r[1].left+r[1].width).toBe(1000);
 });
 
-test('exact full source plus lossless pixel-identical deterministic crops, same photo ID and transform hashes',async()=>{
+test('exact full source plus deterministic JPEG95 4:4:4 encoded crops (NOT lossless), same photo ID and transform hashes',async()=>{
  const pixels=Buffer.alloc(1000*2500*3);for(let y=0;y<2500;y++)for(let x=0;x<1000;x++){const i=(y*1000+x)*3;pixels[i]=x%256;pixels[i+1]=y%256;pixels[i+2]=(x+y)%256;}
  const bytes=await sharp(pixels,{raw:{width:1000,height:2500,channels:3}}).jpeg().toBuffer(),before=hash(bytes),photoId=randomUUID(),body=await prepareGpt41Request(bytes,'image/jpeg',photoId),c=content(body);
- expect(c).toHaveLength(6);expect(hash(bytes)).toBe(before);expect(imageBytes(c[1]).equals(bytes)).toBe(true);
+ expect(c).toHaveLength(10);expect(hash(bytes)).toBe(before);expect(imageBytes(c[1]).equals(bytes)).toBe(true);
  expect(c[0].text).toContain('same photograph');expect(c[0].text).toContain('Do not reconstruct');
- for(const index of [2,4]){
-  const tag=JSON.parse(c[index].text),crop=imageBytes(c[index+1]);expect(tag).toMatchObject({photoId,sourceImageSha256:before,view:'detail',revision:'same-photo-overlap-v1',imageSha256:hash(crop)});
+ for(const index of [2,4,6,8]){
+  const tag=JSON.parse(c[index].text),crop=imageBytes(c[index+1]);expect(tag).toMatchObject({photoId,sourceImageSha256:before,view:'detail',revision:'same-photo-quadrants-jpeg95-v2',imageSha256:hash(crop)});
   expect(c[index+1].image_url.detail).toBe('high');
-  const expected=await sharp(bytes).extract(tag.crop).raw().toBuffer(),actual=await sharp(crop).raw().toBuffer();expect(actual.equals(expected)).toBe(true);
+  const expected=await sharp(bytes).extract(tag.crop).jpeg({quality:95,chromaSubsampling:'4:4:4'}).toBuffer();expect(crop.equals(expected)).toBe(true);
+  expect(c[index+1].image_url.url.startsWith('data:image/jpeg;base64,')).toBe(true);
+  const actual=await sharp(crop).metadata();expect(actual).toMatchObject({format:'jpeg',width:tag.crop.width,height:tag.crop.height,chromaSubsampling:'4:4:4'});
  }
  expect(JSON.stringify(await prepareGpt41Request(bytes,'image/jpeg',photoId))).toBe(JSON.stringify(body));
  const small=await source(686,1600);expect(await prepareGpt41Request(small,'image/jpeg',photoId)).toEqual(makeGpt41Request(small,'image/jpeg'));
@@ -45,11 +52,11 @@ test('exact full source plus lossless pixel-identical deterministic crops, same 
 
 test('every actual high-detail image enters the input bound; no multiplying the budget or omitting crops',async()=>{
  const body=await prepareGpt41Request(await source(),'image/jpeg',randomUUID()),c=content(body);
- const dimensions=[{width:1000,height:2500},{width:1000,height:1500},{width:1000,height:1500}];
+ const dimensions=[{width:1000,height:2500},...Array(4).fill({width:600,height:1500})];
  const encoded=JSON.stringify(body),base64Bytes=c.filter(p=>p.type==='image_url').reduce((sum,p)=>sum+p.image_url.url.split(',')[1].length,0);
  expect(gpt41RequestInputTokenBound(body,dimensions)).toBe(Buffer.byteLength(encoded)-base64Bytes+4096+dimensions.reduce((sum,d)=>sum+gpt41ImageTokenBound(d.width,d.height),0));
  expect(()=>gpt41RequestInputTokenBound(body,dimensions.slice(1))).toThrow();
- expect(()=>gpt41RequestInputTokenBound(body,Array(3).fill({width:4000,height:5000}))).toThrow();
+ expect(()=>gpt41RequestInputTokenBound(body,Array(5).fill({width:4000,height:5000}))).toThrow();
  expect(GPT41_COST_BOUND_MICROUSD).toBe(971200);
 });
 
@@ -67,6 +74,8 @@ test('guard rederives every crop from this source; geometry, hash, identity, pix
   (c:any[])=>{c[3].image_url.detail='low';},
   (c:any[])=>{c[3].image_url.url='https://example.invalid/another-photo';},
   (c:any[])=>{c[3].image_url.url='data:image/png;base64,AAAA';},
+  (c:any[])=>{c[9]=content(another)[9];const tag=JSON.parse(c[8].text);tag.imageSha256=hash(imageBytes(c[9]));c[8].text=JSON.stringify(tag);},
+  (c:any[])=>{const tag=JSON.parse(c[8].text);tag.revision='same-photo-overlap-v1';c[8].text=JSON.stringify(tag);},
   (c:any[])=>{c.push(c[3]);},
   (c:any[])=>{c[0].text+=' Other photograph says SECRET';},
   (c:any[])=>{c.splice(4,2);},
@@ -82,7 +91,7 @@ test('original decode/pixel limits, aggregate vision bound and abort apply befor
  await expect(prepareGpt41Request(Buffer.alloc(10*1024*1024+1),'image/jpeg',id)).rejects.toThrow();
  await expect(prepareGpt41Request(Buffer.from('not an image'),'image/jpeg',id)).rejects.toThrow();
  const controller=new AbortController();controller.abort();await expect(prepareGpt41Request(await source(),'image/jpeg',id,controller.signal)).rejects.toThrow();
- // Source itself is valid (<20MP and <32768 vision tokens), but its two details exceed the total allowance.
+ // Source itself is valid (<20MP and <32768 vision tokens), but its four details exceed the total allowance.
  await expect(prepareGpt41Request(await source(768,26000),'image/jpeg',id)).rejects.toThrow();
 });
 
@@ -95,8 +104,8 @@ test('snapshot source bytes before awaits and reject mutable transport-body subs
 });
 
 test('oversized detail payload fails gracefully before reservation, without shrinking or omitting views',async()=>{
- const raw=Buffer.alloc(1600*3600*3);let state=123456789;for(let i=0;i<raw.length;i++){state^=state<<13;state^=state>>>17;state^=state<<5;raw[i]=state&255;}
- const bytes=await sharp(raw,{raw:{width:1600,height:3600,channels:3}}).jpeg({quality:95}).toBuffer();expect(bytes.length).toBeLessThan(10*1024*1024);
+ const raw=Buffer.alloc(2000*4400*3);let state=123456789;for(let i=0;i<raw.length;i++){state^=state<<13;state^=state>>>17;state^=state<<5;raw[i]=state&255;}
+ const bytes=await sharp(raw,{raw:{width:2000,height:4400,channels:3}}).jpeg({quality:95}).toBuffer();expect(bytes.length).toBeLessThan(10*1024*1024);
  const input:GroupComparisonInput=await groupInput(1);input.files[0].image={filename:'photo.jpeg',mime:'image/jpeg',bytes};Object.assign(input.group.photos[0],{filename:'photo.jpeg',mime:'image/jpeg',bytes:bytes.length});
  const prepared=await preparePhotoGroup(input),store=new OfflineSpendStore();store.ceiling=50000000;
  await expect(prepareGpt41Request(prepared.photos[0].normalized.bytes,'image/jpeg',prepared.photos[0].descriptor.photoId)).rejects.toThrow('Detail byte bound');
@@ -114,7 +123,7 @@ test('actual provider: two photos, independent contexts/one hold each; original 
  const provider=createGpt41GroupProvider({authorized:true,apiKey:'offline',store,transport});const result=await provider.extractGroup(request);
  expect(result.processing).toBe('complete');if(result.processing!=='complete')throw Error('Expected complete');
  const posts=transport.mock.calls.filter(([u])=>u===OPENROUTER_ENDPOINT);expect(posts).toHaveLength(2);expect(store.unresolved).toBe(2000000);
- for(const [,init] of posts){const body=JSON.parse(String(init.body)),c=content(body);expect(c).toHaveLength(6);const tag=JSON.parse(c[2].text),p=prepared.photos.find(p=>p.descriptor.photoId===tag.photoId)!;expect(p).toBeDefined();expect(imageBytes(c[1]).equals(p.normalized.bytes)).toBe(true);expect(String(init.body)).not.toContain(input.group.application.applicationId);for(const other of prepared.photos.filter(o=>o!==p)){expect(String(init.body)).not.toContain(other.descriptor.photoId);expect(String(init.body)).not.toContain(other.normalized.bytes.toString('base64'));}}
+ for(const [,init] of posts){const body=JSON.parse(String(init.body)),c=content(body);expect(c).toHaveLength(10);const tag=JSON.parse(c[2].text),p=prepared.photos.find(p=>p.descriptor.photoId===tag.photoId)!;expect(p).toBeDefined();expect(imageBytes(c[1]).equals(p.normalized.bytes)).toBe(true);expect(String(init.body)).not.toContain(input.group.application.applicationId);for(const other of prepared.photos.filter(o=>o!==p)){expect(String(init.body)).not.toContain(other.descriptor.photoId);expect(String(init.body)).not.toContain(other.normalized.bytes.toString('base64'));}}
  expect(result.metadata.photos).toEqual(prepared.photos.map(p=>({photoId:p.descriptor.photoId,imageSha256:p.descriptor.normalized.sha256})));
  const record=finalizePhotoComparison(input.group.application,input.group.groupId,1,prepared.photos.map(p=>p.descriptor),prepared.photoSetSha256,result);expect(checkedServerRecord(JSON.parse(JSON.stringify(record)))).toEqual(record);
  const assets=prepareGroupAssets(record,prepared.photos.map(p=>({photoId:p.descriptor.photoId,original:p.original,normalized:p.normalized.bytes})));expect(validateAssetManifest(record,assets.id,assets.assets)).toEqual(assets.assets);
