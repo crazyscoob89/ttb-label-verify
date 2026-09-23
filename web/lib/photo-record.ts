@@ -4,12 +4,15 @@ import { extractionEvidenceSchema, type ExtractionEvidence } from './extraction/
 import { RULES_VERSION } from './rules';
 import { comparePhotoApplication, type GroupComparison } from './group-rules';
 import { aggregatePhotoEvidence } from './photo-evidence';
+import { aggregatePhotoEvidence as aggregateV1 } from './photo-evidence-v1';
+import { comparePhotoApplication as compareV4, type GroupComparison as GroupComparisonV4 } from './group-rules-v4';
+import { AGGREGATION_VERSION_V1 } from './photo-contracts';
 import { AGGREGATION_VERSION,GROUP_PROMPT_VERSION,MAX_GROUP_RECORD_BYTES,photoDescriptorsSchema,photoIdSchema,sha256Schema,parsePhotoSetEvidence,photoSetCanonical,type PhotoDescriptor,type PhotoSetEvidence,type PhotoProvenance } from './photo-contracts';
 const extractionBase=z.object({schemaVersion:z.literal(2),promptVersion:z.literal(GROUP_PROMPT_VERSION),model:z.literal('offline-fixture'),requestId:photoIdSchema}).strict();
 const liveExtraction=extractionBase.extend({model:z.literal('anthropic/claude-haiku-4.5'),attemptId:photoIdSchema,reservationId:photoIdSchema});
 const extraction=z.union([extractionBase,liveExtraction]);
-export type CompletePhotoComparison={recordVersion:2;processing:'complete';application:Application;groupId:string;revision:number;photos:PhotoDescriptor[];photoSetSha256:string;imageSha256:string;source:'fixture'|'openrouter';photoEvidence:PhotoSetEvidence;aggregationVersion:typeof AGGREGATION_VERSION;evidence:ExtractionEvidence;provenance:PhotoProvenance;extraction:z.infer<typeof extraction>;comparison:GroupComparison};
-const schema=z.object({recordVersion:z.literal(2),processing:z.literal('complete'),application:applicationSchema,groupId:photoIdSchema,revision:z.number().int().positive().max(Number.MAX_SAFE_INTEGER),photos:photoDescriptorsSchema,photoSetSha256:sha256Schema,imageSha256:sha256Schema,source:z.enum(['fixture','openrouter']),photoEvidence:z.unknown(),aggregationVersion:z.literal(AGGREGATION_VERSION),evidence:extractionEvidenceSchema,provenance:z.unknown(),extraction,comparison:z.unknown()}).strict();
+export type CompletePhotoComparison={recordVersion:2;processing:'complete';application:Application;groupId:string;revision:number;photos:PhotoDescriptor[];photoSetSha256:string;imageSha256:string;source:'fixture'|'openrouter';photoEvidence:PhotoSetEvidence;aggregationVersion:typeof AGGREGATION_VERSION|typeof AGGREGATION_VERSION_V1;evidence:ExtractionEvidence;provenance:PhotoProvenance;extraction:z.infer<typeof extraction>;comparison:GroupComparison|GroupComparisonV4};
+const schema=z.object({recordVersion:z.literal(2),processing:z.literal('complete'),application:applicationSchema,groupId:photoIdSchema,revision:z.number().int().positive().max(Number.MAX_SAFE_INTEGER),photos:photoDescriptorsSchema,photoSetSha256:sha256Schema,imageSha256:sha256Schema,source:z.enum(['fixture','openrouter']),photoEvidence:z.unknown(),aggregationVersion:z.enum([AGGREGATION_VERSION_V1,AGGREGATION_VERSION]),evidence:extractionEvidenceSchema,provenance:z.unknown(),extraction,comparison:z.unknown()}).strict();
 /** Browser-safe structural replay; server additionally recomputes the digest on
  * every snapshot/read. Browser consumers can await verifyPhotoRecordDigest. */
 export function checkedPhotoRecord(value:unknown):CompletePhotoComparison|null {
@@ -19,7 +22,10 @@ export function checkedPhotoRecord(value:unknown):CompletePhotoComparison|null {
   if((r.source==='fixture')!==(r.extraction.model==='offline-fixture')||r.imageSha256!==r.photos[0].normalized.sha256)return null;
   const photoEvidence=parsePhotoSetEvidence(r.photoEvidence,r.photos.map(p=>p.photoId));
   if(JSON.stringify(photoEvidence)!==JSON.stringify(r.photoEvidence))return null;
-  const aggregate=aggregatePhotoEvidence(photoEvidence);const comparison=comparePhotoApplication(r.application,photoEvidence);
+  const historical=r.aggregationVersion===AGGREGATION_VERSION_V1;
+  if(!r.comparison||typeof r.comparison!=='object'||!('rulesRevision' in r.comparison)||r.comparison.rulesRevision!==(historical?4:6))return null;
+  const aggregate=(historical?aggregateV1:aggregatePhotoEvidence)(photoEvidence);
+  const comparison=(historical?compareV4:comparePhotoApplication)(r.application,photoEvidence);
   if(JSON.stringify(aggregate.evidence)!==JSON.stringify(r.evidence)||JSON.stringify(aggregate.provenance)!==JSON.stringify(r.provenance)||JSON.stringify(comparison)!==JSON.stringify(r.comparison))return null;
   return {...r,photoEvidence,...aggregate,comparison};
  }catch{return null;}

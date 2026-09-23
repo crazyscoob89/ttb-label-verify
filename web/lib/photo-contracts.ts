@@ -11,7 +11,8 @@ export const MAX_GROUP_REQUEST_BYTES = 28 * 1024 * 1024;
 export const MAX_GROUP_RECORD_BYTES = 96 * 1024;
 export const GROUP_OUTPUT_TOKENS = 6000;
 export const GROUP_PROMPT_VERSION = 'photo-set-observations-v2' as const;
-export const AGGREGATION_VERSION = 'photo-set-aggregation-v1' as const;
+export const AGGREGATION_VERSION_V1 = 'photo-set-aggregation-v1' as const;
+export const AGGREGATION_VERSION = 'photo-set-aggregation-v2' as const;
 export const photoIdSchema = z.uuid().refine(v => v === v.toLowerCase());
 export const sha256Schema = z.string().regex(/^[a-f0-9]{64}$/);
 export const photoRoleSchema = z.enum(['front','back','neck','closeup','other']);
@@ -50,7 +51,7 @@ export type PhotoSetEvidence = z.infer<typeof photoSetEvidenceSchema>;
 export type GroupUploadResponse = {schemaVersion:2;ticket:string;uploads:{photoId:string;uploadUrl:string}[]};
 export const EVIDENCE_PATHS = ['brand','classType','abv','netContents','producer.name','producer.address','origin','warning.heading','warning.body','warning.headingBold','warning.bodyBold'] as const;
 export type EvidencePath = typeof EVIDENCE_PATHS[number];
-export type FieldProvenance = {sourcePhotoIds:string[];conflict:boolean;variants:{value:string|boolean;sourcePhotoIds:string[]}[]};
+export type FieldProvenance = {sourcePhotoIds:string[];conflict:boolean;variants:{value:string|boolean;sourcePhotoIds:string[]}[];derivations?:{photoId:string;sourcePath:'warning.heading';operation:'split-visible-warning-prefix'}[]};
 export type PhotoProvenance = Record<EvidencePath,FieldProvenance>;
 export type PhotoSelector = {photoId:string;variant:'original'|'normalized'};
 /** Canonical ordered digest input; hashing is supplied by server/Web Crypto. */

@@ -1,14 +1,15 @@
 import { z } from 'zod';
 import { parseApplication, type Application } from './contracts';
 import { RULES_VERSION, type ComparisonResult } from './rules';
-import { compareApplicationV3, type ComparisonResultV3 } from './wine-rules';
+import type { ComparisonResultV3 } from './wine-rules';
+import { compareApplicationV5, type ComparisonResultV5 } from './semantic-rules';
 import { extractionEvidenceSchema, type ExtractionEvidence } from './extraction/schema';
 
 export type FailureCode = 'access-denied' | 'invalid-input' | 'invalid-extraction' | 'provider-failed' | 'timeout' | 'cancelled' | 'unconfigured';
 export type { CompletePhotoComparison } from './photo-record';
 import type { CompletePhotoComparison } from './photo-record';
 export type CompleteComparison = LegacyCompleteComparison | CompletePhotoComparison;
-export type LegacyCompleteComparison = { processing: 'complete'; application: Application; imageSha256: string; source: 'fixture' | 'openrouter'; evidence: ExtractionEvidence; comparison: Extract<ComparisonResult | ComparisonResultV3, { processing: 'complete' }> };
+export type LegacyCompleteComparison = { processing: 'complete'; application: Application; imageSha256: string; source: 'fixture' | 'openrouter'; evidence: ExtractionEvidence; comparison: Extract<ComparisonResult | ComparisonResultV3 | ComparisonResultV5, { processing: 'complete' }> };
 export type ComparisonRecord = CompleteComparison | { processing: 'failed'; code: FailureCode };
 export function immutable<T>(value: T): T {
   if (value && typeof value === 'object') { Object.values(value).forEach(immutable); Object.freeze(value); }
@@ -27,7 +28,7 @@ export function finalizeComparison(application: unknown, extraction: unknown, im
     const parsed = envelope.parse(extraction);
     if (parsed.metadata.imageSha256 !== imageSha256) return { processing: 'failed', code: 'invalid-extraction' };
     const app = parseApplication(application);
-    const comparison = compareApplicationV3(app, parsed.evidence);
+    const comparison = compareApplicationV5(app, parsed.evidence);
     if (comparison.processing !== 'complete') return { processing: 'failed', code: 'invalid-extraction' };
     return immutable({ processing: 'complete', application: app, imageSha256, source: parsed.metadata.source, evidence: parsed.evidence, comparison });
   } catch { return { processing: 'failed', code: 'invalid-extraction' }; }
