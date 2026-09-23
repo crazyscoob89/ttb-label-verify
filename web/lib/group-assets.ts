@@ -14,7 +14,7 @@ export function checkedServerRecord(value:unknown):CompleteComparison {
  const snapshot:unknown=JSON.parse(JSON.stringify(value));
  const record=checkedRecord(snapshot);
  if(!record||('recordVersion' in record && photoSetHash(record.photos)!==record.photoSetSha256))throw new ReviewError(400,'invalid-snapshot');
- if('recordVersion' in record&&record.extraction.model==='anthropic/claude-haiku-4.5'){
+ if('recordVersion' in record&&record.extraction.model!=='offline-fixture'){
   const ids=groupAttemptIds(record.groupId,record.revision);
   if(ids.attemptId!==record.extraction.attemptId||ids.reservationId!==record.extraction.reservationId)throw new ReviewError(400,'invalid-snapshot');
  }

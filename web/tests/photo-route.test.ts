@@ -25,7 +25,12 @@ function setup(observe=photoEvidence){
  const reviews={snapshot:vi.fn(),snapshotGroup:saved,save:vi.fn(),list:vi.fn(),detail:vi.fn(),evidence:vi.fn(),close:vi.fn()};const stores:DemoStoreFactory={openSpend:()=>store,openReviews:()=>reviews};
  const transport=vi.fn(async(url:string,init:RequestInit)=>{
   if(url.endsWith('/models'))return Response.json({data:[{id:'anthropic/claude-haiku-4.5',context_length:200000,pricing:{prompt:'0.000001',completion:'0.000005'}}]});
-  const body=JSON.parse(String(init.body));const ids=body.messages[1].content.filter((c:{type:string})=>c.type==='text').map((c:{text:string})=>JSON.parse(c.text).photoId);
+  const body=JSON.parse(String(init.body));
+  const tags=body.messages[1].content.filter((c:{type:string})=>c.type==='text').map((c:{text:string})=>JSON.parse(c.text));
+  // Detail tags repeat an existing photo identity; the mock must return one
+  // observation per original photo, just as the provider wire requires.
+  const ids=tags.filter((tag:{view?:string})=>tag.view===undefined).map((tag:{photoId:string})=>tag.photoId);
+  for(const tag of tags.filter((tag:{view?:string})=>tag.view==='detail'))expect(ids).toContain(tag.photoId);
   return Response.json({choices:[{index:0,finish_reason:'stop',message:{role:'assistant',content:JSON.stringify(observe(ids))}}]});
  });return {store,transport,saved,handler:createDemoHandler({env,stores,transport}),stores};
 }
@@ -33,7 +38,7 @@ afterEach(()=>{vi.unstubAllGlobals();vi.unstubAllEnvs();vi.useRealTimers();});
 
 async function clientBottleRoundTrip(input:Parameters<typeof preparePhotoGroup>[0],raw:ReturnType<typeof photoEvidence>){
  vi.stubEnv('NEXT_PUBLIC_TTB_MEDIA_TRANSPORT','');vi.stubGlobal('fetch',()=>{throw Error('External network forbidden in offline regression');});
- const s=setup(ids=>{expect(ids).toEqual(raw.photos.map(p=>p.photoId));return structuredClone(raw);});
+ const s=setup(ids=>{expect(ids).toHaveLength(1);expect(raw.photos.map(p=>p.photoId)).toContain(ids[0]);return {schemaVersion:2,photos:structuredClone(raw.photos.filter(p=>ids.includes(p.photoId)))};});
  const transport:typeof fetch=async(url,init)=>{const h=new Headers(init?.headers);h.set('origin',env.TTB_DEMO_ORIGIN);return s.handler(new Request(new URL(String(url),env.TTB_DEMO_ORIGIN),{...init,headers:h}));};
  const files=input.files.map(p=>new File([new Uint8Array(p.image.bytes)],p.image.filename,{type:p.image.mime}));
  const ready=await prepareLiveGroup(input.group,files,env.TTB_DEMO_ACCESS_SECRET,AbortSignal.timeout(10000),transport);
@@ -42,7 +47,7 @@ async function clientBottleRoundTrip(input:Parameters<typeof preparePhotoGroup>[
  const record=photoRecord(response.result);if(!record)throw Error('Expected photo record');
  expect(record.comparison.rulesRevision).toBe(6);expect(record.aggregationVersion).toBe('photo-set-aggregation-v2');
  expect(record.photoEvidence).toEqual(raw);expect(s.saved).toHaveBeenCalledTimes(1);
- expect(response.reviewAvailability).toBe('available');expect(s.transport.mock.calls.filter(([url])=>url.endsWith('/chat/completions'))).toHaveLength(1);
+ expect(response.reviewAvailability).toBe('available');expect(s.transport.mock.calls.filter(([url])=>url.endsWith('/chat/completions'))).toHaveLength(input.group.photos.length);
  return record;
 }
 test.each([false,true])('reported bottle incident through real adapter/route/client; fictional=%s',async fictional=>{
@@ -85,11 +90,11 @@ test.skipIf(!groundTruthPath)('exact local JPEG hashes and independent ground tr
  for(const key of ['brand','classType','abv','netContents','origin','warning'] as const)expect(inspected.comparison.fields[key].status).toBe('match');
  expect(inspected.comparison.fields.producer.status).toBe('needs-review');expect(inspected.comparison.physicalPrintSize.status).toBe('unverified');
 });
-test('concurrent execute for one revision returns one success and one409, one paid POST',async()=>{
+test('concurrent execute for one revision returns one success and one409, one paid POST per photo',async()=>{
  const input=await groupInput(),s=setup();const {prepared}=await(await s.handler(await formRequest(input,{phase:'prepare'}))).json();
  const op={phase:'execute',attemptId:prepared.attemptId,reservationId:prepared.reservationId,binding:prepared.binding};
  const responses=await Promise.all([s.handler(await formRequest(input,op)),s.handler(await formRequest(input,op))]);
- expect(responses.map(r=>r.status).sort()).toEqual([200,409]);expect(s.transport.mock.calls.filter(([url])=>url.endsWith('/chat/completions'))).toHaveLength(1);
+ expect(responses.map(r=>r.status).sort()).toEqual([200,409]);expect(s.transport.mock.calls.filter(([url])=>url.endsWith('/chat/completions'))).toHaveLength(input.group.photos.length);
 });
 test('whole-route deadline bounds a stalled hosted read and cancels its signal without spend',async()=>{
  vi.useFakeTimers();const s=setup();let readSignal:AbortSignal|undefined;
@@ -106,11 +111,11 @@ test('snapshot deadline returns full UNSAVED result and ignores a late completio
  const response=await pending;const result=await response.json();expect(result.result.photos).toHaveLength(2);expect(result.comparisonId).toBeUndefined();expect(result.reviewAvailability).toBe('snapshot-unavailable');
  finish(randomUUID());await vi.advanceTimersByTimeAsync(1);expect(result.comparisonId).toBeUndefined();
 });
-test('local v2 prepare/execute round trip: no prepare spend, one joint extraction, all media saved, duplicate identity409',async()=>{
+test('local v2 prepare/execute round trip: no prepare spend, isolated extraction, all media saved, duplicate identity409',async()=>{
  const input=await groupInput(4),s=setup();const prep=await s.handler(await formRequest(input,{phase:'prepare'}));expect(prep.status).toBe(200);const {prepared}=await prep.json();expect(prepared.photos).toHaveLength(4);expect(s.store.rows.size).toBe(0);expect(s.transport).not.toHaveBeenCalled();
  const op={phase:'execute',attemptId:prepared.attemptId,reservationId:prepared.reservationId,binding:prepared.binding};const response=await s.handler(await formRequest(input,op));expect(response.status).toBe(200);expect(await response.json()).toMatchObject({result:{recordVersion:2,aggregationVersion:'photo-set-aggregation-v2',comparison:{rulesRevision:6}},reviewAvailability:'available',comparisonId:expect.any(String)});
- expect(s.transport).toHaveBeenCalledTimes(2);expect(s.saved.mock.calls[0]).toHaveLength(3);expect((s.saved.mock.calls[0] as unknown[])[1]).toHaveLength(4);
- expect((await s.handler(await formRequest(input,op))).status).toBe(409);expect(s.transport).toHaveBeenCalledTimes(2);
+ expect(s.transport).toHaveBeenCalledTimes(8);expect(s.store.rows.size).toBe(4);expect(s.store.unresolved).toBe(4_000_000);expect(s.saved.mock.calls[0]).toHaveLength(3);expect((s.saved.mock.calls[0] as unknown[])[1]).toHaveLength(4);
+ expect((await s.handler(await formRequest(input,op))).status).toBe(409);expect(s.transport).toHaveBeenCalledTimes(8);
 });
 test.each(['missing','extra','size','role','revision','application','fabricated-id'])('invalid %s group fails before provider reservation',async bad=>{
  const input=await groupInput(),s=setup();const {prepared}=await(await s.handler(await formRequest(input,{phase:'prepare'}))).json();const op={phase:'execute',attemptId:prepared.attemptId,reservationId:prepared.reservationId,binding:prepared.binding};

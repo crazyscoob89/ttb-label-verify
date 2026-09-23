@@ -46,7 +46,7 @@ async function setup() {
   back.warning = { heading: read('GOVERNMENT WARNING:'), body: read(observedBody), headingBold: true, bodyBold: false };
   const store = new OfflineSpendStore();
   const transport = vi.fn(async (_url: string, _init: RequestInit) => Response.json({
-    choices: [{ index: 0, finish_reason: 'stop', message: { role: 'assistant', content: JSON.stringify(output) } }],
+    choices: [{ index: 0, finish_reason: 'stop', message: { role: 'assistant', content: JSON.stringify({schemaVersion:2,photos:output.photos.filter(p=>p.photoId===JSON.parse(JSON.parse(String(_init.body)).messages[1].content[0].text).photoId)}) } }],
   }));
   const provider = createOpenRouterGroupProvider({ authorized: true, apiKey: 'offline-only', store, maxCostMicrousd: 100, transport });
   const payload = () => JSON.parse(String(transport.mock.calls[0][1].body));
@@ -59,7 +59,7 @@ const clarityCases = [
   ['typography uncertainty, not uppercase equals bold', [/uppercase is not bold/i, /null.*unknown/i]],
   ['role-aware producer, not brand/street/importer', [/producer\.name/i, /distillery/i, /street name/i, /importer.*bottler/i, /role.*unclear.*uncertain/i]],
   ['raw fragments and independent photo provenance', [/address fragment.*uncertain/i, /never copy.*another photo/i, /do not translate/i]],
-  ['concise reasons without reducing evidence', [/concise.*reasons/i, /do not shorten.*transcriptions/i]],
+  ['concise reasons without reducing evidence', [/concise.*reason/i, /do not shorten.*transcriptions/i]],
 ] as const;
 test.each(clarityCases)('group prompt clarifies %s', async (_name, patterns) => {
   const s = await setup(); expect((await s.provider.extractGroup(s.request)).processing).toBe('complete');
@@ -67,30 +67,31 @@ test.each(clarityCases)('group prompt clarifies %s', async (_name, patterns) => 
   for (const pattern of patterns) expect(prompt).toMatch(pattern);
 });
 
-test('one guarded ordered all-image payload, full schema, no application or canonical answers', async () => {
+test('isolated guarded one-image payloads, compact schema, no application or canonical answers', async () => {
   const s = await setup();
   const result = await createGroupComparisonService({ provider: s.provider, authorize: () => true })(s.input);
-  expect(result.processing).toBe('complete'); expect(s.transport).toHaveBeenCalledTimes(1);
+  expect(result.processing).toBe('complete'); expect(s.transport).toHaveBeenCalledTimes(s.request.photos.length);
   const [url, init] = s.transport.mock.calls[0]; const payload = s.payload();
   expect(url).toBe(OPENROUTER_ENDPOINT); expect(init).toMatchObject({ method: 'POST', redirect: 'error' });
   expect(init.signal).toBeInstanceOf(AbortSignal);
   expect(Object.keys(payload).sort()).toEqual(['model', 'max_tokens', 'temperature', 'stream', 'provider', 'response_format', 'messages'].sort());
-  expect(payload).toMatchObject({ model: OPENROUTER_MODEL, max_tokens: GROUP_OUTPUT_TOKENS, temperature: 0, stream: false, provider: { allow_fallbacks: false, require_parameters: true }, response_format: { type: 'json_object' } });
+  expect(payload).toMatchObject({ model: OPENROUTER_MODEL, max_tokens: 2200, temperature: 0, stream: false, provider: { only: ['Anthropic'], allow_fallbacks: false, require_parameters: true }, response_format: { type: 'json_object' } });
   expect(payload.messages).toHaveLength(2);
-  expect(payload.messages[1]).toEqual({ role: 'user', content: s.request.photos.flatMap(p => [
+  expect(payload.messages[1]).toEqual({ role: 'user', content: s.request.photos.slice(0,1).flatMap(p => [
     { type: 'text', text: JSON.stringify({ photoId: p.descriptor.photoId, role: p.descriptor.role }) },
     { type: 'image_url', image_url: { url: `data:${p.descriptor.normalized.mime};base64,${Buffer.from(p.image).toString('base64')}` } },
   ]) });
-  const schema = JSON.parse(payload.messages[0].content.split('\n').at(-1));
-  expect(schema.properties.schemaVersion.const).toBe(2);
-  expect(schema.properties.photos.items.properties.evidence.required).toEqual(['schemaVersion', 'brand', 'classType', 'abv', 'netContents', 'producer', 'origin', 'warning']);
+  expect(payload.max_tokens).toBeLessThanOrEqual(GROUP_OUTPUT_TOKENS);
+  expect(payload.messages[0].content).toContain('"wireVersion":1');
+  expect(payload.messages[0].content).toContain('"producer":{"name":O,"address":O}');
+  expect(payload.messages[0].content).toContain('"headingBold":B,"bodyBold":B');
   for (const secret of [s.input.group.application.brand, s.input.group.application.producerName, s.input.group.application.producerAddress, 'Jose Cuervo', 'La Rojeña', 'PROXIMO', '40% ALC/VOL', WARNING_REFERENCE.heading, WARNING_REFERENCE.body, observedBody]) {
     expect(String(init.body)).not.toContain(secret);
   }
   for (const photo of s.input.group.photos) expect(String(init.body)).not.toContain(photo.filename);
   expect([...s.store.rows.values()][0]).toMatchObject({ state: 'unresolved', binding: { schemaVersion: 2, promptVersion: GROUP_PROMPT_VERSION, imageSha256: s.request.photoSetSha256 } });
   expect((await createGroupComparisonService({ provider: s.provider, authorize: () => true })(s.input)).processing).toBe('failed');
-  expect(s.transport).toHaveBeenCalledTimes(1);
+  expect(s.transport).toHaveBeenCalledTimes(s.request.photos.length);
 });
 
 test.each([false, null, true] as const)('mock output preserves separate warning parts, typography %s and role-specific raw observations', async bodyBold => {
@@ -100,7 +101,7 @@ test.each([false, null, true] as const)('mock output preserves separate warning 
   expect(result.processing).toBe('complete'); if (result.processing !== 'complete') throw Error('Expected complete');
   expect(result.evidence).toEqual(expected); // Restore request order only; never normalize or repair text.
   expect(result.metadata).toMatchObject({ schemaVersion: 2, promptVersion: GROUP_PROMPT_VERSION, photoSetSha256: s.request.photoSetSha256, photos: s.request.photos.map(p => ({ photoId: p.descriptor.photoId, imageSha256: p.descriptor.normalized.sha256 })) });
-  expect(s.transport).toHaveBeenCalledTimes(1);
+  expect(s.transport).toHaveBeenCalledTimes(s.request.photos.length);
 });
 
 test('mock altered wording/case and uncertain truncation are not silently repaired from reference or another photo', async () => {
@@ -110,7 +111,7 @@ test('mock altered wording/case and uncertain truncation are not silently repair
   warning.headingBold = null; warning.bodyBold = null;
   const result = await s.provider.extractGroup(s.request);
   expect(result.processing).toBe('complete'); if (result.processing !== 'complete') throw Error('Expected complete');
-  expect(result.evidence).toEqual(s.output); expect(s.transport).toHaveBeenCalledTimes(1);
+  expect(result.evidence).toEqual(s.output); expect(s.transport).toHaveBeenCalledTimes(s.request.photos.length);
 });
 
 test.each([0, 1])('single-view mock %s retains missing fields without borrowing from the omitted photo', async index => {
@@ -128,7 +129,7 @@ test.each([0, 1])('single-view mock %s retains missing fields without borrowing 
   } else {
     expect(evidence.abv.status).toBe('missing'); expect(evidence.warning.body.text).toBe(observedBody);
   }
-  expect(s.transport).toHaveBeenCalledTimes(1);
+  expect(s.transport).toHaveBeenCalledTimes(s.request.photos.length);
 });
 
 test('an incorrectly mapped mock warning remains raw evidence, not a silent adapter rewrite or repair request', async () => {
@@ -137,7 +138,7 @@ test('an incorrectly mapped mock warning remains raw evidence, not a silent adap
   warning.body = missing(); warning.bodyBold = null;
   const result = await s.provider.extractGroup(s.request);
   expect(result.processing).toBe('complete'); if (result.processing !== 'complete') throw Error('Expected complete');
-  expect(result.evidence).toEqual(s.output); expect(s.transport).toHaveBeenCalledTimes(1);
+  expect(result.evidence).toEqual(s.output); expect(s.transport).toHaveBeenCalledTimes(s.request.photos.length);
 });
 
 test('application accidentally added to provider request fails before reservation/dispatch', async () => {

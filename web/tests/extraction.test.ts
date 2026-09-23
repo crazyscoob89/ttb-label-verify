@@ -45,7 +45,7 @@ test('wire request is fixed no-tools image-only, no canonical answers or silent 
   expect(url).toBe(OPENROUTER_ENDPOINT); expect(url).toBe('https://openrouter.ai/api/v1/chat/completions');
   expect(init.redirect).toBe('error'); expect(init.method).toBe('POST'); expect(init.signal).toBeInstanceOf(AbortSignal);
   expect(body.model).toBe('anthropic/claude-haiku-4.5'); expect(body.models).toBeUndefined();
-  expect(body.provider).toEqual({ allow_fallbacks: false, require_parameters: true });
+  expect(body.provider).toEqual({ only: ['Anthropic'], allow_fallbacks: false, require_parameters: true });
   expect(body.tools).toBeUndefined(); expect(body.functions).toBeUndefined();
   expect(body.max_tokens).toBe(EXTRACTION_LIMITS.outputTokens); expect(body.temperature).toBe(0); expect(body.stream).toBe(false);
   expect(body.response_format).toEqual({ type: 'json_object' });

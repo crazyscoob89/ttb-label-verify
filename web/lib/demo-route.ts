@@ -8,6 +8,10 @@ import { isAbsolute, join } from 'node:path';
 import { MAX_IMAGE_BYTES, parseApplication } from './contracts';
 import { createComparisonService, type ComparisonInput } from './compare-service';
 import { createOpenRouterProvider,createOpenRouterGroupProvider, OPENROUTER_MODEL, type Transport } from './extraction/openrouter';
+import { createAzureMistralOcrGroupProvider } from './extraction/azure-mistral-ocr';
+import { createGpt41GroupProvider } from './extraction/gpt41';
+import { approvedAzureOcrEndpoint, azureOcrPricingFromEnv, validateAzureOcrPricing, type AzureOcrPricing } from './extraction/azure-ocr-pricing';
+import { groupExtractionProviderName } from './runtime-env';
 
 import { preparePair, type ImageInput } from './intake';
 import { batchAttemptSchema, signBatchBinding, verifyBatchBinding } from './batch-binding';
@@ -31,7 +35,7 @@ export function priceCheckedTransport(transport:Transport,outputTokens:3000|6000
    for(const key of ['prompt','completion'])if(typeof pricing[key]!=='string'||!/^\d+(\.\d+)?$/.test(pricing[key]))throw Error('Unknown pricing');
    if(Number(pricing.prompt)>0.000001||Number(pricing.completion)>0.000005)throw Error('Price drift');
    const body=JSON.parse(String(init.body));
-   if(body.model!==OPENROUTER_MODEL||body.max_tokens!==outputTokens||body.stream!==false||body.temperature!==0||body.tools!==undefined||body.plugins!==undefined||body.web_search_options!==undefined||body.provider?.allow_fallbacks!==false||body.provider?.require_parameters!==true||body.response_format?.type!=='json_object'||Object.keys(body).some(k=>!['model','max_tokens','temperature','stream','provider','response_format','messages'].includes(k)))throw Error('Unexpected paid request');
+   if(body.model!==OPENROUTER_MODEL||!Number.isSafeInteger(body.max_tokens)||body.max_tokens<=0||body.max_tokens>outputTokens||body.stream!==false||body.temperature!==0||body.tools!==undefined||body.plugins!==undefined||body.web_search_options!==undefined||body.provider?.allow_fallbacks!==false||body.provider?.require_parameters!==true||body.response_format?.type!=='json_object'||Object.keys(body).some(k=>!['model','max_tokens','temperature','stream','provider','response_format','messages'].includes(k)))throw Error('Unexpected paid request');
    // Conservatively add all known cache tariffs to ordinary input pricing.
    let inputRate=Number(pricing.prompt);
    for(const [key,value] of Object.entries(pricing)){
@@ -41,6 +45,9 @@ export function priceCheckedTransport(transport:Transport,outputTokens:3000|6000
     else if(key==='web_search'){/* No tools/plugins/online model requested. */}
     else if(Number(value)!==0)throw Error('Unknown additional fee');
    }
+   // outputTokens is the reserved ceiling, not a requirement to request all of it.
+   // Keep pricing conservative when an isolated photo requests less. Each POST
+   // has its OWN executeReserved hold; this is never an aggregate group bound.
    const bound=Math.ceil((200000*inputRate+outputTokens*Number(pricing.completion))*1000000);
    if(!Number.isSafeInteger(bound)||bound>DEMO_RESERVATION)throw Error('Reservation too small');
    if(init.signal?.aborted)throw Error('Expired');
@@ -50,15 +57,19 @@ export function priceCheckedTransport(transport:Transport,outputTokens:3000|6000
   } finally {clearTimeout(timer);controller.abort();}
  };
 }
-export function createDemoHandler({env=process.env,transport=(url,init)=>fetch(url,init),stores,readInput}:{env?:Record<string,string|undefined>;transport?:Transport;stores?:DemoStoreFactory;readInput?:(request:Request,signal?:AbortSignal)=>Promise<ComparisonInput|GroupRouteInput>}={}) {
+export function createDemoHandler({env=process.env,transport=(url,init)=>fetch(url,init),stores,readInput,azurePricing}:{env?:Record<string,string|undefined>;transport?:Transport;stores?:DemoStoreFactory;readInput?:(request:Request,signal?:AbortSignal)=>Promise<ComparisonInput|GroupRouteInput>;azurePricing?:AzureOcrPricing}={}) {
  return async(request:Request):Promise<Response>=>{
   const started=performance.now();
   const reply=(status:number,code:string)=>Response.json({processing:'failed',code,elapsedMs:Math.round(performance.now()-started)},{status,headers:{'Cache-Control':'no-store'}});
   let path:string|undefined;
+  let groupProvider:'openrouter'|'azure-foundry'|'gpt41',price:AzureOcrPricing|undefined;
   try {
    const secret=env.TTB_DEMO_ACCESS_SECRET;const origin=env.TTB_DEMO_ORIGIN;const dir=env.TTB_DEMO_DATA_DIR;
-   if(env.TTB_DEMO_ENABLED!=='true'||!secret||!/^[A-Za-z0-9_-]{32,256}$/.test(secret)||!env.OPENROUTER_API_KEY||!origin||new URL(origin).origin!==origin)return reply(403,'access-denied');
+   groupProvider=groupExtractionProviderName(env);
+   const providerKey=groupProvider==='azure-foundry'?env.AZURE_FOUNDRY_API_KEY:env.OPENROUTER_API_KEY;
+   if(env.TTB_DEMO_ENABLED!=='true'||!secret||!/^[A-Za-z0-9_-]{32,256}$/.test(secret)||!providerKey||!origin||new URL(origin).origin!==origin)return reply(403,'access-denied');
    if(!demoAccess(request,env))return reply(403,'access-denied');
+   if(groupProvider==='azure-foundry') {approvedAzureOcrEndpoint(env.AZURE_FOUNDRY_ENDPOINT);price=azurePricing?validateAzureOcrPricing(azurePricing):azureOcrPricingFromEnv(env);}
    if(env.TTB_PERSISTENCE==='supabase'){if(!stores)return reply(403,'access-denied');}
    else if((env.TTB_PERSISTENCE!==undefined&&env.TTB_PERSISTENCE!=='sqlite')||stores||!dir||!isAbsolute(dir)||env.TTB_DEMO_PERSISTENT_VOLUME!=='single-private-volume-v1')return reply(403,'access-denied');
    // SqliteSpendStore below verifies parent + ledger + sidecars using the OS's
@@ -81,7 +92,11 @@ export function createDemoHandler({env=process.env,transport=(url,init)=>fetch(u
     claim:(binding:Parameters<DemoSpendStore['claim']>[0],claimId:string)=>store!.claim(binding,claimId),
     complete:(binding:Parameters<DemoSpendStore['complete']>[0],claimId:string)=>store!.complete(binding,claimId),
    };
-   return bounded(handleGroupComparison(input,{request,env,store:store!,provider:createOpenRouterGroupProvider({authorized:true,apiKey:env.OPENROUTER_API_KEY,store:guardedStore,maxCostMicrousd:DEMO_RESERVATION,transport:priceCheckedTransport(transport,6000)}),duplicateAttempt:()=>duplicate,signal,started,openReviews:stores?async()=>stores.openReviews():env.TTB_REVIEW_DATA_DIR?async()=>{const {ReviewStore,reviewPath}=await import('./review-store');return new ReviewStore(reviewPath(env));}:undefined}));
+   const provider=groupProvider==='azure-foundry'
+    ?createAzureMistralOcrGroupProvider({authorized:true,endpoint:env.AZURE_FOUNDRY_ENDPOINT,apiKey:env.AZURE_FOUNDRY_API_KEY,pricing:price,store:guardedStore,transport})
+    :groupProvider==='gpt41'?createGpt41GroupProvider({authorized:true,apiKey:env.OPENROUTER_API_KEY,store:guardedStore,transport})
+    :createOpenRouterGroupProvider({authorized:true,apiKey:env.OPENROUTER_API_KEY,store:guardedStore,maxCostMicrousd:DEMO_RESERVATION,transport:priceCheckedTransport(transport)});
+   return bounded(handleGroupComparison(input,{request,env,store:store!,provider,duplicateAttempt:()=>duplicate,signal,started,openReviews:stores?async()=>stores.openReviews():env.TTB_REVIEW_DATA_DIR?async()=>{const {ReviewStore,reviewPath}=await import('./review-store');return new ReviewStore(reviewPath(env));}:undefined}));
   };
   try {
    try{store=stores?await stores.openSpend():new (await import('./sqlite-spend')).SqliteSpendStore(path!);await store.acquireWork(workId);acquired=true;}catch{return reply(503,'spend-unavailable');}
@@ -106,6 +121,9 @@ export function createDemoHandler({env=process.env,transport=(url,init)=>fetch(u
    }
    const phase = request.headers.get('x-ttb-batch-phase');
    if('schemaVersion' in input)return await groupResponse(input);
+   // The legacy singleton is still Haiku, not an implicit OCR/fallback path.
+   // Azure-only deployments must submit a one-photo group for a single image.
+   if(!env.OPENROUTER_API_KEY)return reply(403,'access-denied');
    const rawIntent = request.headers.get('x-ttb-batch-intent');
    const binding = request.headers.get('x-ttb-batch-binding');
    if (phase !== null && phase !== 'prepare' && phase !== 'execute') return reply(400,'invalid-input');

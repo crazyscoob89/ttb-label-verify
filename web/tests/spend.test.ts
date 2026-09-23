@@ -3,7 +3,7 @@ import { expect, test, vi } from 'vitest';
 import { executeReserved, type SpendBinding } from '../lib/spend';
 import { OfflineSpendStore } from './helpers/offline-spend-store';
 
-const binding = (): SpendBinding => ({ reservationId: randomUUID(), attemptId: randomUUID(), requestId: randomUUID(), imageSha256: 'a'.repeat(64), schemaVersion: 1, rulesVersion: 'prototype-seven-fields-v1', promptVersion: 'image-observations-v1', model: 'anthropic/claude-haiku-4.5', maxCostMicrousd: 100 });
+const binding = (): Extract<SpendBinding, { schemaVersion: 1 }> => ({ reservationId: randomUUID(), attemptId: randomUUID(), requestId: randomUUID(), imageSha256: 'a'.repeat(64), schemaVersion: 1, rulesVersion: 'prototype-seven-fields-v1', promptVersion: 'image-observations-v1', model: 'anthropic/claude-haiku-4.5', maxCostMicrousd: 100 });
 
 test('authorized valid reservation dispatches once and holds all cost after success', async () => {
   const store = new OfflineSpendStore(); const work = vi.fn(async () => 'evidence'); const b = binding();

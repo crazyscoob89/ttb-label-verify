@@ -12,23 +12,22 @@ const envelope=(evidence:unknown)=>Response.json({choices:[{index:0,finish_reaso
 async function setup(){
  const fixture=await groupFixture(4),store=new OfflineSpendStore();store.ceiling=25_000_000;
  const request:GroupExtractionRequest={schemaVersion:2,photos:fixture.prepared.photos.map(p=>({descriptor:p.descriptor,image:p.normalized.bytes})),photoSetSha256:fixture.prepared.photoSetSha256,...groupAttemptIds(fixture.input.group.groupId,1)};
- const transport=vi.fn(async()=>envelope(photoEvidence(request.photos.map(p=>p.descriptor.photoId))));
+ const transport=vi.fn(async(_url:string,init:RequestInit)=>envelope(photoEvidence([JSON.parse(JSON.parse(String(init.body)).messages[1].content[0].text).photoId])));
  const provider=createOpenRouterGroupProvider({authorized:true,apiKey:'offline-only',store,maxCostMicrousd:1_000_000,transport});
  return {...fixture,request,store,transport,provider};
 }
-test('one guarded completion contains all four tagged images; v2 honest binding, permanent duplicate fence',async()=>{
- const s=await setup();const result=await s.provider.extractGroup(s.request);expect(result.processing).toBe('complete');expect(s.transport).toHaveBeenCalledTimes(1);
- const [,init]=s.transport.mock.calls[0] as unknown as [string,RequestInit];const body=JSON.parse(String(init.body));expect(body.max_tokens).toBe(6000);expect(body.messages[1].content).toHaveLength(8);
- for(let i=0;i<4;i++){expect(JSON.parse(body.messages[1].content[i*2].text).photoId).toBe(s.request.photos[i].descriptor.photoId);expect(body.messages[1].content[i*2+1].image_url.url).toContain(Buffer.from(s.request.photos[i].image).toString('base64'));}
+test('four isolated guarded completions retain v2 honest binding and permanent duplicate fence',async()=>{
+ const s=await setup();const result=await s.provider.extractGroup(s.request);expect(result.processing).toBe('complete');expect(s.transport).toHaveBeenCalledTimes(4);
+ for(let i=0;i<4;i++){const body=JSON.parse(String(s.transport.mock.calls[i][1].body));expect(body.max_tokens).toBe(2200);expect(body.messages[1].content).toHaveLength(2);expect(JSON.parse(body.messages[1].content[0].text).photoId).toBe(s.request.photos[i].descriptor.photoId);expect(body.messages[1].content[1].image_url.url).toContain(Buffer.from(s.request.photos[i].image).toString('base64'));}
  const hold=[...s.store.rows.values()][0];expect(hold.binding).toMatchObject({schemaVersion:2,promptVersion:'photo-set-observations-v2',imageSha256:s.request.photoSetSha256});expect(hold.state).toBe('unresolved');
- expect((await s.provider.extractGroup(s.request)).processing).toBe('failed');expect(s.transport).toHaveBeenCalledTimes(1);
+ expect((await s.provider.extractGroup(s.request)).processing).toBe('failed');expect(s.transport).toHaveBeenCalledTimes(4);
 });
 test.each(['missing','duplicate','unknown','truncated','legacy','formatting'])('whole group fails %s output with no repair and liability retained',async bad=>{
  const s=await setup(),e=photoEvidence(s.request.photos.map(p=>p.descriptor.photoId));
  if(bad==='missing')e.photos.pop();if(bad==='duplicate')e.photos[1].photoId=e.photos[0].photoId;if(bad==='unknown')e.photos[1].photoId='11111111-1111-4111-8111-111111111111';
  if(bad==='formatting')e.photos[0].evidence.warning.body.status='unreadable';
  s.transport.mockImplementation(async()=>bad==='truncated'?Response.json({choices:[{index:0,finish_reason:'length',message:{role:'assistant',content:JSON.stringify(e)}}]}):envelope(bad==='legacy'?e.photos[0].evidence:e));
- expect((await s.provider.extractGroup(s.request)).processing).toBe('failed');expect(s.transport).toHaveBeenCalledTimes(1);expect(s.store.unresolved).toBe(1_000_000);
+ expect((await s.provider.extractGroup(s.request)).processing).toBe('failed');expect(s.transport).toHaveBeenCalledTimes(2);expect(s.store.unresolved).toBe(2_000_000);
 });
 test('input trust boundary rejects changed hash/shared memory before reservation',async()=>{
  const s=await setup();s.request.photos[3].image=Buffer.from(s.request.photos[3].image);s.request.photos[3].image[0]^=1;

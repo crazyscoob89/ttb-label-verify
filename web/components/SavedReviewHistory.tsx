@@ -2,6 +2,7 @@
 import { useCallback,useEffect, useRef, useState } from 'react';
 import {photoRecord,loadReviewPhotoEvidence,type UiCompleteComparison as CompleteComparison,type PhotoDescriptor} from '../lib/live-photo-client';
 import {verifyPhotoRecordDigest} from '../lib/photo-record';
+import {AZURE_OCR_DISPLAY_NAME} from '../lib/photo-contracts';
 import type { Application } from '../lib/contracts';
 import {checkedRecord,type ReviewIntent} from '../lib/review-policy';
 import { savedReceiptSchema, type SavedReceipt } from '../lib/saved-review-contract';
@@ -47,7 +48,7 @@ export default function SavedReviewHistory(){
   {busy&&<p role="status">Loading private saved evidence…</p>}{error&&<p role="alert">History unavailable ({error}). No saved state has been inferred.</p>}
   <ul>{rows.map(row=><li key={row.receipt.reviewId}><button disabled={busy} onClick={()=>void reopen(row.receipt.reviewId)}>Reopen {row.application.applicationId} / {row.application.applicationVersion} — {row.outcome}</button> · {row.receipt.savedAt}</li>)}</ul>
   {!!offset&&<button disabled={busy} onClick={()=>void load(Math.max(0,offset-50))}>Previous saved reviews</button>}{rows.length===50&&offset<150&&<button disabled={busy} onClick={()=>void load(offset+50)}>More saved reviews</button>}
-  {detail&&<article data-testid="reopened-review"><h2>SAVED — original review reopened</h2><p>Receipt {detail.receipt.reviewId} · Server time {detail.receipt.savedAt}</p><p>{detail.receipt.identity}</p><p className="hash">Source {detail.record.source} · Normalized image SHA-256 {detail.record.imageSha256}</p>
+  {detail&&<article data-testid="reopened-review"><h2>SAVED — original review reopened</h2><p>Receipt {detail.receipt.reviewId} · Server time {detail.receipt.savedAt}</p><p>{detail.receipt.identity}</p><p className="hash">Source {detail.record.source==='azure-foundry'?AZURE_OCR_DISPLAY_NAME:detail.record.source} · Normalized image SHA-256 {detail.record.imageSha256}</p>
    <EvidenceReview key={detail.receipt.reviewId} preserved record={detail.record} preview={image} loadPhoto={photoRecord(detail.record)?loadPhoto:undefined} resolution={key=>{const resolution=detail.intent.resolutions[key];return resolution&&resolution.decision!=='unresolved'?<span className="status resolved">Resolved · {resolution.decision} · server saved</span>:null;}} previewNote="Preserved normalized label from saved review. Retrieved bytes verified against the original saved hash.">
     <details className="original-application"><summary>Original application declarations</summary><dl data-testid="original-application">{Object.entries(detail.record.application).map(([key,value])=><div key={key}><dt>{fieldLabels[key as keyof typeof fieldLabels]??key.replace(/([A-Z])/g,' $1')}</dt><dd>{typeof value==='object'?`${value.kind} · ${value.country}`:String(value)}</dd></div>)}</dl></details>
     <section className="decision"><h3>Saved human decision — {detail.intent.outcome}</h3><p>{detail.intent.notes}</p><p>Physical assessment: {detail.intent.physical.checked?'Human checked':'Not checked'} — {detail.intent.physical.note}</p>{Object.entries(detail.intent.resolutions).map(([key,value])=><p key={key}>{fieldLabels[key as keyof typeof fieldLabels]}: {value.decision} — {value.note} Supporting evidence: {value.evidence}</p>)}</section>

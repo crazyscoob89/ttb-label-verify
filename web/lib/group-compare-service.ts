@@ -14,7 +14,7 @@ export function createGroupComparisonService(options:{provider:GroupExtractionPr
   try{
    signal?.throwIfAborted();const result=await options.provider.extractGroup({schemaVersion:2,photoSetSha256:prepared.photoSetSha256,photos:prepared.photos.map(p=>({descriptor:p.descriptor,image:p.normalized.bytes})),...identity},signal);
    if(result.processing==='failed')return fail(result.code==='unconfigured'?'unconfigured':'provider-failed');
-   if(result.metadata.source==='openrouter'&&(result.metadata.attemptId!==identity.attemptId||result.metadata.reservationId!==identity.reservationId))return fail('invalid-extraction');
+   if(result.metadata.source!=='fixture'&&(result.metadata.attemptId!==identity.attemptId||result.metadata.reservationId!==identity.reservationId))return fail('invalid-extraction');
    const record=immutable(finalizePhotoComparison(prepared.group.application,prepared.group.groupId,prepared.group.revision,prepared.photos.map(p=>p.descriptor),prepared.photoSetSha256,result));
    const snapshotWindow=Math.max(0,Math.min(10000,(options.deadlineAt??Infinity)-performance.now()-25));
    if(!signal?.aborted&&options.completed&&snapshotWindow>0){

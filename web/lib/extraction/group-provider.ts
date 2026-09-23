@@ -1,10 +1,17 @@
 import {createHash,randomUUID} from 'node:crypto';
 import {z} from 'zod';
-import {photoDescriptorsSchema,photoIdSchema,sha256Schema,GROUP_PROMPT_VERSION,type PhotoDescriptor,type PhotoSetEvidence} from '../photo-contracts';
+import {GPT41_MODEL,GPT41_PROMPT_VERSION} from '../photo-contracts';
+import {photoDescriptorsSchema,photoIdSchema,sha256Schema,GROUP_PROMPT_VERSION,AZURE_OCR_MODEL,AZURE_OCR_PROMPT_VERSION,type PhotoDescriptor,type PhotoSetEvidence} from '../photo-contracts';
 import {photoSetHash} from '../group-binding';
 import {RULES_VERSION} from '../rules';
 export type GroupExtractionRequest={schemaVersion:2;photos:{descriptor:PhotoDescriptor;image:Uint8Array}[];photoSetSha256:string;reservationId:string;attemptId:string};
-export type GroupExtractionMetadata={source:'fixture'|'openrouter';model:'offline-fixture'|'anthropic/claude-haiku-4.5';schemaVersion:2;promptVersion:typeof GROUP_PROMPT_VERSION;rulesVersion:typeof RULES_VERSION;photoSetSha256:string;photos:{photoId:string;imageSha256:string}[];requestId:string;reservationId?:string;attemptId?:string};
+type GroupMetadataBase={schemaVersion:2;rulesVersion:typeof RULES_VERSION;photoSetSha256:string;photos:{photoId:string;imageSha256:string}[];requestId:string};
+export type GroupExtractionMetadata=GroupMetadataBase & (
+ {source:'fixture';model:'offline-fixture';promptVersion:typeof GROUP_PROMPT_VERSION;reservationId?:never;attemptId?:never} |
+ {source:'openrouter';model:'anthropic/claude-haiku-4.5';promptVersion:typeof GROUP_PROMPT_VERSION;reservationId:string;attemptId:string} |
+ {source:'openrouter';model:typeof GPT41_MODEL;promptVersion:typeof GPT41_PROMPT_VERSION;reservationId:string;attemptId:string} |
+ {source:'azure-foundry';model:typeof AZURE_OCR_MODEL;promptVersion:typeof AZURE_OCR_PROMPT_VERSION;reservationId:string;attemptId:string}
+);
 export type GroupExtractionResult={processing:'complete';evidence:PhotoSetEvidence;metadata:GroupExtractionMetadata}|{processing:'failed';code:'unconfigured'|'invalid-request'|'provider-failed'|'spend-unavailable'};
 export interface GroupExtractionProvider{extractGroup(request:GroupExtractionRequest,signal?:AbortSignal):Promise<GroupExtractionResult>}
 export function snapshotGroupRequest(input:GroupExtractionRequest){

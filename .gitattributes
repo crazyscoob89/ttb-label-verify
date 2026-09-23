@@ -7,3 +7,9 @@
 
 # Frozen mock/evidence bytes are hashed independently of checkout OS.
 /docs/ui/v3/** -text
+
+# Captured refined GPT export bytes are SHA-256 pinned on every platform.
+/web/tests/fixtures/gpt41-refined-prompt.txt -text
+/web/tests/fixtures/gpt41-refined-schema.json -text
+# Provider envelopes include streaming keepalive whitespace; preserve it exactly.
+/web/tests/fixtures/gpt41-refined-envelope-*.json -text whitespace=-blank-at-eol
