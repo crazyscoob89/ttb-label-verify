@@ -42,7 +42,7 @@ async function replay(envelopes = captured) {
   return { ...f, record };
 }
 function meaningfulMatches(record: Awaited<ReturnType<typeof replay>>['record']) {
-  expect(record.comparison.rulesRevision).toBe(9);
+  expect(record.comparison.rulesRevision).toBe(10);
   expect(Object.keys(record.comparison.fields)).toHaveLength(7);
   for (const field of Object.values(record.comparison.fields)) {
     expect(field.status).toBe('match');
