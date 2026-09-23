@@ -1,6 +1,8 @@
 # GPT-4.1 group extraction — refined release candidate
 
-Status: successful refined actual-photo responses integrated and replayed offline; **not enabled or deployed**. Independent parent review remains required before migration/application/deployment. Existing Haiku, Azure and original benchmark artifacts are retained. This is not a general accuracy or legal approval claim.
+Historical integration status (before the separately recorded migration/deployment): successful refined actual-photo responses integrated and replayed offline. Existing Haiku, Azure and original benchmark artifacts are retained. This is not a general accuracy or legal approval claim.
+
+**Producer clarification r2 follow-up:** the archived prompt below is now an unchanged base prefix, not the complete current prompt. A generic append requires contiguous selected-name-plus-distillery-role support and entity-only names without enclosing quotation delimiters. An authorized local production-adapter run on the exact normalized front/back photographs returned seven matches with a complete named distillery sentence; it used two POSTs and the already-applied 008 production tuple. This follow-up made no deployment or migration and did not save a review. External audit: `/opt/data/ttb-gpt41-final-prompt-result.md`, evidence `/opt/data/ttb-gpt41-final-prompt-evidence/`. Physical print size remains unverified. Prompt content SHA-256: `cfc7744486c5b1dae243f1f80651f94d220abc94b97ad8d99ee5ad831b16802d`. Persisted contract/admission version remains `gpt41-photo-observations-v1`; exact content revision is source-hashed rather than relabeling old captures.
 
 ## Selection and identity
 
@@ -20,9 +22,9 @@ New records use exactly `source=openrouter`, `model=openai/gpt-4.1`, `promptVers
 
 `web/lib/extraction/gpt41.ts` performs full normalized image validation and builds isolated, single-photo requests. No application declarations, other photos, previous answers, or shared conversation enter a photo context. Each photograph has its own $1 unresolved hold. The first two calls overlap; the retained parent is photo 0's real claim and exclusive group gate, so later photographs run serially in the one remaining claim slot. All started siblings drain before completion/failure; there are no retries.
 
-The request matches the successful refined per-photo requests, including the exact prompt, strict JSON Schema, 3,200 output tokens, temperature 0, high-detail image, and provider `only/order=['openai']`, `allow_fallbacks=false`, `require_parameters=true`.
+The request retains the successful refined per-photo routing/settings and strict JSON Schema: 3,200 output tokens, temperature 0, high-detail image, and provider `only/order=['openai']`, `allow_fallbacks=false`, `require_parameters=true`. The prompt alone now has the append-only producer clarification r2.
 
-The exact generic refined prompt is exported as `GPT41_PHOTO_PROMPT` from `gpt41-prompt.ts`. Repository-local `gpt41-refined-prompt.txt` and `gpt41-refined-schema.json` fixtures lock the exported UTF-8 bytes and schema serialization (`JSON.stringify(schema,null,2) + '\n'`) to the successful capture. Raw response envelopes are copied byte-for-byte; no photograph or image base64 is committed. The old request and response fixtures are retained, not overwritten. See `web/tests/fixtures/gpt41-refined-provenance.md`.
+The generic prompt is exported as `GPT41_PHOTO_PROMPT` from `gpt41-prompt.ts`. Repository-local `gpt41-refined-prompt.txt` locks the archived base-prefix bytes, and `gpt41-refined-schema.json` still locks the unchanged schema serialization (`JSON.stringify(schema,null,2) + '\n'`). The request golden separately locks the current prompt digest and append boundaries. Raw response envelopes are historical captures copied byte-for-byte, not outputs of r2; no photograph or image base64 is committed. The old request and response fixtures are retained, not overwritten. See `web/tests/fixtures/gpt41-refined-provenance.md`.
 
 ### Actual replay finding and history boundary
 
@@ -55,14 +57,14 @@ Every claimed photo performs a fresh uncached catalog check immediately before P
 
 Timeouts, cancellation, malformed catalog responses and unknown pricing fail closed. Catalog failure after claim retains the unresolved hold conservatively. Pricing failure never blocks reopening saved history.
 
-## Migration — do not apply yet
+## Migration — historical admission scope; do not reapply
 
 `web/db/migrations/008_gpt41_group_provider.sql` contains only two additive function-admission changes:
 
 1. Existing 007 spend function plus the genuine production GPT tuple, preserving all benchmark/Haiku/Azure tuples, $50 ceiling, max-two claims, and unresolved liabilities.
 2. Existing 005 asset admission function plus the exact GPT source/model/prompt/schema/aggregation tuples for retained revision 6 and fresh revision 7, with numeric JSON schema/rules checks. The outer revision gate admits revision 7 only with the complete GPT tuple, never a provider cross-product.
 
-No ledger rows, ceilings, incurred costs, holds, receipts, ACLs or history are changed. Static tests subtract the new branches and require exact equality with prior function definitions. **Migration 008 has not been applied, even to a disposable PostgreSQL database. Parent review/application is required before enabling this lane.** Migrations 005–007 are retained in the candidate; the parent reports them already applied. Do not reapply them blindly. PostgreSQL execution was intentionally not part of this no-SQL gate.
+The migration's scope does not mutate ledger rows, ceilings, incurred costs, holds, receipts, ACLs or history. Static tests subtract the new branches and require exact equality with prior function definitions. At the original integration gate, migration 008 awaited independent review/application. The separately authorized application has since been verified (`/opt/data/ttb-gpt41-migration-evidence/managed-verified.json`); the r2 follow-up confirmed the exact applied spend/asset function hashes and reused that tuple without changing SQL. Migrations 005–008 must not be reapplied for this prompt-only change.
 
 ## Offline verification
 

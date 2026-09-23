@@ -54,12 +54,20 @@ function meaningfulMatches(record: Awaited<ReturnType<typeof replay>>['record'])
   expect(record.evidence.producer.address.text).toBe('Jose Cuervo No. 73, Tequila, Jalisco, 46400 Mexico');
 }
 
-test('production prompt and schema bytes equal the captured successful refined exports, not the old baseline', () => {
+test('archived refined prompt is an unchanged base prefix; current request adds producer clarification r2', () => {
   const prompt = fixtureBytes('gpt41-refined-prompt.txt'), schema = fixtureBytes('gpt41-refined-schema.json');
-  expect(Buffer.from(GPT41_PHOTO_PROMPT)).toEqual(prompt);
+  const archivedBase = prompt.toString('utf8');
+  expect(GPT41_PHOTO_PROMPT.slice(0, archivedBase.length)).toBe(archivedBase);
+  const append = GPT41_PHOTO_PROMPT.slice(archivedBase.length);
+  expect(append).toMatch(/^\nProducer field-boundary clarification r2 /);
+  expect(append).toContain('Include the full selected entity name and the role wording together');
+  expect(append).toContain('exclude those enclosing delimiters from producer.name; preserve punctuation within the name');
+  expect(append).toContain('Do not stitch separate passages together');
+  expect(GPT41_PHOTO_PROMPT).not.toBe(archivedBase);
+  expect(digest(Buffer.from(GPT41_PHOTO_PROMPT))).toBe('cfc7744486c5b1dae243f1f80651f94d220abc94b97ad8d99ee5ad831b16802d');
   expect(Buffer.from(JSON.stringify(gpt41JsonSchema, null, 2) + '\n')).toEqual(schema);
   const body = makeGpt41Request(Buffer.from('offline'), 'image/jpeg');
-  expect(body.messages[0].content).toBe(prompt.toString('utf8'));
+  expect(body.messages[0].content).toBe(archivedBase + append);
   expect(JSON.stringify(body.response_format.json_schema.schema, null, 2) + '\n').toBe(schema.toString('utf8'));
   // All routing/schema/user-message settings remain identical to the original
   // captured request. Only prompt refinement differs; original fixture untouched.
