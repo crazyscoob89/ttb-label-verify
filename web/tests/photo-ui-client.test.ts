@@ -18,6 +18,10 @@ test('client admits actual replayable group and rejects invented findings/proven
  const p=preparedGroupSchema.parse({...prepared(f.input.group),photos:f.record.photos,photoSetSha256:f.record.photoSetSha256,binding:f.record.photoSetSha256+'.'+'b'.repeat(64)});
  const ready={group:f.input.group,files,prepared:p};
  const valid=vi.fn<typeof fetch>().mockResolvedValue(Response.json({result:f.record}));expect((await executeLiveGroup(ready,code,AbortSignal.timeout(5000),valid)).result).toEqual(f.record);
+ for(const [rulesRevision,aggregationVersion] of [[4,'photo-set-aggregation-v1'],[6,'photo-set-aggregation-v1'],[4,'photo-set-aggregation-v2'],[7,'photo-set-aggregation-v2'],[6,'photo-set-aggregation-v3'],[undefined,undefined]] as const){
+  const unsupported={...f.record,aggregationVersion,comparison:{...f.record.comparison,rulesRevision}};
+  await expect(executeLiveGroup(ready,code,AbortSignal.timeout(5000),vi.fn<typeof fetch>().mockResolvedValue(Response.json({result:unsupported})))).rejects.toThrow('invalid-extraction');
+ }
  const forged=structuredClone(f.record);forged.comparison.fields.brand.reasons=['Invented explanation not produced by the evaluator.'];
  await expect(executeLiveGroup(ready,code,AbortSignal.timeout(5000),vi.fn<typeof fetch>().mockResolvedValue(Response.json({result:forged})))).rejects.toThrow('invalid-extraction');
  const badDigest={...f.record,photoSetSha256:'a'.repeat(64)};await expect(executeLiveGroup(ready,code,AbortSignal.timeout(5000),vi.fn<typeof fetch>().mockResolvedValue(Response.json({result:badDigest})))).rejects.toThrow('invalid-extraction');

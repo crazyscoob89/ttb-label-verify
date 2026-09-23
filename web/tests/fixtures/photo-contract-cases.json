@@ -175,7 +175,7 @@
           }
         ]
       },
-      "aggregationVersion": "photo-set-aggregation-v1",
+      "aggregationVersion": "photo-set-aggregation-v2",
       "evidence": {
         "schemaVersion": 1,
         "brand": {
@@ -397,7 +397,7 @@
         "applicationId": "RULES-SYNTH-001",
         "applicationVersion": "1",
         "rulesVersion": "prototype-seven-fields-v1",
-        "rulesRevision": 4,
+        "rulesRevision": 6,
         "fields": {
           "brand": {
             "status": "match",
@@ -466,8 +466,8 @@
           "producer": {
             "status": "match",
             "reasons": [
-              "Producer name: readable text agrees under case/whitespace/NFC equivalence.",
-              "Producer address: readable text agrees under case/whitespace/NFC equivalence."
+              "Producer name: agrees under case, layout and Latin accent equivalence; no role or corporate-identity certification.",
+              "Producer address: whole supplied address agrees under case, Latin accents, comma layout and No. spacing; no substring verification."
             ],
             "expected": "Harbor Distillery\n12 Wharf Road, Paris",
             "observed": {
@@ -490,8 +490,7 @@
           "origin": {
             "status": "match",
             "reasons": [
-              "Origin applies to imported distilled-spirits.",
-              "Imported country of origin: readable text agrees under case/whitespace/NFC equivalence."
+              "Origin: whole country claim agrees under bounded origin-prefix/country mapping. Raw source text retained."
             ],
             "expected": "France",
             "observed": {
@@ -507,11 +506,11 @@
           "warning": {
             "status": "match",
             "reasons": [
-              "Warning heading wording: matches exact reference (layout whitespace only); case and punctuation preserved.",
-              "Warning body wording: matches exact reference (layout whitespace only); case and punctuation preserved.",
-              "Warning heading boldness: matches; observed bold.",
-              "Warning body boldness: matches; observed nonbold.",
-              "Physical print size: unverified; cannot be measured or certified from extraction/photo evidence. Assess the physical label separately; this is not a wording mismatch or a legal compliance guarantee."
+              "Warning heading: wording matches (exact capitals and colon; layout whitespace ignored).",
+              "Warning body: wording matches (body case and layout whitespace ignored; punctuation and word order retained).",
+              "Warning heading boldness: observed as required. Letter case does not establish boldness.",
+              "Warning body boldness: observed as required. Letter case does not establish boldness.",
+              "Physical print size: unverified; inspect the physical label separately."
             ],
             "expected": "GOVERNMENT WARNING:\n(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
             "observed": {
@@ -729,7 +728,7 @@
           }
         ]
       },
-      "aggregationVersion": "photo-set-aggregation-v1",
+      "aggregationVersion": "photo-set-aggregation-v2",
       "evidence": {
         "schemaVersion": 1,
         "brand": {
@@ -958,7 +957,7 @@
         "applicationId": "RULES-SYNTH-001",
         "applicationVersion": "1",
         "rulesVersion": "prototype-seven-fields-v1",
-        "rulesRevision": 4,
+        "rulesRevision": 6,
         "fields": {
           "brand": {
             "status": "match",
@@ -996,8 +995,8 @@
             "status": "mismatch",
             "reasons": [
               "ABV: uncertain observation; human review required.",
-              "abv: conflicting photo observations (20000000-0000-4000-8000-000000000005, 20000000-0000-4000-8000-000000000006).",
-              "abv: proven defect in photo 20000000-0000-4000-8000-000000000006."
+              "abv: photo observations disagree; inspect the source views.",
+              "abv: readable difference in photo 2; verify extraction against the image, not an independently confirmed label defect."
             ],
             "expected": "40",
             "observed": {
@@ -1030,8 +1029,8 @@
           "producer": {
             "status": "match",
             "reasons": [
-              "Producer name: readable text agrees under case/whitespace/NFC equivalence.",
-              "Producer address: readable text agrees under case/whitespace/NFC equivalence."
+              "Producer name: agrees under case, layout and Latin accent equivalence; no role or corporate-identity certification.",
+              "Producer address: whole supplied address agrees under case, Latin accents, comma layout and No. spacing; no substring verification."
             ],
             "expected": "Harbor Distillery\n12 Wharf Road, Paris",
             "observed": {
@@ -1054,8 +1053,7 @@
           "origin": {
             "status": "match",
             "reasons": [
-              "Origin applies to imported distilled-spirits.",
-              "Imported country of origin: readable text agrees under case/whitespace/NFC equivalence."
+              "Origin: whole country claim agrees under bounded origin-prefix/country mapping. Raw source text retained."
             ],
             "expected": "France",
             "observed": {
@@ -1071,11 +1069,11 @@
           "warning": {
             "status": "match",
             "reasons": [
-              "Warning heading wording: matches exact reference (layout whitespace only); case and punctuation preserved.",
-              "Warning body wording: matches exact reference (layout whitespace only); case and punctuation preserved.",
-              "Warning heading boldness: matches; observed bold.",
-              "Warning body boldness: matches; observed nonbold.",
-              "Physical print size: unverified; cannot be measured or certified from extraction/photo evidence. Assess the physical label separately; this is not a wording mismatch or a legal compliance guarantee."
+              "Warning heading: wording matches (exact capitals and colon; layout whitespace ignored).",
+              "Warning body: wording matches (body case and layout whitespace ignored; punctuation and word order retained).",
+              "Warning heading boldness: observed as required. Letter case does not establish boldness.",
+              "Warning body boldness: observed as required. Letter case does not establish boldness.",
+              "Physical print size: unverified; inspect the physical label separately."
             ],
             "expected": "GOVERNMENT WARNING:\n(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
             "observed": {
@@ -1365,7 +1363,7 @@
           }
         ]
       },
-      "aggregationVersion": "photo-set-aggregation-v1",
+      "aggregationVersion": "photo-set-aggregation-v2",
       "evidence": {
         "schemaVersion": 1,
         "brand": {
@@ -1587,7 +1585,7 @@
         "applicationId": "RULES-SYNTH-001",
         "applicationVersion": "1",
         "rulesVersion": "prototype-seven-fields-v1",
-        "rulesRevision": 4,
+        "rulesRevision": 6,
         "fields": {
           "brand": {
             "status": "match",
@@ -1656,8 +1654,8 @@
           "producer": {
             "status": "match",
             "reasons": [
-              "Producer name: readable text agrees under case/whitespace/NFC equivalence.",
-              "Producer address: readable text agrees under case/whitespace/NFC equivalence."
+              "Producer name: agrees under case, layout and Latin accent equivalence; no role or corporate-identity certification.",
+              "Producer address: whole supplied address agrees under case, Latin accents, comma layout and No. spacing; no substring verification."
             ],
             "expected": "Harbor Distillery\n12 Wharf Road, Paris",
             "observed": {
@@ -1680,8 +1678,7 @@
           "origin": {
             "status": "match",
             "reasons": [
-              "Origin applies to imported distilled-spirits.",
-              "Imported country of origin: readable text agrees under case/whitespace/NFC equivalence."
+              "Origin: whole country claim agrees under bounded origin-prefix/country mapping. Raw source text retained."
             ],
             "expected": "France",
             "observed": {
@@ -1697,11 +1694,11 @@
           "warning": {
             "status": "match",
             "reasons": [
-              "Warning heading wording: matches exact reference (layout whitespace only); case and punctuation preserved.",
-              "Warning body wording: matches exact reference (layout whitespace only); case and punctuation preserved.",
-              "Warning heading boldness: matches; observed bold.",
-              "Warning body boldness: matches; observed nonbold.",
-              "Physical print size: unverified; cannot be measured or certified from extraction/photo evidence. Assess the physical label separately; this is not a wording mismatch or a legal compliance guarantee."
+              "Warning heading: wording matches (exact capitals and colon; layout whitespace ignored).",
+              "Warning body: wording matches (body case and layout whitespace ignored; punctuation and word order retained).",
+              "Warning heading boldness: observed as required. Letter case does not establish boldness.",
+              "Warning body boldness: observed as required. Letter case does not establish boldness.",
+              "Physical print size: unverified; inspect the physical label separately."
             ],
             "expected": "GOVERNMENT WARNING:\n(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
             "observed": {
@@ -1852,7 +1849,7 @@
           }
         ]
       },
-      "aggregationVersion": "photo-set-aggregation-v1",
+      "aggregationVersion": "photo-set-aggregation-v2",
       "evidence": {
         "schemaVersion": 1,
         "brand": {
@@ -2074,7 +2071,7 @@
         "applicationId": "RULES-SYNTH-001",
         "applicationVersion": "1",
         "rulesVersion": "prototype-seven-fields-v1",
-        "rulesRevision": 4,
+        "rulesRevision": 6,
         "fields": {
           "brand": {
             "status": "match",
@@ -2143,8 +2140,8 @@
           "producer": {
             "status": "match",
             "reasons": [
-              "Producer name: readable text agrees under case/whitespace/NFC equivalence.",
-              "Producer address: readable text agrees under case/whitespace/NFC equivalence."
+              "Producer name: agrees under case, layout and Latin accent equivalence; no role or corporate-identity certification.",
+              "Producer address: whole supplied address agrees under case, Latin accents, comma layout and No. spacing; no substring verification."
             ],
             "expected": "Harbor Distillery\n12 Wharf Road, Paris",
             "observed": {
@@ -2167,8 +2164,7 @@
           "origin": {
             "status": "match",
             "reasons": [
-              "Origin applies to imported distilled-spirits.",
-              "Imported country of origin: readable text agrees under case/whitespace/NFC equivalence."
+              "Origin: whole country claim agrees under bounded origin-prefix/country mapping. Raw source text retained."
             ],
             "expected": "France",
             "observed": {
@@ -2184,11 +2180,11 @@
           "warning": {
             "status": "match",
             "reasons": [
-              "Warning heading wording: matches exact reference (layout whitespace only); case and punctuation preserved.",
-              "Warning body wording: matches exact reference (layout whitespace only); case and punctuation preserved.",
-              "Warning heading boldness: matches; observed bold.",
-              "Warning body boldness: matches; observed nonbold.",
-              "Physical print size: unverified; cannot be measured or certified from extraction/photo evidence. Assess the physical label separately; this is not a wording mismatch or a legal compliance guarantee."
+              "Warning heading: wording matches (exact capitals and colon; layout whitespace ignored).",
+              "Warning body: wording matches (body case and layout whitespace ignored; punctuation and word order retained).",
+              "Warning heading boldness: observed as required. Letter case does not establish boldness.",
+              "Warning body boldness: observed as required. Letter case does not establish boldness.",
+              "Physical print size: unverified; inspect the physical label separately."
             ],
             "expected": "GOVERNMENT WARNING:\n(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
             "observed": {

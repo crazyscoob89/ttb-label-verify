@@ -59,7 +59,7 @@ export async function executeLiveGroup(ready:ReadyPhotoGroup,code:string,signal:
  validatePhotoGroup(ready.group,ready.files);const p=checkedPreparation(ready.prepared,ready.group);await verifyPhotoSet(p.photos,p.photoSetSha256);
  return measured('compare',onStage,async()=>{const media=bodyFor(ready.group,ready.files,ready.ticket,{phase:'execute',attemptId:p.attemptId,reservationId:p.reservationId,binding:p.binding});const response=await transport('/api/comparisons',{method:'POST',...media,headers:{...media.headers,'x-ttb-demo-code':code},signal,cache:'no-store',redirect:'error'});const payload=await readJson(response,signal);
  if(payload.result?.processing==='complete'){
-  const record=photoRecord(payload.result);if(!record||record.groupId!==p.groupId||record.revision!==p.revision||record.photoSetSha256!==p.photoSetSha256||photoSetCanonical(record.photos)!==photoSetCanonical(p.photos)||JSON.stringify(record.application)!==JSON.stringify(ready.group.application)||record.comparison?.rulesRevision!==4)throw Error('invalid-extraction');
+  const record=photoRecord(payload.result);if(!record||record.groupId!==p.groupId||record.revision!==p.revision||record.photoSetSha256!==p.photoSetSha256||photoSetCanonical(record.photos)!==photoSetCanonical(p.photos)||JSON.stringify(record.application)!==JSON.stringify(ready.group.application)||record.comparison?.rulesRevision!==6||record.aggregationVersion!=='photo-set-aggregation-v2')throw Error('invalid-extraction');
   // Reject forged findings/provenance before rendering, not merely on Save.
   if(!checkedPhotoRecord(record)||!await verifyPhotoRecordDigest(record))throw Error('invalid-extraction');
   const ids=record.photos.map(p=>p.photoId);parsePhotoSetEvidence(record.photoEvidence,ids);

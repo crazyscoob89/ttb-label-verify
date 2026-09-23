@@ -46,7 +46,7 @@ test('server integrity validation preserves exact full-record confirmation seria
  expect(reviewBinding(checkedServerRecord(reordered))).toBe(reviewBinding(reordered));
 });
 test('record replay detects derived/raw provenance mutation and server digest tampering',async()=>{
- const {record}=await groupFixture();expect(record.comparison.rulesRevision).toBe(4);expect(checkedRecord(record)).not.toBeNull();expect(await verifyPhotoRecordDigest(record)).toBe(true);
+ const {record}=await groupFixture();expect(record.comparison.rulesRevision).toBe(6);expect(record.aggregationVersion).toBe('photo-set-aggregation-v2');expect(checkedRecord(record)).not.toBeNull();expect(await verifyPhotoRecordDigest(record)).toBe(true);
  for(const mutate of [(r:typeof record)=>r.provenance.brand.sourcePhotoIds.pop(),(r:typeof record)=>r.evidence.brand.text='wrong',(r:typeof record)=>r.photoEvidence.photos.pop(),(r:typeof record)=>r.comparison.fields.brand.status='match']){
   const altered=structuredClone(record);mutate(altered);if(JSON.stringify(altered)!==JSON.stringify(record))expect(checkedRecord(altered)).toBeNull();
  }

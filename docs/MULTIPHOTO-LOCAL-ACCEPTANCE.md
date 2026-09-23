@@ -3,8 +3,8 @@
 ## Revision dispatch
 
 - Historical singleton records without `rulesRevision` retain frozen revision 1; explicit revision 2 retains `rules.ts`.
-- New singleton finalization uses `compareApplicationV3`, requiring explicit revision 3 on replay.
-- New photo-set records retain `recordVersion: 2` and `rulesRevision: 4`. Both the aggregate and individual-photo defect checks use the revision-3 wine evaluator.
+- Historical singleton revision 3 retains `compareApplicationV3`; fresh singleton finalization now uses revision 5 bottle semantics.
+- Historical photo-set revision 4 / aggregation v1 retains its frozen evaluators. Fresh photo-set records use `recordVersion: 2`, `rulesRevision: 6`, aggregation v2. The live execution client admits only that fresh pair; history readers explicitly replay both old and new pairs, never unknown revisions.
 - No evaluator rewrites, historical snapshot mutation, ledger reset, or automatic migration.
 - The browser replays complete group records and verifies their canonical SHA-256 before rendering comparison results or reopening history. Selected private images are separately checked for digest, size and MIME.
 
@@ -44,6 +44,8 @@ The browser can abort a *completed* fetch signal, causing Chromium to discard it
 ## Migration boundary
 
 Hosted migration `003_photo_groups.sql` is additive and must use the same approved migration owner as 002. Run `tests/photo-postgres.test.ts` only against a disposable local Unix-socket cluster, with `TTB_HOSTED_TEST_SOCKET`, `TTB_HOSTED_TEST_PORT`, and an absolute `TTB_HOSTED_TEST_PSQL` executable (including any required library-path wrapper). The test creates and removes only its own random database and owner role. It does not wipe the cluster or activate a production ledger.
+
+Bottle repair additionally requires `004_bottle_semantics.sql`, on the **same existing Supabase project and migration owner** after the already-deployed 003, before fresh writers are released. It only widens the private asset admission to the exact 4/v1 or 6/v2 pairs. The disposable PostgreSQL test now executes actual 002→003→004, rejects new writes before 004 and crossed/unknown/null versions after it, verifies frozen history and function ownership/ACLs are unchanged, and checks funded-ledger preservation, strict media quotas and restricted-role access. No production execution is part of local acceptance. See `BOTTLE-INTEGRATED-ACCEPTANCE.md` for the incident regression and limits.
 
 Existing local review stores require the explicit owner-run `scripts/migrate-review-photos.ts <absolute-private-reviews.sqlite> --confirm-additive-photo-migration`. Constructors do not migrate. Group preparation requires an independent `TTB_MEDIA_SIGNING_SECRET`, including in SQLite mode.
 
