@@ -6,6 +6,7 @@ import { applicationSchema, type Application } from '../lib/contracts';
 import { checkedPhotoRecord, finalizePhotoComparison, type CompletePhotoComparison } from '../lib/photo-record';
 import type { PhotoSetEvidence } from '../lib/photo-contracts';
 import { aggregatePhotoEvidence } from '../lib/photo-evidence-v3';
+import { comparePhotoApplicationV8 } from '../lib/group-rules-v8';
 import bacardi from './fixtures/bacardi-live-v7.json';
 import jose from './fixtures/jose-live-v7.json';
 
@@ -15,10 +16,12 @@ const domestic = { ...old.application, imported: false, origin: { kind: 'domesti
 const imported = { ...old.application, origin: { kind: 'imported' as const, country: 'Mexico' } };
 const readable = (text: string) => ({ status: 'readable' as const, text, reason: 'Synthetic regression observation, not a new extraction.' });
 function fresh(application: Application = imported, evidence: PhotoSetEvidence = structuredClone(old.photoEvidence), record = old) {
-  return finalizePhotoComparison(application, record.groupId, record.revision, record.photos, record.photoSetSha256, {
+  const current = finalizePhotoComparison(application, record.groupId, record.revision, record.photos, record.photoSetSha256, {
     processing: 'complete', evidence,
     metadata: { ...record.extraction, source: record.source, rulesVersion: record.comparison.rulesVersion, photoSetSha256: record.photoSetSha256, photos: record.photos.map(p => ({ photoId: p.photoId, imageSha256: p.normalized.sha256 })) },
   });
+  // Frozen v8 regression lane: recompute both policies, never relabel v9 findings.
+  return { ...current, aggregationVersion: 'photo-set-aggregation-v3' as const, ...aggregatePhotoEvidence(evidence), comparison: comparePhotoApplicationV8(application,evidence) };
 }
 function field(key: 'brand'|'classType'|'netContents'|'origin'|'abv', expected: string, actual: string, second = actual, app: Application = imported) {
   const evidence = structuredClone(old.photoEvidence);

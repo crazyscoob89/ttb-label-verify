@@ -6,6 +6,9 @@ import { RULES_VERSION } from './rules';
 import { comparePhotoApplication, type GroupComparison } from './group-rules';
 import { comparePhotoApplicationV7, type GroupComparisonV7 } from './group-rules-v7';
 import { comparePhotoApplicationV8, type GroupComparisonV8 } from './group-rules-v8';
+import { comparePhotoApplicationV9, type GroupComparisonV9 } from './group-rules-v9';
+import { aggregatePhotoEvidence as aggregateV4 } from './photo-evidence-v4';
+export const AGGREGATION_VERSION_V4 = 'photo-set-aggregation-v4' as const;
 import { aggregatePhotoEvidence as aggregateV3 } from './photo-evidence-v3';
 export const AGGREGATION_VERSION_V3 = 'photo-set-aggregation-v3' as const;
 import { aggregatePhotoEvidence } from './photo-evidence';
@@ -18,8 +21,8 @@ const liveExtraction=extractionBase.extend({model:z.literal('anthropic/claude-ha
 const azureExtraction=liveExtraction.extend({model:z.literal(AZURE_OCR_MODEL),promptVersion:z.literal(AZURE_OCR_PROMPT_VERSION)});
 const gpt41Extraction=liveExtraction.extend({model:z.literal(GPT41_MODEL),promptVersion:z.literal(GPT41_PROMPT_VERSION)});
 const extraction=z.union([extractionBase,liveExtraction,azureExtraction,gpt41Extraction]);
-export type CompletePhotoComparison={recordVersion:2;processing:'complete';application:Application;groupId:string;revision:number;photos:PhotoDescriptor[];photoSetSha256:string;imageSha256:string;source:'fixture'|'openrouter'|'azure-foundry';photoEvidence:PhotoSetEvidence;aggregationVersion:typeof AGGREGATION_VERSION|typeof AGGREGATION_VERSION_V1|typeof AGGREGATION_VERSION_V3;evidence:ExtractionEvidence;provenance:PhotoProvenance;extraction:z.infer<typeof extraction>;comparison:GroupComparison|GroupComparisonV4|GroupComparisonV7|GroupComparisonV8};
-const schema=z.object({recordVersion:z.literal(2),processing:z.literal('complete'),application:z.unknown(),groupId:photoIdSchema,revision:z.number().int().positive().max(Number.MAX_SAFE_INTEGER),photos:photoDescriptorsSchema,photoSetSha256:sha256Schema,imageSha256:sha256Schema,source:z.enum(['fixture','openrouter','azure-foundry']),photoEvidence:z.unknown(),aggregationVersion:z.enum([AGGREGATION_VERSION_V1,AGGREGATION_VERSION,AGGREGATION_VERSION_V3]),evidence:extractionEvidenceSchema,provenance:z.unknown(),extraction,comparison:z.unknown()}).strict();
+export type CompletePhotoComparison={recordVersion:2;processing:'complete';application:Application;groupId:string;revision:number;photos:PhotoDescriptor[];photoSetSha256:string;imageSha256:string;source:'fixture'|'openrouter'|'azure-foundry';photoEvidence:PhotoSetEvidence;aggregationVersion:typeof AGGREGATION_VERSION|typeof AGGREGATION_VERSION_V1|typeof AGGREGATION_VERSION_V3|typeof AGGREGATION_VERSION_V4;evidence:ExtractionEvidence;provenance:PhotoProvenance;extraction:z.infer<typeof extraction>;comparison:GroupComparison|GroupComparisonV4|GroupComparisonV7|GroupComparisonV8|GroupComparisonV9};
+const schema=z.object({recordVersion:z.literal(2),processing:z.literal('complete'),application:z.unknown(),groupId:photoIdSchema,revision:z.number().int().positive().max(Number.MAX_SAFE_INTEGER),photos:photoDescriptorsSchema,photoSetSha256:sha256Schema,imageSha256:sha256Schema,source:z.enum(['fixture','openrouter','azure-foundry']),photoEvidence:z.unknown(),aggregationVersion:z.enum([AGGREGATION_VERSION_V1,AGGREGATION_VERSION,AGGREGATION_VERSION_V3,AGGREGATION_VERSION_V4]),evidence:extractionEvidenceSchema,provenance:z.unknown(),extraction,comparison:z.unknown()}).strict();
 /** Browser-safe structural replay; server additionally recomputes the digest on
  * every snapshot/read. Browser consumers can await verifyPhotoRecordDigest. */
 export function checkedPhotoRecord(value:unknown):CompletePhotoComparison|null {
@@ -28,18 +31,19 @@ export function checkedPhotoRecord(value:unknown):CompletePhotoComparison|null {
   const r=schema.parse(value);
   const expectedSource=r.extraction.model==='offline-fixture'?'fixture':r.extraction.model===AZURE_OCR_MODEL?'azure-foundry':'openrouter';
   if(r.source!==expectedSource||r.imageSha256!==r.photos[0].normalized.sha256)return null;
-  const current=r.aggregationVersion===AGGREGATION_VERSION_V3;
-  if(current&&r.extraction.model!==GPT41_MODEL)return null;
-  if((r.source==='azure-foundry'||r.extraction.model===GPT41_MODEL)&&!current&&r.aggregationVersion!==AGGREGATION_VERSION)return null;
+  const current=r.aggregationVersion===AGGREGATION_VERSION_V4;
+  const general=r.aggregationVersion===AGGREGATION_VERSION_V3;
+  if((current||general)&&r.extraction.model!==GPT41_MODEL)return null;
+  if((r.source==='azure-foundry'||r.extraction.model===GPT41_MODEL)&&!current&&!general&&r.aggregationVersion!==AGGREGATION_VERSION)return null;
   const photoEvidence=parsePhotoSetEvidence(r.photoEvidence,r.photos.map(p=>p.photoId));
   if(JSON.stringify(photoEvidence)!==JSON.stringify(r.photoEvidence))return null;
   const historical=r.aggregationVersion===AGGREGATION_VERSION_V1;
   if(!r.comparison||typeof r.comparison!=='object'||!('rulesRevision' in r.comparison))return null;
   const refined=r.comparison.rulesRevision===7 && r.extraction.model===GPT41_MODEL && r.aggregationVersion===AGGREGATION_VERSION;
-  if(current?r.comparison.rulesRevision!==8:!refined&&r.comparison.rulesRevision!==(historical?4:6))return null;
-  const application=(current?applicationSchema:historicalApplicationSchema).parse(r.application);
-  const aggregate=(historical?aggregateV1:current?aggregateV3:aggregatePhotoEvidence)(photoEvidence);
-  const comparison=(historical?compareV4:current?comparePhotoApplicationV8:refined?comparePhotoApplicationV7:comparePhotoApplication)(application,photoEvidence);
+  if(current?r.comparison.rulesRevision!==9:general?r.comparison.rulesRevision!==8:!refined&&r.comparison.rulesRevision!==(historical?4:6))return null;
+  const application=(current||general?applicationSchema:historicalApplicationSchema).parse(r.application);
+  const aggregate=(historical?aggregateV1:current?aggregateV4:general?aggregateV3:aggregatePhotoEvidence)(photoEvidence);
+  const comparison=(historical?compareV4:current?comparePhotoApplicationV9:general?comparePhotoApplicationV8:refined?comparePhotoApplicationV7:comparePhotoApplication)(application,photoEvidence);
   if(JSON.stringify(aggregate.evidence)!==JSON.stringify(r.evidence)||JSON.stringify(aggregate.provenance)!==JSON.stringify(r.provenance)||JSON.stringify(comparison)!==JSON.stringify(r.comparison))return null;
   return {...r,application,photoEvidence,...aggregate,comparison};
  }catch{return null;}
@@ -61,7 +65,7 @@ export function finalizePhotoComparison(application:Application,groupId:string,r
  const photoEvidence=parsePhotoSetEvidence(raw,photos.map(p=>p.photoId));
  const ex={schemaVersion:2 as const,promptVersion:metadata.promptVersion,model:metadata.model,requestId:metadata.requestId,...(metadata.source!=='fixture'?{attemptId:metadata.attemptId,reservationId:metadata.reservationId}:{})};
   const current=metadata.model===GPT41_MODEL;
-  const compare=current?comparePhotoApplicationV8:comparePhotoApplication;
-  const record=checkedPhotoRecord({recordVersion:2,processing:'complete',application,groupId,revision,photos,photoSetSha256,imageSha256:photos[0].normalized.sha256,source:metadata.source,photoEvidence,aggregationVersion:current?AGGREGATION_VERSION_V3:AGGREGATION_VERSION,...(current?aggregateV3:aggregatePhotoEvidence)(photoEvidence),extraction:ex,comparison:compare(application,photoEvidence)});
+  const compare=current?comparePhotoApplicationV9:comparePhotoApplication;
+  const record=checkedPhotoRecord({recordVersion:2,processing:'complete',application,groupId,revision,photos,photoSetSha256,imageSha256:photos[0].normalized.sha256,source:metadata.source,photoEvidence,aggregationVersion:current?AGGREGATION_VERSION_V4:AGGREGATION_VERSION,...(current?aggregateV4:aggregatePhotoEvidence)(photoEvidence),extraction:ex,comparison:compare(application,photoEvidence)});
  if(!record)throw Error('Invalid group record');return record;
 }
