@@ -1,4 +1,4 @@
-import { applicationSchema, type Application } from './contracts';
+import { historicalApplicationSchema as applicationSchema, type Application } from './contracts';
 import { extractionEvidenceSchema, type ExtractionEvidence, type Observation } from './extraction/schema';
 
 // Frozen historical evaluator from 7dec00ab4be78300279e431e2cce9ccb2f4a4adf.

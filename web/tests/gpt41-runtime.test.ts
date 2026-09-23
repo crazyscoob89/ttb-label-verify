@@ -57,7 +57,7 @@ test('actual app managed prepare/execute, snapshot assets, human save/reopen, re
  const op={schemaVersion:2,phase:'execute',ticket,attemptId:prepared.attemptId,reservationId:prepared.reservationId,binding:prepared.binding};
  const response=await compare(req('comparisons',op));expect(response.status).toBe(200);const result=await response.json();expect(posts).toBe(2);expect(lookups).toBe(2);expect(result.reviewAvailability).toBe('available');
  expect(JSON.parse(snapshot.record).extraction).toMatchObject({model:GPT41_MODEL,promptVersion:GPT41_PROMPT_VERSION,schemaVersion:2});expect(JSON.parse(snapshot.record).source).toBe('openrouter');expect(stored.size).toBe(4);
- expect(result.result.comparison.rulesRevision).toBe(7);
+ expect(result.result.comparison.rulesRevision).toBe(8);
  expect(Object.values(result.result.comparison.fields).map((field:any)=>field.status)).toEqual(Array(7).fill('match'));
  expect(result.result.comparison.physicalPrintSize.status).toBe('unverified');
  const intent={...newReviewIntent(result.result),outcome:'second-review',confirmed:true,notes:'Offline GPT integration; human review required.'};

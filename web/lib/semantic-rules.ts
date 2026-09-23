@@ -1,4 +1,4 @@
-import { applicationSchema, type Application } from './contracts';
+import { historicalApplicationSchema as applicationSchema, type Application } from './contracts';
 import { extractionEvidenceSchema, type ExtractionEvidence, type Observation } from './extraction/schema';
 import { WARNING_REFERENCE, type ComparisonResult, type FieldStatus } from './rules';
 import { compareApplicationV3 } from './wine-rules';

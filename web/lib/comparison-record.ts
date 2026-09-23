@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { parseApplication, type Application } from './contracts';
+import { historicalApplicationSchema, type Application } from './contracts';
 import { RULES_VERSION, type ComparisonResult } from './rules';
 import type { ComparisonResultV3 } from './wine-rules';
 import { compareApplicationV5, type ComparisonResultV5 } from './semantic-rules';
@@ -27,7 +27,7 @@ export function finalizeComparison(application: unknown, extraction: unknown, im
   try {
     const parsed = envelope.parse(extraction);
     if (parsed.metadata.imageSha256 !== imageSha256) return { processing: 'failed', code: 'invalid-extraction' };
-    const app = parseApplication(application);
+    const app = historicalApplicationSchema.parse(application);
     const comparison = compareApplicationV5(app, parsed.evidence);
     if (comparison.processing !== 'complete') return { processing: 'failed', code: 'invalid-extraction' };
     return immutable({ processing: 'complete', application: app, imageSha256, source: parsed.metadata.source, evidence: parsed.evidence, comparison });

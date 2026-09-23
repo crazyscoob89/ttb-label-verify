@@ -1,4 +1,4 @@
-import { applicationSchema, type Application } from './contracts';
+import { historicalApplicationSchema as applicationSchema, type Application } from './contracts';
 import { extractionEvidenceSchema, type ExtractionEvidence, type Observation } from './extraction/schema';
 
 // Policy provenance, grammar and deliberate exclusions: docs/RULES-POLICY.md.

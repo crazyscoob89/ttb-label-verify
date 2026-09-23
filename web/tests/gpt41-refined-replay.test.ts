@@ -11,6 +11,7 @@ import { groupAttemptIds } from '../lib/group-binding';
 import { ReviewStore } from '../lib/review-store';
 import { newReviewIntent } from '../lib/review-policy';
 import { comparePhotoApplication } from '../lib/group-rules';
+import { aggregatePhotoEvidence } from '../lib/photo-evidence';
 import { executeLiveGroup } from '../lib/live-photo-client';
 import { preparedGroupSchema } from '../lib/photo-contracts';
 import { groupFixture } from './fixtures/photo-groups';
@@ -41,7 +42,7 @@ async function replay(envelopes = captured) {
   return { ...f, record };
 }
 function meaningfulMatches(record: Awaited<ReturnType<typeof replay>>['record']) {
-  expect(record.comparison.rulesRevision).toBe(7);
+  expect(record.comparison.rulesRevision).toBe(8);
   expect(Object.keys(record.comparison.fields)).toHaveLength(7);
   for (const field of Object.values(record.comparison.fields)) {
     expect(field.status).toBe('match');
@@ -108,6 +109,8 @@ test('captured refined replay saves/reopens unchanged alongside retained origina
   const fresh = await replay(), old = await replay([originalFront, originalBack]);
   // Recreate the pre-refinement revision explicitly; history must not upgrade.
   old.record.comparison = comparePhotoApplication(old.record.application, old.record.photoEvidence);
+  old.record.aggregationVersion = 'photo-set-aggregation-v2';
+  Object.assign(old.record, aggregatePhotoEvidence(old.record.photoEvidence));
   const dir = privateLedgerDir(), path = join(dir, 'reviews.sqlite');
   let store: ReviewStore | undefined;
   try {

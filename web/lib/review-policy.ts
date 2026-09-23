@@ -1,6 +1,6 @@
 import { checkedPhotoRecord } from './photo-record';
 import { z } from 'zod';
-import { applicationSchema } from './contracts';
+import { historicalApplicationSchema as applicationSchema } from './contracts';
 import { extractionEvidenceSchema } from './extraction/schema';
 import { compareApplication, FIELD_KEYS, RULES_VERSION, RULES_REVISION } from './rules';
 import { compareApplication as compareHistoricalApplication } from './rules-v1';
