@@ -65,7 +65,12 @@ test('archived refined prompt is an unchanged base prefix; current request adds 
   expect(append).toContain('exclude those enclosing delimiters from producer.name; preserve punctuation within the name');
   expect(append).toContain('Do not stitch separate passages together');
   expect(GPT41_PHOTO_PROMPT).not.toBe(archivedBase);
-  expect(digest(Buffer.from(GPT41_PHOTO_PROMPT))).toBe('cfc7744486c5b1dae243f1f80651f94d220abc94b97ad8d99ee5ad831b16802d');
+  const r3Start = GPT41_PHOTO_PROMPT.indexOf('\nFull-label selection clarification r3');
+  expect(r3Start).toBeGreaterThan(0);
+  // Retain the exact previously qualified producer prompt as a prefix. Neither
+  // this old capture nor its replay is evidence of fresh r3 model accuracy.
+  expect(digest(Buffer.from(GPT41_PHOTO_PROMPT.slice(0, r3Start)))).toBe('cfc7744486c5b1dae243f1f80651f94d220abc94b97ad8d99ee5ad831b16802d');
+  expect(digest(Buffer.from(GPT41_PHOTO_PROMPT))).toBe('28eafe9b790fee6288d774ed224f34fe57aacba1f4ae614ac912a99c4e91559c');
   expect(Buffer.from(JSON.stringify(gpt41JsonSchema, null, 2) + '\n')).toEqual(schema);
   const body = makeGpt41Request(Buffer.from('offline'), 'image/jpeg');
   expect(body.messages[0].content).toBe(archivedBase + append);
