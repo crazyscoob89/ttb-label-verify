@@ -1,4 +1,5 @@
 import { createHash, randomUUID } from 'node:crypto';
+import {mapTwoIO} from '../parallel-io';
 import { prepareGroupAssets,checkedServerRecord,validateAssetManifest,assetExpected,photoSelectorSchema } from '../group-assets';
 import type { PhotoSelector } from '../photo-contracts';
 import { z } from 'zod';
@@ -81,12 +82,12 @@ export function createHostedStores({env,objects,...options}:{env:Env;objects:Hos
    const group=prepareGroupAssets(record,photos),primary=group.assets[1];
    signal?.throwIfAborted();
    await rpc('review','snapshot_prepare',{id:group.id,record:group.recordText,key:primary.key,sha256:primary.sha256,bytes:primary.bytes,mime:primary.mime,assets:group.assets});
-   for(const [i,a] of group.assets.entries()){
+   await mapTwoIO(group.assets,async(a,i)=>{
     signal?.throwIfAborted();
     const stored=await objects.putEvidence(a.key.slice('snapshots/'.length),group.buffers[i],a.mime,a.sha256,signal);if(stored.key!==a.key)throw unavailable();
     signal?.throwIfAborted();const bytes=await objects.getEvidence(a.key,a.sha256,a.bytes,a.mime,signal);
     if(bytes.length!==a.bytes||createHash('sha256').update(bytes).digest('hex')!==a.sha256)throw unavailable();
-   }
+   },signal);
    signal?.throwIfAborted();await rpc('review','snapshot_commit',{id:group.id});signal?.throwIfAborted();return group.id;
   },
   async save(input):Promise<SavedReceipt>{

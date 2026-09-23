@@ -1,4 +1,5 @@
 import {checkFileDeclaration} from './contracts';
+import {mapTwoIO} from './parallel-io';
 import {FIELD_KEYS} from './rules';
 import type {CompleteComparison, ComparisonRecord} from './comparison-record';
 import {checkedPhotoRecord,verifyPhotoRecordDigest,type CompletePhotoComparison} from './photo-record';
@@ -49,7 +50,7 @@ export async function prepareLiveGroup(input:PhotoGroupDeclaration,inputFiles:Fi
   if(data.schemaVersion!==2||typeof data.ticket!=='string'||!data.ticket.length||data.ticket.length>60000||!Array.isArray(data.uploads)||data.uploads.length!==group.photos.length)throw Error('invalid-upload-ticket');
   const urls=data.uploads.map((u:{photoId:string;uploadUrl:string},i:number)=>{if(u.photoId!==group.photos[i].photoId)throw Error('invalid-upload-ticket');return capability(u.uploadUrl,'upload');});
   if(new Set(urls).size!==urls.length)throw Error('invalid-upload-ticket');
-  for(let i=0;i<files.length;i++){const upload=await transport(urls[i],{method:'PUT',body:files[i],headers:{'content-type':files[i].type,'x-upsert':'false','cache-control':'no-store'},signal,cache:'no-store',redirect:'error',credentials:'omit',referrerPolicy:'no-referrer'});await boundedBytes(upload,16384,signal);}
+  await mapTwoIO(files,async(file,i)=>{const upload=await transport(urls[i],{method:'PUT',body:file,headers:{'content-type':file.type,'x-upsert':'false','cache-control':'no-store'},signal,cache:'no-store',redirect:'error',credentials:'omit',referrerPolicy:'no-referrer'});await boundedBytes(upload,16384,signal);},signal);
   return data.ticket as string;
  });
  const prepared=await measured('prepare',onStage,async()=>{const media=bodyFor(group,files,ticket,{phase:'prepare'});const response=await transport('/api/comparisons',{method:'POST',...media,headers:{...media.headers,'x-ttb-demo-code':code},signal,cache:'no-store',redirect:'error'});return checkedPreparation((await readJson(response,signal)).prepared,group);});

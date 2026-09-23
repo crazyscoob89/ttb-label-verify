@@ -1,4 +1,5 @@
 import {createHmac,timingSafeEqual,randomUUID} from 'node:crypto';
+import {mapTwoIO} from './parallel-io';
 import {z} from 'zod';
 import {photoGroupDeclarationSchema,photoIdSchema,type PhotoGroupDeclaration,type GroupOperation} from './photo-contracts';
 import type {GroupComparisonInput} from './intake';
@@ -25,11 +26,11 @@ export function verifyGroupUploadTicket(ticket:string,env:MediaEnv){
  return data;
 }
 export async function readGroupUploadTicket(ticket:string,env:MediaEnv,operation:GroupOperation,signal?:AbortSignal):Promise<GroupRouteInput>{
- const data=verifyGroupUploadTicket(ticket,env);const files:GroupComparisonInput['files']=[];
- for(const [i,p] of data.declaration.photos.entries()){
-  signal?.throwIfAborted();const bytes=await readPrivateUpload(env,data.objects[i].key,p.bytes,p.mime,signal);
-  files.push({photoId:p.photoId,image:{filename:p.filename,mime:p.mime,bytes}});
- }
+ const data=verifyGroupUploadTicket(ticket,env);
+ const files=await mapTwoIO(data.declaration.photos,async(p,i)=>{
+  const bytes=await readPrivateUpload(env,data.objects[i].key,p.bytes,p.mime,signal);
+  return {photoId:p.photoId,image:{filename:p.filename,mime:p.mime,bytes}};
+ },signal);
  signal?.throwIfAborted();verifyGroupUploadTicket(ticket,env);
  return {schemaVersion:2,group:data.declaration,files,operation,expiresAt:data.expiresAt};
 }

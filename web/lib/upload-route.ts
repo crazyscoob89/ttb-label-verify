@@ -1,4 +1,5 @@
 import { randomUUID } from 'node:crypto';
+import {mapTwoIO} from './parallel-io';
 import {photoGroupDeclarationSchema} from './photo-contracts';
 import {signGroupUploadTicket} from './group-media';
 import { mediaSigningSecret } from './runtime-env';
@@ -27,7 +28,7 @@ export function createUploadHandler({ env, quota }: {
        const controller=new AbortController(),signal=AbortSignal.any([request.signal,controller.signal]);let timer:ReturnType<typeof setTimeout>|undefined;
        try{return await Promise.race([(async()=>{
         signal.throwIfAborted();await quota.reserveGroup!(objects.map((o,i)=>({id:o.id,bytes:group.photos[i].bytes})));
-        const uploads=[];for(const object of objects){signal.throwIfAborted();uploads.push({photoId:object.photoId,uploadUrl:await signPrivateUpload(env,object.key,signal)});}
+        const uploads=await mapTwoIO(objects,async object=>({photoId:object.photoId,uploadUrl:await signPrivateUpload(env,object.key,signal)}),signal);
         signal.throwIfAborted();return Response.json({schemaVersion:2,ticket:signGroupUploadTicket(group,objects,env),uploads},{headers:{'Cache-Control':'no-store'}});
        })(),new Promise<never>((_,reject)=>{timer=setTimeout(()=>{controller.abort();reject(Error('Issuance timeout'));},50000);})]);}
        finally{clearTimeout(timer);controller.abort();}

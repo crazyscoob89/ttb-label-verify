@@ -37,7 +37,10 @@ test('truthful exact tuple survives finalized record/assets/replay, preserving o
  const s=await setup(),result=await s.provider().extractGroup(s.request);expect(result.processing).toBe('complete');if(result.processing!=='complete')throw Error('Expected complete');
  expect(result.metadata).toMatchObject({source:'openrouter',model:GPT41_MODEL,promptVersion:GPT41_PROMPT_VERSION,schemaVersion:2});
  const posts=s.transport.mock.calls.filter(([u])=>u!==GPT41_CATALOG_URL);expect(posts).toHaveLength(2);
- posts.forEach(([,init],i)=>{const b=JSON.parse(String(init.body));expect(b.messages[1].content).toHaveLength(2);expect(b.messages[1].content[1].image_url.url).toBe(`data:image/png;base64,${s.request.photos[i].image.toString('base64')}`);expect(JSON.stringify(b)).not.toContain(s.input.group.application.applicationId);});
+ // Concurrent photo POST arrival order is not the canonical evidence order.
+ const sent=posts.map(([,init])=>{const b=JSON.parse(String(init.body));expect(b.messages[1].content).toHaveLength(2);expect(JSON.stringify(b)).not.toContain(s.input.group.application.applicationId);return b.messages[1].content[1].image_url.url as string;});
+ expect(sent.sort()).toEqual(s.request.photos.map(p=>`data:image/png;base64,${p.image.toString('base64')}`).sort());
+ expect(result.evidence.photos.map(p=>p.photoId)).toEqual(s.request.photos.map(p=>p.descriptor.photoId));
  const r=finalizePhotoComparison(s.input.group.application,s.input.group.groupId,1,s.prepared.photos.map(p=>p.descriptor),s.prepared.photoSetSha256,result);
  expect(checkedServerRecord(JSON.parse(JSON.stringify(r)))).toEqual(r);expect(checkedPhotoRecord(s.record)).toEqual(s.record);
  const assets=prepareGroupAssets(r,s.photos);expect(validateAssetManifest(r,assets.id,assets.assets)).toEqual(assets.assets);expect(JSON.parse(assets.recordText)).toEqual(r);
