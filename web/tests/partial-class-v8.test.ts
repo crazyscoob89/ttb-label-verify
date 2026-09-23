@@ -25,10 +25,12 @@ test('captured real front resolves compatible GOLD on back without editing eithe
   expect(createHash('sha256').update(readFileSync(new URL('./fixtures/bacardi-partial-class-v8.json', import.meta.url))).digest('hex')).toBe('f0c45124b8c45d958e64c04c5c4409df7093a7495b6536449fb862efe9db923a');
   expect(record.comparison.fields.classType).toMatchObject({ status: 'mismatch', conflict: true });
   const before = JSON.stringify(record);
-  const result = finalizePhotoComparison(record.application, record.groupId, record.revision, record.photos, record.photoSetSha256, {
+  const current = finalizePhotoComparison(record.application, record.groupId, record.revision, record.photos, record.photoSetSha256, {
     processing: 'complete', evidence: record.photoEvidence,
     metadata: { ...record.extraction, source: record.source, rulesVersion: record.comparison.rulesVersion, photoSetSha256: record.photoSetSha256, photos: record.photos.map(p => ({ photoId: p.photoId, imageSha256: p.normalized.sha256 })) },
   });
+  // Preserve v8 policy assertions rather than relabeling fresh v10 findings.
+  const result = {...current,aggregationVersion:'photo-set-aggregation-v3' as const,...aggregatePhotoEvidence(record.photoEvidence),comparison:comparePhotoApplicationV8(record.application,record.photoEvidence)};
   expect(result.comparison.fields.classType).toMatchObject({ status: 'match', conflict: false, observed: record.photoEvidence.photos[0].evidence.classType, sourcePhotoIds: [record.photos[0].photoId] });
   expect(result.provenance.classType).toEqual({ conflict: false, sourcePhotoIds: record.photos.map(p => p.photoId), variants: record.photoEvidence.photos.map(p => ({ value: p.evidence.classType.text, sourcePhotoIds: [p.photoId] })) });
   expect(result.photoEvidence).toEqual(record.photoEvidence);

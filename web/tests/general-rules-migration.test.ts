@@ -9,11 +9,15 @@ import jose from './fixtures/jose-live-v7.json';
 import composite from './fixtures/bacardi-live-v8-composite.json';
 import { aggregatePhotoEvidence as aggregateV3 } from '../lib/photo-evidence-v3';
 import { comparePhotoApplicationV8 } from '../lib/group-rules-v8';
+import { aggregatePhotoEvidence as aggregateV4 } from '../lib/photo-evidence-v4';
+import { comparePhotoApplicationV9 } from '../lib/group-rules-v9';
+import corroboration from './fixtures/bacardi-live-v9-corroboration.json';
 
 const definition = (text: string) => text.match(/CREATE OR REPLACE FUNCTION ttb_demo_private\.photo_asset_bytes\([\s\S]*?END \$\$;/)![0];
 const versions = [
   { file:'009_general_group_semantics.sql', previous:'008_gpt41_group_provider.sql', revision:8, aggregation:'photo-set-aggregation-v3' },
   { file:'010_composite_class_semantics.sql', previous:'009_general_group_semantics.sql', revision:9, aggregation:'photo-set-aggregation-v4' },
+  { file:'011_same_photo_class_corroboration.sql', previous:'010_composite_class_semantics.sql', revision:10, aggregation:'photo-set-aggregation-v5' },
 ];
 test.each(versions)('$file is exactly two typed admissions, no spend, history, ACL or custody changes', ({file,previous: predecessor,revision,aggregation}) => {
   const migration=readFileSync('db/migrations/'+file,'utf8');
@@ -42,12 +46,12 @@ test.skipIf(!socket||!psql).each(versions)('real disposable PostgreSQL $file RED
     const id=randomUUID(); const assets=record.photos.flatMap((p,i)=>(['original','normalized'] as const).map(variant=>({photoId:p.photoId,variant,key:'snapshots/'+(i===0&&variant==='normalized'?id:randomUUID()),sha256:variant==='original'?p.sourceSha256:p.normalized.sha256,bytes:variant==='original'?p.bytes:p.normalized.bytes,mime:variant==='original'?p.mime:p.normalized.mime})));
     const anchor=assets[1]; return {id,record:JSON.stringify(record),key:anchor.key,sha256:anchor.sha256,bytes:anchor.bytes,mime:anchor.mime,assets};
   }
-  const old=(revision===9?composite:bacardi).result as CompletePhotoComparison;
+  const old=(revision===10?corroboration.record:(revision===9?composite:bacardi).result) as CompletePhotoComparison;
   const application={...old.application,imported:false,origin:{kind:'domestic' as const,country:'Puerto Rico'}};
   const current=finalizePhotoComparison(application,old.groupId,old.revision,old.photos,old.photoSetSha256,{processing:'complete',evidence:old.photoEvidence,metadata:{...old.extraction,source:old.source,rulesVersion:old.comparison.rulesVersion,photoSetSha256:old.photoSetSha256,photos:old.photos.map(p=>({photoId:p.photoId,imageSha256:p.normalized.sha256}))}});
-  const fresh:CompletePhotoComparison=revision===9?current:{...current,aggregationVersion:'photo-set-aggregation-v3',...aggregateV3(old.photoEvidence),comparison:comparePhotoApplicationV8(application,old.photoEvidence)};
+  const fresh:CompletePhotoComparison=revision===10?current:revision===9?{...current,aggregationVersion:'photo-set-aggregation-v4',...aggregateV4(old.photoEvidence),comparison:comparePhotoApplicationV9(application,old.photoEvidence)}:{...current,aggregationVersion:'photo-set-aggregation-v3',...aggregateV3(old.photoEvidence),comparison:comparePhotoApplicationV8(application,old.photoEvidence)};
   expect(checkedPhotoRecord(fresh)).toEqual(fresh);
-  if(revision===9)expect(fresh.comparison.fields.classType).toMatchObject({status:'match',conflict:false});
+  if(revision>=9)expect(fresh.comparison.fields.classType).toMatchObject({status:'match',conflict:false});
   const next=payload(fresh);
   const asset=(record:unknown,assets=next.assets)=>sql(`SELECT ttb_demo_private.photo_asset_bytes(${text(JSON.stringify(record))},${json(assets)},'${next.id}','${next.key}','${next.sha256}',${next.bytes},'${next.mime}');`);
   await sql(`CREATE ROLE "${owner}" NOLOGIN;`,'','postgres'); await sql(`CREATE DATABASE "${database}" OWNER "${owner}";`,'','postgres');
@@ -56,8 +60,9 @@ test.skipIf(!socket||!psql).each(versions)('real disposable PostgreSQL $file RED
     for(const file of ['002_hosted_demo.sql','003_photo_groups.sql','004_bottle_semantics.sql','005_azure_ocr_provider.sql']) await sql(readFileSync('db/migrations/'+file,'utf8'));
     await sql(`UPDATE ttb_demo_private.ledger SET enabled=true,ceiling=25000000,incurred=3000000,custody_id=gen_random_uuid(),custody_sha256=repeat('c',64);`);
     for(const file of ['006_budget_50.sql','007_isolated_vision_benchmark.sql','008_gpt41_group_provider.sql']) await sql(readFileSync('db/migrations/'+file,'utf8'));
-    if(revision===9)await sql(readFileSync('db/migrations/009_general_group_semantics.sql','utf8'));
-    if(revision===9){
+    if(revision>=9)await sql(readFileSync('db/migrations/009_general_group_semantics.sql','utf8'));
+    if(revision===10)await sql(readFileSync('db/migrations/010_composite_class_semantics.sql','utf8'));
+    if(revision>=9){
       // LOCAL disposable baseline only: production already has an independently
       // installed $100 spend ceiling. 010 must preserve this non-008 state too.
       const spend=readFileSync('db/migrations/008_gpt41_group_provider.sql','utf8').match(/CREATE OR REPLACE FUNCTION public\.ttb_demo_spend\([\s\S]*?END \$\$;/)![0];
@@ -68,7 +73,7 @@ test.skipIf(!socket||!psql).each(versions)('real disposable PostgreSQL $file RED
         ADD CONSTRAINT ledger_check1 CHECK(NOT enabled OR (ceiling=100000000 AND custody_id IS NOT NULL AND custody_sha256 IS NOT NULL));`);
     }
     const frozen=[];
-    for(const record of [old,bacardi.result as CompletePhotoComparison,jose.result as CompletePhotoComparison]) {
+    for(const record of [old,...(revision===10?[composite.result as CompletePhotoComparison]:[]),bacardi.result as CompletePhotoComparison,jose.result as CompletePhotoComparison]) {
       expect(checkedPhotoRecord(record)).toEqual(record);
       const p=payload(record); await rpc('snapshot_prepare',p); await rpc('snapshot_commit',{id:p.id});
       const intent={...newReviewIntent(record),outcome:'second-review',confirmed:true,notes:'Exact retained live response, local migration replay; no new scan or media upload.'};
@@ -93,7 +98,7 @@ test.skipIf(!socket||!psql).each(versions)('real disposable PostgreSQL $file RED
       expect(checkedPhotoRecord(JSON.parse(detail.record))).toEqual(record);
     }
     expect(Number(await asset(fresh))).toBe(next.assets.reduce((n,a)=>n+a.bytes,0)); // GREEN
-    for(const [rulesRevision,aggregationVersion] of [[revision,'photo-set-aggregation-v2'],[revision,revision===9?'photo-set-aggregation-v3':'photo-set-aggregation-v4'],[7,aggregation],[6,aggregation],[revision===9?8:9,aggregation],[String(revision),aggregation],[null,aggregation],[revision,null],[revision,undefined]]) await expect(asset({...fresh,aggregationVersion,comparison:{...fresh.comparison,rulesRevision}})).rejects.toThrow('invalid group record');
+    for(const [rulesRevision,aggregationVersion] of [[revision,'photo-set-aggregation-v2'],[revision,revision===9?'photo-set-aggregation-v3':'photo-set-aggregation-v4'],[7,aggregation],[6,aggregation],[revision===9?8:9,aggregation],[String(revision),aggregation],[null,aggregation],[revision,null],[revision,undefined],...(revision===10?[[10,'photo-set-aggregation-v3'],[8,aggregation],[4,aggregation]]:[])]) await expect(asset({...fresh,aggregationVersion,comparison:{...fresh.comparison,rulesRevision}})).rejects.toThrow('invalid group record');
     for(const patch of [{source:'fixture'},{recordVersion:'2'},{extraction:{...fresh.extraction,model:'anthropic/claude-haiku-4.5'}},{extraction:{...fresh.extraction,promptVersion:'photo-set-observations-v2'}},{extraction:{...fresh.extraction,schemaVersion:'2'}}]) await expect(asset({...fresh,...patch})).rejects.toThrow('invalid group record');
     await expect(asset(fresh,next.assets.slice(1))).rejects.toThrow();
     await expect(asset(fresh,next.assets.map((a,i)=>i===0?{...a,bytes:a.bytes+1}:a))).rejects.toThrow();

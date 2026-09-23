@@ -4,6 +4,8 @@ import { checkedPhotoRecord, finalizePhotoComparison, type CompletePhotoComparis
 import { executeLiveGroup, type ReadyPhotoGroup } from '../lib/live-photo-client';
 import { comparePhotoApplicationV8 } from '../lib/group-rules-v8';
 import { aggregatePhotoEvidence as aggregateV3 } from '../lib/photo-evidence-v3';
+import { aggregatePhotoEvidence as aggregateV4 } from '../lib/photo-evidence-v4';
+import { comparePhotoApplicationV9 } from '../lib/group-rules-v9';
 import captured from './fixtures/bacardi-live-v8-composite.json';
 import bacardiV7 from './fixtures/bacardi-live-v7.json';
 import joseV7 from './fixtures/jose-live-v7.json';
@@ -12,10 +14,12 @@ import joseV7 from './fixtures/jose-live-v7.json';
 const old = captured.result as CompletePhotoComparison;
 const readable = (text: string) => ({ status: 'readable' as const, text, reason: 'Synthetic lexical regression; not provider extraction.' });
 function fresh(record = old, photoEvidence = structuredClone(record.photoEvidence), application = record.application) {
-  return finalizePhotoComparison(application, record.groupId, record.revision, record.photos, record.photoSetSha256, {
+  const current = finalizePhotoComparison(application, record.groupId, record.revision, record.photos, record.photoSetSha256, {
     processing: 'complete', evidence: photoEvidence,
     metadata: { ...record.extraction, source: record.source, rulesVersion: record.comparison.rulesVersion, photoSetSha256: record.photoSetSha256, photos: record.photos.map(p => ({ photoId: p.photoId, imageSha256: p.normalized.sha256 })) },
   });
+  // Frozen v9 suite: rebuild both policy halves, never relabel fresh findings.
+  return { ...current, aggregationVersion: 'photo-set-aggregation-v4' as const, ...aggregateV4(photoEvidence), comparison: comparePhotoApplicationV9(application, photoEvidence) };
 }
 function classes(front: string, back = front, declared = 'Gold Rum') {
   const set = structuredClone(old.photoEvidence);
@@ -26,7 +30,7 @@ function classes(front: string, back = front, declared = 'Gold Rum') {
 test.each([['hosted Bacardi v8', old], ['Bacardi v7', bacardiV7.result], ['Jose v7', joseV7.result]])('%s historical record stays byte-exact', (_, record) => {
   expect(JSON.stringify(checkedPhotoRecord(record))).toBe(JSON.stringify(record));
 });
-test('actual hosted failure reproduced unchanged under frozen v8/v3, fresh finalizer fixes class only', () => {
+test('actual hosted failure reproduced unchanged under frozen v8/v3, frozen v9 fixes class only', () => {
   const before = JSON.stringify(old);
   expect(comparePhotoApplicationV8(old.application, old.photoEvidence)).toEqual(old.comparison);
   expect(aggregateV3(old.photoEvidence)).toEqual({ evidence: old.evidence, provenance: old.provenance });
