@@ -6,7 +6,7 @@ import { executeReserved, type SpendBinding, type SpendStore } from '../spend';
 import { RULES_VERSION } from '../rules';
 import { sanitizeImage } from '../intake';
 import { parseGpt41Wire } from './gpt41-wire';
-import { gpt41ImageTokenBound, gpt41PriceCheckedTransport, makeGpt41Request } from './gpt41-pricing';
+import { gpt41ImageTokenBound, gpt41PriceCheckedTransport, prepareGpt41Request } from './gpt41-pricing';
 import { isolatedPhotoAttemptIds, MAX_PHOTO_RESERVATION_MICROUSD } from './isolated-photo';
 import { OPENROUTER_ENDPOINT, type Transport } from './openrouter';
 export { GPT41_MODEL, GPT41_PROMPT_VERSION };
@@ -65,7 +65,7 @@ export function createGpt41GroupProvider(dependencies:Gpt41Dependencies={}):Grou
         if(decoded.width!==descriptor.normalized.width||decoded.height!==descriptor.normalized.height)throw Error('Image dimension mismatch');
         gpt41ImageTokenBound(decoded.width,decoded.height);
         // Send exact immutable normalized bytes, never the validator's re-encode.
-        bodies.push(JSON.stringify(makeGpt41Request(image,descriptor.normalized.mime)));
+        bodies.push(JSON.stringify(await prepareGpt41Request(image,descriptor.normalized.mime,descriptor.photoId,signal)));
       }
       signal?.throwIfAborted();
     }catch{return {processing:'failed',code:'invalid-request'};}
