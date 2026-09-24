@@ -1,4 +1,6 @@
 import { RULES_VERSION } from '../rules';
+import {snapshotGroupRequest,type GroupExtractionProvider} from './group-provider';
+import {photoSetEvidenceSchema,parsePhotoSetEvidence,GROUP_PROMPT_VERSION} from '../photo-contracts';
 import { extractionEvidenceSchema, parseExtractionEvidence } from './schema';
 import { PROMPT_VERSION, snapshotRequest, type ExtractionProvider } from './provider';
 
@@ -19,4 +21,16 @@ export function createFixtureProvider(input: unknown): ExtractionProvider {
       } catch { return { processing: 'failed', code: 'invalid-request' }; }
     },
   };
+}
+
+/** Explicit source-covered joint fixture. Never selected as live fallback. */
+export function createFixtureGroupProvider(input:unknown):GroupExtractionProvider {
+ const fixture=photoSetEvidenceSchema.safeParse(input);
+ return {async extractGroup(request,signal){
+  try{
+   signal?.throwIfAborted();if(!fixture.success)return {processing:'failed',code:'invalid-request'};
+   const snapshot=snapshotGroupRequest(request),evidence=parsePhotoSetEvidence(fixture.data,snapshot.photos.map(p=>p.descriptor.photoId));
+   return {processing:'complete',evidence,metadata:{source:'fixture',model:'offline-fixture',schemaVersion:2,rulesVersion:RULES_VERSION,promptVersion:GROUP_PROMPT_VERSION,photoSetSha256:snapshot.photoSetSha256,photos:snapshot.photos.map(p=>({photoId:p.descriptor.photoId,imageSha256:p.descriptor.normalized.sha256})),requestId:snapshot.requestId}};
+  }catch{return {processing:'failed',code:'invalid-request'};}
+ }};
 }

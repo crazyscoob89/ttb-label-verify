@@ -9,7 +9,7 @@ prepared this additive evidence-only candidate from that exact baseline on
 `ava/final-benchmark-publication`, in a separate native worktree. This record
 is the publication owner's account, **not an independent empirical review**.
 
-**Primary deliverable:** [final results, timing, cost and model decision](../../BENCHMARK-RESULTS.md).
+**Primary deliverable:** [final results, timing, cost and model decision](../deep-dive/BENCHMARK-RESULTS.md).
 [Complete versioned archive](../../bench/final-evaluation-20260918/README.md).
 
 This worker's scope ends at a local commit. Parent owns independent checks and

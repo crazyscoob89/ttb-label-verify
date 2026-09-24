@@ -1,8 +1,10 @@
-import { applicationSchema, type Application } from './contracts';
+import { historicalApplicationSchema as applicationSchema, type Application } from './contracts';
 import { extractionEvidenceSchema, type ExtractionEvidence, type Observation } from './extraction/schema';
 
 // Policy provenance, grammar and deliberate exclusions: docs/RULES-POLICY.md.
 export const RULES_VERSION = 'prototype-seven-fields-v1' as const;
+// Comparison revision is separate from the deployed extraction/spend family.
+export const RULES_REVISION = 2 as const;
 export const FIELD_KEYS = Object.freeze(['brand', 'classType', 'abv', 'netContents', 'producer', 'origin', 'warning'] as const);
 export type FieldKey = typeof FIELD_KEYS[number];
 export type FieldStatus = 'match' | 'mismatch' | 'needs-review' | 'not-applicable';
@@ -24,6 +26,8 @@ export type ComparisonResult = {
   applicationId: string;
   applicationVersion: string;
   rulesVersion: typeof RULES_VERSION;
+  // Absent only on historical, pre-repair snapshots; never default it on reads.
+  rulesRevision?: typeof RULES_REVISION;
   fields: ComparisonFields;
   physicalPrintSize: { status: 'unverified'; reason: string };
 } | {
@@ -78,7 +82,7 @@ const equalDecimal = (a: Decimal, b: Decimal) => a.numerator * b.denominator ===
 function abvDecision(application: Application, observed: Observation): Decision {
   const uncertain = unavailable(observed, 'ABV');
   if (uncertain) return uncertain;
-  const match = observed.text?.trim().match(/^(\d+(?:\.\d+)?)(?:\s*%(?:\s*(?:ABV|alc\/vol|alcohol by volume))?)?$/i);
+  const match = observed.text?.trim().match(/^(\d+(?:\.\d+)?)(?:\s*%(?:\s*(?:ABV|alc\/vol|alcohol by volume|BY\s+VOL\.?))?)?$/i);
   const value = match ? decimal(match[1]) : null;
   if (!value) return decision('needs-review', 'ABV: unsupported or ambiguous notation; no proof conversion or tolerance inferred.');
   const equal = equalDecimal(applicationDecimal(application.abv), value);
@@ -99,6 +103,12 @@ function volumeDecision(expected: string, observed: Observation): Decision {
   const equal = equalDecimal(declared, extracted);
   return decision(equal ? 'match' : 'mismatch', `Net contents: ${equal ? 'equal' : 'unequal'} exact metric volume (1 L = 1000 mL); standards of fill not evaluated.`);
 }
+// Deliberately bounded domestic-conflict recognition, not a geography registry.
+// Exact normalized whole names only; all other non-US values require review.
+const DOMESTIC_FOREIGN_COUNTRIES = new Set([
+  'australia', 'canada', 'france', 'germany', 'italy', 'japan', 'mexico',
+  'new zealand', 'portugal', 'south africa', 'spain', 'united kingdom',
+]);
 function originDecision(application: Application, observed: Observation): Decision {
   // Explicit table leaves no implicit commodity/default applicability fallback.
   const policy: Record<Application['commodity'], boolean> = {
@@ -106,8 +116,29 @@ function originDecision(application: Application, observed: Observation): Decisi
     'distilled-spirits': application.imported,
     'malt-beverage': application.imported,
   };
-  if (!policy[application.commodity]) return decision('not-applicable', `Origin: explicit domestic ${application.commodity} context; imported-country comparison not applicable in this prototype.`);
-  const result = textDecision(application.origin.country, observed, 'Imported country of origin');
+  const domestic = !policy[application.commodity];
+  const notApplicable = () => decision('not-applicable', `Origin: explicit domestic ${application.commodity} context; imported-country comparison not applicable in this prototype.`);
+  // Domestic goods do not acquire a foreign-origin statement requirement. But
+  // present evidence must not disappear behind the old unconditional N/A.
+  if (domestic && observed.status === 'missing') return notApplicable();
+  const uncertain = unavailable(observed, 'Origin');
+  if (uncertain) return uncertain;
+  const country = normalize(observed.text ?? '').replace(/^product of /u, '');
+  // One whole country-slot value, not substring search or arbitrary prose stripping.
+  // This is a lexical bound, NOT a geography lookup or legal country-name registry.
+  if (!/^[\p{L}\p{M}]+(?:[ .’'\-][\p{L}\p{M}]+)*\.?$/u.test(country) || /\b(?:product|or)\b/u.test(country)) {
+    return decision('needs-review', 'Origin: unsupported or ambiguous country statement; human review required.');
+  }
+  if (domestic) {
+    // Same explicit US designations as intake; no foreign alias/geography inference.
+    if (['united states', 'united states of america', 'us', 'usa'].includes(country.replaceAll('.', ''))) return notApplicable();
+    // A letters-and-spaces grammar alone cannot establish a foreign country.
+    if (!DOMESTIC_FOREIGN_COUNTRIES.has(country)) {
+      return decision('needs-review', 'Origin: country statement not recognized by the bounded domestic-conflict policy; human review required.');
+    }
+    return decision('mismatch', `Origin: readable country statement conflicts with declared domestic ${application.commodity} origin; verify application/import context. No foreign-origin statement requirement inferred.`);
+  }
+  const result = textDecision(application.origin.country, { ...observed, text: country }, 'Imported country of origin');
   return { ...result, reasons: [`Origin applies to imported ${application.commodity}.`, ...result.reasons] };
 }
 function warningDecision(observed: ExtractionEvidence['warning']): Decision {
@@ -135,7 +166,7 @@ export function compareApplication(applicationInput: unknown, extractionInput: u
   const a = parsedApplication.data;
   const e = parsedEvidence.data;
   return {
-    processing: 'complete', applicationId: a.applicationId, applicationVersion: a.applicationVersion, rulesVersion: RULES_VERSION,
+    processing: 'complete', applicationId: a.applicationId, applicationVersion: a.applicationVersion, rulesVersion: RULES_VERSION, rulesRevision: RULES_REVISION,
     fields: {
       brand: field<'brand'>(a.brand, e.brand, textDecision(a.brand, e.brand, 'Brand')),
       classType: field<'classType'>(a.classType, e.classType, textDecision(a.classType, e.classType, 'Class/type')),

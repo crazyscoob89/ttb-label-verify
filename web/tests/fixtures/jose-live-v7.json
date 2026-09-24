@@ -1,0 +1,557 @@
+{
+  "result": {
+    "recordVersion": 2,
+    "processing": "complete",
+    "application": {
+      "applicationId": "TEST-JOSE-CUERVO-GPT41-FINAL-3435B88",
+      "applicationVersion": "1",
+      "brand": "Jose Cuervo",
+      "classType": "Tequila",
+      "abv": 40,
+      "netContents": "1.75L",
+      "producerName": "La Rojena",
+      "producerAddress": "Jose Cuervo No.73, Tequila, Jalisco, 46400 Mexico",
+      "commodity": "distilled-spirits",
+      "imported": true,
+      "origin": {
+        "kind": "imported",
+        "country": "Mexico"
+      }
+    },
+    "groupId": "01b54f73-abc3-4a00-8bd9-69fc9f5ead29",
+    "revision": 1,
+    "photos": [
+      {
+        "photoId": "23d9c6e5-fc27-451a-af5c-eed0231036dd",
+        "role": "front",
+        "filename": "Jose Cuervo Front.jpeg",
+        "mime": "image/jpeg",
+        "bytes": 102600,
+        "sourceSha256": "498be58051837c0212dde09a37490cf21c9ffa412e31b1c2f8c6b820bac4e5db",
+        "normalized": {
+          "sha256": "30578a7b3fa7f773d11d41e7104c5b5b194f49a580cab7710bbd92a08f667707",
+          "bytes": 163200,
+          "mime": "image/jpeg",
+          "width": 686,
+          "height": 1600
+        }
+      },
+      {
+        "photoId": "37415cce-8229-4ce7-ae5a-c7809b4789bb",
+        "role": "back",
+        "filename": "Jose Cuervo Back.jpeg",
+        "mime": "image/jpeg",
+        "bytes": 113072,
+        "sourceSha256": "735f6260d974f97ae95c3fc5c7739426ef1cb1a83316b4df96de8e2d8f5016ce",
+        "normalized": {
+          "sha256": "fc20b6705b23c45e489fd7cb8dc1d00de406b0b01faa109d7d4488131f3b18cf",
+          "bytes": 180541,
+          "mime": "image/jpeg",
+          "width": 686,
+          "height": 1600
+        }
+      }
+    ],
+    "photoSetSha256": "c8ed6fd3e4510a41f262f74d24c30297b59d55cba484d3d5fcb79c4efd57e8e3",
+    "imageSha256": "30578a7b3fa7f773d11d41e7104c5b5b194f49a580cab7710bbd92a08f667707",
+    "source": "openrouter",
+    "photoEvidence": {
+      "schemaVersion": 2,
+      "photos": [
+        {
+          "photoId": "23d9c6e5-fc27-451a-af5c-eed0231036dd",
+          "evidence": {
+            "schemaVersion": 1,
+            "brand": {
+              "status": "readable",
+              "text": "Jose Cuervo",
+              "reason": "Visible text transcribed from this photograph."
+            },
+            "classType": {
+              "status": "readable",
+              "text": "Tequila Gold",
+              "reason": "Visible text transcribed from this photograph."
+            },
+            "abv": {
+              "status": "readable",
+              "text": "40% Alc./Vol.",
+              "reason": "Visible text transcribed from this photograph."
+            },
+            "netContents": {
+              "status": "readable",
+              "text": "1.75 L",
+              "reason": "Visible text transcribed from this photograph."
+            },
+            "producer": {
+              "name": {
+                "status": "unreadable",
+                "text": null,
+                "reason": "No explicit manufacturer or distillery entity and role statement visible. Manufacturing role not established."
+              },
+              "address": {
+                "status": "unreadable",
+                "text": null,
+                "reason": "No explicit manufacturer or distillery entity and role statement visible. Manufacturing role not established."
+              }
+            },
+            "origin": {
+              "status": "readable",
+              "text": "HECHO EN MEXICO",
+              "reason": "Visible text transcribed from this photograph."
+            },
+            "warning": {
+              "heading": {
+                "status": "missing",
+                "text": null,
+                "reason": "No visible text reported in this photograph."
+              },
+              "body": {
+                "status": "missing",
+                "text": null,
+                "reason": "No visible text reported in this photograph."
+              },
+              "headingBold": null,
+              "bodyBold": null
+            }
+          }
+        },
+        {
+          "photoId": "37415cce-8229-4ce7-ae5a-c7809b4789bb",
+          "evidence": {
+            "schemaVersion": 1,
+            "brand": {
+              "status": "unreadable",
+              "text": null,
+              "reason": "No explicit brand lettering visible."
+            },
+            "classType": {
+              "status": "unreadable",
+              "text": null,
+              "reason": "No explicit class type designation visible."
+            },
+            "abv": {
+              "status": "unreadable",
+              "text": null,
+              "reason": "No alcohol by volume percentage visible."
+            },
+            "netContents": {
+              "status": "readable",
+              "text": "1.75 L",
+              "reason": "Visible text transcribed from this photograph."
+            },
+            "producer": {
+              "name": {
+                "status": "readable",
+                "text": "La Rojeña",
+                "reason": "Visible text transcribed from this photograph. Role excerpt: Today, La Rojeña, the family's distillery, sits on that same land as the oldest active distillery in Latin America. Other entity: IMPORTED & BOTTLED BY PROXIMO, LAWRENCEBURG, IN - UNDER LICENSE FROM THE TRADEMARK OWNER"
+              },
+              "address": {
+                "status": "readable",
+                "text": "Jose Cuervo No. 73, Tequila, Jalisco, 46400 Mexico",
+                "reason": "Visible text transcribed from this photograph. Role excerpt: Today, La Rojeña, the family's distillery, sits on that same land as the oldest active distillery in Latin America. Other entity: IMPORTED & BOTTLED BY PROXIMO, LAWRENCEBURG, IN - UNDER LICENSE FROM THE TRADEMARK OWNER"
+              }
+            },
+            "origin": {
+              "status": "readable",
+              "text": "PRODUCT OF MEXICO",
+              "reason": "Visible text transcribed from this photograph."
+            },
+            "warning": {
+              "heading": {
+                "status": "readable",
+                "text": "GOVERNMENT WARNING:",
+                "reason": "Visible text transcribed from this photograph."
+              },
+              "body": {
+                "status": "readable",
+                "text": "(1) ACCORDING TO THE SURGEON GENERAL, WOMEN SHOULD NOT DRINK ALCOHOLIC BEVERAGES DURING PREGNANCY BECAUSE OF THE RISK OF BIRTH DEFECTS. (2) CONSUMPTION OF ALCOHOLIC BEVERAGES IMPAIRS YOUR ABILITY TO DRIVE A CAR OR OPERATE MACHINERY, AND MAY CAUSE HEALTH PROBLEMS.",
+                "reason": "Visible text transcribed from this photograph."
+              },
+              "headingBold": true,
+              "bodyBold": false
+            }
+          }
+        }
+      ]
+    },
+    "aggregationVersion": "photo-set-aggregation-v2",
+    "evidence": {
+      "schemaVersion": 1,
+      "brand": {
+        "status": "readable",
+        "text": "Jose Cuervo",
+        "reason": "Visible text transcribed from this photograph."
+      },
+      "classType": {
+        "status": "readable",
+        "text": "Tequila Gold",
+        "reason": "Visible text transcribed from this photograph."
+      },
+      "abv": {
+        "status": "readable",
+        "text": "40% Alc./Vol.",
+        "reason": "Visible text transcribed from this photograph."
+      },
+      "netContents": {
+        "status": "readable",
+        "text": "1.75 L",
+        "reason": "Visible text transcribed from this photograph."
+      },
+      "producer": {
+        "name": {
+          "status": "readable",
+          "text": "La Rojeña",
+          "reason": "Visible text transcribed from this photograph. Role excerpt: Today, La Rojeña, the family's distillery, sits on that same land as the oldest active distillery in Latin America. Other entity: IMPORTED & BOTTLED BY PROXIMO, LAWRENCEBURG, IN - UNDER LICENSE FROM THE TRADEMARK OWNER"
+        },
+        "address": {
+          "status": "readable",
+          "text": "Jose Cuervo No. 73, Tequila, Jalisco, 46400 Mexico",
+          "reason": "Visible text transcribed from this photograph. Role excerpt: Today, La Rojeña, the family's distillery, sits on that same land as the oldest active distillery in Latin America. Other entity: IMPORTED & BOTTLED BY PROXIMO, LAWRENCEBURG, IN - UNDER LICENSE FROM THE TRADEMARK OWNER"
+        }
+      },
+      "origin": {
+        "status": "readable",
+        "text": "HECHO EN MEXICO",
+        "reason": "Visible text transcribed from this photograph."
+      },
+      "warning": {
+        "heading": {
+          "status": "readable",
+          "text": "GOVERNMENT WARNING:",
+          "reason": "Visible text transcribed from this photograph."
+        },
+        "body": {
+          "status": "readable",
+          "text": "(1) ACCORDING TO THE SURGEON GENERAL, WOMEN SHOULD NOT DRINK ALCOHOLIC BEVERAGES DURING PREGNANCY BECAUSE OF THE RISK OF BIRTH DEFECTS. (2) CONSUMPTION OF ALCOHOLIC BEVERAGES IMPAIRS YOUR ABILITY TO DRIVE A CAR OR OPERATE MACHINERY, AND MAY CAUSE HEALTH PROBLEMS.",
+          "reason": "Visible text transcribed from this photograph."
+        },
+        "headingBold": true,
+        "bodyBold": false
+      }
+    },
+    "provenance": {
+      "brand": {
+        "sourcePhotoIds": [
+          "23d9c6e5-fc27-451a-af5c-eed0231036dd"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "Jose Cuervo",
+            "sourcePhotoIds": [
+              "23d9c6e5-fc27-451a-af5c-eed0231036dd"
+            ]
+          }
+        ]
+      },
+      "classType": {
+        "sourcePhotoIds": [
+          "23d9c6e5-fc27-451a-af5c-eed0231036dd"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "Tequila Gold",
+            "sourcePhotoIds": [
+              "23d9c6e5-fc27-451a-af5c-eed0231036dd"
+            ]
+          }
+        ]
+      },
+      "abv": {
+        "sourcePhotoIds": [
+          "23d9c6e5-fc27-451a-af5c-eed0231036dd"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "40% Alc./Vol.",
+            "sourcePhotoIds": [
+              "23d9c6e5-fc27-451a-af5c-eed0231036dd"
+            ]
+          }
+        ]
+      },
+      "netContents": {
+        "sourcePhotoIds": [
+          "23d9c6e5-fc27-451a-af5c-eed0231036dd",
+          "37415cce-8229-4ce7-ae5a-c7809b4789bb"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "1.75 L",
+            "sourcePhotoIds": [
+              "23d9c6e5-fc27-451a-af5c-eed0231036dd",
+              "37415cce-8229-4ce7-ae5a-c7809b4789bb"
+            ]
+          }
+        ]
+      },
+      "producer.name": {
+        "sourcePhotoIds": [
+          "37415cce-8229-4ce7-ae5a-c7809b4789bb"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "La Rojeña",
+            "sourcePhotoIds": [
+              "37415cce-8229-4ce7-ae5a-c7809b4789bb"
+            ]
+          }
+        ]
+      },
+      "producer.address": {
+        "sourcePhotoIds": [
+          "37415cce-8229-4ce7-ae5a-c7809b4789bb"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "Jose Cuervo No. 73, Tequila, Jalisco, 46400 Mexico",
+            "sourcePhotoIds": [
+              "37415cce-8229-4ce7-ae5a-c7809b4789bb"
+            ]
+          }
+        ]
+      },
+      "origin": {
+        "sourcePhotoIds": [
+          "23d9c6e5-fc27-451a-af5c-eed0231036dd",
+          "37415cce-8229-4ce7-ae5a-c7809b4789bb"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "HECHO EN MEXICO",
+            "sourcePhotoIds": [
+              "23d9c6e5-fc27-451a-af5c-eed0231036dd"
+            ]
+          },
+          {
+            "value": "PRODUCT OF MEXICO",
+            "sourcePhotoIds": [
+              "37415cce-8229-4ce7-ae5a-c7809b4789bb"
+            ]
+          }
+        ]
+      },
+      "warning.heading": {
+        "sourcePhotoIds": [
+          "37415cce-8229-4ce7-ae5a-c7809b4789bb"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "GOVERNMENT WARNING:",
+            "sourcePhotoIds": [
+              "37415cce-8229-4ce7-ae5a-c7809b4789bb"
+            ]
+          }
+        ]
+      },
+      "warning.body": {
+        "sourcePhotoIds": [
+          "37415cce-8229-4ce7-ae5a-c7809b4789bb"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "(1) ACCORDING TO THE SURGEON GENERAL, WOMEN SHOULD NOT DRINK ALCOHOLIC BEVERAGES DURING PREGNANCY BECAUSE OF THE RISK OF BIRTH DEFECTS. (2) CONSUMPTION OF ALCOHOLIC BEVERAGES IMPAIRS YOUR ABILITY TO DRIVE A CAR OR OPERATE MACHINERY, AND MAY CAUSE HEALTH PROBLEMS.",
+            "sourcePhotoIds": [
+              "37415cce-8229-4ce7-ae5a-c7809b4789bb"
+            ]
+          }
+        ]
+      },
+      "warning.headingBold": {
+        "sourcePhotoIds": [
+          "37415cce-8229-4ce7-ae5a-c7809b4789bb"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": true,
+            "sourcePhotoIds": [
+              "37415cce-8229-4ce7-ae5a-c7809b4789bb"
+            ]
+          }
+        ]
+      },
+      "warning.bodyBold": {
+        "sourcePhotoIds": [
+          "37415cce-8229-4ce7-ae5a-c7809b4789bb"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": false,
+            "sourcePhotoIds": [
+              "37415cce-8229-4ce7-ae5a-c7809b4789bb"
+            ]
+          }
+        ]
+      }
+    },
+    "extraction": {
+      "schemaVersion": 2,
+      "promptVersion": "gpt41-photo-observations-v1",
+      "model": "openai/gpt-4.1",
+      "requestId": "7b36d94d-56a4-44ed-bf78-aaee734993b5",
+      "attemptId": "697e646e-2189-5cae-ab89-6afe41701a7d",
+      "reservationId": "77fecc92-88ff-5c3d-983a-9eb7ef0fcf17"
+    },
+    "comparison": {
+      "processing": "complete",
+      "applicationId": "TEST-JOSE-CUERVO-GPT41-FINAL-3435B88",
+      "applicationVersion": "1",
+      "rulesVersion": "prototype-seven-fields-v1",
+      "rulesRevision": 7,
+      "fields": {
+        "brand": {
+          "status": "match",
+          "reasons": [
+            "Brand: readable text agrees under case/whitespace/NFC equivalence."
+          ],
+          "expected": "Jose Cuervo",
+          "observed": {
+            "status": "readable",
+            "text": "Jose Cuervo",
+            "reason": "Visible text transcribed from this photograph."
+          },
+          "sourcePhotoIds": [
+            "23d9c6e5-fc27-451a-af5c-eed0231036dd"
+          ],
+          "conflict": false
+        },
+        "classType": {
+          "status": "match",
+          "reasons": [
+            "Class/type: recognized Tequila designation is compatible with generic Tequila. Observed subtype is retained; no legal classification certified."
+          ],
+          "expected": "Tequila",
+          "observed": {
+            "status": "readable",
+            "text": "Tequila Gold",
+            "reason": "Visible text transcribed from this photograph."
+          },
+          "sourcePhotoIds": [
+            "23d9c6e5-fc27-451a-af5c-eed0231036dd"
+          ],
+          "conflict": false
+        },
+        "abv": {
+          "status": "match",
+          "reasons": [
+            "ABV: equal declared/observed decimal percentage; no regulatory tolerance applied."
+          ],
+          "expected": "40",
+          "observed": {
+            "status": "readable",
+            "text": "40% Alc./Vol.",
+            "reason": "Visible text transcribed from this photograph."
+          },
+          "sourcePhotoIds": [
+            "23d9c6e5-fc27-451a-af5c-eed0231036dd"
+          ],
+          "conflict": false
+        },
+        "netContents": {
+          "status": "match",
+          "reasons": [
+            "Net contents: equal exact metric volume (1 L = 1000 mL); standards of fill not evaluated."
+          ],
+          "expected": "1.75L",
+          "observed": {
+            "status": "readable",
+            "text": "1.75 L",
+            "reason": "Visible text transcribed from this photograph."
+          },
+          "sourcePhotoIds": [
+            "23d9c6e5-fc27-451a-af5c-eed0231036dd",
+            "37415cce-8229-4ce7-ae5a-c7809b4789bb"
+          ],
+          "conflict": false
+        },
+        "producer": {
+          "status": "match",
+          "reasons": [
+            "Producer name: agrees under case, layout and Latin accent equivalence; no role or corporate-identity certification.",
+            "Producer address: whole supplied address agrees under case, Latin accents, comma layout and No. spacing; no substring verification."
+          ],
+          "expected": "La Rojena\nJose Cuervo No.73, Tequila, Jalisco, 46400 Mexico",
+          "observed": {
+            "name": {
+              "status": "readable",
+              "text": "La Rojeña",
+              "reason": "Visible text transcribed from this photograph. Role excerpt: Today, La Rojeña, the family's distillery, sits on that same land as the oldest active distillery in Latin America. Other entity: IMPORTED & BOTTLED BY PROXIMO, LAWRENCEBURG, IN - UNDER LICENSE FROM THE TRADEMARK OWNER"
+            },
+            "address": {
+              "status": "readable",
+              "text": "Jose Cuervo No. 73, Tequila, Jalisco, 46400 Mexico",
+              "reason": "Visible text transcribed from this photograph. Role excerpt: Today, La Rojeña, the family's distillery, sits on that same land as the oldest active distillery in Latin America. Other entity: IMPORTED & BOTTLED BY PROXIMO, LAWRENCEBURG, IN - UNDER LICENSE FROM THE TRADEMARK OWNER"
+            }
+          },
+          "sourcePhotoIds": [
+            "37415cce-8229-4ce7-ae5a-c7809b4789bb"
+          ],
+          "conflict": false
+        },
+        "origin": {
+          "status": "match",
+          "reasons": [
+            "Origin: whole country claim agrees under bounded origin-prefix/country mapping. Raw source text retained."
+          ],
+          "expected": "Mexico",
+          "observed": {
+            "status": "readable",
+            "text": "HECHO EN MEXICO",
+            "reason": "Visible text transcribed from this photograph."
+          },
+          "sourcePhotoIds": [
+            "23d9c6e5-fc27-451a-af5c-eed0231036dd",
+            "37415cce-8229-4ce7-ae5a-c7809b4789bb"
+          ],
+          "conflict": false
+        },
+        "warning": {
+          "status": "match",
+          "reasons": [
+            "Warning heading: wording matches (exact capitals and colon; layout whitespace ignored).",
+            "Warning body: wording matches (body case and layout whitespace ignored; punctuation and word order retained).",
+            "Warning heading boldness: observed as required. Letter case does not establish boldness.",
+            "Warning body boldness: observed as required. Letter case does not establish boldness.",
+            "Physical print size: unverified; inspect the physical label separately."
+          ],
+          "expected": "GOVERNMENT WARNING:\n(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+          "observed": {
+            "heading": {
+              "status": "readable",
+              "text": "GOVERNMENT WARNING:",
+              "reason": "Visible text transcribed from this photograph."
+            },
+            "body": {
+              "status": "readable",
+              "text": "(1) ACCORDING TO THE SURGEON GENERAL, WOMEN SHOULD NOT DRINK ALCOHOLIC BEVERAGES DURING PREGNANCY BECAUSE OF THE RISK OF BIRTH DEFECTS. (2) CONSUMPTION OF ALCOHOLIC BEVERAGES IMPAIRS YOUR ABILITY TO DRIVE A CAR OR OPERATE MACHINERY, AND MAY CAUSE HEALTH PROBLEMS.",
+              "reason": "Visible text transcribed from this photograph."
+            },
+            "headingBold": true,
+            "bodyBold": false
+          },
+          "sourcePhotoIds": [
+            "37415cce-8229-4ce7-ae5a-c7809b4789bb"
+          ],
+          "conflict": false
+        }
+      },
+      "physicalPrintSize": {
+        "status": "unverified",
+        "reason": "Physical print size cannot be established from extraction/photo evidence; not measured or certified. This source-backed prototype is not exhaustive TTB legal certification."
+      }
+    }
+  },
+  "comparisonId": "928848ba-3f29-4adc-86e3-57ac2af16335",
+  "reviewAvailability": "available",
+  "elapsedMs": 4722
+}

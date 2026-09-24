@@ -5,16 +5,10 @@ import ProcessingState from './ProcessingState';
 import ReviewConfirmation from './ReviewConfirmation';
 import { samples, compareOfflineSample, type Scenario } from '../lib/offline-demo';
 import { MAX_IMAGE_BYTES } from '../lib/contracts';
-import { FIELD_KEYS } from '../lib/rules';
+
 import type { ComparisonRecord } from '../lib/comparison-record';
 
-export const fieldLabels = { brand:'Brand name', classType:'Class / type', abv:'Alcohol by volume', netContents:'Net contents', producer:'Producer name and address', origin:'Country of origin', warning:'Government warning' };
-export function observations(value: unknown): string {
-  if (value === null) return 'Unknown';
-  if (typeof value !== 'object') return String(value);
-  if ('status' in value && 'text' in value && 'reason' in value) return `${value.status}: ${value.text ?? 'No readable text'} — ${value.reason}`;
-  return Object.entries(value).map(([key, child]) => `${key}: ${observations(child)}`).join('\n');
-}
+export { fieldLabels, observations } from './EvidenceReview';
 
 export default function ComparisonWorkspace({ offlineEnabled }: { offlineEnabled: boolean }) {
   const [mode, setMode] = useState<'fixture'|'manual'>(offlineEnabled ? 'fixture' : 'manual');
@@ -26,11 +20,11 @@ export default function ComparisonWorkspace({ offlineEnabled }: { offlineEnabled
   const generation = useRef(0);
   const active = useRef<AbortController|null>(null);
   const previewRef = useRef<string|null>(null);
-  const zoom = useRef<HTMLDialogElement>(null);
+
   const resultRef = useRef<HTMLDivElement>(null);
   const sample = samples[scenario];
   function releasePreview() { if (previewRef.current) URL.revokeObjectURL(previewRef.current); previewRef.current = null; setPreview(null); }
-  function reset() { generation.current++; active.current?.abort(); active.current = null; setRunning(false); setResult(null); releasePreview(); zoom.current?.close(); }
+  function reset() { generation.current++; active.current?.abort(); active.current = null; setRunning(false); setResult(null); releasePreview(); }
   useEffect(() => () => { generation.current++; active.current?.abort(); if (previewRef.current) URL.revokeObjectURL(previewRef.current); }, []);
   async function compare() {
     if (!offlineEnabled || mode !== 'fixture' || running) return;
@@ -59,10 +53,10 @@ export default function ComparisonWorkspace({ offlineEnabled }: { offlineEnabled
       <h1>Single label review</h1>
       <p>Pair evidence with one application. Findings support an internal human review, not government submission.</p>
       {offlineEnabled && <div className="notice"><strong>Offline fixture demonstration – not AI analysis; nothing saved</strong><p>Only explicitly selected synthetic PNGs have predefined observations. Local rules compare declarations; no model latency is measured.</p></div>}
-      <label htmlFor="input-mode">Input source</label><select id="input-mode" value={mode} onChange={e=>{reset();setMode(e.target.value as typeof mode);}}>
+      {offlineEnabled && <><label htmlFor="input-mode">Input source</label><select id="input-mode" value={mode} onChange={e=>{reset();setMode(e.target.value as typeof mode);}}>
         {offlineEnabled && <option value="fixture">Known synthetic fixture</option>}<option value="manual">My image and application — guarded live demo</option>
-      </select>
-      {mode === 'manual' ? <><div className="notice">Live comparison requires a demo access code and server configuration. Arbitrary images never receive sample findings.</div><PairInput /></> : <>
+      </select></>}
+      {mode === 'manual' ? <PairInput /> : <>
         <div className="toolbar"><label htmlFor="scenario">Synthetic scenario</label><select id="scenario" value={scenario} onChange={e=>{reset();const id=e.target.value as Scenario;setScenario(id);setApplication(structuredClone(samples[id].application));}}>{Object.entries(samples).map(([id,s])=><option value={id} key={id}>{s.title}</option>)}</select></div>
         <div className="field-grid">
           <label>Sample application ID<input value={application.applicationId} maxLength={128} onChange={e=>{reset();setApplication({...application,applicationId:e.target.value});}} /></label>
@@ -74,16 +68,9 @@ export default function ComparisonWorkspace({ offlineEnabled }: { offlineEnabled
         <button onClick={compare} disabled={running}>Submit comparison</button>
         <ProcessingState running={running} result={result} />
         <div ref={resultRef} tabIndex={-1}>
-          {result?.processing === 'complete' && <>
-            <p className="notice hash">Source: fixture · Application {result.application.applicationId} / version {result.application.applicationVersion} · Normalized image SHA-256 {result.imageSha256}</p>
-            <div className="workspace">
-              <section aria-label="Label preview"><div className="preview-head"><h2>Synthetic label</h2><button onClick={()=>zoom.current?.showModal()}>Enlarge label</button></div>{preview && <img className="label-preview" src={preview} alt={`Exact synthetic label: ${sample.title}`} />}<p className="help">Image-only review cannot verify physical print/type size. Not legal certification.</p></section>
-              <section aria-label="Comparison evidence"><h2>Seven-field comparison</h2><table><thead><tr><th>Field</th><th>Observed evidence</th><th>Application / reference</th><th>Machine finding</th></tr></thead><tbody>{FIELD_KEYS.map(key=>{const field=result.comparison.fields[key];return <tr key={key}><th scope="row">{fieldLabels[key]}</th><td data-title="Observed">{observations(field.observed)}</td><td data-title="Expected">{field.expected}</td><td data-title="Finding"><strong className={`status ${field.status}`}>{field.status === 'match' ? '✓' : field.status === 'mismatch' ? '≠' : '!'} {field.status}</strong><p className="help">{field.reasons.join(' ')}</p></td></tr>;})}</tbody></table></section>
-            </div>
-          </>}
+          <ReviewConfirmation key={`${generation.current}:${result?.processing??'empty'}`} record={result} preview={preview} previewNote="Exact synthetic fixture bytes; not AI analysis. Nothing saved." />
         </div>
-        <ReviewConfirmation key={`${generation.current}:${result?.processing??'empty'}`} record={result} />
-        <dialog ref={zoom} aria-labelledby="zoom-title"><h2 id="zoom-title">Larger synthetic label</h2><button onClick={()=>zoom.current?.close()}>Close preview</button>{preview && <img className="label-preview" src={preview} alt="Enlarged exact synthetic label" />}</dialog>
+
       </>}
     </section>
   </>;

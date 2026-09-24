@@ -1,0 +1,46 @@
+{
+  "id": "gen-1790163359-cFXij6MGCBLLVYShjwcB",
+  "object": "chat.completion",
+  "created": 1790163359,
+  "model": "openai/gpt-4.1",
+  "provider": "OpenAI",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+    {
+      "index": 0,
+      "logprobs": null,
+      "finish_reason": "stop",
+      "native_finish_reason": "completed",
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"brand\": null,\n  \"classType\": null,\n  \"abv\": null,\n  \"netContents\": \"1.75 L\",\n  \"producer\": {\n    \"name\": \"\\\"La Roje\u00f1a\\\" Jose Cuervo\",\n    \"address\": \"No. 73, Tequila, Jalisco, 46400 Mexico\",\n    \"roleEvidence\": \"\\\"La Roje\u00f1a\\\" Jose Cuervo No. 73, Tequila, Jalisco, 46400 Mexico\",\n    \"otherEntityText\": \"IMPORTED & BOTTLED BY PROXIMO, LAWRENCEBURG, IN - UNDER LICENSE FROM THE TRADEMARK OWNER\"\n  },\n  \"origin\": \"PRODUCT OF MEXICO\",\n  \"warning\": {\n    \"heading\": \"GOVERNMENT WARNING:\",\n    \"body\": \"(1) ACCORDING TO THE SURGEON GENERAL, WOMEN SHOULD NOT DRINK ALCOHOLIC BEVERAGES DURING PREGNANCY BECAUSE OF THE RISK OF BIRTH DEFECTS. (2) CONSUMPTION OF ALCOHOLIC BEVERAGES IMPAIRS YOUR ABILITY TO DRIVE A CAR OR OPERATE MACHINERY, AND MAY CAUSE HEALTH PROBLEMS.\",\n    \"headingBold\": true,\n    \"bodyBold\": false\n  },\n  \"uncertainties\": [\n    {\n      \"field\": \"brand\",\n      \"reason\": \"No explicit brand lettering visible on this label.\"\n    },\n    {\n      \"field\": \"classType\",\n      \"reason\": \"No explicit product class or type designation visible.\"\n    },\n    {\n      \"field\": \"abv\",\n      \"reason\": \"No alcohol by volume percentage visible.\"\n    }\n  ]\n}",
+        "refusal": null,
+        "reasoning": null
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2095,
+    "completion_tokens": 358,
+    "total_tokens": 2453,
+    "cost": 0.00698346,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.007054,
+      "upstream_inference_prompt_cost": 0.00419,
+      "upstream_inference_completions_cost": 0.002864
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}

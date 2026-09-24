@@ -2,12 +2,31 @@ import { randomUUID } from 'node:crypto';
 import { z } from 'zod';
 
 const units = z.number().int().nonnegative().max(Number.MAX_SAFE_INTEGER);
-export const bindingSchema = z.object({
+const legacyBindingSchema = z.object({
   reservationId: z.uuid(), attemptId: z.uuid(), requestId: z.uuid(),
   imageSha256: z.string().regex(/^[a-f0-9]{64}$/), schemaVersion: z.literal(1),
   rulesVersion: z.literal('prototype-seven-fields-v1'), promptVersion: z.literal('image-observations-v1'),
   model: z.literal('anthropic/claude-haiku-4.5'), maxCostMicrousd: units.positive(),
 }).strict();
+// Add a truthful OCR tuple without broadening either historical Haiku branch.
+// Source belongs to the saved record; spend bindings retain exactly nine keys.
+const azureOcrBindingSchema = legacyBindingSchema.extend({
+  schemaVersion: z.literal(2), promptVersion: z.literal('azure-ocr-photo-observations-v1'),
+  model: z.literal('mistral-document-ai-2512'), maxCostMicrousd: z.literal(1000000),
+});
+// Benchmark-only admission; not a saved-record model or an app-engine switch.
+export const BENCHMARK_MODELS = ['openai/gpt-4.1', 'google/gemini-2.5-flash', 'google/gemini-2.5-flash-lite'] as const;
+export const benchmarkBindingSchema = legacyBindingSchema.extend({
+  schemaVersion: z.literal(2), promptVersion: z.literal('isolated-vision-benchmark-v1'),
+  model: z.enum(BENCHMARK_MODELS), maxCostMicrousd: z.literal(1000000),
+});
+export const bindingSchema = z.union([
+  legacyBindingSchema,
+  legacyBindingSchema.extend({ schemaVersion: z.literal(2), promptVersion: z.literal('photo-set-observations-v2') }),
+  azureOcrBindingSchema,
+  benchmarkBindingSchema,
+  legacyBindingSchema.extend({schemaVersion:z.literal(2),promptVersion:z.literal('gpt41-photo-observations-v1'),model:z.literal('openai/gpt-4.1'),maxCostMicrousd:z.literal(1000000)}),
+]);
 const receiptSchema = z.object({
   binding: bindingSchema, state: z.enum(['reserved', 'claimed', 'unresolved']), claimId: z.uuid().nullable(),
   ledger: z.object({ currency: z.literal('USD'), ceilingMicrousd: units, incurredMicrousd: units, unresolvedMicrousd: units }).strict(),

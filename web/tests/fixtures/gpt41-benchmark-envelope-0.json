@@ -1,0 +1,46 @@
+{
+  "id": "gen-1790163359-cL5TXSx8idAWXECdbfd6",
+  "object": "chat.completion",
+  "created": 1790163359,
+  "model": "openai/gpt-4.1",
+  "provider": "OpenAI",
+  "system_fingerprint": null,
+  "service_tier": "default",
+  "choices": [
+    {
+      "index": 0,
+      "logprobs": null,
+      "finish_reason": "stop",
+      "native_finish_reason": "completed",
+      "message": {
+        "role": "assistant",
+        "content": "{\n  \"brand\": \"Jose Cuervo\",\n  \"classType\": \"Tequila Gold\",\n  \"abv\": \"40% Alc./Vol.\",\n  \"netContents\": \"1.75 L\",\n  \"producer\": {\n    \"name\": null,\n    \"address\": null,\n    \"roleEvidence\": null,\n    \"otherEntityText\": \"FABRICA LA ROJENA TEQUILA\"\n  },\n  \"origin\": \"HECHO EN MEXICO\",\n  \"warning\": {\n    \"heading\": null,\n    \"body\": null,\n    \"headingBold\": null,\n    \"bodyBold\": null\n  },\n  \"uncertainties\": [\n    {\n      \"field\": \"producer\",\n      \"reason\": \"No explicit producer name or address block; only 'FABRICA LA ROJENA TEQUILA' seal present.\"\n    },\n    {\n      \"field\": \"warning\",\n      \"reason\": \"No visible warning text on the label.\"\n    }\n  ]\n}",
+        "refusal": null,
+        "reasoning": null
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 2095,
+    "completion_tokens": 207,
+    "total_tokens": 2302,
+    "cost": 0.00578754,
+    "is_byok": false,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost_details": {
+      "upstream_inference_cost": 0.005846,
+      "upstream_inference_prompt_cost": 0.00419,
+      "upstream_inference_completions_cost": 0.001656
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "image_tokens": 0,
+      "audio_tokens": 0
+    }
+  }
+}

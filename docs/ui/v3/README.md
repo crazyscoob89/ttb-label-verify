@@ -1,6 +1,6 @@
 # Frozen v3 review mock
 
-**Design reference only.** Download/open [REVIEW-MOCK.html](REVIEW-MOCK.html) locally; GitHub's source viewer is not the interactive application. No build, dependency install or server is required to view it. It uses synthetic samples, page-memory-only outcomes, no network/inference, no real uploads and no durable approval history. The governance controls are [designed separately](../../GOVERNANCE-AND-AUDIT-DESIGN.md); implementation remains gated by [the build plan](../../BUILD-PLAN.md).
+**Design reference only.** Download/open [REVIEW-MOCK.html](REVIEW-MOCK.html) locally; GitHub's source viewer is not the interactive application. No build, dependency install or server is required to view it. It uses synthetic samples, page-memory-only outcomes, no network/inference, no real uploads and no durable approval history. The governance controls are [designed separately](../../deep-dive/GOVERNANCE-AND-AUDIT-DESIGN.md); implementation remains gated by [the build plan](../../deep-dive/BUILD-PLAN.md).
 
 ## Selected design
 

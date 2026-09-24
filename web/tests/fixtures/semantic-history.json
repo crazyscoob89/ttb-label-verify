@@ -1,0 +1,1131 @@
+{
+  "sourceCommit": "49e8d131a77633a84291ab60409d40c5095b6871",
+  "description": "Synthetic records captured with original evaluators before semantic repair; incident text reconstructed from supplied UI report.",
+  "singletons": [
+    {
+      "processing": "complete",
+      "application": {
+        "applicationId": "00003",
+        "applicationVersion": "1",
+        "brand": "Jose Cuervo",
+        "classType": "Tequila",
+        "abv": 40,
+        "netContents": "1.75L",
+        "producerName": "La Rojena",
+        "producerAddress": "Jose Cuervo No.73, Tequila, Jalisco, 46400 Mexico",
+        "commodity": "distilled-spirits",
+        "imported": true,
+        "origin": {
+          "kind": "imported",
+          "country": "Mexico"
+        }
+      },
+      "imageSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "fixture",
+      "evidence": {
+        "schemaVersion": 1,
+        "brand": {
+          "status": "readable",
+          "text": "Jose Cuervo",
+          "reason": "Reported visible text in supplied José Cuervo incident."
+        },
+        "classType": {
+          "status": "readable",
+          "text": "Tequila Gold",
+          "reason": "Reported visible text in supplied José Cuervo incident."
+        },
+        "abv": {
+          "status": "unreadable",
+          "text": null,
+          "reason": "ABV not clearly visible in this front view"
+        },
+        "netContents": {
+          "status": "missing",
+          "text": null,
+          "reason": "No contributing net contents evidence reported for back."
+        },
+        "producer": {
+          "name": {
+            "status": "readable",
+            "text": "Jose Cuervo",
+            "reason": "Reported visible text in supplied José Cuervo incident."
+          },
+          "address": {
+            "status": "readable",
+            "text": "La Rojeña Jose Cuervo No. 73, Tequila, Jalisco, 46400 Mexico",
+            "reason": "Reported visible text in supplied José Cuervo incident."
+          }
+        },
+        "origin": {
+          "status": "readable",
+          "text": "Product of Mexico",
+          "reason": "Reported visible text in supplied José Cuervo incident."
+        },
+        "warning": {
+          "heading": {
+            "status": "readable",
+            "text": "GOVERNMENT WARNING: (1) ACCORDING TO THE SURGEON GENERAL, WOMEN SHOULD NOT DRINK ALCOHOLIC BEVERAGES DURING PREGNANCY BECAUSE OF THE RISK OF BIRTH DEFECTS. (2) CONSUMPTION OF ALCOHOLIC BEVERAGES IMPAIRS YOUR ABILITY TO DRIVE A CAR OR OPERATE MACHINERY, AND MAY CAUSE HEALTH PROBLEMS.",
+            "reason": "Reported visible text in supplied José Cuervo incident."
+          },
+          "body": {
+            "status": "missing",
+            "text": null,
+            "reason": "Body not populated; whole warning reported in heading."
+          },
+          "headingBold": true,
+          "bodyBold": null
+        }
+      },
+      "comparison": {
+        "processing": "complete",
+        "applicationId": "00003",
+        "applicationVersion": "1",
+        "rulesVersion": "prototype-seven-fields-v1",
+        "fields": {
+          "brand": {
+            "status": "match",
+            "reasons": [
+              "Brand: readable text agrees under case/whitespace/NFC equivalence."
+            ],
+            "expected": "Jose Cuervo",
+            "observed": {
+              "status": "readable",
+              "text": "Jose Cuervo",
+              "reason": "Reported visible text in supplied José Cuervo incident."
+            }
+          },
+          "classType": {
+            "status": "mismatch",
+            "reasons": [
+              "Class/type: readable text differs under case/whitespace/NFC equivalence."
+            ],
+            "expected": "Tequila",
+            "observed": {
+              "status": "readable",
+              "text": "Tequila Gold",
+              "reason": "Reported visible text in supplied José Cuervo incident."
+            }
+          },
+          "abv": {
+            "status": "needs-review",
+            "reasons": [
+              "ABV: unreadable observation; human review required."
+            ],
+            "expected": "40",
+            "observed": {
+              "status": "unreadable",
+              "text": null,
+              "reason": "ABV not clearly visible in this front view"
+            }
+          },
+          "netContents": {
+            "status": "needs-review",
+            "reasons": [
+              "Net contents: missing observation; human review required."
+            ],
+            "expected": "1.75L",
+            "observed": {
+              "status": "missing",
+              "text": null,
+              "reason": "No contributing net contents evidence reported for back."
+            }
+          },
+          "producer": {
+            "status": "mismatch",
+            "reasons": [
+              "Producer name: readable text differs under case/whitespace/NFC equivalence.",
+              "Producer address: readable text differs under case/whitespace/NFC equivalence."
+            ],
+            "expected": "La Rojena\nJose Cuervo No.73, Tequila, Jalisco, 46400 Mexico",
+            "observed": {
+              "name": {
+                "status": "readable",
+                "text": "Jose Cuervo",
+                "reason": "Reported visible text in supplied José Cuervo incident."
+              },
+              "address": {
+                "status": "readable",
+                "text": "La Rojeña Jose Cuervo No. 73, Tequila, Jalisco, 46400 Mexico",
+                "reason": "Reported visible text in supplied José Cuervo incident."
+              }
+            }
+          },
+          "origin": {
+            "status": "mismatch",
+            "reasons": [
+              "Origin applies to imported distilled-spirits.",
+              "Imported country of origin: readable text differs under case/whitespace/NFC equivalence."
+            ],
+            "expected": "Mexico",
+            "observed": {
+              "status": "readable",
+              "text": "Product of Mexico",
+              "reason": "Reported visible text in supplied José Cuervo incident."
+            }
+          },
+          "warning": {
+            "status": "mismatch",
+            "reasons": [
+              "Warning all-caps heading: readable text differs under exact wording (layout whitespace only).",
+              "Warning body wording: missing observation; human review required.",
+              "Warning bold heading: observed as required.",
+              "Warning nonbold body: formatting unknown; human review required."
+            ],
+            "expected": "GOVERNMENT WARNING:\n(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+            "observed": {
+              "heading": {
+                "status": "readable",
+                "text": "GOVERNMENT WARNING: (1) ACCORDING TO THE SURGEON GENERAL, WOMEN SHOULD NOT DRINK ALCOHOLIC BEVERAGES DURING PREGNANCY BECAUSE OF THE RISK OF BIRTH DEFECTS. (2) CONSUMPTION OF ALCOHOLIC BEVERAGES IMPAIRS YOUR ABILITY TO DRIVE A CAR OR OPERATE MACHINERY, AND MAY CAUSE HEALTH PROBLEMS.",
+                "reason": "Reported visible text in supplied José Cuervo incident."
+              },
+              "body": {
+                "status": "missing",
+                "text": null,
+                "reason": "Body not populated; whole warning reported in heading."
+              },
+              "headingBold": true,
+              "bodyBold": null
+            }
+          }
+        },
+        "physicalPrintSize": {
+          "status": "unverified",
+          "reason": "Physical print size cannot be established from extraction/photo evidence; not measured or certified. This source-backed prototype is not exhaustive TTB legal certification."
+        }
+      }
+    },
+    {
+      "processing": "complete",
+      "application": {
+        "applicationId": "00003",
+        "applicationVersion": "1",
+        "brand": "Jose Cuervo",
+        "classType": "Tequila",
+        "abv": 40,
+        "netContents": "1.75L",
+        "producerName": "La Rojena",
+        "producerAddress": "Jose Cuervo No.73, Tequila, Jalisco, 46400 Mexico",
+        "commodity": "distilled-spirits",
+        "imported": true,
+        "origin": {
+          "kind": "imported",
+          "country": "Mexico"
+        }
+      },
+      "imageSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "fixture",
+      "evidence": {
+        "schemaVersion": 1,
+        "brand": {
+          "status": "readable",
+          "text": "Jose Cuervo",
+          "reason": "Reported visible text in supplied José Cuervo incident."
+        },
+        "classType": {
+          "status": "readable",
+          "text": "Tequila Gold",
+          "reason": "Reported visible text in supplied José Cuervo incident."
+        },
+        "abv": {
+          "status": "unreadable",
+          "text": null,
+          "reason": "ABV not clearly visible in this front view"
+        },
+        "netContents": {
+          "status": "missing",
+          "text": null,
+          "reason": "No contributing net contents evidence reported for back."
+        },
+        "producer": {
+          "name": {
+            "status": "readable",
+            "text": "Jose Cuervo",
+            "reason": "Reported visible text in supplied José Cuervo incident."
+          },
+          "address": {
+            "status": "readable",
+            "text": "La Rojeña Jose Cuervo No. 73, Tequila, Jalisco, 46400 Mexico",
+            "reason": "Reported visible text in supplied José Cuervo incident."
+          }
+        },
+        "origin": {
+          "status": "readable",
+          "text": "Product of Mexico",
+          "reason": "Reported visible text in supplied José Cuervo incident."
+        },
+        "warning": {
+          "heading": {
+            "status": "readable",
+            "text": "GOVERNMENT WARNING: (1) ACCORDING TO THE SURGEON GENERAL, WOMEN SHOULD NOT DRINK ALCOHOLIC BEVERAGES DURING PREGNANCY BECAUSE OF THE RISK OF BIRTH DEFECTS. (2) CONSUMPTION OF ALCOHOLIC BEVERAGES IMPAIRS YOUR ABILITY TO DRIVE A CAR OR OPERATE MACHINERY, AND MAY CAUSE HEALTH PROBLEMS.",
+            "reason": "Reported visible text in supplied José Cuervo incident."
+          },
+          "body": {
+            "status": "missing",
+            "text": null,
+            "reason": "Body not populated; whole warning reported in heading."
+          },
+          "headingBold": true,
+          "bodyBold": null
+        }
+      },
+      "comparison": {
+        "processing": "complete",
+        "applicationId": "00003",
+        "applicationVersion": "1",
+        "rulesVersion": "prototype-seven-fields-v1",
+        "rulesRevision": 2,
+        "fields": {
+          "brand": {
+            "status": "match",
+            "reasons": [
+              "Brand: readable text agrees under case/whitespace/NFC equivalence."
+            ],
+            "expected": "Jose Cuervo",
+            "observed": {
+              "status": "readable",
+              "text": "Jose Cuervo",
+              "reason": "Reported visible text in supplied José Cuervo incident."
+            }
+          },
+          "classType": {
+            "status": "mismatch",
+            "reasons": [
+              "Class/type: readable text differs under case/whitespace/NFC equivalence."
+            ],
+            "expected": "Tequila",
+            "observed": {
+              "status": "readable",
+              "text": "Tequila Gold",
+              "reason": "Reported visible text in supplied José Cuervo incident."
+            }
+          },
+          "abv": {
+            "status": "needs-review",
+            "reasons": [
+              "ABV: unreadable observation; human review required."
+            ],
+            "expected": "40",
+            "observed": {
+              "status": "unreadable",
+              "text": null,
+              "reason": "ABV not clearly visible in this front view"
+            }
+          },
+          "netContents": {
+            "status": "needs-review",
+            "reasons": [
+              "Net contents: missing observation; human review required."
+            ],
+            "expected": "1.75L",
+            "observed": {
+              "status": "missing",
+              "text": null,
+              "reason": "No contributing net contents evidence reported for back."
+            }
+          },
+          "producer": {
+            "status": "mismatch",
+            "reasons": [
+              "Producer name: readable text differs under case/whitespace/NFC equivalence.",
+              "Producer address: readable text differs under case/whitespace/NFC equivalence."
+            ],
+            "expected": "La Rojena\nJose Cuervo No.73, Tequila, Jalisco, 46400 Mexico",
+            "observed": {
+              "name": {
+                "status": "readable",
+                "text": "Jose Cuervo",
+                "reason": "Reported visible text in supplied José Cuervo incident."
+              },
+              "address": {
+                "status": "readable",
+                "text": "La Rojeña Jose Cuervo No. 73, Tequila, Jalisco, 46400 Mexico",
+                "reason": "Reported visible text in supplied José Cuervo incident."
+              }
+            }
+          },
+          "origin": {
+            "status": "match",
+            "reasons": [
+              "Origin applies to imported distilled-spirits.",
+              "Imported country of origin: readable text agrees under case/whitespace/NFC equivalence."
+            ],
+            "expected": "Mexico",
+            "observed": {
+              "status": "readable",
+              "text": "Product of Mexico",
+              "reason": "Reported visible text in supplied José Cuervo incident."
+            }
+          },
+          "warning": {
+            "status": "mismatch",
+            "reasons": [
+              "Warning all-caps heading: readable text differs under exact wording (layout whitespace only).",
+              "Warning body wording: missing observation; human review required.",
+              "Warning bold heading: observed as required.",
+              "Warning nonbold body: formatting unknown; human review required."
+            ],
+            "expected": "GOVERNMENT WARNING:\n(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+            "observed": {
+              "heading": {
+                "status": "readable",
+                "text": "GOVERNMENT WARNING: (1) ACCORDING TO THE SURGEON GENERAL, WOMEN SHOULD NOT DRINK ALCOHOLIC BEVERAGES DURING PREGNANCY BECAUSE OF THE RISK OF BIRTH DEFECTS. (2) CONSUMPTION OF ALCOHOLIC BEVERAGES IMPAIRS YOUR ABILITY TO DRIVE A CAR OR OPERATE MACHINERY, AND MAY CAUSE HEALTH PROBLEMS.",
+                "reason": "Reported visible text in supplied José Cuervo incident."
+              },
+              "body": {
+                "status": "missing",
+                "text": null,
+                "reason": "Body not populated; whole warning reported in heading."
+              },
+              "headingBold": true,
+              "bodyBold": null
+            }
+          }
+        },
+        "physicalPrintSize": {
+          "status": "unverified",
+          "reason": "Physical print size cannot be established from extraction/photo evidence; not measured or certified. This source-backed prototype is not exhaustive TTB legal certification."
+        }
+      }
+    },
+    {
+      "processing": "complete",
+      "application": {
+        "applicationId": "00003",
+        "applicationVersion": "1",
+        "brand": "Jose Cuervo",
+        "classType": "Tequila",
+        "abv": 40,
+        "netContents": "1.75L",
+        "producerName": "La Rojena",
+        "producerAddress": "Jose Cuervo No.73, Tequila, Jalisco, 46400 Mexico",
+        "commodity": "distilled-spirits",
+        "imported": true,
+        "origin": {
+          "kind": "imported",
+          "country": "Mexico"
+        }
+      },
+      "imageSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "source": "fixture",
+      "evidence": {
+        "schemaVersion": 1,
+        "brand": {
+          "status": "readable",
+          "text": "Jose Cuervo",
+          "reason": "Reported visible text in supplied José Cuervo incident."
+        },
+        "classType": {
+          "status": "readable",
+          "text": "Tequila Gold",
+          "reason": "Reported visible text in supplied José Cuervo incident."
+        },
+        "abv": {
+          "status": "unreadable",
+          "text": null,
+          "reason": "ABV not clearly visible in this front view"
+        },
+        "netContents": {
+          "status": "missing",
+          "text": null,
+          "reason": "No contributing net contents evidence reported for back."
+        },
+        "producer": {
+          "name": {
+            "status": "readable",
+            "text": "Jose Cuervo",
+            "reason": "Reported visible text in supplied José Cuervo incident."
+          },
+          "address": {
+            "status": "readable",
+            "text": "La Rojeña Jose Cuervo No. 73, Tequila, Jalisco, 46400 Mexico",
+            "reason": "Reported visible text in supplied José Cuervo incident."
+          }
+        },
+        "origin": {
+          "status": "readable",
+          "text": "Product of Mexico",
+          "reason": "Reported visible text in supplied José Cuervo incident."
+        },
+        "warning": {
+          "heading": {
+            "status": "readable",
+            "text": "GOVERNMENT WARNING: (1) ACCORDING TO THE SURGEON GENERAL, WOMEN SHOULD NOT DRINK ALCOHOLIC BEVERAGES DURING PREGNANCY BECAUSE OF THE RISK OF BIRTH DEFECTS. (2) CONSUMPTION OF ALCOHOLIC BEVERAGES IMPAIRS YOUR ABILITY TO DRIVE A CAR OR OPERATE MACHINERY, AND MAY CAUSE HEALTH PROBLEMS.",
+            "reason": "Reported visible text in supplied José Cuervo incident."
+          },
+          "body": {
+            "status": "missing",
+            "text": null,
+            "reason": "Body not populated; whole warning reported in heading."
+          },
+          "headingBold": true,
+          "bodyBold": null
+        }
+      },
+      "comparison": {
+        "processing": "complete",
+        "applicationId": "00003",
+        "applicationVersion": "1",
+        "rulesVersion": "prototype-seven-fields-v1",
+        "rulesRevision": 3,
+        "fields": {
+          "brand": {
+            "status": "match",
+            "reasons": [
+              "Brand: readable text agrees under case/whitespace/NFC equivalence."
+            ],
+            "expected": "Jose Cuervo",
+            "observed": {
+              "status": "readable",
+              "text": "Jose Cuervo",
+              "reason": "Reported visible text in supplied José Cuervo incident."
+            }
+          },
+          "classType": {
+            "status": "mismatch",
+            "reasons": [
+              "Class/type: readable text differs under case/whitespace/NFC equivalence."
+            ],
+            "expected": "Tequila",
+            "observed": {
+              "status": "readable",
+              "text": "Tequila Gold",
+              "reason": "Reported visible text in supplied José Cuervo incident."
+            }
+          },
+          "abv": {
+            "status": "needs-review",
+            "reasons": [
+              "ABV: unreadable observation; human review required."
+            ],
+            "expected": "40",
+            "observed": {
+              "status": "unreadable",
+              "text": null,
+              "reason": "ABV not clearly visible in this front view"
+            }
+          },
+          "netContents": {
+            "status": "needs-review",
+            "reasons": [
+              "Net contents: missing observation; human review required."
+            ],
+            "expected": "1.75L",
+            "observed": {
+              "status": "missing",
+              "text": null,
+              "reason": "No contributing net contents evidence reported for back."
+            }
+          },
+          "producer": {
+            "status": "mismatch",
+            "reasons": [
+              "Producer name: readable text differs under case/whitespace/NFC equivalence.",
+              "Producer address: readable text differs under case/whitespace/NFC equivalence."
+            ],
+            "expected": "La Rojena\nJose Cuervo No.73, Tequila, Jalisco, 46400 Mexico",
+            "observed": {
+              "name": {
+                "status": "readable",
+                "text": "Jose Cuervo",
+                "reason": "Reported visible text in supplied José Cuervo incident."
+              },
+              "address": {
+                "status": "readable",
+                "text": "La Rojeña Jose Cuervo No. 73, Tequila, Jalisco, 46400 Mexico",
+                "reason": "Reported visible text in supplied José Cuervo incident."
+              }
+            }
+          },
+          "origin": {
+            "status": "match",
+            "reasons": [
+              "Origin applies to imported distilled-spirits.",
+              "Imported country of origin: readable text agrees under case/whitespace/NFC equivalence."
+            ],
+            "expected": "Mexico",
+            "observed": {
+              "status": "readable",
+              "text": "Product of Mexico",
+              "reason": "Reported visible text in supplied José Cuervo incident."
+            }
+          },
+          "warning": {
+            "status": "mismatch",
+            "reasons": [
+              "Warning heading wording: mismatch. Reference: \"GOVERNMENT WARNING:\". Observed: \"GOVERNMENT WARNING: (1) ACCORDING TO THE SURGEON GENERAL, WOMEN SHOULD NOT DRINK ALCOHOLIC BEVERAGES DURING PREGNANCY BECAUSE OF THE RISK OF BIRTH DEFECTS. (2) CONSUMPTION OF ALCOHOLIC BEVERAGES IMPAIRS YOUR ABILITY TO DRIVE A CAR OR OPERATE MACHINERY, AND MAY CAUSE HEALTH PROBLEMS.\".",
+              "Warning heading exact token diff (layout whitespace only; case and punctuation retained): Unexpected in observed: \"(1) ACCORDING TO THE SURGEON GENERAL, WOMEN SHOULD NOT DRINK ALCOHOLIC BEVERAGES DURING PREGNANCY BECAUSE OF THE RISK OF BIRTH DEFECTS. (2) CONSUMPTION OF ALCOHOLIC BEVERAGES IMPAIRS YOUR ABILITY TO DRIVE A CAR OR OPERATE MACHINERY, AND MAY CAUSE HEALTH PROBLEMS.\" (observed token 3–43).",
+              "Warning heading: verify transcription against the source image; if confirmed, correct the label to the reference. This compares supplied extraction, not independently verified image text.",
+              "Warning body wording: missing observation; human review required. No readable text difference established.",
+              "Warning heading boldness: matches; observed bold.",
+              "Warning body boldness: unknown; expected nonbold. Inspect the source image or physical label; human review required, not a wording mismatch.",
+              "Physical print size: unverified; cannot be measured or certified from extraction/photo evidence. Assess the physical label separately; this is not a wording mismatch or a legal compliance guarantee."
+            ],
+            "expected": "GOVERNMENT WARNING:\n(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+            "observed": {
+              "heading": {
+                "status": "readable",
+                "text": "GOVERNMENT WARNING: (1) ACCORDING TO THE SURGEON GENERAL, WOMEN SHOULD NOT DRINK ALCOHOLIC BEVERAGES DURING PREGNANCY BECAUSE OF THE RISK OF BIRTH DEFECTS. (2) CONSUMPTION OF ALCOHOLIC BEVERAGES IMPAIRS YOUR ABILITY TO DRIVE A CAR OR OPERATE MACHINERY, AND MAY CAUSE HEALTH PROBLEMS.",
+                "reason": "Reported visible text in supplied José Cuervo incident."
+              },
+              "body": {
+                "status": "missing",
+                "text": null,
+                "reason": "Body not populated; whole warning reported in heading."
+              },
+              "headingBold": true,
+              "bodyBold": null
+            }
+          }
+        },
+        "physicalPrintSize": {
+          "status": "unverified",
+          "reason": "Physical print size cannot be established from extraction/photo evidence; not measured or certified. This source-backed prototype is not exhaustive TTB legal certification."
+        }
+      }
+    }
+  ],
+  "group": {
+    "recordVersion": 2,
+    "processing": "complete",
+    "application": {
+      "applicationId": "00003",
+      "applicationVersion": "1",
+      "brand": "Jose Cuervo",
+      "classType": "Tequila",
+      "abv": 40,
+      "netContents": "1.75L",
+      "producerName": "La Rojena",
+      "producerAddress": "Jose Cuervo No.73, Tequila, Jalisco, 46400 Mexico",
+      "commodity": "distilled-spirits",
+      "imported": true,
+      "origin": {
+        "kind": "imported",
+        "country": "Mexico"
+      }
+    },
+    "groupId": "00000000-0000-4000-8000-000000000001",
+    "revision": 1,
+    "photos": [
+      {
+        "photoId": "9c7b9132-2420-4523-985c-eadbba027c07",
+        "role": "front",
+        "filename": "front.png",
+        "mime": "image/png",
+        "bytes": 79690,
+        "sourceSha256": "46912750a0d1708a9883e83ce8161f3e1eb811ab5060b6037473437ffc0095e3",
+        "normalized": {
+          "sha256": "46912750a0d1708a9883e83ce8161f3e1eb811ab5060b6037473437ffc0095e3",
+          "bytes": 79690,
+          "mime": "image/png",
+          "width": 840,
+          "height": 1020
+        }
+      },
+      {
+        "photoId": "3bbb2551-e7d9-453a-b2fa-253258b6f8b8",
+        "role": "back",
+        "filename": "back.png",
+        "mime": "image/png",
+        "bytes": 80288,
+        "sourceSha256": "3f726b34a74502131164b34f75d29e6521505bd3fd6471598fa0c05724bcfd48",
+        "normalized": {
+          "sha256": "3f726b34a74502131164b34f75d29e6521505bd3fd6471598fa0c05724bcfd48",
+          "bytes": 80288,
+          "mime": "image/png",
+          "width": 840,
+          "height": 1020
+        }
+      }
+    ],
+    "photoSetSha256": "51c5f766ad981f1b61c21666c4410bf8ff299dcc8da77581c85c6aa78974becb",
+    "imageSha256": "46912750a0d1708a9883e83ce8161f3e1eb811ab5060b6037473437ffc0095e3",
+    "source": "fixture",
+    "photoEvidence": {
+      "schemaVersion": 2,
+      "photos": [
+        {
+          "photoId": "9c7b9132-2420-4523-985c-eadbba027c07",
+          "evidence": {
+            "schemaVersion": 1,
+            "brand": {
+              "status": "readable",
+              "text": "Jose Cuervo",
+              "reason": "Reported visible text in supplied José Cuervo incident."
+            },
+            "classType": {
+              "status": "readable",
+              "text": "Tequila Gold",
+              "reason": "Reported visible text in supplied José Cuervo incident."
+            },
+            "abv": {
+              "status": "unreadable",
+              "text": null,
+              "reason": "ABV not clearly visible in this front view"
+            },
+            "netContents": {
+              "status": "readable",
+              "text": "1.75 L",
+              "reason": "Reported visible text in supplied José Cuervo incident."
+            },
+            "producer": {
+              "name": {
+                "status": "readable",
+                "text": "Jose Cuervo",
+                "reason": "Reported visible text in supplied José Cuervo incident."
+              },
+              "address": {
+                "status": "readable",
+                "text": "Tequila, Mexico",
+                "reason": "Reported visible text in supplied José Cuervo incident."
+              }
+            },
+            "origin": {
+              "status": "readable",
+              "text": "Hecho en Mexico",
+              "reason": "Reported visible text in supplied José Cuervo incident."
+            },
+            "warning": {
+              "heading": {
+                "status": "missing",
+                "text": null,
+                "reason": "Warning not visible on front label"
+              },
+              "body": {
+                "status": "missing",
+                "text": null,
+                "reason": "Warning not visible on front label"
+              },
+              "headingBold": null,
+              "bodyBold": null
+            }
+          }
+        },
+        {
+          "photoId": "3bbb2551-e7d9-453a-b2fa-253258b6f8b8",
+          "evidence": {
+            "schemaVersion": 1,
+            "brand": {
+              "status": "readable",
+              "text": "Jose Cuervo",
+              "reason": "Reported visible text in supplied José Cuervo incident."
+            },
+            "classType": {
+              "status": "readable",
+              "text": "Tequila Gold",
+              "reason": "Reported visible text in supplied José Cuervo incident."
+            },
+            "abv": {
+              "status": "unreadable",
+              "text": null,
+              "reason": "ABV not clearly visible in this front view"
+            },
+            "netContents": {
+              "status": "missing",
+              "text": null,
+              "reason": "No contributing net contents evidence reported for back."
+            },
+            "producer": {
+              "name": {
+                "status": "readable",
+                "text": "Jose Cuervo",
+                "reason": "Reported visible text in supplied José Cuervo incident."
+              },
+              "address": {
+                "status": "readable",
+                "text": "La Rojeña Jose Cuervo No. 73, Tequila, Jalisco, 46400 Mexico",
+                "reason": "Reported visible text in supplied José Cuervo incident."
+              }
+            },
+            "origin": {
+              "status": "readable",
+              "text": "Product of Mexico",
+              "reason": "Reported visible text in supplied José Cuervo incident."
+            },
+            "warning": {
+              "heading": {
+                "status": "readable",
+                "text": "GOVERNMENT WARNING: (1) ACCORDING TO THE SURGEON GENERAL, WOMEN SHOULD NOT DRINK ALCOHOLIC BEVERAGES DURING PREGNANCY BECAUSE OF THE RISK OF BIRTH DEFECTS. (2) CONSUMPTION OF ALCOHOLIC BEVERAGES IMPAIRS YOUR ABILITY TO DRIVE A CAR OR OPERATE MACHINERY, AND MAY CAUSE HEALTH PROBLEMS.",
+                "reason": "Reported visible text in supplied José Cuervo incident."
+              },
+              "body": {
+                "status": "missing",
+                "text": null,
+                "reason": "Body not populated; whole warning reported in heading."
+              },
+              "headingBold": true,
+              "bodyBold": null
+            }
+          }
+        }
+      ]
+    },
+    "aggregationVersion": "photo-set-aggregation-v1",
+    "evidence": {
+      "schemaVersion": 1,
+      "brand": {
+        "status": "readable",
+        "text": "Jose Cuervo",
+        "reason": "Reported visible text in supplied José Cuervo incident."
+      },
+      "classType": {
+        "status": "readable",
+        "text": "Tequila Gold",
+        "reason": "Reported visible text in supplied José Cuervo incident."
+      },
+      "abv": {
+        "status": "unreadable",
+        "text": null,
+        "reason": "ABV not clearly visible in this front view"
+      },
+      "netContents": {
+        "status": "readable",
+        "text": "1.75 L",
+        "reason": "Reported visible text in supplied José Cuervo incident."
+      },
+      "producer": {
+        "name": {
+          "status": "readable",
+          "text": "Jose Cuervo",
+          "reason": "Reported visible text in supplied José Cuervo incident."
+        },
+        "address": {
+          "status": "uncertain",
+          "text": null,
+          "reason": "Conflicting photo observations; inspect source photos."
+        }
+      },
+      "origin": {
+        "status": "uncertain",
+        "text": null,
+        "reason": "Conflicting photo observations; inspect source photos."
+      },
+      "warning": {
+        "heading": {
+          "status": "readable",
+          "text": "GOVERNMENT WARNING: (1) ACCORDING TO THE SURGEON GENERAL, WOMEN SHOULD NOT DRINK ALCOHOLIC BEVERAGES DURING PREGNANCY BECAUSE OF THE RISK OF BIRTH DEFECTS. (2) CONSUMPTION OF ALCOHOLIC BEVERAGES IMPAIRS YOUR ABILITY TO DRIVE A CAR OR OPERATE MACHINERY, AND MAY CAUSE HEALTH PROBLEMS.",
+          "reason": "Reported visible text in supplied José Cuervo incident."
+        },
+        "body": {
+          "status": "missing",
+          "text": null,
+          "reason": "Warning not visible on front label"
+        },
+        "headingBold": true,
+        "bodyBold": null
+      }
+    },
+    "provenance": {
+      "brand": {
+        "sourcePhotoIds": [
+          "9c7b9132-2420-4523-985c-eadbba027c07",
+          "3bbb2551-e7d9-453a-b2fa-253258b6f8b8"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "Jose Cuervo",
+            "sourcePhotoIds": [
+              "9c7b9132-2420-4523-985c-eadbba027c07",
+              "3bbb2551-e7d9-453a-b2fa-253258b6f8b8"
+            ]
+          }
+        ]
+      },
+      "classType": {
+        "sourcePhotoIds": [
+          "9c7b9132-2420-4523-985c-eadbba027c07",
+          "3bbb2551-e7d9-453a-b2fa-253258b6f8b8"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "Tequila Gold",
+            "sourcePhotoIds": [
+              "9c7b9132-2420-4523-985c-eadbba027c07",
+              "3bbb2551-e7d9-453a-b2fa-253258b6f8b8"
+            ]
+          }
+        ]
+      },
+      "abv": {
+        "sourcePhotoIds": [],
+        "conflict": false,
+        "variants": []
+      },
+      "netContents": {
+        "sourcePhotoIds": [
+          "9c7b9132-2420-4523-985c-eadbba027c07"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "1.75 L",
+            "sourcePhotoIds": [
+              "9c7b9132-2420-4523-985c-eadbba027c07"
+            ]
+          }
+        ]
+      },
+      "producer.name": {
+        "sourcePhotoIds": [
+          "9c7b9132-2420-4523-985c-eadbba027c07",
+          "3bbb2551-e7d9-453a-b2fa-253258b6f8b8"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "Jose Cuervo",
+            "sourcePhotoIds": [
+              "9c7b9132-2420-4523-985c-eadbba027c07",
+              "3bbb2551-e7d9-453a-b2fa-253258b6f8b8"
+            ]
+          }
+        ]
+      },
+      "producer.address": {
+        "sourcePhotoIds": [
+          "9c7b9132-2420-4523-985c-eadbba027c07",
+          "3bbb2551-e7d9-453a-b2fa-253258b6f8b8"
+        ],
+        "conflict": true,
+        "variants": [
+          {
+            "value": "Tequila, Mexico",
+            "sourcePhotoIds": [
+              "9c7b9132-2420-4523-985c-eadbba027c07"
+            ]
+          },
+          {
+            "value": "La Rojeña Jose Cuervo No. 73, Tequila, Jalisco, 46400 Mexico",
+            "sourcePhotoIds": [
+              "3bbb2551-e7d9-453a-b2fa-253258b6f8b8"
+            ]
+          }
+        ]
+      },
+      "origin": {
+        "sourcePhotoIds": [
+          "9c7b9132-2420-4523-985c-eadbba027c07",
+          "3bbb2551-e7d9-453a-b2fa-253258b6f8b8"
+        ],
+        "conflict": true,
+        "variants": [
+          {
+            "value": "Hecho en Mexico",
+            "sourcePhotoIds": [
+              "9c7b9132-2420-4523-985c-eadbba027c07"
+            ]
+          },
+          {
+            "value": "Product of Mexico",
+            "sourcePhotoIds": [
+              "3bbb2551-e7d9-453a-b2fa-253258b6f8b8"
+            ]
+          }
+        ]
+      },
+      "warning.heading": {
+        "sourcePhotoIds": [
+          "3bbb2551-e7d9-453a-b2fa-253258b6f8b8"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "GOVERNMENT WARNING: (1) ACCORDING TO THE SURGEON GENERAL, WOMEN SHOULD NOT DRINK ALCOHOLIC BEVERAGES DURING PREGNANCY BECAUSE OF THE RISK OF BIRTH DEFECTS. (2) CONSUMPTION OF ALCOHOLIC BEVERAGES IMPAIRS YOUR ABILITY TO DRIVE A CAR OR OPERATE MACHINERY, AND MAY CAUSE HEALTH PROBLEMS.",
+            "sourcePhotoIds": [
+              "3bbb2551-e7d9-453a-b2fa-253258b6f8b8"
+            ]
+          }
+        ]
+      },
+      "warning.body": {
+        "sourcePhotoIds": [],
+        "conflict": false,
+        "variants": []
+      },
+      "warning.headingBold": {
+        "sourcePhotoIds": [
+          "3bbb2551-e7d9-453a-b2fa-253258b6f8b8"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": true,
+            "sourcePhotoIds": [
+              "3bbb2551-e7d9-453a-b2fa-253258b6f8b8"
+            ]
+          }
+        ]
+      },
+      "warning.bodyBold": {
+        "sourcePhotoIds": [],
+        "conflict": false,
+        "variants": []
+      }
+    },
+    "extraction": {
+      "schemaVersion": 2,
+      "promptVersion": "photo-set-observations-v2",
+      "model": "offline-fixture",
+      "requestId": "00000000-0000-4000-8000-000000000009"
+    },
+    "comparison": {
+      "processing": "complete",
+      "applicationId": "00003",
+      "applicationVersion": "1",
+      "rulesVersion": "prototype-seven-fields-v1",
+      "rulesRevision": 4,
+      "fields": {
+        "brand": {
+          "status": "match",
+          "reasons": [
+            "Brand: readable text agrees under case/whitespace/NFC equivalence."
+          ],
+          "expected": "Jose Cuervo",
+          "observed": {
+            "status": "readable",
+            "text": "Jose Cuervo",
+            "reason": "Reported visible text in supplied José Cuervo incident."
+          },
+          "sourcePhotoIds": [
+            "9c7b9132-2420-4523-985c-eadbba027c07",
+            "3bbb2551-e7d9-453a-b2fa-253258b6f8b8"
+          ],
+          "conflict": false
+        },
+        "classType": {
+          "status": "mismatch",
+          "reasons": [
+            "Class/type: readable text differs under case/whitespace/NFC equivalence.",
+            "classType: proven defect in photo 9c7b9132-2420-4523-985c-eadbba027c07.",
+            "classType: proven defect in photo 3bbb2551-e7d9-453a-b2fa-253258b6f8b8."
+          ],
+          "expected": "Tequila",
+          "observed": {
+            "status": "readable",
+            "text": "Tequila Gold",
+            "reason": "Reported visible text in supplied José Cuervo incident."
+          },
+          "sourcePhotoIds": [
+            "9c7b9132-2420-4523-985c-eadbba027c07",
+            "3bbb2551-e7d9-453a-b2fa-253258b6f8b8"
+          ],
+          "conflict": false
+        },
+        "abv": {
+          "status": "needs-review",
+          "reasons": [
+            "ABV: unreadable observation; human review required."
+          ],
+          "expected": "40",
+          "observed": {
+            "status": "unreadable",
+            "text": null,
+            "reason": "ABV not clearly visible in this front view"
+          },
+          "sourcePhotoIds": [],
+          "conflict": false
+        },
+        "netContents": {
+          "status": "match",
+          "reasons": [
+            "Net contents: equal exact metric volume (1 L = 1000 mL); standards of fill not evaluated."
+          ],
+          "expected": "1.75L",
+          "observed": {
+            "status": "readable",
+            "text": "1.75 L",
+            "reason": "Reported visible text in supplied José Cuervo incident."
+          },
+          "sourcePhotoIds": [
+            "9c7b9132-2420-4523-985c-eadbba027c07"
+          ],
+          "conflict": false
+        },
+        "producer": {
+          "status": "mismatch",
+          "reasons": [
+            "Producer name: readable text differs under case/whitespace/NFC equivalence.",
+            "Producer address: uncertain observation; human review required.",
+            "producer.address: conflicting photo observations (9c7b9132-2420-4523-985c-eadbba027c07, 3bbb2551-e7d9-453a-b2fa-253258b6f8b8).",
+            "producer: proven defect in photo 9c7b9132-2420-4523-985c-eadbba027c07.",
+            "producer: proven defect in photo 3bbb2551-e7d9-453a-b2fa-253258b6f8b8."
+          ],
+          "expected": "La Rojena\nJose Cuervo No.73, Tequila, Jalisco, 46400 Mexico",
+          "observed": {
+            "name": {
+              "status": "readable",
+              "text": "Jose Cuervo",
+              "reason": "Reported visible text in supplied José Cuervo incident."
+            },
+            "address": {
+              "status": "uncertain",
+              "text": null,
+              "reason": "Conflicting photo observations; inspect source photos."
+            }
+          },
+          "sourcePhotoIds": [
+            "9c7b9132-2420-4523-985c-eadbba027c07",
+            "3bbb2551-e7d9-453a-b2fa-253258b6f8b8"
+          ],
+          "conflict": true
+        },
+        "origin": {
+          "status": "mismatch",
+          "reasons": [
+            "Origin: uncertain observation; human review required.",
+            "origin: conflicting photo observations (9c7b9132-2420-4523-985c-eadbba027c07, 3bbb2551-e7d9-453a-b2fa-253258b6f8b8).",
+            "origin: proven defect in photo 9c7b9132-2420-4523-985c-eadbba027c07."
+          ],
+          "expected": "Mexico",
+          "observed": {
+            "status": "uncertain",
+            "text": null,
+            "reason": "Conflicting photo observations; inspect source photos."
+          },
+          "sourcePhotoIds": [
+            "9c7b9132-2420-4523-985c-eadbba027c07",
+            "3bbb2551-e7d9-453a-b2fa-253258b6f8b8"
+          ],
+          "conflict": true
+        },
+        "warning": {
+          "status": "mismatch",
+          "reasons": [
+            "Warning heading wording: mismatch. Reference: \"GOVERNMENT WARNING:\". Observed: \"GOVERNMENT WARNING: (1) ACCORDING TO THE SURGEON GENERAL, WOMEN SHOULD NOT DRINK ALCOHOLIC BEVERAGES DURING PREGNANCY BECAUSE OF THE RISK OF BIRTH DEFECTS. (2) CONSUMPTION OF ALCOHOLIC BEVERAGES IMPAIRS YOUR ABILITY TO DRIVE A CAR OR OPERATE MACHINERY, AND MAY CAUSE HEALTH PROBLEMS.\".",
+            "Warning heading exact token diff (layout whitespace only; case and punctuation retained): Unexpected in observed: \"(1) ACCORDING TO THE SURGEON GENERAL, WOMEN SHOULD NOT DRINK ALCOHOLIC BEVERAGES DURING PREGNANCY BECAUSE OF THE RISK OF BIRTH DEFECTS. (2) CONSUMPTION OF ALCOHOLIC BEVERAGES IMPAIRS YOUR ABILITY TO DRIVE A CAR OR OPERATE MACHINERY, AND MAY CAUSE HEALTH PROBLEMS.\" (observed token 3–43).",
+            "Warning heading: verify transcription against the source image; if confirmed, correct the label to the reference. This compares supplied extraction, not independently verified image text.",
+            "Warning body wording: missing observation; human review required. No readable text difference established.",
+            "Warning heading boldness: matches; observed bold.",
+            "Warning body boldness: unknown; expected nonbold. Inspect the source image or physical label; human review required, not a wording mismatch.",
+            "Physical print size: unverified; cannot be measured or certified from extraction/photo evidence. Assess the physical label separately; this is not a wording mismatch or a legal compliance guarantee.",
+            "warning: proven defect in photo 3bbb2551-e7d9-453a-b2fa-253258b6f8b8."
+          ],
+          "expected": "GOVERNMENT WARNING:\n(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+          "observed": {
+            "heading": {
+              "status": "readable",
+              "text": "GOVERNMENT WARNING: (1) ACCORDING TO THE SURGEON GENERAL, WOMEN SHOULD NOT DRINK ALCOHOLIC BEVERAGES DURING PREGNANCY BECAUSE OF THE RISK OF BIRTH DEFECTS. (2) CONSUMPTION OF ALCOHOLIC BEVERAGES IMPAIRS YOUR ABILITY TO DRIVE A CAR OR OPERATE MACHINERY, AND MAY CAUSE HEALTH PROBLEMS.",
+              "reason": "Reported visible text in supplied José Cuervo incident."
+            },
+            "body": {
+              "status": "missing",
+              "text": null,
+              "reason": "Warning not visible on front label"
+            },
+            "headingBold": true,
+            "bodyBold": null
+          },
+          "sourcePhotoIds": [
+            "3bbb2551-e7d9-453a-b2fa-253258b6f8b8"
+          ],
+          "conflict": false
+        }
+      },
+      "physicalPrintSize": {
+        "status": "unverified",
+        "reason": "Physical print size cannot be established from extraction/photo evidence; not measured or certified. This source-backed prototype is not exhaustive TTB legal certification."
+      }
+    }
+  }
+}

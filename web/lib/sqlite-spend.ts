@@ -4,8 +4,8 @@ import { assertPrivateLedger, assertPrivateLedgerCreation } from './ledger-secur
 import { z } from 'zod';
 import { bindingSchema, type SpendBinding, type SpendReceipt, type SpendStore } from './spend';
 
-export const DEMO_CEILING = 25_000_000;
-export const DEMO_RESERVATION = 1_000_000;
+import { DEMO_CEILING, DEMO_RESERVATION } from './demo-store-contracts';
+export { DEMO_CEILING, DEMO_RESERVATION } from './demo-store-contracts';
 /** One private persistent local volume, shared by ALL service processes. Never
  * auto-provision on startup. Crashed claims/slots intentionally remain blocked. */
 export class SqliteSpendStore implements SpendStore {

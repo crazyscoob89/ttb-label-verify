@@ -1,3 +1,5 @@
+export { createGroupComparisonService } from './group-compare-service';
+export type { GroupComparisonInput,PreparedPhotoGroup } from './intake';
 import { randomUUID } from 'node:crypto';
 import { preparePair, type ImageInput } from './intake';
 import { MAX_IMAGE_BYTES, parseApplication } from './contracts';
@@ -10,9 +12,9 @@ export type ComparisonInput = { file: ImageInput; binding: { filename: string; a
  * supplied from a client request. No real provider is imported or configured here. */
 export function createComparisonService(options: {
   provider: ExtractionProvider; authorize?: () => boolean | Promise<boolean>; timeoutMs?: number;
-  /** Trusted synchronous server snapshot sink; never browser input. Failure must
+  /** Trusted bounded server snapshot sink; never browser input. Failure must
    * not discard a completed paid response. Called only before the deadline. */
-  completed?: (record:CompleteComparison,pair:Awaited<ReturnType<typeof preparePair>>) => void;
+  completed?: (record:CompleteComparison,pair:Awaited<ReturnType<typeof preparePair>>) => void | Promise<void>;
   /** Trusted server seam, after sanitation and before any reservation. Not an
    * input parameter clients may supply. Throw to reject a preparation binding. */
   preparedAttempt?: (pair: Awaited<ReturnType<typeof preparePair>>) => { reservationId: string; attemptId: string };
@@ -50,7 +52,16 @@ export function createComparisonService(options: {
         const result = await options.provider.extract({ image: pair.image.bytes, mimeType: pair.image.mime, ...identity });
         if (result.processing === 'failed') return fail(result.code === 'unconfigured' ? 'unconfigured' : 'provider-failed');
         const record=finalizeComparison(pair.application, result, pair.image.sanitizedSha256);
-        if(!stopped && record.processing==='complete') {try{options.completed?.(record,pair);}catch{/* Comparison remains available, UNSAVED. */}}
+        if(!stopped && record.processing==='complete') {
+          // Extraction has completed before its deadline. A slow/failed snapshot
+          // must not replace a paid result with a timeout. Bound this separate
+          // phase; late storage acknowledgment cannot be advertised in a reply.
+          clearTimeout(timer);signal?.removeEventListener('abort',onAbort);
+          let snapshotTimer:ReturnType<typeof setTimeout>|undefined;
+          try {await Promise.race([Promise.resolve(options.completed?.(record,pair)),new Promise<void>(resolve=>{snapshotTimer=setTimeout(resolve,10000);})]);}
+          catch{/* Comparison remains available, UNSAVED. */}
+          finally{clearTimeout(snapshotTimer);}
+        }
         return record;
       } catch { return fail('provider-failed'); }
     };

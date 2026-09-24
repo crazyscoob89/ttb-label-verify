@@ -1,6 +1,12 @@
 # Engineering review register
 
-## Current PR #9 — native Windows correction accepted
+## Current final candidate — v3 demo/release prep accepted
+
+**ARGUS PASS on `e973548b5d0a9eaabbec58f4477a27b8697ad278`.** Independent verification reports typecheck/build clean, batch e2e desktop/mobile **22/22**, and live-batch route unit **5/5**. AVA reproduced the batch blocker, identified stale synthetic e2e harness assumptions against the approved v3 flow, corrected the harness and verified desktop/mobile batch gates green.
+
+This status authorizes neither merge nor deployment by itself. Merge of `ava/release-docs-cleanup` into `master`, production deploy/promotion, and duplicate repository cleanup remain separate Alex approvals. Historical records below preserve earlier PR #9 acceptance/revision rounds and their original limitations.
+
+## Historical PR #9 — native Windows correction accepted
 
 **ARGUS PASS on `bfc19494ff22ad3905bb98fb865af5c149f36941`.** The [committed independent verdict](25-pr9-bfc1949-windows-gate.md), preserved from reviewer commit `d8fd56c88e22c344e2b9316f0a94628c76b702ec`, reports **560 passed / 5 pre-existing POSIX-only skipped / 0 failed** across 28 files on native Windows / Node22.22.2, with no global timeout override, clean typecheck and Turbopack build. AVA inspected the committed report; these native results are ARGUS's execution, not an AVA rerun. Linux / Node24.21.0 separately passed 565 tests, typecheck and Webpack build. No application or test bytes change in this documentation closeout.
 
@@ -52,7 +58,7 @@ Earlier scoped PASS records below do not accept this new connected demo.
 ## Final benchmark publication repair
 
 [Publication record 16](16-final-benchmark-publication.md) and the
-[final benchmark results](../../BENCHMARK-RESULTS.md) now locate the completed
+[final benchmark results](../deep-dive/BENCHMARK-RESULTS.md) now locate the completed
 Azure/Haiku/severity battery, separate from older flat results. AVA's offline
 publication checks are not a fresh ARGUS benchmark verdict; application-phase
 PASS records below have a different review scope.
@@ -71,7 +77,7 @@ Parent already merged accepted Phase 1 PR #4 (`d1f07db9083b2a244d21f2d132f4105c9
 
 ### Historical Phase 2 candidate status
 
-[Phase 1](11-phase1-argus-pass.md) has supplied **ARGUS PASS** at `2b59abcb0cb7e95abc1639ee4e81df50930dfe1a`, no revisions; AVA agrees. ARGUS read source/diff/closure logs, did not rerun tests/build, and reported a matching native Windows clone. [Phase 2 Sprint 1](12-phase2-sprint1-rules.md) and [Sprint 2](13-phase2-provider-spend.md) are locally implemented/tested; the full local candidate is ready for parent verification, with whole-phase independent review pending. Provider runtime is unwired/default-deny; shared-store contracts are not real database enforcement. [Implementation authorization](../IMPLEMENTATION-STATUS.md) records Alex's local continuation approval. No remote writes, paid/live calls, provisioning or deployment in this step. Earlier documentation-only status below is historical.
+[Phase 1](11-phase1-argus-pass.md) has supplied **ARGUS PASS** at `2b59abcb0cb7e95abc1639ee4e81df50930dfe1a`, no revisions; AVA agrees. ARGUS read source/diff/closure logs, did not rerun tests/build, and reported a matching native Windows clone. [Phase 2 Sprint 1](12-phase2-sprint1-rules.md) and [Sprint 2](13-phase2-provider-spend.md) are locally implemented/tested; the full local candidate is ready for parent verification, with whole-phase independent review pending. Provider runtime is unwired/default-deny; shared-store contracts are not real database enforcement. [Implementation authorization](../deep-dive/IMPLEMENTATION-STATUS.md) records Alex's local continuation approval. No remote writes, paid/live calls, provisioning or deployment in this step. Earlier documentation-only status below is historical.
 
 ## Current documentation candidate
 
@@ -164,9 +170,9 @@ information and real customer content out of the repository.
    buffer-only implementation, actual provider-chain retention and app acceptance.
    Untested image coverage and deployed end-to-end timing remain open.
 
-Supporting records: [revision details](../STAGE2_REVISION.md),
+Supporting records: [revision details](../deep-dive/STAGE2_REVISION.md),
 [benchmark report](../../bench/RESULTS.md),
-[acceptance checklist](../ACCEPTANCE_CHECKLIST.md).
+[acceptance checklist](../deep-dive/ACCEPTANCE_CHECKLIST.md).
 
 ## Phase 2 consolidated candidate
 

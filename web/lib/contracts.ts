@@ -12,7 +12,9 @@ const abv = z.union([
   z.string().max(32).refine(value => /^\d+(?:\.\d+)?$/.test(value.trim()), 'Use a decimal percentage, without units').transform(value => Number(value.trim())),
 ]).pipe(z.number().finite().min(0).max(100));
 
-export const applicationSchema = z.object({
+// Frozen intake admission for stored revisions 1–7. In particular, retained
+// imported Puerto Rico diagnostics remain readable, not silently rewritten.
+export const historicalApplicationSchema = z.object({
   applicationId: identity,
   applicationVersion: identity,
   brand: text,
@@ -37,6 +39,14 @@ export const applicationSchema = z.object({
   }
 });
 
+// Current intake is additive for domestic PR, but rejects new foreign-context
+// territory declarations. The independent country string is never rewritten.
+export const applicationSchema = z.object(historicalApplicationSchema.shape).strict().superRefine((value, ctx) => {
+  if (value.origin.kind !== (value.imported ? 'imported' : 'domestic')) ctx.addIssue({ code: 'custom', path: ['origin'], message: 'Origin context must agree with the explicit import selection' });
+  const country = value.origin.country.trim().toLowerCase().replace(/[.]/g, '');
+  const domestic = ['united states', 'united states of america', 'us', 'usa', 'puerto rico', 'pr'].includes(country);
+  if (value.imported === domestic) ctx.addIssue({ code: 'custom', path: ['origin', 'country'], message: value.imported ? 'Imported products require a foreign origin, not the United States or Puerto Rico' : 'Domestic context requires United States or Puerto Rico' });
+});
 export type Application = z.output<typeof applicationSchema>;
 export function parseApplication(input: unknown): Application { return applicationSchema.parse(input); }
 

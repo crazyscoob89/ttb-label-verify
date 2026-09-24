@@ -9,7 +9,8 @@ test('manual entry has every explicit field and no commodity/import default', ()
   for (const label of ['Application ID', 'Application version', 'Brand name', 'Class / type', 'Alcohol by volume (%)', 'Net contents', 'Producer name', 'Producer address', 'Commodity', 'Imported product?', 'Origin context', 'Country of origin']) expect(html).toContain(label);
   expect(html).toContain('Check application fields');
   expect(html).toContain('10 MiB'); expect(html).toContain('20 megapixels');
-  expect(html).toContain('Image bytes are not read or uploaded');
+  expect(html).toContain('Local previews stay in this browser');
+  expect(html).toContain('Add another photo');expect(html).toContain('1–4');
   expect(html).not.toContain('name="governmentWarning"');
   expect(html).not.toContain('selected="" value="distilled-spirits"');
   expect(html).not.toContain('selected="" value="false"');

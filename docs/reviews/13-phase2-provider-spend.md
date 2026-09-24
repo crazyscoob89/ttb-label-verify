@@ -13,7 +13,7 @@ The supplied [Phase 1 ARGUS PASS](11-phase1-argus-pass.md) remains recorded by d
 - `web/lib/extraction/fixture-provider.ts`: explicit offline deterministic source tag, never real extraction or fallback.
 - `web/lib/spend.ts`: strict integer-money binding/receipt validation and reserve → atomic claim → unresolved completion interface. No production store or settlement implementation.
 - `web/tests/extraction.test.ts`, `web/tests/spend.test.ts`, `web/tests/helpers/offline-spend-store.ts`: offline adversarial, timeout, duplicate/concurrent, failure and positive-control tests; test-only Map store clearly not global enforcement.
-- [PROVIDER-BOUNDARY.md](../PROVIDER-BOUNDARY.md): exact integration API, local archived adapter provenance, prompt/evidence/source distinctions, limits, economic assumptions and future store acceptance contract.
+- [PROVIDER-BOUNDARY.md](../deep-dive/PROVIDER-BOUNDARY.md): exact integration API, local archived adapter provenance, prompt/evidence/source distinctions, limits, economic assumptions and future store acceptance contract.
 - This handoff, selected gate evidence, implementation status and review register updates.
 
 No existing web application/intake/UI/schema/rules files were modified. The provider is not connected to a route or UI. New dependencies were not needed; manifest/lockfile are untouched.
@@ -41,7 +41,7 @@ No Playwright/browser rerun, real PostgreSQL concurrency, provider-network timin
 
 ## Bounded plan-alignment repair
 
-Parent inspection of base `6f5f8455eba84347c754ca8b36441ae223b09657` found the adapter's 30,000 ms deadline differed from the approved local plan's 20-second input contract in [BUILD-PLAN.md](../BUILD-PLAN.md). This repair changes only `EXTRACTION_LIMITS.timeoutMs` to **20,000 ms**, adds an explicit constant regression in the existing extraction test file, and aligns the provider-boundary documentation. Timeout cancellation, full unresolved liability and no same-key retry behavior remain unchanged.
+Parent inspection of base `6f5f8455eba84347c754ca8b36441ae223b09657` found the adapter's 30,000 ms deadline differed from the approved local plan's 20-second input contract in [BUILD-PLAN.md](../deep-dive/BUILD-PLAN.md). This repair changes only `EXTRACTION_LIMITS.timeoutMs` to **20,000 ms**, adds an explicit constant regression in the existing extraction test file, and aligns the provider-boundary documentation. Timeout cancellation, full unresolved liability and no same-key retry behavior remain unchanged.
 
 Executed from the repository root with explicit `PATH=/opt/data/tools/node24-phase0/node-v24.21.0-linux-x64/bin:$PATH` (Node v24.21.0 / npm 11.19.0):
 

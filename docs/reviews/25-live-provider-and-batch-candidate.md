@@ -32,7 +32,7 @@ The live run also exposed a second defect: review-policy still allowed only fixt
 
 ### Batch candidate
 
-See [live batch contract](../LIVE-BATCH.md). Retained File inputs are prepared and sanitized by the server; execution verifies the image/application binding again. Explicit start/manual retry, two slots, stale-revision fences and the existing transactional ledger constrain execution. Existing unique attempt/reservation constraints provide durable deduplication without a schema migration or ledger reprovisioning. The preparation signature uses the shared demo access capability; it is a consistency check, not an authenticated reviewer identity or independent spending permit.
+See [live batch contract](../deep-dive/LIVE-BATCH.md). Retained File inputs are prepared and sanitized by the server; execution verifies the image/application binding again. Explicit start/manual retry, two slots, stale-revision fences and the existing transactional ledger constrain execution. Existing unique attempt/reservation constraints provide durable deduplication without a schema migration or ledger reprovisioning. The preparation signature uses the shared demo access capability; it is a consistency check, not an authenticated reviewer identity or independent spending permit.
 
 Single and Batch panels remain mounted so tab switching retains inputs, results and drafts. React-generated unique control IDs/radio groups prevent hidden workspace controls from capturing visible selections. Reload still loses drafts. All outcomes remain explicitly UNSAVED; deduplication is not result recovery or saved history.
 

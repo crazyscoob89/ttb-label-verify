@@ -2,29 +2,32 @@
 
 ## Current candidate
 
-Application **e721936518e36b7c6d65b5649308f21d1b57e784** adds durable save/reopen; independent review pending. [Current findings/evidence](../reviews/27-durable-save-reopen-candidate.md), [operator setup](../SAVED-REVIEWS.md).
+Application **e973548b5d0a9eaabbec58f4477a27b8697ad278** is the current reviewed source candidate on branch `ava/release-docs-cleanup`.
 
-- **Accepted batch baseline75fe83d:** ARGUS PASS preserved with initial native timeout failures and targeted successful rerun; browser verification was not independently rerun. [Exact provenance](../reviews/26-live-batch-argus-pass.md).
-- **Real local model proof:** single-label match/discrepancy then a two-row batch through guarded UI/routes. Batch observed maximum concurrency2 and both results displayed in5795.398ms. These are small synthetic-label samples, not an accuracy/latency guarantee.
-- **Persistence proof:** actual private SQLite, real save/history/evidence endpoints, desktop/mobile browser and service restart; only extraction was mocked. Lost committed-save response recovered by unchanged idempotent retry. Parent independently verified the persisted record/image/receipt and full **565-test/28-file** unit gate.
-- One shared demo code, not individual identity. New persistence review and combined real-provider-to-saved-history acceptance remain open.
-- **$5 unresolved spending holds; $20 guarded capacity remaining** under the same $25 authorization. No budget reset/ledger duplication/refund. Holds are not reconciled billing.
+Independent verification status: **ARGUS PASS** on the candidate SHA with typecheck/build clean, batch e2e desktop/mobile **22/22**, and live-batch route unit **5/5**. AVA also reproduced the blocked batch gate after aligning the stale synthetic e2e harness to the approved v3 flow.
 
-## Remaining release gates
+Front door and operations:
 
-- [ ] ARGUS review of fa56bcc..e721936 persistence delta.
-- [ ] Qualify native persistence runtime where deployed; explicit separate private review-store provisioning.
-- [ ] Bounded combined real-provider -> save -> restart -> reopen acceptance on the reviewed final code, using the same canonical spending authorization.
-- [ ] Hosting target/cost/exposure approval, HTTPS and exact-origin configuration, durable local-filesystem/locking qualification.
-- [ ] Exclusive spend-ledger custody if moving hosts; no second active authorization or rollback/reset.
-- [ ] Public evaluator URL, deployed browser acceptance and final source/setup handover.
+- **Live demo URL:** <https://ttb-label-verify-lilac.vercel.app/review>
+- **Public overview:** [`../../README.md`](../../README.md)
+- **Approach and trade-offs:** [`APPROACH.md`](APPROACH.md)
+- **Hosted operations:** [`../../web/HOSTED-OPERATIONS.md`](../../web/HOSTED-OPERATIONS.md)
+- **Approved v3 interface:** [`../ui/v3/README.md`](../ui/v3/README.md)
 
-No eligible existing cloud host was confirmed in the inspected Azure identity inventory; PAYG billing access is present but does not authorize new resource spend. Hosting an OpenRouter client in Azure does not prove restricted-network Foundry compatibility.
+## Remaining before final Treasury submission
 
-## Preserved historical acceptance
-
-[Record24](../reviews/24-pr9-native-windows-pass.md) closes the original unelevated Windows bracket-path/ACL-fixture repair at106aac2; [record25](../reviews/25-live-provider-and-batch-candidate.md) retains the first real provider-format failure and correction; [record26](../reviews/26-live-batch-argus-pass.md) records the later accepted batch delta. None alone accepts the new persistence code or deployment.
+- [ ] Alex approval to merge `ava/release-docs-cleanup` into `master`.
+- [ ] Merge the exact approved candidate, then verify the default branch SHA/tree.
+- [ ] Alex approval for production deployment/promotion if the live URL must move to the merged SHA.
+- [ ] Verify the live URL after deployment and confirm README, approach doc and app URL all correspond to the same final commit.
+- [ ] Decide repository cleanup separately: keep `crazyscoob89/ttb-label-verify` as canonical; delete or archive any stale duplicate only with explicit approval.
 
 ## Explicit limits
 
-No public deployment, individual authentication, COLA approval or legal certification. Normalized labels and parsed applications are saved, not raw-original archival custody. Unsaved edits remain page-memory. One immutable review per snapshot; no edit/revocation/erasure UI or global latest-application registry. Shared-code holders share the same history. Append-only SQL is not tamper-proof against the host/database owner. Historical benchmarks remain separate from app acceptance.
+This prototype is not a TTB approval engine, COLA approval, legal certification, individual-authentication system or tamper-proof archive. It assists label-review triage by comparing visible label evidence against an application record, preserving saved review history and surfacing discrepancies for human decision.
+
+Physical print/type size cannot be certified from ordinary photos alone. Normalized labels, extracted findings, images and review decisions are saved for demo/review continuity; this is not official regulatory custody.
+
+## Preserved historical evidence
+
+Detailed historical plans, review records, provider experiments and earlier acceptance notes remain under [`../reviews/`](../reviews/) and this `docs/deep-dive/` folder. Older records intentionally preserve their original reviewed SHA and limitations; the current release candidate above supersedes their readiness status.

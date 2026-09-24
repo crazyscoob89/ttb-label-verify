@@ -4,7 +4,7 @@ Every included source file is accounted for in [source-map.json](source-map.json
 
 **Historical `.py.txt` scripts are reference only. Never execute paid runners, authorization or regeneration scripts.**
 
-[Main results](../../BENCHMARK-RESULTS.md) · [Image corpus / every image link](IMAGE-INDEX.md) · [Offline verification](README.md)
+[Main results](../../docs/deep-dive/BENCHMARK-RESULTS.md) · [Image corpus / every image link](IMAGE-INDEX.md) · [Offline verification](README.md)
 
 ## decision / MODEL-PROJECT-COMPARISON.txt
 

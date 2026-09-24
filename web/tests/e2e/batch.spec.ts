@@ -7,22 +7,58 @@ const forbiddenTraffic = new WeakMap<Page, string[]>();
 const browserErrors = new WeakMap<Page, string[]>();
 
 const confirmation = 'I reviewed this exact evidence and application and confirm this internal outcome';
-// Both workspaces stay mounted; target the visible panel, not hidden review labels.
-const panel = (page: Page) => page.getByRole('tabpanel');
-const choose = (page: Page, filename: string) => page.getByRole('button', { name: `Open ${filename}`, exact: true }).click();
+// Both workspaces stay mounted. Scope batch actions to the v3 batch shell,
+// then explicitly enter the nested Application tab before touching JSON.
+const panel = (page: Page) => page.locator('[role="tabpanel"]:visible').last();
+const batchPanel = (page: Page) => page.locator('#batch-panel');
+const activeReview = (page: Page) => batchPanel(page).getByTestId('active-pair');
+const choose = (page: Page, filename: string) => batchPanel(page).getByRole('button', { name: `Open ${filename}`, exact: true }).click();
+async function openBatchApplication(page: Page) {
+  const batch = batchPanel(page);
+  await batch.getByRole('tab', { name: 'Application', exact: true }).click();
+  const details = batch.locator('details').filter({ hasText: 'Advanced: edit JSON mapping' });
+  if (!(await details.evaluate((node: HTMLDetailsElement) => node.open))) {
+    await details.getByText('Advanced: edit JSON mapping', { exact: true }).click();
+  }
+  return batch;
+}
+async function openBatchImages(page: Page) {
+  const batch = batchPanel(page);
+  await batch.getByRole('tab', { name: 'Label images', exact: true }).click();
+  return batch;
+}
+async function batchManifest(page: Page) {
+  const batch = await openBatchApplication(page);
+  return batch.getByLabel('Batch JSON manifest');
+}
+async function readBatchManifest(page: Page) {
+  return (await batchManifest(page)).inputValue();
+}
+async function fillBatchManifest(page: Page, value: string) {
+  await (await batchManifest(page)).fill(value);
+}
+async function batchImages(page: Page) {
+  const batch = await openBatchImages(page);
+  return batch.getByLabel('Batch label images');
+}
 async function load(page: Page) {
-  await page.getByRole('button', { name: 'Load synthetic fixture batch', exact: true }).click();
-  await expect(page.getByText('4 files selected', { exact: true })).toBeVisible();
+  await batchPanel(page).getByRole('button', { name: 'Load synthetic fixture batch', exact: true }).click();
+  await expect(batchPanel(page).getByText('4 files selected', { exact: true })).toBeVisible();
 }
 async function validate(page: Page) {
-  await page.getByRole('button', { name: 'Validate batch manifest', exact: true }).click();
-  await expect(page.getByTestId('manifest-counts')).toBeVisible();
+  await batchPanel(page).getByRole('button', { name: 'Validate batch manifest', exact: true }).click();
+  await expect(batchPanel(page).getByTestId('manifest-counts')).toBeVisible();
 }
 async function compare(page: Page) {
   await load(page); await validate(page);
-  await page.getByRole('button', { name: 'Compare queued fixtures', exact: true }).click();
-  await expect(page.getByTestId('batch-summary')).toContainText('Compared: 3');
-  await expect(page.getByTestId('batch-summary')).toContainText('Failed: 1');
+  await batchPanel(page).getByRole('button', { name: 'Compare queued fixtures', exact: true }).click();
+  await expect(batchPanel(page).getByTestId('batch-summary')).toContainText('Compared: 3');
+  await expect(batchPanel(page).getByTestId('batch-summary')).toContainText('Failed: 1');
+  await openSelectedReview(page);
+}
+async function openSelectedReview(page: Page) {
+  const open = batchPanel(page).getByRole('button', { name: 'Open review', exact: true }).first();
+  if (await open.isVisible().catch(() => false)) await open.click();
 }
 
 test.beforeEach(async ({ page, baseURL }) => {
@@ -49,17 +85,18 @@ test.afterEach(async ({page})=>{
 
 test('explicit manifest rejects missing, duplicate and invalid mappings without list-order pairing', async ({ page }, info) => {
   await load(page);
-  const manifest = JSON.parse(await panel(page).getByLabel('Batch JSON manifest').inputValue());
+  const manifest = JSON.parse(await readBatchManifest(page));
   manifest.reverse();
   manifest.find((row: {filename:string}) => row.filename === 'discrepancy.png').application.abv = '';
   manifest.push(structuredClone(manifest.find((row: {filename:string}) => row.filename === 'failure.png')));
-  await panel(page).getByLabel('Batch JSON manifest').fill(JSON.stringify(manifest.filter((row: {filename:string}) => row.filename !== 'uncertainty.png')));
+  await fillBatchManifest(page, JSON.stringify(manifest.filter((row: {filename:string}) => row.filename !== 'uncertainty.png')));
   await validate(page);
   await expect(page.getByTestId('manifest-counts')).toContainText('Valid: 1 · Blocked: 3');
   await expect(page.getByTestId('manifest-entries')).toContainText('duplicate-mapping');
   await expect(page.getByTestId('manifest-entries')).toContainText('invalid-application');
   await expect(page.getByTestId('manifest-entries')).toContainText('missing-mapping');
-  await page.getByRole('button', { name: 'Compare queued fixtures', exact: true }).click();
+  await batchPanel(page).getByRole('button', { name: 'Compare queued fixtures', exact: true }).click();
+  await openSelectedReview(page);
   await expect(page.getByRole('table')).toBeVisible();
   await expect(page.getByTestId('active-pair')).toContainText(samples.match.application.applicationId);
   await expect(page.getByTestId('batch-summary')).toContainText('Compared: 1');
@@ -74,7 +111,7 @@ test('exact known fixtures compare, previews decode, unknown same-name uploads n
   page.on('request', req => { if (req.method() !== 'GET' || new URL(req.url()).pathname.startsWith('/api/') || new URL(req.url()).origin !== new URL(page.url()).origin) traffic.push(req.url()); });
   page.on('pageerror', e => errors.push(e.message));
   await compare(page);
-  await expect.poll(() => page.getByRole('img',{name:'Exact batch synthetic label'}).evaluate((img:HTMLImageElement) => img.naturalWidth)).toBe(840);
+  await expect.poll(() => activeReview(page).getByRole('img',{name:'Exact synthetic label'}).evaluate((img:HTMLImageElement) => img.naturalWidth)).toBe(840);
   await expect(page.getByRole('row').filter({hasText:'Alcohol by volume'})).toContainText('match');
   await choose(page,'discrepancy.png');
   await expect(page.getByRole('row').filter({hasText:'Alcohol by volume'})).toContainText('mismatch');
@@ -83,8 +120,9 @@ test('exact known fixtures compare, previews decode, unknown same-name uploads n
   await page.keyboard.press('Escape');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({path:info.outputPath('batch-mismatch.png'),fullPage:true});
-  await panel(page).getByLabel('Batch label images').setInputFiles({name:'match.png',mimeType:'image/png',buffer:await image()});
-  await panel(page).getByLabel('Batch JSON manifest').fill(JSON.stringify([{filename:'match.png',application:samples.match.application}]));
+  await batchPanel(page).getByRole('button',{name:'Batch overview',exact:true}).click();
+  await (await batchImages(page)).setInputFiles({name:'match.png',mimeType:'image/png',buffer:await image()});
+  await fillBatchManifest(page, JSON.stringify([{filename:'match.png',application:samples.match.application}]));
   await validate(page);
   await expect(page.getByTestId('manifest-counts')).toContainText('Valid: 0 · Blocked: 1');
   await expect(page.getByTestId('manifest-entries')).toContainText('Unknown image — processing unavailable');
@@ -94,11 +132,12 @@ test('exact known fixtures compare, previews decode, unknown same-name uploads n
 });
 
 test('file-byte identity, not filename, selects the fixture and explicit application mapping', async ({page}) => {
-  await panel(page).getByLabel('Batch label images').setInputFiles({name:'renamed.png',mimeType:'image/png',buffer:await readFile('public/offline-samples/discrepancy.png')});
-  await panel(page).getByLabel('Batch JSON manifest').fill(JSON.stringify([{filename:'renamed.png',application:{...samples.match.application,applicationId:'EXPLICIT',applicationVersion:'v7'}}]));
+  await (await batchImages(page)).setInputFiles({name:'renamed.png',mimeType:'image/png',buffer:await readFile('public/offline-samples/discrepancy.png')});
+  await fillBatchManifest(page, JSON.stringify([{filename:'renamed.png',application:{...samples.match.application,applicationId:'EXPLICIT',applicationVersion:'v7'}}]));
   await validate(page);
   await expect(page.getByTestId('manifest-counts')).toContainText('Valid: 1 · Blocked: 0');
-  await page.getByRole('button',{name:'Compare queued fixtures',exact:true}).click();
+  await batchPanel(page).getByRole('button',{name:'Compare queued fixtures',exact:true}).click();
+  await openSelectedReview(page);
   await expect(page.getByRole('table')).toBeVisible();
   await expect(page.getByTestId('active-pair')).toContainText('EXPLICIT / version v7');
   await expect(page.getByRole('row').filter({hasText:'Alcohol by volume'})).toContainText('mismatch');
@@ -140,11 +179,14 @@ test('failure cannot be reviewed, retry is manual and only the selected pair run
   await expect(panel(page).getByRole('alert')).toContainText('Processing failed');
   await expect(page.getByRole('button',{name:'Submit review',exact:true})).toBeDisabled();
   await expect(page.getByTestId('batch-summary')).toContainText('Attempts: 4');
-  await page.getByRole('button',{name:'Retry selected fixture',exact:true}).click();
+  await batchPanel(page).getByRole('button',{name:'Batch overview',exact:true}).click();
+  await batchPanel(page).getByRole('button',{name:'Retry selected fixture',exact:true}).click();
   await expect(page.getByTestId('batch-summary')).toContainText('Attempts: 5');
   await expect(page.getByTestId('batch-summary')).toContainText('Failed: 1');
-  await choose(page,'match.png');
-  await expect(page.getByRole('button',{name:'Retry selected fixture',exact:true})).toBeDisabled();
+  await openSelectedReview(page);
+  await batchPanel(page).getByRole('button',{name:'Batch overview',exact:true}).click();
+  await expect(batchPanel(page).getByRole('button',{name:'Retry selected fixture',exact:true})).toBeDisabled();
+  await openSelectedReview(page);
   await expect(page.getByRole('table')).toBeVisible();
   await expect(page.getByTestId('batch-summary')).toContainText('Compared: 3');
   await expect(page.getByTestId('batch-summary')).toContainText('Attempts: 5');
@@ -163,7 +205,9 @@ test('replacement advances revision and discards old review intent without inven
   await expect(page.getByTestId('active-pair')).toContainText('Revision 2');
   await expect(page.getByTestId('unsaved-draft')).toHaveCount(0);
   await expect(page.getByRole('table')).toHaveCount(0);
-  await page.getByRole('button',{name:'Compare queued fixtures',exact:true}).click();
+  await batchPanel(page).getByRole('button',{name:'Batch overview',exact:true}).click();
+  await batchPanel(page).getByRole('button',{name:'Compare queued fixtures',exact:true}).click();
+  await openSelectedReview(page);
   await expect(page.getByRole('table')).toBeVisible();
   await expect(page.getByRole('row').filter({hasText:'Alcohol by volume'})).toContainText('mismatch');
   await expect(panel(page).getByLabel(confirmation)).not.toBeChecked();
@@ -181,21 +225,26 @@ test('replacement fences a delayed completion and keeps the two occupied slots u
     scope.releaseDigests = release;
     crypto.subtle.digest = async (...args:Parameters<SubtleCrypto['digest']>) => { await gate; return digest(...args); };
   });
-  await page.getByRole('button',{name:'Compare queued fixtures',exact:true}).click();
+  await batchPanel(page).getByRole('button',{name:'Compare queued fixtures',exact:true}).click();
   await expect(page.getByTestId('batch-summary')).toContainText('Running: 2');
+  await openSelectedReview(page);
   await page.getByText('Replace this pair with a new application version', {exact:true}).click();
   await panel(page).getByLabel('Replacement application JSON').fill(JSON.stringify({...samples.match.application,applicationVersion:'v2'}));
   await page.getByRole('button',{name:'Replace selected pair',exact:true}).click();
   await expect(page.getByTestId('active-pair')).toContainText('Revision 2');
   await expect(page.getByTestId('batch-summary')).toContainText('Occupied slots: 2');
-  await expect(page.getByRole('button',{name:'Compare queued fixtures',exact:true})).toBeDisabled();
+  await batchPanel(page).getByRole('button',{name:'Batch overview',exact:true}).click();
+  await expect(batchPanel(page).getByRole('button',{name:'Compare queued fixtures',exact:true})).toBeDisabled();
+  await openSelectedReview(page);
   await choose(page,'discrepancy.png'); await choose(page,'match.png');
   await page.evaluate(()=>(window as unknown as {releaseDigests:()=>void}).releaseDigests());
   await expect(page.getByTestId('batch-summary')).toContainText('Occupied slots: 0');
   await expect(page.getByRole('table')).toHaveCount(0);
   await expect(page.getByTestId('active-pair')).toContainText('version v2');
   await expect(panel(page).getByLabel(confirmation)).not.toBeChecked();
-  await page.getByRole('button',{name:'Compare queued fixtures',exact:true}).click();
+  await batchPanel(page).getByRole('button',{name:'Batch overview',exact:true}).click();
+  await batchPanel(page).getByRole('button',{name:'Compare queued fixtures',exact:true}).click();
+  await openSelectedReview(page);
   await expect(page.getByRole('table')).toBeVisible();
 });
 
@@ -203,25 +252,29 @@ test('batch uses the existing human policy for physical assessment and machine-p
   await compare(page);
   const pass=page.getByRole('radio',{name:'Pass',exact:true});
   await expect(pass).toBeDisabled();
-  await panel(page).getByLabel('Physical assessment notes').fill('Independent physical-scale inspection, synthetic exercise only.');
-  await panel(page).getByLabel('I assessed physical print/type size outside this image').check();
-  await pass.check(); await panel(page).getByLabel(confirmation).check();
+  await activeReview(page).locator('details.physical > summary').click();
+  await activeReview(page).getByLabel('Physical assessment notes').fill('Independent physical-scale inspection, synthetic exercise only.');
+  await activeReview(page).getByLabel('I assessed physical print/type size outside this image').check();
+  await pass.check(); await activeReview(page).getByLabel(confirmation).check();
   await page.getByRole('button',{name:'Submit review',exact:true}).click();
   await expect(page.getByTestId('unsaved-draft')).toContainText('UNSAVED draft — Pass');
   await choose(page,'discrepancy.png');
   await expect(pass).toBeDisabled();
-  await panel(page).getByLabel('Human resolution for Alcohol by volume').selectOption('verified-match');
-  await panel(page).getByLabel('Resolution reason for Alcohol by volume').fill('Synthetic exercise: independent inspection corrects extraction.');
-  await panel(page).getByLabel('Supporting evidence for Alcohol by volume').fill('Simulated physical label assessment finds declared 40%.');
-  await panel(page).getByLabel('Physical assessment notes').fill('Independent physical-scale inspection, synthetic exercise only.');
-  await panel(page).getByLabel('I assessed physical print/type size outside this image').check();
+  await activeReview(page).getByText('Resolve this field', { exact: true }).click();
+  await activeReview(page).getByLabel('Human resolution for Alcohol by volume').selectOption('verified-match');
+  await activeReview(page).getByLabel('Resolution reason for Alcohol by volume').fill('Synthetic exercise: independent inspection corrects extraction.');
+  await activeReview(page).getByLabel('Supporting evidence for Alcohol by volume').fill('Simulated physical label assessment finds declared 40%.');
+  await activeReview(page).getByRole('button', { name: 'Confirm resolution for Alcohol by volume', exact: true }).click();
+  await activeReview(page).locator('details.physical > summary').click();
+  await activeReview(page).getByLabel('Physical assessment notes').fill('Independent physical-scale inspection, synthetic exercise only.');
+  await activeReview(page).getByLabel('I assessed physical print/type size outside this image').check();
   await expect(pass).toBeEnabled();
   await expect(page.getByRole('row').filter({hasText:'Alcohol by volume'})).toContainText('mismatch');
-  await panel(page).getByLabel('Human resolution for Alcohol by volume').selectOption('confirmed-mismatch');
+  await activeReview(page).getByLabel('Human resolution for Alcohol by volume').selectOption('confirmed-mismatch');
   await expect(pass).toBeDisabled();
   await choose(page,'match.png');
   await expect(page.getByTestId('unsaved-draft')).toContainText('UNSAVED draft — Pass');
-  await expect(panel(page).getByLabel(confirmation)).not.toBeChecked();
+  await expect(activeReview(page).getByLabel(confirmation)).not.toBeChecked();
 });
 
 test('corrupt fixture bytes are blocked and pending validation cannot restore edited-away input', async ({page}) => {
@@ -237,7 +290,7 @@ test('corrupt fixture bytes are blocked and pending validation cannot restore ed
   });
   await page.getByRole('button',{name:'Validate batch manifest',exact:true}).click();
   await expect(page.getByRole('status')).toContainText('Checking local fixture bytes');
-  await panel(page).getByLabel('Batch JSON manifest').fill('[]');
+  await fillBatchManifest(page, '[]');
   await page.evaluate(()=>(window as unknown as {releaseValidation:()=>void}).releaseValidation());
   await expect(page.getByTestId('batch-summary')).toHaveCount(0);
   await expect(page.getByTestId('manifest-counts')).toHaveCount(0);
@@ -270,12 +323,12 @@ test('Single and Batch retain independent outcomes, label targets and UNSAVED dr
 });
 
 test('malformed and oversized manifests fail closed; keyboard mode navigation works', async ({page}) => {
-  await panel(page).getByLabel('Batch JSON manifest').fill('{bad json');
+  await fillBatchManifest(page, '{bad json');
   await page.getByRole('button',{name:'Validate batch manifest',exact:true}).click();
-  await expect(panel(page).getByRole('alert')).toContainText('JSON array');
-  await panel(page).getByLabel('Batch JSON manifest').fill(JSON.stringify(Array.from({length:301},(_,i)=>({filename:`${i}.png`,application:samples.match.application}))));
+  await expect(batchPanel(page).getByRole('alert')).toContainText('valid grouped v2 manifest');
+  await fillBatchManifest(page, JSON.stringify(Array.from({length:301},(_,i)=>({filename:`${i}.png`,application:samples.match.application}))));
   await page.getByRole('button',{name:'Validate batch manifest',exact:true}).click();
-  await expect(panel(page).getByRole('alert')).toContainText('300');
+  await expect(batchPanel(page).getByRole('alert')).toContainText('1–300 bottles');
   await expect(page.getByTestId('batch-summary')).toHaveCount(0);
   await page.getByRole('tab',{name:'Batch upload',exact:true}).focus();
   await page.keyboard.press('ArrowLeft');

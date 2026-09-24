@@ -1,6 +1,6 @@
 # Final evaluation evidence — 2026-09-18
 
-**[Readable benchmark results](../../BENCHMARK-RESULTS.md)** ·
+**[Readable benchmark results](../../docs/deep-dive/BENCHMARK-RESULTS.md)** ·
 [complete source index](SOURCE-INDEX.md) · [image battery](IMAGE-INDEX.md)
 
 ## Safe offline verification

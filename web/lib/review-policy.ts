@@ -1,7 +1,11 @@
+import { checkedPhotoRecord } from './photo-record';
 import { z } from 'zod';
-import { applicationSchema } from './contracts';
+import { historicalApplicationSchema as applicationSchema } from './contracts';
 import { extractionEvidenceSchema } from './extraction/schema';
-import { compareApplication, FIELD_KEYS } from './rules';
+import { compareApplication, FIELD_KEYS, RULES_VERSION, RULES_REVISION } from './rules';
+import { compareApplication as compareHistoricalApplication } from './rules-v1';
+import { compareApplicationV3, RULES_REVISION_V3 } from './wine-rules';
+import { compareApplicationV5, RULES_REVISION_V5 } from './semantic-rules';
 import { immutable, type CompleteComparison } from './comparison-record';
 
 const note = z.string().max(2000).refine(v => !/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/.test(v));
@@ -17,9 +21,17 @@ export type HumanResolution = z.infer<typeof resolutionSchema>;
 export type UnsavedDraft = { state:'UNSAVED'; record:CompleteComparison; intent:ReviewIntent };
 const recordSchema = z.object({processing:z.literal('complete'),application:applicationSchema,imageSha256:z.string().regex(/^[a-f0-9]{64}$/),source:z.enum(['fixture','openrouter']),evidence:extractionEvidenceSchema,comparison:z.unknown()}).strict();
 export function checkedRecord(value:unknown): CompleteComparison | null {
+  if(value && typeof value==='object' && 'recordVersion' in value) return value.recordVersion===2?checkedPhotoRecord(value):null;
   const parsed = recordSchema.safeParse(value);
   if (!parsed.success) return null;
-  const comparison = compareApplication(parsed.data.application,parsed.data.evidence);
+  const stored = parsed.data.comparison;
+  if (!stored || typeof stored !== 'object' || !('rulesVersion' in stored) || stored.rulesVersion !== RULES_VERSION) return null;
+  // Dispatch by the explicit stored revision, never try both and accept whichever
+  // matches. Missing revision is historical v1; new singleton snapshots use v5.
+  const revision = 'rulesRevision' in stored ? stored.rulesRevision : 1;
+  if (revision !== 1 && revision !== RULES_REVISION && revision !== RULES_REVISION_V3 && revision !== RULES_REVISION_V5) return null;
+  const compare = revision === 1 ? compareHistoricalApplication : revision === RULES_REVISION ? compareApplication : revision === RULES_REVISION_V3 ? compareApplicationV3 : compareApplicationV5;
+  const comparison = compare(parsed.data.application,parsed.data.evidence);
   if (comparison.processing !== 'complete' || JSON.stringify(comparison) !== JSON.stringify(parsed.data.comparison)) return null;
   return {...parsed.data, comparison};
 }

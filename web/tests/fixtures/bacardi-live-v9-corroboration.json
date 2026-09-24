@@ -1,0 +1,583 @@
+{
+  "receipt": {
+    "state": "SAVED",
+    "reviewId": "e9e03ca2-a42f-4c78-b04d-2c0924d681ef",
+    "comparisonId": "f3e2e605-8ac5-4b1a-8628-8179e6b67ba9",
+    "savedAt": "2026-09-23T19:01:04.839Z",
+    "identity": "Shared demo access code — NOT an individually authenticated reviewer"
+  },
+  "record": {
+    "recordVersion": 2,
+    "processing": "complete",
+    "application": {
+      "applicationId": "TEST-BACARDI-COMPOSITE-LIVE-C583399",
+      "applicationVersion": "1",
+      "brand": "Bacardi",
+      "classType": "Gold Rum",
+      "abv": 40,
+      "netContents": "1.75 L",
+      "producerName": "BACARDI CORPORATION",
+      "producerAddress": "CATAÑO, PR 00962",
+      "commodity": "distilled-spirits",
+      "imported": false,
+      "origin": {
+        "kind": "domestic",
+        "country": "Puerto Rico"
+      }
+    },
+    "groupId": "d62369ac-41f3-4525-9821-0323c988bf63",
+    "revision": 1,
+    "photos": [
+      {
+        "photoId": "71394fea-09bd-413b-868a-ce4954624090",
+        "role": "front",
+        "filename": "Bacardi Front.jpeg",
+        "mime": "image/jpeg",
+        "bytes": 320055,
+        "sourceSha256": "837309a56295b025359eac578a93d44fa41efaad8aedb14b8eb69ff619391e7a",
+        "normalized": {
+          "sha256": "13050752d67a95fb062493468c18d813c145fa5ce7448088b7c7579efa6f4d27",
+          "bytes": 643476,
+          "mime": "image/jpeg",
+          "width": 1716,
+          "height": 4000
+        }
+      },
+      {
+        "photoId": "6bc23756-079c-4b6a-9600-69fb0706b79e",
+        "role": "back",
+        "filename": "Bacardi Back.jpeg",
+        "mime": "image/jpeg",
+        "bytes": 258080,
+        "sourceSha256": "8662b6066acc9916b1b2a2f23f5abdc8d0d3a5ffc8e9e81d7e6932f6b2ea0833",
+        "normalized": {
+          "sha256": "bf0fd4bfb342e83b9b09a709fd6c4cb1e2525bfcb38e0e56a9d0716f473a7cc4",
+          "bytes": 551453,
+          "mime": "image/jpeg",
+          "width": 1716,
+          "height": 4000
+        }
+      }
+    ],
+    "photoSetSha256": "527bccc1f0458663202483e03ae3a550ef24f6de0d53a4908851b025c21795a7",
+    "imageSha256": "13050752d67a95fb062493468c18d813c145fa5ce7448088b7c7579efa6f4d27",
+    "source": "openrouter",
+    "photoEvidence": {
+      "schemaVersion": 2,
+      "photos": [
+        {
+          "photoId": "71394fea-09bd-413b-868a-ce4954624090",
+          "evidence": {
+            "schemaVersion": 1,
+            "brand": {
+              "status": "readable",
+              "text": "BACARDÍ",
+              "reason": "Visible text transcribed from this photograph."
+            },
+            "classType": {
+              "status": "readable",
+              "text": "GOLD",
+              "reason": "Visible text transcribed from this photograph."
+            },
+            "abv": {
+              "status": "readable",
+              "text": "40% ALC./VOL.",
+              "reason": "Visible text transcribed from this photograph."
+            },
+            "netContents": {
+              "status": "readable",
+              "text": "1.75 LTR",
+              "reason": "Visible text transcribed from this photograph."
+            },
+            "producer": {
+              "name": {
+                "status": "unreadable",
+                "text": null,
+                "reason": "No explicit manufacturer or distillery entity name or role evidence visible. Manufacturing role not established."
+              },
+              "address": {
+                "status": "unreadable",
+                "text": null,
+                "reason": "No explicit manufacturer or distillery entity name or role evidence visible. Manufacturing role not established."
+              }
+            },
+            "origin": {
+              "status": "readable",
+              "text": "MADE IN PUERTO RICO",
+              "reason": "Visible text transcribed from this photograph."
+            },
+            "warning": {
+              "heading": {
+                "status": "unreadable",
+                "text": null,
+                "reason": "No warning text visible on the photographed label."
+              },
+              "body": {
+                "status": "unreadable",
+                "text": null,
+                "reason": "No warning text visible on the photographed label."
+              },
+              "headingBold": null,
+              "bodyBold": null
+            }
+          }
+        },
+        {
+          "photoId": "6bc23756-079c-4b6a-9600-69fb0706b79e",
+          "evidence": {
+            "schemaVersion": 1,
+            "brand": {
+              "status": "readable",
+              "text": "BACARDI",
+              "reason": "Visible text transcribed from this photograph."
+            },
+            "classType": {
+              "status": "readable",
+              "text": "GOLD",
+              "reason": "Visible text transcribed from this photograph."
+            },
+            "abv": {
+              "status": "unreadable",
+              "text": null,
+              "reason": "No alcohol by volume percentage visible on the label."
+            },
+            "netContents": {
+              "status": "readable",
+              "text": "1.75 LTR",
+              "reason": "Visible text transcribed from this photograph."
+            },
+            "producer": {
+              "name": {
+                "status": "readable",
+                "text": "BACARDI CORPORATION",
+                "reason": "Visible text transcribed from this photograph. Role excerpt: PRODUCED BY BACARDI CORPORATION, CATAÑO, PR 00962"
+              },
+              "address": {
+                "status": "readable",
+                "text": "CATAÑO, PR 00962",
+                "reason": "Visible text transcribed from this photograph. Role excerpt: PRODUCED BY BACARDI CORPORATION, CATAÑO, PR 00962"
+              }
+            },
+            "origin": {
+              "status": "readable",
+              "text": "RUM OF PUERTO RICO",
+              "reason": "Visible text transcribed from this photograph."
+            },
+            "warning": {
+              "heading": {
+                "status": "readable",
+                "text": "GOVERNMENT WARNING:",
+                "reason": "Visible text transcribed from this photograph."
+              },
+              "body": {
+                "status": "readable",
+                "text": "(1) ACCORDING TO THE SURGEON GENERAL, WOMEN SHOULD NOT DRINK ALCOHOLIC BEVERAGES DURING PREGNANCY BECAUSE OF THE RISK OF BIRTH DEFECTS. (2) CONSUMPTION OF ALCOHOLIC BEVERAGES IMPAIRS YOUR ABILITY TO DRIVE A CAR OR OPERATE MACHINERY, AND MAY CAUSE HEALTH PROBLEMS.",
+                "reason": "Visible text transcribed from this photograph."
+              },
+              "headingBold": true,
+              "bodyBold": false
+            }
+          }
+        }
+      ]
+    },
+    "aggregationVersion": "photo-set-aggregation-v4",
+    "evidence": {
+      "schemaVersion": 1,
+      "brand": {
+        "status": "readable",
+        "text": "BACARDÍ",
+        "reason": "Visible text transcribed from this photograph."
+      },
+      "classType": {
+        "status": "readable",
+        "text": "GOLD",
+        "reason": "Visible text transcribed from this photograph."
+      },
+      "abv": {
+        "status": "readable",
+        "text": "40% ALC./VOL.",
+        "reason": "Visible text transcribed from this photograph."
+      },
+      "netContents": {
+        "status": "readable",
+        "text": "1.75 LTR",
+        "reason": "Visible text transcribed from this photograph."
+      },
+      "producer": {
+        "name": {
+          "status": "readable",
+          "text": "BACARDI CORPORATION",
+          "reason": "Visible text transcribed from this photograph. Role excerpt: PRODUCED BY BACARDI CORPORATION, CATAÑO, PR 00962"
+        },
+        "address": {
+          "status": "readable",
+          "text": "CATAÑO, PR 00962",
+          "reason": "Visible text transcribed from this photograph. Role excerpt: PRODUCED BY BACARDI CORPORATION, CATAÑO, PR 00962"
+        }
+      },
+      "origin": {
+        "status": "readable",
+        "text": "MADE IN PUERTO RICO",
+        "reason": "Visible text transcribed from this photograph."
+      },
+      "warning": {
+        "heading": {
+          "status": "readable",
+          "text": "GOVERNMENT WARNING:",
+          "reason": "Visible text transcribed from this photograph."
+        },
+        "body": {
+          "status": "readable",
+          "text": "(1) ACCORDING TO THE SURGEON GENERAL, WOMEN SHOULD NOT DRINK ALCOHOLIC BEVERAGES DURING PREGNANCY BECAUSE OF THE RISK OF BIRTH DEFECTS. (2) CONSUMPTION OF ALCOHOLIC BEVERAGES IMPAIRS YOUR ABILITY TO DRIVE A CAR OR OPERATE MACHINERY, AND MAY CAUSE HEALTH PROBLEMS.",
+          "reason": "Visible text transcribed from this photograph."
+        },
+        "headingBold": true,
+        "bodyBold": false
+      }
+    },
+    "provenance": {
+      "brand": {
+        "sourcePhotoIds": [
+          "71394fea-09bd-413b-868a-ce4954624090",
+          "6bc23756-079c-4b6a-9600-69fb0706b79e"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "BACARDÍ",
+            "sourcePhotoIds": [
+              "71394fea-09bd-413b-868a-ce4954624090"
+            ]
+          },
+          {
+            "value": "BACARDI",
+            "sourcePhotoIds": [
+              "6bc23756-079c-4b6a-9600-69fb0706b79e"
+            ]
+          }
+        ]
+      },
+      "classType": {
+        "sourcePhotoIds": [
+          "71394fea-09bd-413b-868a-ce4954624090",
+          "6bc23756-079c-4b6a-9600-69fb0706b79e"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "GOLD",
+            "sourcePhotoIds": [
+              "71394fea-09bd-413b-868a-ce4954624090",
+              "6bc23756-079c-4b6a-9600-69fb0706b79e"
+            ]
+          }
+        ]
+      },
+      "abv": {
+        "sourcePhotoIds": [
+          "71394fea-09bd-413b-868a-ce4954624090"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "40% ALC./VOL.",
+            "sourcePhotoIds": [
+              "71394fea-09bd-413b-868a-ce4954624090"
+            ]
+          }
+        ]
+      },
+      "netContents": {
+        "sourcePhotoIds": [
+          "71394fea-09bd-413b-868a-ce4954624090",
+          "6bc23756-079c-4b6a-9600-69fb0706b79e"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "1.75 LTR",
+            "sourcePhotoIds": [
+              "71394fea-09bd-413b-868a-ce4954624090",
+              "6bc23756-079c-4b6a-9600-69fb0706b79e"
+            ]
+          }
+        ]
+      },
+      "producer.name": {
+        "sourcePhotoIds": [
+          "6bc23756-079c-4b6a-9600-69fb0706b79e"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "BACARDI CORPORATION",
+            "sourcePhotoIds": [
+              "6bc23756-079c-4b6a-9600-69fb0706b79e"
+            ]
+          }
+        ]
+      },
+      "producer.address": {
+        "sourcePhotoIds": [
+          "6bc23756-079c-4b6a-9600-69fb0706b79e"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "CATAÑO, PR 00962",
+            "sourcePhotoIds": [
+              "6bc23756-079c-4b6a-9600-69fb0706b79e"
+            ]
+          }
+        ]
+      },
+      "origin": {
+        "sourcePhotoIds": [
+          "71394fea-09bd-413b-868a-ce4954624090",
+          "6bc23756-079c-4b6a-9600-69fb0706b79e"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "MADE IN PUERTO RICO",
+            "sourcePhotoIds": [
+              "71394fea-09bd-413b-868a-ce4954624090"
+            ]
+          },
+          {
+            "value": "RUM OF PUERTO RICO",
+            "sourcePhotoIds": [
+              "6bc23756-079c-4b6a-9600-69fb0706b79e"
+            ]
+          }
+        ]
+      },
+      "warning.heading": {
+        "sourcePhotoIds": [
+          "6bc23756-079c-4b6a-9600-69fb0706b79e"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "GOVERNMENT WARNING:",
+            "sourcePhotoIds": [
+              "6bc23756-079c-4b6a-9600-69fb0706b79e"
+            ]
+          }
+        ]
+      },
+      "warning.body": {
+        "sourcePhotoIds": [
+          "6bc23756-079c-4b6a-9600-69fb0706b79e"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": "(1) ACCORDING TO THE SURGEON GENERAL, WOMEN SHOULD NOT DRINK ALCOHOLIC BEVERAGES DURING PREGNANCY BECAUSE OF THE RISK OF BIRTH DEFECTS. (2) CONSUMPTION OF ALCOHOLIC BEVERAGES IMPAIRS YOUR ABILITY TO DRIVE A CAR OR OPERATE MACHINERY, AND MAY CAUSE HEALTH PROBLEMS.",
+            "sourcePhotoIds": [
+              "6bc23756-079c-4b6a-9600-69fb0706b79e"
+            ]
+          }
+        ]
+      },
+      "warning.headingBold": {
+        "sourcePhotoIds": [
+          "6bc23756-079c-4b6a-9600-69fb0706b79e"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": true,
+            "sourcePhotoIds": [
+              "6bc23756-079c-4b6a-9600-69fb0706b79e"
+            ]
+          }
+        ]
+      },
+      "warning.bodyBold": {
+        "sourcePhotoIds": [
+          "6bc23756-079c-4b6a-9600-69fb0706b79e"
+        ],
+        "conflict": false,
+        "variants": [
+          {
+            "value": false,
+            "sourcePhotoIds": [
+              "6bc23756-079c-4b6a-9600-69fb0706b79e"
+            ]
+          }
+        ]
+      }
+    },
+    "extraction": {
+      "schemaVersion": 2,
+      "promptVersion": "gpt41-photo-observations-v1",
+      "model": "openai/gpt-4.1",
+      "requestId": "b1121de1-dd85-4050-844a-6ae7f7d74d2c",
+      "attemptId": "789e5673-3fed-5524-9858-7fc3970cf282",
+      "reservationId": "d2b994f4-09fd-55b6-845f-0aa9c1d87d9f"
+    },
+    "comparison": {
+      "processing": "complete",
+      "applicationId": "TEST-BACARDI-COMPOSITE-LIVE-C583399",
+      "applicationVersion": "1",
+      "rulesVersion": "prototype-seven-fields-v1",
+      "rulesRevision": 9,
+      "fields": {
+        "brand": {
+          "status": "match",
+          "reasons": [
+            "Brand: readable text agrees under case, layout and Latin diacritic equivalence; punctuation, words and numbers retained."
+          ],
+          "expected": "Bacardi",
+          "observed": {
+            "status": "readable",
+            "text": "BACARDÍ",
+            "reason": "Visible text transcribed from this photograph."
+          },
+          "sourcePhotoIds": [
+            "71394fea-09bd-413b-868a-ce4954624090",
+            "6bc23756-079c-4b6a-9600-69fb0706b79e"
+          ],
+          "conflict": false
+        },
+        "classType": {
+          "status": "needs-review",
+          "reasons": [
+            "Class/type: incomplete or unsupported fragment does not establish a commodity/category. A complete compatible source photo is required; no missing class words inferred."
+          ],
+          "expected": "Gold Rum",
+          "observed": {
+            "status": "readable",
+            "text": "GOLD",
+            "reason": "Visible text transcribed from this photograph."
+          },
+          "sourcePhotoIds": [
+            "71394fea-09bd-413b-868a-ce4954624090",
+            "6bc23756-079c-4b6a-9600-69fb0706b79e"
+          ],
+          "conflict": false
+        },
+        "abv": {
+          "status": "match",
+          "reasons": [
+            "ABV: equal declared/observed decimal percentage; no regulatory tolerance applied."
+          ],
+          "expected": "40",
+          "observed": {
+            "status": "readable",
+            "text": "40% ALC./VOL.",
+            "reason": "Visible text transcribed from this photograph."
+          },
+          "sourcePhotoIds": [
+            "71394fea-09bd-413b-868a-ce4954624090"
+          ],
+          "conflict": false
+        },
+        "netContents": {
+          "status": "match",
+          "reasons": [
+            "Net contents: equal exact metric volume (1 L = 1000 mL); standards of fill not evaluated."
+          ],
+          "expected": "1.75 L",
+          "observed": {
+            "status": "readable",
+            "text": "1.75 LTR",
+            "reason": "Visible text transcribed from this photograph."
+          },
+          "sourcePhotoIds": [
+            "71394fea-09bd-413b-868a-ce4954624090",
+            "6bc23756-079c-4b6a-9600-69fb0706b79e"
+          ],
+          "conflict": false
+        },
+        "producer": {
+          "status": "match",
+          "reasons": [
+            "Producer name: agrees under case, layout and Latin accent equivalence; no role or corporate-identity certification.",
+            "Producer address: whole supplied address agrees under case, Latin accents, comma layout and No. spacing; no substring verification."
+          ],
+          "expected": "BACARDI CORPORATION\nCATAÑO, PR 00962",
+          "observed": {
+            "name": {
+              "status": "readable",
+              "text": "BACARDI CORPORATION",
+              "reason": "Visible text transcribed from this photograph. Role excerpt: PRODUCED BY BACARDI CORPORATION, CATAÑO, PR 00962"
+            },
+            "address": {
+              "status": "readable",
+              "text": "CATAÑO, PR 00962",
+              "reason": "Visible text transcribed from this photograph. Role excerpt: PRODUCED BY BACARDI CORPORATION, CATAÑO, PR 00962"
+            }
+          },
+          "sourcePhotoIds": [
+            "6bc23756-079c-4b6a-9600-69fb0706b79e"
+          ],
+          "conflict": false
+        },
+        "origin": {
+          "status": "not-applicable",
+          "reasons": [
+            "Origin: recognized domestic U.S./Puerto Rico context; imported-country comparison not applicable. Specific territory and raw source claim retained."
+          ],
+          "expected": "Puerto Rico",
+          "observed": {
+            "status": "readable",
+            "text": "MADE IN PUERTO RICO",
+            "reason": "Visible text transcribed from this photograph."
+          },
+          "sourcePhotoIds": [
+            "71394fea-09bd-413b-868a-ce4954624090",
+            "6bc23756-079c-4b6a-9600-69fb0706b79e"
+          ],
+          "conflict": false
+        },
+        "warning": {
+          "status": "match",
+          "reasons": [
+            "Warning heading: wording matches (exact capitals and colon; layout whitespace ignored).",
+            "Warning body: wording matches (body case and layout whitespace ignored; punctuation and word order retained).",
+            "Warning heading boldness: observed as required. Letter case does not establish boldness.",
+            "Warning body boldness: observed as required. Letter case does not establish boldness.",
+            "Physical print size: unverified; inspect the physical label separately."
+          ],
+          "expected": "GOVERNMENT WARNING:\n(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.",
+          "observed": {
+            "heading": {
+              "status": "readable",
+              "text": "GOVERNMENT WARNING:",
+              "reason": "Visible text transcribed from this photograph."
+            },
+            "body": {
+              "status": "readable",
+              "text": "(1) ACCORDING TO THE SURGEON GENERAL, WOMEN SHOULD NOT DRINK ALCOHOLIC BEVERAGES DURING PREGNANCY BECAUSE OF THE RISK OF BIRTH DEFECTS. (2) CONSUMPTION OF ALCOHOLIC BEVERAGES IMPAIRS YOUR ABILITY TO DRIVE A CAR OR OPERATE MACHINERY, AND MAY CAUSE HEALTH PROBLEMS.",
+              "reason": "Visible text transcribed from this photograph."
+            },
+            "headingBold": true,
+            "bodyBold": false
+          },
+          "sourcePhotoIds": [
+            "6bc23756-079c-4b6a-9600-69fb0706b79e"
+          ],
+          "conflict": false
+        }
+      },
+      "physicalPrintSize": {
+        "status": "unverified",
+        "reason": "Physical print size cannot be established from extraction/photo evidence; not measured or certified. This source-backed prototype is not exhaustive TTB legal certification."
+      }
+    }
+  },
+  "intent": {
+    "bindingKey": "{\"recordVersion\":2,\"processing\":\"complete\",\"application\":{\"applicationId\":\"TEST-BACARDI-COMPOSITE-LIVE-C583399\",\"applicationVersion\":\"1\",\"brand\":\"Bacardi\",\"classType\":\"Gold Rum\",\"abv\":40,\"netContents\":\"1.75 L\",\"producerName\":\"BACARDI CORPORATION\",\"producerAddress\":\"CATAÑO, PR 00962\",\"commodity\":\"distilled-spirits\",\"imported\":false,\"origin\":{\"kind\":\"domestic\",\"country\":\"Puerto Rico\"}},\"groupId\":\"d62369ac-41f3-4525-9821-0323c988bf63\",\"revision\":1,\"photos\":[{\"photoId\":\"71394fea-09bd-413b-868a-ce4954624090\",\"role\":\"front\",\"filename\":\"Bacardi Front.jpeg\",\"mime\":\"image/jpeg\",\"bytes\":320055,\"sourceSha256\":\"837309a56295b025359eac578a93d44fa41efaad8aedb14b8eb69ff619391e7a\",\"normalized\":{\"sha256\":\"13050752d67a95fb062493468c18d813c145fa5ce7448088b7c7579efa6f4d27\",\"bytes\":643476,\"mime\":\"image/jpeg\",\"width\":1716,\"height\":4000}},{\"photoId\":\"6bc23756-079c-4b6a-9600-69fb0706b79e\",\"role\":\"back\",\"filename\":\"Bacardi Back.jpeg\",\"mime\":\"image/jpeg\",\"bytes\":258080,\"sourceSha256\":\"8662b6066acc9916b1b2a2f23f5abdc8d0d3a5ffc8e9e81d7e6932f6b2ea0833\",\"normalized\":{\"sha256\":\"bf0fd4bfb342e83b9b09a709fd6c4cb1e2525bfcb38e0e56a9d0716f473a7cc4\",\"bytes\":551453,\"mime\":\"image/jpeg\",\"width\":1716,\"height\":4000}}],\"photoSetSha256\":\"527bccc1f0458663202483e03ae3a550ef24f6de0d53a4908851b025c21795a7\",\"imageSha256\":\"13050752d67a95fb062493468c18d813c145fa5ce7448088b7c7579efa6f4d27\",\"source\":\"openrouter\",\"photoEvidence\":{\"schemaVersion\":2,\"photos\":[{\"photoId\":\"71394fea-09bd-413b-868a-ce4954624090\",\"evidence\":{\"schemaVersion\":1,\"brand\":{\"status\":\"readable\",\"text\":\"BACARDÍ\",\"reason\":\"Visible text transcribed from this photograph.\"},\"classType\":{\"status\":\"readable\",\"text\":\"GOLD\",\"reason\":\"Visible text transcribed from this photograph.\"},\"abv\":{\"status\":\"readable\",\"text\":\"40% ALC./VOL.\",\"reason\":\"Visible text transcribed from this photograph.\"},\"netContents\":{\"status\":\"readable\",\"text\":\"1.75 LTR\",\"reason\":\"Visible text transcribed from this photograph.\"},\"producer\":{\"name\":{\"status\":\"unreadable\",\"text\":null,\"reason\":\"No explicit manufacturer or distillery entity name or role evidence visible. Manufacturing role not established.\"},\"address\":{\"status\":\"unreadable\",\"text\":null,\"reason\":\"No explicit manufacturer or distillery entity name or role evidence visible. Manufacturing role not established.\"}},\"origin\":{\"status\":\"readable\",\"text\":\"MADE IN PUERTO RICO\",\"reason\":\"Visible text transcribed from this photograph.\"},\"warning\":{\"heading\":{\"status\":\"unreadable\",\"text\":null,\"reason\":\"No warning text visible on the photographed label.\"},\"body\":{\"status\":\"unreadable\",\"text\":null,\"reason\":\"No warning text visible on the photographed label.\"},\"headingBold\":null,\"bodyBold\":null}}},{\"photoId\":\"6bc23756-079c-4b6a-9600-69fb0706b79e\",\"evidence\":{\"schemaVersion\":1,\"brand\":{\"status\":\"readable\",\"text\":\"BACARDI\",\"reason\":\"Visible text transcribed from this photograph.\"},\"classType\":{\"status\":\"readable\",\"text\":\"GOLD\",\"reason\":\"Visible text transcribed from this photograph.\"},\"abv\":{\"status\":\"unreadable\",\"text\":null,\"reason\":\"No alcohol by volume percentage visible on the label.\"},\"netContents\":{\"status\":\"readable\",\"text\":\"1.75 LTR\",\"reason\":\"Visible text transcribed from this photograph.\"},\"producer\":{\"name\":{\"status\":\"readable\",\"text\":\"BACARDI CORPORATION\",\"reason\":\"Visible text transcribed from this photograph. Role excerpt: PRODUCED BY BACARDI CORPORATION, CATAÑO, PR 00962\"},\"address\":{\"status\":\"readable\",\"text\":\"CATAÑO, PR 00962\",\"reason\":\"Visible text transcribed from this photograph. Role excerpt: PRODUCED BY BACARDI CORPORATION, CATAÑO, PR 00962\"}},\"origin\":{\"status\":\"readable\",\"text\":\"RUM OF PUERTO RICO\",\"reason\":\"Visible text transcribed from this photograph.\"},\"warning\":{\"heading\":{\"status\":\"readable\",\"text\":\"GOVERNMENT WARNING:\",\"reason\":\"Visible text transcribed from this photograph.\"},\"body\":{\"status\":\"readable\",\"text\":\"(1) ACCORDING TO THE SURGEON GENERAL, WOMEN SHOULD NOT DRINK ALCOHOLIC BEVERAGES DURING PREGNANCY BECAUSE OF THE RISK OF BIRTH DEFECTS. (2) CONSUMPTION OF ALCOHOLIC BEVERAGES IMPAIRS YOUR ABILITY TO DRIVE A CAR OR OPERATE MACHINERY, AND MAY CAUSE HEALTH PROBLEMS.\",\"reason\":\"Visible text transcribed from this photograph.\"},\"headingBold\":true,\"bodyBold\":false}}}]},\"aggregationVersion\":\"photo-set-aggregation-v4\",\"evidence\":{\"schemaVersion\":1,\"brand\":{\"status\":\"readable\",\"text\":\"BACARDÍ\",\"reason\":\"Visible text transcribed from this photograph.\"},\"classType\":{\"status\":\"readable\",\"text\":\"GOLD\",\"reason\":\"Visible text transcribed from this photograph.\"},\"abv\":{\"status\":\"readable\",\"text\":\"40% ALC./VOL.\",\"reason\":\"Visible text transcribed from this photograph.\"},\"netContents\":{\"status\":\"readable\",\"text\":\"1.75 LTR\",\"reason\":\"Visible text transcribed from this photograph.\"},\"producer\":{\"name\":{\"status\":\"readable\",\"text\":\"BACARDI CORPORATION\",\"reason\":\"Visible text transcribed from this photograph. Role excerpt: PRODUCED BY BACARDI CORPORATION, CATAÑO, PR 00962\"},\"address\":{\"status\":\"readable\",\"text\":\"CATAÑO, PR 00962\",\"reason\":\"Visible text transcribed from this photograph. Role excerpt: PRODUCED BY BACARDI CORPORATION, CATAÑO, PR 00962\"}},\"origin\":{\"status\":\"readable\",\"text\":\"MADE IN PUERTO RICO\",\"reason\":\"Visible text transcribed from this photograph.\"},\"warning\":{\"heading\":{\"status\":\"readable\",\"text\":\"GOVERNMENT WARNING:\",\"reason\":\"Visible text transcribed from this photograph.\"},\"body\":{\"status\":\"readable\",\"text\":\"(1) ACCORDING TO THE SURGEON GENERAL, WOMEN SHOULD NOT DRINK ALCOHOLIC BEVERAGES DURING PREGNANCY BECAUSE OF THE RISK OF BIRTH DEFECTS. (2) CONSUMPTION OF ALCOHOLIC BEVERAGES IMPAIRS YOUR ABILITY TO DRIVE A CAR OR OPERATE MACHINERY, AND MAY CAUSE HEALTH PROBLEMS.\",\"reason\":\"Visible text transcribed from this photograph.\"},\"headingBold\":true,\"bodyBold\":false}},\"provenance\":{\"brand\":{\"sourcePhotoIds\":[\"71394fea-09bd-413b-868a-ce4954624090\",\"6bc23756-079c-4b6a-9600-69fb0706b79e\"],\"conflict\":false,\"variants\":[{\"value\":\"BACARDÍ\",\"sourcePhotoIds\":[\"71394fea-09bd-413b-868a-ce4954624090\"]},{\"value\":\"BACARDI\",\"sourcePhotoIds\":[\"6bc23756-079c-4b6a-9600-69fb0706b79e\"]}]},\"classType\":{\"sourcePhotoIds\":[\"71394fea-09bd-413b-868a-ce4954624090\",\"6bc23756-079c-4b6a-9600-69fb0706b79e\"],\"conflict\":false,\"variants\":[{\"value\":\"GOLD\",\"sourcePhotoIds\":[\"71394fea-09bd-413b-868a-ce4954624090\",\"6bc23756-079c-4b6a-9600-69fb0706b79e\"]}]},\"abv\":{\"sourcePhotoIds\":[\"71394fea-09bd-413b-868a-ce4954624090\"],\"conflict\":false,\"variants\":[{\"value\":\"40% ALC./VOL.\",\"sourcePhotoIds\":[\"71394fea-09bd-413b-868a-ce4954624090\"]}]},\"netContents\":{\"sourcePhotoIds\":[\"71394fea-09bd-413b-868a-ce4954624090\",\"6bc23756-079c-4b6a-9600-69fb0706b79e\"],\"conflict\":false,\"variants\":[{\"value\":\"1.75 LTR\",\"sourcePhotoIds\":[\"71394fea-09bd-413b-868a-ce4954624090\",\"6bc23756-079c-4b6a-9600-69fb0706b79e\"]}]},\"producer.name\":{\"sourcePhotoIds\":[\"6bc23756-079c-4b6a-9600-69fb0706b79e\"],\"conflict\":false,\"variants\":[{\"value\":\"BACARDI CORPORATION\",\"sourcePhotoIds\":[\"6bc23756-079c-4b6a-9600-69fb0706b79e\"]}]},\"producer.address\":{\"sourcePhotoIds\":[\"6bc23756-079c-4b6a-9600-69fb0706b79e\"],\"conflict\":false,\"variants\":[{\"value\":\"CATAÑO, PR 00962\",\"sourcePhotoIds\":[\"6bc23756-079c-4b6a-9600-69fb0706b79e\"]}]},\"origin\":{\"sourcePhotoIds\":[\"71394fea-09bd-413b-868a-ce4954624090\",\"6bc23756-079c-4b6a-9600-69fb0706b79e\"],\"conflict\":false,\"variants\":[{\"value\":\"MADE IN PUERTO RICO\",\"sourcePhotoIds\":[\"71394fea-09bd-413b-868a-ce4954624090\"]},{\"value\":\"RUM OF PUERTO RICO\",\"sourcePhotoIds\":[\"6bc23756-079c-4b6a-9600-69fb0706b79e\"]}]},\"warning.heading\":{\"sourcePhotoIds\":[\"6bc23756-079c-4b6a-9600-69fb0706b79e\"],\"conflict\":false,\"variants\":[{\"value\":\"GOVERNMENT WARNING:\",\"sourcePhotoIds\":[\"6bc23756-079c-4b6a-9600-69fb0706b79e\"]}]},\"warning.body\":{\"sourcePhotoIds\":[\"6bc23756-079c-4b6a-9600-69fb0706b79e\"],\"conflict\":false,\"variants\":[{\"value\":\"(1) ACCORDING TO THE SURGEON GENERAL, WOMEN SHOULD NOT DRINK ALCOHOLIC BEVERAGES DURING PREGNANCY BECAUSE OF THE RISK OF BIRTH DEFECTS. (2) CONSUMPTION OF ALCOHOLIC BEVERAGES IMPAIRS YOUR ABILITY TO DRIVE A CAR OR OPERATE MACHINERY, AND MAY CAUSE HEALTH PROBLEMS.\",\"sourcePhotoIds\":[\"6bc23756-079c-4b6a-9600-69fb0706b79e\"]}]},\"warning.headingBold\":{\"sourcePhotoIds\":[\"6bc23756-079c-4b6a-9600-69fb0706b79e\"],\"conflict\":false,\"variants\":[{\"value\":true,\"sourcePhotoIds\":[\"6bc23756-079c-4b6a-9600-69fb0706b79e\"]}]},\"warning.bodyBold\":{\"sourcePhotoIds\":[\"6bc23756-079c-4b6a-9600-69fb0706b79e\"],\"conflict\":false,\"variants\":[{\"value\":false,\"sourcePhotoIds\":[\"6bc23756-079c-4b6a-9600-69fb0706b79e\"]}]}},\"extraction\":{\"schemaVersion\":2,\"promptVersion\":\"gpt41-photo-observations-v1\",\"model\":\"openai/gpt-4.1\",\"requestId\":\"b1121de1-dd85-4050-844a-6ae7f7d74d2c\",\"attemptId\":\"789e5673-3fed-5524-9858-7fc3970cf282\",\"reservationId\":\"d2b994f4-09fd-55b6-845f-0aa9c1d87d9f\"},\"comparison\":{\"processing\":\"complete\",\"applicationId\":\"TEST-BACARDI-COMPOSITE-LIVE-C583399\",\"applicationVersion\":\"1\",\"rulesVersion\":\"prototype-seven-fields-v1\",\"rulesRevision\":9,\"fields\":{\"brand\":{\"status\":\"match\",\"reasons\":[\"Brand: readable text agrees under case, layout and Latin diacritic equivalence; punctuation, words and numbers retained.\"],\"expected\":\"Bacardi\",\"observed\":{\"status\":\"readable\",\"text\":\"BACARDÍ\",\"reason\":\"Visible text transcribed from this photograph.\"},\"sourcePhotoIds\":[\"71394fea-09bd-413b-868a-ce4954624090\",\"6bc23756-079c-4b6a-9600-69fb0706b79e\"],\"conflict\":false},\"classType\":{\"status\":\"needs-review\",\"reasons\":[\"Class/type: incomplete or unsupported fragment does not establish a commodity/category. A complete compatible source photo is required; no missing class words inferred.\"],\"expected\":\"Gold Rum\",\"observed\":{\"status\":\"readable\",\"text\":\"GOLD\",\"reason\":\"Visible text transcribed from this photograph.\"},\"sourcePhotoIds\":[\"71394fea-09bd-413b-868a-ce4954624090\",\"6bc23756-079c-4b6a-9600-69fb0706b79e\"],\"conflict\":false},\"abv\":{\"status\":\"match\",\"reasons\":[\"ABV: equal declared/observed decimal percentage; no regulatory tolerance applied.\"],\"expected\":\"40\",\"observed\":{\"status\":\"readable\",\"text\":\"40% ALC./VOL.\",\"reason\":\"Visible text transcribed from this photograph.\"},\"sourcePhotoIds\":[\"71394fea-09bd-413b-868a-ce4954624090\"],\"conflict\":false},\"netContents\":{\"status\":\"match\",\"reasons\":[\"Net contents: equal exact metric volume (1 L = 1000 mL); standards of fill not evaluated.\"],\"expected\":\"1.75 L\",\"observed\":{\"status\":\"readable\",\"text\":\"1.75 LTR\",\"reason\":\"Visible text transcribed from this photograph.\"},\"sourcePhotoIds\":[\"71394fea-09bd-413b-868a-ce4954624090\",\"6bc23756-079c-4b6a-9600-69fb0706b79e\"],\"conflict\":false},\"producer\":{\"status\":\"match\",\"reasons\":[\"Producer name: agrees under case, layout and Latin accent equivalence; no role or corporate-identity certification.\",\"Producer address: whole supplied address agrees under case, Latin accents, comma layout and No. spacing; no substring verification.\"],\"expected\":\"BACARDI CORPORATION\\nCATAÑO, PR 00962\",\"observed\":{\"name\":{\"status\":\"readable\",\"text\":\"BACARDI CORPORATION\",\"reason\":\"Visible text transcribed from this photograph. Role excerpt: PRODUCED BY BACARDI CORPORATION, CATAÑO, PR 00962\"},\"address\":{\"status\":\"readable\",\"text\":\"CATAÑO, PR 00962\",\"reason\":\"Visible text transcribed from this photograph. Role excerpt: PRODUCED BY BACARDI CORPORATION, CATAÑO, PR 00962\"}},\"sourcePhotoIds\":[\"6bc23756-079c-4b6a-9600-69fb0706b79e\"],\"conflict\":false},\"origin\":{\"status\":\"not-applicable\",\"reasons\":[\"Origin: recognized domestic U.S./Puerto Rico context; imported-country comparison not applicable. Specific territory and raw source claim retained.\"],\"expected\":\"Puerto Rico\",\"observed\":{\"status\":\"readable\",\"text\":\"MADE IN PUERTO RICO\",\"reason\":\"Visible text transcribed from this photograph.\"},\"sourcePhotoIds\":[\"71394fea-09bd-413b-868a-ce4954624090\",\"6bc23756-079c-4b6a-9600-69fb0706b79e\"],\"conflict\":false},\"warning\":{\"status\":\"match\",\"reasons\":[\"Warning heading: wording matches (exact capitals and colon; layout whitespace ignored).\",\"Warning body: wording matches (body case and layout whitespace ignored; punctuation and word order retained).\",\"Warning heading boldness: observed as required. Letter case does not establish boldness.\",\"Warning body boldness: observed as required. Letter case does not establish boldness.\",\"Physical print size: unverified; inspect the physical label separately.\"],\"expected\":\"GOVERNMENT WARNING:\\n(1) According to the Surgeon General, women should not drink alcoholic beverages during pregnancy because of the risk of birth defects. (2) Consumption of alcoholic beverages impairs your ability to drive a car or operate machinery, and may cause health problems.\",\"observed\":{\"heading\":{\"status\":\"readable\",\"text\":\"GOVERNMENT WARNING:\",\"reason\":\"Visible text transcribed from this photograph.\"},\"body\":{\"status\":\"readable\",\"text\":\"(1) ACCORDING TO THE SURGEON GENERAL, WOMEN SHOULD NOT DRINK ALCOHOLIC BEVERAGES DURING PREGNANCY BECAUSE OF THE RISK OF BIRTH DEFECTS. (2) CONSUMPTION OF ALCOHOLIC BEVERAGES IMPAIRS YOUR ABILITY TO DRIVE A CAR OR OPERATE MACHINERY, AND MAY CAUSE HEALTH PROBLEMS.\",\"reason\":\"Visible text transcribed from this photograph.\"},\"headingBold\":true,\"bodyBold\":false},\"sourcePhotoIds\":[\"6bc23756-079c-4b6a-9600-69fb0706b79e\"],\"conflict\":false}},\"physicalPrintSize\":{\"status\":\"unverified\",\"reason\":\"Physical print size cannot be established from extraction/photo evidence; not measured or certified. This source-backed prototype is not exhaustive TTB legal certification.\"}}}",
+    "outcome": "second-review",
+    "confirmed": true,
+    "physical": {
+      "checked": false,
+      "note": ""
+    },
+    "notes": "DIAGNOSTIC ONLY — Fresh Bacardi front/back test on exact composite-class SHA c583399. Synthetic TEST declaration frozen independently before scan, NOT an authentic submitted application. Explicit domestic Puerto Rico retained in full; historical Cuba narrative is not current origin. Preserve original AI findings without human resolutions. No physical print-size measurement or regulatory approval. Second-review solely for diagnostic custody.",
+    "resolutions": {}
+  }
+}
