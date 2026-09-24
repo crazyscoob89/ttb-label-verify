@@ -28,4 +28,6 @@ A successful scan is a review aid, not regulatory approval. Low-quality images, 
 
 ## Deployment
 
-Hosting and live inference are not yet verified. The release must publish its actual environment, endpoint dependencies, configured retention and spending controls, and the observed upload-to-result timing. Azure feasibility is a separate validation track; no target-environment compatibility claim is made in advance.
+The current submission package uses the deployed Vercel demo linked from the repository front page, with Supabase-backed saved review history and server-side provider credentials. The release status records the reviewed source SHA, independent gate results and remaining human approvals for merge/promotion.
+
+Observed timing is reported as prototype evidence, not a guaranteed service-level agreement. Flat label images are expected to be faster than imperfect bottle photos. Azure/Government-cloud feasibility remains a separate validation track; this submission does not claim restricted-network compatibility in advance.
