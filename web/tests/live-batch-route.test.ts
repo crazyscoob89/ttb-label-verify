@@ -101,9 +101,15 @@ test('two server slots admit work, third fails closed and duplicate racing inten
   const a = intent(), b = intent();
   const first = s.handler(await request('execute', { binding, token: a }));
   const second = s.handler(await request('execute', { binding, token: b }));
-  await vi.waitFor(() => expect(s.transport).toHaveBeenCalledTimes(4));
-  try { expect((await s.handler(await request('execute', { binding, token: intent() }))).status).toBe(429); }
-  finally { release(); }
+  try {
+    // Windows ledger ACL inspection spawns PowerShell (~400-800ms per store open),
+    // so concurrent executes can take well over vi.waitFor's 1s default to reach
+    // dispatch. The gate must be released on EVERY exit path and the in-flight
+    // handlers awaited before afterEach deletes the fixture dir, otherwise the
+    // still-open spend.sqlite handle makes rmSync fail with EBUSY.
+    await vi.waitFor(() => expect(s.transport).toHaveBeenCalledTimes(4), { timeout: 30_000 });
+    expect((await s.handler(await request('execute', { binding, token: intent() }))).status).toBe(429);
+  } finally { release(); await Promise.allSettled([first, second]); }
   expect((await first).status).toBe(200); expect((await second).status).toBe(200);
   const c = intent(); const replies = await Promise.all([s.handler(await request('execute', { binding, token: c })), s.handler(await request('execute', { binding, token: c }))]);
   expect(replies.filter(r => r.status === 200)).toHaveLength(1);
