@@ -1,6 +1,12 @@
 # Engineering review register
 
-## Current PR #9 — native Windows correction accepted
+## Current final candidate — v3 demo/release prep accepted
+
+**ARGUS PASS on `e973548b5d0a9eaabbec58f4477a27b8697ad278`.** Independent verification reports typecheck/build clean, batch e2e desktop/mobile **22/22**, and live-batch route unit **5/5**. AVA reproduced the batch blocker, identified stale synthetic e2e harness assumptions against the approved v3 flow, corrected the harness and verified desktop/mobile batch gates green.
+
+This status authorizes neither merge nor deployment by itself. Merge of `ava/release-docs-cleanup` into `master`, production deploy/promotion, and duplicate repository cleanup remain separate Alex approvals. Historical records below preserve earlier PR #9 acceptance/revision rounds and their original limitations.
+
+## Historical PR #9 — native Windows correction accepted
 
 **ARGUS PASS on `bfc19494ff22ad3905bb98fb865af5c149f36941`.** The [committed independent verdict](25-pr9-bfc1949-windows-gate.md), preserved from reviewer commit `d8fd56c88e22c344e2b9316f0a94628c76b702ec`, reports **560 passed / 5 pre-existing POSIX-only skipped / 0 failed** across 28 files on native Windows / Node22.22.2, with no global timeout override, clean typecheck and Turbopack build. AVA inspected the committed report; these native results are ARGUS's execution, not an AVA rerun. Linux / Node24.21.0 separately passed 565 tests, typecheck and Webpack build. No application or test bytes change in this documentation closeout.
 
