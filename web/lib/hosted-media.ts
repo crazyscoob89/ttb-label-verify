@@ -17,8 +17,8 @@ export const uploadDeclarationSchema = z.object({ filename: filenameSchema, mime
 const ticketSchema = z.object({ v: z.literal(1), id: z.uuid(), key: z.string(), issuedAt: z.number().int().nonnegative(),
   expiresAt: z.number().int().nonnegative(), declaration: uploadDeclarationSchema }).strict();
 const ticketEnvelope = z.object({ ticket: z.string().min(1).max(60000) }).strict();
-// Domain separated and signed only with an independent server secret. Knowing
-// the shared demo access code grants issuance, never arbitrary ticket minting.
+// Domain separated and signed only with an independent server secret. The demo
+// access secret remains server-side and never grants arbitrary ticket minting.
 const mac = (payload: string, env: MediaEnv) => createHmac('sha256', mediaSigningSecret(env)).update('ttb-upload-v1\0').update(payload).digest();
 export function signUploadTicket(id: string, declaration: z.output<typeof uploadDeclarationSchema>, env: MediaEnv) {
   const issuedAt = Math.floor(Date.now() / 1000);

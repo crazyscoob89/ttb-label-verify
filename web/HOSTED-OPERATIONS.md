@@ -1,4 +1,4 @@
-# Vercel + Supabase shared-demo operations
+# Vercel + Supabase public-demo operations
 
 ## Scope and runtime
 
@@ -8,11 +8,14 @@ Node **24.x** (also pinned in `package.json` / lockfile), install `npm ci`, buil
 no typecheck/lint/test bypass is enabled. Each API route declares Node runtime,
 `force-dynamic`, and `maxDuration = 60`.
 
-The app is a **shared-code demo**, not individually authenticated reviewer accounts.
-Saved receipts continue to say “Shared demo access code — NOT an individually
-authenticated reviewer”. Existing rules, provider/model restrictions, fixed $1
-reservations, total ceiling and at-most-once dispatch are unchanged. A hosting
-migration is not authorization for new spend or a new ledger.
+The app is a **public evaluator demo**, not individually authenticated reviewer
+accounts. Reviewers do not enter a visible demo code. Saved receipts say
+“Public demo use — NOT an individually authenticated reviewer”. Existing rules,
+provider/model restrictions, at-most-once dispatch and spend ledger controls are
+unchanged. New paid scan/model reservations are additionally capped at **50 per
+UTC day** in the hosted database before provider dispatch; saved examples/history
+and review-save retries do not consume that daily scan quota. A hosting migration
+is not authorization for unbounded spend or a new ledger.
 
 ## Exact configuration
 
@@ -32,13 +35,15 @@ Use `.env.example` as the complete reference. The hosted configuration requires:
   Rebuild after changes. Runtime-only origin changes fail closed.
 - `TTB_DEMO_ENABLED=true` only after the operator's custody/activation gates;
   exact HTTPS `TTB_DEMO_ORIGIN` matching the canonical browser/API origin;
-  user-entered `TTB_DEMO_ACCESS_SECRET` and server-only `OPENROUTER_API_KEY`.
+  server-only `TTB_DEMO_ACCESS_SECRET` and server-only `OPENROUTER_API_KEY`.
+  The demo access secret remains a server-side binding/signing secret, not a
+  reviewer-entered credential.
 - **NEW `TTB_MEDIA_SIGNING_SECRET`**, an independent, cryptographically random
-  32-byte base64url value. Generate separately from the access code, service
-  key and provider key. Accepted encoding is 32–256 `[A-Za-z0-9_-]` characters;
-  production generation must provide at least 32 random bytes. Equality with
-  any of those other secrets is refused. Never give this signer to demo users,
-  expose it in public env, put it into `next.config.env`, or log it.
+  32-byte base64url value. Generate separately from the demo access secret,
+  service key and provider key. Accepted encoding is 32–256 `[A-Za-z0-9_-]`
+  characters; production generation must provide at least 32 random bytes.
+  Equality with any of those other secrets is refused. Never give this signer
+  to demo users, expose it in public env, put it into `next.config.env`, or log it.
 
 Example local secret-generation command (run twice, store outputs privately):
 `node -e "console.log(require('node:crypto').randomBytes(32).toString('base64url'))"`.
@@ -53,7 +58,7 @@ Local compatibility is available with unset mode or explicit `sqlite` only outsi
 Vercel and without hosted/public media settings; see `DEMO-OPERATIONS.md`.
 
 **Preview isolation:** do not copy production private credentials, provider key,
-shared code or canonical ledger authority into Preview. Set `TTB_DEMO_ENABLED=false`;
+demo access secret or canonical ledger authority into Preview. Set `TTB_DEMO_ENABLED=false`;
 the UI can build using just the public origin/transport and no private credentials.
 Authenticated hosted API composition also rejects a non-production `VERCEL_ENV`.
 All disabled/unauthenticated requests stop before body reads, module composition,
@@ -62,7 +67,7 @@ redacted 503. Changing aliases requires an explicit canonical-origin change/rebu
 
 ## Actual composed routes
 
-- `POST /api/uploads`: shared-code/origin fence; bounded JSON declaration;
+- `POST /api/uploads`: public-demo origin fence plus server-side demo configuration; bounded JSON declaration;
   durable upload quota reservation; create-only private signed Storage upload;
   server-only HMAC ticket bound to object UUID, filename, MIME, exact bytes,
   application and ten-minute deadline. No credentials/code go to browser Storage.
@@ -90,7 +95,7 @@ spend holds: investigate rather than resetting/replaying a paid request.
 1. Confirm the dedicated project and resource ownership. Apply the frozen
    `db/migrations/002_hosted_demo.sql` as its authorized owner. It starts with a
    **disabled, zero-ceiling ledger**. Never apply unrelated `001_identity_evidence`
-   as a prerequisite to the shared demo. Verify nonexposed private schema, forced
+   as a prerequisite to the public demo. Verify nonexposed private schema, forced
    RLS and revoked table privileges; only narrow RPC EXECUTE is granted to
    service_role, not anon/authenticated. Runtime cannot activate/fund/reset ledger.
 2. Provision both buckets **private**, 10 MiB per object, JPEG/PNG MIME allowlist;

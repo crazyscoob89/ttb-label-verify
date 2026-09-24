@@ -1,5 +1,5 @@
 import type {Page} from '@playwright/test';
-import {test,expect,verifyAccess} from './ui-diagnostics';
+import {test,expect,verifyAccess,PUBLIC_DEMO_SESSION} from './ui-diagnostics';
 import {singletonWire} from './singleton-wire-fixture';
 import type {UiCompleteComparison} from '../../lib/live-photo-client';
 import { readFileSync, mkdirSync } from 'node:fs';
@@ -34,7 +34,7 @@ test('live v3 restoration: independent intake, one access session, inline resolu
  const receipt={state:'SAVED',reviewId,comparisonId,savedAt:'2026-09-22T12:00:00Z',identity:'Public demo use — NOT an individually authenticated reviewer'};
  await page.route('**/api/**',async route=>{
   const request=route.request(),path=new URL(request.url()).pathname;
-  expect(request.headers()['x-ttb-demo-code']).toBe(code);expect(request.url()).not.toContain(code);
+  expect(request.headers()['x-ttb-demo-code']).toBe(PUBLIC_DEMO_SESSION);expect(request.url()).not.toContain(code);
   if(path==='/api/reviews/list'){checks++;return route.fulfill({json:{reviews:saves>1?[{receipt,application:original.application,outcome:'correction'}]:[]}});}
   if(path==='/api/comparisons')return singletonWire(route,legacy,bytes,result=>{comparisons++;original=result;});
   if(path==='/api/reviews'){saves++;savedIntent=request.postDataJSON().intent;return route.fulfill(saves===1?{status:503,json:{code:'reviews-unavailable'}}:{json:{receipt}});}
@@ -43,11 +43,11 @@ test('live v3 restoration: independent intake, one access session, inline resolu
   return route.abort();
  });
  await enter(page);
- await expect(page.locator('input[type=password]')).toHaveCount(1);
+ await expect(page.locator('input[type=password]')).toHaveCount(0);
  await page.getByLabel('Label image (JPEG or PNG)',{exact:true}).setInputFiles('public/offline-samples/match.png');
  await expect(page.getByAltText('Selected label — not analyzed')).toBeVisible();expect(comparisons).toBe(0);
  await expect(page.locator('#brand')).not.toBeVisible();await screenshot(page,'live-entry',info.project.name);
- await verify(page);expect(checks).toBe(1);await expect(page.locator('input[type=password]')).toHaveCount(0);
+ await verify(page);expect(checks).toBe(0);await expect(page.locator('input[type=password]')).toHaveCount(0);
  await application(page);await page.getByRole('button',{name:'Submit for comparison',exact:true}).click();
  const results=page.getByRole('region',{name:'Live comparison results'});
  await expect(results.getByRole('table')).toBeVisible();await expect(results.locator('tbody>tr')).toHaveCount(7);
@@ -72,14 +72,15 @@ test('live v3 restoration: independent intake, one access session, inline resolu
  await screenshot(page,'live-reopened-original',info.project.name);
  expect(await page.evaluate(()=>JSON.stringify([localStorage,sessionStorage]))).not.toContain(code);expect(errors).toEqual([]);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
- await page.getByRole('button',{name:'Clear session',exact:true}).click();await expect(page.getByLabel('Demo access code',{exact:true})).toHaveValue('');await expect(reopened).toHaveCount(0);
+ await page.getByRole('button',{name:'Reset page session',exact:true}).click();await expect(page.locator('input[type=password]')).toHaveCount(0);await expect(reopened).toHaveCount(0);
 });
 
-test('verification distinguishes denied access from service failure; no secret persistence',async({page})=>{
- let status=503;await page.route('**/api/reviews/list',route=>route.fulfill({status,json:{code:status===403?'access-denied':'reviews-unavailable'}}));
- await enter(page);await page.getByLabel('Demo access code',{exact:true}).fill(code);await page.getByRole('button',{name:'Verify access'}).click();await expect(page.getByRole('region',{name:'Demo session access'}).getByRole('alert')).toContainText('not a bad-code result');await expect(page.getByText('✓ Access verified',{exact:true})).toHaveCount(0);
- status=403;await page.getByRole('button',{name:'Verify access'}).click();await expect(page.getByRole('region',{name:'Demo session access'}).getByRole('alert')).toContainText('Access denied');
- await page.reload();await expect(page.getByLabel('Demo access code',{exact:true})).toHaveValue('');
+test('public session has no reviewer-entered code or secret persistence',async({page})=>{
+ await enter(page);const region=page.getByRole('region',{name:'Demo session access'});
+ await expect(region.getByText('✓ Public demo access',{exact:true})).toBeVisible();
+ await expect(page.locator('input[type=password]')).toHaveCount(0);
+ await page.reload();await expect(page.locator('input[type=password]')).toHaveCount(0);
+ expect(await page.evaluate(()=>JSON.stringify([localStorage,sessionStorage]))).not.toContain(code);
 });
 
 test('matching live evidence still requires independent physical assessment before Pass',async({page},info)=>{
@@ -96,7 +97,7 @@ test('live Batch/C overview and horizontal selected review preserve per-record d
  const appA={...fixtures.application,applicationId:'BATCH-A',abv:45} as Application,appB={...fixtures.application,applicationId:'BATCH-B'} as Application;
  let runs=0;
  await page.route('**/api/**',async route=>{
-  const request=route.request();expect(request.headers()['x-ttb-demo-code']).toBe(code);
+  const request=route.request();expect(request.headers()['x-ttb-demo-code']).toBe(PUBLIC_DEMO_SESSION);
   if(new URL(request.url()).pathname==='/api/reviews/list')return route.fulfill({json:{reviews:[]}});
   const body=await new Response(new Uint8Array(request.postDataBuffer()!),{headers:{'content-type':request.headers()['content-type']}}).formData();const group=JSON.parse(String(body.get('group')));return singletonWire(route,record(group.application.applicationId==='BATCH-A'?appA:appB),bytes,()=>{runs++;},false);
  });

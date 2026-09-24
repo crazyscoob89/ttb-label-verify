@@ -1,4 +1,4 @@
-import {test,expect,verifyAccess} from './ui-diagnostics';
+import {test,expect,verifyAccess,PUBLIC_DEMO_SESSION} from './ui-diagnostics';
 import type {Page,Route} from '@playwright/test';
 import {readFileSync} from 'node:fs';
 import {createHash,randomUUID} from 'node:crypto';
@@ -24,7 +24,7 @@ async function application(page:Page){await page.locator('#entry-application-tab
 async function input(page:Page){await page.getByLabel('Label image (JPEG or PNG)',{exact:true}).setInputFiles(uploads);await page.getByLabel('Role for front.png').selectOption('front');await page.getByLabel('Role for back.png').selectOption('back');await application(page);}
 async function mock(page:Page,options:{delayPrepare?:Promise<void>;delaySave?:Promise<void>}={}){
  const prepared=new Map<string,ReturnType<typeof bound>>();let executes=0,saves=0,last:CompletePhotoComparison|undefined,intent:unknown;
- await page.route('**/api/**',async route=>{const path=new URL(route.request().url()).pathname;expect(route.request().headers()['x-ttb-demo-code']).toBe(code);
+ await page.route('**/api/**',async route=>{const path=new URL(route.request().url()).pathname;expect(route.request().headers()['x-ttb-demo-code']).toBe(PUBLIC_DEMO_SESSION);
  if(path==='/api/reviews/list')return route.fulfill({json:{reviews:saves&&last?[{receipt,application:last.application,outcome:'correction'}]:[]}});
  if(path==='/api/comparisons'){const {group,operation,body}=await requestGroup(route);expect([...body.keys()]).toEqual(['group','operation',...group.photos.map(p=>'photo:'+p.photoId)]);expect(route.request().headers()['x-ttb-batch-intent']).toBeUndefined();
  if(operation.phase==='prepare'){const result=bound(group);prepared.set(group.groupId,result);await options.delayPrepare;return route.fulfill({json:{prepared:result.prepared}}).catch(()=>{});}

@@ -1,6 +1,6 @@
 # Hosted demo backend / custody operator notes
 
-This backend preserves the shared demo identity. It is **not** managed-user authentication. The service-role secret must remain in server-only environment variables. Never grant these RPCs to `anon` or `authenticated`, and never expose `ttb_demo_private` through PostgREST. The two public RPCs have bounded, allowlisted operations and no fund/reset/reconcile operation.
+This backend preserves public-demo, non-individual reviewer identity. It is **not** managed-user authentication. The service-role secret must remain in server-only environment variables. Never grant these RPCs to `anon` or `authenticated`, and never expose `ttb_demo_private` through PostgREST. The public RPCs have bounded, allowlisted operations and no fund/reset/reconcile operation.
 
 ## Composition (integration owner)
 

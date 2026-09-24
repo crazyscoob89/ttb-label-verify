@@ -1,6 +1,6 @@
-# Durable shared-demo reviews (local single-host slice)
+# Durable public-demo reviews
 
-This adds a real SQLite save/reopen path to the guarded comparison demo. It is **not Supabase, individual reviewer authentication, COLA submission, or a production multi-tenant record system**. Anyone holding the shared demo code can read the shared history. Every receipt explicitly says: **Shared demo access code — NOT an individually authenticated reviewer**.
+This adds real save/reopen paths to the comparison demo. It is **not individual reviewer authentication, COLA submission, or a production multi-tenant approval system**. The current hosted demo is public for evaluator testing, with origin-gated API calls and server-side scan quota controls. Every receipt explicitly says: **Public demo use — NOT an individually authenticated reviewer**.
 
 ## Authority and durability
 
@@ -23,11 +23,11 @@ node --import tsx scripts/provision-reviews.ts --create-new-private-review-store
 
 The command creates **only a new `reviews.sqlite`**. It never creates the parent directory, replaces an existing DB, resets data, provisions a spending ledger or migrates a different schema. Runtime refuses a missing, insecure, symlinked/hardlinked or wrong-schema database. Keep the separate review directory on the same persistent private host volume across service restarts; back it up consistently using SQLite-aware procedures or while stopped. This change performs no hosting or cloud setup.
 
-The existing `TTB_DEMO_ENABLED`, `TTB_DEMO_ACCESS_SECRET`, and exact `TTB_DEMO_ORIGIN` protect all review operations. Do not put the shared code in URLs, source, logs, public assets or browser storage. History does not require a provider key or an open spending DB. The existing comparison configuration and spending limits are unchanged. Use `http://localhost:<port>` for local browser proof: NextRequest normalizes numeric loopback hosts to `localhost`; exact-origin checks are intentionally not relaxed.
+The existing `TTB_DEMO_ENABLED`, server-only `TTB_DEMO_ACCESS_SECRET`, and exact `TTB_DEMO_ORIGIN` protect all review operations. Do not put the server-side secret in URLs, source, logs, public assets or browser storage. History does not require a provider key or an open spending DB. Use `http://localhost:<port>` for local browser proof: NextRequest normalizes numeric loopback hosts to `localhost`; exact-origin checks are intentionally not relaxed.
 
 ## API
 
-All review operations are authenticated **POST** requests with `x-ttb-demo-code` and the exact Origin. Read operations deliberately use POST to retain the same browser Origin fence as writes. No CORS/public image route is added. Unsupported methods also run the access fence and return no-store errors.
+All review operations are **POST** requests fenced by exact Origin and the server-side demo configuration. The public UI supplies its internal public-demo session header; reviewers do not type a code. Read operations deliberately use POST to retain the same browser Origin fence as writes. No CORS/public image route is added. Unsupported methods also run the access fence and return no-store errors.
 
 | Path | Body / result |
 | --- | --- |
@@ -64,4 +64,4 @@ node node_modules/@playwright/test/cli.js test tests/e2e/durable-reviews.spec.ts
 
 `CIRCLE_NODE_TOTAL=2` bounds Next's build workers to one on memory-constrained hosts; it does not alter production timeouts or logic. Configure `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` if the matching managed browser is not installed. The browser test starts/stops its own loopback-only production Next service, uses real disposable SQLite files, real guarded handlers and only an injected synthetic provider transport. Review endpoints run through the built Next route, not mocked fetch responses. It verifies lost-response replay, single and batch saves, revision clearing, a changed OS service PID, browser reload/history reopen, the full original application, normalized image digest, denied unauthenticated evidence, and no browser errors. No paid request is made. Desktop and mobile projects are supported.
 
-Set `TTB_DURABLE_EVIDENCE_DIR` to a disposable artifact directory to retain screenshots, proof JSON, service PID log and private test databases. Otherwise the test removes its temporary database directory. Do not enable traces containing shared-code headers. The synthetic-provider harness is test-only; production has no mock-provider environment switch.
+Set `TTB_DURABLE_EVIDENCE_DIR` to a disposable artifact directory to retain screenshots, proof JSON, service PID log and private test databases. Otherwise the test removes its temporary database directory. Do not enable traces containing demo access headers or server secrets. The synthetic-provider harness is test-only; production has no mock-provider environment switch.

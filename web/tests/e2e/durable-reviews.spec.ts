@@ -45,7 +45,7 @@ test('durable single + batch save, lost-response retry, process restart and orig
   const application={...fixtures.application,applicationId:'DURABLE-SYNTHETIC-001',applicationVersion:'original-v1'};
   for(const key of ['applicationId','applicationVersion','brand','classType','abv','netContents','producerName','producerAddress'])await page.locator('#'+key).fill(String(application[key]));
   await page.locator('#commodity').selectOption(application.commodity);await page.locator('#imported').selectOption(String(application.imported));await page.locator('#originKind').selectOption(application.origin.kind);await page.locator('#country').fill(application.origin.country);
-  await page.getByLabel('Demo access code',{exact:true}).fill(code);await page.getByRole('button',{name:'Verify access',exact:true}).click();await expect(page.getByText('✓ Access verified',{exact:true})).toBeVisible();
+  await expect(page.getByText('✓ Public demo access',{exact:true})).toBeVisible();await expect(page.locator('input[type=password]')).toHaveCount(0);
   await page.getByRole('button',{name:'Submit for comparison',exact:true}).click();await expect(page.getByRole('region',{name:'Live comparison results'}).getByRole('table')).toBeVisible();const compared=latestGroupSnapshot(join(reviews,'reviews.sqlite'));expect(compared.comparisonId).toBeTruthy();
   await expect(page.getByRole('radio',{name:'Pass',exact:true})).toBeDisabled();
   await page.getByRole('radio',{name:'Second reviewer',exact:true}).check();await page.getByLabel('Correction / escalation notes').fill('Synthetic durability proof: original evidence needs another reviewer.');await page.getByLabel(confirmation).check();
@@ -84,7 +84,7 @@ test('durable single + batch save, lost-response retry, process restart and orig
   await expect(activePair).toContainText('Revision 3');await expect(activePair.getByTestId('saved-review')).toHaveCount(0);await expect(page.getByTestId('batch-summary')).toContainText('Saved reviews: 0');
   // A new OS process, same explicitly provisioned SQLite files, empty browser state.
   await stop();await start();expect(pids[1]).not.toBe(pids[0]);await page.reload();
-  await page.getByLabel('Demo access code',{exact:true}).fill(code);await page.getByRole('button',{name:'Verify access',exact:true}).click();await expect(page.getByText('✓ Access verified',{exact:true})).toBeVisible();await page.getByRole('button',{name:'Load saved reviews',exact:true}).click();
+  await expect(page.getByText('✓ Public demo access',{exact:true})).toBeVisible();await expect(page.locator('input[type=password]')).toHaveCount(0);await page.getByRole('button',{name:'Load saved reviews',exact:true}).click();
   await page.getByRole('button',{name:'Reopen DURABLE-SYNTHETIC-001 / original-v1 — second-review',exact:true}).click();
   await expect(page.getByTestId('reopened-review')).toContainText('SAVED — original review reopened');
   await page.getByText('Original application declarations',{exact:true}).click();

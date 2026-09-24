@@ -13,7 +13,7 @@ export function groupExtractionProviderName(env: Env): 'openrouter' | 'azure-fou
   throw unavailable();
 }
 
-/** Independent server-only signer. The shared demo code is NOT a signing key.
+/** Independent server-only signer. The demo access secret is NOT a media signing key.
  * Generate at least 32 random bytes (base64url); never set a NEXT_PUBLIC alias. */
 export function mediaSigningSecret(env: Env): string {
   const key = env.TTB_MEDIA_SIGNING_SECRET;
@@ -23,7 +23,7 @@ export function mediaSigningSecret(env: Env): string {
   return key;
 }
 
-/** Pure validation, no DB/files/network. Call lazily after shared-code auth.
+/** Pure validation, no DB/files/network. Call lazily after public-demo origin auth.
  * Legacy local mode remains the default only outside managed hosting. Hosted
  * selection cannot fall back to SQLite, even when configuration is incomplete. */
 export function validateRuntimeEnv(env: Env): 'sqlite' | 'supabase' {

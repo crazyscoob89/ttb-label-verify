@@ -91,7 +91,7 @@ BEGIN
  RETURN jsonb_build_object('binding',h.binding::jsonb,'state',h.state,'claimId',h.claim,'ledger',jsonb_build_object('currency','USD','ceilingMicrousd',l.ceiling,'incurredMicrousd',l.incurred,'unresolvedMicrousd',held));
 END $$;
 CREATE FUNCTION ttb_demo_private.receipt(r ttb_demo_private.reviews) RETURNS jsonb LANGUAGE sql IMMUTABLE SET search_path=pg_catalog AS $$
- SELECT jsonb_build_object('state','SAVED','reviewId',r.id,'comparisonId',r.comparison_id,'savedAt',r.saved_at,'identity','Shared demo access code — NOT an individually authenticated reviewer');
+ SELECT jsonb_build_object('state','SAVED','reviewId',r.id,'comparisonId',r.comparison_id,'savedAt',r.saved_at,'identity','Public demo use — NOT an individually authenticated reviewer');
 $$;
 CREATE FUNCTION public.ttb_demo_review(p_op text,p_input jsonb) RETURNS jsonb
 LANGUAGE plpgsql SECURITY DEFINER SET search_path=pg_catalog SET lock_timeout='2s' SET statement_timeout='4s' AS $$

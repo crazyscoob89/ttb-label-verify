@@ -44,7 +44,6 @@ test('live batch retains Files/tabs, caps two slots, fences edited revision, and
     await page.getByLabel('Label image (JPEG or PNG)',{exact:true}).setInputFiles('public/offline-samples/match.png');
     await page.getByRole('tab',{name:'Batch upload',exact:true}).click();
     const mode=page.getByLabel('Batch execution mode'); if (await mode.count()) await mode.selectOption('live');
-    await page.getByLabel('Batch demo access code',{exact:true}).fill(code);
     const png=readFileSync('public/offline-samples/match.png');
     await page.getByLabel('Batch label images').setInputFiles(['a.png','b.png','bad.png'].map(name=>({name,mimeType:'image/png',buffer:name==='bad.png'?Buffer.from('invalid png'):png})));
     const manifest=['a.png','b.png','bad.png'].map(filename=>({filename,application:{...fixtures.application,applicationId:filename}}));

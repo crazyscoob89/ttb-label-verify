@@ -144,7 +144,7 @@ export default function BatchWorkspace({offlineEnabled}:{offlineEnabled:boolean}
     <p className="eyebrow">Batch upload · queue landing</p><h1>Prepare a batch. Review one bottle at a time.</h1>
     <p>Open a record for its full-width comparison and individual confirmation. No bulk approve.</p>
     {offlineEnabled && <label>Batch execution mode<select aria-label="Batch execution mode" value={live?'live':'offline'} disabled={!!state?.inFlight.length} onChange={e=>{clear();setLive(e.target.value==='live');}}><option value="offline">Offline synthetic samples</option><option value="live">Guarded live comparison</option></select></label>}
-    {live && <p className="help">Shared session access is reused. Reviews remain UNSAVED until a server receipt confirms save. No automatic comparison retries or refunds. Use authorized demo images only.</p>}
+    {live && <p className="help">Public demo session access is reused. Reviews remain UNSAVED until a server receipt confirms save. No automatic comparison retries or refunds. Use authorized demo images only.</p>}
     <BatchUpload key={live?'live':'offline'} offlineEnabled={offlineEnabled} live={live} onPrepared={prepare} onClear={clear} />
     {prepared && <section aria-label="Manifest validation" className="notice">
       <p data-testid="manifest-counts">Manifest — Total: {prepared.manifest.counts.total} · Valid: {prepared.manifest.counts.valid} · Blocked: {prepared.manifest.counts.blocked}</p>

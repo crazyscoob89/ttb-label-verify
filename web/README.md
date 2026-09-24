@@ -2,26 +2,29 @@
 
 ## Current managed hosting
 
-The application now supports the guarded shared-code workflow on **Vercel +
-Supabase**: lazy hosted RPC stores, private direct uploads, durable normalized
-snapshots, saved review history and signed evidence links. Read
-[HOSTED-OPERATIONS.md](HOSTED-OPERATIONS.md) and `.env.example` for exact configuration,
-Node **24.x**, production/Preview isolation and the required server-only media
-signer. All live paths remain default-deny; local SQLite is an explicit supported
-alternative, never a hosted fallback. Source qualification is not a claim of
-cloud deployment, custody transfer or paid-provider acceptance.
+The application now supports the public evaluator demo on **Vercel + Supabase**:
+private direct uploads, durable normalized snapshots, saved review history and
+signed evidence links. Reviewers do **not** enter a visible demo access code.
+Paid scan/model reservations are capped server-side at **50 per UTC day**; saved
+examples and history do not consume the quota. Read [HOSTED-OPERATIONS.md](HOSTED-OPERATIONS.md)
+and `.env.example` for exact configuration, Node **24.x**, production/Preview
+isolation and the required server-only media signer. All live paths remain
+origin-gated/default-deny; local SQLite is an explicit supported alternative,
+never a hosted fallback. Source qualification is not a claim of cloud deployment,
+custody transfer or paid-provider acceptance.
 
-From `web/`: `npm ci`, `npm test -- --maxWorkers=1`, `npm run typecheck`, and
-`NEXT_TELEMETRY_DISABLED=1 npm run build`. Build uses webpack and one Next worker
-for bounded memory, with no skipped checks. Vercel project root is `web`.
+From `web/` with Node **24.x**: `npm ci`, `npm test -- --maxWorkers=1`,
+`npm run typecheck`, and `NEXT_TELEMETRY_DISABLED=1 npm run build`. Build uses
+webpack and one Next worker for bounded memory, with no skipped checks. Vercel
+project root is `web`.
 
 ## Historical Phase 3 foundation record (superseded behavior)
 
 The remainder records the original Phase 3 local candidate, not current route,
-feature or production availability. Later shared-code and durable-review work,
-including managed hosting above, supersedes its “no live route/history” statements.
-Historical commands/runtime ranges below are not the current Node 24 deployment
-instructions.
+feature or production availability. Later public-demo, quota and durable-review
+work, including managed hosting above, supersedes its “no live route/history”
+statements. Historical commands/runtime ranges below are not the current Node 24
+deployment instructions.
 
 
 Phase 3 local implementation candidate; parent verification and consolidated independent review pending. Synthetic local use only. Phase 1/2 acceptance is recorded separately; it is not Phase 3 approval.
