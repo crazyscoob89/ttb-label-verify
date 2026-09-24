@@ -154,7 +154,7 @@ export function createDemoHandler({env=process.env,transport=(url,init)=>fetch(u
     return {attemptId:identity.attemptId,reservationId:identity.reservationId};
    } : undefined});
    const result=await compare(input);
-   return Response.json({result,comparisonId,reviewAvailability,elapsedMs:Math.round(performance.now()-started)},{status:result.processing==='complete'?200:result.code==='invalid-input'?400:502,headers:{'Cache-Control':'no-store'}});
+   return Response.json({result,comparisonId,reviewAvailability,elapsedMs:Math.round(performance.now()-started)},{status:result.processing==='complete'?200:result.code==='invalid-input'?400:result.code==='daily-limit-reached'?429:502,headers:{'Cache-Control':'no-store'}});
   }catch(e){if(signal.aborted)return reply(408,request.signal.aborted?'cancelled':'timeout');return reply(e instanceof InputError?e.status:400,'invalid-input');}
   finally{
    clearTimeout(timeout);controller.abort();

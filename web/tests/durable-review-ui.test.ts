@@ -6,7 +6,7 @@ vi.mock('react',()=>({useState:(initial:unknown)=>{const i=hooks.cursor++;if(!(i
 import {useDurableReview} from '../lib/use-durable-review';
 beforeEach(()=>{hooks.values=[];hooks.cursor=0;hooks.cleanups=[];});afterEach(()=>vi.unstubAllGlobals());
 const intent={...newReviewIntent({synthetic:'UI hook test only'}),outcome:'correction' as const,notes:'Synthetic correction notes',confirmed:true};
-function receipt(id:string){return {state:'SAVED',reviewId:randomUUID(),comparisonId:id,savedAt:'2026-09-22T12:00:00Z',identity:'Shared demo access code — NOT an individually authenticated reviewer'};}
+function receipt(id:string){return {state:'SAVED',reviewId:randomUUID(),comparisonId:id,savedAt:'2026-09-22T12:00:00Z',identity:'Public demo use — NOT an individually authenticated reviewer'};}
 function render(id:string,onSaved:NonNullable<Parameters<typeof useDurableReview>[3]>,epoch=0,value=intent){hooks.cursor=0;return useDurableReview(id,'test-code',value,onSaved,epoch);}
 test('late server receipt after navigation ABA cannot mark current UI saved; unchanged retry retains idempotency key',async()=>{
  const id=randomUUID(),saved=receipt(id),onSaved=vi.fn();let finish!:(r:Response)=>void;const fetcher=vi.fn<typeof fetch>().mockImplementationOnce(()=>new Promise(resolve=>finish=resolve)).mockResolvedValueOnce(Response.json({receipt:saved}));vi.stubGlobal('fetch',fetcher);

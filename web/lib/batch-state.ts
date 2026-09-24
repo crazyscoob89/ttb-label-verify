@@ -68,7 +68,7 @@ const saveTokenSchema = z.object({
   selectionEpoch: z.number().int().nonnegative(), submissionId: z.uuid(), bindingKey: z.string().min(1), intentKey: z.string().min(1),
 }).strict();
 const receiptSchema = z.object({ receiptId: z.string().min(1).max(256).refine(v => v.trim() === v && !/[\u0000-\u001f\u007f]/.test(v)), token: saveTokenSchema, outcome: z.enum(['pass', 'correction', 'second-review']) }).strict();
-const failureSchema = z.object({ processing: z.literal('failed'), code: z.enum(['access-denied', 'invalid-input', 'invalid-extraction', 'provider-failed', 'timeout', 'cancelled', 'unconfigured']) }).strict();
+const failureSchema = z.object({ processing: z.literal('failed'), code: z.enum(['access-denied', 'invalid-input', 'invalid-extraction', 'provider-failed', 'timeout', 'cancelled', 'unconfigured', 'daily-limit-reached']) }).strict();
 const equalAttempt = (a: AttemptToken, b: AttemptToken) => a.batchId === b.batchId && a.pairId === b.pairId && a.revision === b.revision && a.attemptId === b.attemptId && a.reservationId === b.reservationId;
 const equalSave = (a: SaveToken, b: SaveToken) => a.batchId === b.batchId && a.pairId === b.pairId && a.revision === b.revision && a.selectionEpoch === b.selectionEpoch && a.submissionId === b.submissionId && a.bindingKey === b.bindingKey && a.intentKey === b.intentKey;
 const result = (state: BatchState, commands: BatchCommand[] = [], rejected: string | null = null): BatchTransition => immutable({ state, commands, rejected });

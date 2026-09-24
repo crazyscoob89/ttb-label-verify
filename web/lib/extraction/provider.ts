@@ -8,7 +8,7 @@ export const PROMPT_VERSION = 'image-observations-v1';
 export const EXTRACTION_LIMITS = Object.freeze({ inputBytes: 10 * 1024 * 1024, responseBytes: 128 * 1024, outputTokens: 3000, timeoutMs: 20000 });
 export type ExtractionRequest = { image: Uint8Array; mimeType: 'image/png' | 'image/jpeg'; reservationId: string; attemptId: string };
 export type ExtractionMetadata = { source: 'openrouter' | 'fixture'; model: string; schemaVersion: 1; rulesVersion: typeof RULES_VERSION; promptVersion: typeof PROMPT_VERSION; imageSha256: string; requestId: string; reservationId?: string; attemptId?: string };
-export type ExtractionResult = { processing: 'complete'; evidence: ExtractionEvidence; metadata: ExtractionMetadata } | { processing: 'failed'; code: 'unconfigured' | 'invalid-request' | 'provider-failed' | 'spend-unavailable' | 'invalid-fixture' };
+export type ExtractionResult = { processing: 'complete'; evidence: ExtractionEvidence; metadata: ExtractionMetadata } | { processing: 'failed'; code: 'unconfigured' | 'invalid-request' | 'provider-failed' | 'spend-unavailable' | 'daily-limit-reached' | 'invalid-fixture' };
 export interface ExtractionProvider { extract(request: ExtractionRequest): Promise<ExtractionResult> }
 
 const requestSchema = z.object({

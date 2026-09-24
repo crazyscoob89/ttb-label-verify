@@ -41,7 +41,7 @@ test('actual app managed prepare/execute, snapshot assets, human save/reopen, re
    if(p_op==='complete')return Response.json(await ledger.complete(p_input.binding,p_input.claimId));
    if(p_op==='snapshot_prepare')snapshot=p_input;
    if(p_op==='snapshot_get')return Response.json({record:snapshot.record,assets:snapshot.assets});
-   if(p_op==='save'){savedIntent=p_input.intent;receipt={state:'SAVED',reviewId:randomUUID(),comparisonId:p_input.comparisonId,savedAt:new Date().toISOString(),identity:'Shared demo access code — NOT an individually authenticated reviewer'};return Response.json(receipt);}
+   if(p_op==='save'){savedIntent=p_input.intent;receipt={state:'SAVED',reviewId:randomUUID(),comparisonId:p_input.comparisonId,savedAt:new Date().toISOString(),identity:'Public demo use — NOT an individually authenticated reviewer'};return Response.json(receipt);}
    if(p_op==='detail')return Response.json({receipt,record:snapshot.record,intent:savedIntent,assets:snapshot.assets});
    return Response.json(null);
   }

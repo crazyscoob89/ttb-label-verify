@@ -50,7 +50,7 @@ export function createComparisonService(options: {
       catch { return fail('invalid-input'); }
       try {
         const result = await options.provider.extract({ image: pair.image.bytes, mimeType: pair.image.mime, ...identity });
-        if (result.processing === 'failed') return fail(result.code === 'unconfigured' ? 'unconfigured' : 'provider-failed');
+        if (result.processing === 'failed') return fail(result.code === 'unconfigured' ? 'unconfigured' : result.code === 'daily-limit-reached' ? 'daily-limit-reached' : 'provider-failed');
         const record=finalizeComparison(pair.application, result, pair.image.sanitizedSha256);
         if(!stopped && record.processing==='complete') {
           // Extraction has completed before its deadline. A slow/failed snapshot

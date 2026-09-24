@@ -78,7 +78,7 @@ export function createGpt41GroupProvider(dependencies:Gpt41Dependencies={}):Grou
       signal?.throwIfAborted();
       return {photoId:request.photos[slot].descriptor.photoId,evidence:parseGpt41Envelope(raw)};
     };
-    let groupFailure:'execution-failed'|'spend-unavailable'|undefined;
+    let groupFailure:'execution-failed'|'spend-unavailable'|'daily-limit-reached'|undefined;
     const group=await executeReserved(store,bindingFor(0),async()=>{
       const photos:Awaited<ReturnType<typeof inferPhoto>>[]=[];
       // Parent is both exclusive group gate and photo 0's actual claim. Retain it
@@ -96,7 +96,7 @@ export function createGpt41GroupProvider(dependencies:Gpt41Dependencies={}):Grou
       }
       signal?.throwIfAborted();return parsePhotoSetEvidence({schemaVersion:2,photos},request.photos.map(p=>p.descriptor.photoId));
     });
-    if(!group.ok)return {processing:'failed',code:group.code==='spend-unavailable'||groupFailure==='spend-unavailable'?'spend-unavailable':'provider-failed'};
+    if(!group.ok)return {processing:'failed',code:group.code==='daily-limit-reached'||groupFailure==='daily-limit-reached'?'daily-limit-reached':group.code==='spend-unavailable'||groupFailure==='spend-unavailable'?'spend-unavailable':'provider-failed'};
     return {processing:'complete',evidence:group.value,metadata};
   }};
 }

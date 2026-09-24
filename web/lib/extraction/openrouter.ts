@@ -118,7 +118,7 @@ export function createOpenRouterProvider(dependencies: OpenRouterDependencies = 
         }));
         return parseExtractionEvidence(parseContent(envelope.choices[0].message.content));
       });
-      if (!result.ok) return { processing: 'failed', code: result.code === 'execution-failed' ? 'provider-failed' : 'spend-unavailable' };
+      if (!result.ok) return { processing: 'failed', code: result.code === 'daily-limit-reached' ? 'daily-limit-reached' : result.code === 'execution-failed' ? 'provider-failed' : 'spend-unavailable' };
       return { processing: 'complete', evidence: result.value, metadata };
     },
   };
@@ -163,7 +163,7 @@ export function createOpenRouterGroupProvider(dependencies: OpenRouterDependenci
       // Accept exactly this photo, never filter a multi-photo answer afterward.
       return parseGroupWire(parseContent(envelope.choices[0].message.content), [request.photos[slot].descriptor.photoId]).photos[0];
     };
-    let groupFailure: 'execution-failed' | 'spend-unavailable' | undefined;
+    let groupFailure: 'execution-failed' | 'spend-unavailable' | 'daily-limit-reached' | undefined;
     // The parent reservation/claim is the exclusive group gate AND slot 0's
     // single POST hold. No child may reserve until this operation owns the gate.
     // Keep it claimed through all waves and validation, not just photo 0.
@@ -194,7 +194,7 @@ export function createOpenRouterGroupProvider(dependencies: OpenRouterDependenci
     });
     // executeReserved still marks failed work unresolved (never refunds), after
     // every started child is drained. Only a validated whole group can succeed.
-    if (!group.ok) return { processing: 'failed', code: group.code === 'spend-unavailable' || groupFailure === 'spend-unavailable' ? 'spend-unavailable' : 'provider-failed' };
+    if (!group.ok) return { processing: 'failed', code: group.code === 'daily-limit-reached' || groupFailure === 'daily-limit-reached' ? 'daily-limit-reached' : group.code === 'spend-unavailable' || groupFailure === 'spend-unavailable' ? 'spend-unavailable' : 'provider-failed' };
     return { processing: 'complete', evidence: group.value, metadata };
   } };
 }

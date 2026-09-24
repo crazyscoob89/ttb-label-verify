@@ -42,7 +42,6 @@ export default function PairInput() {
     setFeedback(errors.length?{kind:'error',messages:errors}:{kind:'checked',messages:['Application fields checked locally. Image content is still unvalidated. Nothing has been uploaded, analyzed or saved.']});
     requestAnimationFrame(()=>feedbackRef.current?.focus());
     if(!live||errors.length||!result.success)return;
-    if(!accessCode){setFeedback({kind:'error',messages:['Verify demo access once above before starting a live comparison.']});return;}
     submitting.current=true;setRunning(true);const started=performance.now();
     try{
       const active=new AbortController();controller.current=active;const signal=AbortSignal.any([active.signal,AbortSignal.timeout(55000)]);
@@ -55,7 +54,7 @@ export default function PairInput() {
       if(payload.result?.processing!=='complete'){
         setRecord(payload.result?.processing==='failed'?payload.result:null);
         const code=payload.result?.processing==='failed'?payload.result.code:'provider-failed';
-        setFeedback({kind:'error',messages:[code==='access-denied'?'Access denied by server. The code or server access configuration may have changed.':code==='invalid-input'?'Invalid image or application. Check the file signature, size and required fields.':`Comparison unavailable (${code??'provider-failed'}). No match was produced. A spend hold may remain; do not automatically retry.`]});
+        setFeedback({kind:'error',messages:[code==='daily-limit-reached'?'Daily demo scan limit reached. The public demo allows 50 paid scans per UTC day; saved examples and history remain available.':code==='access-denied'?'Access denied by server. The server access configuration may have changed.':code==='invalid-input'?'Invalid image or application. Check the file signature, size and required fields.':`Comparison unavailable (${code??'provider-failed'}). No match was produced. A spend hold may remain; do not automatically retry.`]});
       }else{setRecord(payload.result);setComparisonId(payload.comparisonId);setEditing(false);setFeedback(null);}
     }catch(error){if(mounted.current&&run===generation.current){setElapsed(Math.round(performance.now()-started));const reason=error instanceof Error&&/^[a-z-]{1,80}$/.test(error.message)?` (${error.message})`:'';setFeedback({kind:'error',messages:[`Whole photo group unavailable${reason}. No match produced; spend may have been incurred. No automatic retry. Check saved history before starting new work.`]});}}
     finally{submitting.current=false;if(mounted.current){setRunning(false);requestAnimationFrame(()=>feedbackRef.current?.focus());}}
@@ -80,7 +79,7 @@ export default function PairInput() {
           <div><label htmlFor="country">Country of origin</label><input id="country" name="country" type="text" required maxLength={1000}/></div>
         </div><p className="help">Enter the declared country or territory, not an importer’s address. Domestic context supports United States or Puerto Rico; keep Puerto Rico when that is the declared origin. Imported context requires a foreign country. This does not determine legal applicability. Identifiers are preserved exactly.</p></fieldset>
       </section>
-      <div className="actions"><button type="submit" disabled={running}>Check application fields</button><button type="submit" value="live" disabled={running||!accessCode}>Submit for comparison</button></div><p className="help">{accessCode?'Access verified.':'Verify access above before live processing.'} Submission may incur provider spend. No automatic retries. Only a server-confirmed SAVED receipt is durable.</p>
+      <div className="actions"><button type="submit" disabled={running}>Check application fields</button><button type="submit" value="live" disabled={running}>Submit for comparison</button></div><p className="help">Public demo processing is open. Server-side quota: 50 paid scans per UTC day. No automatic retries. Only a server-confirmed SAVED receipt is durable.</p>
     </form>
     <OperationTimings stages={stages} local={!process.env.NEXT_PUBLIC_TTB_MEDIA_TRANSPORT}/>
     {feedback&&<div ref={feedbackRef} tabIndex={-1} className={`notice ${feedback.kind==='error'?'error':''}`} role={feedback.kind==='error'?'alert':'status'}><ul>{feedback.messages.map(message=><li key={message}>{message}</li>)}</ul></div>}

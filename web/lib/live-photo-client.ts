@@ -33,7 +33,7 @@ export async function verifyPhotoSet(photos:PhotoDescriptor[],expectedHash:strin
  const bytes=new TextEncoder().encode(photoSetCanonical(photos));const actual=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');if(actual!==expectedHash)throw Error('photo-set-integrity-mismatch');
 }
 async function readJson(response:Response,signal:AbortSignal){
- if(!response.ok){let code='comparison-unavailable';try{const data=JSON.parse(new TextDecoder().decode(await boundedBytes(new Response(response.body),65536,signal)));if(typeof data.code==='string'&&/^[a-z-]{1,80}$/.test(data.code))code=data.code;}catch{}throw Error(code);}
+ if(!response.ok){let code='comparison-unavailable';try{const data=JSON.parse(new TextDecoder().decode(await boundedBytes(new Response(response.body),65536,signal)));if(data?.result?.processing==='failed'&&typeof data.result.code==='string')return data;if(typeof data.code==='string'&&/^[a-z-]{1,80}$/.test(data.code))code=data.code;}catch{}throw Error(code);}
  return JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(await boundedBytes(response,384*1024,signal)));
 }
 function bodyFor(group:PhotoGroupDeclaration,files:File[],ticket:string|undefined,operation:{phase:'prepare'}|{phase:'execute';attemptId:string;reservationId:string;binding:string}):{headers:Record<string,string>;body:BodyInit}{

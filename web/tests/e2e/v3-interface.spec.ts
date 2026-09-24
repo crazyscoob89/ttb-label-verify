@@ -31,7 +31,7 @@ async function enter(page:Page){await page.goto('/review');const mode=page.getBy
 test('live v3 restoration: independent intake, one access session, inline resolution, honest save and original history',async({page},info)=>{
  const errors:string[]=[];page.on('pageerror',error=>errors.push(error.message));let checks=0,comparisons=0,saves=0;let savedIntent:unknown;
  const legacy=record({...fixtures.application,abv:45} as Application);let original:UiCompleteComparison=legacy as UiCompleteComparison;
- const receipt={state:'SAVED',reviewId,comparisonId,savedAt:'2026-09-22T12:00:00Z',identity:'Shared demo access code — NOT an individually authenticated reviewer'};
+ const receipt={state:'SAVED',reviewId,comparisonId,savedAt:'2026-09-22T12:00:00Z',identity:'Public demo use — NOT an individually authenticated reviewer'};
  await page.route('**/api/**',async route=>{
   const request=route.request(),path=new URL(request.url()).pathname;
   expect(request.headers()['x-ttb-demo-code']).toBe(code);expect(request.url()).not.toContain(code);

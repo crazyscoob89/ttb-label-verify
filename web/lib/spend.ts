@@ -49,7 +49,8 @@ export interface SpendStore {
   claim(binding: Readonly<SpendBinding>, claimId: string): Promise<unknown>;
   complete(binding: Readonly<SpendBinding>, claimId: string): Promise<unknown>;
 }
-export type SpendResult<T> = { ok: true; value: T } | { ok: false; code: 'spend-unavailable' | 'execution-failed' };
+export type SpendResult<T> = { ok: true; value: T } | { ok: false; code: 'spend-unavailable' | 'execution-failed' | 'daily-limit-reached' };
+export class DailyLimitError extends Error { readonly code = 'daily-limit-reached' as const; constructor(){ super('daily-limit-reached'); } }
 
 function receipt(input: unknown, binding: SpendBinding, state: SpendReceipt['state'], claimId: string | null, previous?: SpendReceipt): SpendReceipt {
   const parsed = receiptSchema.parse(input);
@@ -77,7 +78,7 @@ export async function executeReserved<T>(store: SpendStore | undefined, input: S
     const reserved = receipt(await store.reserve(binding), binding, 'reserved', null);
     claimId = randomUUID();
     claimed = receipt(await store.claim(binding, claimId), binding, 'claimed', claimId, reserved);
-  } catch { return unavailable; }
+  } catch (error) { return error instanceof DailyLimitError ? { ok: false, code: 'daily-limit-reached' } : unavailable; }
   let result: SpendResult<T>;
   try { result = { ok: true, value: await work() }; }
   catch { result = { ok: false, code: 'execution-failed' }; }

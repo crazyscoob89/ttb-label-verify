@@ -53,7 +53,7 @@ test('PairInput synchronously fences duplicate submission while hosted upload is
 });
 test('SavedReviewHistory uses evidence-link helper and discards late evidence after clear',async()=>{
  const bytes=Buffer.from('evidence'),sha256=createHash('sha256').update(bytes).digest('hex');
- const receipt={state:'SAVED',reviewId:id,comparisonId:id,savedAt:'2026-01-01T00:00:00Z',identity:'Shared demo access code — NOT an individually authenticated reviewer'};
+ const receipt={state:'SAVED',reviewId:id,comparisonId:id,savedAt:'2026-01-01T00:00:00Z',identity:'Public demo use — NOT an individually authenticated reviewer'};
  let finish!:(response:Response)=>void;
  const fetcher=vi.fn<typeof fetch>().mockResolvedValueOnce(Response.json({reviews:[{receipt,application:fixtures.application,outcome:'second-review'}]}))
  .mockResolvedValueOnce(Response.json({receipt,record:{processing:'complete',source:'fixture',application:parseApplication(fixtures.application),evidence:fixtures.evidence,imageSha256:sha256,comparison:compareApplication(parseApplication(fixtures.application),fixtures.evidence)},intent:{}}))

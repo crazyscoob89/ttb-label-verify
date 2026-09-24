@@ -46,5 +46,5 @@ export async function handleGroupComparison(input:GroupRouteInput,deps:{request:
  }:undefined});
  const result=await compare(input,signal);signal.throwIfAborted();
  if(result.processing==='failed'&&deps.duplicateAttempt?.())return json({processing:'failed',code:'attempt-already-recorded'},409);
- return json({result,comparisonId,reviewAvailability,elapsedMs:Math.round(performance.now()-started)},result.processing==='complete'?200:result.code==='invalid-input'?400:502);
+ return json({result,comparisonId,reviewAvailability,elapsedMs:Math.round(performance.now()-started)},result.processing==='complete'?200:result.code==='invalid-input'?400:result.code==='daily-limit-reached'?429:502);
 }

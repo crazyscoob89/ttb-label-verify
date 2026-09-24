@@ -12,7 +12,7 @@ export type GroupExtractionMetadata=GroupMetadataBase & (
  {source:'openrouter';model:typeof GPT41_MODEL;promptVersion:typeof GPT41_PROMPT_VERSION;reservationId:string;attemptId:string} |
  {source:'azure-foundry';model:typeof AZURE_OCR_MODEL;promptVersion:typeof AZURE_OCR_PROMPT_VERSION;reservationId:string;attemptId:string}
 );
-export type GroupExtractionResult={processing:'complete';evidence:PhotoSetEvidence;metadata:GroupExtractionMetadata}|{processing:'failed';code:'unconfigured'|'invalid-request'|'provider-failed'|'spend-unavailable'};
+export type GroupExtractionResult={processing:'complete';evidence:PhotoSetEvidence;metadata:GroupExtractionMetadata}|{processing:'failed';code:'unconfigured'|'invalid-request'|'provider-failed'|'spend-unavailable'|'daily-limit-reached'};
 export interface GroupExtractionProvider{extractGroup(request:GroupExtractionRequest,signal?:AbortSignal):Promise<GroupExtractionResult>}
 export function snapshotGroupRequest(input:GroupExtractionRequest){
  const parsed=z.object({schemaVersion:z.literal(2),photos:z.array(z.object({descriptor:z.unknown(),image:z.custom<Uint8Array>(v=>v instanceof Uint8Array&&!(v.buffer instanceof SharedArrayBuffer))}).strict()).min(1).max(4),photoSetSha256:sha256Schema,reservationId:photoIdSchema,attemptId:photoIdSchema}).strict().parse(input);

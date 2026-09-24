@@ -42,9 +42,8 @@ export default function SavedReviewHistory(){
   finally{if(run===generation.current)setBusy(false);}
  }
  return <section className="card" aria-label="Saved review history"><h1>Saved review history</h1>
-  <p>Private shared-demo history — NOT individual reviewer authentication. Original immutable comparisons and human decisions; no government submission.</p>
-  <div className="actions"><button onClick={()=>void load()} disabled={!code||busy}>Load saved reviews</button><button onClick={clear}>Clear private history from page</button></div>
-  {!code&&<p className="help">Verify access once above to load private history.</p>}
+  <p>Demo review history — original immutable comparisons and human decisions; no government submission.</p>
+  <div className="actions"><button onClick={()=>void load()} disabled={busy}>Load saved reviews</button><button onClick={clear}>Clear private history from page</button></div>
   {busy&&<p role="status">Loading private saved evidence…</p>}{error&&<p role="alert">History unavailable ({error}). No saved state has been inferred.</p>}
   <ul>{rows.map(row=><li key={row.receipt.reviewId}><button disabled={busy} onClick={()=>void reopen(row.receipt.reviewId)}>Reopen {row.application.applicationId} / {row.application.applicationVersion} — {row.outcome}</button> · {row.receipt.savedAt}</li>)}</ul>
   {!!offset&&<button disabled={busy} onClick={()=>void load(Math.max(0,offset-50))}>Previous saved reviews</button>}{rows.length===50&&offset<150&&<button disabled={busy} onClick={()=>void load(offset+50)}>More saved reviews</button>}

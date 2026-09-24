@@ -23,7 +23,7 @@ function legacy(name:string) {
   intent.outcome='pass';intent.physical={checked:true,note:'Synthetic historical assessment outside the image; not a real inspection.'};
  }
  const comparisonId=randomUUID(),reviewId=randomUUID(),idempotencyKey=randomUUID();
- const receipt={state:'SAVED' as const,reviewId,comparisonId,savedAt,identity:'Shared demo access code — NOT an individually authenticated reviewer' as const};
+ const receipt={state:'SAVED' as const,reviewId,comparisonId,savedAt,identity:'Public demo use — NOT an individually authenticated reviewer' as const};
  return {record,intent,comparisonId,reviewId,idempotencyKey,receipt};
 }
 it.each(historical.map(r=>r.name))('SQLite reopens original %s review and replays its original receipt unchanged',name=>{

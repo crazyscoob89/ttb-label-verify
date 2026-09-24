@@ -126,7 +126,6 @@ export default function BatchWorkspace({offlineEnabled}:{offlineEnabled:boolean}
   }
   function compareQueue() {
     if (!current.current || current.current.inFlight.length) return;
-    if (current.current.mode==='live' && !accessCode) {setError('Verify demo access above before starting.');return;}
     planned.current=current.current.pairs.filter(p=>p.processing==='queued').map(p=>({id:p.id,revision:p.revision}));pump();
   }
   function replace() {

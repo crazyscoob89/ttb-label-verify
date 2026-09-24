@@ -1,15 +1,14 @@
-import { createHash, timingSafeEqual } from 'node:crypto';
 export class InputError extends Error { constructor(public status:number) { super('Rejected input'); } }
-/** Same shared-code/origin fence for comparison, history, save and private images.
- * Origin header is required even for reads (UI fetch explicitly supplies it). */
+/** Public evaluator fence for comparison, history, save and private images.
+ * No reviewer-visible code is required; paid calls remain protected by the
+ * server-side spend ledger and daily scan quota. Origin header is required even
+ * for reads (UI fetch explicitly supplies it). TTB_DEMO_ACCESS_SECRET remains a
+ * server-only signing key for internal batch binding, not a user credential. */
 export function demoAccess(request:Request,env:Record<string,string|undefined>):boolean {
  try {
   const secret=env.TTB_DEMO_ACCESS_SECRET,origin=env.TTB_DEMO_ORIGIN;
   if(env.TTB_DEMO_ENABLED!=='true'||!secret||!/^[A-Za-z0-9_-]{32,256}$/.test(secret)||!origin||new URL(origin).origin!==origin)return false;
-  const supplied=request.headers.get('x-ttb-demo-code')??'';
-  const hash=(s:string)=>createHash('sha256').update(s).digest();
-
-  return supplied.length<=256&&timingSafeEqual(hash(supplied),hash(secret))&&request.headers.get('origin')===origin&&new URL(request.url).origin===origin&&['same-origin',null].includes(request.headers.get('sec-fetch-site'));
+  return request.headers.get('origin')===origin&&new URL(request.url).origin===origin&&['same-origin',null].includes(request.headers.get('sec-fetch-site'));
  }catch{return false;}
 }
 export async function boundedBody(message:Request|Response,max:number,timeout=5000):Promise<Buffer> {

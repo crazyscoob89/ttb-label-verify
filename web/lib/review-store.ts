@@ -89,7 +89,7 @@ export class ReviewStore {
    COMMIT;`);assertPrivateLedger(path);}finally{db.close();}
  }
  private receipt(row:Record<string,unknown>):SavedReceipt {
-  return {state:'SAVED',reviewId:String(row.id),comparisonId:String(row.comparison_id),savedAt:String(row.saved_at),identity:'Shared demo access code — NOT an individually authenticated reviewer'};
+  return {state:'SAVED',reviewId:String(row.id),comparisonId:String(row.comparison_id),savedAt:String(row.saved_at),identity:'Public demo use — NOT an individually authenticated reviewer'};
  }
  save(input:unknown):SavedReceipt {
   const parsed=requestSchema.safeParse(input);

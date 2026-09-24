@@ -5,7 +5,7 @@ import type { PhotoSelector } from '../photo-contracts';
 import { z } from 'zod';
 import { boundedBody } from '../demo-security';
 import { MAX_IMAGE_BYTES } from '../contracts';
-import { bindingSchema } from '../spend';
+import { DailyLimitError, bindingSchema } from '../spend';
 import { buildUnsavedDraft, checkedRecord } from '../review-policy';
 import { DEMO_RESERVATION, REVIEW_LIMITS, ReviewError, type DemoStoreFactory, type DemoReviewStore, type HostedEvidenceObjects } from '../demo-store-contracts';
 import type { CompleteComparison } from '../comparison-record';
@@ -15,7 +15,7 @@ type Env=Record<string,string|undefined>;
 type TransportOptions={fetch?:typeof fetch;timeoutMs?:number};
 const unavailable=()=>new Error('Persistence unavailable');
 function persistedRecord(value:unknown){try{return checkedServerRecord(value);}catch{throw unavailable();}}
-const identity='Shared demo access code — NOT an individually authenticated reviewer' as const;
+const identity='Public demo use — NOT an individually authenticated reviewer' as const;
 const saveSchema=z.object({comparisonId:z.uuid(),idempotencyKey:z.uuid(),intent:z.unknown()}).strict();
 const receiptSchema=z.object({state:z.literal('SAVED'),reviewId:z.uuid(),comparisonId:z.uuid(),savedAt:z.string().datetime(),identity:z.literal(identity)}).strict();
 const descriptorSchema=z.object({key:z.string(),sha256:z.string().regex(/^[a-f0-9]{64}$/),bytes:z.number().int().min(1).max(MAX_IMAGE_BYTES),mime:z.enum(['image/png','image/jpeg'])}).strict();
@@ -40,10 +40,10 @@ function client(env:Env,options:TransportOptions={}) {
     const response=await transport(`${origin}/rest/v1/rpc/ttb_demo_${name}`,{method:'POST',redirect:'error',cache:'no-store',signal:controller.signal,headers:{Authorization:`Bearer ${key}`,apikey:key,'Content-Type':'application/json','Accept-Profile':'public','Content-Profile':'public'},body});
     if(response.redirected)throw unavailable();
     const result=JSON.parse((await boundedBody(response,2*1024*1024,timeout)).toString('utf8'));
-    if(!response.ok){if(name==='review'&&result.code==='P0001'&&Object.hasOwn(errors,result.message))throw new ReviewError(errors[result.message],result.message);throw unavailable();}
+    if(!response.ok){if(result.code==='P0001'&&result.message==='daily-limit-reached')throw new DailyLimitError();if(name==='review'&&result.code==='P0001'&&Object.hasOwn(errors,result.message))throw new ReviewError(errors[result.message],result.message);throw unavailable();}
     return result;
    })(),new Promise<never>((_,reject)=>{timer=setTimeout(()=>{controller.abort();reject(unavailable());},timeout);})]);
-  }catch(e){if(e instanceof ReviewError)throw e;throw unavailable();}
+  }catch(e){if(e instanceof ReviewError||e instanceof DailyLimitError)throw e;throw unavailable();}
   finally{clearTimeout(timer);controller.abort();}
  };
 }

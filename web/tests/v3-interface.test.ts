@@ -9,11 +9,13 @@ import fixtures from './fixtures/comparisons.json';
 import type { ComparisonRecord } from '../lib/comparison-record';
 
 const source = (name:string) => readFileSync(new URL(`../components/${name}`,import.meta.url),'utf8');
-test('live entry has independent Application and Label images tabs and exactly one session credential',()=>{
+test('live entry has independent Application and Label images tabs and no visible session credential',()=>{
  const html=renderToStaticMarkup(createElement(ReviewWorkspace,{offlineEnabled:false}));
  expect(html).toContain('>Application</button>');expect(html).toContain('>Label images</button>');
- expect(html.match(/type="password"/g)).toHaveLength(1);
- expect(html).toContain('Verify access');expect(html).toContain('Image-only extraction cannot establish an application match');
+ expect(html.match(/type="password"/g)).toBeNull();
+ expect(html).toContain('Public demo access');expect(html).toContain('50 per UTC day');
+ expect(html).not.toContain('Verify access');expect(html).not.toContain('Demo access code');
+ expect(html).toContain('Image-only extraction cannot establish an application match');
 });
 test('live comparison shares the evidence-first review, never normal-view JSON',()=>{
  expect(source('PairInput.tsx')).not.toContain('JSON.stringify(field.observed');

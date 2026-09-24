@@ -77,7 +77,7 @@ test('composed upload -> batch prepare/execute -> snapshot -> save/list/detail/e
    if(p_op==='snapshot_get')return Response.json({record:snapshot.record});
    if(p_op==='save'){
     savedIntent=p_input.intent;
-    receipt={state:'SAVED',reviewId:randomUUID(),comparisonId:p_input.comparisonId,savedAt:new Date().toISOString(),identity:'Shared demo access code — NOT an individually authenticated reviewer'};
+    receipt={state:'SAVED',reviewId:randomUUID(),comparisonId:p_input.comparisonId,savedAt:new Date().toISOString(),identity:'Public demo use — NOT an individually authenticated reviewer'};
     return Response.json(receipt);
    }
    if(p_op==='list')return Response.json([{receipt,application:fixtures.application,outcome:'second-review'}]);

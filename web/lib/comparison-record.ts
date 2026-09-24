@@ -5,7 +5,7 @@ import type { ComparisonResultV3 } from './wine-rules';
 import { compareApplicationV5, type ComparisonResultV5 } from './semantic-rules';
 import { extractionEvidenceSchema, type ExtractionEvidence } from './extraction/schema';
 
-export type FailureCode = 'access-denied' | 'invalid-input' | 'invalid-extraction' | 'provider-failed' | 'timeout' | 'cancelled' | 'unconfigured';
+export type FailureCode = 'access-denied' | 'invalid-input' | 'invalid-extraction' | 'provider-failed' | 'timeout' | 'cancelled' | 'unconfigured' | 'daily-limit-reached';
 export type { CompletePhotoComparison } from './photo-record';
 import type { CompletePhotoComparison } from './photo-record';
 export type CompleteComparison = LegacyCompleteComparison | CompletePhotoComparison;

@@ -9,7 +9,7 @@ const code='synthetic-photo-ui-session',comparisonId='00000000-0000-4000-8000-00
 const bytes=[readFileSync('public/offline-samples/match.png'),readFileSync('public/offline-samples/discrepancy.png')];
 const uploads=bytes.map((buffer,i)=>({name:i?'back.png':'front.png',mimeType:'image/png',buffer}));
 const base=fixtures.conflict as unknown as CompletePhotoComparison;
-const receipt={state:'SAVED',comparisonId,reviewId,savedAt:'2026-09-22T12:00:00Z',identity:'Shared demo access code — NOT an individually authenticated reviewer'};
+const receipt={state:'SAVED',comparisonId,reviewId,savedAt:'2026-09-22T12:00:00Z',identity:'Public demo use — NOT an individually authenticated reviewer'};
 function bound(group:PhotoGroupDeclaration,conflict=true){
  const original=(conflict?fixtures.conflict:fixtures.complementary) as unknown as CompletePhotoComparison;
  let text=JSON.stringify(original);original.photos.forEach((p,i)=>text=text.replaceAll(p.photoId,group.photos[i].photoId));
