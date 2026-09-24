@@ -68,7 +68,7 @@ Publication requires these exact object identities before push and after merge:
 | Root README — benchmark front-door unchanged | `207b9bec5e43638e3943ee21fee523217df1d71a` |
 | `BENCHMARK-RESULTS.md` — report unchanged | `c39800a75b505ae5851104622e2708acdd5f3f9d` |
 
-The latest [benchmark results](../../BENCHMARK-RESULTS.md),
+The latest [benchmark results](../deep-dive/BENCHMARK-RESULTS.md),
 [versioned final archive](../../bench/final-evaluation-20260918/README.md) and
 [benchmark publication record](16-final-benchmark-publication.md) remain intact.
 The older 1,871 benchmark count in ARGUS's original verdict refers to his review

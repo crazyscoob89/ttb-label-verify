@@ -13,7 +13,7 @@ No remote writes, paid/live model calls, research, ARGUS calls, provisioning, mi
 - `web/lib/rules.ts`: pure per-pair seven-field comparison and detached original evidence/reasons; separate processing failure; fixed warning and permanently unverified physical-size notice.
 - `web/lib/extraction/schema.ts`: shared strict bounded evidence schema/parser, with no provider match/verdict authority.
 - `web/tests/rules.test.ts`, `web/tests/fixtures/comparisons.json`: synthetic per-pair vectors and adversarial rules/schema cases; no archived fixture rewriting.
-- [RULES-POLICY.md](../RULES-POLICY.md): exact API/schema, local sources, precedence, unit grammars, numeric semantics and conservative exclusions for the next worker.
+- [RULES-POLICY.md](../deep-dive/RULES-POLICY.md): exact API/schema, local sources, precedence, unit grammars, numeric semantics and conservative exclusions for the next worker.
 
 ## Executed gates (builder, not independent reviewer)
 

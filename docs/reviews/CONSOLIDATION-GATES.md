@@ -1,7 +1,7 @@
 # Consolidation offline gate record
 
 Builder: AVA; **independent final integration review pending**. Scope is the
-frozen sources in [CONSOLIDATION.md](../CONSOLIDATION.md), not the live severity
+frozen sources in [CONSOLIDATION.md](../deep-dive/CONSOLIDATION.md), not the live severity
 run. Tests ran in the independent consolidation clone with credentials omitted
 and inherited Linux libseccomp socket/network/IO-uring denial. A socket-denial
 positive check passed before execution. No inference or report writer ran.

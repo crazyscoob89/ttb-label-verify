@@ -11,7 +11,7 @@ The [original assignment](https://github.com/treasurytakehome-rgb/instructions/b
 
 **Scope amendment:** [PLAN.md](PLAN.md), [THREAT_MODEL.md](THREAT_MODEL.md) and the legacy checklist describe request-only processing with no accounts or content persistence. This design proposes replacing those exclusions for an authenticated, synthetic-only evaluation environment. Until Alex approves that amendment, no retained-content implementation is authorized. Upload decoding remains buffer-only; deliberate sanitized evidence storage is the disclosed exception. Benchmark archives are unchanged.
 
-Priority: correct comparison, readable evidence and fail-closed errors first; identity/history next; visual polish and advanced routing last. An incomplete feature is removed from the demo path, never presented as working. [v3](ui/v3/README.md) is the frozen visual reference, not production functionality.
+Priority: correct comparison, readable evidence and fail-closed errors first; identity/history next; visual polish and advanced routing last. An incomplete feature is removed from the demo path, never presented as working. [v3](../ui/v3/README.md) is the frozen visual reference, not production functionality.
 
 ## 2. Users and authority
 

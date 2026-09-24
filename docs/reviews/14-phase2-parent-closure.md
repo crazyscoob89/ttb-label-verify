@@ -8,8 +8,8 @@ Implementation SHA: `4643831e882da465dccb0934c11509c6051a423a`. Phase 2 baseline
 
 ## Delivered and why
 
-- [Seven-field rules](../RULES-POLICY.md): explicit observations and reasons, conservative normalization, exact decimal comparison, applicable imported origin and source-pinned warning wording/formatting. Malformed input is a processing failure; uncertain observations are not matches. Physical print size remains unverified.
-- [Provider boundary](../PROVIDER-BOUNDARY.md): image-only no-tools extraction, fixed endpoint/model, no fallback/retry, strict schema, bounded response/20-second timeout, image hash and request/version provenance. The adapter is unwired and requires explicit trusted server authorization.
+- [Seven-field rules](../deep-dive/RULES-POLICY.md): explicit observations and reasons, conservative normalization, exact decimal comparison, applicable imported origin and source-pinned warning wording/formatting. Malformed input is a processing failure; uncertain observations are not matches. Physical print size remains unverified.
+- [Provider boundary](../deep-dive/PROVIDER-BOUNDARY.md): image-only no-tools extraction, fixed endpoint/model, no fallback/retry, strict schema, bounded response/20-second timeout, image hash and request/version provenance. The adapter is unwired and requires explicit trusted server authorization.
 - Shared atomic spend-store contract with integer money and one-time claim. Success, failure and timeout retain unresolved liability. Test-only memory store is not production-global enforcement; actual DB concurrency and cost/pricing acceptance remain future gates.
 - [Actual ARGUS Phase 1 report](11-phase1-argus-pass.md) is preserved with source hash, exact reviewed SHA and the distinction between source/log review and independent test execution.
 

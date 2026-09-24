@@ -9,8 +9,8 @@
 | [BUILD-PLAN.md](BUILD-PLAN.md), contracts and Phase 2 Sprint 1 | Exactly seven fields, four field outcomes, separate processing failure; fixed warning; explicit applicability; uncertain formatting review; physical size unverified |
 | [PLAN.md](PLAN.md), Commodity Handling / Four-State Outcome Model / Asymmetric Matching / Alcohol Content | Commodity/import context, normalized brand equivalence, fixed warning heading/body formatting, ABV consistency without regulatory tolerances |
 | [BENCHMARK_PLAN.md](BENCHMARK_PLAN.md), clean/adversarial matrix | Imported-origin match vs domestic N/A, brand case-equivalence, changed warning wording/title-case/bold-body defects |
-| [fixtures/manifest.json](../fixtures/manifest.json), `statutory_warning` | Exact heading/body reference attributed there to 27 CFR 16.21 |
-| [reviews/02-plan-amendment.md](reviews/02-plan-amendment.md) | ABV small differences mismatch independently of regulatory tolerance |
+| [fixtures/manifest.json](../../fixtures/manifest.json), `statutory_warning` | Exact heading/body reference attributed there to 27 CFR 16.21 |
+| [reviews/02-plan-amendment.md](../reviews/02-plan-amendment.md) | ABV small differences mismatch independently of regulatory tolerance |
 
 The warning source file SHA-256 is `52dc578ab95728dfb986b4e7a32ff3daf860cc14753ea0008f86b51892f0f68a`. A test reads the frozen manifest and requires the runtime reference to equal its heading/body. The application contract has **no editable warning**.
 

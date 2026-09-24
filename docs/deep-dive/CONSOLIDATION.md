@@ -3,7 +3,7 @@
 **Review update:** ARGUS supplied final PASS on
 `30beea903cb6c9fbe14aff8d259698ef3df90a4d`, superseding his preliminary REVISE.
 The Windows cold-checkout instructions are now in README; both review stages
-are preserved in [round 08](reviews/08-consolidation-review.md). Alex approved
+are preserved in [round 08](../reviews/08-consolidation-review.md). Alex approved
 this documentation follow-up and consolidation promotion. The sections below
 record the original candidate's scope and builder handoff; their historical
 pending-review/no-merge wording does not override this later authorization.
@@ -33,27 +33,27 @@ introduced. Scoring and reporting source at the root retain the repair's bytes.
 
 The earlier review-register reconciliation is retained, including the removal
 of duplicate `ROUND-01` through `ROUND-04` documents. Their history and the
-explicit [reconciliation record](reviews/REGISTER_RECONCILIATION.md) remain;
+explicit [reconciliation record](../reviews/REGISTER_RECONCILIATION.md) remain;
 this merge does not manufacture or upgrade a reviewer verdict.
 
 ## Canonical code versus historical evidence
 
-- Use root [`bench/scoring.py`](../bench/scoring.py) and
-  [`bench/extraction_validation.py`](../bench/extraction_validation.py).
+- Use root [`bench/scoring.py`](../../bench/scoring.py) and
+  [`bench/extraction_validation.py`](../../bench/extraction_validation.py).
   Missing/invalid confidence cannot match; all five warning components gate
   the warning result. Unknown formatting refers; confidently wrong formatting
   or statutory words mismatch. Existing normalization rules are unchanged.
-- [`bench/RESULTS.md`](../bench/RESULTS.md) is the repaired **162-observation
+- [`bench/RESULTS.md`](../../bench/RESULTS.md) is the repaired **162-observation
   Stage-2** report, not a pooled Foundry/severity report. Its raw evidence and
   pre-existing explicit replay remain byte-identical; nothing was regenerated.
-- [`bench/corpora/ttb-foundry-20260918-v1/README.md`](../bench/corpora/ttb-foundry-20260918-v1/README.md)
+- [`bench/corpora/ttb-foundry-20260918-v1/README.md`](../../bench/corpora/ttb-foundry-20260918-v1/README.md)
   is the portable image/provenance publication. Hash integrity is not image
   realism or independent visual approval.
-- [`bench/ava-foundry-v3/`](../bench/ava-foundry-v3/) is the **frozen historical
+- [`bench/ava-foundry-v3/`](../../bench/ava-foundry-v3/) is the **frozen historical
   archive at 23e7d6e**. Its nested `scorer-4039ccc` is a historical dependency,
   not a competing canonical scorer. Preserve original responses, scores,
   provider/operator distinctions and rejected old-glare provenance. The v4
-  [report](../bench/ava-foundry-v3/recovery-v4/REPORT.txt) excludes rejected
+  [report](../../bench/ava-foundry-v3/recovery-v4/REPORT.txt) excludes rejected
   artificial glare from its primary summary; that exclusion is unchanged.
 - Historical scripts/README commands inside the archive contain old absolute
   paths and live execution/report-writing capabilities. **Do not execute them
@@ -82,7 +82,7 @@ confer independent approval on this integration.
 
 ## Builder verification and review handoff
 
-See [consolidation gate record](reviews/CONSOLIDATION-GATES.md) for measured
+See [consolidation gate record](../reviews/CONSOLIDATION-GATES.md) for measured
 commands, results and limitations. Root regression `bench/test_consolidation.py`
 explicitly catches the stale Foundry scorer and validates the combined adapter
 without network calls. Offline gates are **builder validation**, not an

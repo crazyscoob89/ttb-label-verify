@@ -102,8 +102,8 @@ unchanged. The integrity script now has 13 tests, including a RED/GREEN full-gat
 Windows-path reproduction and negative missing-manifest/hash controls. This
 builder reproduction uses Windows path objects on Linux, not native Windows.
 Independent native Windows re-verification remains required. See
-[round 07](reviews/07-windows-path-repair.md) and the single
-[review register](reviews/README.md).
+[round 07](../reviews/07-windows-path-repair.md) and the single
+[review register](../reviews/README.md).
 
 ## Still open, not claimed complete
 
@@ -119,7 +119,7 @@ blocked by the documented gates.
 ARGUS's native Windows **PASS** on `05312d0c2a61d061de903cfcba3dc0970a28dfe8`
 was relayed by Alex. All six gate scripts passed on a fresh default-settings
 Windows clone and the working tree, with original evidence/fingerprint preserved.
-See [the attributed final verdict](reviews/07-windows-path-repair.md#final-independent-verdict-pass).
+See [the attributed final verdict](../reviews/07-windows-path-repair.md#final-independent-verdict-pass).
 This supersedes independent-review-pending statements above for the Stage 2
 repair tranche only. Engine approval, master promotion, app implementation,
 spending/privacy controls and deployment remain separate gates.

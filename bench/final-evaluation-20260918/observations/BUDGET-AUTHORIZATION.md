@@ -2,7 +2,7 @@
 
 Alex's explicit instruction: **"increade the cap to $50"**.
 
-The current ceiling is **$50 USD TOTAL**, not $50 additional, not a new per-run allowance, and not $50 per agent/model. The machine-readable authority is [`budget-authorization.json`](budget-authorization.json).
+The current ceiling is **$50 USD TOTAL**, not $50 additional, not a new per-run allowance, and not $50 per agent/model. The machine-readable authority is [`budget-authorization.json`](azure-severity-preservation-before/budget-authorization.json).
 
 ## Canonical execution and accounting
 

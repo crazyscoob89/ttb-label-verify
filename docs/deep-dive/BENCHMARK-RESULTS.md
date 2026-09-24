@@ -22,7 +22,7 @@ route demonstrates upload-to-displayed-result timing, customer-firewall
 compatibility or production qualification in this benchmark.** OpenRouter
 Haiku is not Azure Claude availability evidence. Azure Claude remained unresolved.
 
-Decision source and requirement mapping: [MODEL-PROJECT-COMPARISON.txt](bench/final-evaluation-20260918/decision/MODEL-PROJECT-COMPARISON.txt); controlling assignment snapshot: [assignment-source.md](bench/final-evaluation-20260918/decision/assignment-source.md). The source report shortlisted two feasibility routes; the human-confirmed Haiku lane is a workflow recommendation, not a new empirical result.
+Decision source and requirement mapping: [MODEL-PROJECT-COMPARISON.txt](../../bench/final-evaluation-20260918/decision/MODEL-PROJECT-COMPARISON.txt); controlling assignment snapshot: [assignment-source.md](../../bench/final-evaluation-20260918/decision/assignment-source.md). The source report shortlisted two feasibility routes; the human-confirmed Haiku lane is a workflow recommendation, not a new empirical result.
 
 ## Canonical current scorecard
 
@@ -63,7 +63,7 @@ refer to the exact tested configurations, not family-wide claims.
 
 Reproduce all values (including valid-only latency, calls within five seconds,
 all-seven-correct counts, referrals and per-field numerators) with the portable
-[offline verifier](bench/final-evaluation-20260918/verify.py):
+[offline verifier](../../bench/final-evaluation-20260918/verify.py):
 
 ```sh
 python3 -B bench/final-evaluation-20260918/verify.py
@@ -75,7 +75,7 @@ These commands need only Python 3.10+ standard library, saved repository files,
 and no credentials/network. An absolute path to `verify.py` works from any cwd.
 They do not execute archived runners, regenerate observations or replay the scorer.
 
-Saved input support: [azure-severity-v1/scored-rows.json](bench/final-evaluation-20260918/observations/azure-severity-v1/scored-rows.json); [openrouter-haiku-severity-v1/scored-rows.json](bench/final-evaluation-20260918/observations/openrouter-haiku-severity-v1/scored-rows.json); [derived aggregates](bench/final-evaluation-20260918/aggregates.json). Per-condition/per-field support: [azure-severity-v1/comparison.json](bench/final-evaluation-20260918/observations/azure-severity-v1/comparison.json) and [openrouter-haiku-severity-v1/report.json](bench/final-evaluation-20260918/observations/openrouter-haiku-severity-v1/report.json).
+Saved input support: [azure-severity-v1/scored-rows.json](../../bench/final-evaluation-20260918/observations/azure-severity-v1/scored-rows.json); [openrouter-haiku-severity-v1/scored-rows.json](../../bench/final-evaluation-20260918/observations/openrouter-haiku-severity-v1/scored-rows.json); [derived aggregates](../../bench/final-evaluation-20260918/aggregates.json). Per-condition/per-field support: [azure-severity-v1/comparison.json](../../bench/final-evaluation-20260918/observations/azure-severity-v1/comparison.json) and [openrouter-haiku-severity-v1/report.json](../../bench/final-evaluation-20260918/observations/openrouter-haiku-severity-v1/report.json).
 
 ## Battery and coverage map
 
@@ -91,14 +91,14 @@ Saved input support: [azure-severity-v1/scored-rows.json](bench/final-evaluation
 | Error/recovery tests | Original RED/GREEN and final offline logs preserved | Continuation guard, spend accounting, schema failures; publication tests are separate |
 | Deferred | Real-camera, held-out source-label validation, calibrated confidence, restricted-network and app latency | No benchmark PASS or reviewer attribution closes these gates |
 
-- [Azure complete report](bench/final-evaluation-20260918/observations/azure-severity-v1/FINAL-COMPARISON.txt)
-- [Azure planned/reused mapping](bench/final-evaluation-20260918/observations/azure-severity-v1/queue-manifest.json)
-- [Azure coverage](bench/final-evaluation-20260918/observations/azure-severity-v1/coverage.json)
-- [Haiku final report](bench/final-evaluation-20260918/observations/openrouter-haiku-severity-v1/FINAL-REPORT.md)
-- [Haiku continuation audit](bench/final-evaluation-20260918/observations/openrouter-haiku-severity-v1/continuation-final-audit.json)
-- [Image/truth provenance](bench/final-evaluation-20260918/observations/openrouter-haiku-severity-v1/manifest.json)
-- [All source files, snapshots, scripts and test logs: browsable index](bench/final-evaluation-20260918/SOURCE-INDEX.md)
-- [Actual image battery and preview/version navigation](bench/final-evaluation-20260918/IMAGE-INDEX.md)
+- [Azure complete report](../../bench/final-evaluation-20260918/observations/azure-severity-v1/FINAL-COMPARISON.txt)
+- [Azure planned/reused mapping](../../bench/final-evaluation-20260918/observations/azure-severity-v1/queue-manifest.json)
+- [Azure coverage](../../bench/final-evaluation-20260918/observations/azure-severity-v1/coverage.json)
+- [Haiku final report](../../bench/final-evaluation-20260918/observations/openrouter-haiku-severity-v1/FINAL-REPORT.md)
+- [Haiku continuation audit](../../bench/final-evaluation-20260918/observations/openrouter-haiku-severity-v1/continuation-final-audit.json)
+- [Image/truth provenance](../../bench/final-evaluation-20260918/observations/openrouter-haiku-severity-v1/manifest.json)
+- [All source files, snapshots, scripts and test logs: browsable index](../../bench/final-evaluation-20260918/SOURCE-INDEX.md)
+- [Actual image battery and preview/version navigation](../../bench/final-evaluation-20260918/IMAGE-INDEX.md)
 
 ### Failure details and corrected historical wording
 
@@ -133,7 +133,7 @@ nano-dollar totals and checks earlier ledger entries remain unchanged.
 Azure float serialization tails are rounded to eight decimal USD places only
 in the derived financial summary; original rows are untouched.
 
-Financial sources: [recovery-v3/budget.sqlite](bench/final-evaluation-20260918/observations/recovery-v3/budget.sqlite); [budget-authorization.json](bench/final-evaluation-20260918/observations/azure-severity-preservation-before/budget-authorization.json); [azure-severity-v1/authorization-addendum.json](bench/final-evaluation-20260918/observations/azure-severity-v1/authorization-addendum.json); [azure-severity-v1/comparison.json](bench/final-evaluation-20260918/observations/azure-severity-v1/comparison.json); [openrouter-haiku-severity-v1/report.json](bench/final-evaluation-20260918/observations/openrouter-haiku-severity-v1/report.json).
+Financial sources: [recovery-v3/budget.sqlite](../../bench/final-evaluation-20260918/observations/recovery-v3/budget.sqlite); [budget-authorization.json](../../bench/final-evaluation-20260918/observations/azure-severity-preservation-before/budget-authorization.json); [azure-severity-v1/authorization-addendum.json](../../bench/final-evaluation-20260918/observations/azure-severity-v1/authorization-addendum.json); [azure-severity-v1/comparison.json](../../bench/final-evaluation-20260918/observations/azure-severity-v1/comparison.json); [openrouter-haiku-severity-v1/report.json](../../bench/final-evaluation-20260918/observations/openrouter-haiku-severity-v1/report.json).
 
 ## How the experiment changed, without rewriting history
 
@@ -158,7 +158,7 @@ Financial sources: [recovery-v3/budget.sqlite](bench/final-evaluation-20260918/o
 This publication preserves original source bytes except **six JSON source
 records with host process-list fields removed** to avoid unrelated private
 operational data. Exact paths, original/published hashes and omitted JSON paths
-are in [source-map.json](bench/final-evaluation-20260918/source-map.json).
+are in [source-map.json](../../bench/final-evaluation-20260918/source-map.json).
 Images/historical bytes already identical in Git are linked rather than copied
 again. Frozen code is captured as `.py.txt` reference evidence: **do not execute
 `azure.py --run`, `run.py`, authorization, regeneration or archived tests**.
@@ -177,8 +177,8 @@ Azure Claude/firewall proof or unattended-safe approval follows from these
 results. Native visual QA was representative, not exhaustive field-level
 annotation. The historical 99 log-only ARGUS completions still lack original raw
 outputs; see the mapped `recovery-v2/verification.json` and `reconciliation.json`
-in the [source index](bench/final-evaluation-20260918/SOURCE-INDEX.md). They remain
+in the [source index](../../bench/final-evaluation-20260918/SOURCE-INDEX.md). They remain
 unknown, not fabricated or promoted to canonical current observations.
 
-See the [publication review record](docs/reviews/16-final-benchmark-publication.md)
+See the [publication review record](../reviews/16-final-benchmark-publication.md)
 for boundaries, omissions, tests and parent-owned publication status.

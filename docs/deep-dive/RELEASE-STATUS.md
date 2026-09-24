@@ -2,7 +2,7 @@
 
 ## Current candidate
 
-Application **e721936518e36b7c6d65b5649308f21d1b57e784** adds durable save/reopen; independent review pending. [Current findings/evidence](../reviews/27-durable-save-reopen-candidate.md), [operator setup](../SAVED-REVIEWS.md).
+Application **e721936518e36b7c6d65b5649308f21d1b57e784** adds durable save/reopen; independent review pending. [Current findings/evidence](../reviews/27-durable-save-reopen-candidate.md), [operator setup](SAVED-REVIEWS.md).
 
 - **Accepted batch baseline75fe83d:** ARGUS PASS preserved with initial native timeout failures and targeted successful rerun; browser verification was not independently rerun. [Exact provenance](../reviews/26-live-batch-argus-pass.md).
 - **Real local model proof:** single-label match/discrepancy then a two-row batch through guarded UI/routes. Batch observed maximum concurrency2 and both results displayed in5795.398ms. These are small synthetic-label samples, not an accuracy/latency guarantee.

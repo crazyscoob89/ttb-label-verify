@@ -83,7 +83,7 @@ additional web paths are reviewed dormant Phase 4 libraries/tests/SQL and one
 The complete pre-publication master is retained as an ancestor; all existing
 paths outside README/status/register edits and the reviewed deltas remain
 unchanged. `bench/`, `fixtures/`, `docs/ui/`, the root
-[latest benchmark report](../../BENCHMARK-RESULTS.md) and the README's prominent
+[latest benchmark report](../deep-dive/BENCHMARK-RESULTS.md) and the README's prominent
 benchmark entry section remain byte-for-byte intact. See the
 [versioned final benchmark archive](../../bench/final-evaluation-20260918/README.md).
 No observations, outcomes, archived costs or evidence fingerprints are rewritten.

@@ -52,7 +52,7 @@ Earlier scoped PASS records below do not accept this new connected demo.
 ## Final benchmark publication repair
 
 [Publication record 16](16-final-benchmark-publication.md) and the
-[final benchmark results](../../BENCHMARK-RESULTS.md) now locate the completed
+[final benchmark results](../deep-dive/BENCHMARK-RESULTS.md) now locate the completed
 Azure/Haiku/severity battery, separate from older flat results. AVA's offline
 publication checks are not a fresh ARGUS benchmark verdict; application-phase
 PASS records below have a different review scope.
@@ -71,7 +71,7 @@ Parent already merged accepted Phase 1 PR #4 (`d1f07db9083b2a244d21f2d132f4105c9
 
 ### Historical Phase 2 candidate status
 
-[Phase 1](11-phase1-argus-pass.md) has supplied **ARGUS PASS** at `2b59abcb0cb7e95abc1639ee4e81df50930dfe1a`, no revisions; AVA agrees. ARGUS read source/diff/closure logs, did not rerun tests/build, and reported a matching native Windows clone. [Phase 2 Sprint 1](12-phase2-sprint1-rules.md) and [Sprint 2](13-phase2-provider-spend.md) are locally implemented/tested; the full local candidate is ready for parent verification, with whole-phase independent review pending. Provider runtime is unwired/default-deny; shared-store contracts are not real database enforcement. [Implementation authorization](../IMPLEMENTATION-STATUS.md) records Alex's local continuation approval. No remote writes, paid/live calls, provisioning or deployment in this step. Earlier documentation-only status below is historical.
+[Phase 1](11-phase1-argus-pass.md) has supplied **ARGUS PASS** at `2b59abcb0cb7e95abc1639ee4e81df50930dfe1a`, no revisions; AVA agrees. ARGUS read source/diff/closure logs, did not rerun tests/build, and reported a matching native Windows clone. [Phase 2 Sprint 1](12-phase2-sprint1-rules.md) and [Sprint 2](13-phase2-provider-spend.md) are locally implemented/tested; the full local candidate is ready for parent verification, with whole-phase independent review pending. Provider runtime is unwired/default-deny; shared-store contracts are not real database enforcement. [Implementation authorization](../deep-dive/IMPLEMENTATION-STATUS.md) records Alex's local continuation approval. No remote writes, paid/live calls, provisioning or deployment in this step. Earlier documentation-only status below is historical.
 
 ## Current documentation candidate
 
@@ -164,9 +164,9 @@ information and real customer content out of the repository.
    buffer-only implementation, actual provider-chain retention and app acceptance.
    Untested image coverage and deployed end-to-end timing remain open.
 
-Supporting records: [revision details](../STAGE2_REVISION.md),
+Supporting records: [revision details](../deep-dive/STAGE2_REVISION.md),
 [benchmark report](../../bench/RESULTS.md),
-[acceptance checklist](../ACCEPTANCE_CHECKLIST.md).
+[acceptance checklist](../deep-dive/ACCEPTANCE_CHECKLIST.md).
 
 ## Phase 2 consolidated candidate
 

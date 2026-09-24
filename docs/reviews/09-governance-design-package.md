@@ -10,7 +10,7 @@ Branch: `ava/governance-plan-v3`. Exact candidate SHA is supplied in the externa
 
 ## Source and rationale
 
-The controlling assignment is linked in [governance design](../GOVERNANCE-AND-AUDIT-DESIGN.md). It does not explicitly require identity/history. Those are proposed scope additions arising from Alex's questions: who performed a review, whether approval survives reload, and where records go. The existing mock receipt is temporary and must not be presented as historical approval.
+The controlling assignment is linked in [governance design](../deep-dive/GOVERNANCE-AND-AUDIT-DESIGN.md). It does not explicitly require identity/history. Those are proposed scope additions arising from Alex's questions: who performed a review, whether approval survives reload, and where records go. The existing mock receipt is temporary and must not be presented as historical approval.
 
 The repository's earlier `PLAN.md`, threat model and checklist prohibit content persistence and omit users. The new design explicitly proposes an amendment rather than falsely claiming this was always approved. Existing matching, upload, no-tools extraction and global-spend safeguards remain relevant; old no-retention language is marked historical. Before implementation Alex must accept the data destinations/retention/access trade-off. A documentation PASS cannot activate storage.
 
@@ -29,8 +29,8 @@ The final agreed sequence is spec/plan → ARGUS consolidated review → Alex sc
 
 ## What is in this candidate
 
-1. [Governance specification](../GOVERNANCE-AND-AUDIT-DESIGN.md): authenticated actor, evidence-version binding, append-only events, correction/escalation semantics, private data flow and proposed retention/non-goals.
-2. [Build plan](../BUILD-PLAN.md): six phases with two bounded sprints each, exact proposed paths, test-harness ownership, acceptance gates, approval decisions and cut order. No future npm command is represented as executable today.
+1. [Governance specification](../deep-dive/GOVERNANCE-AND-AUDIT-DESIGN.md): authenticated actor, evidence-version binding, append-only events, correction/escalation semantics, private data flow and proposed retention/non-goals.
+2. [Build plan](../deep-dive/BUILD-PLAN.md): six phases with two bounded sprints each, exact proposed paths, test-harness ownership, acceptance gates, approval decisions and cut order. No future npm command is represented as executable today.
 3. [Frozen v3](../ui/v3/README.md): original HTML/screenshots/script/results with hash manifest. No new mock design or source change.
 4. README/register links and explicit legacy-scope amendment notices; `.gitattributes` preserves hash-pinned imported assets across checkout platforms.
 

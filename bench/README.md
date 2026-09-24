@@ -2,7 +2,7 @@
 
 ## Latest completed battery
 
-**[Final results: Azure + Haiku + severity, timing, cost and decision](../BENCHMARK-RESULTS.md)**
+**[Final results: Azure + Haiku + severity, timing, cost and decision](../docs/deep-dive/BENCHMARK-RESULTS.md)**
 
 - [Versioned final evidence and verification instructions](final-evaluation-20260918/README.md)
 - [Complete source/record/log/code navigation](final-evaluation-20260918/SOURCE-INDEX.md)

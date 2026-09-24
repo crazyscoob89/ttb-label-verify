@@ -6,7 +6,7 @@ Archived from master `6f253361f7a3aa3e939f9fd813ba2f9fd8067da5` when the front p
 
 ## Latest completed benchmark — start here
 
-**[Final Azure + Haiku + severity results, timing, costs and model decision](../../BENCHMARK-RESULTS.md)**
+**[Final Azure + Haiku + severity results, timing, costs and model decision](BENCHMARK-RESULTS.md)**
 
 The completed September 18 battery is now archived with raw responses, failed
 attempts, images, scoring, cost ledger and a portable offline verifier. See the
@@ -22,7 +22,7 @@ statutory government-warning checks (27 CFR Parts 4, 5, 7, and 16). This is
 a verification aid, not COLA approval or legal certification.
 
 **Status: Phases 1–3 reviewed; ARGUS PASS for Phase 4 source foundation ONLY and Phase 5 offline batch ONLY; no deployment.**
-See [exact reviewed targets, original verdicts and limitations](../../docs/reviews/21-phase45-argus-pass.md), [current implementation status](../../docs/IMPLEMENTATION-STATUS.md), and [local app commands](../../web/README.md). Development-only exact-fixture single/batch review exists; outcomes and versions remain UNSAVED page-memory drafts. Dormant identity/storage/persistence libraries and SQL source are reviewed, not connected or database-accepted. Live inference, managed auth/session, concrete private-object storage and durable history remain unverified/unavailable; acceptance budget remains zero.
+See [exact reviewed targets, original verdicts and limitations](../../docs/reviews/21-phase45-argus-pass.md), [current implementation status](IMPLEMENTATION-STATUS.md), and [local app commands](../../web/README.md). Development-only exact-fixture single/batch review exists; outcomes and versions remain UNSAVED page-memory drafts. Dormant identity/storage/persistence libraries and SQL source are reviewed, not connected or database-accepted. Live inference, managed auth/session, concrete private-object storage and durable history remain unverified/unavailable; acceptance budget remains zero.
 Stage 1 was planning-only. The repository now includes generated synthetic
 fixtures, a provider-adapter benchmark harness, deterministic scoring and
 offline tests, and saved engine results. The existing run contains **18
@@ -32,26 +32,26 @@ controls. No new provider run is authorized by this documentation audit.
 
 ## Implementation authorization
 
-Alex has approved the phased local application build. The documentation candidate in PR #3 is merged; [current execution status and external-action boundaries](../../docs/IMPLEMENTATION-STATUS.md) supersede historical documentation-only wording below. No working/deployed application is claimed by that approval.
+Alex has approved the phased local application build. The documentation candidate in PR #3 is merged; [current execution status and external-action boundaries](IMPLEMENTATION-STATUS.md) supersede historical documentation-only wording below. No working/deployed application is claimed by that approval.
 
 ## Frozen UI and proposed governance build
 
-Open the [v3 design entry point](../../docs/ui/v3/README.md) for the downloadable offline HTML and desktop/mobile screenshots, then read the [governance specification](../../docs/GOVERNANCE-AND-AUDIT-DESIGN.md) and [phased build plan](../../docs/BUILD-PLAN.md). **Historical proposal-stage authorization was documentation only; the approved local phased implementation is now governed by [IMPLEMENTATION-STATUS.md](../../docs/IMPLEMENTATION-STATUS.md).** ARGUS independently reviews each frozen implementation phase. Nothing here deploys authentication, storage or a live app.
+Open the [v3 design entry point](../../docs/ui/v3/README.md) for the downloadable offline HTML and desktop/mobile screenshots, then read the [governance specification](GOVERNANCE-AND-AUDIT-DESIGN.md) and [phased build plan](BUILD-PLAN.md). **Historical proposal-stage authorization was documentation only; the approved local phased implementation is now governed by [IMPLEMENTATION-STATUS.md](IMPLEMENTATION-STATUS.md).** ARGUS independently reviews each frozen implementation phase. Nothing here deploys authentication, storage or a live app.
 
 **Explicit scope amendment:** earlier sections/docs describe stateless processing without accounts or retained content. The proposed next design adds individual reviewer identity and private, version-bound persistent review history, subject to approval of destinations, retention and access. The legacy no-retention statements below are preserved baseline requirements, not claims that persistence is implemented or a newly approved target remains stateless. Upload/inference/spend safety gates still apply. See [review provenance and open decisions](../../docs/reviews/09-governance-design-package.md).
 
-The benchmark counts below describe the root archived evidence set, not every later experiment. The additive [final benchmark publication](../../BENCHMARK-RESULTS.md) now supplies those later results without changing the historical archive.
+The benchmark counts below describe the root archived evidence set, not every later experiment. The additive [final benchmark publication](BENCHMARK-RESULTS.md) now supplies those later results without changing the historical archive.
 
 ## Documentation and evidence
 
-- [docs/CONSOLIDATION.md](../../docs/CONSOLIDATION.md) — consolidated benchmark candidate: canonical scorer, frozen historical archives, current severity-run exclusion and review status
+- [docs/CONSOLIDATION.md](CONSOLIDATION.md) — consolidated benchmark candidate: canonical scorer, frozen historical archives, current severity-run exclusion and review status
 
 - [docs/reviews/README.md](../../docs/reviews/README.md) — management review register: findings, historical verdicts, evidence, owners and open decisions
 
-- [docs/PLAN.md](../../docs/PLAN.md) — scope, planned architecture, matching rules
-- [docs/ACCEPTANCE_CHECKLIST.md](../../docs/ACCEPTANCE_CHECKLIST.md) — acceptance and open deployment gates
-- [docs/THREAT_MODEL.md](../../docs/THREAT_MODEL.md) — required security/retention controls, not implementation certification
-- [docs/BENCHMARK_PLAN.md](../../docs/BENCHMARK_PLAN.md) — methodology, scoring boundaries, and untested coverage
+- [docs/PLAN.md](PLAN.md) — scope, planned architecture, matching rules
+- [docs/ACCEPTANCE_CHECKLIST.md](ACCEPTANCE_CHECKLIST.md) — acceptance and open deployment gates
+- [docs/THREAT_MODEL.md](THREAT_MODEL.md) — required security/retention controls, not implementation certification
+- [docs/BENCHMARK_PLAN.md](BENCHMARK_PLAN.md) — methodology, scoring boundaries, and untested coverage
 - [bench/RESULTS.md](../../bench/RESULTS.md) — benchmark report
 - `bench/raw_results.json` — saved engine-call evidence
 - `fixtures/manifest.json`, `fixtures/images/`, `fixtures/ground_truth/` — synthetic fixture set and paired records
